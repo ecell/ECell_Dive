@@ -12,6 +12,13 @@ public class ToggleRay : MonoBehaviour
     [Tooltip("Switch even if an object is selected")]
     public bool forceToggle = false;
 
+    [Tooltip("Sets the default switch behaviour on Awake")]
+    public bool defaultSwitch = false;
+
+    [Tooltip("Deactivate the Direct controller while the" +
+        "RayInteractor is active.")]
+    public bool affectDirectInteractor = true;
+
     [Tooltip("The direct interactor that's switched to")]
     public XRDirectInteractor directInteractor = null;
 
@@ -21,7 +28,7 @@ public class ToggleRay : MonoBehaviour
     private void Awake()
     {
         rayInteractor = GetComponent<XRRayInteractor>();
-        SwitchInteractors(false); // moved to here
+        SwitchInteractors(defaultSwitch); // moved to here
     }
 
     private void Start()
@@ -52,6 +59,14 @@ public class ToggleRay : MonoBehaviour
     {
         isSwitched = value;
         rayInteractor.enabled = value;
-        directInteractor.enabled = !value;
+        if (affectDirectInteractor)
+        {
+            directInteractor.enabled = !value;
+        }
+    }
+
+    public void DebugMessage(string _msg)
+    {
+        Debug.Log(_msg);
     }
 }

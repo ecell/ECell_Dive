@@ -1,34 +1,44 @@
 using UnityEngine;
 
-public class DirectControllerVisual : MonoBehaviour
+namespace ECellDive
 {
-    public bool isOpen = true;
-
-    private Renderer refRenderer;
-
-    private void OnTriggerEnter(Collider other)
+    namespace Utility
     {
-        if (isOpen)
+        /// <summary>
+        /// A utility class to handle the switch in parameter value of the 
+        /// shader of the Direct Controllers
+        /// </summary>
+        public class DirectControllerVisual : MonoBehaviour
         {
-            SetMaterialContactFloat(1f);
+            public bool isOpen = true;
+
+            private Renderer refRenderer;
+
+            private void OnTriggerEnter(Collider other)
+            {
+                if (isOpen)
+                {
+                    SetMaterialContactFloat(1f);
+                }
+            }
+
+            private void OnTriggerExit(Collider other)
+            {
+                if (isOpen)
+                {
+                    SetMaterialContactFloat(0f);
+                }
+            }
+
+            public void SetMaterialContactFloat(float _f)
+            {
+                refRenderer.material.SetFloat("Vector1_1281dd58be3a41ea8c323a4d26769aa1", _f);
+            }
+
+            private void Start()
+            {
+                refRenderer = GetComponent<Renderer>();
+            }
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (isOpen)
-        {
-            SetMaterialContactFloat(0f);
-        }
-    }
-
-    public void SetMaterialContactFloat(float _f)
-    {
-        refRenderer.material.SetFloat("Vector1_1281dd58be3a41ea8c323a4d26769aa1", _f);
-    }
-
-    private void Start()
-    {
-        refRenderer = GetComponent<Renderer>();
     }
 }
