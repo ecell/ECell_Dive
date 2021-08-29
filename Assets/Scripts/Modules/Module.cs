@@ -2,27 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 using ECellDive.Utility;
+using ECellDive.UI;
 
 namespace ECellDive
 {
     namespace Modules
     {
+        [RequireComponent(typeof(XRBaseInteractable))]
         public class Module : MonoBehaviour
         {
+            [Header("Global References")]
             public GameObject refCamera;
+
+            [Header("Module Info References")]
             public TextMeshProUGUI refName;
+            public GameObject refInfoTagPrefab;
+            public GameObject refInfoTagsContainer;
+            public List<GameObject> refInfoTags;
+            public InputActionReference refShowInfoAction;
+
+            [Header("Diving System")]
+            [Tooltip("Reference to the Action used to dive")]
             public InputActionReference refDiveAction;
 
+            [Tooltip("The interaction layer used to respond to the dive input")]
             public LayerMask refInteractorTargetLayer;
+
+            [Tooltip("Reference to the interactable attached to this object")]
             public XRBaseInteractable refInteractable;
+
+            [Tooltip("Boolean reporting whether an interactor matching the" +
+                "appropriate interaction layer is pointing at the module.")]
             public bool isFocused = false;
 
             private void Awake()
             {
+                refShowInfoAction.action.performed += e => ShowInfoTags();
                 refDiveAction.action.performed += e => DiveIn();
             }
 
@@ -32,6 +51,28 @@ namespace ECellDive
                 {
                     Debug.Log("Base Dive In");
                     //scene transition animation launch
+                }
+            }
+
+            public void InstantiateInfoTag(Vector2 _xyPosition, string _content)
+            {
+                GameObject infoTag = Instantiate(refInfoTagPrefab, refInfoTagsContainer.transform);
+                infoTag.transform.localPosition = new Vector3(_xyPosition.x, _xyPosition.y, 0f);
+                infoTag.GetComponent<InfoDisplayManager>().SetText(_content);
+                refInfoTags.Add(infoTag);
+            }
+
+            public void InstantiateInfoTags(string[] _content)
+            {
+                float angle = 360 / _content.Length;
+                float radius = 1.25f * Mathf.Max(new float[]{transform.localScale.x,
+                                                             transform.localScale.y,
+                                                             transform.localScale.z });
+
+                for (int i = 0; i < _content.Length; i++)
+                {
+                    Vector2 xyPosition = Positioning.RadialPosition(radius, i*angle-89f);
+                    InstantiateInfoTag(xyPosition, _content[i]);
                 }
             }
 
@@ -45,24 +86,9 @@ namespace ECellDive
                 refDiveAction.action.Disable();
             }
 
-            public void CheckFocusOrigin()
+            public void SetFocus(bool _focused)
             {
-                if (refInteractable != null)
-                {
-                    foreach (XRBaseInteractor _interactor in refInteractable.hoveringInteractors)
-                    {
-                        if (_interactor.interactionLayerMask == refInteractorTargetLayer)
-                        {
-                            isFocused = true;
-                        }
-                    }
-                    //Debug.Log(isFocused);
-                }
-            }
-
-            public void Unfocus()
-            {
-                isFocused = false;
+                isFocused = _focused;
             }
 
             public void SetName(string _name)
@@ -70,10 +96,46 @@ namespace ECellDive
                 refName.text = _name;
             }
 
+            public void ShowInfoTags()
+            {
+                if (isFocused)
+                {
+                    foreach (GameObject _infoTag in refInfoTags)
+                    {
+                        _infoTag.SetActive(!_infoTag.activeSelf);
+                    }
+                }
+            }
+
+            public void ShowInfoTagsToPlayer()
+            {
+                foreach(GameObject _infoTag in refInfoTags)
+                {
+                    _infoTag.GetComponent<InfoDisplayManager>().ShowInfoToPlayer();
+                }
+            }
+
             public void ShowNameToPlayer()
             {
                 Positioning.UIFaceTarget(refName.gameObject.transform.parent.gameObject, refCamera.transform);
             }
+
+            protected IEnumerator SwitchScene(int _sceneIndex)
+            {
+                AsyncOperation operation = SceneManager.LoadSceneAsync(1);
+
+                while (!operation.isDone)
+                {
+                    yield return null;
+                }
+
+                yield return null;
+            }
+
+            //public void Unfocus()
+            //{
+            //    isFocused = false;
+            //}
         }
     }
 }

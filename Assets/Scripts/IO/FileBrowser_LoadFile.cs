@@ -51,6 +51,11 @@ namespace ECellDive
                 networkModuleGO.SetActive(true);
                 NetworkModule networkModule = networkModuleGO.GetComponent<NetworkModule>();
                 networkModule.SetName(_network.name);
+
+                networkModule.InstantiateInfoTags(new string[] {$"nb layers: {_network.layers.Length}",
+                                                                $"nb edges: {_network.edges.Count}",
+                                                                $"nb nodes: {_network.nodes.Count}"});
+
                 networkModule.SetIndex(NetworkModulesManager.loadedNetworks.Count - 1);
             }
 

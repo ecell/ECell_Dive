@@ -47,7 +47,10 @@ namespace ECellDive
             /// </summary>
             public void SetClosestCorner()
             {
-                StartCoroutine(SetClosestCornerC());
+                if (gameObject.activeInHierarchy)
+                {
+                    StartCoroutine(SetClosestCornerC());
+                }
             }
 
             private void Start()

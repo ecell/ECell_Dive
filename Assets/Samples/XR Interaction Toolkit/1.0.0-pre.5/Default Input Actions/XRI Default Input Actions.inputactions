@@ -623,6 +623,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ShowObjectMenu",
+                    "type": "Button",
+                    "id": "d581102b-3789-440b-9dd8-76a9203a780d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -953,6 +961,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "ModuleDive",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a6af269-eb1b-4c96-b027-911a4654fd9b",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "ShowObjectMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

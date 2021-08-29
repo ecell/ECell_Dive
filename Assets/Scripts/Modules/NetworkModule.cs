@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace ECellDive
 {
@@ -26,18 +25,6 @@ namespace ECellDive
 
                     StartCoroutine(SwitchScene(1));
                 }
-            }
-
-            IEnumerator SwitchScene(int _sceneIndex)
-            {
-                AsyncOperation operation = SceneManager.LoadSceneAsync(1);
-
-                while (!operation.isDone)
-                {
-                    yield return null;
-                }
-
-                yield return null;
             }
         }
     }

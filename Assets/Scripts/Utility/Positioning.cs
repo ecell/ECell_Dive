@@ -12,20 +12,6 @@ namespace ECellDive
         public static class Positioning
         {
             /// <summary>
-            /// Maily useful for UI.
-            /// Makes it face the user.
-            /// </summary>
-            /// <param name="_UIContainer">The parent gameobject of the UI
-            /// (usually has the canvas components)</param>
-            /// <param name="_target">The transform the UI should face (i.e.
-            /// be readable from)</param>
-            public static void UIFaceTarget(GameObject _UIContainer, Transform _target)
-            {
-                _UIContainer.transform.LookAt(_target);
-                _UIContainer.transform.Rotate(new Vector3(0, 180, 0), Space.Self);
-            }
-
-            /// <summary>
             /// Used to place an object in front of a target at a certain 
             /// distance and relative height.
             /// </summary>
@@ -43,6 +29,33 @@ namespace ECellDive
                                    _relative_height * _target.position.y,
                                    fromTargetPos.z);
             }
+
+            /// <summary>
+            /// Maily useful for UI.
+            /// Makes it face the user.
+            /// </summary>
+            /// <param name="_UIContainer">The parent gameobject of the UI
+            /// (usually has the canvas components)</param>
+            /// <param name="_target">The transform the UI should face (i.e.
+            /// be readable from)</param>
+            public static void UIFaceTarget(GameObject _UIContainer, Transform _target)
+            {
+                _UIContainer.transform.LookAt(_target);
+                _UIContainer.transform.Rotate(new Vector3(0, 180, 0), Space.Self);
+            }
+
+            /// <summary>
+            /// The planar XY positions of a point on a circle
+            /// </summary>
+            /// <param name="_radius">The radius of the circle.</param>
+            /// <param name="_angle">The angle in degrees.</param>
+            /// <returns> _radius * (cos(_rad_angle), sin(_rad_angle))</returns>
+            public static Vector2 RadialPosition(float _radius, float _angle)
+            {
+                return _radius * new Vector2(Mathf.Cos(Mathf.Deg2Rad * _angle), Mathf.Sin(Mathf.Deg2Rad * _angle));
+            }
+
+
         }
     }
 }

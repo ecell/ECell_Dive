@@ -14,11 +14,13 @@ namespace ECellDive
         public class LinePositionHandler : MonoBehaviour
         {
             [Serializable]
-            public enum PositionScope { local, world, delta}
+            public enum PositionScope { local, world, delta, _override, startLocal}
             public PositionScope startPositionScope;
             public Transform start;
+            public Vector3 overrideStart;
             public PositionScope endPositionScope;
             public Transform end;
+            public Vector3 overrideEnd;
             public LineRenderer refLineRenderer;
             
             public void RefreshLineStartPosition()
@@ -33,6 +35,9 @@ namespace ECellDive
                         break;
                     case (PositionScope.delta):
                         refLineRenderer.SetPosition(0, start.position - end.position);
+                        break;
+                    case (PositionScope._override):
+                        refLineRenderer.SetPosition(0, overrideStart);
                         break;
                 }
                 
@@ -51,6 +56,12 @@ namespace ECellDive
                     case (PositionScope.delta):
                         refLineRenderer.SetPosition(1, end.position - start.position);
                         break;
+                    case (PositionScope._override):
+                        refLineRenderer.SetPosition(1, overrideEnd);
+                        break;
+                    case (PositionScope.startLocal):
+                        refLineRenderer.SetPosition(1, start.InverseTransformPoint(end.position));
+                        break;
                 }
             }
 
@@ -66,6 +77,7 @@ namespace ECellDive
 
             private IEnumerator Start()
             {
+                yield return new WaitForEndOfFrame();
                 yield return new WaitForEndOfFrame();
                 RefreshLinePositions();
             }

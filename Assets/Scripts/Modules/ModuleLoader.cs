@@ -9,12 +9,15 @@ namespace ECellDive
 {
     namespace Modules
     {
+        /// <summary>
+        /// Loads the content of the module in the Diving room.
+        /// </summary>
         public class ModuleLoader : MonoBehaviour
         {
             public Utility.SettingsModels.NetworkComponentsReferences networkComponents;
 
             public GameObject LoadedNetwork;
-            // Start is called before the first frame update
+
             void Start()
             {
                 //Instantiate the loaded network in the scene based on

@@ -189,8 +189,6 @@ namespace ECellDive
 
                 SortControllers();
 
-                
-
                 if (currentRemoteInteractor.isActiveAndEnabled)
                 {
                     remoteGrabEnabled = true;
