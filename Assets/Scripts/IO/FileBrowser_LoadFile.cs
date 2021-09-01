@@ -28,10 +28,9 @@ namespace ECellDive
             private IEnumerator LoadFileC()
             {
                 yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Files, initialPath: data.DefaultPath);
-                Debug.Log("out");
+
                 if (FileBrowser.Success)
                 {
-                    Debug.Log("Success");
                     string _path = FileBrowserHelpers.GetDirectoryName(FileBrowser.Result[0]);
                     string _name = FileBrowserHelpers.GetFilename(FileBrowser.Result[0]);
 

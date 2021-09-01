@@ -26,6 +26,12 @@ namespace ECellDive
             public InputActionReference refShowInfoAction;
 
             [Header("Diving System")]
+            [Tooltip("The diving animator")]
+            public Animator refDivingAnimator;
+
+            [Tooltip("The minimum time we wait for the dive.")]
+            [Min(1f)] public float divingTime;
+
             [Tooltip("Reference to the Action used to dive")]
             public InputActionReference refDiveAction;
 
@@ -39,6 +45,8 @@ namespace ECellDive
                 "appropriate interaction layer is pointing at the module.")]
             public bool isFocused = false;
 
+            //private bool isDivingTimePassed = false;
+
             private void Awake()
             {
                 refShowInfoAction.action.performed += e => ShowInfoTags();
@@ -47,6 +55,8 @@ namespace ECellDive
 
             protected virtual void DiveIn()
             {
+
+
                 if (isFocused)
                 {
                     Debug.Log("Base Dive In");
@@ -122,19 +132,22 @@ namespace ECellDive
 
             protected IEnumerator SwitchScene(int _sceneIndex)
             {
+                refDivingAnimator.SetTrigger("DiveStart");
+                yield return new WaitForSeconds(divingTime);
+
                 AsyncOperation operation = SceneManager.LoadSceneAsync(1);
 
                 while (!operation.isDone)
                 {
-                    yield return null;
+                    yield return new WaitForEndOfFrame();
                 }
-
-                yield return null;
             }
 
-            //public void Unfocus()
+            //private IEnumerator WaitForDivingEnter()
             //{
-            //    isFocused = false;
+            //    yield return new WaitForSeconds(divingTime);
+            //    isDivingTimePassed = true;
+            //    Debug.Log("After WaitForDivingEnter");
             //}
         }
     }
