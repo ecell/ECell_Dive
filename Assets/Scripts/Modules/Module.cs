@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 using ECellDive.Utility;
@@ -12,11 +11,15 @@ namespace ECellDive
 {
     namespace Modules
     {
+        /// <summary>
+        /// Base class holding references and methods used to manipulate
+        /// the game object representation of a module.
+        /// </summary>
         [RequireComponent(typeof(XRBaseInteractable))]
         public class Module : MonoBehaviour
         {
             [Header("Global References")]
-            public GameObject refCamera;
+            public ModulesManager refModuleManager;
 
             [Header("Module Info References")]
             public TextMeshProUGUI refName;
@@ -26,7 +29,7 @@ namespace ECellDive
             public InputActionReference refShowInfoAction;
 
             [Header("Diving System")]
-            [Tooltip("The diving animator")]
+            [Tooltip("The gameobject with the diving animator")]
             public Animator refDivingAnimator;
 
             [Tooltip("The minimum time we wait for the dive.")]
@@ -55,12 +58,10 @@ namespace ECellDive
 
             protected virtual void DiveIn()
             {
-
-
                 if (isFocused)
                 {
-                    Debug.Log("Base Dive In");
-                    //scene transition animation launch
+                    refDivingAnimator.SetTrigger("DiveStart");
+                    refModuleManager.RegisterAllModulesPositions();
                 }
             }
 
@@ -81,7 +82,7 @@ namespace ECellDive
 
                 for (int i = 0; i < _content.Length; i++)
                 {
-                    Vector2 xyPosition = Positioning.RadialPosition(radius, i*angle-89f);
+                    Vector2 xyPosition = Positioning.RadialPosition(radius, i*angle);
                     InstantiateInfoTag(xyPosition, _content[i]);
                 }
             }
@@ -127,20 +128,7 @@ namespace ECellDive
 
             public void ShowNameToPlayer()
             {
-                Positioning.UIFaceTarget(refName.gameObject.transform.parent.gameObject, refCamera.transform);
-            }
-
-            protected IEnumerator SwitchScene(int _sceneIndex)
-            {
-                refDivingAnimator.SetTrigger("DiveStart");
-                yield return new WaitForSeconds(divingTime);
-
-                AsyncOperation operation = SceneManager.LoadSceneAsync(1);
-
-                while (!operation.isDone)
-                {
-                    yield return new WaitForEndOfFrame();
-                }
+                Positioning.UIFaceTarget(refName.gameObject.transform.parent.gameObject, Camera.main.transform);
             }
 
             //private IEnumerator WaitForDivingEnter()

@@ -81,11 +81,13 @@ namespace ECellDive
                                                                Vector3.zero,
                                                                Quaternion.identity,
                                                                layerGO.transform);
+                        nodeGO.SetActive(true);
                         nodeGO.transform.position = nodePos;
                         nodeGO.transform.localScale /= refNetworkGO.networkGOSettingsModel.SizeScaleFactor;
                         nodeGO.name = $"{_node.ID}";
 
                         nodeGO.GetComponent<NodeGO>().SetNodeData(_node);
+                        nodeGO.GetComponent<NodeGO>().refFloatingPlanel.transform.localScale *= refNetworkGO.networkGOSettingsModel.SizeScaleFactor;
 
                         refNetworkGO.NodeID_to_NodeGO[_node.ID] = nodeGO;
                     }
@@ -93,15 +95,15 @@ namespace ECellDive
                     //Instantiate Edges of Layer
                     foreach (IEdge _edge in _layer.edges)
                     {
-                        Vector3 startPos = refNetworkGO.NodeID_to_NodeGO[_edge.source].transform.position;
-                        Vector3 targetPos = refNetworkGO.NodeID_to_NodeGO[_edge.target].transform.position;
+                        Vector3 startPos = refNetworkGO.NodeID_to_NodeGO[_edge.source].transform.localPosition;
+                        Vector3 targetPos = refNetworkGO.NodeID_to_NodeGO[_edge.target].transform.localPosition;
 
                         refNetworkGO.NodeID_to_NodeGO[_edge.source].GetComponent<NodeGO>().nodeData.outgoingEdges.Add(_edge.ID);
                         refNetworkGO.NodeID_to_NodeGO[_edge.target].GetComponent<NodeGO>().nodeData.incommingEdges.Add(_edge.ID);
 
                         GameObject edgeGO = _edgeGO.GetComponent<EdgeGO>().SelfInstance();
                         edgeGO.transform.parent = layerGO.transform;
-                        edgeGO.transform.localPosition = (startPos + targetPos) * 0.5f;
+                        //edgeGO.transform.localPosition = (startPos + targetPos) * 0.5f;
 
                         EdgeGO refEdgeGO = edgeGO.GetComponent<EdgeGO>();
                         refEdgeGO.SetEdgeData(_edge);

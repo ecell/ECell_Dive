@@ -78,7 +78,19 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4862822861443727790}
+        m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
+        m_MethodName: ShowInfoToPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
       m_Calls: []
@@ -293,11 +305,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003103a917c32df4ca5e59d72edd1689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refCamera: {fileID: 0}
   refInfoTextMesh: {fileID: 2183119920662520100}
   refConnectionAnchorHandler: {fileID: 6645021562608781678}
   refConnectionLineHandler: {fileID: 2008476259509320440}
   alwaysShowInfoToPlayer: 0
+  globalHide: 0
+  hideOnStart: 0
 --- !u!1 &872680226503267849
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +323,7 @@ GameObject:
   - component: {fileID: 872680226503267842}
   - component: {fileID: 872680226503267853}
   - component: {fileID: 872680226503267852}
+  - component: {fileID: 8743129557171604340}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -399,6 +413,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &8743129557171604340
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872680226503267849}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &872680226728945197
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +525,7 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
+  m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
@@ -553,7 +579,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6637387393660188439
 CanvasRenderer:
@@ -741,7 +767,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.5, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &2958848786403510017
 BoxCollider:

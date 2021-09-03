@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 
 namespace ECellDive
@@ -16,7 +17,8 @@ namespace ECellDive
 
         public interface IFloatingDisplayable
         {
-            GameObject refFloatingPlanel { get; }
+            GameObject refFloatingPlanel { get;}
+            InputActionReference refTriggerFloatingPlanel { get; set; }
             void ActivateFloatingDisplay();
             void DeactivateFloatingDisplay();
         }

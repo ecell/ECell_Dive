@@ -11,17 +11,77 @@ namespace ECellDive
     {
         public class InfoDisplayManager : MonoBehaviour
         {
-            public Camera refCamera;
-
             public TextMeshProUGUI refInfoTextMesh;
             public ConnectionAnchorPosition refConnectionAnchorHandler;
             public LinePositionHandler refConnectionLineHandler;
 
             public bool alwaysShowInfoToPlayer = false;
+            [HideInInspector] public bool globalHide = false;
+            public bool hideOnStart = false;
+
+            /// <summary>
+            /// Switches the value of the globalHide field on every call.
+            /// If set to false, it resets the visibility of the gameobject
+            /// based on the value of hideOnStart.
+            /// </summary>
+            public void GlobalHide()
+            {
+                globalHide = !globalHide;
+                if (globalHide)
+                {
+                    Hide();
+                }
+                else
+                {
+                    if (!hideOnStart)
+                    {
+                        Show();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Hides the Info tag without setting it inactive
+            /// </summary>
+            protected void Hide()
+            {
+                GetComponentInChildren<CanvasGroup>().alpha = 0f;
+                refConnectionLineHandler.gameObject.GetComponent<LineRenderer>().enabled = false;
+            }
 
             public void SetText(string _text)
             {
                 refInfoTextMesh.text = _text;
+            }
+
+            /// <summary>
+            /// Controls the visibility of the gameobject only when
+            /// globalHide is set to false.
+            /// </summary>
+            /// <param name="_show">True => Show, False => Hide</param>
+            public void SetVisibility(bool _show)
+            {
+                if (!globalHide)
+                {
+                    if (_show)
+                    {
+                        Show();
+                    }
+
+                    else
+                    {
+                        Hide();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Shows the info tag without setting it active
+            /// </summary>
+            protected void Show()
+            {
+                GetComponentInChildren<CanvasGroup>().alpha = 1f;
+                refConnectionLineHandler.gameObject.GetComponent<LineRenderer>().enabled = true;
             }
 
             /// <summary>
@@ -31,9 +91,17 @@ namespace ECellDive
             /// </summary>
             public void ShowInfoToPlayer()
             {
-                Positioning.UIFaceTarget(gameObject, refCamera.transform);
+                Positioning.UIFaceTarget(gameObject, Camera.main.transform);
                 refConnectionAnchorHandler.SetClosestCorner();
                 refConnectionLineHandler.RefreshLinePositions();
+            }
+
+            private void Start()
+            {
+                if (hideOnStart)
+                {
+                    Hide();
+                }
             }
 
             private void Update()

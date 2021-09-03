@@ -33,6 +33,11 @@ namespace ECellDive
                 refMenuOpen.action.Disable();
             }
 
+            private void OnDestroy()
+            {
+                refMenuOpen.action.performed -= OpenCloseOptionMenu;
+            }
+
             /// <summary>
             /// Small utility function to set active a specific menu.
             /// </summary>

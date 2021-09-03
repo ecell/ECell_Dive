@@ -162,6 +162,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Contextual Help Trigger",
+                    "type": "Button",
+                    "id": "11de1b3c-bf03-42cc-b674-51219670b68b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -222,17 +230,6 @@
                 },
                 {
                     "name": "",
-                    "id": "8da6ed3a-f621-49fe-8c76-1f6b7d7754d6",
-                    "path": "<XRController>{LeftHand}/Primary2DAxis",
-                    "interactions": "Sector(directions=1,pressPoint=0.25)",
-                    "processors": "",
-                    "groups": "Noncontinuous Move",
-                    "action": "Teleport Mode Activate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0c6e9352-b939-4379-8348-5227b8bf5c12",
                     "path": "<XRController>{LeftHand}/primaryTouched",
                     "interactions": "",
@@ -250,17 +247,6 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Teleport Mode Cancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "95fa1419-ca7b-4c8a-8d15-7d46e58d82e3",
-                    "path": "<XRController>{LeftHand}/Primary2DAxis",
-                    "interactions": "Sector(directions=-1,sweepBehavior=3,pressPoint=0.9)",
-                    "processors": "",
-                    "groups": "Noncontinuous Move",
-                    "action": "Teleport Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -505,6 +491,17 @@
                     "action": "OpenMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "398c6fa1-607c-4ac2-83da-3955c14d247d",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Contextual Help Trigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -631,6 +628,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "BackToMainRoom",
+                    "type": "Button",
+                    "id": "23858b5e-0dc0-4b64-95c9-ba7282095d57",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -691,17 +696,6 @@
                 },
                 {
                     "name": "",
-                    "id": "62690862-4688-4010-975b-b3d9c6062157",
-                    "path": "<XRController>{RightHand}/Primary2DAxis",
-                    "interactions": "Sector(directions=1,pressPoint=0.25)",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Teleport Mode Activate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "7412547e-81f1-4934-8346-9edaa2bab7a5",
                     "path": "<XRController>{RightHand}/primaryTouched",
                     "interactions": "",
@@ -719,17 +713,6 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Teleport Mode Cancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "919c4a6c-22ed-4083-8e14-f30e91ff59fe",
-                    "path": "<XRController>{RightHand}/Primary2DAxis",
-                    "interactions": "Sector(directions=-1,sweepBehavior=3,pressPoint=0.9)",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Teleport Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -974,6 +957,183 @@
                     "action": "ShowObjectMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1354b55-b10c-486d-b1ae-ca8cc91e09a5",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "Hold(duration=1)",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "BackToMainRoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Dive LeftHand",
+            "id": "97fc6a14-db30-4409-bb0a-c9dccc8288dc",
+            "actions": [
+                {
+                    "name": "Grab",
+                    "type": "Button",
+                    "id": "4d1a3d1e-70de-4dad-a03e-021e72e13c3f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Scale",
+                    "type": "Button",
+                    "id": "fef7e9c2-146a-42dc-9624-0f34eabcddbf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f9fbb714-810d-47c2-b0ca-7d7de520ba1c",
+                    "path": "<XRController>{LeftHand}/gripButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Button With One Modifier",
+                    "id": "e00fc490-2922-443b-acdb-3f2a94ab3115",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scale",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "97df4fbd-7a84-4b70-9186-4451ed180eab",
+                    "path": "<XRController>{RightHand}/gripButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller;Continuous Move",
+                    "action": "Scale",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "69966d9b-5522-48bc-a36d-eb8ff49dd378",
+                    "path": "<XRController>{LeftHand}/gripButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller;Continuous Move",
+                    "action": "Scale",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "MainRoom LeftHand",
+            "id": "f95e6a59-73c2-44b3-8910-f95c2192e33b",
+            "actions": [
+                {
+                    "name": "Attract_Repulse",
+                    "type": "Button",
+                    "id": "e8147044-6e10-489b-ad56-0260aade41af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Button With One Modifier",
+                    "id": "6be20e0e-07dc-410e-9519-41d9e28f9c76",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attract_Repulse",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "9dcf9daa-fd49-499c-8542-213d7de19df7",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Attract_Repulse",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "d3729c9c-da70-4e0a-9402-474bac2723fb",
+                    "path": "<XRController>{LeftHand}/gripButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Attract_Repulse",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "MainRoom RightHand",
+            "id": "78d4a5ea-3741-45ca-9c28-413a94e8c304",
+            "actions": [
+                {
+                    "name": "Attract_Repulse",
+                    "type": "Button",
+                    "id": "289d49cf-9daf-42f6-82cd-16c88376a828",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Button With One Modifier",
+                    "id": "8e749a30-5de5-4277-a60c-7598f0484b2e",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attract_Repulse",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "fbd76fab-cfdd-4fb5-8302-807154740b4f",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Attract_Repulse",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "58796c93-b050-4e94-9c36-02dcc6f2f124",
+                    "path": "<XRController>{RightHand}/gripButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Attract_Repulse",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
