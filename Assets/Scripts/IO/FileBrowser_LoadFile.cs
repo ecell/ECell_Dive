@@ -50,7 +50,7 @@ namespace ECellDive
                 Positioning.UIFaceTarget(refFileBrowser, Camera.main.transform);
 
                 FileBrowser.SetFilters(true,
-                                        new FileBrowser.Filter("Cytoscape", ".cyjson"));
+                                        new FileBrowser.Filter("Cytoscape", ".cyjson", ".cyjs"));
                 FileBrowser.SetDefaultFilter(".cyjson");
 
                 StartCoroutine(LoadFileC());
@@ -65,19 +65,18 @@ namespace ECellDive
             {
                 string[] name_split = _name.Split('.');
                 
-                switch(name_split[name_split.Length - 1])
+                if (name_split[name_split.Length - 1] == "cyjson" ||
+                    name_split[name_split.Length - 1] == "cyjs")
                 {
-                    case ("cyjson"):
-                        //Loading the file
-                        NetworkComponents.Network network = NetworkLoader.Initiate(_path, _name);
+                    //Loading the file
+                    NetworkComponents.Network network = NetworkLoader.Initiate(_path, _name);
 
-                        //Instantiating relevant data structures to store the information about
-                        //the layers, nodes and edges.
-                        NetworkLoader.Populate(network);
+                    //Instantiating relevant data structures to store the information about
+                    //the layers, nodes and edges.
+                    NetworkLoader.Populate(network);
                         
-                        NetworkModulesData.AddData(network);
-                        refModulesManager.InstantiateModule(network);
-                        break;
+                    NetworkModulesData.AddData(network);
+                    refModulesManager.InstantiateModule(network);
                 }
             }
 

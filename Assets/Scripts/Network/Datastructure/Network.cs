@@ -37,11 +37,23 @@ namespace ECellDive
 
             public void PopulateLayers()
             {
-                IEnumerable<IGrouping<string, JToken>> nodesPerLayer = CyJsonParser.GroupNodesByLayers(nodes);
-                IEnumerable<IGrouping<string, JToken>> edgesPerLayer = CyJsonParser.GroupEdgesByLayers(edges);
-                
-                layers = new ILayer[nodesPerLayer.Count()];
+                JObject _firstNode = (JObject)nodes[0]["data"];
+                IEnumerable<IEnumerable<JToken>> nodesPerLayer;
+                IEnumerable<IEnumerable<JToken>> edgesPerLayer;
 
+                if (_firstNode.ContainsKey("LAYER_INDEX"))
+                {
+                    nodesPerLayer = CyJsonParser.GroupNodesByLayers(nodes);
+                    edgesPerLayer = CyJsonParser.GroupEdgesByLayers(edges);
+                }
+                else
+                {
+                    nodesPerLayer = new[] { nodes };
+                    edgesPerLayer = new[] { edges };
+                }
+
+                layers = new ILayer[nodesPerLayer.Count()];
+                
                 for (int i = 0; i < nodesPerLayer.Count(); i++)
                 {
                     layers[i] = new Layer(nodesPerLayer.Count() - i - 1, nodesPerLayer.ElementAt(i), edgesPerLayer.ElementAt(i));
