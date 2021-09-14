@@ -25,6 +25,12 @@ namespace ECellDive
                 name = _name;
             }
 
+            public Network(JObject _networkCyJs, string _name)
+            {
+                networkData = _networkCyJs;
+                name = _name;
+            }
+
             public void SetNodes()
             {
                 nodes = CyJsonParser.GetNodes(networkData);

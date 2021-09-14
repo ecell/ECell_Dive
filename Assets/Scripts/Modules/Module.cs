@@ -56,6 +56,9 @@ namespace ECellDive
                 refDiveAction.action.performed += e => DiveIn();
             }
 
+            /// <summary>
+            /// Base method to dive in a module.
+            /// </summary>
             protected virtual void DiveIn()
             {
                 if (isFocused)
@@ -65,6 +68,12 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// Instantiate one info tag gameobject.
+            /// </summary>
+            /// <param name="_xyPosition">The X and Y positions.
+            /// The Z position will be set to 0.</param>
+            /// <param name="_content">The info to display.</param>
             public void InstantiateInfoTag(Vector2 _xyPosition, string _content)
             {
                 GameObject infoTag = Instantiate(refInfoTagPrefab, refInfoTagsContainer.transform);
@@ -73,6 +82,12 @@ namespace ECellDive
                 refInfoTags.Add(infoTag);
             }
 
+            /// <summary>
+            /// Instantiates all info tags of a module based on the
+            /// info stored in <paramref name="_content"/>.
+            /// </summary>
+            /// <param name="_content">The array storing the information
+            /// to display within text fields of the tags.</param>
             public void InstantiateInfoTags(string[] _content)
             {
                 float angle = 360 / _content.Length;
@@ -107,6 +122,9 @@ namespace ECellDive
                 refName.text = _name;
             }
 
+            /// <summary>
+            /// Triggers the active state of the info tags.
+            /// </summary>
             public void ShowInfoTags()
             {
                 if (isFocused)
@@ -118,6 +136,10 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// Makes sure the info tags face the Player's POV and
+            /// is therefore readable.
+            /// </summary>
             public void ShowInfoTagsToPlayer()
             {
                 foreach(GameObject _infoTag in refInfoTags)
@@ -126,17 +148,14 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// Makes sure the name of the module's name faces the
+            /// Player's POV and is therefore readable.
+            /// </summary>
             public void ShowNameToPlayer()
             {
                 Positioning.UIFaceTarget(refName.gameObject.transform.parent.gameObject, Camera.main.transform);
             }
-
-            //private IEnumerator WaitForDivingEnter()
-            //{
-            //    yield return new WaitForSeconds(divingTime);
-            //    isDivingTimePassed = true;
-            //    Debug.Log("After WaitForDivingEnter");
-            //}
         }
     }
 }
