@@ -11,8 +11,8 @@ namespace ECellDive
         public static class NetworkLoader
         {
             /// <summary>
-            /// Instantiate a Network data structure from the Cystoscape network
-            /// Json file.
+            /// Instantiate a <see cref="Network"/> data structure
+            /// from the Cystoscape network Json file.
             /// </summary>
             /// <param name="_path">Path of the Cytoscape network Json file</param>
             /// <param name="_name">Name of the Cytoscape network Json file</param>
@@ -109,22 +109,23 @@ namespace ECellDive
                     //Instantiate Edges of Layer
                     foreach (IEdge _edge in _layer.edges)
                     {
-                        Vector3 startPos = refNetworkGO.NodeID_to_NodeGO[_edge.source].transform.localPosition;
-                        Vector3 targetPos = refNetworkGO.NodeID_to_NodeGO[_edge.target].transform.localPosition;
+                        Transform start = refNetworkGO.NodeID_to_NodeGO[_edge.source].transform;
+                        Transform target = refNetworkGO.NodeID_to_NodeGO[_edge.target].transform;
 
                         refNetworkGO.NodeID_to_NodeGO[_edge.source].GetComponent<NodeGO>().nodeData.outgoingEdges.Add(_edge.ID);
                         refNetworkGO.NodeID_to_NodeGO[_edge.target].GetComponent<NodeGO>().nodeData.incommingEdges.Add(_edge.ID);
 
                         GameObject edgeGO = _edgeGO.GetComponent<EdgeGO>().SelfInstance();
+                        edgeGO.SetActive(true);
                         edgeGO.transform.parent = layerGO.transform;
-                        //edgeGO.transform.localPosition = (startPos + targetPos) * 0.5f;
 
                         EdgeGO refEdgeGO = edgeGO.GetComponent<EdgeGO>();
                         refEdgeGO.SetEdgeData(_edge);
                         refEdgeGO.SetDefaultWidth(1 / refNetworkGO.networkGOSettingsModel.SizeScaleFactor,
                                                   1 / refNetworkGO.networkGOSettingsModel.SizeScaleFactor);
                         refEdgeGO.SetLineRenderer();
-                        refEdgeGO.SetPosition(startPos, targetPos);
+                        refEdgeGO.SetPosition(start, target);
+                        refEdgeGO.SetLineCollider(start, target);
                         edgeGO.name = _edge.NAME;
 
                         refNetworkGO.EdgeID_to_EdgeGO[_edge.ID] = edgeGO;

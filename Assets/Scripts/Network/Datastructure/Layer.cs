@@ -25,24 +25,6 @@ namespace ECellDive
                 jEdges = _jEdgesOfLayer;
             }
 
-            private string LookForLabel(JToken _node)
-            {
-                string label = "";
-                JObject jObjNode = (JObject)_node;
-
-
-                if (jObjNode.ContainsKey("KEGG_NODE_X"))
-                {
-                    label = jObjNode["data"]["KEGG_NODE_X"].Value<string>();
-                }
-                else
-                {
-                    label = jObjNode["data"]["type"].Value<string>();
-                }
-
-                return label;
-            }
-
             private Vector3 LookForNodePosition(JToken _node)
             {
                 Vector3 nodePos = Vector3.zero;
@@ -86,11 +68,9 @@ namespace ECellDive
                 for (int i = 0; i< nbNodes; i++)
                 {
                     Vector3 nodePos = LookForNodePosition(jNodes.ElementAt(i));
-                    string label = LookForLabel(jNodes.ElementAt(i));
                     nodes[i] = new Node(jNodes.ElementAt(i)["data"]["SUID"].Value<int>(),
                                         jNodes.ElementAt(i)["data"]["name"].Value<string>(),
-                                        nodePos,
-                                        label);
+                                        nodePos);
                 }
             }
 

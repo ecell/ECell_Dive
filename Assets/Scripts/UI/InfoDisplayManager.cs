@@ -43,9 +43,10 @@ namespace ECellDive
             /// <summary>
             /// Hides the Info tag without setting it inactive
             /// </summary>
-            protected void Hide()
+            protected virtual void Hide()
             {
                 GetComponentInChildren<CanvasGroup>().alpha = 0f;
+                GetComponentInChildren<BoxCollider>().enabled = false;
                 refConnectionLineHandler.gameObject.GetComponent<LineRenderer>().enabled = false;
             }
 
@@ -78,9 +79,10 @@ namespace ECellDive
             /// <summary>
             /// Shows the info tag without setting it active
             /// </summary>
-            protected void Show()
+            protected virtual void Show()
             {
                 GetComponentInChildren<CanvasGroup>().alpha = 1f;
+                GetComponentInChildren<BoxCollider>().enabled = true;
                 refConnectionLineHandler.gameObject.GetComponent<LineRenderer>().enabled = true;
             }
 

@@ -70,10 +70,12 @@ namespace ECellDive
             float defaultStartWidth { get; }
             float defaultEndWidth { get; }
             LineRenderer refLineRenderer { get; }
+            GameObject refBoxColliderHolder { get; }
             void SetEdgeData(IEdge _IEdge);
             void SetDefaultWidth(float _start, float _end);
+            void SetLineCollider(Transform _start, Transform _end);
             void SetLineRenderer();
-            void SetPosition(Vector3 _start, Vector3 _end);
+            void SetPosition(Transform _start, Transform _end);
         }
 
         public interface ILayerGO

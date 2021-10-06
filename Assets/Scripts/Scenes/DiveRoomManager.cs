@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.IO;
-using ECellDive.Modules;
-using ECellDive.Utility;
+
+
 using ECellDive.NetworkComponents;
 
 namespace ECellDive
@@ -12,18 +12,18 @@ namespace ECellDive
     namespace SceneManagement
     {
         /// <summary>
-        /// Instantiates the content of the active module in the Diving room.
+        /// Base manager class of the Diving room.
+        /// Stores the references to the XR rig and the Dive Container.
+        /// Also handles the action to exit the dive room and come back
+        /// to the main room.
         /// </summary>
         public class DiveRoomManager : MonoBehaviour
         {
             public GameObject refXRRig;
             public GameObject DiveContainer;
-            public Utility.SettingsModels.NetworkComponentsReferences networkComponents;
-            [HideInInspector] public GameObject LoadedNetwork;
 
             public Animator refDivingAnimator;
             public InputActionReference refBackToMainRoom;
-
 
             private void Awake()
             {
@@ -49,34 +49,6 @@ namespace ECellDive
             private void OnDestroy()
             {
                 refBackToMainRoom.action.performed -= BackToMainRoom;
-            }
-
-            void Start()
-            {
-                if (ModulesData.typeActiveModule == ModulesData.ModuleType.NetworkModule &&
-                    NetworkModulesData.activeData != null)
-                {
-                    //Instantiate the loaded network in the scene based on
-                    //the information retained in the data structures.
-                    LoadedNetwork = NetworkLoader.Generate(NetworkModulesData.activeData,
-                                                           networkComponents.networkGO,
-                                                           networkComponents.layerGO,
-                                                           networkComponents.nodeGO,
-                                                           networkComponents.edgeGO);
-                    LoadedNetwork.transform.parent = DiveContainer.transform;
-                    refXRRig.transform.position = Positioning.GetGravityCenter(LoadedNetwork.GetComponent<NetworkGO>().NodeID_to_NodeGO.Values);
-                }
-            }
-
-            public void ManageEdgesHighlight(NodeGO _refNodeGO)
-            {
-                NetworkGO refNetworkGO = LoadedNetwork.GetComponent<NetworkGO>();
-
-                foreach (int _edgeID in _refNodeGO.nodeData.outgoingEdges)
-                {
-                    GameObject edgeGO = refNetworkGO.EdgeID_to_EdgeGO[_edgeID];
-                    edgeGO.GetComponent<EdgeGO>().ManageHighlight();
-                }
             }
         }
     }

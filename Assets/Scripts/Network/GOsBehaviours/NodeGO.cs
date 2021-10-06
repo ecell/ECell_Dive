@@ -18,8 +18,7 @@ namespace ECellDive
     {
         public class NodeGO : LivingObject,
                                 INodeGO, IHighlightable,
-                                IFloatingDisplayable//, IFixedDisplayable,
-                                //IPointerEnterHandler, IPointerExitHandler
+                                IFloatingDisplayable
         {
             public INode nodeData { get; protected set; }
             public string informationString { get; protected set; }

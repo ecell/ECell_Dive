@@ -19,12 +19,11 @@ namespace ECellDive
             //AdditionalFields
             public string keggNodeLabel;
 
-            public Node(int _ID, string _name, Vector3 _position, string _keggNodeLabel)
+            public Node(int _ID, string _name, Vector3 _position)
             {
                 ID = _ID;
                 position = _position;
                 NAME = _name;
-                keggNodeLabel = _keggNodeLabel;
                 incommingEdges = new List<int>();
                 outgoingEdges = new List<int>();
             }

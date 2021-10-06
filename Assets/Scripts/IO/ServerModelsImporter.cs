@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
-using UnityEngine.Networking;
 using TMPro;
-using ECellDive.Utility;
 using ECellDive.Modules;
 
 
@@ -14,12 +12,8 @@ namespace ECellDive
 {
     namespace IO
     {
-        public class FBAServer : MonoBehaviour
+        public class ServerModelsImporter : HTTPServer
         {
-            [Header("Server parameters")]
-            public string serverIP = "127.0.0.1";
-            public string port = "8000";
-
             [Header("UI references")]
             public GameObject refModelsUIContainer;
             public GameObject refModelUIPrefab;
@@ -28,27 +22,7 @@ namespace ECellDive
             public ModulesManager refModulesManager;
 
             [HideInInspector] public string activeModelName = "";
-            [HideInInspector] public string requestText = "";
-            [HideInInspector] public JObject requestJObject = new JObject();
 
-            private bool requestProcessed = true;
-            private bool requestSuccess = true;
-
-            /// <summary>
-            /// Add pages to the base server url.
-            /// </summary>
-            /// <param name="_pages">The name of successive pages.</param>
-            /// <returns></returns>
-            private string AddPagesToURL(string[] _pages)
-            {
-                string url = "http://" + serverIP + ":" + port;
-                foreach (string _page in _pages)
-                {
-                    url += "/" + _page;
-                }
-                return url;
-            }
-            
             /// <summary>
             /// Requests the models list to the server.
             /// </summary>
@@ -78,42 +52,6 @@ namespace ECellDive
             {
                 string requestURL = AddPagesToURL(new string[] { "sbml", _modelName });
                 StartCoroutine(GetRequest(requestURL));
-            }
-
-            /// <summary>
-            /// Send a request to the server.
-            /// </summary>
-            /// <param name="uri">The request uri.</param>
-            /// <returns></returns>
-            private IEnumerator GetRequest(string uri)
-            {
-                requestProcessed = false;
-                requestSuccess = false;
-                using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
-                {
-                    // Request and wait for the desired page.
-                    yield return webRequest.SendWebRequest();
-
-                    string[] pages = uri.Split('/');
-                    int page = pages.Length - 1;
-
-                    switch (webRequest.result)
-                    {
-                        case UnityWebRequest.Result.ConnectionError:
-                        case UnityWebRequest.Result.DataProcessingError:
-                            Debug.LogError(pages[page] + ": Error: " + webRequest.error);
-                            break;
-                        case UnityWebRequest.Result.ProtocolError:
-                            Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
-                            break;
-                        case UnityWebRequest.Result.Success:
-                            Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                            requestText = webRequest.downloadHandler.text;
-                            requestSuccess = true;
-                            break;
-                    }
-                    requestProcessed = true;
-                }
             }
 
             /// <summary>
@@ -158,16 +96,6 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// Typically used by the coroutines to wait until the
-            /// request sent to the servers has been processed.
-            /// </summary>
-            /// <returns><see cref="requestProcessed"/></returns>
-            private bool isRequestProcessed()
-            {
-                return requestProcessed;
-            }
-
-            /// <summary>
             /// The public interface to ask the server for the list of
             /// the available models.
             /// </summary>
@@ -201,7 +129,6 @@ namespace ECellDive
                     }
                 }
             }
-
         }
     }
 }

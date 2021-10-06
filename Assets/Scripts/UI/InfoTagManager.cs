@@ -50,6 +50,12 @@ namespace ECellDive
                 _callbackEvent.Invoke();
             }
 
+            protected override void Hide()
+            {
+                GetComponentInChildren<CanvasGroup>().alpha = 0f;
+                refConnectionLineHandler.gameObject.GetComponent<LineRenderer>().enabled = false;
+            }
+
             private void OnEnable()
             {
                 foreach (ButtonTag _buttonTag in ButtonTagEffects)
@@ -78,6 +84,12 @@ namespace ECellDive
             {
                 currentContentIndex = _contentIndex;
                 refInfoTextMesh.text = content[currentContentIndex];
+            }
+
+            protected override void Show()
+            {
+                GetComponentInChildren<CanvasGroup>().alpha = 1f;
+                refConnectionLineHandler.gameObject.GetComponent<LineRenderer>().enabled = true;
             }
 
             private void Start()

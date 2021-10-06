@@ -28,5 +28,17 @@ namespace ECellDive
             GameObject refFixedPlanel { get; }
             void ActivateFixedDisplay();
         }
+
+        public interface IKnockable
+        {
+            bool knockedOut { get; }
+            void Activate();
+            void Knockout();
+        }
+
+        public interface IModulateFlux: IKnockable
+        {
+            void SetFlux(float _level);
+        }
     }
 }
