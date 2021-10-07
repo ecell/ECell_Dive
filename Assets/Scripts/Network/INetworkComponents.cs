@@ -67,13 +67,14 @@ namespace ECellDive
         public interface IEdgeGO
         {
             IEdge edgeData { get; }
+            string informationString { get; }
             float defaultStartWidth { get; }
             float defaultEndWidth { get; }
             LineRenderer refLineRenderer { get; }
             GameObject refBoxColliderHolder { get; }
             void SetEdgeData(IEdge _IEdge);
             void SetDefaultWidth(float _start, float _end);
-            void SetLineCollider(Transform _start, Transform _end);
+            void SetCollider(Transform _start, Transform _end);
             void SetLineRenderer();
             void SetPosition(Transform _start, Transform _end);
         }

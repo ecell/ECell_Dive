@@ -11,6 +11,8 @@ namespace ECellDive
     {
         public class InfoDisplayManager : MonoBehaviour
         {
+            public Transform refMaster;
+            public Vector3 defaultPositionOffset;
             public TextMeshProUGUI refInfoTextMesh;
             public ConnectionAnchorPosition refConnectionAnchorHandler;
             public LinePositionHandler refConnectionLineHandler;
@@ -100,6 +102,12 @@ namespace ECellDive
 
             private void Start()
             {
+                if (refMaster == null)
+                {
+                    refMaster = transform.parent;
+                }
+                transform.position = refMaster.transform.position + defaultPositionOffset;
+
                 if (hideOnStart)
                 {
                     Hide();

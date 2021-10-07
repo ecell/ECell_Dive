@@ -17,6 +17,7 @@ namespace ECellDive
 
         public interface IFloatingDisplayable
         {
+            bool floatingPanelDisplayed { get; }
             GameObject refFloatingPlanel { get;}
             InputActionReference refTriggerFloatingPlanel { get; set; }
             void ActivateFloatingDisplay();
@@ -38,6 +39,7 @@ namespace ECellDive
 
         public interface IModulateFlux: IKnockable
         {
+            float fluxLevel { get; }
             void SetFlux(float _level);
         }
     }

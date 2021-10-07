@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using ECellDive.Utility;
 using ECellDive.Utility.SettingsModels;
+using ECellDive.UI;
 using ECellDive.IInteractions;
 using ECellDive.INetworkComponents;
 
@@ -12,9 +14,12 @@ namespace ECellDive
     namespace NetworkComponents
     {
         [RequireComponent(typeof(LineRenderer))]
-        public class EdgeGO : LivingObject, IEdgeGO, IHighlightable, IModulateFlux
+        public class EdgeGO : LivingObject,
+                                IEdgeGO, IHighlightable,
+                                IFloatingDisplayable, IModulateFlux
         {
             public IEdge edgeData { get; set; }
+            public string informationString { get; protected set; }
             public float defaultStartWidth { get; protected set; }
             public float defaultEndWidth { get; protected set; }
             public LineRenderer refLineRenderer { get; protected set; }
@@ -22,19 +27,41 @@ namespace ECellDive
             [SerializeField] private GameObject m_refBoxColliderHolder;
             public GameObject refBoxColliderHolder
             {
-                get => refBoxColliderHolder;
+                get => m_refBoxColliderHolder;
                 set => refBoxColliderHolder = m_refBoxColliderHolder;
             }
             public bool highlighted { get; protected set; }
 
+            public bool floatingPanelDisplayed { get; protected set; }
+            [SerializeField] private GameObject m_refFloatingPanel;
+            public GameObject refFloatingPlanel
+            {
+                get => m_refFloatingPanel;
+                set => refFloatingPlanel = m_refFloatingPanel;
+            }
+            [SerializeField] private InputActionReference m_refTriggerFloatingPlanel;
+            public InputActionReference refTriggerFloatingPlanel
+            {
+                get => m_refTriggerFloatingPlanel;
+                set => refTriggerFloatingPlanel = m_refTriggerFloatingPlanel;
+            }
+
             public bool knockedOut { get; protected set; }
+            public float fluxLevel { get; protected set; }
 
             public EdgeGOSettings edgeGOSettingsModels;
 
             private void Awake()
             {
                 highlighted = false;
+
+                floatingPanelDisplayed = false;
+                m_refTriggerFloatingPlanel.action.performed += ManageFloatingDisplay;
+
+                knockedOut = false;
+                fluxLevel = 0f;
             }
+
             #region - IEdgeGO - 
             public void SetDefaultWidth(float _start, float _end)
             {
@@ -45,9 +72,10 @@ namespace ECellDive
             public void SetEdgeData(IEdge _IEdge)
             {
                 edgeData = _IEdge;
+                SetInformationString();
             }
 
-            public void SetLineCollider(Transform _start, Transform _end)
+            public void SetCollider(Transform _start, Transform _end)
             {
                 m_refBoxColliderHolder.transform.localPosition = 0.5f * (_start.localPosition + _end.localPosition);
                 m_refBoxColliderHolder.transform.LookAt(_end);
@@ -74,6 +102,18 @@ namespace ECellDive
 
             #endregion
 
+            #region - IFloatingDisplayable -
+            public void ActivateFloatingDisplay()
+            {
+                refFloatingPlanel.GetComponent<InfoDisplayManager>().SetVisibility(true);
+
+            }
+            public void DeactivateFloatingDisplay()
+            {
+                refFloatingPlanel.GetComponent<InfoDisplayManager>().SetVisibility(false);
+            }
+            #endregion
+
             #region - IHighlightable -
             public void SetHighlight()
             {
@@ -94,21 +134,53 @@ namespace ECellDive
             public void Activate()
             {
                 knockedOut = false;
+                SetInformationString();
                 refLineRenderer.sharedMaterial.SetInt("Vector1_22F9BCB6", 1);
             }
 
             public void Knockout()
             {
                 knockedOut = true;
+                SetInformationString();
                 refLineRenderer.sharedMaterial.SetInt("Vector1_22F9BCB6", 0);
             }
 
             public void SetFlux(float _level)
             {
+                fluxLevel = _level;
+                SetInformationString();
                 refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", _level);
             }
             #endregion
 
+            /// <summary>
+            /// Input call back action on which the floating display
+            /// is turned on or off.
+            /// </summary>
+            /// <param name="_ctx">The input action callback context</param>
+            private void ManageFloatingDisplay(InputAction.CallbackContext _ctx)
+            {
+                if (highlighted)
+                {
+                    floatingPanelDisplayed = !floatingPanelDisplayed;
+                    if (floatingPanelDisplayed)
+                    {
+                        ActivateFloatingDisplay();
+                    }
+                    else
+                    {
+                        DeactivateFloatingDisplay();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Public interface to call back on Unity Events to trigger
+            /// on or off the highlight of the object.
+            /// </summary>
+            /// <remarks>Typically the highlight will be turned on when the
+            /// pointer enters "hovering" and turned off when it exits
+            /// "hovering".</remarks>
             public void ManageHighlight()
             {
                 switch (highlighted)
@@ -123,6 +195,12 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// The public interface to call back on Unity Events to knockout
+            /// or activate a reaction represented by the edge.
+            /// </summary>
+            /// <remarks>Typically called back when the user presses a button
+            /// while pointing at the edge.</remarks>
             public void ManageKnockout()
             {
                 switch (knockedOut)
@@ -135,6 +213,18 @@ namespace ECellDive
                         Knockout();
                         break;
                 }
+            }
+
+            /// <summary>
+            /// The utility function to updates the information string.
+            /// </summary>
+            private void SetInformationString()
+            {
+                informationString = $"SUID: {edgeData.ID} \n" +
+                                    $"Name: {edgeData.NAME} \n" +
+                                    $"Knockedout: {knockedOut} \n" +
+                                    $"Flux: {fluxLevel}";
+                m_refFloatingPanel.GetComponent<InfoDisplayManager>().SetText(informationString);
             }
 
         }

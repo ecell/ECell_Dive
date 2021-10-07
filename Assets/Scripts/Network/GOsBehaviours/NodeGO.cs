@@ -36,24 +36,23 @@ namespace ECellDive
                 set => refTriggerFloatingPlanel = m_refTriggerFloatingPlanel;
             }
 
-            //public GameObject refFixedPlanel { get; protected set; }
-
             public NodeGOSettings nodeGOSettings;
 
-            private bool floatingPanelDisplayed = false;
+            public bool floatingPanelDisplayed { get; protected set; }
             private Renderer refRenderer;
 
             private void Awake()
             {
                 highlighted = false;
 
-                m_refTriggerFloatingPlanel.action.performed += HandleActivationDisplay;
+                floatingPanelDisplayed = false;
+                m_refTriggerFloatingPlanel.action.performed += ManageFloatingDisplay;
 
                 refRenderer = GetComponent<Renderer>();
                 refRenderer.sharedMaterial = new Material(nodeGOSettings.nodeShader);
             }
 
-            private void HandleActivationDisplay(InputAction.CallbackContext _ctx)
+            private void ManageFloatingDisplay(InputAction.CallbackContext _ctx)
             {
                 if (highlighted)
                 {

@@ -100,8 +100,9 @@ namespace ECellDive
                         nodeGO.transform.localScale /= refNetworkGO.networkGOSettingsModel.SizeScaleFactor;
                         nodeGO.name = $"{_node.ID}";
 
-                        nodeGO.GetComponent<NodeGO>().SetNodeData(_node);
-                        nodeGO.GetComponent<NodeGO>().refFloatingPlanel.transform.localScale *= refNetworkGO.networkGOSettingsModel.SizeScaleFactor;
+                        NodeGO refNodeGO = nodeGO.GetComponent<NodeGO>();
+                        refNodeGO.SetNodeData(_node);
+                        refNodeGO.refFloatingPlanel.transform.localScale *= refNetworkGO.networkGOSettingsModel.SizeScaleFactor;
 
                         refNetworkGO.NodeID_to_NodeGO[_node.ID] = nodeGO;
                     }
@@ -118,6 +119,7 @@ namespace ECellDive
                         GameObject edgeGO = _edgeGO.GetComponent<EdgeGO>().SelfInstance();
                         edgeGO.SetActive(true);
                         edgeGO.transform.parent = layerGO.transform;
+                        edgeGO.name = _edge.NAME;
 
                         EdgeGO refEdgeGO = edgeGO.GetComponent<EdgeGO>();
                         refEdgeGO.SetEdgeData(_edge);
@@ -125,8 +127,10 @@ namespace ECellDive
                                                   1 / refNetworkGO.networkGOSettingsModel.SizeScaleFactor);
                         refEdgeGO.SetLineRenderer();
                         refEdgeGO.SetPosition(start, target);
-                        refEdgeGO.SetLineCollider(start, target);
-                        edgeGO.name = _edge.NAME;
+                        refEdgeGO.SetCollider(start, target);
+                        //refEdgeGO.refFloatingPlanel.transform.localScale = new Vector3 (1f / refEdgeGO.refBoxColliderHolder.transform.localScale.x,
+                        //                                                                1f / refEdgeGO.refBoxColliderHolder.transform.localScale.y,
+                        //                                                                1f / refEdgeGO.refBoxColliderHolder.transform.localScale.z);
 
                         refNetworkGO.EdgeID_to_EdgeGO[_edge.ID] = edgeGO;
                     }
