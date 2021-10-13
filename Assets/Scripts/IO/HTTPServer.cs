@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
+using ECellDive.Utility;
 
 
 namespace ECellDive
@@ -109,12 +110,18 @@ namespace ECellDive
                         case UnityWebRequest.Result.ConnectionError:
                         case UnityWebRequest.Result.DataProcessingError:
                             Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                                                               pages[page] + ": Error: " + webRequest.error);
                             break;
                         case UnityWebRequest.Result.ProtocolError:
                             Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                                                               pages[page] + ": HTTP Error: " + webRequest.error);
                             break;
                         case UnityWebRequest.Result.Success:
                             Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
+                                                               pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                             requestText = webRequest.downloadHandler.text;
                             requestSuccess = true;
                             break;

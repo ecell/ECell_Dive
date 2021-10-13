@@ -128,9 +128,6 @@ namespace ECellDive
                         refEdgeGO.SetLineRenderer();
                         refEdgeGO.SetPosition(start, target);
                         refEdgeGO.SetCollider(start, target);
-                        //refEdgeGO.refFloatingPlanel.transform.localScale = new Vector3 (1f / refEdgeGO.refBoxColliderHolder.transform.localScale.x,
-                        //                                                                1f / refEdgeGO.refBoxColliderHolder.transform.localScale.y,
-                        //                                                                1f / refEdgeGO.refBoxColliderHolder.transform.localScale.z);
 
                         refNetworkGO.EdgeID_to_EdgeGO[_edge.ID] = edgeGO;
                     }

@@ -10,13 +10,10 @@ namespace ECellDive
 {
     namespace UI
     {
-        public class OptionMenuManager : MonoBehaviour
+        public class CylindricMenuManager : MonoBehaviour
         {
-            public GameObject refCamera;
             public InputActionReference refMenuOpen;
             public GameObject refOptionMenu;
-
-            public GameObject[] refMenus;
 
             private void Awake()
             {
@@ -58,33 +55,14 @@ namespace ECellDive
             /// the Input System.</param>
             private void OpenCloseOptionMenu(InputAction.CallbackContext callbackContext)
             {
-                if (!refOptionMenu.activeSelf)
-                {
-                    //Reset position to be in front of the user's camera
-                    //and correctly rotated.
-                    refOptionMenu.transform.position = Positioning.PlaceInFrontOfTarget(refCamera.transform, 1f, 0.5f);
-                    Positioning.UIFaceTarget(refOptionMenu, refCamera.transform);
-                }
+                //if (!refOptionMenu.activeSelf)
+                //{
+                //    //Reset position to be in front of the user's camera
+                //    //and correctly rotated.
+                //    refOptionMenu.transform.position = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1f, 0.5f);
+                //    Positioning.UIFaceTarget(refOptionMenu, refCamera.transform);
+                //}
                 MenuOpenState(refOptionMenu, !refOptionMenu.activeSelf);
-            }
-
-            /// <summary>
-            /// One method to handle the deactivation of all menus and activation
-            /// of a target menu. Tnis effectively hides all UI except form the
-            /// one of the target menu.
-            /// </summary>
-            /// <param name="_menuType">The index of the target menu in the 
-            /// refMenus list defined as a field of teh OptionMenuManager class</param>
-            public void SwitchMenus(int _menuType)
-            {
-                for (int i=0; i<refMenus.Length; i++)
-                {
-                    if (i != _menuType)
-                    {
-                        MenuOpenState(refMenus[i], false);
-                    }
-                }
-                MenuOpenState(refMenus[_menuType], !refMenus[_menuType].activeSelf);
             }
 
             private void Start()

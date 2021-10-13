@@ -82,7 +82,7 @@ namespace ECellDive
                 m_refBoxColliderHolder.transform.localScale = new Vector3(
                                                                 Mathf.Max(refLineRenderer.startWidth, refLineRenderer.endWidth),
                                                                 Mathf.Max(refLineRenderer.startWidth, refLineRenderer.endWidth),
-                                                                Vector3.Distance(_start.localPosition, _end.localPosition));
+                                                                0.95f*Vector3.Distance(_start.localPosition, _end.localPosition));
 
             }
 

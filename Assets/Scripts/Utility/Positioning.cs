@@ -64,6 +64,20 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Maily useful for UI.
+            /// Makes it face the user.
+            /// </summary>
+            /// <param name="_UIContainer">The parent gameobject of the UI
+            /// (usually has the canvas components)</param>
+            /// <param name="_target">The position the UI should face (i.e.
+            /// be readable from)</param>
+            public static void UIFaceTarget(GameObject _UIContainer, Vector3 _target)
+            {
+                _UIContainer.transform.LookAt(_target);
+                _UIContainer.transform.Rotate(new Vector3(0, 180, 0), Space.Self);
+            }
+
+            /// <summary>
             /// The planar XY positions of a point on a circle
             /// </summary>
             /// <param name="_radius">The radius of the circle.</param>

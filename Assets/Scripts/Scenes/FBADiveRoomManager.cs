@@ -69,7 +69,6 @@ namespace ECellDive
             {
                 
                 EdgeGO edgeGO = _edgeGO.GetComponent<EdgeGO>();
-                Debug.Log($"AccountForModifiedEdge, {_edgeGO.name}: KO={edgeGO.knockedOut}");
                 Knockouts[edgeGO.edgeData.ID] = edgeGO.knockedOut;
             }
 
@@ -106,7 +105,6 @@ namespace ECellDive
             public void RequestModelSolve()
             {
                 string knockoutString = GetKnockoutString();
-                Debug.Log($"knockoutString: {knockoutString}");
                 refServerFBASolver.SolveModel(activeModelName, knockoutString);
             }
 
