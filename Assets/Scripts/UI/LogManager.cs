@@ -68,6 +68,7 @@ namespace ECellDive
             {
                 LogSystem.RecordMessage(_type, _content);
                 RecordMessage(_type, _content);
+                DrawMessageList();
             }
 
             public void DisplayInMessageSpace(TextMeshProUGUI _content)

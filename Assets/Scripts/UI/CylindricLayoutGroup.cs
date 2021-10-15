@@ -42,7 +42,7 @@ public class CylindricLayoutGroup : HorizontalOrVerticalLayoutGroup
 
         if (transform.childCount > 0)
         {
-            transform.GetChild(0).position = CylindricPosition(rad);
+            transform.GetChild(0).localPosition = CylindricPosition(rad);
             Vector3 target = new Vector3(Camera.main.transform.position.x,
                                          transform.GetChild(0).position.y,
                                          Camera.main.transform.position.z);
@@ -54,7 +54,7 @@ public class CylindricLayoutGroup : HorizontalOrVerticalLayoutGroup
                 arc -= 0.5f * transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x;
                 rad = arc / radius;
 
-                transform.GetChild(i).position = CylindricPosition(rad);
+                transform.GetChild(i).localPosition = CylindricPosition(rad);
 
                 target = new Vector3(Camera.main.transform.position.x,
                                      transform.GetChild(i).position.y,

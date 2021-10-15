@@ -94,7 +94,8 @@ namespace ECellDive
             /// <returns></returns>
             protected IEnumerator GetRequest(string uri)
             {
-                Debug.Log(uri);
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                                                   "Sending Request: " + uri);
                 requestProcessed = false;
                 requestSuccess = false;
                 using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))

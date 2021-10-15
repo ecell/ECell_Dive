@@ -125,7 +125,10 @@ namespace ECellDive
                     {
                         foreach (Transform _child in refModelsUIContainer.transform)
                         {
-                            Destroy(_child.gameObject);
+                            if (_child.gameObject.activeSelf)
+                            {
+                                Destroy(_child.gameObject);
+                            }
                         }
                         GameObject modelUIContainer = Instantiate(refModelUIPrefab, refModelsUIContainer.transform);
                         modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = modelsList[i];
