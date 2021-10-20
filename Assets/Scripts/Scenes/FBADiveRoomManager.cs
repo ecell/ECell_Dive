@@ -47,7 +47,7 @@ namespace ECellDive
                     LoadedNetwork.transform.parent = DiveContainer.transform;
                     refXRRig.transform.position = Positioning.GetGravityCenter(LoadedNetwork.GetComponent<NetworkGO>().NodeID_to_NodeGO.Values);
 
-                    //Intial Solve of the Network
+                    //Initial Solve of the Network
                     activeModelName = LoadedNetworkGO.networkData.name;
                     foreach (int _id in LoadedNetworkGO.EdgeID_to_EdgeGO.Keys)
                     {

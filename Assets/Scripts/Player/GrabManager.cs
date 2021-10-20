@@ -178,11 +178,6 @@ namespace ECellDive
                 }
             }
 
-            public void _Debug(string _msg)
-            {
-                Debug.Log(_msg);
-            }
-
             public void HandleInteractorsSorting()
             {
                 isGrabed = true;

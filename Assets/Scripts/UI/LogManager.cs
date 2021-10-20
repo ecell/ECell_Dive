@@ -99,7 +99,7 @@ namespace ECellDive
             {
                 for (int i = 0; i < toggleIndividuals.Length; i++)
                 {
-                    messagesActivity[i] = true;
+                    messagesActivity[i] = toggleAll.isOn;
                 }
 
                 foreach (Toggle _msgTypeToggle in toggleIndividuals)
