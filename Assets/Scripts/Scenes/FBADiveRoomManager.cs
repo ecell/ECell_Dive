@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using ECellDive.IO;
 using ECellDive.Utility;
 using ECellDive.Modules;
@@ -29,6 +30,28 @@ namespace ECellDive
 
             private ServerFBASolver refServerFBASolver;
 
+            public InputActionReference runFBA;
+
+            private void Awake()
+            {
+                runFBA.action.performed += RequestModelSolveAction;
+            }
+
+            private void OnEnable()
+            {
+                runFBA.action.Enable();
+            }
+
+            private void OnDisable()
+            {
+                runFBA.action.Disable();
+            }
+
+            private void OnDestroy()
+            {
+                runFBA.action.performed -= RequestModelSolveAction;
+            }
+
             private void Start()
             {
                 refServerFBASolver = GetComponent<ServerFBASolver>();
@@ -54,7 +77,6 @@ namespace ECellDive
                         Knockouts[_id] = false;
                         EdgeName_to_EdgeID[LoadedNetworkGO.EdgeID_to_EdgeGO[_id].name] = _id;
                     }
-                    RequestModelSolve();
                 }
             }
 
@@ -97,6 +119,15 @@ namespace ECellDive
                 }
 
                 return knockouts;
+            }
+
+            /// <summary>
+            /// The interface to use when binding the <see cref="RequestModelSolve"/>
+            /// method to an input button
+            /// </summary>
+            private void RequestModelSolveAction(InputAction.CallbackContext callbackContext)
+            {
+                RequestModelSolve();
             }
 
             /// <summary>
