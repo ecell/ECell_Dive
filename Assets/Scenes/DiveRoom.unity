@@ -553,6 +553,7 @@ MonoBehaviour:
     edgeGO: {fileID: 1324248747}
   LoadedNetwork: {fileID: 0}
   activeModelName: 
+  runFBA: {fileID: -8665255343324908902, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &273833737
 GameObject:
   m_ObjectHideFlags: 0
@@ -5441,6 +5442,17 @@ Transform:
   m_Father: {fileID: 473791055}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &969146939 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+  m_PrefabInstance: {fileID: 1001216146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ffbed32a7c68844b9529450739177a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &969897251
 GameObject:
   m_ObjectHideFlags: 0
@@ -6107,19 +6119,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
       propertyPath: hideOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
       propertyPath: content.Array.size
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: content.Array.data[0]
+      value: Open Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: content.Array.data[1]
+      value: Close Menu
       objectReference: {fileID: 0}
     - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
       propertyPath: ButtonTagEffects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: ButtonTagEffects.Array.data[0].actionTime
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: ButtonTagEffects.Array.data[0].refInputAction
+      value: 
+      objectReference: {fileID: 8373064599800878138, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 969146939}
+    - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TextRotation
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ECellDive.UI.InfoTagManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407759349357395762, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5002386475690307796, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
       propertyPath: m_AnchorMax.y
@@ -6167,11 +6219,15 @@ PrefabInstance:
       objectReference: {fileID: 2132486799}
     - target: {fileID: 6997469817364633323, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
       propertyPath: hideOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6997469817364633323, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
       propertyPath: content.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997469817364633323, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: content.Array.data[0]
+      value: Run FBA
       objectReference: {fileID: 0}
     - target: {fileID: 6997469817364633323, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
       propertyPath: content.Array.data[2]

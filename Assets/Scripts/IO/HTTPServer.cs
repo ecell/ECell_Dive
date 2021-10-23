@@ -94,12 +94,12 @@ namespace ECellDive
             /// <returns></returns>
             protected IEnumerator GetRequest(string uri)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
-                                                   "Sending Request: " + uri);
                 requestProcessed = false;
                 requestSuccess = false;
                 using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
                 {
+                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                                                   "Sending Request: " + uri);
                     // Request and wait for the desired page.
                     yield return webRequest.SendWebRequest();
 
@@ -109,6 +109,10 @@ namespace ECellDive
                     switch (webRequest.result)
                     {
                         case UnityWebRequest.Result.ConnectionError:
+                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                                                               pages[page] + ": Connection Error: " + webRequest.error);
+                            break;
+
                         case UnityWebRequest.Result.DataProcessingError:
                             Debug.LogError(pages[page] + ": Error: " + webRequest.error);
                             LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
