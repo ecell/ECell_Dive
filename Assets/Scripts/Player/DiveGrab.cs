@@ -11,6 +11,12 @@ namespace ECellDive
 {
     namespace UserActions
     {
+        /// <summary>
+        /// Gameplay logic to trigger when a user whishes to translate objects
+        /// while in the Dive Scene.
+        /// </summary>
+        /// <remarks>Contains logic to only limit the interactiosn to the left
+        /// controller.</remarks>
         public class DiveGrab : MonoBehaviour
         {
             [Header("General References")]
@@ -47,7 +53,8 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// Logic to translate an object when grabed from a contact.
+            /// Moves the object in the direction where the controller is relatively to its
+            /// position at the start of the grabbing.
             /// </summary>
             void FollowControllerTranslation()
             {
@@ -97,6 +104,9 @@ namespace ECellDive
                 refGrabInput.action.canceled -= OnRelease;
             }
 
+            /// <summary>
+            /// Called back when the input action corresponding to "Grab" was performed.
+            /// </summary>
             private void OnGrab(InputAction.CallbackContext _ctx)
             {
                 grabActivated = true;
@@ -108,6 +118,9 @@ namespace ECellDive
                 refDiveGrabHelperManager.SetSphereScale(2*deadzoneDistance);
             }
 
+            /// <summary>
+            /// Called back when the input action corresponding to "Release Grab" was performed.
+            /// </summary>
             private void OnRelease(InputAction.CallbackContext _ctx)
             {
                 grabActivated = false;

@@ -178,6 +178,9 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// Logic to determine which controller (left or right) has grabbed an object.
+            /// </summary>
             public void HandleInteractorsSorting()
             {
                 isGrabed = true;
@@ -282,8 +285,6 @@ namespace ECellDive
                     }
 
                     m_OnPostGrabMovementUpdate.Invoke();
-
-                    //GetComponent<NetworkModule>().ShowNameToPlayer();
                 }
             }
         }

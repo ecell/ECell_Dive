@@ -10,6 +10,9 @@ namespace ECellDive
 {
     namespace UI
     {
+        /// <summary>
+        /// Logic to switch On and Off the cylindric menu.
+        /// </summary>
         public class CylindricMenuManager : MonoBehaviour
         {
             public InputActionReference refMenuOpen;
@@ -55,13 +58,6 @@ namespace ECellDive
             /// the Input System.</param>
             private void OpenCloseOptionMenu(InputAction.CallbackContext callbackContext)
             {
-                //if (!refOptionMenu.activeSelf)
-                //{
-                //    //Reset position to be in front of the user's camera
-                //    //and correctly rotated.
-                //    refOptionMenu.transform.position = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1f, 0.5f);
-                //    Positioning.UIFaceTarget(refOptionMenu, refCamera.transform);
-                //}
                 MenuOpenState(refOptionMenu, !refOptionMenu.activeSelf);
             }
 

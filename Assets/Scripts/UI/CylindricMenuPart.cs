@@ -6,6 +6,9 @@ namespace ECellDive
 {
     namespace UI
     {
+        /// <summary>
+        /// The logic to handle a part of a cylindric menu.
+        /// </summary>
         public class CylindricMenuPart : MonoBehaviour
         {
             [Header("General References")]
@@ -25,6 +28,13 @@ namespace ECellDive
                 siblingIndex = transform.GetSiblingIndex();
             }
 
+            /// <summary>
+            /// Decreases the position of the GameObject in the hierarchy
+            /// of its siblings.
+            /// </summary>
+            /// <remarks>While using the <seealso cref="CylindricLayoutGroup"/>
+            /// this will have for effect to automatically move the GameObject to
+            /// the left.</remarks>
             public void DecreaseSiblingIndex()
             {
                 if (siblingIndex > 0)
@@ -34,6 +44,13 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// Increases the position of the GameObject in the hierarchy
+            /// of its siblings.
+            /// </summary>
+            /// <remarks>While using the <seealso cref="CylindricLayoutGroup"/>
+            /// this will have for effect to automatically move the GameObject to
+            /// the right.</remarks>
             public void IncreaseSiblingIndex()
             {
                 if (siblingIndex < transform.parent.childCount-1)
@@ -43,6 +60,10 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// Switches the position the menu part between outside the menu
+            /// explorer and inside the menu explorer.
+            /// </summary>
             public void ManagePinning()
             {
                 switch (isPinned)
@@ -59,6 +80,9 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// Hides the menu part in the background.
+            /// </summary>
             public void MoveToMenuBank()
             {
                 isPinned = false;
@@ -67,6 +91,9 @@ namespace ECellDive
                 gameObject.SetActive(false);
             }
 
+            /// <summary>
+            /// Makes the menu part visible in the menu explorer.
+            /// </summary>
             public void MoveToMenuExplorer()
             {
                 gameObject.SetActive(true);
@@ -84,6 +111,9 @@ namespace ECellDive
                 transform.SetSiblingIndex(siblingIndex);
             }
 
+            /// <summary>
+            /// Puts the menu part outside of the menu explorer to keep it always visible.
+            /// </summary>
             public void MoveToMenuRoot()
             {
                 isPinned = true;
@@ -91,6 +121,11 @@ namespace ECellDive
                 siblingIndex = transform.GetSiblingIndex();
             }
 
+            /// <summary>
+            /// Called back when another UI element was interacted with in order to
+            /// show this menu part. The menu part is showed in the menu explorer
+            /// by default.
+            /// </summary>
             public void OpenMenu()
             {
                 if (!isPinned)

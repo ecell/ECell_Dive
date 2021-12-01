@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using ECellDive.UI;
 
 namespace ECellDive
@@ -31,6 +29,10 @@ namespace ECellDive
 
             public static List<Message> recordedMessages;
 
+            /// <summary>
+            /// Add a message info to the list of messages
+            /// </summary>
+            /// <param name="_msg"></param>
             public static void RecordMessage(Message _msg)
             {
                 if (recordedMessages == null)
