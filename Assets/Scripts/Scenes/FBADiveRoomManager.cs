@@ -52,33 +52,33 @@ namespace ECellDive
                 runFBA.action.performed -= RequestModelSolveAction;
             }
 
-            private void Start()
-            {
-                refServerFBASolver = GetComponent<ServerFBASolver>();
+            //private void Start()
+            //{
+            //    refServerFBASolver = GetComponent<ServerFBASolver>();
 
-                if (ModulesData.typeActiveModule == ModulesData.ModuleType.NetworkModule &&
-                    NetworkModulesData.activeData != null)
-                {
-                    //Instantiate the loaded network in the scene based on
-                    //the information retained in the data structures.
-                    LoadedNetwork = NetworkLoader.Generate(NetworkModulesData.activeData,
-                                                           networkComponents.networkGO,
-                                                           networkComponents.layerGO,
-                                                           networkComponents.nodeGO,
-                                                           networkComponents.edgeGO);
-                    LoadedNetworkGO = LoadedNetwork.GetComponent<NetworkGO>();
-                    LoadedNetwork.transform.parent = DiveContainer.transform;
-                    refXRRig.transform.position = Positioning.GetGravityCenter(LoadedNetwork.GetComponent<NetworkGO>().NodeID_to_NodeGO.Values);
+            //    if (ModulesData.typeActiveModule == ModulesData.ModuleType.NetworkModule &&
+            //        NetworkModulesData.activeData != null)
+            //    {
+            //        //Instantiate the loaded network in the scene based on
+            //        //the information retained in the data structures.
+            //        LoadedNetwork = NetworkLoader.Generate(NetworkModulesData.activeData,
+            //                                               networkComponents.networkGO,
+            //                                               networkComponents.layerGO,
+            //                                               networkComponents.nodeGO,
+            //                                               networkComponents.edgeGO);
+            //        LoadedNetworkGO = LoadedNetwork.GetComponent<NetworkGO>();
+            //        LoadedNetwork.transform.parent = DiveContainer.transform;
+            //        refXRRig.transform.position = Positioning.GetGravityCenter(LoadedNetwork.GetComponent<NetworkGO>().NodeID_to_NodeGO.Values);
 
-                    //Initial Solve of the Network
-                    activeModelName = LoadedNetworkGO.networkData.name;
-                    foreach (int _id in LoadedNetworkGO.EdgeID_to_EdgeGO.Keys)
-                    {
-                        Knockouts[_id] = false;
-                        EdgeName_to_EdgeID[LoadedNetworkGO.EdgeID_to_EdgeGO[_id].name] = _id;
-                    }
-                }
-            }
+            //        //Initial Solve of the Network
+            //        activeModelName = LoadedNetworkGO.networkData.name;
+            //        foreach (int _id in LoadedNetworkGO.EdgeID_to_EdgeGO.Keys)
+            //        {
+            //            Knockouts[_id] = false;
+            //            EdgeName_to_EdgeID[LoadedNetworkGO.EdgeID_to_EdgeGO[_id].name] = _id;
+            //        }
+            //    }
+            //}
 
             /// <summary>
             /// Updates the knockout dictionnary <see cref="Knockouts"/>.

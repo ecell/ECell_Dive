@@ -12,11 +12,11 @@ namespace ECellDive
         /// information about the modules that have been loaded in all
         /// scenes.
         /// </summary>
-        public static class ModulesData
-        {
-            public enum ModuleType { NetworkModule }
-            public static ModuleType typeActiveModule = ModuleType.NetworkModule;
-        }
+        //public static class ModulesData
+        //{
+        //    public enum ModuleType { NetworkModule }
+        //    public static ModuleType typeActiveModule = ModuleType.NetworkModule;
+        //}
     }
 }
 

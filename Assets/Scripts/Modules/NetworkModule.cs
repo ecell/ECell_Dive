@@ -26,7 +26,7 @@ namespace ECellDive
                 {
                     base.DiveIn();
 
-                    ModulesData.typeActiveModule = ModulesData.ModuleType.NetworkModule;
+                    //ModulesData.typeActiveModule = ModulesData.ModuleType.NetworkModule;
                     NetworkModulesData.activeData = NetworkModulesData.loadedData[refIndex];
 
                     StartCoroutine(Loading.SwitchScene(1, divingTime));
