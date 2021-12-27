@@ -32,6 +32,7 @@ namespace ECellDive
 
         public interface IKnockable
         {
+            InputActionReference refTriggerKO { get; set; }
             bool knockedOut { get; }
             void Activate();
             void Knockout();

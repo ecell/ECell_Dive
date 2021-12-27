@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 using ECellDive.Utility;
 using ECellDive.UI;
+using ECellDive.SceneManagement;
 
 namespace ECellDive
 {
@@ -15,57 +16,61 @@ namespace ECellDive
         /// Base class holding references and methods used to manipulate
         /// the game object representation of a module.
         /// </summary>
-        [RequireComponent(typeof(XRBaseInteractable))]
         public class Module : MonoBehaviour
         {
-            [Header("Global References")]
-            public ModulesManager refModuleManager;
-
             [Header("Module Info References")]
             public TextMeshProUGUI refName;
             public GameObject refInfoTagPrefab;
             public GameObject refInfoTagsContainer;
             public List<GameObject> refInfoTags;
+            
+
             public InputActionReference refShowInfoAction;
-
-            [Header("Diving System")]
-            [Tooltip("The gameobject with the diving animator")]
-            public Animator refDivingAnimator;
-
-            [Tooltip("The minimum time we wait for the dive.")]
-            [Min(1f)] public float divingTime;
-
             [Tooltip("Reference to the Action used to dive")]
             public InputActionReference refDiveAction;
 
             [Tooltip("The interaction layer used to respond to the dive input")]
             public LayerMask refInteractorTargetLayer;
 
-            [Tooltip("Reference to the interactable attached to this object")]
-            public XRBaseInteractable refInteractable;
+            //[Tooltip("Reference to the interactable attached to this object")]
+            //public XRBaseInteractable refInteractable;
 
             [Tooltip("Boolean reporting whether an interactor matching the" +
                 "appropriate interaction layer is pointing at the module.")]
-            public bool isFocused = false;
+            protected bool isFocused = false;
+            public bool finalLayer = false;
 
             //private bool isDivingTimePassed = false;
+            //protected DivingData refDivingData;
 
             private void Awake()
             {
-                refShowInfoAction.action.performed += e => ShowInfoTags();
                 refDiveAction.action.performed += e => DiveIn();
+                refShowInfoAction.action.performed += e => ShowInfoTags();
+            }
+
+            private void Start()
+            {
+                //refDivingData = ScenesData.refSceneManagerMonoBehaviour.divingData;
             }
 
             /// <summary>
             /// Base method to dive in a module.
             /// </summary>
-            protected virtual void DiveIn()
+            protected void DiveIn()
             {
-                if (isFocused)
-                {
-                    refDivingAnimator.SetTrigger("DiveStart");
-                    refModuleManager.RegisterAllModulesPositions();
-                }
+                StartCoroutine(DiveInC());
+            }
+
+            protected virtual IEnumerator DiveInC()
+            {
+                ScenesData.refSceneManagerMonoBehaviour.divingData.refAnimator.SetTrigger("DiveStart");
+
+                yield return new WaitForSeconds(ScenesData.refSceneManagerMonoBehaviour.divingData.duration);
+
+                ScenesData.AddNewScene();
+                ModulesData.CaptureWorldPositions();
+                ModulesData.StashToBank();
             }
 
             /// <summary>
@@ -105,11 +110,13 @@ namespace ECellDive
             private void OnEnable()
             {
                 refDiveAction.action.Enable();
+                refShowInfoAction.action.Enable();
             }
 
             private void OnDisable()
             {
                 refDiveAction.action.Disable();
+                refShowInfoAction.action.Disable();
             }
 
             public void SetFocus(bool _focused)

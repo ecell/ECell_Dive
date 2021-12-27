@@ -4,23 +4,24 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using TMPro;
-using ECellDive.Modules;
-
-
+using ECellDive.IO;
+using ECellDive.Utility;
+using ECellDive.SceneManagement;
 
 namespace ECellDive
 {
-    namespace IO
+    namespace Modules
     {
-        public class ServerModelsImporter : HTTPServer
+        [System.Serializable]
+        public struct UIDisplayData
         {
-            [Header("UI references")]
-            public GameObject refModelsUIContainer;
-            public GameObject refModelUIPrefab;
+            public GameObject UISelectorsContainer;
+            public GameObject UISelectorPrefab;
+        }
 
-            [Header("General references")]
-            public ModulesManager refModulesManager;
-
+        public class HttpServerImporterModule : HttpServerBaseModule
+        {
+            public UIDisplayData uiDisplayData;
             [HideInInspector] public string activeModelName = "";
 
             /// <summary>
@@ -90,9 +91,17 @@ namespace ECellDive
                     //Instantiating relevant data structures to store the information about
                     //the layers, nodes and edges.
                     NetworkLoader.Populate(network);
-
-                    //NetworkModulesData.AddData(network);
-                    //refModulesManager.InstantiateModule(network);
+                    CyJsonModulesData.AddData(network);
+                    
+                    //Instantiation of the CyJson module corresponding to encapsulate the
+                    //CyJson pathway that just has been populated.
+                    ModuleData cyJsonMD = new ModuleData
+                    {
+                        typeID = 4 // 4 is the type ID of a CyJsonModule
+                    };
+                    ModulesData.AddModule(cyJsonMD);
+                    Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
+                    ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleData(cyJsonMD, pos);
                 }
             }
 
@@ -122,18 +131,21 @@ namespace ECellDive
                     JArray jModelsArray = (JArray)requestData.requestJObject["models"];
                     List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
 
-                    for (int i = 0; i < modelsList.Count; i++)
+                    foreach (Transform _child in uiDisplayData.UISelectorsContainer.transform)
                     {
-                        foreach (Transform _child in refModelsUIContainer.transform)
+                        if (_child.gameObject.activeSelf)
                         {
-                            if (_child.gameObject.activeSelf)
-                            {
-                                Destroy(_child.gameObject);
-                            }
+                            Destroy(_child.gameObject);
                         }
-                        GameObject modelUIContainer = Instantiate(refModelUIPrefab, refModelsUIContainer.transform);
+                    }
+
+                    for (int i = 0; i < modelsList.Count; i++)
+                    {                        
+                        GameObject modelUIContainer = Instantiate(uiDisplayData.UISelectorPrefab,
+                                                                  uiDisplayData.UISelectorsContainer.transform);
                         modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = modelsList[i];
                         modelUIContainer.SetActive(true);
+
                     }
                 }
             }

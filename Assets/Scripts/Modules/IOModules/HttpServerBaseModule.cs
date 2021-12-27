@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Collections;
-using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -10,9 +9,25 @@ using ECellDive.Modules;
 
 namespace ECellDive
 {
-    namespace IO
+    namespace Modules
     {
-        public class HTTPServer : MonoBehaviour
+        [System.Serializable]
+        public struct ServerData
+        {
+            public string serverIP;
+            public string port;
+        }
+
+        public struct RequestData
+        {
+            public string requestText;
+            public JObject requestJObject;
+
+            public bool requestProcessed;
+            public bool requestSuccess;
+        }
+
+        public class HttpServerBaseModule : Module
         {
             public ServerData serverData = new ServerData
             {
@@ -62,7 +77,7 @@ namespace ECellDive
 
                 if (_queryNames.Length > 1)
                 {
-                    for (int i = 1; i<_queryNames.Length; i++)
+                    for (int i = 1; i < _queryNames.Length; i++)
                     {
                         url = AddQueryToURL(url, _queryNames[i], _queryContents[i]);
                     }
@@ -118,17 +133,17 @@ namespace ECellDive
                             break;
 
                         case UnityWebRequest.Result.DataProcessingError:
-                            Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                            //Debug.LogError(pages[page] + ": Error: " + webRequest.error);
                             LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
                                                                pages[page] + ": Error: " + webRequest.error);
                             break;
                         case UnityWebRequest.Result.ProtocolError:
-                            Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                            //Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
                             LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
                                                                pages[page] + ": HTTP Error: " + webRequest.error);
                             break;
                         case UnityWebRequest.Result.Success:
-                            Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                            //Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                             LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
                                                                pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                             requestData.requestText = webRequest.downloadHandler.text;

@@ -25,6 +25,46 @@ namespace ECellDive
                 jEdges = _jEdgesOfLayer;
             }
 
+            /// <summary>
+            /// Looks for either a "SUID" or "id" field
+            /// </summary>
+            private int LookForID(JToken _jToken)
+            {
+                int id = -1;
+                JObject jObj = (JObject)_jToken;
+
+                if (jObj.ContainsKey("SUID"))
+                {
+                    id = jObj["data"]["SUID"].Value<int>();
+                }
+                else if (jObj.ContainsKey("id"))
+                {
+                    Debug.Log($"id stored:{jObj["data"]["id"]}");
+                    
+                    id = jObj["data"]["id"].Value<int>();
+                    Debug.Log($"id extracted: {id}");
+                }
+
+                return id;
+            }
+
+            /// <summary>
+            /// Looks for a "name" field in a "data" field in a _JToken.
+            /// </summary>
+            private string LookForName(JToken _jToken)
+            {
+                string name = "No Name";
+                JObject jObj = (JObject)_jToken;
+                if (jObj.ContainsKey("data"))
+                {
+                    if (((JObject)jObj["data"]).ContainsKey("name"))
+                    {
+                        name = jObj["data"]["name"].Value<string>();
+                    }
+                }
+                return name;
+            }
+
             private Vector3 LookForNodePosition(JToken _node)
             {
                 Vector3 nodePos = Vector3.zero;
@@ -67,9 +107,11 @@ namespace ECellDive
 
                 for (int i = 0; i< nbNodes; i++)
                 {
+                    //int id = LookForID(jNodes.ElementAt(i));
                     Vector3 nodePos = LookForNodePosition(jNodes.ElementAt(i));
-                    nodes[i] = new Node(jNodes.ElementAt(i)["data"]["SUID"].Value<int>(),
-                                        jNodes.ElementAt(i)["data"]["name"].Value<string>(),
+                    string name = LookForName(jNodes.ElementAt(i));
+                    nodes[i] = new Node(jNodes.ElementAt(i)["data"]["id"].Value<int>(),
+                                        name,
                                         nodePos);
                 }
             }
@@ -81,7 +123,8 @@ namespace ECellDive
 
                 for (int i = 0; i < nbEdges; i++)
                 {
-                    edges[i] = new Edge(jEdges.ElementAt(i)["data"]["SUID"].Value<int>(),
+                    //int id = LookForID(jEdges.ElementAt(i));
+                    edges[i] = new Edge(jEdges.ElementAt(i)["data"]["id"].Value<int>(),
                                         jEdges.ElementAt(i)["data"]["name"].Value<string>(),
                                         jEdges.ElementAt(i)["data"]["source"].Value<int>(),
                                         jEdges.ElementAt(i)["data"]["target"].Value<int>());

@@ -25,31 +25,31 @@ namespace ECellDive
 
             public void InstantiatesAllModules()
             {
-                InstantiateNetworkModules();
+                //InstantiateNetworkModules();
             }
 
             public void RegisterAllModulesPositions()
             {
-                RegisterNetworkModulesPositions();
+                //RegisterNetworkModulesPositions();
             }
 
-            #region - Network Module-
+            #region - Network Module -
 
             /// <summary>
             /// Instantiate all the NetworkModules found in the
             /// NetworkModulesData.loadedData list.
             /// </summary>
-            public void InstantiateNetworkModules()
-            {
-                if (NetworkModulesData.loadedData != null)
-                {
-                    for (int i = 0; i < NetworkModulesData.loadedData.Count; i++)
-                    {
-                        InstantiateModule(NetworkModulesData.loadedData[i],
-                                          NetworkModulesData.dataPosition[i]);
-                    }
-                }
-            }
+            //public void InstantiateNetworkModules()
+            //{
+            //    if (CyJsonModulesData.loadedData != null)
+            //    {
+            //        for (int i = 0; i < CyJsonModulesData.loadedData.Count; i++)
+            //        {
+            //            InstantiateModule(CyJsonModulesData.loadedData[i],
+            //                              CyJsonModulesData.dataPosition[i]);
+            //        }
+            //    }
+            //}
 
             /// <summary>
             /// Instantiates the a Network Module in front of the main Camera.
@@ -61,16 +61,16 @@ namespace ECellDive
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
                 GameObject networkModuleGO = Instantiate(modulesTypes.networkModule, pos, Quaternion.identity);
                 networkModuleGO.SetActive(true);
-                NetworkModule networkModule = networkModuleGO.GetComponent<NetworkModule>();
-                networkModule.SetName(_network.name);
+                //NetworkModule networkModule = networkModuleGO.GetComponent<NetworkModule>();
+                //networkModule.SetName(_network.name);
 
-                networkModule.InstantiateInfoTags(new string[] {$"nb layers: {_network.layers.Length}\n"+
-                                                                $"nb edges: {_network.edges.Count}\n"+
-                                                                $"nb nodes: {_network.nodes.Count}"});
+                //networkModule.InstantiateInfoTags(new string[] {$"nb layers: {_network.layers.Length}\n"+
+                //                                                $"nb edges: {_network.edges.Count}\n"+
+                //                                                $"nb nodes: {_network.nodes.Count}"});
 
-                networkModule.SetIndex(NetworkModulesData.loadedData.Count - 1);
+                //networkModule.SetIndex(NetworkModulesData.loadedData.Count - 1);
 
-                networkModulesGO.Add(networkModuleGO);
+                //networkModulesGO.Add(networkModuleGO);
             }
 
             /// <summary>
@@ -83,29 +83,29 @@ namespace ECellDive
             {
                 GameObject networkModuleGO = Instantiate(modulesTypes.networkModule, _pos, Quaternion.identity);
                 networkModuleGO.SetActive(true);
-                NetworkModule networkModule = networkModuleGO.GetComponent<NetworkModule>();
-                networkModule.SetName(_network.name);
+                //NetworkModule networkModule = networkModuleGO.GetComponent<NetworkModule>();
+                //networkModule.SetName(_network.name);
 
-                networkModule.InstantiateInfoTags(new string[] {$"nb layers: {_network.layers.Length}\n"+
-                                                                $"nb edges: {_network.edges.Count}\n"+
-                                                                $"nb nodes: {_network.nodes.Count}"});
+                //networkModule.InstantiateInfoTags(new string[] {$"nb layers: {_network.layers.Length}\n"+
+                //                                                $"nb edges: {_network.edges.Count}\n"+
+                //                                                $"nb nodes: {_network.nodes.Count}"});
 
-                networkModule.SetIndex(NetworkModulesData.loadedData.Count - 1);
+                //networkModule.SetIndex(NetworkModulesData.loadedData.Count - 1);
 
-                networkModulesGO.Add(networkModuleGO);
+                //networkModulesGO.Add(networkModuleGO);
             }
 
             /// <summary>
             /// Saves the positions of the current NetworkModules.
             /// </summary>
-            public void RegisterNetworkModulesPositions()
-            {
-                NetworkModulesData.ResetDataPositions();
-                foreach (GameObject _networModule in networkModulesGO)
-                {
-                    NetworkModulesData.RegisterDataPosition(_networModule.transform);
-                }
-            }
+            //public void RegisterNetworkModulesPositions()
+            //{
+            //    CyJsonModulesData.ResetDataPositions();
+            //    foreach (GameObject _networModule in networkModulesGO)
+            //    {
+            //        CyJsonModulesData.RegisterDataPosition(_networModule.transform);
+            //    }
+            //}
 
             #endregion
         }

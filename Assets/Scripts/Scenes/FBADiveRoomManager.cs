@@ -87,12 +87,12 @@ namespace ECellDive
             /// that may be knockedout.</param>
             /// <remarks>This method is mainly called back as a Unity event
             /// when the user is selecting an Edge.</remarks>
-            public void AccountForModifiedEdge(GameObject _edgeGO)
-            {
+            //public void AccountForModifiedEdge(GameObject _edgeGO)
+            //{
                 
-                EdgeGO edgeGO = _edgeGO.GetComponent<EdgeGO>();
-                Knockouts[edgeGO.edgeData.ID] = edgeGO.knockedOut;
-            }
+            //    EdgeGO edgeGO = _edgeGO.GetComponent<EdgeGO>();
+            //    Knockouts[edgeGO.edgeData.ID] = edgeGO.knockedOut;
+            //}
 
             /// <summary>
             /// Translates the information about knockedout reactions stored
@@ -104,11 +104,19 @@ namespace ECellDive
             {
                 string knockouts = "";
                 int counter_true = 0;
-                foreach (int _id in Knockouts.Keys)
+                //foreach (int _id in Knockouts.Keys)
+                //{
+                //    if (Knockouts[_id])
+                //    {
+                //        knockouts += LoadedNetworkGO.EdgeID_to_EdgeGO[_id].name + ",";
+                //        counter_true++;
+                //    }
+                //}
+                foreach (GameObject _edgeGO in LoadedNetworkGO.EdgeID_to_EdgeGO.Values)
                 {
-                    if (Knockouts[_id])
+                    if (_edgeGO.GetComponent<EdgeGO>().knockedOut)
                     {
-                        knockouts += LoadedNetworkGO.EdgeID_to_EdgeGO[_id].name + ",";
+                        knockouts += _edgeGO.name + ",";
                         counter_true++;
                     }
                 }

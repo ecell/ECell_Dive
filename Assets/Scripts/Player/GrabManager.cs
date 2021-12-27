@@ -1,21 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using ECellDive.Interfaces;
-using ECellDive.Modules;
+using ECellDive.SceneManagement;
 
 namespace ECellDive
 {
     namespace UserActions
     {
-        public class GrabManager : MonoBehaviour, IDualGrab
+        [System.Serializable]
+        public struct GrabActionData
+        {
+            public InputActionReference select;
+            public InputActionReference activate;
+        }
+
+        public class GrabManager : MonoBehaviour, IRemoteGrab
         {
             #region - Interface Fields - 
-            public XRDirectInteractor currentDirectInteractor { get; set; }
-            public bool directGrabEnabled { get; set; }
 
             public XRRayInteractor currentRemoteInteractor { get; set; }
             public bool remoteGrabEnabled { get; set; }
@@ -32,19 +35,9 @@ namespace ECellDive
             #endregion
 
             #region - GrabManager Fields - 
-            public GameObject refXRrig;
 
-            [Header("References Left Hand")]
-            public InputActionReference refLeftSelect;
-            public InputActionReference refLeftActivate;
-            public XRDirectInteractor refLeftDirectInteractor;
-            public XRRayInteractor refLeftRayInteractor;
-            
-            [Header("References Right Hand")]
-            public InputActionReference refRightSelect;
-            public InputActionReference refRightActivate;
-            public XRDirectInteractor refRightDirectInteractor;
-            public XRRayInteractor refRightRayInteractor;
+            public GrabActionData leftGrabActionData;
+            public GrabActionData rightGrabActionData;
 
             [Header("Attraction/Repulsion Parameters")]
             [Range(2f, 50f)] public float objectMaxDistance = 25f;
@@ -69,14 +62,14 @@ namespace ECellDive
 
             private void Awake()
             {
-                refLeftSelect.action.started += e => SetControllerID(IGrab.XRControllerID.Left);
-                refRightSelect.action.started += e => SetControllerID(IGrab.XRControllerID.Right);
+                leftGrabActionData.select.action.started += e => SetControllerID(IGrab.XRControllerID.Left);
+                rightGrabActionData.select.action.started += e => SetControllerID(IGrab.XRControllerID.Right);
 
-                refLeftActivate.action.started += e => ActivateAttractionRepulsion(IGrab.XRControllerID.Left);
-                refRightActivate.action.started += e => ActivateAttractionRepulsion(IGrab.XRControllerID.Right);
+                leftGrabActionData.activate.action.started += e => ActivateAttractionRepulsion(IGrab.XRControllerID.Left);
+                rightGrabActionData.activate.action.started += e => ActivateAttractionRepulsion(IGrab.XRControllerID.Right);
 
-                refLeftActivate.action.canceled += e => DeactivateAttractionRepulsion(IGrab.XRControllerID.Left);
-                refRightActivate.action.canceled += e => DeactivateAttractionRepulsion(IGrab.XRControllerID.Right);
+                leftGrabActionData.activate.action.canceled += e => DeactivateAttractionRepulsion(IGrab.XRControllerID.Left);
+                rightGrabActionData.activate.action.canceled += e => DeactivateAttractionRepulsion(IGrab.XRControllerID.Right);
             }
 
             /// <summary>
@@ -193,12 +186,6 @@ namespace ECellDive
                     refCurrentController = currentRemoteInteractor.gameObject;
                 }
 
-                else if (currentDirectInteractor.isSelectActive)
-                {
-                    directGrabEnabled = true;
-                    refCurrentController = currentDirectInteractor.gameObject;
-                }
-
                 controllerLatePosition = refCurrentController.transform.position;
                 objDistance = Vector3.Distance(transform.position, controllerLatePosition);
 
@@ -207,11 +194,6 @@ namespace ECellDive
             public void OnDirectGrab()
             {
                 FollowControllerTranslation();
-            }
-
-            public void OnDirectRelease()
-            {
-                directGrabEnabled = false;
             }
 
             public void OnRemoteGrab()
@@ -234,7 +216,6 @@ namespace ECellDive
             public void ResetLogic()
             {
                 isGrabed = false;
-                OnDirectRelease();
                 OnRemoteRelease();
             }
 
@@ -259,13 +240,11 @@ namespace ECellDive
                 switch (controllerID)
                 {
                     case IGrab.XRControllerID.Left:
-                        currentDirectInteractor = refLeftDirectInteractor;
-                        currentRemoteInteractor = refLeftRayInteractor;
+                        currentRemoteInteractor = ScenesData.refSceneManagerMonoBehaviour.remoteGrabData.leftInteractor;
                         break;
 
                     case IGrab.XRControllerID.Right:
-                        currentDirectInteractor = refRightDirectInteractor;
-                        currentRemoteInteractor = refRightRayInteractor;
+                        currentRemoteInteractor = ScenesData.refSceneManagerMonoBehaviour.remoteGrabData.rightInteractor;
                         break;
                 }
             }
@@ -274,11 +253,6 @@ namespace ECellDive
             {
                 if (isGrabed)
                 {
-                    if (directGrabEnabled)
-                    {
-                        OnDirectGrab();
-                    }
-
                     if (remoteGrabEnabled)
                     {
                         OnRemoteGrab();

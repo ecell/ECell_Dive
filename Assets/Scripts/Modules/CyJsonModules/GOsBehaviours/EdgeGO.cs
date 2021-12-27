@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using ECellDive.Utility;
 using ECellDive.Utility.SettingsModels;
 using ECellDive.UI;
 using ECellDive.IInteractions;
@@ -11,10 +8,10 @@ using ECellDive.INetworkComponents;
 
 namespace ECellDive
 {
-    namespace NetworkComponents
+    namespace Modules
     {
         [RequireComponent(typeof(LineRenderer))]
-        public class EdgeGO : LivingObject,
+        public class EdgeGO : MonoBehaviour,
                                 IEdgeGO, IHighlightable,
                                 IFloatingDisplayable, IModulateFlux
         {
@@ -46,6 +43,13 @@ namespace ECellDive
                 set => refTriggerFloatingPlanel = m_refTriggerFloatingPlanel;
             }
 
+            [SerializeField] private InputActionReference m_refTriggerKO;
+            public InputActionReference refTriggerKO
+            {
+                get => m_refTriggerKO;
+                set => refTriggerKO = m_refTriggerKO;
+            }
+
             public bool knockedOut { get; protected set; }
             public float fluxLevel { get; protected set; }
 
@@ -57,9 +61,26 @@ namespace ECellDive
 
                 floatingPanelDisplayed = false;
                 m_refTriggerFloatingPlanel.action.performed += ManageFloatingDisplay;
+                m_refTriggerKO.action.performed += ManageKnockout;
 
                 knockedOut = false;
                 fluxLevel = 0f;
+            }
+
+            public void Initialize(NetworkGO _masterPathway, IEdge _edge)
+            {
+                SetEdgeData(_edge);
+                gameObject.SetActive(true);
+                gameObject.name = edgeData.NAME;
+                
+                SetDefaultWidth(1 / _masterPathway.networkGOSettingsModel.SizeScaleFactor,
+                                1 / _masterPathway.networkGOSettingsModel.SizeScaleFactor);
+                SetLineRenderer();
+
+                Transform start = _masterPathway.NodeID_to_NodeGO[edgeData.source].transform;
+                Transform target = _masterPathway.NodeID_to_NodeGO[edgeData.target].transform;
+                SetPosition(start, target);
+                SetCollider(start, target);
             }
 
             #region - IEdgeGO - 
@@ -201,17 +222,21 @@ namespace ECellDive
             /// </summary>
             /// <remarks>Typically called back when the user presses a button
             /// while pointing at the edge.</remarks>
-            public void ManageKnockout()
+            public void ManageKnockout(InputAction.CallbackContext _ctx)
             {
-                switch (knockedOut)
+                Debug.Log("Manage Knockout");
+                if (highlighted)
                 {
-                    case true:
-                        Activate();
-                        break;
+                    switch (knockedOut)
+                    {
+                        case true:
+                            Activate();
+                            break;
 
-                    case false:
-                        Knockout();
-                        break;
+                        case false:
+                            Knockout();
+                            break;
+                    }
                 }
             }
 

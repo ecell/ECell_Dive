@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using ECellDive.Utility;
 using ECellDive.Utility.SettingsModels;
 using ECellDive.UI;
 using ECellDive.IInteractions;
 using ECellDive.INetworkComponents;
 
-//using CytoscapeUnity.UI;
-
-
 namespace ECellDive
 {
-    namespace NetworkComponents
+    namespace Modules
     {
-        public class NodeGO : LivingObject,
+        public class NodeGO : MonoBehaviour,
                                 INodeGO, IHighlightable,
                                 IFloatingDisplayable
         {
@@ -50,6 +46,30 @@ namespace ECellDive
 
                 refRenderer = GetComponent<Renderer>();
                 refRenderer.sharedMaterial = new Material(nodeGOSettings.nodeShader);
+            }
+
+            private void OnEnable()
+            {
+                m_refTriggerFloatingPlanel.action.Enable();
+            }
+
+            private void OnDisable()
+            {
+                m_refTriggerFloatingPlanel.action.Disable();
+            }
+
+            public void Initialize(NetworkGO _masterPathway, in INode _node)
+            {
+                SetNodeData(_node);
+                Vector3 nodePos = new Vector3(nodeData.position.x,
+                                              nodeData.position.z,
+                                              nodeData.position.y) / _masterPathway.networkGOSettingsModel.PositionScaleFactor;
+                gameObject.SetActive(true);
+                gameObject.transform.position = nodePos;
+                gameObject.transform.localScale /= _masterPathway.networkGOSettingsModel.SizeScaleFactor;
+                gameObject.name = $"{nodeData.ID}";
+                
+                refFloatingPlanel.transform.localScale *= _masterPathway.networkGOSettingsModel.SizeScaleFactor;
             }
 
             private void ManageFloatingDisplay(InputAction.CallbackContext _ctx)

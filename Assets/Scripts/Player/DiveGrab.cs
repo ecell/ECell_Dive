@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
+using ECellDive.SceneManagement;
 using ECellDive.Utility;
 
 
@@ -19,9 +18,6 @@ namespace ECellDive
         /// controller.</remarks>
         public class DiveGrab : MonoBehaviour
         {
-            [Header("General References")]
-            public DiveGrabHelperManager refDiveGrabHelperManager;
-
             [Header("Input Action References")]
             public InputActionReference leftControllerPositionInput;
             public InputActionReference refGrabInput;
@@ -39,6 +35,7 @@ namespace ECellDive
                 set => m_OnPostGrabMovementUpdate = OnPostGrabMovementUpdate;
             }
 
+            private DiveGrabHelperManager refDiveGrabHelperManager;
             private bool grabActivated = false;
             private Vector3 leftControllerPosition;
             private Vector3 leftControllerStartPosition;
@@ -50,6 +47,11 @@ namespace ECellDive
 
                 refGrabInput.action.started += OnGrab;
                 refGrabInput.action.canceled += OnRelease;
+            }
+
+            private void Start()
+            {
+                refDiveGrabHelperManager = ScenesData.refSceneManagerMonoBehaviour.divingData.diveGrabHelper.GetComponent<DiveGrabHelperManager>();
             }
 
             /// <summary>
