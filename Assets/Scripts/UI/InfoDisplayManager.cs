@@ -47,7 +47,8 @@ namespace ECellDive
             /// </summary>
             protected virtual void Hide()
             {
-                GetComponentInChildren<CanvasGroup>().alpha = 0f;
+                //GetComponentInChildren<CanvasGroup>().alpha = 0f;
+                gameObject.SetActive(false);
                 GetComponentInChildren<BoxCollider>().enabled = false;
                 refConnectionLineHandler.gameObject.GetComponent<LineRenderer>().enabled = false;
             }
@@ -83,7 +84,8 @@ namespace ECellDive
             /// </summary>
             protected virtual void Show()
             {
-                GetComponentInChildren<CanvasGroup>().alpha = 1f;
+                //GetComponentInChildren<CanvasGroup>().alpha = 1f;
+                gameObject.SetActive(true);
                 GetComponentInChildren<BoxCollider>().enabled = true;
                 refConnectionLineHandler.gameObject.GetComponent<LineRenderer>().enabled = true;
             }

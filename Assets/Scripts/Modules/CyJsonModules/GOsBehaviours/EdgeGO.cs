@@ -28,6 +28,7 @@ namespace ECellDive
                 set => refBoxColliderHolder = m_refBoxColliderHolder;
             }
             public bool highlighted { get; protected set; }
+            
 
             public bool floatingPanelDisplayed { get; protected set; }
             [SerializeField] private GameObject m_refFloatingPanel;
@@ -54,6 +55,7 @@ namespace ECellDive
             public float fluxLevel { get; protected set; }
 
             public EdgeGOSettings edgeGOSettingsModels;
+            private Material refSharedMaterial;
 
             private void Awake()
             {
@@ -65,6 +67,8 @@ namespace ECellDive
 
                 knockedOut = false;
                 fluxLevel = 0f;
+
+                refSharedMaterial = GetComponent<LineRenderer>().sharedMaterial;//default is the shared material
             }
 
             public void Initialize(NetworkGO _masterPathway, IEdge _edge)
@@ -110,7 +114,6 @@ namespace ECellDive
             public void SetLineRenderer()
             {
                 refLineRenderer = GetComponent<LineRenderer>();
-                refLineRenderer.sharedMaterial = new Material(edgeGOSettingsModels.edgeShader);
                 refLineRenderer.startWidth = edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
                 refLineRenderer.endWidth = edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
             }
@@ -156,14 +159,14 @@ namespace ECellDive
             {
                 knockedOut = false;
                 SetInformationString();
-                refLineRenderer.sharedMaterial.SetInt("Vector1_22F9BCB6", 1);
+                refLineRenderer.material = refSharedMaterial;
             }
 
             public void Knockout()
             {
                 knockedOut = true;
                 SetInformationString();
-                refLineRenderer.sharedMaterial.SetInt("Vector1_22F9BCB6", 0);
+                refLineRenderer.material.SetInt("Vector1_22F9BCB6", 0);
             }
 
             public void SetFlux(float _level)
@@ -224,7 +227,7 @@ namespace ECellDive
             /// while pointing at the edge.</remarks>
             public void ManageKnockout(InputAction.CallbackContext _ctx)
             {
-                Debug.Log("Manage Knockout");
+                //Debug.Log("Manage Knockout");
                 if (highlighted)
                 {
                     switch (knockedOut)

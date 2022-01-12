@@ -18,7 +18,6 @@ namespace ECellDive
         {
             public INode nodeData { get; protected set; }
             public string informationString { get; protected set; }
-
             public bool highlighted { get; protected set; }
 
             [SerializeField] private GameObject m_refFloatingPanel;
@@ -31,11 +30,11 @@ namespace ECellDive
                 get => m_refTriggerFloatingPlanel;
                 set => refTriggerFloatingPlanel = m_refTriggerFloatingPlanel;
             }
-
-            public NodeGOSettings nodeGOSettings;
-
             public bool floatingPanelDisplayed { get; protected set; }
+
+
             private Renderer refRenderer;
+            private Material refSharedMaterial;
 
             private void Awake()
             {
@@ -45,7 +44,7 @@ namespace ECellDive
                 m_refTriggerFloatingPlanel.action.performed += ManageFloatingDisplay;
 
                 refRenderer = GetComponent<Renderer>();
-                refRenderer.sharedMaterial = new Material(nodeGOSettings.nodeShader);
+                refSharedMaterial = refRenderer.sharedMaterial;
             }
 
             private void OnEnable()
@@ -99,13 +98,13 @@ namespace ECellDive
             #region - IHighlightable -
             public void SetHighlight()
             {
-                refRenderer.sharedMaterial.SetFloat("Vector1_66D21324", 1);
+                refRenderer.material.SetFloat("Vector1_66D21324", 1);
                 highlighted = true;
             }
 
             public void UnsetHighlight()
             {
-                refRenderer.sharedMaterial.SetFloat("Vector1_66D21324", 0);
+                refRenderer.sharedMaterial = refSharedMaterial;
                 highlighted = false;
             }
 
