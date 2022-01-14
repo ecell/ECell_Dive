@@ -173,7 +173,7 @@ namespace ECellDive
             {
                 fluxLevel = _level;
                 SetInformationString();
-                refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", _level);
+                refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 2);
             }
             #endregion
 

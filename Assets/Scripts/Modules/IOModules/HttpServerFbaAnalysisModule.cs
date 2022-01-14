@@ -14,7 +14,7 @@ namespace ECellDive
         {
             public string activeModelName;
             public float objectiveValue;
-            public Dictionary<string, int> edgeName_to_EdgeID;
+            public Dictionary<string, List<int>> edgeName_to_EdgeID;// 1 name maps to multiple IDs
             public Dictionary<int, bool> knockOuts;
             public Dictionary<string, float> fluxes;
         }
@@ -27,7 +27,7 @@ namespace ECellDive
             {
                 activeModelName = "",
                 objectiveValue = 0f,
-                edgeName_to_EdgeID = new Dictionary<string, int>(),
+                edgeName_to_EdgeID = new Dictionary<string, List<int>>(),
                 knockOuts = new Dictionary<int, bool>(),
                 fluxes = new Dictionary<string, float>()
             };
@@ -74,27 +74,21 @@ namespace ECellDive
                     foreach (int _id in LoadedCyJsonRoot.EdgeID_to_EdgeGO.Keys)
                     {
                         fbaAnalysisData.knockOuts[_id] = false;
-                        fbaAnalysisData.edgeName_to_EdgeID[LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].name] = _id;
+                        string _name = LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].name;
+                        if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_name))
+                        {
+                            fbaAnalysisData.edgeName_to_EdgeID[_name].Add(_id);
+                        }
+                        else
+                        {
+                            fbaAnalysisData.edgeName_to_EdgeID[_name] = new List<int> { _id };
+                        }
+                        
                     }
 
                     RequestModelSolve();
                 }
-
-                
             }
-
-            /// <summary>
-            /// Updates the knockout dictionnary <see cref="Knockouts"/>.
-            /// </summary>
-            /// <param name="_edgeGO">The gameobject representing the reaction
-            /// that may be knockedout.</param>
-            /// <remarks>This method is mainly called back as a Unity event
-            /// when the user is selecting an Edge.</remarks>
-            //public void AccountForModifiedEdge(GameObject _edgeGO)
-            //{
-            //    EdgeGO edgeGO = _edgeGO.GetComponent<EdgeGO>();
-            //    fbaAnalysisData.Knockouts[edgeGO.edgeData.ID] = edgeGO.knockedOut;
-            //}
 
             /// <summary>
             /// Translates the information about knockedout reactions stored
@@ -106,14 +100,7 @@ namespace ECellDive
             {
                 string knockouts = "";
                 int counter_true = 0;
-                //foreach (int _id in Knockouts.Keys)
-                //{
-                //    if (Knockouts[_id])
-                //    {
-                //        knockouts += LoadedNetworkGO.EdgeID_to_EdgeGO[_id].name + ",";
-                //        counter_true++;
-                //    }
-                //}
+
                 foreach (GameObject _edgeGO in LoadedCyJsonRoot.EdgeID_to_EdgeGO.Values)
                 {
                     if (_edgeGO.GetComponent<EdgeGO>().knockedOut)
@@ -174,15 +161,25 @@ namespace ECellDive
             /// </summary>
             public void ShowComputedFluxes()
             {
+                int c_debug = 0;
                 foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
                 {
-                    float level = 0f;
-                    if (fbaAnalysisData.objectiveValue != 0)
+                    if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
                     {
-                        level = 2f * fbaAnalysisData.fluxes[_edgeName] / fbaAnalysisData.objectiveValue;
+                        float level = fbaAnalysisData.fluxes[_edgeName];
+                        //float level = 0f;
+                        //if (fbaAnalysisData.objectiveValue != 0)
+                        //{
+                        //    level = 2f * fbaAnalysisData.fluxes[_edgeName] / fbaAnalysisData.objectiveValue;
+                        //}
+                        foreach (int _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
+                        {
+                            c_debug++;
+                            LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetFlux(level);
+                        }
                     }
-                    LoadedCyJsonRoot.EdgeID_to_EdgeGO[fbaAnalysisData.edgeName_to_EdgeID[_edgeName]].GetComponent<EdgeGO>().SetFlux(level);
                 }
+                Debug.Log(c_debug);
             }
 
             /// <summary>
