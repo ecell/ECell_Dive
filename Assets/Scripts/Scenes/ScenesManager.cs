@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -51,7 +52,11 @@ namespace ECellDive
 
             void Start()
             {
+                //Instantiate the default roof and root module
                 InstantiateGOOfVisibleModules();
+
+                //Clears the world positions
+                ModulesData.ClearModulesBankWorldPos();
             }
 
             public void AddInstantiatedGOOfModuleData(GameObject _mdGO)
@@ -66,6 +71,20 @@ namespace ECellDive
                     Destroy(go);
                 }
                 instantiationData.modulesInstanceList.Clear();
+            }
+
+            /// <summary>
+            /// Called to instantiate a new scene upon diving in a module
+            /// </summary>
+            /// <param name="_rootModule"></param>
+            public void DiveIn(ModuleData _rootModule)
+            {
+                ModulesData.AddModule(_rootModule);
+                CleanInstantiationList();
+                InstantiateGOOfModuleData(_rootModule, Vector3.zero);
+
+                divingData.refAnimator.SetTrigger("DiveEnd");
+
             }
 
             /// <summary>
@@ -100,24 +119,30 @@ namespace ECellDive
             /// <remarks>Useful when returning from a deeper scene.</remarks>
             public void InstantiateGOOfVisibleModules()
             {
-                for (int i = 0; i < ModulesData.visibleModules.Count; i++)
+                for (int i = 0; i < ScenesData.activeScene.nbModules; i++)
                 {
                     GameObject mdGO = Instantiate(instantiationData.instantiationTable[ModulesData.visibleModules[i].typeID],
-                                                    ModulesData.modulesBankWorldPos[i],
+                                                    ModulesData.modulesBankWorldPos[ModulesData.modulesBank.Count+i],
                                                     Quaternion.identity);
                     instantiationData.modulesInstanceList.Add(mdGO);
                 }
             }
 
-            /// <summary>
-            /// Called to instantiate a new scene upon diving in a module
-            /// </summary>
-            /// <param name="_rootModule"></param>
-            public void NewScene(ModuleData _rootModule)
+            public void Resurface()
             {
-                ModulesData.AddModule(_rootModule);
+                StartCoroutine(ResurfaceC());
+            }
+
+            private IEnumerator ResurfaceC()
+            {
+                divingData.refAnimator.SetTrigger("DiveStart");
+
+                yield return new WaitForSeconds(divingData.duration);
+
+                ModulesData.LoadToVisible();
                 CleanInstantiationList();
-                InstantiateGOOfModuleData(_rootModule, Vector3.zero);
+                InstantiateGOOfVisibleModules();
+                ModulesData.ClearModulesBankWorldPos();
 
                 divingData.refAnimator.SetTrigger("DiveEnd");
             }

@@ -45,32 +45,39 @@ namespace ECellDive
 
             private void Awake()
             {
-                refDiveAction.action.performed += e => DiveIn();
-                refShowInfoAction.action.performed += e => ShowInfoTags();
+                refDiveAction.action.performed += DiveIn;
+                refShowInfoAction.action.performed += ShowInfoTags;
             }
 
-            private void Start()
+            private void OnDestroy()
             {
-                //refDivingData = ScenesData.refSceneManagerMonoBehaviour.divingData;
+                refDiveAction.action.performed -= DiveIn;
+                refShowInfoAction.action.performed -= ShowInfoTags;
+            }
+
+            private void OnEnable()
+            {
+                refDiveAction.action.Enable();
+                refShowInfoAction.action.Enable();
+            }
+
+            private void OnDisable()
+            {
+                refDiveAction.action.Disable();
+                refShowInfoAction.action.Disable();
             }
 
             /// <summary>
             /// Base method to dive in a module.
             /// </summary>
-            protected void DiveIn()
+            private void DiveIn(InputAction.CallbackContext _ctx)
             {
                 StartCoroutine(DiveInC());
             }
 
             protected virtual IEnumerator DiveInC()
             {
-                ScenesData.refSceneManagerMonoBehaviour.divingData.refAnimator.SetTrigger("DiveStart");
-
-                yield return new WaitForSeconds(ScenesData.refSceneManagerMonoBehaviour.divingData.duration);
-
-                ScenesData.AddNewScene();
-                ModulesData.CaptureWorldPositions();
-                ModulesData.StashToBank();
+                yield return null;
             }
 
             /// <summary>
@@ -107,18 +114,6 @@ namespace ECellDive
                 }
             }
 
-            private void OnEnable()
-            {
-                refDiveAction.action.Enable();
-                refShowInfoAction.action.Enable();
-            }
-
-            private void OnDisable()
-            {
-                refDiveAction.action.Disable();
-                refShowInfoAction.action.Disable();
-            }
-
             public void SetFocus(bool _focused)
             {
                 isFocused = _focused;
@@ -132,7 +127,7 @@ namespace ECellDive
             /// <summary>
             /// Triggers the active state of the info tags.
             /// </summary>
-            public void ShowInfoTags()
+            public void ShowInfoTags(InputAction.CallbackContext _ctx)
             {
                 if (isFocused)
                 {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using ECellDive.Modules;
+
 namespace ECellDive
 {
     namespace SceneManagement
@@ -17,33 +19,32 @@ namespace ECellDive
         {
             public static ScenesManager refSceneManagerMonoBehaviour;
 
-            public static List<SceneData> sceneDatas = new List<SceneData>()
-            {
-                new SceneData //starts with default scene
-                {
-                    sceneID = 0, //of index 0
-                    nbModules = 2 //in the default scene we start with the root
-                                  //module and the floor
-                }
-            };
-            public static SceneData activeScene = sceneDatas[0];
+            public static List<SceneData> scenesBank = new List<SceneData>();
 
-            public static void AddNewScene()
+            public static SceneData activeScene = new SceneData //starts with default scene
             {
-                sceneDatas.Add(new SceneData
+                sceneID = 0, //of index 0
+                nbModules = 2 //in the default scene we start with the root
+                              //module and the floor
+            };
+
+            public static void DiveIn(ModuleData moduleData)
+            {
+                scenesBank.Add(activeScene);
+                activeScene = new SceneData
                 {
-                    sceneID = sceneDatas.Count,
+                    sceneID = scenesBank.Count,
                     nbModules = 0
-                });
+                };
+                refSceneManagerMonoBehaviour.DiveIn(moduleData);                
             }
 
-            public static void AddSceneData(int _sceneID, int _nbModules)
-            {
-                sceneDatas.Add(new SceneData
-                {
-                    sceneID = _sceneID,
-                    nbModules = _nbModules
-                });
+            public static void Resurface()
+            {                
+                activeScene = scenesBank[scenesBank.Count - 1];
+                scenesBank.RemoveAt(scenesBank.Count - 1);
+
+                refSceneManagerMonoBehaviour.Resurface();
             }
         }
     }

@@ -36,12 +36,10 @@ namespace ECellDive
 
                     yield return new WaitForSeconds(ScenesData.refSceneManagerMonoBehaviour.divingData.duration);
 
-                    ScenesData.AddNewScene();
                     ModulesData.CaptureWorldPositions();
                     ModulesData.StashToBank();
 
-                    ScenesData.activeScene = ScenesData.sceneDatas[ScenesData.sceneDatas.Count - 1];
-                    ScenesData.refSceneManagerMonoBehaviour.NewScene(new ModuleData
+                    ScenesData.DiveIn(new ModuleData
                     {
                         typeID = 5,
                     });

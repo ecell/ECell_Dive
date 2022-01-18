@@ -161,25 +161,18 @@ namespace ECellDive
             /// </summary>
             public void ShowComputedFluxes()
             {
-                int c_debug = 0;
                 foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
                 {
                     if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
                     {
                         float level = fbaAnalysisData.fluxes[_edgeName];
-                        //float level = 0f;
-                        //if (fbaAnalysisData.objectiveValue != 0)
-                        //{
-                        //    level = 2f * fbaAnalysisData.fluxes[_edgeName] / fbaAnalysisData.objectiveValue;
-                        //}
+                        
                         foreach (int _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
-                            c_debug++;
                             LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetFlux(level);
                         }
                     }
                 }
-                Debug.Log(c_debug);
             }
 
             /// <summary>

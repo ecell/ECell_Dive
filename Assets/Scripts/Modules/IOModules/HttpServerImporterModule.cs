@@ -92,7 +92,7 @@ namespace ECellDive
                     //the layers, nodes and edges.
                     NetworkLoader.Populate(network);
                     CyJsonModulesData.AddData(network);
-                    
+
                     //Instantiation of the CyJson module corresponding to encapsulate the
                     //CyJson pathway that just has been populated.
                     ModuleData cyJsonMD = new ModuleData
@@ -101,8 +101,7 @@ namespace ECellDive
                     };
                     ModulesData.AddModule(cyJsonMD);
                     Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
-                    ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleData(cyJsonMD, pos);
-                }
+                    ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleData(cyJsonMD, pos);                }
             }
 
             /// <summary>

@@ -227,7 +227,6 @@ namespace ECellDive
             /// while pointing at the edge.</remarks>
             public void ManageKnockout(InputAction.CallbackContext _ctx)
             {
-                //Debug.Log("Manage Knockout");
                 if (highlighted)
                 {
                     switch (knockedOut)

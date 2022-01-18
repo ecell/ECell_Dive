@@ -33,7 +33,6 @@ namespace ECellDive
                  CyJson pathway.
             - 8: CyJson Pathway Edge type. An Edge between 2 nodes in the graph
                  made from a CyJson pathway.
-
          */
 
         [System.Serializable]
@@ -50,7 +49,7 @@ namespace ECellDive
 
             public static List<ModuleData> visibleModules = new List<ModuleData>()
             {
-                //by default the master module of scene 0 and the floor ar visible.
+                //by default the master module of scene 0 and the floor are visible.
                 new ModuleData() //starts with the default master module of scene 0
                 {
                     typeID = 0
@@ -73,8 +72,28 @@ namespace ECellDive
                 ScenesData.activeScene.nbModules++;
             }
 
+            /// <summary>
+            /// Clears <see cref="modulesBankWorldPos"/>.
+            /// Useful to clean the stashed positions of the modules in the scene
+            /// that we just resurfaced into.
+            /// </summary>
+            public static void ClearModulesBankWorldPos()
+            {
+                modulesBankWorldPos.RemoveRange(modulesBankWorldPos.Count - ScenesData.activeScene.nbModules,
+                                                ScenesData.activeScene.nbModules);
+            }
+
+            /// <summary>
+            /// Loads the modules of the newly activated scene from the 
+            /// <see cref="modulesBank"/> list to the <see cref="visibleModules"/> list.
+            /// </summary>
+            /// <remarks>
+            /// Clears the <see cref="visibleModules"/> list at the
+            /// beginning by default
+            /// </remarks>
             public static void LoadToVisible()
             {
+                visibleModules.Clear();
                 //We differentiate two cases with one "if" statement
                 //First case where we are loading the modules of scene which
                 //is not the root scene. Since, with this test, we know that
