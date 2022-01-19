@@ -16,21 +16,25 @@ namespace ECellDive
         public class ResurfaceManager : MonoBehaviour
         {
 
-            public InputActionReference refResurfaceAction;
+            public InputActionReference refLeftResurfaceAction;
+            public InputActionReference refRightResurfaceAction;
 
             private void Awake()
             {
-                refResurfaceAction.action.performed += Resurface;
+                refLeftResurfaceAction.action.performed += Resurface;
+                refRightResurfaceAction.action.performed += Resurface;
             }
 
             private void OnEnable()
             {
-                refResurfaceAction.action.Enable();
+                refLeftResurfaceAction.action.Enable();
+                refRightResurfaceAction.action.Enable();
             }
 
             private void OnDisable()
             {
-                refResurfaceAction.action.Disable();
+                refLeftResurfaceAction.action.Disable();
+                refRightResurfaceAction.action.Disable();
             }
 
             private void Resurface(InputAction.CallbackContext _ctx)

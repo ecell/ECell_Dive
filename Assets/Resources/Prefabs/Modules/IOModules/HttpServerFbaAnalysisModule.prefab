@@ -319,7 +319,6 @@ GameObject:
   - component: {fileID: 7288680088940509201}
   - component: {fileID: 9186745550434743612}
   - component: {fileID: 3680908685886802813}
-  - component: {fileID: 2602107786310453345}
   - component: {fileID: 4916496559549191361}
   m_Layer: 7
   m_Name: HttpServerFbaAnalysisModule
@@ -397,7 +396,7 @@ MonoBehaviour:
   m_FirstHoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2602107786310453345}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
         m_MethodName: ShowNameToPlayer
         m_Mode: 1
@@ -409,7 +408,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2602107786310453345}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
         m_MethodName: SetFocus
         m_Mode: 6
@@ -424,7 +423,7 @@ MonoBehaviour:
   m_LastHoverExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2602107786310453345}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
         m_MethodName: SetFocus
         m_Mode: 6
@@ -632,7 +631,7 @@ MonoBehaviour:
   m_OnPostGrabMovementUpdate:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2602107786310453345}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
         m_MethodName: ShowNameToPlayer
         m_Mode: 1
@@ -644,7 +643,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2602107786310453345}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
         m_MethodName: ShowInfoTagsToPlayer
         m_Mode: 1
@@ -656,28 +655,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2602107786310453345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9183378004188021928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 031f2f632828d1c498ae0d27326c1c9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  refName: {fileID: 7422965027347289272}
-  refInfoTagPrefab: {fileID: 8508590404914015345}
-  refInfoTagsContainer: {fileID: 4873951086362238799}
-  refInfoTags: []
-  refShowInfoAction: {fileID: 2877651664448697780, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  refDiveAction: {fileID: 4579416455403421852, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  refInteractorTargetLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  finalLayer: 0
 --- !u!114 &4916496559549191361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,8 +671,8 @@ MonoBehaviour:
   refInfoTagPrefab: {fileID: 8508590404914015345}
   refInfoTagsContainer: {fileID: 4873951086362238799}
   refInfoTags: []
-  refShowInfoAction: {fileID: 2877651664448697780, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  refDiveAction: {fileID: 4579416455403421852, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  refShowInfoAction: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  refDiveAction: {fileID: 1131537533043575416, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   refInteractorTargetLayer:
     serializedVersion: 2
     m_Bits: 256
