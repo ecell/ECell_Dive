@@ -12,34 +12,59 @@ namespace ECellDive
     {
         public class InfoTagManager : InfoDisplayManager
         {
+            public enum InputActionTime { started, performed, canceled }//, onEnable, onDisable }
             [Serializable]
-            public struct ButtonTag
+            public struct TagMutator
             {
-                public enum InputActionTime { started, performed, canceled, onEnable, onDisable}
                 public InputActionTime actionTime;
                 public InputActionReference refInputAction;
                 public UnityEvent refCallback;
             }
             
-            [TextArea] public string[] content;
-            public int currentContentIndex;
+            [Serializable]
+            public struct Tag
+            {
+                [TextArea] public string[] content;
+                public int currentContentIndex;
 
-            public ButtonTag[] ButtonTagEffects;
+                public TagMutator[] mutators;
+            }
+
+            public Tag tagGC;
+            public Tag tagMvt;
+            public Tag tagRBC;
+
+            private Tag currentTag;
 
             private void Awake()
             {
-                foreach (ButtonTag _buttonTag in ButtonTagEffects)
+                AwakeCallBackActions(tagGC);
+                AwakeCallBackActions(tagMvt);
+                AwakeCallBackActions(tagRBC);
+            }
+
+            private void Start()
+            {
+                if (hideOnStart)
                 {
-                    switch (_buttonTag.actionTime)
+                    Hide();
+                }
+            }
+
+            private void AwakeCallBackActions(Tag _tag)
+            {
+                foreach (TagMutator _tagMut in _tag.mutators)
+                {
+                    switch (_tagMut.actionTime)
                     {
-                        case (ButtonTag.InputActionTime.started):
-                            _buttonTag.refInputAction.action.started += e => ButtonTagCallBack(_buttonTag.refCallback);
+                        case (InputActionTime.started):
+                            _tagMut.refInputAction.action.started += e => ButtonTagCallBack(_tagMut.refCallback);
                             break;
-                        case (ButtonTag.InputActionTime.performed):
-                            _buttonTag.refInputAction.action.performed += e => ButtonTagCallBack(_buttonTag.refCallback);
+                        case (InputActionTime.performed):
+                            _tagMut.refInputAction.action.performed += e => ButtonTagCallBack(_tagMut.refCallback);
                             break;
-                        case (ButtonTag.InputActionTime.canceled):
-                            _buttonTag.refInputAction.action.canceled += e => ButtonTagCallBack(_buttonTag.refCallback);
+                        case (InputActionTime.canceled):
+                            _tagMut.refInputAction.action.canceled += e => ButtonTagCallBack(_tagMut.refCallback);
                             break;
                     }
                 }
@@ -56,34 +81,34 @@ namespace ECellDive
                 refConnectionLineHandler.gameObject.GetComponent<LineRenderer>().enabled = false;
             }
 
-            private void OnEnable()
-            {
-                foreach (ButtonTag _buttonTag in ButtonTagEffects)
-                {
-                    _buttonTag.refInputAction.action.Enable();
-                    if (_buttonTag.actionTime == ButtonTag.InputActionTime.onEnable)
-                    {
-                        ButtonTagCallBack(_buttonTag.refCallback);
-                    }
-                }
-            }
+            //private void OnEnable()
+            //{
+            //    foreach (ButtonTag _buttonTag in ButtonTagEffects)
+            //    {
+            //        _buttonTag.refInputAction.action.Enable();
+            //        if (_buttonTag.actionTime == InputActionTime.onEnable)
+            //        {
+            //            ButtonTagCallBack(_buttonTag.refCallback);
+            //        }
+            //    }
+            //}
 
-            private void OnDisable()
-            {
-                foreach (ButtonTag _buttonTag in ButtonTagEffects)
-                {
-                    _buttonTag.refInputAction.action.Disable();
-                    if (_buttonTag.actionTime == ButtonTag.InputActionTime.onDisable)
-                    {
-                        ButtonTagCallBack(_buttonTag.refCallback);
-                    }
-                }
-            }
+            //private void OnDisable()
+            //{
+            //    foreach (ButtonTag _buttonTag in ButtonTagEffects)
+            //    {
+            //        _buttonTag.refInputAction.action.Disable();
+            //        if (_buttonTag.actionTime == InputActionTime.onDisable)
+            //        {
+            //            ButtonTagCallBack(_buttonTag.refCallback);
+            //        }
+            //    }
+            //}
 
             public void SetText(int _contentIndex)
             {
-                currentContentIndex = _contentIndex;
-                refInfoTextMesh.text = content[currentContentIndex];
+                currentTag.currentContentIndex = _contentIndex;
+                refInfoTextMesh.text = currentTag.content[currentTag.currentContentIndex];
             }
 
             protected override void Show()
@@ -92,18 +117,21 @@ namespace ECellDive
                 refConnectionLineHandler.gameObject.GetComponent<LineRenderer>().enabled = true;
             }
 
-            private void Start()
+            public void SwitchControlMode(int _controlModeID)
             {
-                if (content.Length == 0)
+                switch (_controlModeID)
                 {
-                    content = new string[] { "Information" };
+                    case 0:
+                        currentTag = tagGC;
+                        break;
+                    case 1:
+                        currentTag = tagMvt;
+                        break;
+                    case 2:
+                        currentTag = tagRBC;
+                        break;
                 }
-                refInfoTextMesh.text = content[currentContentIndex];
-
-                if (hideOnStart)
-                {
-                    Hide();
-                }
+                updateTagText();
             }
 
             /// <summary>
@@ -112,11 +140,24 @@ namespace ECellDive
             /// </summary>
             public void TextRotation()
             {
-                if (++currentContentIndex >= content.Length)
+                if (++currentTag.currentContentIndex >= currentTag.content.Length)
                 {
-                    currentContentIndex = 0;
+                    currentTag.currentContentIndex = 0;
                 }
-                refInfoTextMesh.text = content[currentContentIndex];
+                refInfoTextMesh.text = currentTag.content[currentTag.currentContentIndex];
+            }
+
+            private void updateTagText()
+            {
+                if (currentTag.content.Length > 0)
+                {
+                    refInfoTextMesh.text = currentTag.content[currentTag.currentContentIndex];
+                    Show();
+                }
+                else
+                {
+                    Hide();
+                }
             }
         }
     }

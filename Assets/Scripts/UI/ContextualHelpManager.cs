@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace ECellDive
 {
@@ -13,20 +10,43 @@ namespace ECellDive
         /// </summary>
         public class ContextualHelpManager : MonoBehaviour
         {
-            private InfoTagManager[] infoTagManagers;
+            public GameObject leftControllerModel;
+            public GameObject rightControllerModel;
 
-            public void ContextualHelpGlobalHide()
+            private InfoTagManager[] leftInfoTagManagers;
+            private InfoTagManager[] rightInfoTagManagers;
+
+            private void Awake()
             {
-                foreach (InfoTagManager _infoTag in infoTagManagers)
+                leftInfoTagManagers = leftControllerModel.GetComponentsInChildren<InfoTagManager>();
+                rightInfoTagManagers = rightControllerModel.GetComponentsInChildren<InfoTagManager>();
+            }
+
+            public void BroadcastControlModeSwitchToLeftController(int _controlModeID)
+            {
+                foreach (InfoTagManager _infoTag in leftInfoTagManagers)
                 {
-                    _infoTag.GlobalHide();
+                    _infoTag.SwitchControlMode(_controlModeID);
+                }
+            }
+            public void BroadcastControlModeSwitchToRightController(int _controlModeID)
+            {
+                foreach (InfoTagManager _infoTag in rightInfoTagManagers)
+                {
+                    _infoTag.SwitchControlMode(_controlModeID);
                 }
             }
 
-            private void Start()
+            public void ContextualHelpGlobalHide()
             {
-                infoTagManagers = GetComponentsInChildren<InfoTagManager>();
-                ContextualHelpGlobalHide();
+                foreach (InfoTagManager _infoTag in leftInfoTagManagers)
+                {
+                    _infoTag.GlobalHide();
+                }
+                foreach (InfoTagManager _infoTag in rightInfoTagManagers)
+                {
+                    _infoTag.GlobalHide();
+                }
             }
         }
     }

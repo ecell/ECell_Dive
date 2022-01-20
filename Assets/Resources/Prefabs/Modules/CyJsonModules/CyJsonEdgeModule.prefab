@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4426228637654572100}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5699959535751789815
 BoxCollider:
@@ -75,6 +75,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1951011494807121608}
   - {fileID: 3362592790029029855}
   - {fileID: 8071170570885946786}
   m_Father: {fileID: 0}
@@ -102,9 +103,9 @@ MonoBehaviour:
   m_FirstHoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3799698922840848880}
-        m_TargetAssemblyTypeName: ECellDive.NetworkComponents.EdgeGO, Assembly-CSharp
-        m_MethodName: SetHighlight
+      - m_Target: {fileID: 4567454268747770709}
+        m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
+        m_MethodName: ShowInfoToPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -114,9 +115,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4567454268747770709}
-        m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
-        m_MethodName: ShowInfoToPlayer
+      - m_Target: {fileID: 3799698922840848880}
+        m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
+        m_MethodName: SetFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3799698922840848880}
+        m_TargetAssemblyTypeName: ECellDive.Modules.EdgeGO, Assembly-CSharp
+        m_MethodName: SetHighlight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -130,7 +143,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3799698922840848880}
-        m_TargetAssemblyTypeName: ECellDive.NetworkComponents.EdgeGO, Assembly-CSharp
+        m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
+        m_MethodName: UnsetFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3799698922840848880}
+        m_TargetAssemblyTypeName: ECellDive.Modules.EdgeGO, Assembly-CSharp
         m_MethodName: UnsetHighlight
         m_Mode: 1
         m_Arguments:
@@ -358,15 +383,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffdb48b47440574da655c6fbdf1c359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  refName: {fileID: 0}
+  diveActions:
+    leftController: {fileID: -6167206992522063489, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    rightController: {fileID: 1131537533043575416, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  finalLayer: 1
+  m_displayInfoTagsActions:
+    leftController: {fileID: -2874468441403497665, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    rightController: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  m_refInfoTagPrefab: {fileID: 8071170570885946787}
+  m_refInfoTagsContainer: {fileID: 7694538660087557743}
+  m_refInfoTags: []
   m_refBoxColliderHolder: {fileID: 1878873688329936020}
-  m_refFloatingPanel: {fileID: 8071170570885946787}
-  m_refTriggerFloatingPlanel: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  m_refTriggerKO: {fileID: 7575380841398482008, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  m_triggerKOActions:
+    leftController: {fileID: 7575380841398482008, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    rightController: {fileID: -5061084761587061651, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   edgeGOSettingsModels:
     startWidthFactor: 0.25
     endWidthFactor: 0.5
     startHWidthFactor: 0.5
     endHWidthFactor: 1
+--- !u!1 &7694538660087557743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1951011494807121608}
+  m_Layer: 8
+  m_Name: All Info Tags
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1951011494807121608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694538660087557743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4426228637654572100}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8943846311968238331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -378,9 +444,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Info Display
       objectReference: {fileID: 0}
+    - target: {fileID: 872680225068267352, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 872680225068267353, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 872680225068267353, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -424,11 +494,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 872680226728945186, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 872680226728945186, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.19
       objectReference: {fileID: 0}
     - target: {fileID: 2008476259509320440, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: end
@@ -439,10 +509,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3362592790029029855}
     - target: {fileID: 4862822861443727790, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
-      propertyPath: hideOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4862822861443727790, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: defaultPositionOffset.x
       value: 0.5
       objectReference: {fileID: 0}
@@ -452,51 +518,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5453654609989585644, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5453654609989585644, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5453654609989585644, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5453654609989585644, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5453654609989585644, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 5453654609989585644, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.165
       objectReference: {fileID: 0}
     - target: {fileID: 6019274779763396347, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6019274779763396347, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6019274779763396347, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6019274779763396347, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 6019274779763396347, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 6019274779763396347, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 6645021562608781678, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: refMasterObject

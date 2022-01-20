@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using ECellDive.UI;
 
 
 namespace ECellDive
@@ -72,11 +73,13 @@ namespace ECellDive
                 refMvtRHMap.Enable();//default is movement mode on right controller
                 DisableInteractors(leftMvts);
                 EnableInteractors(rightMvts);
+                GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToRightController(rightControllerModeID);
 
                 refRBCLHMap.Enable();//default is ray mode on left controller
                 refRBCRHMap.Disable();
                 EnableInteractors(leftRBCs);
                 DisableInteractors(rightRBCs);
+                GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToLeftController(leftControllerModeID);
             }
 
             private void DisableInteractors(XRRayInteractor[] _interactors)
@@ -129,8 +132,10 @@ namespace ECellDive
                         leftControllerModeID = 0;
                         goto case 0;
                 }
+
+                GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToLeftController(leftControllerModeID);
             }
-            
+
             private void RightControllerModeSwitch(InputAction.CallbackContext _ctx)
             {
                 rightControllerModeID++;
@@ -165,6 +170,7 @@ namespace ECellDive
                         rightControllerModeID = 0;
                         goto case 0;
                 }
+                GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToRightController(rightControllerModeID);
             }
         }
     }

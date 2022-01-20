@@ -21,8 +21,6 @@ namespace ECellDive
 
         public class HttpServerFbaAnalysisModule : HttpServerBaseModule
         {
-            public InputActionReference runFBA;
-
             private FbaAnalysisData fbaAnalysisData = new FbaAnalysisData
             {
                 activeModelName = "",
@@ -34,26 +32,6 @@ namespace ECellDive
 
             private NetworkGO LoadedCyJsonRoot;
 
-            private void Awake()
-            {
-                runFBA.action.performed += RequestModelSolveAction;
-            }
-
-            private void OnEnable()
-            {
-                runFBA.action.Enable();
-            }
-
-            private void OnDisable()
-            {
-                runFBA.action.Disable();
-            }
-
-            private void OnDestroy()
-            {
-                runFBA.action.performed -= RequestModelSolveAction;
-            }
-
             private void Start()
             {
                 if (CyJsonModulesData.activeData == null)
@@ -63,7 +41,6 @@ namespace ECellDive
                 }
                 else
                 {
-                    //Initial Solve of the Network
                     fbaAnalysisData.activeModelName = CyJsonModulesData.activeData.name;
 
                     LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
@@ -85,8 +62,6 @@ namespace ECellDive
                         }
                         
                     }
-
-                    RequestModelSolve();
                 }
             }
 
@@ -135,15 +110,6 @@ namespace ECellDive
                     requestURL = AddQueryToURL(requestURL, "knockouts", _knockouts, true);
                 }
                 StartCoroutine(GetRequest(requestURL));
-            }
-
-            /// <summary>
-            /// The interface to use when binding the <see cref="RequestModelSolve"/>
-            /// method to an input button
-            /// </summary>
-            private void RequestModelSolveAction(InputAction.CallbackContext callbackContext)
-            {
-                RequestModelSolve();
             }
 
             /// <summary>

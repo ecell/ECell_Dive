@@ -105,7 +105,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3646200969631011454}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
         m_MethodName: SetFocus
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -119,8 +119,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3646200969631011454}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
-        m_MethodName: SetFocus
-        m_Mode: 6
+        m_MethodName: UnsetFocus
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -248,11 +248,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftGrabActionData:
-    select: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    activate: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    select: {fileID: 1901161901490888043, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    activate: {fileID: 7575380841398482008, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   rightGrabActionData:
-    select: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    activate: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    select: {fileID: -4479098549160383614, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    activate: {fileID: -5061084761587061651, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   objectMaxDistance: 25
   attractionThreshold: 0.08
   attractionSpeedCurve:
@@ -339,7 +339,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3646200969631011454}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
-        m_MethodName: ShowInfoTagsToPlayer
+        m_MethodName: ShowInfoTags
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -362,15 +362,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refName: {fileID: 2207563682371789141}
-  refInfoTagPrefab: {fileID: 3813504474537117795}
-  refInfoTagsContainer: {fileID: 2935444204287786042}
-  refInfoTags: []
-  refShowInfoAction: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  refDiveAction: {fileID: 1131537533043575416, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  diveActions:
+    leftController: {fileID: -6167206992522063489, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    rightController: {fileID: 1131537533043575416, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   refInteractorTargetLayer:
     serializedVersion: 2
     m_Bits: 256
   finalLayer: 0
+  m_displayInfoTagsActions:
+    leftController: {fileID: -2874468441403497665, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    rightController: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  m_refInfoTagPrefab: {fileID: 3813504474537117795}
+  m_refInfoTagsContainer: {fileID: 2935444204287786042}
+  m_refInfoTags: []
 --- !u!1 &842645510782258323
 GameObject:
   m_ObjectHideFlags: 0
