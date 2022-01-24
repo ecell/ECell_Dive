@@ -39,6 +39,7 @@ namespace ECellDive
 
             public bool knockedOut { get; protected set; }
             public float fluxLevel { get; protected set; }
+            public float fluxLevelClamped { get; protected set; }
             #endregion
 
             public EdgeGOSettings edgeGOSettingsModels;
@@ -51,6 +52,7 @@ namespace ECellDive
 
                 knockedOut = false;
                 fluxLevel = 0f;
+                fluxLevelClamped = 1f;
 
                 refSharedMaterial = GetComponent<LineRenderer>().sharedMaterial;//default is the shared material
             }
@@ -59,6 +61,10 @@ namespace ECellDive
             {
                 triggerKOActions.leftController.action.performed -= ManageKnockout;
                 triggerKOActions.rightController.action.performed -= ManageKnockout;
+
+#if UNITY_EDITOR
+                refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 0);
+#endif
             }
 
             #region - IEdgeGO - 
@@ -114,11 +120,13 @@ namespace ECellDive
                 refLineRenderer.material.SetInt("Vector1_22F9BCB6", 0);
             }
 
-            public void SetFlux(float _level)
+            public void SetFlux(float _level, float _levelClamped)
             {
                 fluxLevel = _level;
+                fluxLevelClamped = _levelClamped;
                 SetInformationString();
                 refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 2);
+                UnsetHighlight();
             }
             #endregion
 
@@ -131,8 +139,8 @@ namespace ECellDive
 
             public override void UnsetHighlight()
             {
-                refLineRenderer.startWidth = edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
-                refLineRenderer.endWidth = edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
+                refLineRenderer.startWidth = fluxLevelClamped * edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
+                refLineRenderer.endWidth = fluxLevelClamped * edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
             }
             #endregion
 

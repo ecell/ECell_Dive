@@ -75,8 +75,16 @@ namespace ECellDive
 
         public interface IModulateFlux: IKnockable
         {
+            /// <summary>
+            /// The real flux value
+            /// </summary>
             float fluxLevel { get; }
-            void SetFlux(float _level);
+
+            /// <summary>
+            /// A clamped flux value to control the visualization of the flux
+            /// </summary>
+            float fluxLevelClamped { get; }
+            void SetFlux(float _level, float _levelClamped);
         }
     }
 }

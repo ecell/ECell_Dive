@@ -160,7 +160,7 @@ namespace ECellDive
                     {
                         level = 2f * refServerFBASolver.Fluxes[_edgeName] / refServerFBASolver.objectiveValue;
                     }
-                    LoadedNetworkGO.EdgeID_to_EdgeGO[EdgeName_to_EdgeID[_edgeName]].GetComponent<EdgeGO>().SetFlux(level);
+                    LoadedNetworkGO.EdgeID_to_EdgeGO[EdgeName_to_EdgeID[_edgeName]].GetComponent<EdgeGO>().SetFlux(level, level);
                 }
             }
 

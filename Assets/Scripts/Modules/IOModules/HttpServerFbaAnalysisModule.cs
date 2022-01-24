@@ -19,6 +19,12 @@ namespace ECellDive
             public Dictionary<string, float> fluxes;
         }
 
+        public struct FbaVisualizationData
+        {
+            public float fluxMinVisibleLevel;
+            public float fluxMaxVisibleLevel;
+        }
+
         public class HttpServerFbaAnalysisModule : HttpServerBaseModule
         {
             private FbaAnalysisData fbaAnalysisData = new FbaAnalysisData
@@ -28,6 +34,12 @@ namespace ECellDive
                 edgeName_to_EdgeID = new Dictionary<string, List<int>>(),
                 knockOuts = new Dictionary<int, bool>(),
                 fluxes = new Dictionary<string, float>()
+            };
+
+            private FbaVisualizationData fbaVisualizationData = new FbaVisualizationData
+            {
+                fluxMinVisibleLevel = 0.01f,
+                fluxMaxVisibleLevel = 6
             };
 
             private NetworkGO LoadedCyJsonRoot;
@@ -132,10 +144,21 @@ namespace ECellDive
                     if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
                     {
                         float level = fbaAnalysisData.fluxes[_edgeName];
-                        
+
+                        float levelClamped = level;
+
+                        if (level < fbaVisualizationData.fluxMinVisibleLevel)
+                        {
+                            levelClamped = fbaVisualizationData.fluxMinVisibleLevel;
+                        }
+                        else if (level > fbaVisualizationData.fluxMaxVisibleLevel)
+                        {
+                            levelClamped = fbaVisualizationData.fluxMaxVisibleLevel;
+                        }
+
                         foreach (int _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
-                            LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetFlux(level);
+                            LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
                         }
                     }
                 }
