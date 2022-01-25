@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.Utility;
+using ECellDive.UI;
 
 namespace ECellDive
 {
@@ -19,11 +20,11 @@ namespace ECellDive
             public Dictionary<string, float> fluxes;
         }
 
-        public struct FbaVisualizationData
-        {
-            public float fluxMinVisibleLevel;
-            public float fluxMaxVisibleLevel;
-        }
+        //public struct FbaVisualizationData
+        //{
+        //    public float fluxMinVisibleLevel;
+        //    public float fluxMaxVisibleLevel;
+        //}
 
         public class HttpServerFbaAnalysisModule : HttpServerBaseModule
         {
@@ -36,11 +37,12 @@ namespace ECellDive
                 fluxes = new Dictionary<string, float>()
             };
 
-            private FbaVisualizationData fbaVisualizationData = new FbaVisualizationData
-            {
-                fluxMinVisibleLevel = 0.01f,
-                fluxMaxVisibleLevel = 6
-            };
+            //private FbaVisualizationData fbaVisualizationData = new FbaVisualizationData
+            //{
+            //    fluxMinVisibleLevel = 0.01f,
+            //    fluxMaxVisibleLevel = 6f
+            //};
+            public FbaParametersManager fbaParametersManager;
 
             private NetworkGO LoadedCyJsonRoot;
 
@@ -147,13 +149,13 @@ namespace ECellDive
 
                         float levelClamped = level;
 
-                        if (level < fbaVisualizationData.fluxMinVisibleLevel)
+                        if (level < fbaParametersManager.fluxLowerBoundSlider.slider.value)
                         {
-                            levelClamped = fbaVisualizationData.fluxMinVisibleLevel;
+                            levelClamped = fbaParametersManager.fluxLowerBoundSlider.slider.value;
                         }
-                        else if (level > fbaVisualizationData.fluxMaxVisibleLevel)
+                        else if (level > fbaParametersManager.fluxUpperBoundSlider.slider.value)
                         {
-                            levelClamped = fbaVisualizationData.fluxMaxVisibleLevel;
+                            levelClamped = fbaParametersManager.fluxUpperBoundSlider.slider.value;
                         }
 
                         foreach (int _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
@@ -199,10 +201,26 @@ namespace ECellDive
                     JArray jFluxesArray = (JArray)requestData.requestJObject["fluxes"];
                     fbaAnalysisData.objectiveValue = requestData.requestJObject["objective_value"].Value<float>();
 
+                    float maxFlux = float.MinValue;
+                    float minFlux = float.MaxValue;
+                    float fluxValue = 0f;
                     foreach (JArray _flux in jFluxesArray)
                     {
-                        fbaAnalysisData.fluxes[_flux.ElementAt(0).Value<string>()] = _flux.ElementAt(1).Value<float>();
+                        fluxValue = _flux.ElementAt(1).Value<float>();
+                        fbaAnalysisData.fluxes[_flux.ElementAt(0).Value<string>()] = fluxValue;
+
+                        if (fluxValue > maxFlux)
+                        {
+                            maxFlux = fluxValue;
+                        }
+                        else if (fluxValue < minFlux)
+                        {
+                            minFlux = fluxValue;
+                        }
                     }
+
+                    fbaParametersManager.SetFluxeValueControllersBounds(minFlux, maxFlux);
+
                     ShowComputedFluxes();
                 }
             }

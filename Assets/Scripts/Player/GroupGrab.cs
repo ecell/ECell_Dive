@@ -23,7 +23,7 @@ namespace ECellDive
         /// </summary>
         /// <remarks>Contains logic to only limit the interactiosn to the left
         /// controller.</remarks>
-        public class DiveGrab : MonoBehaviour, IGrab
+        public class GroupGrab : MonoBehaviour, IGrab
         {
 
             #region - IGrab members -
@@ -57,15 +57,8 @@ namespace ECellDive
 
             private void Awake()
             {
-                //controllersPositionsData.leftController.action.performed += GetLeftPosition;
-                //controllersPositionsData.rightController.action.performed += GetRightPosition;
-
-
                 leftGrabActionData.select.action.started += e => SetControllerID(IGrab.XRControllerID.Left);
                 rightGrabActionData.select.action.started += e => SetControllerID(IGrab.XRControllerID.Right);
-
-                //leftGrabActionData.select.action.performed += GetPosition;
-                //rightGrabActionData.select.action.performed += GetPosition;
 
                 leftGrabActionData.select.action.performed += OnGrab;
                 rightGrabActionData.select.action.performed += OnGrab;
@@ -76,14 +69,8 @@ namespace ECellDive
 
             private void OnDestroy()
             {
-                //controllersPositionsData.leftController.action.performed -= GetLeftPosition;
-                //controllersPositionsData.rightController.action.performed -= GetRightPosition;
-
                 leftGrabActionData.select.action.started += e => SetControllerID(IGrab.XRControllerID.Left);
                 rightGrabActionData.select.action.started += e => SetControllerID(IGrab.XRControllerID.Right);
-
-                //leftGrabActionData.select.action.performed += GetPosition;
-                //rightGrabActionData.select.action.performed += GetPosition;
 
                 leftGrabActionData.select.action.performed -= OnGrab;
                 rightGrabActionData.select.action.performed -= OnGrab;
