@@ -79,19 +79,20 @@ namespace ECellDive
 
                 yield return new WaitUntil(isRequestProcessed);
 
-                if (requestSuccess)
+                if (requestData.requestSuccess)
                 {
-                    requestJObject = JObject.Parse(requestText);
+                    requestData.requestJObject = JObject.Parse(requestData.requestText);
 
                     //Loading the file
-                    NetworkComponents.Network network = NetworkLoader.Initiate(requestJObject, activeModelName);
+                    NetworkComponents.Network network = NetworkLoader.Initiate(requestData.requestJObject,
+                                                                                activeModelName);
 
                     //Instantiating relevant data structures to store the information about
                     //the layers, nodes and edges.
                     NetworkLoader.Populate(network);
 
-                    NetworkModulesData.AddData(network);
-                    refModulesManager.InstantiateModule(network);
+                    //NetworkModulesData.AddData(network);
+                    //refModulesManager.InstantiateModule(network);
                 }
             }
 
@@ -115,10 +116,10 @@ namespace ECellDive
 
                 yield return new WaitUntil(isRequestProcessed);
 
-                if (requestSuccess)
+                if (requestData.requestSuccess)
                 {
-                    requestJObject = JObject.Parse(requestText);
-                    JArray jModelsArray = (JArray)requestJObject["models"];
+                    requestData.requestJObject = JObject.Parse(requestData.requestText);
+                    JArray jModelsArray = (JArray)requestData.requestJObject["models"];
                     List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
 
                     for (int i = 0; i < modelsList.Count; i++)

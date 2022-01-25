@@ -327,15 +327,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ffbed32a7c68844b9529450739177a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  refMaster: {fileID: 0}
+  defaultPositionOffset: {x: 0, y: 0, z: 0}
   refInfoTextMesh: {fileID: 4614789794520727134}
   refConnectionAnchorHandler: {fileID: 175883626220738068}
   refConnectionLineHandler: {fileID: 5014912503813105026}
   alwaysShowInfoToPlayer: 1
   globalHide: 0
-  hideOnStart: 0
-  content: []
-  currentContentIndex: 0
-  ButtonTagEffects: []
+  hideOnStart: 1
+  tagGC:
+    content: []
+    currentContentIndex: 0
+    mutators: []
+  tagMvt:
+    content: []
+    currentContentIndex: 0
+    mutators: []
+  tagRBC:
+    content: []
+    currentContentIndex: 0
+    mutators: []
 --- !u!1 &7594154823148341659
 GameObject:
   m_ObjectHideFlags: 0

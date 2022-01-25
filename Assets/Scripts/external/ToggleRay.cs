@@ -64,9 +64,4 @@ public class ToggleRay : MonoBehaviour
             directInteractor.enabled = !value;
         }
     }
-
-    public void DebugMessage(string _msg)
-    {
-        Debug.Log(_msg);
-    }
 }

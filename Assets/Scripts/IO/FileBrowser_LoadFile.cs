@@ -75,7 +75,7 @@ namespace ECellDive
                     //the layers, nodes and edges.
                     NetworkLoader.Populate(network);
                         
-                    NetworkModulesData.AddData(network);
+                    CyJsonModulesData.AddData(network);
                     refModulesManager.InstantiateModule(network);
                 }
             }

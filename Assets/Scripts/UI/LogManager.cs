@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,43 +44,49 @@ namespace ECellDive
                 }
 
                 messages = new List<GameObject>();
-                if (LogSystem.recordedMessages != null)
+                if (LogSystem.recordedMessages != null)//initialize with the pre-filled messages
                 {
-                    for (int i = 0; i<LogSystem.recordedMessages.Count; i++)
+                    foreach (LogSystem.Message _msg in LogSystem.recordedMessages)
                     {
-                        RecordMessage(LogSystem.recordedMessages[i].type,
-                                      LogSystem.recordedMessages[i].content);
+                        RecordMessage(_msg);
                     }
-                }
-
-                if (messages.Count == 0)
-                {
-                    AddMessage(LogSystem.MessageTypes.Debug, "This is a Debug message");
-                    AddMessage(LogSystem.MessageTypes.Trace, "This is a Trace message");
-                    AddMessage(LogSystem.MessageTypes.Ping, "This is a ping message");
-                    AddMessage(LogSystem.MessageTypes.Errors, "This is an error message");
                 }
             }
 
+            /// <summary>
+            /// Public interface to add a message to the log.
+            /// </summary>
             public void AddMessage(LogSystem.MessageTypes _type, string _content)
             {
-                LogSystem.RecordMessage(_type, _content);
-                RecordMessage(_type, _content);
+                LogSystem.Message msg = LogSystem.GenerateMessage(_type, _content);
+                LogSystem.RecordMessage(msg);
+                RecordMessage(msg);
                 DrawMessageList();
             }
 
+            /// <summary>
+            /// Logic to display the whole content of a message.
+            /// </summary>
+            /// <remarks>
+            /// Called back when interacting with the UI element teasing the message.
+            /// </remarks>
+            /// <param name="_content">The TextMeshProUGUI component containing the
+            /// message to display.</param>
             public void DisplayInMessageSpace(TextMeshProUGUI _content)
             {
                 refMessageSpace.text = _content.text;
                 refMessageSpace.color = _content.color;
             }
 
+            /// <summary>
+            /// Set the visibility of each message teaser depending on the global
+            /// visibility of its associated type (see <seealso cref="LogSystem.MessageTypes"/>)
+            /// </summary>
             public void DrawMessageList()
             {
                 for (int i = 0; i < LogSystem.recordedMessages.Count; i++)
                 {
-                    LogSystem.MessageTypes typeCurrentMsg = LogSystem.recordedMessages[i].type;
-                    switch (messagesActivity[(int)typeCurrentMsg])
+                    switch (messagesActivity[(int)LogSystem.recordedMessages[i].type])
                     {
                         case true:
                             messages[i].SetActive(true);
@@ -95,6 +99,13 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// Forces to switch the visibility of every message of every type
+            /// (see <seealso cref="LogSystem.MessageTypes"/>).
+            /// </summary>
+            /// <remarks>
+            /// Called back when interacting with a UI element
+            /// </remarks>
             public void ForceAllMessagesActivity()
             {
                 for (int i = 0; i < toggleIndividuals.Length; i++)
@@ -109,24 +120,28 @@ namespace ECellDive
                 DrawMessageList();
             }
 
-            private void RecordMessage(LogSystem.MessageTypes _type, string _content)
+            /// <summary>
+            /// Instantiate the new GUI element that will tease the content of the message.
+            /// </summary>
+            private void RecordMessage(LogSystem.Message _msg)
             {
                 GameObject newMsg = Instantiate(refMessageItemPrefab, refMessageListContent);
                 newMsg.SetActive(true);
                 TextMeshProUGUI msgTMP = newMsg.GetComponentInChildren<TextMeshProUGUI>();
                 if (msgTMP != null)
                 {
-                    msgTMP.text = _content;
-                    msgTMP.color = messageTypeColors[(int)_type];
+                    msgTMP.text = _msg.content;
+                    msgTMP.color = messageTypeColors[(int)_msg.type];
                 }
                 messages.Add(newMsg);
             }
 
+            /// <summary>
+            /// Switches the visibility of every message of a specific message type
+            /// (see <seealso cref="LogSystem.MessageTypes"/>).
+            /// </summary>
             public void UpdateMessageActivity(int _typeIndex)
             {
-                Debug.Log($"messagesActivity[_typeIndex]: {messagesActivity[_typeIndex]}");
-                Debug.Log($"toggleIndividuals[_typeIndex].isOn: {toggleIndividuals[_typeIndex].isOn}");
-                Debug.Log($"_typeIndex: {_typeIndex}");
                 messagesActivity[_typeIndex] = toggleIndividuals[_typeIndex].isOn;
                 DrawMessageList();
             }

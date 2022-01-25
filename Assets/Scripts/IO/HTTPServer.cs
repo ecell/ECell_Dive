@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 using ECellDive.Utility;
+using ECellDive.Modules;
 
 
 namespace ECellDive
@@ -13,15 +14,18 @@ namespace ECellDive
     {
         public class HTTPServer : MonoBehaviour
         {
-            [Header("Server parameters")]
-            public string serverIP = "127.0.0.1";
-            public string port = "8000";
-
-            [HideInInspector] public string requestText = "";
-            [HideInInspector] public JObject requestJObject = new JObject();
-
-            protected bool requestProcessed = true;
-            protected bool requestSuccess = true;
+            public ServerData serverData = new ServerData
+            {
+                port = "8000",
+                serverIP = "127.0.0.1"
+            };
+            protected RequestData requestData = new RequestData
+            {
+                requestText = "",
+                requestJObject = new JObject(),
+                requestProcessed = true,
+                requestSuccess = true
+            };
 
             /// <summary>
             /// Simple API to add pages to the base server url.
@@ -30,7 +34,7 @@ namespace ECellDive
             /// <returns>The server address plus the concanated pages.</returns>
             protected string AddPagesToURL(string[] _pages)
             {
-                string url = "http://" + serverIP + ":" + port;
+                string url = "http://" + serverData.serverIP + ":" + serverData.port;
                 foreach (string _page in _pages)
                 {
                     url += "/" + _page;
@@ -94,8 +98,8 @@ namespace ECellDive
             /// <returns></returns>
             protected IEnumerator GetRequest(string uri)
             {
-                requestProcessed = false;
-                requestSuccess = false;
+                requestData.requestProcessed = false;
+                requestData.requestSuccess = false;
                 using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
                 {
                     LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
@@ -127,11 +131,11 @@ namespace ECellDive
                             Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                             LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
                                                                pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                            requestText = webRequest.downloadHandler.text;
-                            requestSuccess = true;
+                            requestData.requestText = webRequest.downloadHandler.text;
+                            requestData.requestSuccess = true;
                             break;
                     }
-                    requestProcessed = true;
+                    requestData.requestProcessed = true;
                 }
             }
 
@@ -142,7 +146,7 @@ namespace ECellDive
             /// <returns><see cref="requestProcessed"/></returns>
             protected bool isRequestProcessed()
             {
-                return requestProcessed;
+                return requestData.requestProcessed;
             }
         }
     }

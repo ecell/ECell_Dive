@@ -73,11 +73,11 @@ namespace ECellDive
 
                 yield return new WaitUntil(isRequestProcessed);
 
-                if (requestSuccess)
+                if (requestData.requestSuccess)
                 {
-                    requestJObject = JObject.Parse(requestText);
-                    JArray jFluxesArray = (JArray)requestJObject["fluxes"];
-                    objectiveValue = requestJObject["objective_value"].Value<float>();
+                    requestData.requestJObject = JObject.Parse(requestData.requestText);
+                    JArray jFluxesArray = (JArray)requestData.requestJObject["fluxes"];
+                    objectiveValue = requestData.requestJObject["objective_value"].Value<float>();
 
                     foreach (JArray _flux in jFluxesArray)
                     {

@@ -73,9 +73,6 @@ namespace ECellDive
                 [Header("Line Highlight Width Modificators")]
                 [Range(0, 1)] public float startHWidthFactor;
                 [Range(0, 1)] public float endHWidthFactor;
-
-                [Header("Shader")]
-                public Shader edgeShader;
             }
             #endregion
 
@@ -83,11 +80,7 @@ namespace ECellDive
             [System.Serializable]
             public class NodeGOSettings
             {
-                [Header("Tracking")]
-                public bool tracked;
 
-                [Header("Rendering")]
-                public Shader nodeShader;
             }
             #endregion
 

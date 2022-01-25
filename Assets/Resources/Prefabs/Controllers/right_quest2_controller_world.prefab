@@ -191,7 +191,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3938017317108771704}
-  - component: {fileID: 1921507462115126256}
   m_Layer: 0
   m_Name: right_quest2_controller_world
   m_TagString: Untagged
@@ -220,19 +219,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1921507462115126256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3265046518103333586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96601e3b023a1954daeb661c8b7b3dc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  refGlobalHideInput: {fileID: 8734926229827809391, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &8514128224439399381
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +324,7 @@ PrefabInstance:
       objectReference: {fileID: 3963448423737053536}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: hideOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: content.Array.size
@@ -357,8 +343,28 @@ PrefabInstance:
       value: 'Press: Teleportation'
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.content.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.content.Array.data[0]
+      value: UI Click
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.content.Array.data[1]
+      value: Activate Tractor
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[1].actionTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].actionTime
@@ -369,6 +375,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[0].refInputAction
+      value: 
+      objectReference: {fileID: -4479098549160383614, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[1].refInputAction
+      value: 
+      objectReference: {fileID: -4479098549160383614, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].refInputAction
       value: 
       objectReference: {fileID: 3279264004350380116, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -377,12 +391,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[1].refCallback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[1].refCallback.m_PersistentCalls.m_Calls.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[1].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -393,6 +423,14 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3274289985627672835}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[1].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3274289985627672835}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3274289985627672835}
@@ -401,12 +439,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3274289985627672835}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[1].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[1].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetText
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[1].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetText
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -417,6 +471,14 @@ PrefabInstance:
       value: SetText
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ECellDive.UI.InfoTagManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[1].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ECellDive.UI.InfoTagManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ECellDive.UI.InfoTagManager, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -425,8 +487,20 @@ PrefabInstance:
       value: ECellDive.UI.InfoTagManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.mutators.Array.data[1].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].refCallback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -550,6 +624,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2937374221652933343}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: hideOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: content.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -572,8 +650,24 @@ PrefabInstance:
         Hold: Dive'
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagMvt.content.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.content.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagMvt.content.Array.data[0]
+      value: Teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.content.Array.data[0]
+      value: Show Module Info
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].actionTime
@@ -594,11 +688,11 @@ PrefabInstance:
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].refInputAction
       value: 
-      objectReference: {fileID: -8061240218431744966, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: 488983317134544986, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[1].refInputAction
       value: 
-      objectReference: {fileID: -8061240218431744966, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: 488983317134544986, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[2].refInputAction
       value: 
@@ -869,6 +963,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7463904828086443943}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: hideOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: content.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -891,8 +989,32 @@ PrefabInstance:
         Hold: Dive'
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagGC.content.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagMvt.content.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.content.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagGC.content.Array.data[0]
+      value: Switch Controls Mode
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagMvt.content.Array.data[0]
+      value: Switch Controls Mode
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.content.Array.data[0]
+      value: Switch Controls Mode
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].actionTime
@@ -1189,7 +1311,7 @@ PrefabInstance:
       objectReference: {fileID: 2618354337334797825}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: hideOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: content.Array.size
@@ -1208,8 +1330,24 @@ PrefabInstance:
       value: 'Press: Teleportation'
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagGC.content.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.content.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagGC.content.Array.data[0]
+      value: Grab Group
+      objectReference: {fileID: 0}
+    - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
+      propertyPath: tagRBC.content.Array.data[0]
+      value: Grab Module
       objectReference: {fileID: 0}
     - target: {fileID: 572460156806347053, guid: 7ca3b2496544cd64ea222a3290117472, type: 3}
       propertyPath: ButtonTagEffects.Array.data[0].actionTime
