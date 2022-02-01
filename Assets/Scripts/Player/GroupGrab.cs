@@ -49,8 +49,6 @@ namespace ECellDive
             [Range(0.01f, 2f)] public float smoothTime;
 
             private DiveGrabHelperManager refDiveGrabHelperManager;
-            private Vector3 leftControllerPosition;
-            private Vector3 rightControllerPosition;
             private Vector3 controllerPosition;
             private Vector3 controllerStartPosition;
             private Vector3 refVelocity = Vector3.zero;
@@ -149,16 +147,6 @@ namespace ECellDive
                 }
             }
 
-            private void GetLeftPosition(InputAction.CallbackContext _ctx)
-            {
-                leftControllerPosition = _ctx.ReadValue<Vector3>();
-            }
-
-            private void GetRightPosition(InputAction.CallbackContext _ctx)
-            {
-                rightControllerPosition = _ctx.ReadValue<Vector3>();
-            }
-
             /// <summary>
             /// Called back when the input action corresponding to "Grab" was performed.
             /// </summary>
@@ -174,11 +162,6 @@ namespace ECellDive
                 refDiveGrabHelperManager.gameObject.SetActive(true);
                 refDiveGrabHelperManager.FlatPositioning();
                 refDiveGrabHelperManager.SetSphereScale(2*deadzoneDistance);
-            }
-
-            private void LeftOnGrab()
-            {
-
             }
 
             /// <summary>
