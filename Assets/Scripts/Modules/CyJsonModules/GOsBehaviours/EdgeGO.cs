@@ -43,7 +43,15 @@ namespace ECellDive
             #endregion
 
             public EdgeGOSettings edgeGOSettingsModels;
-            private Material refSharedMaterial;
+
+            public Color defaultColor;
+            public Color highlightColor;
+
+            private Renderer refRenderer;
+            private MaterialPropertyBlock mpb;
+            //private int highlightFloatID;
+            private int colorID;
+            //private Material refSharedMaterial;
 
             private void Start()
             {
@@ -54,7 +62,17 @@ namespace ECellDive
                 fluxLevel = 0f;
                 fluxLevelClamped = 1f;
 
-                refSharedMaterial = GetComponent<LineRenderer>().sharedMaterial;//default is the shared material
+                //refSharedMaterial = GetComponent<LineRenderer>().sharedMaterial;//default is the shared material
+            }
+
+            private void OnEnable()
+            {
+                refRenderer = GetComponent<Renderer>();
+                mpb = new MaterialPropertyBlock();
+                //highlightFloatID = Shader.PropertyToID("Vector1_66D21324");
+                colorID = Shader.PropertyToID("_Color");
+                mpb.SetVector(colorID, defaultColor);
+                refRenderer.SetPropertyBlock(mpb);
             }
 
             private void OnDestroy()
@@ -62,9 +80,9 @@ namespace ECellDive
                 triggerKOActions.leftController.action.performed -= ManageKnockout;
                 triggerKOActions.rightController.action.performed -= ManageKnockout;
 
-#if UNITY_EDITOR
-                refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 0);
-#endif
+//#if UNITY_EDITOR
+//                refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 0);
+//#endif
             }
 
             #region - IEdgeGO - 
@@ -110,14 +128,14 @@ namespace ECellDive
             {
                 knockedOut = false;
                 SetInformationString();
-                refLineRenderer.material = refSharedMaterial;
+                //refLineRenderer.material = refSharedMaterial;
             }
 
             public void Knockout()
             {
                 knockedOut = true;
                 SetInformationString();
-                refLineRenderer.material.SetInt("Vector1_22F9BCB6", 0);
+                //refLineRenderer.material.SetInt("Vector1_22F9BCB6", 0);
             }
 
             public void SetFlux(float _level, float _levelClamped)
@@ -125,22 +143,26 @@ namespace ECellDive
                 fluxLevel = _level;
                 fluxLevelClamped = _levelClamped;
                 SetInformationString();
-                refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 2);
-                UnsetHighlight();
+                //refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 2);
+                //UnsetHighlight();
             }
             #endregion
 
             #region - IHighlightable -
             public override void SetHighlight()
             {
-                refLineRenderer.startWidth = edgeGOSettingsModels.startHWidthFactor * defaultStartWidth;
-                refLineRenderer.endWidth = edgeGOSettingsModels.endHWidthFactor * defaultEndWidth;
+                //refLineRenderer.startWidth = edgeGOSettingsModels.startHWidthFactor * defaultStartWidth;
+                //refLineRenderer.endWidth = edgeGOSettingsModels.endHWidthFactor * defaultEndWidth;
+                mpb.SetVector(colorID, highlightColor);
+                refRenderer.SetPropertyBlock(mpb);
             }
 
             public override void UnsetHighlight()
             {
-                refLineRenderer.startWidth = fluxLevelClamped * edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
-                refLineRenderer.endWidth = fluxLevelClamped * edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
+                //refLineRenderer.startWidth = fluxLevelClamped * edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
+                //refLineRenderer.endWidth = fluxLevelClamped * edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
+                mpb.SetVector(colorID, defaultColor);
+                refRenderer.SetPropertyBlock(mpb);
             }
             #endregion
 

@@ -1,11 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using ECellDive.Utility.SettingsModels;
+﻿using UnityEngine;
 using ECellDive.UI;
-using ECellDive.IInteractions;
 using ECellDive.INetworkComponents;
 
 namespace ECellDive
@@ -18,14 +12,31 @@ namespace ECellDive
             public INode nodeData { get; protected set; }
             public string informationString { get; protected set; }
 
+            public Color defaultColor;
+            public Color highlightColor;
+
             private Renderer refRenderer;
-            private Material refSharedMaterial;
+            private MaterialPropertyBlock mpb;
+            //private int highlightFloatID;
+            private int colorID;
+            //private Material refSharedMaterial;
 
             private void Start()
             {
 
+                
+                
+                //refSharedMaterial = refRenderer.sharedMaterial;
+            }
+
+            private void OnEnable()
+            {
                 refRenderer = GetComponent<Renderer>();
-                refSharedMaterial = refRenderer.sharedMaterial;
+                mpb = new MaterialPropertyBlock();
+                //highlightFloatID = Shader.PropertyToID("Vector1_66D21324");
+                colorID = Shader.PropertyToID("_Color");
+                mpb.SetVector(colorID, defaultColor);
+                refRenderer.SetPropertyBlock(mpb);
             }
 
             public void Initialize(NetworkGO _masterPathway, in INode _node)
@@ -54,12 +65,19 @@ namespace ECellDive
             #region - IHighlightable -
             public override void SetHighlight()
             {
-                refRenderer.material.SetFloat("Vector1_66D21324", 1);
+                //refRenderer.material.SetFloat("Vector1_66D21324", 1);
+                //mpb.SetFloat(highlightFloatID, 1);
+                mpb.SetVector(colorID, highlightColor);
+                refRenderer.SetPropertyBlock(mpb);
+
             }
 
             public override void UnsetHighlight()
             {
-                refRenderer.sharedMaterial = refSharedMaterial;
+                //refRenderer.sharedMaterial = refSharedMaterial;
+                //mpb.SetFloat(highlightFloatID, 0);
+                mpb.SetVector(colorID, defaultColor);
+                refRenderer.SetPropertyBlock(mpb);
             }
             #endregion
 
