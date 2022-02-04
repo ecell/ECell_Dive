@@ -6,7 +6,7 @@ public class RandomColor : MonoBehaviour
     {
         MeshRenderer renderer = GetComponent<MeshRenderer>();
         MaterialPropertyBlock block = new MaterialPropertyBlock();
-        block.SetVector("_Color", new Color(1, 0, 1));
+        block.SetVector("_Color", GetRandomColor());
         renderer.SetPropertyBlock(block);
     }
 
