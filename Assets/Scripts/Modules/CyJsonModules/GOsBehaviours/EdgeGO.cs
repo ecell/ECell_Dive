@@ -10,7 +10,7 @@ namespace ECellDive
 {
     namespace Modules
     {
-        [RequireComponent(typeof(LineRenderer))]
+        //[RequireComponent(typeof(LineRenderer))]
         public class EdgeGO : Module,
                               IEdgeGO, IModulateFlux
         {
@@ -67,12 +67,13 @@ namespace ECellDive
 
             private void OnEnable()
             {
-                refRenderer = GetComponent<Renderer>();
+                refLineRenderer = GetComponentInChildren<LineRenderer>();
+                //refRenderer = GetComponentInChildren<Renderer>();
                 mpb = new MaterialPropertyBlock();
                 //highlightFloatID = Shader.PropertyToID("Vector1_66D21324");
                 colorID = Shader.PropertyToID("_Color");
                 mpb.SetVector(colorID, defaultColor);
-                refRenderer.SetPropertyBlock(mpb);
+                refLineRenderer.SetPropertyBlock(mpb);
             }
 
             private void OnDestroy()
@@ -111,7 +112,6 @@ namespace ECellDive
 
             public void SetLineRenderer()
             {
-                refLineRenderer = GetComponent<LineRenderer>();
                 refLineRenderer.startWidth = edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
                 refLineRenderer.endWidth = edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
             }
@@ -144,7 +144,7 @@ namespace ECellDive
                 fluxLevelClamped = _levelClamped;
                 SetInformationString();
                 //refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 2);
-                //UnsetHighlight();
+                UnsetHighlight();
             }
             #endregion
 
@@ -154,7 +154,8 @@ namespace ECellDive
                 //refLineRenderer.startWidth = edgeGOSettingsModels.startHWidthFactor * defaultStartWidth;
                 //refLineRenderer.endWidth = edgeGOSettingsModels.endHWidthFactor * defaultEndWidth;
                 mpb.SetVector(colorID, highlightColor);
-                refRenderer.SetPropertyBlock(mpb);
+                //refRenderer.SetPropertyBlock(mpb);
+                refLineRenderer.SetPropertyBlock(mpb);
             }
 
             public override void UnsetHighlight()
@@ -162,7 +163,8 @@ namespace ECellDive
                 //refLineRenderer.startWidth = fluxLevelClamped * edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
                 //refLineRenderer.endWidth = fluxLevelClamped * edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
                 mpb.SetVector(colorID, defaultColor);
-                refRenderer.SetPropertyBlock(mpb);
+                //refRenderer.SetPropertyBlock(mpb);
+                refLineRenderer.SetPropertyBlock(mpb);
             }
             #endregion
 
@@ -180,6 +182,7 @@ namespace ECellDive
                 Transform start = _masterPathway.NodeID_to_NodeGO[edgeData.source].transform;
                 Transform target = _masterPathway.NodeID_to_NodeGO[edgeData.target].transform;
                 SetPosition(start, target);
+                //transform.localPosition = 0.5f*(start.localPosition+target.localPosition);
                 SetCollider(start, target);
             }
 

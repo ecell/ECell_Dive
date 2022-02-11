@@ -31,7 +31,7 @@ namespace ECellDive
 
             private void OnEnable()
             {
-                refRenderer = GetComponent<Renderer>();
+                refRenderer = GetComponentInChildren<Renderer>();
                 mpb = new MaterialPropertyBlock();
                 //highlightFloatID = Shader.PropertyToID("Vector1_66D21324");
                 colorID = Shader.PropertyToID("_Color");
