@@ -17,23 +17,12 @@ namespace ECellDive
 
             private Renderer refRenderer;
             private MaterialPropertyBlock mpb;
-            //private int highlightFloatID;
             private int colorID;
-            //private Material refSharedMaterial;
-
-            private void Start()
-            {
-
-                
-                
-                //refSharedMaterial = refRenderer.sharedMaterial;
-            }
 
             private void OnEnable()
             {
                 refRenderer = GetComponentInChildren<Renderer>();
                 mpb = new MaterialPropertyBlock();
-                //highlightFloatID = Shader.PropertyToID("Vector1_66D21324");
                 colorID = Shader.PropertyToID("_Color");
                 mpb.SetVector(colorID, defaultColor);
                 refRenderer.SetPropertyBlock(mpb);
@@ -65,17 +54,12 @@ namespace ECellDive
             #region - IHighlightable -
             public override void SetHighlight()
             {
-                //refRenderer.material.SetFloat("Vector1_66D21324", 1);
-                //mpb.SetFloat(highlightFloatID, 1);
                 mpb.SetVector(colorID, highlightColor);
                 refRenderer.SetPropertyBlock(mpb);
-
             }
 
             public override void UnsetHighlight()
             {
-                //refRenderer.sharedMaterial = refSharedMaterial;
-                //mpb.SetFloat(highlightFloatID, 0);
                 mpb.SetVector(colorID, defaultColor);
                 refRenderer.SetPropertyBlock(mpb);
             }

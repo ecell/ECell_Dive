@@ -47,11 +47,10 @@ namespace ECellDive
             public Color defaultColor;
             public Color highlightColor;
 
-            private Renderer refRenderer;
             private MaterialPropertyBlock mpb;
-            //private int highlightFloatID;
             private int colorID;
-            //private Material refSharedMaterial;
+            private int activationID;
+            private int panningSpeedID;
 
             private void Start()
             {
@@ -61,17 +60,15 @@ namespace ECellDive
                 knockedOut = false;
                 fluxLevel = 0f;
                 fluxLevelClamped = 1f;
-
-                //refSharedMaterial = GetComponent<LineRenderer>().sharedMaterial;//default is the shared material
             }
 
             private void OnEnable()
             {
                 refLineRenderer = GetComponentInChildren<LineRenderer>();
-                //refRenderer = GetComponentInChildren<Renderer>();
                 mpb = new MaterialPropertyBlock();
-                //highlightFloatID = Shader.PropertyToID("Vector1_66D21324");
                 colorID = Shader.PropertyToID("_Color");
+                activationID = Shader.PropertyToID("_Activation");
+                panningSpeedID = Shader.PropertyToID("_PanningSpeed");
                 mpb.SetVector(colorID, defaultColor);
                 refLineRenderer.SetPropertyBlock(mpb);
             }
@@ -128,14 +125,16 @@ namespace ECellDive
             {
                 knockedOut = false;
                 SetInformationString();
-                //refLineRenderer.material = refSharedMaterial;
+                mpb.SetFloat(activationID, 1);
+                refLineRenderer.SetPropertyBlock(mpb);
             }
 
             public void Knockout()
             {
                 knockedOut = true;
                 SetInformationString();
-                //refLineRenderer.material.SetInt("Vector1_22F9BCB6", 0);
+                mpb.SetFloat(activationID, 0);
+                refLineRenderer.SetPropertyBlock(mpb);
             }
 
             public void SetFlux(float _level, float _levelClamped)
@@ -143,7 +142,8 @@ namespace ECellDive
                 fluxLevel = _level;
                 fluxLevelClamped = _levelClamped;
                 SetInformationString();
-                //refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 2);
+                mpb.SetFloat(panningSpeedID, fluxLevel);
+                refLineRenderer.SetPropertyBlock(mpb);
                 UnsetHighlight();
             }
             #endregion
@@ -151,19 +151,13 @@ namespace ECellDive
             #region - IHighlightable -
             public override void SetHighlight()
             {
-                //refLineRenderer.startWidth = edgeGOSettingsModels.startHWidthFactor * defaultStartWidth;
-                //refLineRenderer.endWidth = edgeGOSettingsModels.endHWidthFactor * defaultEndWidth;
                 mpb.SetVector(colorID, highlightColor);
-                //refRenderer.SetPropertyBlock(mpb);
                 refLineRenderer.SetPropertyBlock(mpb);
             }
 
             public override void UnsetHighlight()
             {
-                //refLineRenderer.startWidth = fluxLevelClamped * edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
-                //refLineRenderer.endWidth = fluxLevelClamped * edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
                 mpb.SetVector(colorID, defaultColor);
-                //refRenderer.SetPropertyBlock(mpb);
                 refLineRenderer.SetPropertyBlock(mpb);
             }
             #endregion
@@ -182,7 +176,6 @@ namespace ECellDive
                 Transform start = _masterPathway.NodeID_to_NodeGO[edgeData.source].transform;
                 Transform target = _masterPathway.NodeID_to_NodeGO[edgeData.target].transform;
                 SetPosition(start, target);
-                //transform.localPosition = 0.5f*(start.localPosition+target.localPosition);
                 SetCollider(start, target);
             }
 
