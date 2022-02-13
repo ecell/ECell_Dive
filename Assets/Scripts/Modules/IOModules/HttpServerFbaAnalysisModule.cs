@@ -20,12 +20,6 @@ namespace ECellDive
             public Dictionary<string, float> fluxes;
         }
 
-        //public struct FbaVisualizationData
-        //{
-        //    public float fluxMinVisibleLevel;
-        //    public float fluxMaxVisibleLevel;
-        //}
-
         public class HttpServerFbaAnalysisModule : HttpServerBaseModule
         {
             private FbaAnalysisData fbaAnalysisData = new FbaAnalysisData
@@ -37,11 +31,6 @@ namespace ECellDive
                 fluxes = new Dictionary<string, float>()
             };
 
-            //private FbaVisualizationData fbaVisualizationData = new FbaVisualizationData
-            //{
-            //    fluxMinVisibleLevel = 0.01f,
-            //    fluxMaxVisibleLevel = 6f
-            //};
             public FbaParametersManager fbaParametersManager;
 
             private NetworkGO LoadedCyJsonRoot;

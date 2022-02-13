@@ -17,16 +17,16 @@ RenderSettings:
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.03
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0.745283, g: 0.73271513, b: 0.70661265, a: 1}
+  m_AmbientEquatorColor: {r: 0.34576362, g: 0.53453183, b: 0.6603774, a: 1}
+  m_AmbientGroundColor: {r: 0.72156864, g: 0.41568628, b: 0.25882354, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2491,6 +2491,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3200108255760715251, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3266875982052065854, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
       propertyPath: m_Camera
       value: 
@@ -2597,7 +2601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4805792006180304321, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4805792006180304321, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2765,7 +2769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6765206276923177656, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6765206276923177656, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3559,6 +3563,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Diving Ocultation
       objectReference: {fileID: 0}
+    - target: {fileID: 3736415357134880306, guid: 5e423a59152dc804fa261316f3fca172, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3736415357134880307, guid: 5e423a59152dc804fa261316f3fca172, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4267,6 +4275,7 @@ GameObject:
   - component: {fileID: 1254135871}
   - component: {fileID: 1254135870}
   - component: {fileID: 1254135869}
+  - component: {fileID: 1254135874}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4296,8 +4305,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -4369,8 +4379,8 @@ Camera:
   m_GameObject: {fileID: 1254135868}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -4418,6 +4428,51 @@ Transform:
   m_Father: {fileID: 1480747755}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1254135874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254135868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b191a754cce77ef4b9cdd26ace35885f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerCulling:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 16
+  - 56
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!1 &1309198384
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,9 +27,6 @@ namespace ECellDive
 
             public ControllersSymetricAction diveActions;
 
-            //[Tooltip("The interaction layer used to respond to the dive input")]
-            //public LayerMask refInteractorTargetLayer;
-
             public bool finalLayer = false;
 
             #region - IFocus Members -
@@ -92,24 +89,6 @@ namespace ECellDive
                 m_displayInfoTagsActions.leftController.action.performed -= ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.rightController.action.performed -= ManageInfoTagsDisplay;
             }
-
-            //private void OnEnable()
-            //{
-            //    diveActions.leftController.action.Enable();
-            //    diveActions.rightController.action.Enable();
-
-            //    m_displayInfoTagsActions.leftController.action.Enable();
-            //    m_displayInfoTagsActions.rightController.action.Enable();
-            //}
-
-            //private void OnDisable()
-            //{
-            //    diveActions.leftController.action.Disable();
-            //    diveActions.rightController.action.Disable();
-
-            //    m_displayInfoTagsActions.leftController.action.Disable();
-            //    m_displayInfoTagsActions.rightController.action.Disable();
-            //}
 
             /// <summary>
             /// Base method to dive in a module.

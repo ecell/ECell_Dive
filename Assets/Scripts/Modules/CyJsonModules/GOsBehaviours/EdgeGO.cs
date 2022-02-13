@@ -10,7 +10,6 @@ namespace ECellDive
 {
     namespace Modules
     {
-        [RequireComponent(typeof(LineRenderer))]
         public class EdgeGO : Module,
                               IEdgeGO, IModulateFlux
         {
@@ -43,7 +42,14 @@ namespace ECellDive
             #endregion
 
             public EdgeGOSettings edgeGOSettingsModels;
-            private Material refSharedMaterial;
+
+            public Color defaultColor;
+            public Color highlightColor;
+
+            private MaterialPropertyBlock mpb;
+            private int colorID;
+            private int activationID;
+            private int panningSpeedID;
 
             private void Start()
             {
@@ -53,8 +59,17 @@ namespace ECellDive
                 knockedOut = false;
                 fluxLevel = 0f;
                 fluxLevelClamped = 1f;
+            }
 
-                refSharedMaterial = GetComponent<LineRenderer>().sharedMaterial;//default is the shared material
+            private void OnEnable()
+            {
+                refLineRenderer = GetComponentInChildren<LineRenderer>();
+                mpb = new MaterialPropertyBlock();
+                colorID = Shader.PropertyToID("_Color");
+                activationID = Shader.PropertyToID("_Activation");
+                panningSpeedID = Shader.PropertyToID("_PanningSpeed");
+                mpb.SetVector(colorID, defaultColor);
+                refLineRenderer.SetPropertyBlock(mpb);
             }
 
             private void OnDestroy()
@@ -62,9 +77,9 @@ namespace ECellDive
                 triggerKOActions.leftController.action.performed -= ManageKnockout;
                 triggerKOActions.rightController.action.performed -= ManageKnockout;
 
-#if UNITY_EDITOR
-                refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 0);
-#endif
+//#if UNITY_EDITOR
+//                refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 0);
+//#endif
             }
 
             #region - IEdgeGO - 
@@ -93,7 +108,6 @@ namespace ECellDive
 
             public void SetLineRenderer()
             {
-                refLineRenderer = GetComponent<LineRenderer>();
                 refLineRenderer.startWidth = edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
                 refLineRenderer.endWidth = edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
             }
@@ -110,14 +124,16 @@ namespace ECellDive
             {
                 knockedOut = false;
                 SetInformationString();
-                refLineRenderer.material = refSharedMaterial;
+                mpb.SetFloat(activationID, 1);
+                refLineRenderer.SetPropertyBlock(mpb);
             }
 
             public void Knockout()
             {
                 knockedOut = true;
                 SetInformationString();
-                refLineRenderer.material.SetInt("Vector1_22F9BCB6", 0);
+                mpb.SetFloat(activationID, 0);
+                refLineRenderer.SetPropertyBlock(mpb);
             }
 
             public void SetFlux(float _level, float _levelClamped)
@@ -125,7 +141,8 @@ namespace ECellDive
                 fluxLevel = _level;
                 fluxLevelClamped = _levelClamped;
                 SetInformationString();
-                refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 2);
+                mpb.SetFloat(panningSpeedID, fluxLevel);
+                refLineRenderer.SetPropertyBlock(mpb);
                 UnsetHighlight();
             }
             #endregion
@@ -133,14 +150,14 @@ namespace ECellDive
             #region - IHighlightable -
             public override void SetHighlight()
             {
-                refLineRenderer.startWidth = edgeGOSettingsModels.startHWidthFactor * defaultStartWidth;
-                refLineRenderer.endWidth = edgeGOSettingsModels.endHWidthFactor * defaultEndWidth;
+                mpb.SetVector(colorID, highlightColor);
+                refLineRenderer.SetPropertyBlock(mpb);
             }
 
             public override void UnsetHighlight()
             {
-                refLineRenderer.startWidth = fluxLevelClamped * edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
-                refLineRenderer.endWidth = fluxLevelClamped * edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
+                mpb.SetVector(colorID, defaultColor);
+                refLineRenderer.SetPropertyBlock(mpb);
             }
             #endregion
 

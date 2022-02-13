@@ -123,7 +123,7 @@ namespace ECellDive
                 {
                     GameObject mdGO = Instantiate(instantiationData.instantiationTable[ModulesData.visibleModules[i].typeID],
                                                     ModulesData.modulesBankWorldPos[ModulesData.modulesBank.Count+i],
-                                                    Quaternion.identity);
+                                                    instantiationData.instantiationTable[ModulesData.visibleModules[i].typeID].transform.rotation);
                     instantiationData.modulesInstanceList.Add(mdGO);
                 }
             }
