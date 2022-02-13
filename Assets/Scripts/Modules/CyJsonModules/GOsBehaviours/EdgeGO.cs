@@ -10,7 +10,6 @@ namespace ECellDive
 {
     namespace Modules
     {
-        //[RequireComponent(typeof(LineRenderer))]
         public class EdgeGO : Module,
                               IEdgeGO, IModulateFlux
         {
