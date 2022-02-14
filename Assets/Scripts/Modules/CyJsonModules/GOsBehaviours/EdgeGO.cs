@@ -43,9 +43,6 @@ namespace ECellDive
 
             public EdgeGOSettings edgeGOSettingsModels;
 
-            public Color defaultColor;
-            public Color highlightColor;
-
             private MaterialPropertyBlock mpb;
             private int colorID;
             private int activationID;
@@ -141,13 +138,28 @@ namespace ECellDive
                 fluxLevel = _level;
                 fluxLevelClamped = _levelClamped;
                 SetInformationString();
-                mpb.SetFloat(panningSpeedID, fluxLevel);
+                mpb.SetFloat(panningSpeedID, _levelClamped);
                 refLineRenderer.SetPropertyBlock(mpb);
                 UnsetHighlight();
             }
             #endregion
 
             #region - IHighlightable -
+
+            public override void SetDefaultColor(Color _c)
+            {
+                base.SetDefaultColor(_c);
+                mpb.SetVector(colorID, defaultColor);
+                refLineRenderer.SetPropertyBlock(mpb);
+            }
+
+            public override void SetHighlightColor(Color _c)
+            {
+                base.SetDefaultColor(_c);
+                mpb.SetVector(colorID, highlightColor);
+                refLineRenderer.SetPropertyBlock(mpb);
+            }
+
             public override void SetHighlight()
             {
                 mpb.SetVector(colorID, highlightColor);

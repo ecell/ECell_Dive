@@ -9,10 +9,12 @@ namespace ECellDive
     {
         public class FbaParametersManager : MonoBehaviour
         {
+            public ButtonColorPicker fluxLowerBoundColorPicker;
+            public ButtonColorPicker fluxUpperBoundColorPicker;
             public SliderValueControlManager fluxLowerBoundSlider;
             public SliderValueControlManager fluxUpperBoundSlider;
 
-            public void SetFluxeValueControllersBounds(float _minValue, float _maxValue)
+            public void SetFluxValueControllersBounds(float _minValue, float _maxValue)
             {
                 fluxLowerBoundSlider.slider.minValue = _minValue;
                 fluxLowerBoundSlider.slider.maxValue = _maxValue;

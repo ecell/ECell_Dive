@@ -63,7 +63,6 @@ namespace ECellDive
                         {
                             fbaAnalysisData.edgeName_to_EdgeID[_name] = new List<int> { _id };
                         }
-                        
                     }
                 }
             }
@@ -135,20 +134,17 @@ namespace ECellDive
                     if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
                     {
                         float level = fbaAnalysisData.fluxes[_edgeName];
-
-                        float levelClamped = level;
-
-                        if (level < fbaParametersManager.fluxLowerBoundSlider.slider.value)
-                        {
-                            levelClamped = fbaParametersManager.fluxLowerBoundSlider.slider.value;
-                        }
-                        else if (level > fbaParametersManager.fluxUpperBoundSlider.slider.value)
-                        {
-                            levelClamped = fbaParametersManager.fluxUpperBoundSlider.slider.value;
-                        }
+                        float levelClamped = Mathf.Clamp(level,
+                                                         fbaParametersManager.fluxLowerBoundSlider.slider.value,
+                                                         fbaParametersManager.fluxUpperBoundSlider.slider.value);
+                        float t = levelClamped / (fbaParametersManager.fluxUpperBoundSlider.slider.value - fbaParametersManager.fluxLowerBoundSlider.slider.value);
+                        Color levelColor = Color.Lerp(fbaParametersManager.fluxLowerBoundColorPicker.button.colors.normalColor,
+                                                      fbaParametersManager.fluxUpperBoundColorPicker.button.colors.normalColor,
+                                                      t);
 
                         foreach (int _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
+                            LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
                             LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
                         }
                     }
@@ -208,7 +204,7 @@ namespace ECellDive
                         }
                     }
 
-                    fbaParametersManager.SetFluxeValueControllersBounds(minFlux, maxFlux);
+                    fbaParametersManager.SetFluxValueControllersBounds(minFlux, maxFlux);
 
                     ShowComputedFluxes();
                 }

@@ -22,6 +22,12 @@ namespace ECellDive
         }
         public interface IHighlightable
         {
+            Color defaultColor { get; }
+            Color highlightColor { get; }
+
+            abstract void SetDefaultColor(Color _c);
+            abstract void SetHighlightColor(Color _c);
+
             abstract void SetHighlight();
             abstract void UnsetHighlight();
         }
