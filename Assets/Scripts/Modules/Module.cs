@@ -27,9 +27,6 @@ namespace ECellDive
 
             public ControllersSymetricAction diveActions;
 
-            //[Tooltip("The interaction layer used to respond to the dive input")]
-            //public LayerMask refInteractorTargetLayer;
-
             public bool finalLayer = false;
 
             #region - IFocus Members -
@@ -38,6 +35,22 @@ namespace ECellDive
             {
                 get => m_isFocused;
                 set => isFocused = m_isFocused;
+            }
+
+            #endregion
+
+            #region - IHighlightable Members - 
+
+            [SerializeField] private Color m_defaultColor;
+            public Color defaultColor {
+                get => m_defaultColor;
+                set => SetDefaultColor(value);
+            }
+
+            [SerializeField] private Color m_highlightColor;
+            public Color highlightColor {
+                get => m_highlightColor;
+                set => SetHighlightColor(value);
             }
 
             #endregion
@@ -92,24 +105,6 @@ namespace ECellDive
                 m_displayInfoTagsActions.leftController.action.performed -= ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.rightController.action.performed -= ManageInfoTagsDisplay;
             }
-
-            //private void OnEnable()
-            //{
-            //    diveActions.leftController.action.Enable();
-            //    diveActions.rightController.action.Enable();
-
-            //    m_displayInfoTagsActions.leftController.action.Enable();
-            //    m_displayInfoTagsActions.rightController.action.Enable();
-            //}
-
-            //private void OnDisable()
-            //{
-            //    diveActions.leftController.action.Disable();
-            //    diveActions.rightController.action.Disable();
-
-            //    m_displayInfoTagsActions.leftController.action.Disable();
-            //    m_displayInfoTagsActions.rightController.action.Disable();
-            //}
 
             /// <summary>
             /// Base method to dive in a module.
@@ -172,6 +167,17 @@ namespace ECellDive
             #endregion
 
             #region - IHighlightable -
+
+            public virtual void SetDefaultColor(Color _c)
+            {
+                m_defaultColor = _c;
+            }
+
+            public virtual void SetHighlightColor(Color _c)
+            {
+                m_highlightColor = _c;
+            }
+
             public virtual void SetHighlight()
             {
             }
