@@ -39,6 +39,22 @@ namespace ECellDive
 
             #endregion
 
+            #region - IHighlightable Members - 
+
+            [SerializeField] private Color m_defaultColor;
+            public Color defaultColor {
+                get => m_defaultColor;
+                set => SetDefaultColor(value);
+            }
+
+            [SerializeField] private Color m_highlightColor;
+            public Color highlightColor {
+                get => m_highlightColor;
+                set => SetHighlightColor(value);
+            }
+
+            #endregion
+
             #region - IInfo Tags Members -
             public bool areVisible { get; set; }
 
@@ -151,6 +167,17 @@ namespace ECellDive
             #endregion
 
             #region - IHighlightable -
+
+            public virtual void SetDefaultColor(Color _c)
+            {
+                m_defaultColor = _c;
+            }
+
+            public virtual void SetHighlightColor(Color _c)
+            {
+                m_highlightColor = _c;
+            }
+
             public virtual void SetHighlight()
             {
             }

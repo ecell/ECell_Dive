@@ -177,7 +177,6 @@ namespace ECellDive
             public void HandleInteractorsSorting()
             {
                 isGrabed = true;
-
                 SortControllers();
 
                 if (currentRemoteInteractor.isActiveAndEnabled)
