@@ -44,7 +44,6 @@ namespace ECellDive
             public AudioData hoverExitAudioData;
 
             private XRBaseController currentXRController;
-            private XRRayInteractor currentXRRayInteractor;
 
             private AudioSource EffectsAudioSource;
 
@@ -57,6 +56,7 @@ namespace ECellDive
                 List<GameObject> gameObjects = new List<GameObject>();
                 gameObjects.AddRange(gameObject.GetComponentsInChildren<Button>().Select(x => x.gameObject));
                 gameObjects.AddRange(gameObject.GetComponentsInChildren<Slider>().Select(x => x.gameObject));
+                gameObjects.AddRange(gameObject.GetComponentsInChildren<Toggle>().Select(x => x.gameObject));
                 gameObjects.AddRange(gameObject.GetComponentsInChildren<TMP_InputField>().Select(x => x.gameObject));
                 foreach (GameObject item in gameObjects)
                 {
