@@ -39,11 +39,23 @@ namespace ECellDive
             public XRRayInteractor rightInteractor;
         }
 
+        [System.Serializable]
+        public struct RemoteInteractionData
+        {
+            public ActionBasedController leftController;
+            public XRRayInteractor leftInteractor;
+            public ActionBasedController rightController;
+            public XRRayInteractor rightInteractor;
+        }
+
         public class ScenesManager : MonoBehaviour
         {
             public InstantiationData instantiationData;
             public DivingData divingData;
             public RemoteGrabData remoteGrabData;
+            public RemoteInteractionData remoteInteractionData;
+
+            public GameObject refVirtualKeyboard;
 
             private void Awake()
             {

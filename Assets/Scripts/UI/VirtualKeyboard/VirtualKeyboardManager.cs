@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -53,6 +52,12 @@ namespace ECellDive
                     refTargetInputField.caretPosition = start.Length + _char.text.Length;
                 }
             }
+
+            public void Hide()
+            {
+                UnsetTargetInputField();
+                gameObject.SetActive(false);
+            }
             
             /// <summary>
             /// Deletes the character on the left of the position of the caret
@@ -66,6 +71,11 @@ namespace ECellDive
                     refTargetInputField.text = start + end;
                     refTargetInputField.caretPosition = start.Length;
                 }
+            }
+
+            public void Show()
+            {
+                gameObject.SetActive(true);
             }
 
             /// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using ECellDive.SceneManagement;
 using ECellDive.Utility;
 
 namespace ECellDive
@@ -20,7 +21,7 @@ namespace ECellDive
             private void Start()
             {
                 //Searches for the Virtual Keyboard in the scene.
-                refVKGO = GameObject.FindGameObjectWithTag("VirtualKeyboard");
+                refVKGO = ScenesData.refSceneManagerMonoBehaviour.refVirtualKeyboard;
                 if (refVKGO == null)
                 {
                     LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
@@ -35,8 +36,7 @@ namespace ECellDive
             public void OnSelect()
             {
                 TMP_InputField targetInputField = GetComponent<TMP_InputField>();
-                refVKGO.GetComponent<Canvas>().enabled = true;
-                refVKGO.GetComponentInChildren<BoxCollider>().enabled = true;
+                refVKGO.GetComponent<VirtualKeyboardManager>().Show();
                 refVKGO.GetComponent<VirtualKeyboardManager>().SetTargetInputField(GetComponent<TMP_InputField>());
             }
         }

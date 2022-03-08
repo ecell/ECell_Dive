@@ -66,8 +66,6 @@ namespace ECellDive
             {
                 refGCLHMap.Disable();
                 refGCRHMap.Disable();
-                //DisableInteractors(leftGCs);
-                //DisableInteractors(rightGCs);
 
                 refMvtLHMap.Disable();
                 refMvtRHMap.Enable();//default is movement mode on right controller
