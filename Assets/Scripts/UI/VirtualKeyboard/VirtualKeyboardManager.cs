@@ -7,6 +7,9 @@ namespace ECellDive
 {
     namespace UI
     {
+        /// <summary>
+        /// A struct to encapsulate the virtual keyboards sub-layouts
+        /// </summary>
         [System.Serializable]
         public struct VirtualKeyBoardData
         {
@@ -17,11 +20,29 @@ namespace ECellDive
 
         public class VirtualKeyboardManager : MonoBehaviour
         {
+            /// <summary>
+            /// Reference to the TMP_InputField currently focused.
+            /// </summary>
             private TMP_InputField refTargetInputField;
 
+            /// <summary>
+            /// The index of the set of virtual keyboard layout that should be used.
+            /// </summary>
+            /// <remarks> TO DO: build layouts for AZERTY, or any language
+            /// that requires accents.</remarks>
             private int activeVKSet = 0;
+
+            /// <summary>
+            /// The list of sub-layouts for QWERTY, AZERTY or "language with accents"
+            /// </summary>
             public List<VirtualKeyBoardData> virtualKeyBoardDatas;
 
+            /// <summary>
+            /// Adds the character of the key the VK that was just pressed at the position
+            /// of the caret.
+            /// </summary>
+            /// <param name="_char">The text component containing the string that
+            /// should be added.</param>
             public void AddCharToTargetInputField(TMP_Text _char)
             {
                 if (refTargetInputField != null)
@@ -32,7 +53,10 @@ namespace ECellDive
                     refTargetInputField.caretPosition = start.Length + _char.text.Length;
                 }
             }
-
+            
+            /// <summary>
+            /// Deletes the character on the left of the position of the caret
+            /// </summary>
             public void RemoveCharInTargetInputField()
             {
                 if (refTargetInputField != null && refTargetInputField.caretPosition > 0)
@@ -44,6 +68,10 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// Interfgace to display the Lower Case sub-layout of the
+            /// <see cref="VirtualKeyBoardData"> struct.
+            /// </summary>
             public void SwitchToLowerCaseVK()
             {
                 virtualKeyBoardDatas[activeVKSet].LowerCaseVK.enabled = true;
@@ -51,6 +79,10 @@ namespace ECellDive
                 virtualKeyBoardDatas[activeVKSet].NumAndSignsVK.enabled = false;
             }
 
+            /// <summary>
+            /// Interfgace to display the Num and Signs sub-layout of the
+            /// <see cref="VirtualKeyBoardData"> struct.
+            /// </summary>
             public void SwitchToNumAndSignsVK()
             {
                 virtualKeyBoardDatas[activeVKSet].LowerCaseVK.enabled = false;
@@ -58,6 +90,10 @@ namespace ECellDive
                 virtualKeyBoardDatas[activeVKSet].NumAndSignsVK.enabled = true;
             }
 
+            /// <summary>
+            /// Interfgace to display the Upper Case sub-layout of the
+            /// <see cref="VirtualKeyBoardData"> struct.
+            /// </summary>
             public void SwitchToUpperCaseVK()
             {
                 virtualKeyBoardDatas[activeVKSet].LowerCaseVK.enabled = false;
@@ -65,11 +101,17 @@ namespace ECellDive
                 virtualKeyBoardDatas[activeVKSet].NumAndSignsVK.enabled = false;
             }
 
+            /// <summary>
+            /// Focuses the attention of the virtual keyboard on <paramref name="_targetInputField"/><
+            /// </summary>
             public void SetTargetInputField(TMP_InputField _targetInputField)
             {
                 refTargetInputField = _targetInputField;
             }
 
+            /// <summary>
+            /// Resets the virtual keyboard focus.
+            /// </summary>
             public void UnsetTargetInputField()
             {
                 refTargetInputField = null;

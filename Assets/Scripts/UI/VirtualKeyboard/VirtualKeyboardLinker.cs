@@ -9,6 +9,9 @@ namespace ECellDive
 {
     namespace UI
     {
+        /// <summary>
+        /// Links a Text Mesh Pro Input field to the virtual keyboard of the scene.
+        /// </summary>
         [RequireComponent(typeof(TMP_InputField))]
         public class VirtualKeyboardLinker : MonoBehaviour
         {
@@ -16,6 +19,7 @@ namespace ECellDive
 
             private void Start()
             {
+                //Searches for the Virtual Keyboard in the scene.
                 refVKGO = GameObject.FindGameObjectWithTag("VirtualKeyboard");
                 if (refVKGO == null)
                 {
@@ -24,6 +28,10 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// The method to add in the UnityEvent OnSelect of the TMP_InputField.
+            /// It focuses the virtual keyboard output on the input field text.
+            /// </summary>
             public void OnSelect()
             {
                 TMP_InputField targetInputField = GetComponent<TMP_InputField>();

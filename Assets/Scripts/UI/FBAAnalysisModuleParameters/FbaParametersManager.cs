@@ -31,6 +31,5 @@ namespace ECellDive
                 fluxUpperBoundSlider.UpdateInputFieldValue();
             }
         }
-
     }
 }

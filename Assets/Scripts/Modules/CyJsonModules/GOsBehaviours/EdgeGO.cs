@@ -73,10 +73,6 @@ namespace ECellDive
             {
                 triggerKOActions.leftController.action.performed -= ManageKnockout;
                 triggerKOActions.rightController.action.performed -= ManageKnockout;
-
-//#if UNITY_EDITOR
-//                refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 0);
-//#endif
             }
 
             #region - IEdgeGO - 
