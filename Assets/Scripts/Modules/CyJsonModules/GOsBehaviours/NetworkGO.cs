@@ -30,52 +30,38 @@ namespace ECellDive
 
             private void GenerateAssociatedPathway()
             {
-                //Instantiate Layers in Network
-                foreach (ILayer _layer in networkData.layers)
+                //Instantiate Nodes of Layer
+                foreach (INode _node in networkData.nodes)
                 {
-                    ModuleData layerMD = new ModuleData
+                    ModuleData nodeMD = new ModuleData
                     {
-                        typeID = 6,
+                        typeID = 7,
                     };
-                    ModulesData.AddModule(layerMD);
-                    GameObject layerGO = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleDataFromParent(layerMD,
+                    ModulesData.AddModule(nodeMD);
+                    GameObject nodeGO = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleDataFromParent(nodeMD,
                                                                                                 Vector3.zero,
                                                                                                 gameObject.transform);
-                    layerGO.GetComponent<LayerGO>().Initialize(_layer);
+                    nodeGO.GetComponent<NodeGO>().Initialize(this, _node);
+                    NodeID_to_NodeGO[_node.ID] = nodeGO;
+                }
 
-                    //Instantiate Nodes of Layer
-                    foreach (INode _node in _layer.nodes)
+                //Instantiate Edges of Layer
+                foreach (IEdge _edge in networkData.edges)
+                {
+                    ModuleData edgeMD = new ModuleData
                     {
-                        ModuleData nodeMD = new ModuleData
-                        {
-                            typeID = 7,
-                        };
-                        ModulesData.AddModule(nodeMD);
-                        GameObject nodeGO = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleDataFromParent(nodeMD,
-                                                                                                    Vector3.zero,
-                                                                                                    layerGO.transform);
-                        nodeGO.GetComponent<NodeGO>().Initialize(this, _node);
-                        NodeID_to_NodeGO[_node.ID] = nodeGO;
-                    }
+                        typeID = 8,
+                    };
+                    ModulesData.AddModule(edgeMD);
+                    GameObject edgeGO = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleDataFromParent(edgeMD,
+                                                                                                Vector3.zero,
+                                                                                                gameObject.transform);
+                    edgeGO.GetComponent<EdgeGO>().Initialize(this, _edge);
 
-                    //Instantiate Edges of Layer
-                    foreach (IEdge _edge in _layer.edges)
-                    {
-                        ModuleData edgeMD = new ModuleData
-                        {
-                            typeID = 8,
-                        };
-                        ModulesData.AddModule(edgeMD);
-                        GameObject edgeGO = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleDataFromParent(edgeMD,
-                                                                                                    Vector3.zero,
-                                                                                                    layerGO.transform);
-                        edgeGO.GetComponent<EdgeGO>().Initialize(this, _edge);
+                    NodeID_to_NodeGO[_edge.source].GetComponent<NodeGO>().nodeData.outgoingEdges.Add(_edge.ID);
+                    NodeID_to_NodeGO[_edge.target].GetComponent<NodeGO>().nodeData.incommingEdges.Add(_edge.ID);
 
-                        NodeID_to_NodeGO[_edge.source].GetComponent<NodeGO>().nodeData.outgoingEdges.Add(_edge.ID);
-                        NodeID_to_NodeGO[_edge.target].GetComponent<NodeGO>().nodeData.incommingEdges.Add(_edge.ID);
-
-                        EdgeID_to_EdgeGO[_edge.ID] = edgeGO;
-                    }
+                    EdgeID_to_EdgeGO[_edge.ID] = edgeGO;
                 }
             }
 

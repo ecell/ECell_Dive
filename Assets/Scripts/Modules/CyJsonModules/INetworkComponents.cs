@@ -23,37 +23,21 @@ namespace ECellDive
             string NAME { get; set; }
         }
 
-        public interface ILayer
+        public interface INetwork
         {
-            int index { get; set; }
+            string name { get; }
+            JObject networkData { get;}
+            JArray jNodes { get; }
+            JArray jEdges { get;}
+
             INode[] nodes { get; }
             IEdge[] edges { get; }
 
             void PopulateNodes();
             void PopulateEdges();
-        }
-
-        public interface IInterLayer
-        {
-            int index { get; set; }
-            IEdge[] edges { get; }
-
-            void PopulateEdges();
-        }
-
-        public interface INetwork
-        {
-            string name { get; }
-            JObject networkData { get;}
-            JArray nodes { get; }
-            JArray edges { get;}
-            ILayer[] layers { get;}
-            IInterLayer[] interLayers { get;}
 
             void SetNodes();
             void SetEdges();
-            void PopulateLayers();
-            void PopulateInterLayers();
 
         }
 
@@ -77,18 +61,6 @@ namespace ECellDive
             void SetCollider(Transform _start, Transform _end);
             void SetLineRenderer();
             void SetPosition(Transform _start, Transform _end);
-        }
-
-        public interface ILayerGO
-        {
-            ILayer layerData { get; }
-            void SetLayerData(ILayer _ILayer);
-        }
-
-        public interface IInterLayerGO
-        {
-            IInterLayer interLayerData { get; }
-            void SetInterLayerData(IInterLayer _IInterLayer);
         }
 
         public interface INetworkGO

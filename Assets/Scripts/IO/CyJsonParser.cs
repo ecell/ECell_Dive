@@ -63,6 +63,58 @@ namespace ECellDive
                        orderby _edges_per_layer.Key descending
                        select _edges_per_layer;
             }
+
+            /// <summary>
+            /// Looks for either a "SUID" or "id" field
+            /// </summary>
+            public static int LookForID(JToken _jToken)
+            {
+                int id = -1;
+                JObject jObj = (JObject)_jToken;
+
+                if (jObj.ContainsKey("SUID"))
+                {
+                    id = jObj["data"]["SUID"].Value<int>();
+                }
+                else if (jObj.ContainsKey("id"))
+                {
+                    Debug.Log($"id stored:{jObj["data"]["id"]}");
+
+                    id = jObj["data"]["id"].Value<int>();
+                    Debug.Log($"id extracted: {id}");
+                }
+
+                return id;
+            }
+
+            /// <summary>
+            /// Looks for a "name" field in a "data" field in a _JToken.
+            /// </summary>
+            public static string LookForName(JToken _jToken)
+            {
+                string name = "No Name";
+                JObject jObj = (JObject)_jToken;
+                if (jObj.ContainsKey("data"))
+                {
+                    if (((JObject)jObj["data"]).ContainsKey("name"))
+                    {
+                        name = jObj["data"]["name"].Value<string>();
+                    }
+                }
+                return name;
+            }
+
+            public static Vector3 LookForNodePosition(JToken _node)
+            {
+                Vector3 nodePos = Vector3.zero;
+                JObject jObjNode = (JObject)_node;
+                
+                nodePos.x = jObjNode["position"]["x"].Value<float>();
+                nodePos.y = jObjNode["position"]["y"].Value<float>();
+                nodePos.z = 0f;
+
+                return nodePos;
+            }
         }
     }
 }

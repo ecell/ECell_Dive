@@ -74,7 +74,7 @@ namespace ECellDive
                     //Instantiating relevant data structures to store the information about
                     //the layers, nodes and edges.
                     NetworkLoader.Populate(network);
-                        
+                    
                     CyJsonModulesData.AddData(network);
                     refModulesManager.InstantiateModule(network);
                 }

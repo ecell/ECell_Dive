@@ -21,9 +21,8 @@ namespace ECellDive
 
                 SetName(CyJsonModulesData.loadedData[refIndex].name);
 
-                InstantiateInfoTags(new string[] {$"nb layers: {CyJsonModulesData.loadedData[refIndex].layers.Length}\n"+
-                                                  $"nb edges: {CyJsonModulesData.loadedData[refIndex].edges.Count}\n"+
-                                                  $"nb nodes: {CyJsonModulesData.loadedData[refIndex].nodes.Count}"});
+                InstantiateInfoTags(new string[] {$"nb edges: {CyJsonModulesData.loadedData[refIndex].edges.Length}\n"+
+                                                  $"nb nodes: {CyJsonModulesData.loadedData[refIndex].nodes.Length}"});
             }
 
             protected override IEnumerator DiveInC()
