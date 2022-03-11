@@ -42,6 +42,19 @@ namespace ECellDive
                 requestSuccess = true
             };
 
+            private Renderer refRenderer;
+            private MaterialPropertyBlock mpb;
+            private int colorID;
+
+            private void OnEnable()
+            {
+                refRenderer = GetComponentInChildren<Renderer>();
+                mpb = new MaterialPropertyBlock();
+                colorID = Shader.PropertyToID("_Color");
+                mpb.SetVector(colorID, defaultColor);
+                refRenderer.SetPropertyBlock(mpb);
+            }
+
             /// <summary>
             /// Simple API to add pages to the base server url.
             /// </summary>
@@ -163,6 +176,23 @@ namespace ECellDive
             {
                 return requestData.requestProcessed;
             }
+
+            #region - IHighlightable -
+            public override void SetHighlight()
+            {
+                Debug.Log("Highlight Importer module");
+                mpb.SetVector(colorID, highlightColor);
+                refRenderer.SetPropertyBlock(mpb);
+            }
+
+            public override void UnsetHighlight()
+            {
+                Debug.Log("Unhighlight Importer module");
+
+                mpb.SetVector(colorID, defaultColor);
+                refRenderer.SetPropertyBlock(mpb);
+            }
+            #endregion
         }
     }
 }

@@ -12,9 +12,6 @@ namespace ECellDive
             public INode nodeData { get; protected set; }
             public string informationString { get; protected set; }
 
-            public Color defaultColor;
-            public Color highlightColor;
-
             private Renderer refRenderer;
             private MaterialPropertyBlock mpb;
             private int colorID;

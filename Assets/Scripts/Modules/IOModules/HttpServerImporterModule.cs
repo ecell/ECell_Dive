@@ -24,6 +24,8 @@ namespace ECellDive
             public UIDisplayData uiDisplayData;
             [HideInInspector] public string activeModelName = "";
 
+            
+
             /// <summary>
             /// Requests the models list to the server.
             /// </summary>

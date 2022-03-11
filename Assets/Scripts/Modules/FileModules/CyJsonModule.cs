@@ -15,6 +15,10 @@ namespace ECellDive
         {
             public int refIndex { get; private set; }
 
+            private Renderer refRenderer;
+            private MaterialPropertyBlock mpb;
+            private int colorID;
+
             private void Start()
             {
                 SetIndex(CyJsonModulesData.loadedData.Count - 1);
@@ -23,6 +27,15 @@ namespace ECellDive
 
                 InstantiateInfoTags(new string[] {$"nb edges: {CyJsonModulesData.loadedData[refIndex].edges.Length}\n"+
                                                   $"nb nodes: {CyJsonModulesData.loadedData[refIndex].nodes.Length}"});
+            }
+
+            private void OnEnable()
+            {
+                refRenderer = GetComponentInChildren<Renderer>();
+                mpb = new MaterialPropertyBlock();
+                colorID = Shader.PropertyToID("_Color");
+                mpb.SetVector(colorID, defaultColor);
+                refRenderer.SetPropertyBlock(mpb);
             }
 
             protected override IEnumerator DiveInC()
@@ -49,6 +62,20 @@ namespace ECellDive
             {
                 refIndex = _index;
             }
+
+            #region - IHighlightable -
+            public override void SetHighlight()
+            {
+                mpb.SetVector(colorID, highlightColor);
+                refRenderer.SetPropertyBlock(mpb);
+            }
+
+            public override void UnsetHighlight()
+            {
+                mpb.SetVector(colorID, defaultColor);
+                refRenderer.SetPropertyBlock(mpb);
+            }
+            #endregion
         }
     }
 }

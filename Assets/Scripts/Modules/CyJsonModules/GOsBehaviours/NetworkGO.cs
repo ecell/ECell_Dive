@@ -35,7 +35,7 @@ namespace ECellDive
                 {
                     ModuleData nodeMD = new ModuleData
                     {
-                        typeID = 7,
+                        typeID = 6,
                     };
                     ModulesData.AddModule(nodeMD);
                     GameObject nodeGO = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleDataFromParent(nodeMD,
@@ -50,7 +50,7 @@ namespace ECellDive
                 {
                     ModuleData edgeMD = new ModuleData
                     {
-                        typeID = 8,
+                        typeID = 7,
                     };
                     ModulesData.AddModule(edgeMD);
                     GameObject edgeGO = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleDataFromParent(edgeMD,
