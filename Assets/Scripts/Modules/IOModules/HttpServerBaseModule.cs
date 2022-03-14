@@ -180,15 +180,12 @@ namespace ECellDive
             #region - IHighlightable -
             public override void SetHighlight()
             {
-                Debug.Log("Highlight Importer module");
                 mpb.SetVector(colorID, highlightColor);
                 refRenderer.SetPropertyBlock(mpb);
             }
 
             public override void UnsetHighlight()
             {
-                Debug.Log("Unhighlight Importer module");
-
                 mpb.SetVector(colorID, defaultColor);
                 refRenderer.SetPropertyBlock(mpb);
             }
