@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using ECellDive.Utility;
 using ECellDive.UI;
 using ECellDive.Interfaces;
@@ -21,7 +20,7 @@ namespace ECellDive
             public Dictionary<string, float> fluxes;
         }
 
-        public class HttpServerFbaAnalysisModule : HttpServerBaseModule
+        public class HttpServerFbaModule : HttpServerBaseModule
         {
             private FbaAnalysisData fbaAnalysisData = new FbaAnalysisData
             {
@@ -145,9 +144,7 @@ namespace ECellDive
 
                         foreach (int _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
-                            //LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
                             LoadedCyJsonRoot.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
-                            //LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
                             LoadedCyJsonRoot.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
                         }
                     }

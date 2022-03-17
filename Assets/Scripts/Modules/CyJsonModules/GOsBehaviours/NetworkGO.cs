@@ -15,14 +15,10 @@ namespace ECellDive
 
             public NetworkGOSettings networkGOSettingsModel;
 
-            //public Dictionary<int, GameObject> NodeID_to_NodeGO;
-            //public Dictionary<int, GameObject> EdgeID_to_EdgeGO;
             public Dictionary<int, GameObject> DataID_to_DataGO;
 
             private void Start()
             {
-                //NodeID_to_NodeGO = new Dictionary<int, GameObject>();
-                //EdgeID_to_EdgeGO = new Dictionary<int, GameObject>();
                 DataID_to_DataGO = new Dictionary<int, GameObject>();
 
                 SetNetworkData(CyJsonModulesData.activeData);

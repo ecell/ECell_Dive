@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using HSVPicker;
 using ECellDive.Modules;
-
-
 
 namespace ECellDive
 {
@@ -74,10 +71,10 @@ namespace ECellDive
                 ModulesData.ClearModulesBankWorldPos();
             }
 
-            public void AddInstantiatedGOOfModuleData(GameObject _mdGO)
-            {
-                instantiationData.modulesInstanceList.Add(_mdGO);
-            }
+            //public void AddInstantiatedGOOfModuleData(GameObject _mdGO)
+            //{
+            //    instantiationData.modulesInstanceList.Add(_mdGO);
+            //}
 
             public void CleanInstantiationList()
             {

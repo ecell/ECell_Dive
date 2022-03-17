@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,12 +13,21 @@ namespace ECellDive
             public InputActionReference rightController;
         }
 
+        /// <summary>
+        /// An interface to encode knowledge about whether a gameobject
+        /// is pointed at by a ray interactor.
+        /// </summary>
         public interface IFocus
         {
             bool isFocused { get;}
             void SetFocus();
             void UnsetFocus();
         }
+
+        /// <summary>
+        /// An interface to change switch between two colors when a gameobject
+        /// needs to be highlighted.
+        /// </summary>
         public interface IHighlightable
         {
             Color defaultColor { get; }
@@ -32,7 +40,10 @@ namespace ECellDive
             abstract void UnsetHighlight();
         }
 
-
+        /// <summary>
+        /// The interface describing the requirements to implement a handle for a
+        /// group of information tags attached to a gameobject.
+        /// </summary>
         public interface IInfoTags
         {
             bool areVisible { get; }
@@ -71,6 +82,11 @@ namespace ECellDive
             void ShowInfoTags();
         }
 
+        /// <summary>
+        /// An interface to encode knowledge about a chemical reaction being
+        /// knockedout.
+        /// </summary>
+        /// <remarks>Initially used on edges of a metabolic pathway.</remarks>
         public interface IKnockable
         {
             ControllersSymetricAction triggerKOActions { get; set; }
@@ -79,6 +95,12 @@ namespace ECellDive
             void Knockout();
         }
 
+        /// <summary>
+        /// An interface to encode knowledge about fluxes associated to a chemical
+        /// reaction.
+        /// </summary>
+        /// <remarks>Initially used on edges of a metabolic pathway that can
+        /// undergo a Flux Balance Analysis.</remarks>
         public interface IModulateFlux: IKnockable
         {
             /// <summary>

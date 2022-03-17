@@ -52,7 +52,6 @@ namespace ECellDive
                 triggerKOActions.leftController.action.performed += ManageKnockout;
                 triggerKOActions.rightController.action.performed += ManageKnockout;
 
-                //knockedOut = false;
                 fluxLevel = 0f;
                 fluxLevelClamped = 1f;
             }
@@ -98,13 +97,13 @@ namespace ECellDive
 
             }
 
-            public void SetLineRenderer()
+            public void SetLineRendererWidth()
             {
                 refLineRenderer.startWidth = edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
                 refLineRenderer.endWidth = edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
             }
 
-            public void SetPosition(Transform _start, Transform _end)
+            public void SetLineRendererPosition(Transform _start, Transform _end)
             {
                 refLineRenderer.SetPosition(0, _start.localPosition);
                 refLineRenderer.SetPosition(1, _end.localPosition);
@@ -115,7 +114,6 @@ namespace ECellDive
             public void Activate()
             {
                 knockedOut = false;
-                //edgeData.isKO = false;
                 SetInformationString();
                 mpb.SetFloat(activationID, 1);
                 refLineRenderer.SetPropertyBlock(mpb);
@@ -124,7 +122,6 @@ namespace ECellDive
             public void Knockout()
             {
                 knockedOut = true;
-                //edgeData.isKO = true;
                 SetInformationString();
                 mpb.SetFloat(activationID, 0);
                 refLineRenderer.SetPropertyBlock(mpb);
@@ -179,13 +176,11 @@ namespace ECellDive
 
                 SetDefaultWidth(1 / _masterPathway.networkGOSettingsModel.SizeScaleFactor,
                                 1 / _masterPathway.networkGOSettingsModel.SizeScaleFactor);
-                SetLineRenderer();
+                SetLineRendererWidth();
 
-                //Transform start = _masterPathway.NodeID_to_NodeGO[edgeData.source].transform;
                 Transform start = _masterPathway.DataID_to_DataGO[edgeData.source].transform;
-                //Transform target = _masterPathway.NodeID_to_NodeGO[edgeData.target].transform;
                 Transform target = _masterPathway.DataID_to_DataGO[edgeData.target].transform;
-                SetPosition(start, target);
+                SetLineRendererPosition(start, target);
                 SetCollider(start, target);
             }
 

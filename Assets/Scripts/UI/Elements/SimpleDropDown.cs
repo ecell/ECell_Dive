@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using ECellDive.Interfaces;
 
 
@@ -9,7 +7,10 @@ namespace ECellDive
 {
     namespace UI
     {
-        public class DropDownSwitchManager : MonoBehaviour,
+        /// <summary>
+        /// Manages a GUI element behaving like a drop down.
+        /// </summary>
+        public class SimpleDropDown : MonoBehaviour,
                                              IDropDown
         {
             #region - IDropDown Members -
@@ -38,6 +39,10 @@ namespace ECellDive
                 Debug.Log($"DDSM Awake, content value:{content}");
             }
 
+            /// <summary>
+            /// To be called back when the user wants to expand of collapse the
+            /// view of the groups stored in the container.
+            /// </summary>
             public void ManageExpansion()
             {
                 if (isExpanded)
@@ -50,7 +55,7 @@ namespace ECellDive
                 {
                     refDropDownImageCollapsed.SetActive(false);
                     refDropDownImageExpanded.SetActive(true);
-                    DrawContent();
+                    DisplayContent();
                 }
                 isExpanded = !isExpanded;
             }
@@ -61,7 +66,7 @@ namespace ECellDive
                 content.Add(_item);
             }
 
-            public void DrawContent()
+            public void DisplayContent()
             {
                 foreach(GameObject _item in content)
                 {
