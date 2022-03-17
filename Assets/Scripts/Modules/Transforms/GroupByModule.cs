@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using ECellDive.Interfaces;
 using ECellDive.IO;
+using ECellDive.SceneManagement;
 using ECellDive.UI;
+using ECellDive.Utility;
 
 namespace ECellDive
 {
@@ -20,12 +23,15 @@ namespace ECellDive
             private int colorID;
 
             private NetworkGO refNetworkGO;
+            //private GroupsMenu refGroupsMenu;
             //List<int> attributsToDataIndexMap = new List<int>();
             List<JArray> data = new List<JArray>();
 
             private void Start()
             {
                 refNetworkGO = FindObjectOfType<NetworkGO>();
+                //refGroupsMenu = FindObjectOfType<GroupsMenu>();
+                //Debug.Log(refGroupsMenu);
                 AddData("-- Nodes --", refNetworkGO.networkData.jNodes, (JObject)refNetworkGO.networkData.jNodes[0]["data"]);
                 AddData("-- Edges --", refNetworkGO.networkData.jEdges, (JObject)refNetworkGO.networkData.jEdges[0]["data"]);
             }
@@ -47,48 +53,50 @@ namespace ECellDive
 
             public void Execute(int _dataID, string _attribute)
             {
-                IEnumerable<IGrouping<string, JToken>> groups;
-
-                Debug.Log($"Trying to group {_dataID} by " + _attribute+".");
-                groups = CyJsonParser.GroupDataByKey(data[_dataID], _attribute);
                 
-                Debug.Log($"Grouping data {_dataID} by " + _attribute + $" yielded {groups.Count()} groups.");
-                
-                if (_dataID == 0)
+                IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(data[_dataID], _attribute);
+                if (groups == null)
                 {
-                    ApplyGroupingOnNodes(groups);
+                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                        "Failed to group data by " + _attribute);
                 }
                 else
                 {
-                    ApplyGroupingOnEdges(groups);
-                }
-            }
+                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
+                        "Succesfully groupe data by " + _attribute+ $". {groups.Count()} were found.");
+                    
+                    //SemanticGroupData semanticGroupData = new SemanticGroupData
+                    //{
+                    //    name = _attribute,
+                    //};
 
-            private void ApplyGroupingOnEdges(IEnumerable<IGrouping<string, JToken>> _groups)
-            {
-                foreach (IGrouping<string, JToken> _group in _groups)
-                {
-                    Color rdColor = Random.ColorHSV();
-                    foreach (JToken jToken in _group)
+                    List<GroupData> groupsData = new List<GroupData>();
+                    foreach (IGrouping<string, JToken> _group in groups)
                     {
-                        GameObject _go = refNetworkGO.EdgeID_to_EdgeGO[jToken["data"]["id"].Value<int>()];
-                        _go.GetComponent<EdgeGO>().defaultColor = rdColor;
-                        _go.GetComponent<EdgeGO>().UnsetHighlight();
-                    }
-                }
-            }
+                        IHighlightable[] groupMembers = new IHighlightable[_group.Count()];
+                        int counter = 0;
 
-            private void ApplyGroupingOnNodes(IEnumerable<IGrouping<string, JToken>> _groups)
-            {
-                foreach (IGrouping<string, JToken> _group in _groups)
-                {
-                    Color rdColor = Random.ColorHSV();
-                    foreach (JToken jToken in _group)
-                    {
-                        GameObject _go = refNetworkGO.NodeID_to_NodeGO[jToken["data"]["id"].Value<int>()];
-                        _go.GetComponent<NodeGO>().defaultColor = rdColor;
-                        _go.GetComponent<NodeGO>().UnsetHighlight();
+                        //Retrieving group member ids
+                        foreach (JToken _member in _group)
+                        {
+                            groupMembers[counter] = refNetworkGO.
+                                                        DataID_to_DataGO[_member["data"]["id"].Value<int>()].
+                                                        GetComponent<IHighlightable>();
+                            //Debug.Log(groupMembers[counter]);
+                            counter++;
+                        }
+
+                        //Adding group information
+                        groupsData.Add(new GroupData
+                        {
+                            value = _group.Key,
+                            color = Random.ColorHSV(),
+                            members = groupMembers
+                        }
+                        );
                     }
+
+                    GroupsManagement.refGroupsMenu.AddSemanticTermUI(_attribute, groupsData);
                 }
             }
 

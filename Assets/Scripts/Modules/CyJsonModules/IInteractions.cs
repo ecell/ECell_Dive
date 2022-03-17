@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace ECellDive
 {
-    namespace IInteractions
+    namespace Interfaces
     {
         [System.Serializable]
         public struct ControllersSymetricAction

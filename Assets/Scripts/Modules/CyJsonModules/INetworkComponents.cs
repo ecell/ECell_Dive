@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ECellDive
 {
-    namespace INetworkComponents
+    namespace Interfaces
     {
         public interface INode
         {
@@ -21,6 +21,7 @@ namespace ECellDive
             int source { get; set; }
             int target { get; set; }
             string NAME { get; set; }
+            //bool isKO { get; set; }
         }
 
         public interface INetwork

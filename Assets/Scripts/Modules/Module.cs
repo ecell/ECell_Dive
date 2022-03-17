@@ -7,7 +7,7 @@ using TMPro;
 using ECellDive.Utility;
 using ECellDive.UI;
 using ECellDive.SceneManagement;
-using ECellDive.IInteractions;
+using ECellDive.Interfaces;
 
 namespace ECellDive
 {

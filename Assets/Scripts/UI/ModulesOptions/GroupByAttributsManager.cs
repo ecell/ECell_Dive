@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using ECellDive.Interfaces;
 using ECellDive.Modules;
 
 
@@ -21,13 +22,13 @@ namespace ECellDive
 
             private List<DropDownSwitchManager> dataUIManagers = new List<DropDownSwitchManager>();
 
-            private void AddAttributsUI(string _attributName, DropDownSwitchManager _parent)
+            private void AddAttributsUI(string _attributName, IDropDown _parent)
             {
                 GameObject newAttributUI = Instantiate(attributsUIPrefab, allAttributsContainer.transform);
                 newAttributUI.SetActive(false);
                 newAttributUI.name = _attributName;
                 newAttributUI.GetComponentInChildren<TMP_Text>().text = _attributName;
-                _parent.AddItem(newAttributUI.GetComponent<Toggle>());
+                _parent.AddItem(newAttributUI);
             }
 
             public void AddDataUI(string _dataName, JObject _dataNodeSample)
@@ -35,9 +36,9 @@ namespace ECellDive
                 GameObject newDataUI = Instantiate(dataUIPrefab, allAttributsContainer.transform);
                 newDataUI.SetActive(true);
                 newDataUI.GetComponentInChildren<TMP_Text>().text = _dataName;
-                dataUIManagers.Add(newDataUI.GetComponent<DropDownSwitchManager>());
-
+                
                 DropDownSwitchManager refDDSM = newDataUI.GetComponent<DropDownSwitchManager>();
+                dataUIManagers.Add(refDDSM);
 
                 foreach (JProperty _property in _dataNodeSample.Properties())
                 {
@@ -50,11 +51,12 @@ namespace ECellDive
                 int currentDataUI = 0;
                 foreach(DropDownSwitchManager _ddsm in dataUIManagers)
                 {
-                    foreach(Toggle _attributUI in _ddsm.content)
+                    foreach(GameObject _attributUI in _ddsm.content)
                     {
-                        if (_attributUI.isOn)
+                        Toggle attributUIToggle = _attributUI.GetComponent<Toggle>();
+                        if (attributUIToggle.isOn)
                         {
-                            refGroupByModule.Execute(currentDataUI, _attributUI.name);
+                            refGroupByModule.Execute(currentDataUI, attributUIToggle.name);
                         }
                     }
                     currentDataUI++;

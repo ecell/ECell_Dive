@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using ECellDive.UI;
-using ECellDive.INetworkComponents;
+using ECellDive.Interfaces;
 
 namespace ECellDive
 {

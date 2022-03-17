@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using ECellDive.INetworkComponents;
+﻿using ECellDive.Interfaces;
 
 namespace ECellDive
 {
@@ -14,12 +11,15 @@ namespace ECellDive
             public int target { get; set; }
             public string NAME { get; set; }
 
+            //public bool isKO { get; set; }
+
             public Edge(int _ID, string _name, int _source, int _target)
             {
                 ID = _ID;
                 source = _source;
                 target = _target;
                 NAME = _name;
+                //isKO = false;
             }
         }
     }

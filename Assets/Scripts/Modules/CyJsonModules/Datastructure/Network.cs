@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using ECellDive.IO;
-using ECellDive.INetworkComponents;
+using ECellDive.Interfaces;
 
 namespace ECellDive
 {

@@ -2,8 +2,7 @@
 using UnityEngine.InputSystem;
 using ECellDive.Utility.SettingsModels;
 using ECellDive.UI;
-using ECellDive.IInteractions;
-using ECellDive.INetworkComponents;
+using ECellDive.Interfaces;
 
 
 namespace ECellDive
@@ -53,7 +52,7 @@ namespace ECellDive
                 triggerKOActions.leftController.action.performed += ManageKnockout;
                 triggerKOActions.rightController.action.performed += ManageKnockout;
 
-                knockedOut = false;
+                //knockedOut = false;
                 fluxLevel = 0f;
                 fluxLevelClamped = 1f;
             }
@@ -116,6 +115,7 @@ namespace ECellDive
             public void Activate()
             {
                 knockedOut = false;
+                //edgeData.isKO = false;
                 SetInformationString();
                 mpb.SetFloat(activationID, 1);
                 refLineRenderer.SetPropertyBlock(mpb);
@@ -124,6 +124,7 @@ namespace ECellDive
             public void Knockout()
             {
                 knockedOut = true;
+                //edgeData.isKO = true;
                 SetInformationString();
                 mpb.SetFloat(activationID, 0);
                 refLineRenderer.SetPropertyBlock(mpb);
@@ -180,8 +181,10 @@ namespace ECellDive
                                 1 / _masterPathway.networkGOSettingsModel.SizeScaleFactor);
                 SetLineRenderer();
 
-                Transform start = _masterPathway.NodeID_to_NodeGO[edgeData.source].transform;
-                Transform target = _masterPathway.NodeID_to_NodeGO[edgeData.target].transform;
+                //Transform start = _masterPathway.NodeID_to_NodeGO[edgeData.source].transform;
+                Transform start = _masterPathway.DataID_to_DataGO[edgeData.source].transform;
+                //Transform target = _masterPathway.NodeID_to_NodeGO[edgeData.target].transform;
+                Transform target = _masterPathway.DataID_to_DataGO[edgeData.target].transform;
                 SetPosition(start, target);
                 SetCollider(start, target);
             }

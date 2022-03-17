@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.Utility;
 using ECellDive.UI;
+using ECellDive.Interfaces;
 
 namespace ECellDive
 {
@@ -51,17 +52,17 @@ namespace ECellDive
 
                     LoadedCyJsonRoot = GameObject.FindGameObjectWithTag("CyJsonRootModule").GetComponent<NetworkGO>();
 
-                    foreach (int _id in LoadedCyJsonRoot.EdgeID_to_EdgeGO.Keys)
+                    foreach (IEdge _edgeData in LoadedCyJsonRoot.networkData.edges)
                     {
-                        fbaAnalysisData.knockOuts[_id] = false;
-                        string _name = LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].name;
+                        fbaAnalysisData.knockOuts[_edgeData.ID] = false;
+                        string _name = LoadedCyJsonRoot.DataID_to_DataGO[_edgeData.ID].name;
                         if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_name))
                         {
-                            fbaAnalysisData.edgeName_to_EdgeID[_name].Add(_id);
+                            fbaAnalysisData.edgeName_to_EdgeID[_name].Add(_edgeData.ID);
                         }
                         else
                         {
-                            fbaAnalysisData.edgeName_to_EdgeID[_name] = new List<int> { _id };
+                            fbaAnalysisData.edgeName_to_EdgeID[_name] = new List<int> { _edgeData.ID };
                         }
                     }
                 }
@@ -78,11 +79,11 @@ namespace ECellDive
                 string knockouts = "";
                 int counter_true = 0;
 
-                foreach (GameObject _edgeGO in LoadedCyJsonRoot.EdgeID_to_EdgeGO.Values)
+                foreach (IEdge _edgeData in LoadedCyJsonRoot.networkData.edges)
                 {
-                    if (_edgeGO.GetComponent<EdgeGO>().knockedOut)
+                    if (LoadedCyJsonRoot.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut)
                     {
-                        knockouts += _edgeGO.name + ",";
+                        knockouts += _edgeData.NAME + ",";
                         counter_true++;
                     }
                 }
@@ -144,8 +145,10 @@ namespace ECellDive
 
                         foreach (int _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
-                            LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
-                            LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
+                            //LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
+                            LoadedCyJsonRoot.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
+                            //LoadedCyJsonRoot.EdgeID_to_EdgeGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
+                            LoadedCyJsonRoot.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
                         }
                     }
                 }

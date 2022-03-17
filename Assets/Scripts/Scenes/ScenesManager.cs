@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using HSVPicker;
 using ECellDive.Modules;
 
 
@@ -55,7 +56,9 @@ namespace ECellDive
             public RemoteGrabData remoteGrabData;
             public RemoteInteractionData remoteInteractionData;
 
+            [Header("Global UI Elements")]
             public GameObject refVirtualKeyboard;
+            public ColorPicker refColorPicker;
 
             private void Awake()
             {
