@@ -31,8 +31,16 @@ namespace ECellDive
             {
                 //For now (2022-03-17) we are only looking for a NetworkGO spawned froma cyjson file.
                 refNetworkGO = FindObjectOfType<NetworkGO>();
-                AddData("-- Nodes --", refNetworkGO.networkData.jNodes, (JObject)refNetworkGO.networkData.jNodes[0]["data"]);
-                AddData("-- Edges --", refNetworkGO.networkData.jEdges, (JObject)refNetworkGO.networkData.jEdges[0]["data"]);
+                if (refNetworkGO != null)
+                {
+                    AddData("-- Nodes --", refNetworkGO.networkData.jNodes, (JObject)refNetworkGO.networkData.jNodes[0]["data"]);
+                    AddData("-- Edges --", refNetworkGO.networkData.jEdges, (JObject)refNetworkGO.networkData.jEdges[0]["data"]);
+                }
+                else
+                {
+                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                        "The GroupBy Module could not find any data to link to.");
+                }
             }
 
             private void OnEnable()
@@ -121,8 +129,11 @@ namespace ECellDive
 
             public override void UnsetHighlight()
             {
-                mpb.SetVector(colorID, defaultColor);
-                refRenderer.SetPropertyBlock(mpb);
+                if (!forceHighlight)
+                {
+                    mpb.SetVector(colorID, defaultColor);
+                    refRenderer.SetPropertyBlock(mpb);
+                }
             }
             #endregion
         }

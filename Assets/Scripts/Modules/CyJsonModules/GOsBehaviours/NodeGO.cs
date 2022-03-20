@@ -57,8 +57,11 @@ namespace ECellDive
 
             public override void UnsetHighlight()
             {
-                mpb.SetVector(colorID, defaultColor);
-                refRenderer.SetPropertyBlock(mpb);
+                if (!forceHighlight)
+                {
+                    mpb.SetVector(colorID, defaultColor);
+                    refRenderer.SetPropertyBlock(mpb);
+                }
             }
             #endregion
 

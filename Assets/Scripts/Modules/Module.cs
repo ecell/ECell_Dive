@@ -19,6 +19,7 @@ namespace ECellDive
         /// </summary>
         public class Module : MonoBehaviour,
                                 IFocus,
+                                IGroupable,
                                 IHighlightable,
                                 IInfoTags
         {
@@ -39,6 +40,15 @@ namespace ECellDive
 
             #endregion
 
+            #region - IGroupable Mambers -
+            private int m_grpMemberIndex = -1;
+            public int grpMemberIndex
+            {
+                get => m_grpMemberIndex;
+                set => m_grpMemberIndex = value;
+            }
+            #endregion
+
             #region - IHighlightable Members - 
 
             [SerializeField] private Color m_defaultColor;
@@ -51,6 +61,13 @@ namespace ECellDive
             public Color highlightColor {
                 get => m_highlightColor;
                 set => SetHighlightColor(value);
+            }
+
+            private bool m_forceHighlight = false;
+            public bool forceHighlight
+            {
+                get => m_forceHighlight;
+                set => m_forceHighlight = value;
             }
 
             #endregion

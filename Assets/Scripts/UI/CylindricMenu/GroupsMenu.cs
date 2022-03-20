@@ -29,31 +29,31 @@ namespace ECellDive
 
             private void Start()
             {
-                //GameObject semanticTermUI = Instantiate(semanticTermUIPrefab, allUIContainer.transform);
-                //semanticTermUI.SetActive(true);
-                //semanticTermUI.GetComponent<SemanticGroupManager>().SetData(new SemanticGroupData
-                //{
-                //    isActive = false,
-                //    name = "Custom groups"
-                //});
+                GameObject semanticTermUI = Instantiate(semanticTermUIPrefab, allUIContainer.transform);
+                semanticTermUI.SetActive(true);
+                semanticTermUI.GetComponentInChildren<TMP_Text>().text = "Custom Groups";
             }
 
             private void AddGroupUI(GroupData _groupData, IDropDown _parent)
             {
                 GameObject groupUI = Instantiate(groupUIPrefab, allUIContainer.transform);
-                groupUI.GetComponent<GroupManager>().SetData(_groupData);
-                groupUI.GetComponent<GroupManager>().ForceDistributeColor(true);
+                groupUI.GetComponent<GroupUIManager>().SetData(_groupData);
+                groupUI.GetComponent<GroupUIManager>().ForceDistributeColor(true);
                 _parent.AddItem(groupUI);
             }
 
-            //private void AddGroupUI(GroupData _groupData, int _siblingIndex)
-            //{
-            //    GameObject groupUI = Instantiate(groupUIPrefab, allUIContainer.transform);
-            //    groupUI.transform.SetSiblingIndex(_siblingIndex);
-            //    groupUI.SetActive(true);
-            //    groupUI.GetComponent<GroupManager>().SetData(_groupData);
-            //    groupUI.GetComponent<GroupManager>().ForceDistributeColor(true);
-            //}
+            public void AddGroupUI(GroupData _groupData, int _parentIndex)
+            {
+                GameObject groupUI = Instantiate(groupUIPrefab, allUIContainer.transform);
+                groupUI.transform.SetSiblingIndex(_parentIndex+1);
+                groupUI.GetComponent<GroupUIManager>().SetData(_groupData);
+                groupUI.GetComponent<GroupUIManager>().ForceDistributeColor(true);
+
+                IDropDown parent = allUIContainer.transform.GetChild(_parentIndex).gameObject.GetComponent<IDropDown>();
+                parent.AddItem(groupUI);
+
+                groupUI.SetActive(parent.isExpanded);
+            }
 
             /// <summary>
             /// Adds a GUI element that acts as a container (drop down) of several groups.
@@ -68,7 +68,7 @@ namespace ECellDive
                 semanticTermUI.SetActive(true);
                 semanticTermUI.GetComponentInChildren<TMP_Text>().text = _semanticTerm;
 
-                SemanticGroupManager refSGM = semanticTermUI.GetComponent<SemanticGroupManager>();
+                SemanticGroupUIManager refSGM = semanticTermUI.GetComponent<SemanticGroupUIManager>();
 
                 foreach(GroupData _groupData in _groupsData)
                 {

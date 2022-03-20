@@ -13,7 +13,7 @@ namespace ECellDive
         /// Manages the GUI container (drop down) storing every GUI element representing
         /// groups.
         /// </summary>
-        public class SemanticGroupManager : MonoBehaviour, IDropDown
+        public class SemanticGroupUIManager : MonoBehaviour, IDropDown
         {
             public Toggle refToggle;
             public TMP_Text refNameText;
@@ -71,7 +71,7 @@ namespace ECellDive
             {
                 foreach(GameObject _child in content)
                 {
-                    GroupManager refGM = _child.gameObject.GetComponent<GroupManager>();
+                    GroupUIManager refGM = _child.gameObject.GetComponent<GroupUIManager>();
                     refGM.ForceDistributeColor(refToggle.isOn);
                     refGM.refToggle.interactable = refToggle.isOn;
                 }

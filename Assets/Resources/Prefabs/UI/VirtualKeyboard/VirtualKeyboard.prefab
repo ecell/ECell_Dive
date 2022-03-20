@@ -30400,11 +30400,11 @@ GameObject:
   - component: {fileID: 6877773302811243222}
   - component: {fileID: 6877773302811243231}
   - component: {fileID: 6877773302811243228}
-  - component: {fileID: 6877773302811243223}
   - component: {fileID: 6877773302811243229}
+  - component: {fileID: 6877773302811243223}
   - component: {fileID: 6877773302811243226}
-  - component: {fileID: 6877773302811243230}
   - component: {fileID: 6877773302811243201}
+  - component: {fileID: 6877773302811243230}
   m_Layer: 5
   m_Name: VirtualKeyboard
   m_TagString: VirtualKeyboard
@@ -30657,22 +30657,6 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
---- !u!114 &6877773302811243223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6877773302811243220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab5ed3b184f305d43a7b72b6c8760bf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualKeyBoardDatas:
-  - LowerCaseVK: {fileID: 6877773301380567389}
-    UpperCaseVK: {fileID: 6877773300944419188}
-    NumAndSignsVK: {fileID: 6877773302033560892}
 --- !u!114 &6877773302811243229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30775,6 +30759,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6877773302811243223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6877773302811243220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5ed3b184f305d43a7b72b6c8760bf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualKeyBoardDatas:
+  - LowerCaseVK: {fileID: 6877773301380567389}
+    UpperCaseVK: {fileID: 6877773300944419188}
+    NumAndSignsVK: {fileID: 6877773302033560892}
 --- !u!114 &6877773302811243226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30788,25 +30788,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showOnEnable: 1
---- !u!114 &6877773302811243230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6877773302811243220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 0
-  m_CheckFor2DOcclusion: 0
-  m_CheckFor3DOcclusion: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RaycastTriggerInteraction: 1
 --- !u!114 &6877773302811243201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30833,6 +30814,25 @@ MonoBehaviour:
   hoverExitAudioData:
     play: 0
     clip: {fileID: 0}
+--- !u!114 &6877773302811243230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6877773302811243220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1001 &6877773302111065881
 PrefabInstance:
   m_ObjectHideFlags: 0

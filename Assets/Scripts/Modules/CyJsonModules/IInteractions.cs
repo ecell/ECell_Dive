@@ -24,6 +24,11 @@ namespace ECellDive
             void UnsetFocus();
         }
 
+        public interface IGroupable
+        {
+            int grpMemberIndex { get; set; }
+        }
+
         /// <summary>
         /// An interface to change switch between two colors when a gameobject
         /// needs to be highlighted.
@@ -32,6 +37,8 @@ namespace ECellDive
         {
             Color defaultColor { get; }
             Color highlightColor { get; }
+
+            bool forceHighlight { get; set; }
 
             abstract void SetDefaultColor(Color _c);
             abstract void SetHighlightColor(Color _c);

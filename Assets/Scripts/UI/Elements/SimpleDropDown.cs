@@ -36,7 +36,6 @@ namespace ECellDive
             {
                 isExpanded = false;
                 content = new List<GameObject>();
-                Debug.Log($"DDSM Awake, content value:{content}");
             }
 
             /// <summary>

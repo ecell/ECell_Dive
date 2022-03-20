@@ -32,16 +32,14 @@ namespace ECellDive
             private int leftControllerModeID = 2;//default is ray mode in left controller
             private int rightControllerModeID = 1;//default is movement mode on right controller
 
-            //Group controls interactors are not used yet (2022-01-19)
-            //public XRRayInteractor[] leftGCs;
-            //public XRRayInteractor[] rightGCs;
-
-            //Movement related interactors
             [Header("Movement XRRayInteractors")]
             public XRRayInteractor[] leftMvts;
             public XRRayInteractor[] rightMvts;
 
-            //General interactors*
+            [Header("Group Controls XRRayInteractors")]
+            public XRRayInteractor[] leftGCs;
+            public XRRayInteractor[] rightGCs;
+
             [Header("Ray Based Controls XRRayInteractors")]
             public XRRayInteractor[] leftRBCs;
             public XRRayInteractor[] rightRBCs;
@@ -66,6 +64,8 @@ namespace ECellDive
             {
                 refGCLHMap.Disable();
                 refGCRHMap.Disable();
+                DisableInteractors(leftGCs);
+                DisableInteractors(rightGCs);
 
                 refMvtLHMap.Disable();
                 refMvtRHMap.Enable();//default is movement mode on right controller
@@ -107,12 +107,12 @@ namespace ECellDive
                         DisableInteractors(leftRBCs);
 
                         refGCLHMap.Enable();
-                        //EnableInteractors(leftGCs);
+                        EnableInteractors(leftGCs);
                         break;
 
                     case 1:
                         refGCLHMap.Disable();
-                        //DisableInteractors(leftGCs);
+                        DisableInteractors(leftGCs);
 
                         refMvtLHMap.Enable();
                         EnableInteractors(leftMvts);

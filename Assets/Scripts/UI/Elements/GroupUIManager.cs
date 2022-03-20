@@ -19,7 +19,7 @@ namespace ECellDive
         /// Manages the GUI element exposing a Group data (name, color & activation)
         /// in the scene to the user.
         /// </summary>
-        public class GroupManager : MonoBehaviour
+        public class GroupUIManager : MonoBehaviour
         {
             public Toggle refToggle;
             public TMP_Text refValueText;

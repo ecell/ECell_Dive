@@ -21,8 +21,6 @@ namespace ECellDive
         /// Gameplay logic to trigger when a user whishes to translate objects
         /// while in the Dive Scene.
         /// </summary>
-        /// <remarks>Contains logic to only limit the interactiosn to the left
-        /// controller.</remarks>
         public class GroupGrab : MonoBehaviour, IGrab
         {
 
