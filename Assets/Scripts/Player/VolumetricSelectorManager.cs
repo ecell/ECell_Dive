@@ -40,12 +40,21 @@ namespace ECellDive
             #endregion
 
             public GroupsMakingManager refGrpMkgManager;
-
-            [Header("Distance and Scale Control Parameters")]
             public InputActionReference distanceAndScaleAction;
-            [Range(0,2)] public float movementSpeed;
+
+            [Header("Movement Parameters")]
+            public Vector3 defaultPosition;
+            public float maxDistance;
+            [Range(0,1)] public float movementSpeed;
             private Vector3 mvtVelocity = Vector3.zero;
-            [Range(0,2)] public float growthSpeed;
+
+            [Header("Scale Parameters")]
+            public Vector3 defaultScale;
+            public float minScaleFactor;
+            private Vector3 minScale;
+            public float maxScaleFactor;
+            private Vector3 maxScale;
+            [Range(0,1)] public float growthSpeed;
             private Vector3 growthVelocity = Vector3.zero;
 
             private SphereCollider refSphereCollider;
@@ -62,6 +71,9 @@ namespace ECellDive
             private void Start()
             {
                 refSphereCollider = GetComponent<SphereCollider>();
+                ResetTransform();
+                minScale = minScaleFactor * defaultScale;
+                maxScale = maxScaleFactor * defaultScale;
             }
 
             private void OnEnable()
@@ -82,14 +94,41 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Compares if vector <paramref name="_a"/> is less than
+            /// <paramref name="_b"/> component-wise.
+            /// </summary>
+            private bool CompareVec3(Vector3 _a, Vector3 _b)
+            {
+                return (_a.x < _b.x && _a.y < _b.y && _a.z < _b.z);
+            }
+
+            /// <summary>
             /// Manages the data from the Joystick and processes it to
             /// move the gameobject and scale it.
             /// </summary>
-            public void DistanceAndScale(InputAction.CallbackContext _ctx)
+            private void DistanceAndScale(InputAction.CallbackContext _ctx)
             {
                 Vector2 _das = _ctx.ReadValue<Vector2>();
-                ManageDistance(MinClamping(_das.y));
-                ManageScale(MinClamping(_das.x));
+                if (!IsInDeadZone(_das.y))
+                {
+                    ManageDistance(_das.y);
+                }
+                if (!IsInDeadZone(_das.x))
+                {
+                    ManageScale(_das.x);
+                }
+                
+            }
+
+            /// <summary>
+            /// A hard coded method returning true if Abs(<paramref name="_value"/>)
+            /// lower than <paramref name="_threshold"/>. Returns false otherwise.
+            /// </summary>
+            /// <remarks>Used to clamp Joystick input data since I couldn't
+            /// make the built-in deadzone work as intended.</remarks>
+            private bool IsInDeadZone(float _value, float _threshold = 0.5f)
+            {
+                return Mathf.Abs(_value) < _threshold;
             }
 
             /// <summary>
@@ -118,9 +157,18 @@ namespace ECellDive
             /// If lower than 0 then backward movement.</param>
             private void ManageDistance(float _mvtFactor)
             {
-                Vector3 target = transform.position + _mvtFactor * movementSpeed * transform.forward;
-                transform.position = Vector3.SmoothDamp(
-                                            transform.position,
+                Vector3 target = transform.localPosition + _mvtFactor * movementSpeed * Vector3.forward;
+                float _d = (target-defaultPosition).z;
+                if (_d < 0)
+                {
+                    target = defaultPosition;
+                }
+                if(_d > maxDistance)
+                {
+                    target = transform.localPosition;
+                }
+                transform.localPosition = Vector3.SmoothDamp(
+                                            transform.localPosition,
                                             target,
                                             ref mvtVelocity,
                                             0.1f);
@@ -134,29 +182,21 @@ namespace ECellDive
             private void ManageScale(float _growthFactor)
             {
                 Vector3 target = transform.localScale + _growthFactor * growthSpeed * Vector3.one;
-                transform.localScale = Vector3.SmoothDamp(
-                                                transform.localScale,
-                                                target,
-                                                ref growthVelocity,
-                                                0.1f);
-            }
 
-            /// <summary>
-            /// A hard coded method returning 0 if Abs(<paramref name="_value"/>)
-            /// lower than 0.5f. Returns <paramref name="_value"/> otherwise.
-            /// </summary>
-            /// <remarks>Used to clamp Joystick input data since I couldn't
-            /// make the built-in deadzone work as intended.</remarks>
-            private float MinClamping(float _value)
-            {
-                if (Mathf.Abs(_value) < 0.5f)
+                if (CompareVec3(target, minScale))
                 {
-                    return 0;
+                    target = minScaleFactor * defaultScale;
                 }
-                else
+                if (CompareVec3(maxScale, target))
                 {
-                    return _value;
+                    target = maxScaleFactor * defaultScale;
                 }
+
+                transform.localScale = Vector3.SmoothDamp(
+                                            transform.localScale,
+                                            target,
+                                            ref growthVelocity,
+                                            0.1f);
             }
 
             /// <summary>
@@ -164,8 +204,8 @@ namespace ECellDive
             /// </summary>
             public void ResetTransform()
             {
-                transform.localPosition = new Vector3(0, 0, 0.1f);
-                transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                transform.localPosition = defaultPosition;
+                transform.localScale = defaultScale;
             }
 
             #region - IHighlightable -

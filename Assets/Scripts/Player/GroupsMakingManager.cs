@@ -145,7 +145,6 @@ namespace ECellDive
             private bool IsObjectInTargetLayer(GameObject _go)
             {
                 XRGrabInteractable interactable = FindComponent<XRGrabInteractable>(_go);
-                Debug.Log(interactable);
                 if (interactable != null)
                 {
                     int targetLayerMask = 1 << leftGrpMkgToolsData.targetLayer;
@@ -162,7 +161,6 @@ namespace ECellDive
             private void ManageGroupMembers(GameObject _go)
             {
                 IGroupable groupable = FindComponent<IGroupable>(_go);
-                Debug.Log(groupable);
                 if (groupable != null)
                 {
                     IHighlightable highlightable = FindComponent<IHighlightable>(_go);
@@ -208,7 +206,6 @@ namespace ECellDive
             /// <param name="_goGroupInfo">The gameobject's IGroupable component.</param>
             private void RemoveMemberFromGroup(GameObject _go, IGroupable _goGroupInfo)
             {
-                Debug.Log($"Trying to remove {_go.name} from group with index {_goGroupInfo.grpMemberIndex}");
                 groupMembers.RemoveAt(_goGroupInfo.grpMemberIndex);
                 for (int i = _goGroupInfo.grpMemberIndex; i < groupMembers.Count; i++)
                 {
