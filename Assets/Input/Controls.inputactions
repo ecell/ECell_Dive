@@ -715,14 +715,6 @@
             "id": "810865f8-7e7d-4a9f-b591-e40109c3e2d7",
             "actions": [
                 {
-                    "name": "Attract_Repulse",
-                    "type": "Button",
-                    "id": "419246dd-af2d-4852-9a26-80839c26cc3e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "DisplayObjectMenu",
                     "type": "Button",
                     "id": "60c1fcd8-0bb4-48c4-950d-6aa52af0eb02",
@@ -735,6 +727,14 @@
                     "type": "Button",
                     "id": "29f12c49-e6fe-4a04-9bdf-fffca5ec9cbb",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "JoyStick",
+                    "type": "PassThrough",
+                    "id": "419246dd-af2d-4852-9a26-80839c26cc3e",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
@@ -764,39 +764,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "Button With One Modifier",
-                    "id": "e71f972b-2896-4f2a-bdb6-110620f9b33e",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attract_Repulse",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "a0244417-916d-43f1-ba3c-4147c8da4727",
-                    "path": "<XRController>{RightHand}/triggerPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Attract_Repulse",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "06de30e1-33c9-4577-8946-f7de86815b7b",
-                    "path": "<XRController>{RightHand}/gripButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Attract_Repulse",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
                 {
                     "name": "",
                     "id": "d5a91530-bb62-43f4-8118-4b9f15e33385",
@@ -851,6 +818,17 @@
                     "action": "DisplayObjectMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a39b11e4-a0b3-4f20-a19f-81809ac225e9",
+                    "path": "<XRController>{RightHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoyStick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -858,14 +836,6 @@
             "name": "Ray_Based_Controls_LH",
             "id": "af0b0f52-c06d-4765-a95f-0c894a78995f",
             "actions": [
-                {
-                    "name": "Attract_Repulse",
-                    "type": "Button",
-                    "id": "f25ad77e-b8a6-4fa4-95b0-c86820d787cc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
                 {
                     "name": "DisplayObjectMenu",
                     "type": "Button",
@@ -879,6 +849,14 @@
                     "type": "Button",
                     "id": "90521d53-898d-45fb-9fdd-81e6277247d2",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "JoyStick",
+                    "type": "PassThrough",
+                    "id": "62d9cdfd-be94-4c16-b7a7-8b9d1949ebd3",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
@@ -908,39 +886,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "Button With One Modifier",
-                    "id": "0d8c33ee-ebf2-43d0-9047-6419157da403",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attract_Repulse",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "aacfd80f-d594-4e81-94f7-3b8a24a56762",
-                    "path": "<XRController>{LeftHand}/triggerPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Attract_Repulse",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "01729bff-042b-4f12-ad94-ba350e06ecff",
-                    "path": "<XRController>{LeftHand}/gripButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Attract_Repulse",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
                 {
                     "name": "",
                     "id": "196cbc21-3f89-45b0-a420-34508d179b6e",
@@ -993,6 +938,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad9cba90-a4a9-4d2e-999b-ad622e089f96",
+                    "path": "<XRController>{LeftHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoyStick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

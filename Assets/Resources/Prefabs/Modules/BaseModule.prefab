@@ -413,12 +413,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftGrabActionData:
     select: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    activate: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    attractRepulse: {fileID: -3848924210200324891, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   rightGrabActionData:
     select: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    activate: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    attractRepulse: {fileID: 2490823375165310329, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   objectMaxDistance: 25
-  attractionThreshold: 0.08
+  objectMinDistance: 25
   attractionSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -452,7 +452,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  repulsionThreshold: 0.08
   repulsionSpeedCurve:
     serializedVersion: 2
     m_Curve:

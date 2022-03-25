@@ -13,7 +13,7 @@ namespace ECellDive
         public struct GrabActionData
         {
             public InputActionReference select;
-            public InputActionReference activate;
+            public InputActionReference attractRepulse;
         }
 
         public class GrabManager : MonoBehaviour, IRemoteGrab
@@ -24,13 +24,19 @@ namespace ECellDive
             public bool remoteGrabEnabled { get; set; }
 
             public bool isGrabed { get; set; }
-            public IGrab.XRControllerID controllerID { get; set; }
+
+            private IGrab.XRControllerID m_controllerID = IGrab.XRControllerID.Unassigned;
+            public IGrab.XRControllerID controllerID
+            {
+                get => m_controllerID;
+                set => m_controllerID = value;
+            }
             public GameObject refCurrentController { get; set; }
 
             public UnityEvent OnPostGrabMovementUpdate
             {
                 get => m_OnPostGrabMovementUpdate;
-                set => m_OnPostGrabMovementUpdate = OnPostGrabMovementUpdate;
+                set => m_OnPostGrabMovementUpdate = value;
             }
             #endregion
 
@@ -41,23 +47,16 @@ namespace ECellDive
 
             [Header("Attraction/Repulsion Parameters")]
             [Range(2f, 50f)] public float objectMaxDistance = 25f;
-            [Range(0.05f, 0.5f)] public float attractionThreshold = 0.1f;
+            [Range(0f, 2f)] public float objectMinDistance = 1f;
             public AnimationCurve attractionSpeedCurve;
-            [Range(0.05f, 0.5f)] public float repulsionThreshold = 0.1f;
             public AnimationCurve repulsionSpeedCurve;
 
             [Header("Additional Processes")]
             [SerializeField] private UnityEvent m_OnPostGrabMovementUpdate;
 
-            private Vector3 controllerStartPosition = Vector3.zero;
-            private Vector3 controllerLatePosition = Vector3.zero;
-            private Vector3 controllerPosition = Vector3.zero;
-
             private float objDistance = 0f;
 
             private Vector3 refVelocity = Vector3.zero;
-
-            private bool attractionRepulsionIsActive = false;
             #endregion
 
             private void Awake()
@@ -65,75 +64,63 @@ namespace ECellDive
                 leftGrabActionData.select.action.started += e => SetControllerID(IGrab.XRControllerID.Left);
                 rightGrabActionData.select.action.started += e => SetControllerID(IGrab.XRControllerID.Right);
 
-                leftGrabActionData.activate.action.started += e => ActivateAttractionRepulsion(IGrab.XRControllerID.Left);
-                rightGrabActionData.activate.action.started += e => ActivateAttractionRepulsion(IGrab.XRControllerID.Right);
-
-                leftGrabActionData.activate.action.canceled += e => DeactivateAttractionRepulsion(IGrab.XRControllerID.Left);
-                rightGrabActionData.activate.action.canceled += e => DeactivateAttractionRepulsion(IGrab.XRControllerID.Right);
+                leftGrabActionData.attractRepulse.action.performed += AttractionRepulsionLeft;
+                rightGrabActionData.attractRepulse.action.performed += AttractionRepulsionRight;
             }
 
-            /// <summary>
-            /// Activates the Attraction/Repulsion mode to bring closer or push
-            /// away objects that are being grabed.
-            /// Called back after a user input on the XR controller.
-            /// The user input is referenced by the ref(Left/Right)Activate fields
-            /// of the class.
-            /// </summary>
-            /// <param name="_controllerID">The controller ID (Left or Right)</param>
-            void ActivateAttractionRepulsion(IGrab.XRControllerID _controllerID)
+            private void OnDestroy()
+            {
+                leftGrabActionData.select.action.started -= e => SetControllerID(IGrab.XRControllerID.Left);
+                rightGrabActionData.select.action.started -= e => SetControllerID(IGrab.XRControllerID.Right);
+
+                leftGrabActionData.attractRepulse.action.performed -= AttractionRepulsionLeft;
+                rightGrabActionData.attractRepulse.action.performed -= AttractionRepulsionRight;
+            }
+
+            private void Update()
             {
                 if (isGrabed)
                 {
-                    //Checking that the activation comes from the same controller
-                    //as the one that grabed the object.
-                    if (_controllerID == controllerID)
+                    if (remoteGrabEnabled)
                     {
-                        attractionRepulsionIsActive = true;
-                        controllerStartPosition = refCurrentController.transform.position;
+                        OnRemoteGrab();
+                    }
+
+                    m_OnPostGrabMovementUpdate.Invoke();
+                }
+            }
+
+            private void AttractionRepulsionLeft(InputAction.CallbackContext _ctx)
+            {
+                if (remoteGrabEnabled && m_controllerID == IGrab.XRControllerID.Left)
+                {
+                    Vector2 _das = _ctx.ReadValue<Vector2>();
+                    if (!IsInDeadZone(_das.y))
+                    {
+                        ManageDistance(_das.y);
                     }
                 }
             }
 
-            /// <summary>
-            /// Deactivates the Attraction/Repulsion mode to bring closer or push
-            /// away objects that are being grabed.
-            /// Called back after a user input on the XR controller.
-            /// The user input is referenced by the ref(Left/Right)Activate fields
-            /// of the class.
-            /// </summary>
-            /// <param name="_controllerID">The controller ID (Left or Right)</param>
-            void DeactivateAttractionRepulsion(IGrab.XRControllerID _controllerID)
+            private void AttractionRepulsionRight(InputAction.CallbackContext _ctx)
             {
-                if (isGrabed)
+                if (remoteGrabEnabled && m_controllerID == IGrab.XRControllerID.Right)
                 {
-                    if (_controllerID == controllerID)
+                    Vector2 _das = _ctx.ReadValue<Vector2>();
+                    if (!IsInDeadZone(_das.y))
                     {
-                        attractionRepulsionIsActive = false;
+                        ManageDistance(_das.y);
                     }
                 }
-            }
-
-            /// <summary>
-            /// Logic to translate an object when grabed from a contact.
-            /// </summary>
-            void FollowControllerTranslation()
-            {
-                controllerPosition = refCurrentController.transform.position;
-                Vector3 Delta = (controllerPosition - controllerLatePosition);
-
-                transform.localPosition += Delta * 3;
-
-                controllerLatePosition = controllerPosition;
             }
 
             /// <summary>
             /// Logic to translate the object when grabed from a distance.
             /// </summary>
             void FollowBeamTranslation()
-            {
-                controllerPosition = refCurrentController.transform.position;
-                
-                Vector3 target = objDistance * refCurrentController.transform.forward + controllerPosition;
+            {                
+                Vector3 target = objDistance * refCurrentController.transform.forward +
+                                 refCurrentController.transform.position;
 
                 transform.position = Vector3.SmoothDamp(transform.position,
                                                         target,
@@ -142,33 +129,46 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// Logic to push away or to bring closer a grabed object
+            /// A hard coded method returning true if Abs(<paramref name="_value"/>)
+            /// lower than <paramref name="_threshold"/>. Returns false otherwise.
             /// </summary>
-            void UndergoTractorBeam()
+            /// <remarks>Used to clamp Joystick input data since I couldn't
+            /// make the built-in deadzone work as intended.</remarks>
+            private bool IsInDeadZone(float _value, float _threshold = 0.5f)
             {
-                controllerPosition = refCurrentController.transform.position;
-                Vector3 BeamAxis_n = (transform.position - controllerPosition).normalized;
-                Vector3 DirController = (controllerPosition - controllerStartPosition);
-                float dot = Vector3.Dot(DirController, BeamAxis_n);
+                return Mathf.Abs(_value) < _threshold;
+            }
 
-                //repulsion
-                if (dot > repulsionThreshold)
+            /// <summary>
+            /// Moves the selector forward or backward.
+            /// </summary>
+            /// <param name="_mvtFactor">If greater than 0 then forward movement;
+            /// If lower than 0 then backward movement.</param>
+            private void ManageDistance(float _mvtFactor)
+            {
+                float speed;
+                if (_mvtFactor > 0)
                 {
-                    float repulsionSpeed = repulsionSpeedCurve.Evaluate(objDistance / objectMaxDistance);
-                    if (objDistance + repulsionSpeed < objectMaxDistance)
-                    {
-                        transform.position += BeamAxis_n * repulsionSpeed;
-                        objDistance += repulsionSpeed;
-                    }
+                    speed = repulsionSpeedCurve.Evaluate(objDistance / objectMaxDistance);
                 }
+                else
+                {
+                    speed = attractionSpeedCurve.Evaluate(objDistance / objectMaxDistance);
+                }
+                Vector3 target = transform.position +
+                                 _mvtFactor * speed * (
+                                 transform.position - refCurrentController.transform.position);
 
-                //attraction
-                if (dot < -attractionThreshold)
+                objDistance = Vector3.Distance(target, refCurrentController.transform.position);
+                if (objDistance < objectMinDistance || objDistance > objectMaxDistance)
                 {
-                    float attractionSpeed = repulsionSpeedCurve.Evaluate(objDistance / objectMaxDistance);
-                    transform.position -= BeamAxis_n * attractionSpeed;
-                    objDistance -= attractionSpeed;
+                    target = transform.position;
                 }
+                transform.localPosition = Vector3.SmoothDamp(
+                                            transform.localPosition,
+                                            target,
+                                            ref refVelocity,
+                                            0.1f);
             }
 
             /// <summary>
@@ -185,26 +185,14 @@ namespace ECellDive
                     refCurrentController = currentRemoteInteractor.gameObject;
                 }
 
-                controllerLatePosition = refCurrentController.transform.position;
-                objDistance = Vector3.Distance(transform.position, controllerLatePosition);
+                objDistance = Vector3.Distance(transform.position,
+                                               refCurrentController.transform.position);
 
-            }
-
-            public void OnDirectGrab()
-            {
-                FollowControllerTranslation();
             }
 
             public void OnRemoteGrab()
             {
-                if (!attractionRepulsionIsActive)
-                {
-                    FollowBeamTranslation();
-                }
-                else
-                {
-                    UndergoTractorBeam();
-                }
+                FollowBeamTranslation();
             }
 
             public void OnRemoteRelease()
@@ -245,19 +233,6 @@ namespace ECellDive
                     case IGrab.XRControllerID.Right:
                         currentRemoteInteractor = ScenesData.refSceneManagerMonoBehaviour.remoteGrabData.rightInteractor;
                         break;
-                }
-            }
-
-            private void Update()
-            {
-                if (isGrabed)
-                {
-                    if (remoteGrabEnabled)
-                    {
-                        OnRemoteGrab();
-                    }
-
-                    m_OnPostGrabMovementUpdate.Invoke();
                 }
             }
         }
