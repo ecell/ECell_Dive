@@ -117,7 +117,6 @@ namespace ECellDive
                 {
                     ManageScale(_das.x);
                 }
-                
             }
 
             /// <summary>

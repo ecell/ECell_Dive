@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ECellDive
 {
     namespace Utility
     {
-        public class DiveGrabHelperManager : MonoBehaviour
+        public class AnchoredContinousMoveHelper : MonoBehaviour
         {
             public GameObject refSphere;
 
@@ -24,6 +22,13 @@ namespace ECellDive
             public LineRenderer refZLineRenderer;
             public Gradient ZLineNonValidGradient;
             public Gradient ZLineValidGradient;
+
+            private void Start()
+            {
+                refXLineRenderer.colorGradient = XLineNonValidGradient;
+                refYLineRenderer.colorGradient = YLineNonValidGradient;
+                refZLineRenderer.colorGradient = ZLineNonValidGradient;
+            }
 
             /// <summary>
             /// Changes the color gradients of the lines to the valid ones
@@ -72,7 +77,6 @@ namespace ECellDive
                 transform.LookAt(new Vector3(Camera.main.transform.position.x,
                                              transform.position.y,
                                              Camera.main.transform.position.z));
-                //Camera.main.transform.TransformPoint()
             }
 
             /// <summary>
