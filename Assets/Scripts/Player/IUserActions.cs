@@ -16,7 +16,7 @@ namespace ECellDive
         public interface IGrab
         {
             public bool isGrabed { get; set; }
-            [Serializable] public enum XRControllerID { Left, Right }
+            [Serializable] public enum XRControllerID { Left, Right, Unassigned }
             public XRControllerID controllerID { get; set; }
             public GameObject refCurrentController { get; set; }
 

@@ -585,17 +585,17 @@
             "id": "91e17dbc-9e0c-4c8a-8adb-9e3f0b8f6412",
             "actions": [
                 {
-                    "name": "Teleport Mode Activate",
-                    "type": "Button",
-                    "id": "23851e25-0d38-4d53-9796-4613dc262426",
-                    "expectedControlType": "Button",
+                    "name": "MoveTeleportationReticle",
+                    "type": "PassThrough",
+                    "id": "50f07919-559b-4f90-882b-4b1d0fa483f2",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "Teleport Mode Cancel",
+                    "name": "SwitchMovementMode",
                     "type": "Button",
-                    "id": "89e05c26-c9a1-4954-911a-1172bfadcf45",
+                    "id": "eaa18b1f-d742-4960-9d7a-46655070efcc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -612,34 +612,34 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "d6b427e9-5f4b-451e-8da6-63de3370d2f8",
-                    "path": "<XRController>{RightHand}/primaryTouched",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Teleport Mode Activate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9ea8d8c4-afe4-412b-8b04-1e5f6e95eb03",
-                    "path": "<XRController>{RightHand}/gripPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Teleport Mode Cancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "70e6bc89-c6a2-4d6c-a044-b1ad8cde0476",
-                    "path": "<XRController>{RightHand}/primaryButton",
-                    "interactions": "Tap",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Teleport Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f532bc8-9581-41d9-a796-7061415b93dc",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchMovementMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f07401ed-37d8-40dd-b9d7-a57a1a0a0c72",
+                    "path": "<XRController>{RightHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveTeleportationReticle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -650,17 +650,17 @@
             "id": "2694ca7d-c80a-4ce5-a79a-fa471b066e92",
             "actions": [
                 {
-                    "name": "Teleport Mode Activate",
-                    "type": "Button",
-                    "id": "8aa343d8-9875-459b-afc9-b3ed90f20b18",
-                    "expectedControlType": "Button",
+                    "name": "MoveTeleportationReticle",
+                    "type": "PassThrough",
+                    "id": "b910ca5d-11ae-4865-b820-d968628307ab",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "Teleport Mode Cancel",
+                    "name": "SwitchMovementMode",
                     "type": "Button",
-                    "id": "4af63a32-d158-467b-84f9-0e4f0f2d73a3",
+                    "id": "7434cd4a-0f85-426e-9c0b-4acf895a8e25",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -677,34 +677,34 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "242c9a78-2f0b-4e95-8c1d-fd30a54e2e38",
-                    "path": "<XRController>{LeftHand}/primaryTouched",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Teleport Mode Activate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a87a2502-8c69-44f1-a35a-f03525171134",
-                    "path": "<XRController>{LeftHand}/gripPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Teleport Mode Cancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "cd972527-92e0-485a-91ca-ee7ffccdf2cf",
-                    "path": "<XRController>{LeftHand}/primaryButton",
-                    "interactions": "Tap",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Teleport Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f19fda1-515d-4d7a-a1ba-e8fcbecb523c",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchMovementMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "473414cb-43f3-4fb8-977f-e0c22f9b988f",
+                    "path": "<XRController>{LeftHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveTeleportationReticle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -714,14 +714,6 @@
             "name": "Ray_Based_Controls_RH",
             "id": "810865f8-7e7d-4a9f-b591-e40109c3e2d7",
             "actions": [
-                {
-                    "name": "Attract_Repulse",
-                    "type": "Button",
-                    "id": "419246dd-af2d-4852-9a26-80839c26cc3e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
                 {
                     "name": "DisplayObjectMenu",
                     "type": "Button",
@@ -735,6 +727,14 @@
                     "type": "Button",
                     "id": "29f12c49-e6fe-4a04-9bdf-fffca5ec9cbb",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "JoyStick",
+                    "type": "PassThrough",
+                    "id": "419246dd-af2d-4852-9a26-80839c26cc3e",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
@@ -764,39 +764,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "Button With One Modifier",
-                    "id": "e71f972b-2896-4f2a-bdb6-110620f9b33e",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attract_Repulse",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "a0244417-916d-43f1-ba3c-4147c8da4727",
-                    "path": "<XRController>{RightHand}/triggerPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Attract_Repulse",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "06de30e1-33c9-4577-8946-f7de86815b7b",
-                    "path": "<XRController>{RightHand}/gripButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Attract_Repulse",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
                 {
                     "name": "",
                     "id": "d5a91530-bb62-43f4-8118-4b9f15e33385",
@@ -851,6 +818,17 @@
                     "action": "DisplayObjectMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a39b11e4-a0b3-4f20-a19f-81809ac225e9",
+                    "path": "<XRController>{RightHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoyStick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -858,14 +836,6 @@
             "name": "Ray_Based_Controls_LH",
             "id": "af0b0f52-c06d-4765-a95f-0c894a78995f",
             "actions": [
-                {
-                    "name": "Attract_Repulse",
-                    "type": "Button",
-                    "id": "f25ad77e-b8a6-4fa4-95b0-c86820d787cc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
                 {
                     "name": "DisplayObjectMenu",
                     "type": "Button",
@@ -879,6 +849,14 @@
                     "type": "Button",
                     "id": "90521d53-898d-45fb-9fdd-81e6277247d2",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "JoyStick",
+                    "type": "PassThrough",
+                    "id": "62d9cdfd-be94-4c16-b7a7-8b9d1949ebd3",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
@@ -908,39 +886,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "Button With One Modifier",
-                    "id": "0d8c33ee-ebf2-43d0-9047-6419157da403",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attract_Repulse",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "aacfd80f-d594-4e81-94f7-3b8a24a56762",
-                    "path": "<XRController>{LeftHand}/triggerPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Attract_Repulse",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "01729bff-042b-4f12-ad94-ba350e06ecff",
-                    "path": "<XRController>{LeftHand}/gripButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Attract_Repulse",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
                 {
                     "name": "",
                     "id": "196cbc21-3f89-45b0-a420-34508d179b6e",
@@ -993,6 +938,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad9cba90-a4a9-4d2e-999b-ad622e089f96",
+                    "path": "<XRController>{LeftHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoyStick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

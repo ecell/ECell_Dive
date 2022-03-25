@@ -33,8 +33,8 @@ namespace ECellDive
             private int rightControllerModeID = 1;//default is movement mode on right controller
 
             [Header("Movement XRRayInteractors")]
-            public XRRayInteractor leftMvt;
-            public XRRayInteractor rightMvt;
+            public GameObject leftMvt;
+            public GameObject rightMvt;
 
             [Header("Group Controls Interactors")]
             public GameObject leftGC;

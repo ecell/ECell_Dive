@@ -25,9 +25,6 @@ namespace ECellDive
 
             [Tooltip("The minimum time we wait for the dive.")]
             [Min(1f)] public float duration;
-
-            public GameObject diveGrabHelper;
-
         }
 
         [System.Serializable]
