@@ -16,6 +16,13 @@ namespace ECellDive
             string NAME { get; set; }
             List<int> incommingEdges { get; set; }
             List<int> outgoingEdges { get; set; }
+
+            /// <summary>
+            /// A utility state variable to describe whether the node is
+            /// simply there to structure the network or if it's a node
+            /// representing important data for the user.
+            /// </summary>
+            bool isVirtual { get; set; }
         }
 
         /// <summary>

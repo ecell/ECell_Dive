@@ -135,6 +135,14 @@ namespace ECellDive
 
                 return nodePos;
             }
+
+            public static bool LookForNodeType(JToken _node)
+            {
+                JObject jObjNode = (JObject)_node;
+
+                return (jObjNode["data"]["node_type"].Value<string>() == "midmarker" ||
+                        jObjNode["data"]["node_type"].Value<string>() == "multimarker");
+            }
         }
     }
 }

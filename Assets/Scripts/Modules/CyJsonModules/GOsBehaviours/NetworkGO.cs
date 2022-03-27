@@ -56,8 +56,8 @@ namespace ECellDive
                                                                                                 gameObject.transform);
                     edgeGO.GetComponent<EdgeGO>().Initialize(this, _edge);
 
-                    DataID_to_DataGO[_edge.source].GetComponent<NodeGO>().nodeData.outgoingEdges.Add(_edge.ID);
-                    DataID_to_DataGO[_edge.target].GetComponent<NodeGO>().nodeData.incommingEdges.Add(_edge.ID);
+                    DataID_to_DataGO[_edge.source].GetComponent<INodeGO>().nodeData.outgoingEdges.Add(_edge.ID);
+                    DataID_to_DataGO[_edge.target].GetComponent<INodeGO>().nodeData.incommingEdges.Add(_edge.ID);
 
                     DataID_to_DataGO[_edge.ID] = edgeGO;
                 }

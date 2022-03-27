@@ -292,7 +292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1145934949349748674, guid: b51288501e48d1d4d850ccaad3068640, type: 3}
       propertyPath: m_Name
-      value: Default_TeleportationReticle
+      value: Left Teleportation Reticle
       objectReference: {fileID: 0}
     - target: {fileID: 5698831427293166282, guid: b51288501e48d1d4d850ccaad3068640, type: 3}
       propertyPath: m_LocalPosition.x
@@ -366,37 +366,6 @@ Transform:
   - {fileID: 2006330215}
   m_Father: {fileID: 223113612}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &204944041
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 204944042}
-  m_Layer: 0
-  m_Name: =============== Props =================
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &204944042
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 204944041}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 531255369}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &223113611
 GameObject:
@@ -1393,68 +1362,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
---- !u!1001 &531255368
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 204944042}
-    m_Modifications:
-    - target: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731591979496451907, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-      propertyPath: m_Name
-      value: Dive Grab Helper Manager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
---- !u!4 &531255369 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5731591979496451906, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-  m_PrefabInstance: {fileID: 531255368}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &550419077 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6877773302811243220, guid: 70125326834c6a442b5f854b103393ab, type: 3}
@@ -2386,7 +2293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5731591979496451907, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
       propertyPath: m_Name
-      value: Dive Grab Helper Manager
+      value: ' Right Anchored Continous Move Helper'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
@@ -2406,11 +2313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3b1a670969fe24a9151bb0babffe2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &762638388 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5731591979496451907, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
-  m_PrefabInstance: {fileID: 531255368}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &777576719
 GameObject:
   m_ObjectHideFlags: 0
@@ -3407,7 +3309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4805792006180304321, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4805792006180304321, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3567,7 +3469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5690436468354626141, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5690436468354626141, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3715,7 +3617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6765206276923177656, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6765206276923177656, guid: 6684ae0b9fdf90f4895596510e012cd2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4299,7 +4201,7 @@ Transform:
   - {fileID: 130129779}
   - {fileID: 288352040}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &912275710
 PrefabInstance:
@@ -5678,7 +5580,6 @@ MonoBehaviour:
   divingData:
     refAnimator: {fileID: 931897979}
     duration: 1
-    diveGrabHelper: {fileID: 762638388}
   remoteGrabData:
     leftInteractor: {fileID: 551042020}
     rightInteractor: {fileID: 1693369312}
@@ -6883,7 +6784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1145934949349748674, guid: b51288501e48d1d4d850ccaad3068640, type: 3}
       propertyPath: m_Name
-      value: Default_TeleportationReticle
+      value: Right Teleportation Reticle
       objectReference: {fileID: 0}
     - target: {fileID: 5698831427293166282, guid: b51288501e48d1d4d850ccaad3068640, type: 3}
       propertyPath: m_RootOrder
@@ -9051,7 +8952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5731591979496451907, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
       propertyPath: m_Name
-      value: Dive Grab Helper Manager
+      value: ' Left Anchored Continous Move Helper'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffeb6a58e43e17649a50f9c852eab2b8, type: 3}
@@ -9108,7 +9009,7 @@ Transform:
   - {fileID: 1309198386}
   - {fileID: 1038116088}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2081247631
 PrefabInstance:

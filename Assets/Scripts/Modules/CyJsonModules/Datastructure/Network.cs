@@ -38,9 +38,11 @@ namespace ECellDive
                 {
                     Vector3 nodePos = CyJsonParser.LookForNodePosition(jNodes.ElementAt(i));
                     string name = CyJsonParser.LookForName(jNodes.ElementAt(i));
+                    bool isVirtual = CyJsonParser.LookForNodeType(jNodes.ElementAt(i));
                     nodes[i] = new Node(jNodes.ElementAt(i)["data"]["id"].Value<int>(),
                                         name,
-                                        nodePos);
+                                        nodePos,
+                                        isVirtual);
                 }
             }
 

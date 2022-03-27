@@ -33,6 +33,10 @@ namespace ECellDive
                                               nodeData.position.z,
                                               nodeData.position.y) / _masterPathway.networkGOSettingsModel.PositionScaleFactor;
                 gameObject.SetActive(true);
+                if (nodeData.isVirtual)
+                {
+                    refRenderer.enabled = false;
+                }
                 gameObject.transform.position = nodePos;
                 gameObject.transform.localScale /= _masterPathway.networkGOSettingsModel.SizeScaleFactor;
                 gameObject.name = $"{nodeData.ID}";
@@ -51,6 +55,7 @@ namespace ECellDive
             #region - IHighlightable -
             public override void SetHighlight()
             {
+                refRenderer.enabled = true;
                 mpb.SetVector(colorID, highlightColor);
                 refRenderer.SetPropertyBlock(mpb);
             }
@@ -59,8 +64,14 @@ namespace ECellDive
             {
                 if (!forceHighlight)
                 {
+                    refRenderer.enabled = true;
                     mpb.SetVector(colorID, defaultColor);
                     refRenderer.SetPropertyBlock(mpb);
+
+                    if (nodeData.isVirtual)
+                    {
+                        refRenderer.enabled = false;
+                    }
                 }
             }
             #endregion
