@@ -50,11 +50,14 @@ namespace ECellDive
 
             private NetworkGO refMasterPathway;
 
-            private void Start()
+            private void Awake()
             {
                 triggerKOActions.leftController.action.performed += ManageKnockout;
                 triggerKOActions.rightController.action.performed += ManageKnockout;
+            }
 
+            private void Start()
+            {
                 fluxLevel = 0f;
                 fluxLevelClamped = 1f;
             }
@@ -109,6 +112,7 @@ namespace ECellDive
                         SpreadActivationDownward();
                         SpreadActivationUpward();
                     }
+
                     else
                     {
                         SpreadKODownward();

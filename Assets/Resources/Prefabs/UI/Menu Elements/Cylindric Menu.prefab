@@ -343,7 +343,6 @@ GameObject:
   - component: {fileID: 2583375516026854577}
   - component: {fileID: 6470897552992231537}
   - component: {fileID: 5783487105504562818}
-  - component: {fileID: 4204183774955498002}
   m_Layer: 5
   m_Name: Cylindric Menu
   m_TagString: Untagged
@@ -415,7 +414,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6470897552992231537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,32 +451,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
---- !u!114 &4204183774955498002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897113961394436351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 328ea3960749ad146a601e23648d3c33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverEnterHapticData:
-    play: 1
-    intensity: 0.1
-    duration: 0.05
-  hoverExitHapticData:
-    play: 0
-    intensity: 0
-    duration: 0
-  hoverEnterAudioData:
-    play: 1
-    clip: {fileID: 8300000, guid: 57f682d93cf8c4b47961596080bf6d95, type: 3}
-  hoverExitAudioData:
-    play: 0
-    clip: {fileID: 0}
 --- !u!1 &2036592239559022462
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,6 +2215,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb9ce80018bf9c241852b5bd0d15916c, type: 3}
+--- !u!224 &7690843734597017442 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2420920827874927481, guid: cb9ce80018bf9c241852b5bd0d15916c, type: 3}
+  m_PrefabInstance: {fileID: 5414324053729475611}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6736773343163496753 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1611823177018721578, guid: cb9ce80018bf9c241852b5bd0d15916c, type: 3}
@@ -2253,11 +2231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1369550315f3b4faf038804ed9012e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7690843734597017442 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2420920827874927481, guid: cb9ce80018bf9c241852b5bd0d15916c, type: 3}
-  m_PrefabInstance: {fileID: 5414324053729475611}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5560902976510698453
 PrefabInstance:
   m_ObjectHideFlags: 0

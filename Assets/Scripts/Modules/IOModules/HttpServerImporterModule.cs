@@ -17,14 +17,14 @@ namespace ECellDive
         {
             public GameObject UISelectorsContainer;
             public GameObject UISelectorPrefab;
+            public TMP_InputField refIPInputField;
+            public TMP_InputField refPortInputField;
         }
 
         public class HttpServerImporterModule : HttpServerBaseModule
         {
             public UIDisplayData uiDisplayData;
             [HideInInspector] public string activeModelName = "";
-
-            
 
             /// <summary>
             /// Requests the models list to the server.
@@ -149,6 +149,16 @@ namespace ECellDive
 
                     }
                 }
+            }
+
+            public void UpdateIP()
+            {
+                serverData.serverIP = uiDisplayData.refIPInputField.text;
+            }
+
+            public void UpdatePort()
+            {
+                serverData.port = uiDisplayData.refPortInputField.text;
             }
         }
     }

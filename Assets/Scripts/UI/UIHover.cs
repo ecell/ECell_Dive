@@ -37,6 +37,8 @@ namespace ECellDive
         /// </remarks>
         public class UIHover : MonoBehaviour
         {
+            public bool doTriggerInstanciation = false;
+
             public HapticData hoverEnterHapticData;
             public HapticData hoverExitHapticData;
 
@@ -53,23 +55,31 @@ namespace ECellDive
             private GameObject rightLastHovered = null;
             private void Awake()
             {
-                List<GameObject> gameObjects = new List<GameObject>();
-                gameObjects.AddRange(gameObject.GetComponentsInChildren<Button>().Select(x => x.gameObject));
-                gameObjects.AddRange(gameObject.GetComponentsInChildren<Slider>().Select(x => x.gameObject));
-                gameObjects.AddRange(gameObject.GetComponentsInChildren<Toggle>().Select(x => x.gameObject));
-                gameObjects.AddRange(gameObject.GetComponentsInChildren<TMP_InputField>().Select(x => x.gameObject));
-                foreach (GameObject item in gameObjects)
+                if (doTriggerInstanciation)
                 {
-                    EventTrigger trigger = item.AddComponent<EventTrigger>();
-
-                    EventTrigger.Entry e = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
-                    e.callback.AddListener(HoverEnter);
-                    trigger.triggers.Add(e);
-
-                    EventTrigger.Entry e2 = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
-                    e2.callback.AddListener(HoverExit);
-                    trigger.triggers.Add(e2);
+                    List<GameObject> gameObjects = new List<GameObject>();
+                    gameObjects.AddRange(gameObject.GetComponentsInChildren<Button>().Select(x => x.gameObject));
+                    gameObjects.AddRange(gameObject.GetComponentsInChildren<Slider>().Select(x => x.gameObject));
+                    gameObjects.AddRange(gameObject.GetComponentsInChildren<Toggle>().Select(x => x.gameObject));
+                    gameObjects.AddRange(gameObject.GetComponentsInChildren<TMP_InputField>().Select(x => x.gameObject));
+                    foreach (GameObject item in gameObjects)
+                    {
+                        AddPointerEvents(item);
+                    }
                 }
+            }
+
+            public void AddPointerEvents(GameObject _item)
+            {
+                EventTrigger trigger = _item.AddComponent<EventTrigger>();
+
+                EventTrigger.Entry e = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+                e.callback.AddListener(HoverEnter);
+                trigger.triggers.Add(e);
+
+                EventTrigger.Entry e2 = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+                e2.callback.AddListener(HoverExit);
+                trigger.triggers.Add(e2);
             }
 
             private void HoverEnter(BaseEventData eventData)
