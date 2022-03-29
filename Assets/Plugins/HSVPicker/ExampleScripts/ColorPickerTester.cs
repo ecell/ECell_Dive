@@ -5,7 +5,7 @@ namespace HSVPickerExamples
     public class ColorPickerTester : MonoBehaviour 
     {
 
-        public new Renderer renderer;
+        public Renderer refRenderer = new Renderer();
         public ColorPicker picker;
 
         public Color Color = Color.red;
@@ -16,11 +16,11 @@ namespace HSVPickerExamples
         {
             picker.onValueChanged.AddListener(color =>
             {
-                renderer.material.color = color;
+                refRenderer.material.color = color;
                 Color = color;
             });
 
-		    renderer.material.color = picker.CurrentColor;
+            refRenderer.material.color = picker.CurrentColor;
             if(SetColorOnStart) 
             {
                 picker.CurrentColor = Color;
