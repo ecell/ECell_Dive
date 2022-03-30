@@ -33,7 +33,13 @@ namespace ECellDive
                 get => m_refDropDownImageExpanded;
                 set => m_refDropDownImageExpanded = value;
             }
-            public bool isExpanded { get; protected set; }
+            private bool m_isExpanded = false;
+            public bool isExpanded
+            {
+                get => m_isExpanded;
+                protected set => m_isExpanded = value;
+            }
+
             private List<GameObject> m_content = new List<GameObject> ();
             public List<GameObject> content
             {
@@ -48,6 +54,7 @@ namespace ECellDive
             /// </summary>
             public void ManageExpansion()
             {
+                Debug.Log("Managing Expansion of " + gameObject.name + $" with isExpanded={isExpanded}");
                 if (isExpanded)
                 {
                     refDropDownImageExpanded.SetActive(false);
@@ -60,7 +67,6 @@ namespace ECellDive
                     refDropDownImageExpanded.SetActive(true);
                     DisplayContent();
                 }
-                isExpanded = !isExpanded;
             }
 
             /// <summary>
@@ -75,6 +81,12 @@ namespace ECellDive
                     refGM.ForceDistributeColor(refToggle.isOn);
                     refGM.refToggle.interactable = refToggle.isOn;
                 }
+            }
+
+            public void SwitchExpansionStatus()
+            {
+                Debug.Log("Switching Extension status of "+gameObject.name);
+                isExpanded = !isExpanded;
             }
 
             #region - IDropDown Methods -
