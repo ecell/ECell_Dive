@@ -17,7 +17,9 @@ namespace ECellDive
         {
             public GameObject semanticTermUIPrefab;
             public GameObject groupUIPrefab;
-            public GameObject allUIContainer;
+            public OptimizedVertScrollList allUIContainer;
+
+            //private List<SemanticGroupUIManager> semanticGroups = new List<SemanticGroupUIManager>();
 
             private void Awake()
             {
@@ -29,9 +31,10 @@ namespace ECellDive
 
             private void Start()
             {
-                GameObject semanticTermUI = Instantiate(semanticTermUIPrefab, allUIContainer.transform);
+                GameObject semanticTermUI = allUIContainer.AddItem(semanticTermUIPrefab);
                 semanticTermUI.SetActive(true);
                 semanticTermUI.GetComponentInChildren<TMP_Text>().text = "Custom Groups";
+                allUIContainer.UpdateScrollList();
             }
 
             /// <summary>
@@ -44,10 +47,12 @@ namespace ECellDive
             /// <see cref="groupUIPrefab"/> should be part of.</param>
             private void AddGroupUI(GroupData _groupData, IDropDown _parent)
             {
-                GameObject groupUI = Instantiate(groupUIPrefab, allUIContainer.transform);
+                GameObject groupUI = allUIContainer.AddItem(groupUIPrefab);
                 groupUI.GetComponent<GroupUIManager>().SetData(_groupData);
                 groupUI.GetComponent<GroupUIManager>().ForceDistributeColor(true);
                 _parent.AddItem(groupUI);
+                groupUI.SetActive(_parent.isExpanded);
+                //allUIContainer.UpdateScrollList();
             }
 
             /// <summary>
@@ -63,15 +68,17 @@ namespace ECellDive
             /// to a previously created <see cref="semanticTermUIPrefab"/>.</remarks>
             public void AddGroupUI(GroupData _groupData, int _parentIndex)
             {
-                GameObject groupUI = Instantiate(groupUIPrefab, allUIContainer.transform);
+                GameObject groupUI = allUIContainer.AddItem(groupUIPrefab);
                 groupUI.transform.SetSiblingIndex(_parentIndex+1);
                 groupUI.GetComponent<GroupUIManager>().SetData(_groupData);
                 groupUI.GetComponent<GroupUIManager>().ForceDistributeColor(true);
 
-                IDropDown parent = allUIContainer.transform.GetChild(_parentIndex).gameObject.GetComponent<IDropDown>();
+                IDropDown parent = allUIContainer.refContent.GetChild(_parentIndex).gameObject.GetComponent<IDropDown>();
                 parent.AddItem(groupUI);
 
                 groupUI.SetActive(parent.isExpanded);
+
+                allUIContainer.UpdateScrollList();
             }
 
             /// <summary>
@@ -83,17 +90,28 @@ namespace ECellDive
             /// the container.</param>
             public void AddSemanticTermUI(string _semanticTerm, List<GroupData> _groupsData)
             {
-                GameObject semanticTermUI = Instantiate(semanticTermUIPrefab, allUIContainer.transform);
+                GameObject semanticTermUI = allUIContainer.AddItem(semanticTermUIPrefab);
                 semanticTermUI.SetActive(true);
                 semanticTermUI.GetComponentInChildren<TMP_Text>().text = _semanticTerm;
-
+                
                 SemanticGroupUIManager refSGM = semanticTermUI.GetComponent<SemanticGroupUIManager>();
+                //semanticGroups.Add(refSGM);
 
                 foreach(GroupData _groupData in _groupsData)
                 {
                     AddGroupUI(_groupData, refSGM);
                 }
+                allUIContainer.UpdateScrollList();
+                allUIContainer.UpdateAllChildrenVisibility();
             }
+
+            //public void ApplySemanticGroupsExtensionStatus()
+            //{
+            //    foreach (SemanticGroupUIManager _sgrp in semanticGroups)
+            //    {
+            //        _sgrp.ManageExpansion();
+            //    }
+            //}
         }
     }
 }

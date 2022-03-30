@@ -15,7 +15,7 @@ namespace ECellDive
         public class LogManager : MonoBehaviour
         {
             [Header("General References")]
-            public Transform refMessageListContent;
+            public OptimizedVertScrollList refMessageScrollList;
             public GameObject refMessageItemPrefab;
             public TextMeshProUGUI refMessageSpace;
 
@@ -125,7 +125,7 @@ namespace ECellDive
             /// </summary>
             private void RecordMessage(LogSystem.Message _msg)
             {
-                GameObject newMsg = Instantiate(refMessageItemPrefab, refMessageListContent);
+                GameObject newMsg = refMessageScrollList.AddItem(refMessageItemPrefab);
                 newMsg.SetActive(true);
                 TextMeshProUGUI msgTMP = newMsg.GetComponentInChildren<TextMeshProUGUI>();
                 if (msgTMP != null)
@@ -134,6 +134,8 @@ namespace ECellDive
                     msgTMP.color = messageTypeColors[(int)_msg.type];
                 }
                 messages.Add(newMsg);
+
+                refMessageScrollList.UpdateScrollList();
             }
 
             /// <summary>
