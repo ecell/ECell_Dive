@@ -109,7 +109,7 @@ namespace ECellDive
 
                     childCounter++;
                 }
-                Debug.Log($"Final first:{firstVisibleChildIdx}; last:{lastVisibleChildIdx}");
+                //Debug.Log($"Final first:{firstVisibleChildIdx}; last:{lastVisibleChildIdx}");
             }
 
             //public void ShowAllChildren()
@@ -132,7 +132,7 @@ namespace ECellDive
 
             public void UpdateAllChildrenVisibility()
             {
-                Debug.Log("Updating All children visibility");
+                //Debug.Log("Updating All children visibility");
                 for (int i = 0; i < firstVisibleChildIdx; i++)
                 {
                     refContent.GetChild(i).gameObject.SetActive(false);
