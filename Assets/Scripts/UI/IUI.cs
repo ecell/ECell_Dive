@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using ECellDive.UI;
 
 namespace ECellDive
 {
@@ -30,16 +30,29 @@ namespace ECellDive
             bool isExpanded {get;}
 
             /// <summary>
+            /// The scroll List prefab to instantiate upon creation of a drop
+            /// down object.
+            /// </summary>
+            public GameObject scrollListPrefab { get; }
+
+            /// <summary>
             /// The content of the drop down. Namely, the objects to hide or display
             /// when the drop down is collapsed or expanded respectively.
             /// </summary>
-            List<GameObject> content { get; }
+            OptimizedVertScrollList scrollList { get; set; }
+
+            /// <summary>
+            /// The gameobject to activate/deactivate when we wish to show or hide the 
+            /// content of the drop down
+            /// </summary>
+            GameObject content { get; set; }
 
             /// <summary>
             /// Adds a new gameobject to the dropdown.
             /// </summary>
-            /// <param name="_item">The gameobject to add to the drop down.</param>
-            public void AddItem(GameObject _item);
+            /// <param name="_item">The gameobject prefab to add to the drop down.</param>
+            /// <returns>The instance of the prefab.</returns>
+            public GameObject AddItem(GameObject _item);
 
             /// <summary>
             /// The method to call back when expanding the drop down.
@@ -50,6 +63,8 @@ namespace ECellDive
             /// The method to call back when collapsing the drop down.
             /// </summary>
             public void HideContent();
+
+            public void InstantiateContent();
         }
     }
 }

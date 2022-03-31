@@ -51,6 +51,8 @@ namespace ECellDive
                         RecordMessage(_msg);
                     }
                 }
+
+                gameObject.SetActive(false);
             }
 
             /// <summary>

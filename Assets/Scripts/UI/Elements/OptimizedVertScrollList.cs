@@ -66,7 +66,7 @@ namespace ECellDive
             //{
             //    Debug.Log("Drawing all active children");
             //    float total = 0f;
-            //    foreach(RectTransform _child in refContent)
+            //    foreach (RectTransform _child in refContent)
             //    {
             //        if (_child.gameObject.activeSelf)
             //        {
@@ -106,7 +106,6 @@ namespace ECellDive
                         lastVisibleChildIdx = childCounter;
                     }
                     //}
-
                     childCounter++;
                 }
                 //Debug.Log($"Final first:{firstVisibleChildIdx}; last:{lastVisibleChildIdx}");

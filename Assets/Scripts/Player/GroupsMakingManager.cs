@@ -4,8 +4,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 using ECellDive.Interfaces;
-using ECellDive.UI;
 using ECellDive.SceneManagement;
+using ECellDive.UI;
+using ECellDive.Utility;
 
 namespace ECellDive
 {
@@ -32,6 +33,7 @@ namespace ECellDive
         /// The logic to handle custom groups made by the user with
         /// either the discrete or volumetric selectors.
         /// </summary>
+        [RequireComponent(typeof(FaceCamera))]
         public class GroupsMakingManager : MonoBehaviour
         {
             public GameObject refUICanvas;
@@ -195,6 +197,9 @@ namespace ECellDive
                 else
                 {
                     refUICanvas.SetActive(true);
+                    Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
+                    transform.position = pos;
+                    GetComponent<FaceCamera>().ShowBackToPlayer();
                 }
             }
 

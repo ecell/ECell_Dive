@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.SceneManagement;
-using TMPro;
+using ECellDive.Utility;
 
 
 namespace ECellDive
@@ -15,9 +16,15 @@ namespace ECellDive
         /// </summary>
         public class GroupsMenu : MonoBehaviour
         {
+            public GameObject refAllUIContainer;
+
             public GameObject semanticTermUIPrefab;
             public GameObject groupUIPrefab;
-            public OptimizedVertScrollList allUIContainer;
+
+            public OptimizedVertScrollList semanticGroupsScrollList;
+            private List<IDropDown> allDropDowns = new List<IDropDown>();
+
+            public bool hideOnStart = true;
 
             //private List<SemanticGroupUIManager> semanticGroups = new List<SemanticGroupUIManager>();
 
@@ -31,10 +38,11 @@ namespace ECellDive
 
             private void Start()
             {
-                GameObject semanticTermUI = allUIContainer.AddItem(semanticTermUIPrefab);
-                semanticTermUI.SetActive(true);
-                semanticTermUI.GetComponentInChildren<TMP_Text>().text = "Custom Groups";
-                allUIContainer.UpdateScrollList();
+                AddSemanticTermUI("Custom Groups", new List<GroupData>() { });
+                if (hideOnStart)
+                {
+                    gameObject.SetActive(false);
+                }
             }
 
             /// <summary>
@@ -47,12 +55,11 @@ namespace ECellDive
             /// <see cref="groupUIPrefab"/> should be part of.</param>
             private void AddGroupUI(GroupData _groupData, IDropDown _parent)
             {
-                GameObject groupUI = allUIContainer.AddItem(groupUIPrefab);
+                GameObject groupUI = _parent.AddItem(groupUIPrefab);
                 groupUI.GetComponent<GroupUIManager>().SetData(_groupData);
                 groupUI.GetComponent<GroupUIManager>().ForceDistributeColor(true);
-                _parent.AddItem(groupUI);
-                groupUI.SetActive(_parent.isExpanded);
-                //allUIContainer.UpdateScrollList();
+                groupUI.SetActive(true);
+                _parent.scrollList.UpdateScrollList();
             }
 
             /// <summary>
@@ -68,18 +75,38 @@ namespace ECellDive
             /// to a previously created <see cref="semanticTermUIPrefab"/>.</remarks>
             public void AddGroupUI(GroupData _groupData, int _parentIndex)
             {
-                GameObject groupUI = allUIContainer.AddItem(groupUIPrefab);
-                groupUI.transform.SetSiblingIndex(_parentIndex+1);
+                IDropDown parent = allDropDowns[_parentIndex];
+
+                GameObject groupUI = parent.AddItem(groupUIPrefab);
+                //groupUI.transform.SetSiblingIndex(_parentIndex+1);
                 groupUI.GetComponent<GroupUIManager>().SetData(_groupData);
                 groupUI.GetComponent<GroupUIManager>().ForceDistributeColor(true);
 
-                IDropDown parent = allUIContainer.refContent.GetChild(_parentIndex).gameObject.GetComponent<IDropDown>();
-                parent.AddItem(groupUI);
+                //IDropDown parent = parentScrollList.refContent.GetChild(_parentIndex).gameObject.GetComponent<IDropDown>();
+                //parent.AddItem(groupUI);
 
-                groupUI.SetActive(parent.isExpanded);
+                groupUI.SetActive(true);
 
-                allUIContainer.UpdateScrollList();
+                parent.scrollList.UpdateScrollList();
             }
+
+            /// <summary>
+            /// Adds a GUI element that acts as a container (drop down) of several groups.
+            /// Typically usefull to manage every group produced by a "Group By" operation.
+            /// </summary>
+            /// <param name="_semanticTerm">The name of the container.</param>
+            //public void AddSemanticTermUI(string _semanticTerm)
+            //{
+            //    GameObject semanticTermUI = semanticGroupsScrollList.AddItem(semanticTermUIPrefab);
+            //    semanticTermUI.SetActive(true);
+            //    semanticTermUI.GetComponentInChildren<TMP_Text>().text = _semanticTerm;
+
+            //    GameObject groupScrollList = Instantiate(scrollListUIPrefab, refAllUIContainer.transform);
+            //    allGroupsScrollList.Add(groupScrollList.GetComponent<OptimizedVertScrollList>());
+
+            //    semanticGroupsScrollList.UpdateScrollList();
+            //    semanticGroupsScrollList.UpdateAllChildrenVisibility();
+            //}
 
             /// <summary>
             /// Adds a GUI element that acts as a container (drop down) of several groups.
@@ -90,19 +117,27 @@ namespace ECellDive
             /// the container.</param>
             public void AddSemanticTermUI(string _semanticTerm, List<GroupData> _groupsData)
             {
-                GameObject semanticTermUI = allUIContainer.AddItem(semanticTermUIPrefab);
+                //Creating the drop down button
+                GameObject semanticTermUI = semanticGroupsScrollList.AddItem(semanticTermUIPrefab);
                 semanticTermUI.SetActive(true);
                 semanticTermUI.GetComponentInChildren<TMP_Text>().text = _semanticTerm;
-                
-                SemanticGroupUIManager refSGM = semanticTermUI.GetComponent<SemanticGroupUIManager>();
+                IDropDown ddComponent = semanticTermUI.GetComponent<IDropDown>();
+
+                //Creating the scroll list menu that will contain the objects
+                //controlled by the drop down.
+                ddComponent.InstantiateContent();
+                ddComponent.content.transform.parent = refAllUIContainer.transform;
+                allDropDowns.Add(ddComponent);
+
+                //SemanticGroupUIManager refSGM = semanticTermUI.GetComponent<SemanticGroupUIManager>();
                 //semanticGroups.Add(refSGM);
 
-                foreach(GroupData _groupData in _groupsData)
+                foreach (GroupData _groupData in _groupsData)
                 {
-                    AddGroupUI(_groupData, refSGM);
+                    AddGroupUI(_groupData, ddComponent);
                 }
-                allUIContainer.UpdateScrollList();
-                allUIContainer.UpdateAllChildrenVisibility();
+                semanticGroupsScrollList.UpdateScrollList();
+                semanticGroupsScrollList.UpdateAllChildrenVisibility();
             }
 
             //public void ApplySemanticGroupsExtensionStatus()

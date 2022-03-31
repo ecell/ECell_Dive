@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using ECellDive.Utility;
 
 namespace ECellDive
 {
@@ -16,7 +17,8 @@ namespace ECellDive
             public Canvas UpperCaseVK;
             public Canvas NumAndSignsVK;
         }
-
+        
+        [RequireComponent(typeof(FaceCamera))]
         public class VirtualKeyboardManager : MonoBehaviour
         {
             /// <summary>
@@ -76,6 +78,9 @@ namespace ECellDive
             public void Show()
             {
                 gameObject.SetActive(true);
+                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
+                transform.position = pos;
+                GetComponent<FaceCamera>().ShowBackToPlayer();
             }
 
             /// <summary>
