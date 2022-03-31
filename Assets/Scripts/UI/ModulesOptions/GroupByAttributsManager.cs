@@ -20,8 +20,8 @@ namespace ECellDive
             //public GameObject refAllUIContainer;
             public GroupByModule refGroupByModule;
 
-            public GameObject dataUIPrefab;
-            public GameObject attributsUIPrefab;
+            //ublic GameObject dataUIPrefab;
+            //public GameObject attributsUIPrefab;
             //public GameObject scrollListUIPrefab;
 
             public OptimizedVertScrollList allDataUIContainer;
@@ -43,7 +43,7 @@ namespace ECellDive
             /// <param name="_parent">A reference to the parent drop down container.</param>
             private void AddAttributsUI(string _attributName, IDropDown _parent)
             {
-                GameObject newAttributUI = _parent.AddItem(attributsUIPrefab); ;
+                GameObject newAttributUI = _parent.AddItem(); ;
                 newAttributUI.SetActive(true);
                 newAttributUI.name = _attributName;
                 newAttributUI.GetComponentInChildren<TMP_Text>().text = _attributName;
@@ -60,7 +60,7 @@ namespace ECellDive
             /// every field the user will be allowed to used to make groups from.</param>
             public void AddDataUI(string _dataName, JObject _dataNodeSample)
             {
-                GameObject newDataUI = allDataUIContainer.AddItem(dataUIPrefab);
+                GameObject newDataUI = allDataUIContainer.AddItem();
                 newDataUI.SetActive(true);
                 newDataUI.GetComponentInChildren<TMP_Text>().text = _dataName;
                 IDropDown ddComponent = newDataUI.GetComponent<IDropDown>();

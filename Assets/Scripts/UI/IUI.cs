@@ -29,6 +29,8 @@ namespace ECellDive
             /// </summary>
             bool isExpanded {get;}
 
+            //public GameObject itemPrefab { get;}
+
             /// <summary>
             /// The scroll List prefab to instantiate upon creation of a drop
             /// down object.
@@ -50,9 +52,7 @@ namespace ECellDive
             /// <summary>
             /// Adds a new gameobject to the dropdown.
             /// </summary>
-            /// <param name="_item">The gameobject prefab to add to the drop down.</param>
-            /// <returns>The instance of the prefab.</returns>
-            public GameObject AddItem(GameObject _item);
+            public GameObject AddItem();
 
             /// <summary>
             /// The method to call back when expanding the drop down.

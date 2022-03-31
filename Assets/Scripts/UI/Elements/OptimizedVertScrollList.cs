@@ -20,7 +20,7 @@ namespace ECellDive
         {
             public RectTransform refViewport;
             public RectTransform refContent;
-
+            public GameObject refItem;
             public Padding padding;
 
             private int firstVisibleChildIdx = 0;
@@ -38,13 +38,13 @@ namespace ECellDive
                 UpdateAllChildrenVisibility();
             }
 
-            public GameObject AddItem(GameObject _item)
+            public GameObject AddItem()
             {
                 GameObject go;
                 if (refContent.childCount > 0)
                 {
                     RectTransform lastChild = refContent.GetChild(refContent.childCount - 1).GetComponent<RectTransform>();
-                    go = Instantiate(_item, refContent);
+                    go = Instantiate(refItem, refContent);
                     RectTransform goRT = go.GetComponent<RectTransform>();
                     goRT.anchoredPosition = new Vector2(
                         0.5f * goRT.rect.width + padding.left,
@@ -52,7 +52,7 @@ namespace ECellDive
                 }
                 else
                 {
-                    go = Instantiate(_item, refContent);
+                    go = Instantiate(refItem, refContent);
                     RectTransform goRT = go.GetComponent<RectTransform>();
                     goRT.anchoredPosition = new Vector2(
                         0.5f * goRT.rect.width + padding.left,
@@ -62,22 +62,26 @@ namespace ECellDive
                 return go;
             }
 
-            //public void DrawActiveChildren()
-            //{
-            //    Debug.Log("Drawing all active children");
-            //    float total = 0f;
-            //    foreach (RectTransform _child in refContent)
-            //    {
-            //        if (_child.gameObject.activeSelf)
-            //        {
-            //            total -= padding.top + 0.5f * _child.rect.height;
-            //            _child.anchoredPosition = new Vector2(
-            //                0.5f * _child.rect.width + padding.left, total);
+            public void OnChildDestruction()
+            {
+                DrawAllChildren();
+                UpdateContentSize();
+                GetBorderVisibleChildren();
+                UpdateAllChildrenVisibility();
+            }
 
-            //            total -= 0.5f * _child.rect.height - padding.bottom;
-            //        }
-            //    }
-            //}
+            public void DrawAllChildren()
+            {
+                float total = 0f;
+                foreach (RectTransform _child in refContent)
+                {
+                    total -= padding.top + 0.5f * _child.rect.height;
+                    _child.anchoredPosition = new Vector2(
+                        0.5f * _child.rect.width + padding.left, total);
+
+                    total -= 0.5f * _child.rect.height - padding.bottom;
+                }
+            }
 
             public void GetBorderVisibleChildren()
             {
@@ -132,54 +136,64 @@ namespace ECellDive
             public void UpdateAllChildrenVisibility()
             {
                 //Debug.Log("Updating All children visibility");
-                for (int i = 0; i < firstVisibleChildIdx; i++)
+                if (refContent.childCount > 0)
                 {
-                    refContent.GetChild(i).gameObject.SetActive(false);
-                }
-                for (int i = lastVisibleChildIdx + 1; i < refContent.childCount; i++)
-                {
-                    refContent.GetChild(i).gameObject.SetActive(false);
+                    for (int i = 0; i < firstVisibleChildIdx; i++)
+                    {
+                        refContent.GetChild(i).gameObject.SetActive(false);
+                    }
+                    for (int i = firstVisibleChildIdx; i <= lastVisibleChildIdx; i++)
+                    {
+                        refContent.GetChild(i).gameObject.SetActive(true);
+                    }
+                    for (int i = lastVisibleChildIdx + 1; i < refContent.childCount; i++)
+                    {
+                        refContent.GetChild(i).gameObject.SetActive(false);
+                    }
                 }
             }
 
             public void UpdateBorderChildrenVisibility()
             {
-                RectTransform firstVisibleChild = refContent.GetChild(firstVisibleChildIdx).GetComponent<RectTransform>();
-                float refContentTop = refContent.anchoredPosition.y;
-
-                if (firstVisibleChild.anchoredPosition.y - 0.5f * firstVisibleChild.rect.height + refContentTop > 0)
+                if (refContent.childCount > 0)
                 {
-                    firstVisibleChild.gameObject.SetActive(false);
-                    firstVisibleChildIdx++;
-                }
+                    RectTransform firstVisibleChild = refContent.GetChild(firstVisibleChildIdx).GetComponent<RectTransform>();
+                    float refContentTop = refContent.anchoredPosition.y;
 
-                else if (firstVisibleChild.anchoredPosition.y + 0.5f * firstVisibleChild.rect.height + refContentTop < 0)
-                {
-                    if (firstVisibleChildIdx >= 1)
+                    if (firstVisibleChild.anchoredPosition.y - 0.5f * firstVisibleChild.rect.height + refContentTop > 0)
                     {
-                        firstVisibleChildIdx--;
-                        firstVisibleChild = refContent.GetChild(firstVisibleChildIdx).GetComponent<RectTransform>();
-                        firstVisibleChild.gameObject.SetActive(true);
+                        firstVisibleChild.gameObject.SetActive(false);
+                        firstVisibleChildIdx++;
                     }
-                }
 
-                RectTransform lastVisibleChild = refContent.GetChild(lastVisibleChildIdx).GetComponent<RectTransform>();
-
-                if (lastVisibleChild.anchoredPosition.y + 0.5f * lastVisibleChild.rect.height + refContentTop <
-                    -refViewport.rect.height)
-                {
-                    lastVisibleChild.gameObject.SetActive(false);
-                    lastVisibleChildIdx--;
-                }
-
-                if (lastVisibleChild.anchoredPosition.y - 0.5f * lastVisibleChild.rect.height + refContentTop >
-                    -refViewport.rect.height)
-                {
-                    if (lastVisibleChildIdx < refContent.childCount - 1)
+                    else if (firstVisibleChild.anchoredPosition.y + 0.5f * firstVisibleChild.rect.height + refContentTop < 0)
                     {
-                        lastVisibleChildIdx++;
-                        lastVisibleChild = refContent.GetChild(lastVisibleChildIdx).GetComponent<RectTransform>();
-                        lastVisibleChild.gameObject.SetActive(true);
+                        if (firstVisibleChildIdx >= 1)
+                        {
+                            firstVisibleChildIdx--;
+                            firstVisibleChild = refContent.GetChild(firstVisibleChildIdx).GetComponent<RectTransform>();
+                            firstVisibleChild.gameObject.SetActive(true);
+                        }
+                    }
+
+                    RectTransform lastVisibleChild = refContent.GetChild(lastVisibleChildIdx).GetComponent<RectTransform>();
+
+                    if (lastVisibleChild.anchoredPosition.y + 0.5f * lastVisibleChild.rect.height + refContentTop <
+                        -refViewport.rect.height)
+                    {
+                        lastVisibleChild.gameObject.SetActive(false);
+                        lastVisibleChildIdx--;
+                    }
+
+                    if (lastVisibleChild.anchoredPosition.y - 0.5f * lastVisibleChild.rect.height + refContentTop >
+                        -refViewport.rect.height)
+                    {
+                        if (lastVisibleChildIdx < refContent.childCount - 1)
+                        {
+                            lastVisibleChildIdx++;
+                            lastVisibleChild = refContent.GetChild(lastVisibleChildIdx).GetComponent<RectTransform>();
+                            lastVisibleChild.gameObject.SetActive(true);
+                        }
                     }
                 }
             }

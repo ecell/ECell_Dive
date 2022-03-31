@@ -18,8 +18,8 @@ namespace ECellDive
         {
             public GameObject refAllUIContainer;
 
-            public GameObject semanticTermUIPrefab;
-            public GameObject groupUIPrefab;
+            //public GameObject semanticTermUIPrefab;
+            //public GameObject groupUIPrefab;
 
             public OptimizedVertScrollList semanticGroupsScrollList;
             private List<IDropDown> allDropDowns = new List<IDropDown>();
@@ -55,7 +55,7 @@ namespace ECellDive
             /// <see cref="groupUIPrefab"/> should be part of.</param>
             private void AddGroupUI(GroupData _groupData, IDropDown _parent)
             {
-                GameObject groupUI = _parent.AddItem(groupUIPrefab);
+                GameObject groupUI = _parent.AddItem();
                 groupUI.GetComponent<GroupUIManager>().SetData(_groupData);
                 groupUI.GetComponent<GroupUIManager>().ForceDistributeColor(true);
                 groupUI.SetActive(true);
@@ -77,7 +77,7 @@ namespace ECellDive
             {
                 IDropDown parent = allDropDowns[_parentIndex];
 
-                GameObject groupUI = parent.AddItem(groupUIPrefab);
+                GameObject groupUI = parent.AddItem();
                 //groupUI.transform.SetSiblingIndex(_parentIndex+1);
                 groupUI.GetComponent<GroupUIManager>().SetData(_groupData);
                 groupUI.GetComponent<GroupUIManager>().ForceDistributeColor(true);
@@ -95,30 +95,12 @@ namespace ECellDive
             /// Typically usefull to manage every group produced by a "Group By" operation.
             /// </summary>
             /// <param name="_semanticTerm">The name of the container.</param>
-            //public void AddSemanticTermUI(string _semanticTerm)
-            //{
-            //    GameObject semanticTermUI = semanticGroupsScrollList.AddItem(semanticTermUIPrefab);
-            //    semanticTermUI.SetActive(true);
-            //    semanticTermUI.GetComponentInChildren<TMP_Text>().text = _semanticTerm;
-
-            //    GameObject groupScrollList = Instantiate(scrollListUIPrefab, refAllUIContainer.transform);
-            //    allGroupsScrollList.Add(groupScrollList.GetComponent<OptimizedVertScrollList>());
-
-            //    semanticGroupsScrollList.UpdateScrollList();
-            //    semanticGroupsScrollList.UpdateAllChildrenVisibility();
-            //}
-
-            /// <summary>
-            /// Adds a GUI element that acts as a container (drop down) of several groups.
-            /// Typically usefull to manage every group produced by a "Group By" operation.
-            /// </summary>
-            /// <param name="_semanticTerm">The name of the container.</param>
             /// <param name="_groupsData">The data of every group that falls in
             /// the container.</param>
             public void AddSemanticTermUI(string _semanticTerm, List<GroupData> _groupsData)
             {
                 //Creating the drop down button
-                GameObject semanticTermUI = semanticGroupsScrollList.AddItem(semanticTermUIPrefab);
+                GameObject semanticTermUI = semanticGroupsScrollList.AddItem();
                 semanticTermUI.SetActive(true);
                 semanticTermUI.GetComponentInChildren<TMP_Text>().text = _semanticTerm;
                 IDropDown ddComponent = semanticTermUI.GetComponent<IDropDown>();
@@ -126,7 +108,7 @@ namespace ECellDive
                 //Creating the scroll list menu that will contain the objects
                 //controlled by the drop down.
                 ddComponent.InstantiateContent();
-                ddComponent.content.transform.parent = refAllUIContainer.transform;
+                ddComponent.content.transform.SetParent(refAllUIContainer.transform, false);
                 allDropDowns.Add(ddComponent);
 
                 //SemanticGroupUIManager refSGM = semanticTermUI.GetComponent<SemanticGroupUIManager>();

@@ -45,6 +45,13 @@ namespace ECellDive
                 set => m_content = value;
             }
 
+            //[SerializeField] private GameObject m_itemPrefab;
+            //public GameObject itemPrefab
+            //{
+            //    get => m_itemPrefab;
+            //    set => m_itemPrefab = value;
+            //}
+
             [SerializeField] private GameObject m_scrollListPrefab;
             public GameObject scrollListPrefab
             {
@@ -82,9 +89,9 @@ namespace ECellDive
             }
 
             #region - IDropDown Methods -
-            public GameObject AddItem(GameObject _item)
+            public GameObject AddItem()
             {
-                return scrollList.AddItem(_item);
+                return scrollList.AddItem();
             }
 
             public void DisplayContent()

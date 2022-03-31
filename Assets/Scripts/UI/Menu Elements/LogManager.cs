@@ -16,7 +16,7 @@ namespace ECellDive
         {
             [Header("General References")]
             public OptimizedVertScrollList refMessageScrollList;
-            public GameObject refMessageItemPrefab;
+            //public GameObject refMessageItemPrefab;
             public TextMeshProUGUI refMessageSpace;
 
             [Header("Mutators")]
@@ -127,7 +127,7 @@ namespace ECellDive
             /// </summary>
             private void RecordMessage(LogSystem.Message _msg)
             {
-                GameObject newMsg = refMessageScrollList.AddItem(refMessageItemPrefab);
+                GameObject newMsg = refMessageScrollList.AddItem();
                 newMsg.SetActive(true);
                 TextMeshProUGUI msgTMP = newMsg.GetComponentInChildren<TextMeshProUGUI>();
                 if (msgTMP != null)

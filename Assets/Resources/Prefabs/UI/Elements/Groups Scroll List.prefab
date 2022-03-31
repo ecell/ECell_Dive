@@ -388,6 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refViewport: {fileID: 3699469309277462359}
   refContent: {fileID: 7478940183471536684}
+  refItem: {fileID: 2453932748323119957}
   padding:
     left: 0
     right: 0
@@ -630,8 +631,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7487959823660183950, guid: 9494a3de063ec2f4e80b2eb0c4294085, type: 3}
+      propertyPath: OnDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487959823660183950, guid: 9494a3de063ec2f4e80b2eb0c4294085, type: 3}
+      propertyPath: OnDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1119080925721158183}
+    - target: {fileID: 7487959823660183950, guid: 9494a3de063ec2f4e80b2eb0c4294085, type: 3}
+      propertyPath: OnDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnChildDestruction
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487959823660183950, guid: 9494a3de063ec2f4e80b2eb0c4294085, type: 3}
+      propertyPath: OnDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ECellDive.UI.OptimizedVertScrollList, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487959823660183950, guid: 9494a3de063ec2f4e80b2eb0c4294085, type: 3}
+      propertyPath: OnDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9494a3de063ec2f4e80b2eb0c4294085, type: 3}
+--- !u!1 &2453932748323119957 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3362829648647250114, guid: 9494a3de063ec2f4e80b2eb0c4294085, type: 3}
+  m_PrefabInstance: {fileID: 911193232513827735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &520668241208918096 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 836821169065673671, guid: 9494a3de063ec2f4e80b2eb0c4294085, type: 3}

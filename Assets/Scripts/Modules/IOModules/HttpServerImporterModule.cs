@@ -17,7 +17,7 @@ namespace ECellDive
         public struct UIDisplayData
         {
             public OptimizedVertScrollList UISelectorsContainer;
-            public GameObject UISelectorPrefab;
+            //public GameObject UISelectorPrefab;
             public TMP_InputField refIPInputField;
             public TMP_InputField refPortInputField;
         }
@@ -143,7 +143,7 @@ namespace ECellDive
 
                     for (int i = 0; i < modelsList.Count; i++)
                     {
-                        GameObject modelUIContainer = uiDisplayData.UISelectorsContainer.AddItem(uiDisplayData.UISelectorPrefab);
+                        GameObject modelUIContainer = uiDisplayData.UISelectorsContainer.AddItem();
                         modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = modelsList[i];
                         modelUIContainer.SetActive(true);
                         uiDisplayData.UISelectorsContainer.UpdateScrollList();

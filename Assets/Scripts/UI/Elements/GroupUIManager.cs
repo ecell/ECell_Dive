@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 using ECellDive.Interfaces;
@@ -25,7 +26,20 @@ namespace ECellDive
             public TMP_Text refValueText;
             public Button refButtonColorPicker;
 
+            public UnityEvent OnDestroy;
+
             private GroupData groupData;
+
+            public void DestroySelf()
+            {
+                ForceDistributeColor(false);
+                gameObject.SetActive(false);
+                //Debug.Log($"sibling index before transform change {gameObject.transform.GetSiblingIndex()}");
+                transform.parent = null;
+                //Debug.Log($"sibling index after transform change {gameObject.transform.GetSiblingIndex()}");
+                OnDestroy?.Invoke();
+                Destroy(gameObject);
+            }
 
             /// <summary>
             /// Internal method to update the color of the GameObjects in the group.
@@ -38,23 +52,6 @@ namespace ECellDive
                     _member.SetDefaultColor(_color);
                     _member.UnsetHighlight();
                 }
-            }
-
-            /// <summary>
-            /// Public method intended to be called back whenever the user wants to
-            /// activate or deactivate the visualization of the group.
-            /// </summary>
-            public void ManageMembersVisual()
-            {
-                if (refToggle.isOn)
-                {
-                    groupData.color = refButtonColorPicker.colors.normalColor;
-                }
-                else
-                {
-                    groupData.color = Color.white;
-                }
-                DistributeColorToMembers(groupData.color);
             }
 
             /// <summary>
@@ -73,6 +70,23 @@ namespace ECellDive
                 {
                     DistributeColorToMembers(Color.white);
                 }
+            }
+
+            /// <summary>
+            /// Public method intended to be called back whenever the user wants to
+            /// activate or deactivate the visualization of the group.
+            /// </summary>
+            public void ManageMembersVisual()
+            {
+                if (refToggle.isOn)
+                {
+                    groupData.color = refButtonColorPicker.colors.normalColor;
+                }
+                else
+                {
+                    groupData.color = Color.white;
+                }
+                DistributeColorToMembers(groupData.color);
             }
 
             /// <summary>

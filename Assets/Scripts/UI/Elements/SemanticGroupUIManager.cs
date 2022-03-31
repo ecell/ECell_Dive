@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.Utility;
@@ -18,6 +18,8 @@ namespace ECellDive
         {
             public Toggle refToggle;
             public TMP_Text refNameText;
+
+            public UnityEvent OnDestroy;
 
             #region - IDropDown Members -
             [SerializeField]
@@ -54,6 +56,13 @@ namespace ECellDive
                 set => m_content = value;
             }
             
+            //[SerializeField] private GameObject m_itemPrefab;
+            //public GameObject itemPrefab
+            //{
+            //    get => m_itemPrefab;
+            //    set => m_itemPrefab = value;
+            //}
+            
             [SerializeField] private GameObject m_scrollListPrefab;
             public GameObject scrollListPrefab
             {
@@ -68,6 +77,20 @@ namespace ECellDive
                 set => m_scrollList = value;
             }
             #endregion
+
+            public void DestroySelf()
+            {
+                foreach (RectTransform _child in scrollList.refContent)
+                {
+                    GroupUIManager refGM = _child.gameObject.GetComponent<GroupUIManager>();
+                    refGM.ForceDistributeColor(false);
+                }
+                Destroy(content);
+                gameObject.SetActive(false);
+                transform.parent = null;
+                OnDestroy?.Invoke();
+                Destroy(gameObject);
+            }
 
             /// <summary>
             /// To be called back when the user wants to expand of collapse the
@@ -112,9 +135,10 @@ namespace ECellDive
             }
 
             #region - IDropDown Methods -
-            public GameObject AddItem(GameObject _item)
+
+            public GameObject AddItem()
             {
-                return scrollList.AddItem(_item);
+                return scrollList.AddItem();
             }
 
             public void DisplayContent()

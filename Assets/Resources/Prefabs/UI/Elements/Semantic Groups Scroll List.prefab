@@ -39,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.5, y: 1}
+  m_SizeDelta: {x: 0.58, y: 1}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &330982608530905955
 CanvasRenderer:
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refViewport: {fileID: 4674944458194896052}
   refContent: {fileID: 1476357090143707599}
+  refItem: {fileID: 7457730730599005451}
   padding:
     left: 0
     right: 0
@@ -407,7 +408,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1476357090143707599}
-  - {fileID: 5074345086037630400}
+  - {fileID: 4045159029268182571}
   m_Father: {fileID: 4674944458194896052}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -503,24 +504,40 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &1852252225722016258
+--- !u!1001 &7493003350962440681
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 6603023963554005288}
     m_Modifications:
-    - target: {fileID: -8007204694745694008, guid: b38e733a02917d14d99d0372923771bf, type: 3}
-      propertyPath: doTriggerInstanciation
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 36961522872988898, guid: b38e733a02917d14d99d0372923771bf, type: 3}
       propertyPath: m_Name
       value: Semantic Group Field
       objectReference: {fileID: 0}
-    - target: {fileID: 36961522872988898, guid: b38e733a02917d14d99d0372923771bf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 5854351053532839415, guid: b38e733a02917d14d99d0372923771bf, type: 3}
+      propertyPath: OnDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8711138175885784604}
+    - target: {fileID: 5854351053532839415, guid: b38e733a02917d14d99d0372923771bf, type: 3}
+      propertyPath: OnDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnChildDestruction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854351053532839415, guid: b38e733a02917d14d99d0372923771bf, type: 3}
+      propertyPath: OnDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ECellDive.UI.OptimizedVertScrollList, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854351053532839415, guid: b38e733a02917d14d99d0372923771bf, type: 3}
+      propertyPath: OnDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908297998004125634, guid: b38e733a02917d14d99d0372923771bf, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908297998004125634, guid: b38e733a02917d14d99d0372923771bf, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6908297998004125634, guid: b38e733a02917d14d99d0372923771bf, type: 3}
       propertyPath: m_RootOrder
@@ -544,7 +561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6908297998004125634, guid: b38e733a02917d14d99d0372923771bf, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0.48
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 6908297998004125634, guid: b38e733a02917d14d99d0372923771bf, type: 3}
       propertyPath: m_SizeDelta.y
@@ -600,8 +617,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b38e733a02917d14d99d0372923771bf, type: 3}
---- !u!224 &5074345086037630400 stripped
+--- !u!1 &7457730730599005451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 36961522872988898, guid: b38e733a02917d14d99d0372923771bf, type: 3}
+  m_PrefabInstance: {fileID: 7493003350962440681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &4045159029268182571 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6908297998004125634, guid: b38e733a02917d14d99d0372923771bf, type: 3}
-  m_PrefabInstance: {fileID: 1852252225722016258}
+  m_PrefabInstance: {fileID: 7493003350962440681}
   m_PrefabAsset: {fileID: 0}

@@ -301,7 +301,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.58, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5829368479316331453
 Canvas:
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &95800565712873317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refAllUIContainer: {fileID: 0}
-  semanticTermUIPrefab: {fileID: 6482953111838422898}
+  semanticTermUIPrefab: {fileID: 2860041731500383385}
   groupUIPrefab: {fileID: 2469909765151921602}
   semanticGroupsScrollList: {fileID: 4047584186855692174}
   hideOnStart: 1
@@ -898,8 +898,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.25, y: -0.0375}
-  m_SizeDelta: {x: 0.5, y: 0.075}
+  m_AnchoredPosition: {x: 0.29, y: -0.0375}
+  m_SizeDelta: {x: 0.58, y: 0.075}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &958935144447285370
 PrefabInstance:
@@ -910,7 +910,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2746341554311650998, guid: e5b741e47f098ea4ba5bfc09938dd1e7, type: 3}
       propertyPath: m_Size.x
-      value: 0.5
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 4952908069321790299, guid: e5b741e47f098ea4ba5bfc09938dd1e7, type: 3}
       propertyPath: m_Pivot.x
@@ -942,7 +942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4952908069321790299, guid: e5b741e47f098ea4ba5bfc09938dd1e7, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0.5
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 4952908069321790299, guid: e5b741e47f098ea4ba5bfc09938dd1e7, type: 3}
       propertyPath: m_SizeDelta.y
@@ -978,7 +978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4952908069321790299, guid: e5b741e47f098ea4ba5bfc09938dd1e7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.25
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 4952908069321790299, guid: e5b741e47f098ea4ba5bfc09938dd1e7, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1023,6 +1023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Semantic Groups Scroll List
       objectReference: {fileID: 0}
+    - target: {fileID: 3945904905246454814, guid: cbde879ee3fc28a4185235d53b7373e9, type: 3}
+      propertyPath: m_scrollListPrefab
+      value: 
+      objectReference: {fileID: 4761309107222969780}
     - target: {fileID: 4674944458194896052, guid: cbde879ee3fc28a4185235d53b7373e9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1053,7 +1057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4674944458194896052, guid: cbde879ee3fc28a4185235d53b7373e9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0.5
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 4674944458194896052, guid: cbde879ee3fc28a4185235d53b7373e9, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1111,6 +1115,10 @@ PrefabInstance:
       propertyPath: m_scrollListPrefab
       value: 
       objectReference: {fileID: 4761309107222969780}
+    - target: {fileID: 7457730730599005451, guid: cbde879ee3fc28a4185235d53b7373e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8844336008425158078, guid: cbde879ee3fc28a4185235d53b7373e9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1137,9 +1145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014e9fe6c8f623f419245c1bf916a7bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6482953111838422898 stripped
+--- !u!1 &2860041731500383385 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1817156110262851296, guid: cbde879ee3fc28a4185235d53b7373e9, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7457730730599005451, guid: cbde879ee3fc28a4185235d53b7373e9, type: 3}
   m_PrefabInstance: {fileID: 4670169432935473554}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9173094527828749273
@@ -1236,62 +1244,6 @@ PrefabInstance:
     - target: {fileID: 4422237653069764205, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[1].time
-      value: 0.5003526
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[2].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[1].value
-      value: 0.50052893
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[2].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[0].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[1].inSlope
-      value: 1.4999993
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[2].inSlope
-      value: 0.99964714
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[1].outSlope
-      value: 0.99964714
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[1].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[1].tangentMode
-      value: 65
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099844801628968731, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
-      propertyPath: repulsionSpeedCurve.m_Curve.Array.data[2].tangentMode
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8507125856511210259, guid: d83d5c1d33bf40f42a7c3aee7cd1f713, type: 3}
       propertyPath: m_AnchorMax.x
