@@ -1427,6 +1427,30 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1254135872}
+    - target: {fileID: 3921606976466866374, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921606976466866374, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921606976466866374, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921606976466866374, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921606976466866374, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921606976466866374, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3969233572655699870, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1555,6 +1579,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7636126172785162271, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636126172785162271, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7719746560118062663, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1586,17 +1618,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2140114829586762548, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
   m_PrefabInstance: {fileID: 360101249}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &360101251 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7532847196328262245, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
-  m_PrefabInstance: {fileID: 360101249}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16ffbed32a7c68844b9529450739177a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &360101252 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1034324506295616778, guid: 1e880964383d99b47bfdcfe05b79c829, type: 3}
@@ -1807,64 +1828,16 @@ MonoBehaviour:
   m_StartingSelectedInteractable: {fileID: 0}
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 360101251}
-        m_TargetAssemblyTypeName: ECellDive.UI.InfoTagManager, Assembly-CSharp
-        m_MethodName: SetVisibility
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 360101251}
-        m_TargetAssemblyTypeName: ECellDive.UI.InfoTagManager, Assembly-CSharp
-        m_MethodName: SetVisibility
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 360101252}
-        m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
-        m_MethodName: SetVisibility
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 360101252}
-        m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
-        m_MethodName: SetVisibility
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -3720,17 +3693,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3938017317108771704, guid: 4b27f41d2aaa77841ad3d3a1db8844c0, type: 3}
   m_PrefabInstance: {fileID: 912275710}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &912275712 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8161483170210932043, guid: 4b27f41d2aaa77841ad3d3a1db8844c0, type: 3}
-  m_PrefabInstance: {fileID: 912275710}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16ffbed32a7c68844b9529450739177a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &912275713 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3274289985627672835, guid: 4b27f41d2aaa77841ad3d3a1db8844c0, type: 3}
@@ -7256,64 +7218,16 @@ MonoBehaviour:
   m_StartingSelectedInteractable: {fileID: 0}
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 912275712}
-        m_TargetAssemblyTypeName: ECellDive.UI.InfoTagManager, Assembly-CSharp
-        m_MethodName: SetVisibility
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 912275712}
-        m_TargetAssemblyTypeName: ECellDive.UI.InfoTagManager, Assembly-CSharp
-        m_MethodName: SetVisibility
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 912275713}
-        m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
-        m_MethodName: SetVisibility
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 912275713}
-        m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
-        m_MethodName: SetVisibility
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnHoverEntered:
     m_PersistentCalls:
       m_Calls: []

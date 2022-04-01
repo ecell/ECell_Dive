@@ -43,25 +43,12 @@ namespace ECellDive
                 protected set => m_isExpanded = value;
             }
 
-            //private List<GameObject> m_content = new List<GameObject> ();
-            //public List<GameObject> content
-            //{
-            //    get => m_content;
-            //    protected set => m_content = value;
-            //}
             private GameObject m_content;
             public GameObject content
             {
                 get => m_content;
                 set => m_content = value;
             }
-            
-            //[SerializeField] private GameObject m_itemPrefab;
-            //public GameObject itemPrefab
-            //{
-            //    get => m_itemPrefab;
-            //    set => m_itemPrefab = value;
-            //}
             
             [SerializeField] private GameObject m_scrollListPrefab;
             public GameObject scrollListPrefab
@@ -78,17 +65,31 @@ namespace ECellDive
             }
             #endregion
 
+            /// <summary>
+            /// The procedure when destroying this semantic group.
+            /// </summary>
             public void DestroySelf()
             {
+                //Resetting the group info (color) of every child.
                 foreach (RectTransform _child in scrollList.refContent)
                 {
                     GroupUIManager refGM = _child.gameObject.GetComponent<GroupUIManager>();
                     refGM.ForceDistributeColor(false);
                 }
+
+                //Destroying the scroll list of the content of the drop down (semantic group). 
                 Destroy(content);
+
+                //Hiding the object.
                 gameObject.SetActive(false);
+
+                //Remove the object from the scroll list containing every semantic group.
                 transform.parent = null;
+
+                //Invoking external functions.
                 OnDestroy?.Invoke();
+
+                //Finally, destroying the object.
                 Destroy(gameObject);
             }
 
@@ -99,7 +100,6 @@ namespace ECellDive
             public void ManageExpansion()
             {
                 isExpanded = !isExpanded;
-                Debug.Log("Managing Expansion of " + gameObject.name + $" with isExpanded={isExpanded}");
                 if (isExpanded)
                 {
                     refDropDownImageCollapsed.SetActive(false);
@@ -128,12 +128,6 @@ namespace ECellDive
                 }
             }
 
-            public void SwitchExpansionStatus()
-            {
-                Debug.Log("Switching Extension status of "+gameObject.name);
-                isExpanded = !isExpanded;
-            }
-
             #region - IDropDown Methods -
 
             public GameObject AddItem()
@@ -143,11 +137,9 @@ namespace ECellDive
 
             public void DisplayContent()
             {
-                //foreach (RectTransform _item in content.refContent)
-                //{
-                //    _item.gameObject.SetActive(true);
-                //}
                 m_content.SetActive(true);
+
+                //Repositioning the content in front of the user.
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
                 m_content.transform.position = pos;
                 m_content.GetComponent<FaceCamera>().ShowBackToPlayer();
@@ -155,19 +147,18 @@ namespace ECellDive
 
             public void HideContent()
             {
-                //foreach (RectTransform _item in m_content.refContent)
-                //{
-                //    _item.gameObject.SetActive(false);
-                //}
                 m_content.SetActive(false);
             }
 
             public void InstantiateContent()
             {
                 m_content = Instantiate(m_scrollListPrefab);
+
+                //Positioning the content in front of the user.
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
                 m_content.transform.position = pos;
                 m_content.GetComponent<FaceCamera>().ShowBackToPlayer();
+
                 m_scrollList = m_content.GetComponentInChildren<OptimizedVertScrollList>();
             }
             #endregion

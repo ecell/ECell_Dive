@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ECellDive
 {
@@ -89,8 +86,6 @@ namespace ECellDive
                 bool firstChildFound = false;
                 foreach(RectTransform _child in refContent)
                 {
-                    //if (_child.gameObject.activeSelf)
-                    //{
                     if (!firstChildFound &&
                     _child.anchoredPosition.y - 0.5f * _child.rect.height +
                     refContent.anchoredPosition.y < 0)
@@ -99,29 +94,14 @@ namespace ECellDive
                         firstVisibleChildIdx = childCounter;
                     }
 
-                    //Debug.Log($"anch pos: {_child.anchoredPosition};" +
-                    //    $" height {0.5f * _child.rect.height};" +
-                    //    $"viewport anch: {refViewport.anchoredPosition.y}" +
-                    //    $"viewport height: {refViewport.rect.height}" +
-                    //    $" refContent.top {refContent.anchoredPosition.y}");
                     if (_child.anchoredPosition.y + 0.5f * _child.rect.height +
                         refContent.anchoredPosition.y > -refViewport.rect.height)
                     {
                         lastVisibleChildIdx = childCounter;
                     }
-                    //}
                     childCounter++;
                 }
-                //Debug.Log($"Final first:{firstVisibleChildIdx}; last:{lastVisibleChildIdx}");
             }
-
-            //public void ShowAllChildren()
-            //{
-            //    foreach(RectTransform _child in refContent)
-            //    {
-            //        _child.gameObject.SetActive(true);
-            //    }
-            //}
 
             private void UpdateContentSize()
             {
@@ -135,7 +115,6 @@ namespace ECellDive
 
             public void UpdateAllChildrenVisibility()
             {
-                //Debug.Log("Updating All children visibility");
                 if (refContent.childCount > 0)
                 {
                     for (int i = 0; i < firstVisibleChildIdx; i++)

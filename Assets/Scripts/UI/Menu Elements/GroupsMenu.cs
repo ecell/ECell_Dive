@@ -3,8 +3,6 @@ using UnityEngine;
 using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.SceneManagement;
-using ECellDive.Utility;
-
 
 namespace ECellDive
 {
@@ -18,15 +16,10 @@ namespace ECellDive
         {
             public GameObject refAllUIContainer;
 
-            //public GameObject semanticTermUIPrefab;
-            //public GameObject groupUIPrefab;
-
             public OptimizedVertScrollList semanticGroupsScrollList;
             private List<IDropDown> allDropDowns = new List<IDropDown>();
 
             public bool hideOnStart = true;
-
-            //private List<SemanticGroupUIManager> semanticGroups = new List<SemanticGroupUIManager>();
 
             private void Awake()
             {
@@ -63,13 +56,13 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// Adds a <see cref="groupUIPrefab"/> object right after the object
-            /// with sibling index <paramref name="_parentIndex"/> in the gameobject
-            /// <see cref="allUIContainer"/>.
+            /// Adds a <see cref="groupUIPrefab"/> object to the drop down with 
+            /// index <paramref name="_parentIndex"/> in the list
+            /// <see cref="allDropDowns"/>.
             /// </summary>
             /// <param name="_groupData">The data needed to correctly initialize
             /// the <see cref="groupUIPrefab"/>.</param>
-            /// <param name="_parentIndex">The sibling index of the object after
+            /// <param name="_parentIndex">The index of the parent drop down in 
             /// which we want to insert the newly created <see cref="groupUIPrefab"/>.</param>
             /// <remarks>This is useful when we want to add a <see cref="groupUIPrefab"/>
             /// to a previously created <see cref="semanticTermUIPrefab"/>.</remarks>
@@ -78,12 +71,8 @@ namespace ECellDive
                 IDropDown parent = allDropDowns[_parentIndex];
 
                 GameObject groupUI = parent.AddItem();
-                //groupUI.transform.SetSiblingIndex(_parentIndex+1);
                 groupUI.GetComponent<GroupUIManager>().SetData(_groupData);
                 groupUI.GetComponent<GroupUIManager>().ForceDistributeColor(true);
-
-                //IDropDown parent = parentScrollList.refContent.GetChild(_parentIndex).gameObject.GetComponent<IDropDown>();
-                //parent.AddItem(groupUI);
 
                 groupUI.SetActive(true);
 
@@ -92,11 +81,12 @@ namespace ECellDive
 
             /// <summary>
             /// Adds a GUI element that acts as a container (drop down) of several groups.
-            /// Typically usefull to manage every group produced by a "Group By" operation.
             /// </summary>
             /// <param name="_semanticTerm">The name of the container.</param>
             /// <param name="_groupsData">The data of every group that falls in
             /// the container.</param>
+            /// <remarks>Typically usefull to manage every group produced by
+            /// a "Group By" operation.</remarks>
             public void AddSemanticTermUI(string _semanticTerm, List<GroupData> _groupsData)
             {
                 //Creating the drop down button
@@ -111,9 +101,6 @@ namespace ECellDive
                 ddComponent.content.transform.SetParent(refAllUIContainer.transform, false);
                 allDropDowns.Add(ddComponent);
 
-                //SemanticGroupUIManager refSGM = semanticTermUI.GetComponent<SemanticGroupUIManager>();
-                //semanticGroups.Add(refSGM);
-
                 foreach (GroupData _groupData in _groupsData)
                 {
                     AddGroupUI(_groupData, ddComponent);
@@ -121,14 +108,6 @@ namespace ECellDive
                 semanticGroupsScrollList.UpdateScrollList();
                 semanticGroupsScrollList.UpdateAllChildrenVisibility();
             }
-
-            //public void ApplySemanticGroupsExtensionStatus()
-            //{
-            //    foreach (SemanticGroupUIManager _sgrp in semanticGroups)
-            //    {
-            //        _sgrp.ManageExpansion();
-            //    }
-            //}
         }
     }
 }

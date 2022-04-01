@@ -30,14 +30,24 @@ namespace ECellDive
 
             private GroupData groupData;
 
+            /// <summary>
+            /// The procedure when destroying this group.
+            /// </summary>
             public void DestroySelf()
             {
+                //Resetting the group info (color) of every object in hte group.
                 ForceDistributeColor(false);
+
+                //Hiding the object.
                 gameObject.SetActive(false);
-                //Debug.Log($"sibling index before transform change {gameObject.transform.GetSiblingIndex()}");
+
+                //Remove the object from the scroll list containing every group.
                 transform.parent = null;
-                //Debug.Log($"sibling index after transform change {gameObject.transform.GetSiblingIndex()}");
+
+                //Invoking external functions.
                 OnDestroy?.Invoke();
+
+                //Finally, destroying the object.
                 Destroy(gameObject);
             }
 

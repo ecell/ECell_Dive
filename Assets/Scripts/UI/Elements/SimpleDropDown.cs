@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using ECellDive.Interfaces;
 using ECellDive.Utility;
@@ -37,20 +36,12 @@ namespace ECellDive
                 protected set => m_isExpanded = value;
             }
 
-            //public List<GameObject> content { get; protected set; }
             private GameObject m_content;
             public GameObject content
             {
                 get => m_content;
                 set => m_content = value;
             }
-
-            //[SerializeField] private GameObject m_itemPrefab;
-            //public GameObject itemPrefab
-            //{
-            //    get => m_itemPrefab;
-            //    set => m_itemPrefab = value;
-            //}
 
             [SerializeField] private GameObject m_scrollListPrefab;
             public GameObject scrollListPrefab
@@ -96,11 +87,10 @@ namespace ECellDive
 
             public void DisplayContent()
             {
-                //foreach (RectTransform _item in content.refContent)
-                //{
-                //    _item.gameObject.SetActive(true);
-                //}
                 m_content.SetActive(true);
+
+                //Re-positioning the content of the drop down in front
+                //of the user.
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
                 m_content.transform.position = pos;
                 m_content.GetComponent<FaceCamera>().ShowBackToPlayer();
@@ -108,10 +98,6 @@ namespace ECellDive
 
             public void HideContent()
             {
-                //foreach (RectTransform _item in m_content.refContent)
-                //{
-                //    _item.gameObject.SetActive(false);
-                //}
                 m_content.SetActive(false);
             }
 
@@ -119,9 +105,12 @@ namespace ECellDive
             public void InstantiateContent()
             {
                 m_content = Instantiate(m_scrollListPrefab);
+
+                //Positioning the content in front of the user.
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
                 m_content.transform.position = pos;
                 m_content.GetComponent<FaceCamera>().ShowBackToPlayer();
+
                 m_scrollList = m_content.GetComponentInChildren<OptimizedVertScrollList>();
             }
             #endregion

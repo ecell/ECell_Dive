@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using ECellDive.UI;
 
@@ -28,8 +26,6 @@ namespace ECellDive
             /// A boolean representing the state of the dropdown.
             /// </summary>
             bool isExpanded {get;}
-
-            //public GameObject itemPrefab { get;}
 
             /// <summary>
             /// The scroll List prefab to instantiate upon creation of a drop
@@ -64,6 +60,10 @@ namespace ECellDive
             /// </summary>
             public void HideContent();
 
+            /// <summary>
+            /// The method to instantiate the scroll list that will contain
+            /// the items of the drop down.
+            /// </summary>
             public void InstantiateContent();
         }
     }

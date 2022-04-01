@@ -17,7 +17,6 @@ namespace ECellDive
         public struct UIDisplayData
         {
             public OptimizedVertScrollList UISelectorsContainer;
-            //public GameObject UISelectorPrefab;
             public TMP_InputField refIPInputField;
             public TMP_InputField refPortInputField;
         }

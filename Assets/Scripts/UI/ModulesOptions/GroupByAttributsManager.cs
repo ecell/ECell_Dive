@@ -17,23 +17,10 @@ namespace ECellDive
         /// </summary>
         public class GroupByAttributsManager : MonoBehaviour
         {
-            //public GameObject refAllUIContainer;
             public GroupByModule refGroupByModule;
-
-            //ublic GameObject dataUIPrefab;
-            //public GameObject attributsUIPrefab;
-            //public GameObject scrollListUIPrefab;
 
             public OptimizedVertScrollList allDataUIContainer;
             private List<IDropDown> dataUIManagers = new List<IDropDown>();
-
-            //private void Awake()
-            //{
-            //    if (refAllUIContainer == null)
-            //    {
-            //        refAllUIContainer = GameObject.FindGameObjectWithTag("AllUIAnchor");
-            //    }
-            //}
 
             /// <summary>
             /// Adds the GUI element that represent a key (an attribut of an object) the
@@ -60,6 +47,7 @@ namespace ECellDive
             /// every field the user will be allowed to used to make groups from.</param>
             public void AddDataUI(string _dataName, JObject _dataNodeSample)
             {
+                //Creating the drop down button
                 GameObject newDataUI = allDataUIContainer.AddItem();
                 newDataUI.SetActive(true);
                 newDataUI.GetComponentInChildren<TMP_Text>().text = _dataName;
@@ -71,15 +59,16 @@ namespace ECellDive
                 ddComponent.content.transform.parent = refGroupByModule.transform;
                 dataUIManagers.Add(ddComponent);
 
-                //SimpleDropDown refDDSM = newDataUI.GetComponent<SimpleDropDown>();
-                //dataUIManagers.Add(refDDSM);
-
                 foreach (JProperty _property in _dataNodeSample.Properties())
                 {
                     AddAttributsUI(_property.Name, ddComponent);
                 }
             }
 
+            /// <summary>
+            /// Executes the Group By operation on the data for every attributs
+            /// the user selected throught the GUI.
+            /// </summary>
             public void ScanForRequiredGroups()
             {
                 int currentDataUI = 0;
