@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using ECellDive.IO;
-using ECellDive.INetworkComponents;
+using ECellDive.Interfaces;
 
 namespace ECellDive
 {
@@ -14,10 +12,10 @@ namespace ECellDive
         {
             public string name { get; protected set; }
             public JObject networkData { get;}
-            public JArray nodes { get; protected set; }
-            public JArray edges { get; protected set; }
-            public ILayer[] layers { get; protected set; }
-            public IInterLayer[] interLayers { get; protected set; }
+            public JArray jNodes { get; protected set; }
+            public JArray jEdges { get; protected set; }
+            public INode[] nodes { get; protected set; }
+            public IEdge[] edges { get; protected set; }
 
             public Network(string _path, string _name)
             {
@@ -31,46 +29,45 @@ namespace ECellDive
                 name = _name;
             }
 
+            public void PopulateNodes()
+            {
+                int nbNodes = jNodes.Count();
+                nodes = new INode[nbNodes];
+
+                for (int i = 0; i < nbNodes; i++)
+                {
+                    Vector3 nodePos = CyJsonParser.LookForNodePosition(jNodes.ElementAt(i));
+                    string name = CyJsonParser.LookForName(jNodes.ElementAt(i));
+                    bool isVirtual = CyJsonParser.LookForNodeType(jNodes.ElementAt(i));
+                    nodes[i] = new Node(jNodes.ElementAt(i)["data"]["id"].Value<int>(),
+                                        name,
+                                        nodePos,
+                                        isVirtual);
+                }
+            }
+
+            public void PopulateEdges()
+            {
+                int nbEdges = jEdges.Count();
+                edges = new IEdge[nbEdges];
+
+                for (int i = 0; i < nbEdges; i++)
+                {
+                    edges[i] = new Edge(jEdges.ElementAt(i)["data"]["id"].Value<int>(),
+                                        jEdges.ElementAt(i)["data"]["name"].Value<string>(),
+                                        jEdges.ElementAt(i)["data"]["source"].Value<int>(),
+                                        jEdges.ElementAt(i)["data"]["target"].Value<int>());
+                }
+            }
+
             public void SetNodes()
             {
-                nodes = CyJsonParser.GetNodes(networkData);
+                jNodes = CyJsonParser.GetNodes(networkData);
             }
 
             public void SetEdges()
             {
-                edges = CyJsonParser.GetEdges(networkData);
-            }
-
-            public void PopulateLayers()
-            {
-                JObject _firstNode = (JObject)nodes[0]["data"];
-                IEnumerable<IEnumerable<JToken>> nodesPerLayer;
-                IEnumerable<IEnumerable<JToken>> edgesPerLayer;
-
-                if (_firstNode.ContainsKey("LAYER_INDEX"))
-                {
-                    nodesPerLayer = CyJsonParser.GroupNodesByLayers(nodes);
-                    edgesPerLayer = CyJsonParser.GroupEdgesByLayers(edges);
-                }
-                else
-                {
-                    nodesPerLayer = new[] { nodes };
-                    edgesPerLayer = new[] { edges };
-                }
-
-                layers = new ILayer[nodesPerLayer.Count()];
-                
-                for (int i = 0; i < nodesPerLayer.Count(); i++)
-                {
-                    layers[i] = new Layer(nodesPerLayer.Count() - i - 1, nodesPerLayer.ElementAt(i), edgesPerLayer.ElementAt(i));
-                    layers[i].PopulateNodes();
-                    layers[i].PopulateEdges();
-                }
-            }
-
-            public void PopulateInterLayers()
-            {
-
+                jEdges = CyJsonParser.GetEdges(networkData);
             }
         }
     }

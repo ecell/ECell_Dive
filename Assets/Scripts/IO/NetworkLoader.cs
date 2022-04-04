@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
 using UnityEngine;
-using ECellDive.INetworkComponents;
 using ECellDive.NetworkComponents;
 
 
@@ -43,14 +42,15 @@ namespace ECellDive
             /// for the Initiate function.</param>
             public static void Populate( NetworkComponents.Network _refNetwork)
             {
-                //get all nodes
+                //Get raw nodes data from the cyjson file
                 _refNetwork.SetNodes();
-                
-                //get all edges
+
+                //Get raw edges data from the cyjson file
                 _refNetwork.SetEdges();
 
-                //Organize layers, edges and nodes information
-                _refNetwork.PopulateLayers();
+                //Organize edges and nodes information
+                _refNetwork.PopulateNodes();
+                _refNetwork.PopulateEdges();
             }
         }
     }

@@ -343,8 +343,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.055
-  m_fontSizeBase: 0.055
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0.01
@@ -528,19 +528,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5123283780528503830}
         m_TargetAssemblyTypeName: ECellDive.UI.ButtonColorPicker, Assembly-CSharp
-        m_MethodName: InformColorPickerOfTarget
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5123283780528503830}
-        m_TargetAssemblyTypeName: ECellDive.UI.ButtonColorPicker, Assembly-CSharp
-        m_MethodName: SetPickerColor
+        m_MethodName: OpenColorPicker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -562,9 +550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cbfc7c57cc11b841bf0cc57319c34b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  picker: {fileID: 0}
   button: {fileID: 1328369616931515057}
-  registrationID: 0
+  OnColorChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3011520798017121595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,8 +1194,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.055
-  m_fontSizeBase: 0.055
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0.01
@@ -1259,6 +1248,7 @@ GameObject:
   - component: {fileID: 5238626537348810313}
   - component: {fileID: 7649394628277676175}
   - component: {fileID: 4013844126705981775}
+  - component: {fileID: 1050419475196978930}
   m_Layer: 5
   m_Name: Value InputField
   m_TagString: Untagged
@@ -1275,7 +1265,7 @@ RectTransform:
   m_GameObject: {fileID: 7524185412919037118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
   m_Children:
   - {fileID: 1564400150704474935}
   m_Father: {fileID: 855197965365721144}
@@ -1284,7 +1274,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0.7, y: -0.025}
-  m_SizeDelta: {x: 0.19999999, y: 0.078}
+  m_SizeDelta: {x: 100, y: 39}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5238626537348810313
 CanvasRenderer:
@@ -1323,7 +1313,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
+  m_PixelsPerUnitMultiplier: 0.01
 --- !u!114 &4013844126705981775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,9 +1371,39 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
-  m_GlobalPointSize: 14
+  m_GlobalPointSize: 18
   m_CharacterLimit: 0
   m_OnEndEdit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSubmit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1050419475196978930}
+        m_TargetAssemblyTypeName: ECellDive.UI.VirtualKeyboardLinker, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_OnDeselect:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnTextSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEndTextSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5996405126828249082}
@@ -1398,24 +1418,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_OnSubmit:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelect:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnDeselect:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnTextSelection:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnEndTextSelection:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnValueChanged:
-    m_PersistentCalls:
-      m_Calls: []
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1434,6 +1436,18 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!114 &1050419475196978930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524185412919037118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360d88ea108632a45b16bc7ec76ed975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7936002746467414079
 GameObject:
   m_ObjectHideFlags: 0

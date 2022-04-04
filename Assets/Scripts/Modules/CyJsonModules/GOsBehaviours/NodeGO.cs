@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using ECellDive.UI;
-using ECellDive.INetworkComponents;
+using ECellDive.Interfaces;
 
 namespace ECellDive
 {
@@ -11,9 +11,6 @@ namespace ECellDive
         {
             public INode nodeData { get; protected set; }
             public string informationString { get; protected set; }
-
-            public Color defaultColor;
-            public Color highlightColor;
 
             private Renderer refRenderer;
             private MaterialPropertyBlock mpb;
@@ -36,6 +33,10 @@ namespace ECellDive
                                               nodeData.position.z,
                                               nodeData.position.y) / _masterPathway.networkGOSettingsModel.PositionScaleFactor;
                 gameObject.SetActive(true);
+                if (nodeData.isVirtual)
+                {
+                    refRenderer.enabled = false;
+                }
                 gameObject.transform.position = nodePos;
                 gameObject.transform.localScale /= _masterPathway.networkGOSettingsModel.SizeScaleFactor;
                 gameObject.name = $"{nodeData.ID}";
@@ -54,14 +55,24 @@ namespace ECellDive
             #region - IHighlightable -
             public override void SetHighlight()
             {
+                refRenderer.enabled = true;
                 mpb.SetVector(colorID, highlightColor);
                 refRenderer.SetPropertyBlock(mpb);
             }
 
             public override void UnsetHighlight()
             {
-                mpb.SetVector(colorID, defaultColor);
-                refRenderer.SetPropertyBlock(mpb);
+                if (!forceHighlight)
+                {
+                    refRenderer.enabled = true;
+                    mpb.SetVector(colorID, defaultColor);
+                    refRenderer.SetPropertyBlock(mpb);
+
+                    if (nodeData.isVirtual)
+                    {
+                        refRenderer.enabled = false;
+                    }
+                }
             }
             #endregion
 

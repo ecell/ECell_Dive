@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+
 namespace HSVPicker
 {
     public class ColorPicker : MonoBehaviour
     {
-
         private float _hue = 0;
         private float _saturation = 0;
         private float _brightness = 0;
@@ -18,6 +19,7 @@ namespace HSVPicker
         public ColorChangedEvent onValueChanged = new ColorChangedEvent();
         public HSVChangedEvent onHSVChanged = new HSVChangedEvent();
 
+        public int nbTargetsRegistered = 0;
         public int registratedTarget = 0;
 
         public Color CurrentColor

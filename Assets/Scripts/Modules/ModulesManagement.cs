@@ -27,12 +27,13 @@ namespace ECellDive
                  the .cyjson extension.
             - 5: CyJson Pathway Root type. The module at the root of the structure
                  of a pathway.
-            - 6: CyJson Pathway Layer type. The module corresponding to a layer
-                 in a CyJson pathway. Contains Nodes and Edges modules.
-            - 7: CyJson Pathway Node type. A node in the graph made from the
+            - 6: CyJson Pathway Node type. A node in the graph made from the
                  CyJson pathway.
-            - 8: CyJson Pathway Edge type. An Edge between 2 nodes in the graph
+            - 7: CyJson Pathway Edge type. An Edge between 2 nodes in the graph
                  made from a CyJson pathway.
+
+            - 8: Group By type. A module implementing an operator allowing to make
+                 groups of other modules.
          */
 
         [System.Serializable]

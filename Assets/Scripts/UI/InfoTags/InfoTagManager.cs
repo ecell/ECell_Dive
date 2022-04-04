@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -81,30 +79,6 @@ namespace ECellDive
                 refConnectionLineHandler.gameObject.GetComponent<LineRenderer>().enabled = false;
             }
 
-            //private void OnEnable()
-            //{
-            //    foreach (ButtonTag _buttonTag in ButtonTagEffects)
-            //    {
-            //        _buttonTag.refInputAction.action.Enable();
-            //        if (_buttonTag.actionTime == InputActionTime.onEnable)
-            //        {
-            //            ButtonTagCallBack(_buttonTag.refCallback);
-            //        }
-            //    }
-            //}
-
-            //private void OnDisable()
-            //{
-            //    foreach (ButtonTag _buttonTag in ButtonTagEffects)
-            //    {
-            //        _buttonTag.refInputAction.action.Disable();
-            //        if (_buttonTag.actionTime == InputActionTime.onDisable)
-            //        {
-            //            ButtonTagCallBack(_buttonTag.refCallback);
-            //        }
-            //    }
-            //}
-
             public void SetText(int _contentIndex)
             {
                 currentTag.currentContentIndex = _contentIndex;
@@ -145,14 +119,22 @@ namespace ECellDive
                     currentTag.currentContentIndex = 0;
                 }
                 refInfoTextMesh.text = currentTag.content[currentTag.currentContentIndex];
+
+                updateTagText();
             }
 
             private void updateTagText()
             {
                 if (currentTag.content.Length > 0)
-                {
+                {              
                     refInfoTextMesh.text = currentTag.content[currentTag.currentContentIndex];
                     Show();
+
+                    if (refInfoTextMesh.text.Length == 0)
+                    {
+                        Debug.Log($"hiding {gameObject.name}");
+                        Hide();
+                    }
                 }
                 else
                 {

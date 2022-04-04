@@ -195,7 +195,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1611823177018721578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ECellDive.UI.CylindricMenuPart, Assembly-CSharp
         m_MethodName: DecreaseSiblingIndex
         m_Mode: 1
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1611823177018721578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ECellDive.UI.CylindricMenuPart, Assembly-CSharp
         m_MethodName: MoveToMenuBank
         m_Mode: 1
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 849774605105605325}
   - component: {fileID: 4315723031114206377}
   - component: {fileID: 6670553849892633254}
-  - component: {fileID: 1611823177018721578}
+  - component: {fileID: 3484656153476639300}
   m_Layer: 5
   m_Name: Files Menu
   m_TagString: Untagged
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 500
+  m_PixelsPerUnitMultiplier: 5
 --- !u!114 &8194230790720716491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,7 +677,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4217052405601472274}
   m_CullTransparentMesh: 1
---- !u!114 &1611823177018721578
+--- !u!114 &3484656153476639300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -686,15 +686,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4217052405601472274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1369550315f3b4faf038804ed9012e, type: 3}
+  m_Script: {fileID: 11500000, guid: 328ea3960749ad146a601e23648d3c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refCylindricMenuRoot: {fileID: 0}
-  refCylindricMenuBank: {fileID: 0}
-  refCylindricMenuExplorer: {fileID: 0}
-  isPinned: 0
-  isOpen: 1
-  menuExplorerSiblingIndex: 0
+  doTriggerInstanciation: 1
+  hoverEnterHapticData:
+    play: 1
+    intensity: 0.1
+    duration: 0.05
+  hoverExitHapticData:
+    play: 0
+    intensity: 0
+    duration: 0
+  hoverEnterAudioData:
+    play: 1
+    clip: {fileID: 8300000, guid: 57f682d93cf8c4b47961596080bf6d95, type: 3}
+  hoverExitAudioData:
+    play: 0
+    clip: {fileID: 0}
 --- !u!1 &4989645021778239583
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +824,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1611823177018721578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ECellDive.UI.CylindricMenuPart, Assembly-CSharp
         m_MethodName: ManagePinning
         m_Mode: 1
@@ -947,7 +956,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1611823177018721578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ECellDive.UI.CylindricMenuPart, Assembly-CSharp
         m_MethodName: IncreaseSiblingIndex
         m_Mode: 1
@@ -1219,6 +1228,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Save As Button
       objectReference: {fileID: 0}
+    - target: {fileID: 5081284056501071136, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6249846132443229508, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_text
       value: Save As...
@@ -1328,6 +1341,10 @@ PrefabInstance:
     - target: {fileID: 5047229576637858988, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_Name
       value: New Session Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081284056501071136, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6249846132443229508, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_text
@@ -1439,6 +1456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Open Session Button
       objectReference: {fileID: 0}
+    - target: {fileID: 5081284056501071136, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6249846132443229508, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_text
       value: Open Session
@@ -1549,6 +1570,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Exit Session Button
       objectReference: {fileID: 0}
+    - target: {fileID: 5081284056501071136, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6249846132443229508, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_text
       value: Exit Session
@@ -1658,6 +1683,10 @@ PrefabInstance:
     - target: {fileID: 5047229576637858988, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_Name
       value: Save Session Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081284056501071136, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6249846132443229508, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_text

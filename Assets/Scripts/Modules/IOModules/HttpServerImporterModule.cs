@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using ECellDive.IO;
 using ECellDive.Utility;
+using ECellDive.UI;
 using ECellDive.SceneManagement;
 
 namespace ECellDive
@@ -15,8 +16,9 @@ namespace ECellDive
         [System.Serializable]
         public struct UIDisplayData
         {
-            public GameObject UISelectorsContainer;
-            public GameObject UISelectorPrefab;
+            public OptimizedVertScrollList UISelectorsContainer;
+            public TMP_InputField refIPInputField;
+            public TMP_InputField refPortInputField;
         }
 
         public class HttpServerImporterModule : HttpServerBaseModule
@@ -130,7 +132,7 @@ namespace ECellDive
                     JArray jModelsArray = (JArray)requestData.requestJObject["models"];
                     List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
 
-                    foreach (Transform _child in uiDisplayData.UISelectorsContainer.transform)
+                    foreach (RectTransform _child in uiDisplayData.UISelectorsContainer.refContent)
                     {
                         if (_child.gameObject.activeSelf)
                         {
@@ -139,14 +141,23 @@ namespace ECellDive
                     }
 
                     for (int i = 0; i < modelsList.Count; i++)
-                    {                        
-                        GameObject modelUIContainer = Instantiate(uiDisplayData.UISelectorPrefab,
-                                                                  uiDisplayData.UISelectorsContainer.transform);
+                    {
+                        GameObject modelUIContainer = uiDisplayData.UISelectorsContainer.AddItem();
                         modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = modelsList[i];
                         modelUIContainer.SetActive(true);
-
+                        uiDisplayData.UISelectorsContainer.UpdateScrollList();
                     }
                 }
+            }
+
+            public void UpdateIP()
+            {
+                serverData.serverIP = uiDisplayData.refIPInputField.text;
+            }
+
+            public void UpdatePort()
+            {
+                serverData.port = uiDisplayData.refPortInputField.text;
             }
         }
     }
