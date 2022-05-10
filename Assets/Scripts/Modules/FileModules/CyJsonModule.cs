@@ -44,9 +44,9 @@ namespace ECellDive
                 {
                     CyJsonModulesData.activeData = CyJsonModulesData.loadedData[refIndex];
 
-                    ScenesData.refSceneManagerMonoBehaviour.divingData.refAnimator.SetTrigger("DiveStart");
-
-                    yield return new WaitForSeconds(ScenesData.refSceneManagerMonoBehaviour.divingData.duration);
+                    //ScenesData.refSceneManagerMonoBehaviour.divingData.refAnimator.SetTrigger("DiveStart");
+                    //yield return new WaitForSeconds(ScenesData.refSceneManagerMonoBehaviour.divingData.duration);
+                    yield return null;
 
                     ModulesData.CaptureWorldPositions();
                     ModulesData.StashToBank();

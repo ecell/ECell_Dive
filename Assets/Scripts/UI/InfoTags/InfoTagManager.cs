@@ -132,7 +132,6 @@ namespace ECellDive
 
                     if (refInfoTextMesh.text.Length == 0)
                     {
-                        Debug.Log($"hiding {gameObject.name}");
                         Hide();
                     }
                 }
