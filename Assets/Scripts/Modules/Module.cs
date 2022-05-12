@@ -40,7 +40,7 @@ namespace ECellDive
 
             #endregion
 
-            #region - IGroupable Mambers -
+            #region - IGroupable Members -
             private int m_grpMemberIndex = -1;
             public int grpMemberIndex
             {

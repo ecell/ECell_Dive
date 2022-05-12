@@ -1037,9 +1037,6 @@ GameObject:
   - component: {fileID: 3390745763744813190}
   - component: {fileID: 975168987656357475}
   - component: {fileID: 5030497511704904212}
-  - component: {fileID: 1372705901995016030}
-  - component: {fileID: 4364436040014510664}
-  - component: {fileID: 1197113414821138329}
   - component: {fileID: 2483928659506341774}
   m_Layer: 5
   m_Name: Log Menu
@@ -1081,7 +1078,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refMessageScrollList: {fileID: 1733808396266381741}
-  refMessageItemPrefab: {fileID: 4853998836252137931}
   refMessageSpace: {fileID: 5800202547680338837}
   toggleAll: {fileID: 4034456057144279223}
   toggleIndividuals:
@@ -1121,257 +1117,6 @@ MonoBehaviour:
   hoverExitAudioData:
     play: 0
     clip: {fileID: 0}
---- !u!54 &1372705901995016030
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3752471788755025133}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &4364436040014510664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3752471788755025133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
-  m_Colliders:
-  - {fileID: 6092057990098425893}
-  m_InteractionLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  m_CustomReticle: {fileID: 0}
-  m_FirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2483928659506341774}
-        m_TargetAssemblyTypeName: ECellDive.Utility.FaceCamera, Assembly-CSharp
-        m_MethodName: ShowBackToPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_LastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectEntered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1197113414821138329}
-        m_TargetAssemblyTypeName: ECellDive.UserActions.GrabManager, Assembly-CSharp
-        m_MethodName: HandleInteractorsSorting
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_SelectExited:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1197113414821138329}
-        m_TargetAssemblyTypeName: ECellDive.UserActions.GrabManager, Assembly-CSharp
-        m_MethodName: ResetLogic
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_Activated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Deactivated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnFirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnLastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectCanceled:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnActivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnDeactivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_AttachTransform: {fileID: 0}
-  m_AttachEaseInTime: 0.15
-  m_MovementType: 2
-  m_VelocityDamping: 1
-  m_VelocityScale: 1
-  m_AngularVelocityDamping: 1
-  m_AngularVelocityScale: 1
-  m_TrackPosition: 0
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 5
-  m_TightenPosition: 0.5
-  m_TrackRotation: 0
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 5
-  m_TightenRotation: 0.5
-  m_ThrowOnDetach: 0
-  m_ThrowSmoothingDuration: 0.25
-  m_ThrowSmoothingCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_ThrowVelocityScale: 1.5
-  m_ThrowAngularVelocityScale: 1
-  m_ForceGravityOnDetach: 0
-  m_RetainTransformParent: 1
-  m_AttachPointCompatibilityMode: 0
---- !u!114 &1197113414821138329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3752471788755025133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c2e1ae825e2035488d80d33ed5dee95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftGrabActionData:
-    select: {fileID: 1901161901490888043, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    attractRepulse: {fileID: -3848924210200324891, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  rightGrabActionData:
-    select: {fileID: -4479098549160383614, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    attractRepulse: {fileID: 2490823375165310329, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  objectMaxDistance: 25
-  objectMinDistance: 0.1
-  attractionSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5003526
-      value: 0.50052893
-      inSlope: 1.4999993
-      outSlope: 0.99964714
-      tangentMode: 65
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.99964714
-      outSlope: 0
-      tangentMode: 5
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  repulsionSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_OnPostGrabMovementUpdate:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2483928659506341774}
-        m_TargetAssemblyTypeName: ECellDive.Utility.FaceCamera, Assembly-CSharp
-        m_MethodName: ShowBackToPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2483928659506341774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3549,7 +3294,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7438833244280093156}
   m_HandleRect: {fileID: 1803328836343994168}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3734,7 +3479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3576129235600549931, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3576129235600549931, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
       propertyPath: m_NumberOfSteps
@@ -3899,11 +3644,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014e9fe6c8f623f419245c1bf916a7bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &4853998836252137931 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3605573735211422679, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
-  m_PrefabInstance: {fileID: 8166517117289925148}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6047326349797830691 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2502074269928372799, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
@@ -4016,11 +3756,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5b741e47f098ea4ba5bfc09938dd1e7, type: 3}
---- !u!65 &6092057990098425893 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 2746341554311650998, guid: e5b741e47f098ea4ba5bfc09938dd1e7, type: 3}
-  m_PrefabInstance: {fileID: 8257245878889629331}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3903462839784904136 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4952908069321790299, guid: e5b741e47f098ea4ba5bfc09938dd1e7, type: 3}
