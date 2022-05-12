@@ -103,7 +103,7 @@ namespace ECellDive
             }
             #endregion
 
-            private void Awake()
+            protected virtual void Awake()
             {
                 areVisible = false;
 
