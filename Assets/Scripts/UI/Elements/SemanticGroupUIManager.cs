@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.Utility;
@@ -49,14 +50,28 @@ namespace ECellDive
                 get => m_content;
                 set => m_content = value;
             }
-            
+
+            [SerializeField] private GameObject m_scrollListHolderPrefab;
+            public GameObject scrollListHolderPrefab
+            {
+                get => m_scrollListHolderPrefab;
+                set => m_scrollListHolderPrefab = value;
+            }
+
             [SerializeField] private GameObject m_scrollListPrefab;
             public GameObject scrollListPrefab
             {
                 get => m_scrollListPrefab;
                 set => m_scrollListPrefab = value;
             }
-            
+
+            private GameObject m_scrollListHolder;
+            public GameObject scrollListHolder
+            {
+                get => m_scrollListHolder;
+                set => m_scrollListHolder = value;
+            }
+
             private OptimizedVertScrollList m_scrollList;
             public OptimizedVertScrollList scrollList
             {
@@ -78,7 +93,7 @@ namespace ECellDive
                 }
 
                 //Destroying the scroll list of the content of the drop down (semantic group). 
-                Destroy(content);
+                Destroy(scrollListHolder);
 
                 //Hiding the object.
                 gameObject.SetActive(false);
@@ -139,10 +154,10 @@ namespace ECellDive
             {
                 m_content.SetActive(true);
 
-                //Repositioning the content in front of the user.
+                //Repositioning the scrollListHolder in front of the user.
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
-                m_content.transform.position = pos;
-                m_content.GetComponent<FaceCamera>().ShowBackToPlayer();
+                m_scrollListHolder.transform.position = pos;
+                m_scrollListHolder.GetComponent<FaceCamera>().ShowBackToPlayer();
             }
 
             public void HideContent()
@@ -152,12 +167,16 @@ namespace ECellDive
 
             public void InstantiateContent()
             {
+                m_scrollListHolder = Instantiate(m_scrollListHolderPrefab);
                 m_content = Instantiate(m_scrollListPrefab);
+                m_content.transform.parent = m_scrollListHolder.transform;
+                m_scrollListHolder.GetComponent<XRGrabInteractable>().colliders.Add(m_content.GetComponentInChildren<BoxCollider>());
+                m_scrollListHolder.GetComponent<XRGrabInteractable>().enabled = true;
 
-                //Positioning the content in front of the user.
+                //Positioning the scrollListHolder in front of the user.
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
-                m_content.transform.position = pos;
-                m_content.GetComponent<FaceCamera>().ShowBackToPlayer();
+                m_scrollListHolder.transform.position = pos;
+                m_scrollListHolder.GetComponent<FaceCamera>().ShowBackToPlayer();
 
                 m_scrollList = m_content.GetComponentInChildren<OptimizedVertScrollList>();
             }

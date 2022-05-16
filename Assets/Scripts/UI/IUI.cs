@@ -25,7 +25,13 @@ namespace ECellDive
             /// <summary>
             /// A boolean representing the state of the dropdown.
             /// </summary>
-            bool isExpanded {get;}
+            bool isExpanded { get; }
+
+            /// <summary>
+            /// The 3D holder of the UI scroll list that will be instantiated
+            /// to allow manipulation of the scroll list in the 3D space.
+            /// </summary>
+            public GameObject scrollListHolderPrefab { get; }
 
             /// <summary>
             /// The scroll List prefab to instantiate upon creation of a drop
@@ -34,10 +40,15 @@ namespace ECellDive
             public GameObject scrollListPrefab { get; }
 
             /// <summary>
+            /// The reference to the 3D position container of the scroll list.
+            /// </summary>
+            public GameObject scrollListHolder {get;}
+
+            /// <summary>
             /// The content of the drop down. Namely, the objects to hide or display
             /// when the drop down is collapsed or expanded respectively.
             /// </summary>
-            OptimizedVertScrollList scrollList { get; set; }
+            OptimizedVertScrollList scrollList { get; }
 
             /// <summary>
             /// The gameobject to activate/deactivate when we wish to show or hide the 

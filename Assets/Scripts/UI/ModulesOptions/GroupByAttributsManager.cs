@@ -56,7 +56,7 @@ namespace ECellDive
                 //Creating the scroll list that will be the container for the objects
                 //controlled by the drop down.
                 ddComponent.InstantiateContent();
-                ddComponent.content.transform.parent = refGroupByModule.transform;
+                ddComponent.scrollListHolder.transform.parent = refGroupByModule.transform;
                 dataUIManagers.Add(ddComponent);
 
                 foreach (JProperty _property in _dataNodeSample.Properties())
