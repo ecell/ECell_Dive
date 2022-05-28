@@ -55,6 +55,9 @@ namespace ECellDive
             [System.Serializable]
             public class NetworkGOSettings
             {
+                [Header("Spawning")]
+                public int nodesBatchSize;
+                public int edgesBatchSize;
                 [Header("Scaling")]
                 [Min(1)] public float PositionScaleFactor;
                 [Min(1)] public float SizeScaleFactor;

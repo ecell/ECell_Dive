@@ -32,7 +32,7 @@ namespace ECellDive
                     sceneID = scenesBank.Count,
                     nbModules = 0
                 };
-                refSceneManagerMonoBehaviour.DiveIn(moduleData);                
+                refSceneManagerMonoBehaviour.DiveIn(moduleData);
             }
 
             public static void Resurface()

@@ -92,8 +92,7 @@ namespace ECellDive
                 CleanInstantiationList();
                 InstantiateGOOfModuleData(_rootModule, Vector3.zero);
 
-                divingData.refAnimator.SetTrigger("DiveEnd");
-
+                //divingData.refAnimator.SetTrigger("DiveEnd");
             }
 
             /// <summary>

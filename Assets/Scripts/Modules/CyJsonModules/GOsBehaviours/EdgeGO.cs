@@ -50,8 +50,9 @@ namespace ECellDive
 
             private NetworkGO refMasterPathway;
 
-            private void Awake()
+            protected override void Awake()
             {
+                base.Awake();
                 triggerKOActions.leftController.action.performed += ManageKnockout;
                 triggerKOActions.rightController.action.performed += ManageKnockout;
             }

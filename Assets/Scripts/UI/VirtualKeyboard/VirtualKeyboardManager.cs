@@ -78,8 +78,8 @@ namespace ECellDive
             public void Show()
             {
                 gameObject.SetActive(true);
-                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
-                transform.position = pos;
+                Vector3 pos = Positioning.PlaceInFrontOfTargetLocal(Camera.main.transform, 1.5f, -0.2f);
+                transform.parent.position = pos;
                 GetComponent<FaceCamera>().ShowBackToPlayer();
             }
 
