@@ -413,12 +413,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftGrabActionData:
     select: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    activate: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    attractRepulse: {fileID: -3848924210200324891, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   rightGrabActionData:
     select: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    activate: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    attractRepulse: {fileID: 2490823375165310329, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   objectMaxDistance: 25
-  attractionThreshold: 0.08
+  objectMinDistance: 25
   attractionSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -452,7 +452,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  repulsionThreshold: 0.08
   repulsionSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -526,16 +525,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refName: {fileID: 4416525400321850023}
-  refInfoTagPrefab: {fileID: 3196879304267973230}
-  refInfoTagsContainer: {fileID: 1867531074452762960}
-  refInfoTags: []
-  refShowInfoAction: {fileID: 2877651664448697780, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  refDiveAction: {fileID: 4579416455403421852, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  refInteractorTargetLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  isFocused: 0
+  diveActions:
+    leftController: {fileID: 0}
+    rightController: {fileID: 0}
   finalLayer: 0
+  m_defaultColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  m_highlightColor: {r: 0, g: 0.8980392, b: 0.8962264, a: 1}
+  m_displayInfoTagsActions:
+    leftController: {fileID: 0}
+    rightController: {fileID: 0}
+  m_refInfoTagPrefab: {fileID: 0}
+  m_refInfoTagsContainer: {fileID: 0}
+  m_refInfoTags: []
 --- !u!1 &2737847575246320643
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +596,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e76d06357368896469e543d5cf890f3c, type: 2}
+  - {fileID: 2100000, guid: 27843a98f1ed6224481beb014a35e7c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -892,11 +893,6 @@ PrefabInstance:
       objectReference: {fileID: 5486488718019400936}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
---- !u!1 &3196879304267973230 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 872680225068267352, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
-  m_PrefabInstance: {fileID: 2324414587807692086}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3196879304267973231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 872680225068267353, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}

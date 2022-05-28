@@ -7,7 +7,7 @@ using TMPro;
 using ECellDive.Utility;
 using ECellDive.UI;
 using ECellDive.SceneManagement;
-using ECellDive.IInteractions;
+using ECellDive.Interfaces;
 
 namespace ECellDive
 {
@@ -19,6 +19,7 @@ namespace ECellDive
         /// </summary>
         public class Module : MonoBehaviour,
                                 IFocus,
+                                IGroupable,
                                 IHighlightable,
                                 IInfoTags
         {
@@ -35,6 +36,38 @@ namespace ECellDive
             {
                 get => m_isFocused;
                 set => isFocused = m_isFocused;
+            }
+
+            #endregion
+
+            #region - IGroupable Members -
+            private int m_grpMemberIndex = -1;
+            public int grpMemberIndex
+            {
+                get => m_grpMemberIndex;
+                set => m_grpMemberIndex = value;
+            }
+            #endregion
+
+            #region - IHighlightable Members - 
+
+            [SerializeField] private Color m_defaultColor;
+            public Color defaultColor {
+                get => m_defaultColor;
+                set => SetDefaultColor(value);
+            }
+
+            [SerializeField] private Color m_highlightColor;
+            public Color highlightColor {
+                get => m_highlightColor;
+                set => SetHighlightColor(value);
+            }
+
+            private bool m_forceHighlight = false;
+            public bool forceHighlight
+            {
+                get => m_forceHighlight;
+                set => m_forceHighlight = value;
             }
 
             #endregion
@@ -70,7 +103,7 @@ namespace ECellDive
             }
             #endregion
 
-            private void Awake()
+            protected virtual void Awake()
             {
                 areVisible = false;
 
@@ -151,6 +184,17 @@ namespace ECellDive
             #endregion
 
             #region - IHighlightable -
+
+            public virtual void SetDefaultColor(Color _c)
+            {
+                m_defaultColor = _c;
+            }
+
+            public virtual void SetHighlightColor(Color _c)
+            {
+                m_highlightColor = _c;
+            }
+
             public virtual void SetHighlight()
             {
             }

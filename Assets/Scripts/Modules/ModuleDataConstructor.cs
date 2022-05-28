@@ -16,7 +16,7 @@ namespace ECellDive
 
             public void Constructor()
             {
-                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
+                Vector3 pos = Positioning.PlaceInFrontOfTargetLocal(Camera.main.transform, 2f, 0.3f);
                 ModulesData.AddModule(moduleData);
                 ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleData(moduleData, pos);
             }

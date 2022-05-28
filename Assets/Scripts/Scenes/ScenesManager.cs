@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using HSVPicker;
 using ECellDive.Modules;
-
-
 
 namespace ECellDive
 {
@@ -27,9 +25,6 @@ namespace ECellDive
 
             [Tooltip("The minimum time we wait for the dive.")]
             [Min(1f)] public float duration;
-
-            public GameObject diveGrabHelper;
-
         }
 
         [System.Serializable]
@@ -39,11 +34,25 @@ namespace ECellDive
             public XRRayInteractor rightInteractor;
         }
 
+        [System.Serializable]
+        public struct RemoteInteractionData
+        {
+            public ActionBasedController leftController;
+            public XRRayInteractor leftInteractor;
+            public ActionBasedController rightController;
+            public XRRayInteractor rightInteractor;
+        }
+
         public class ScenesManager : MonoBehaviour
         {
             public InstantiationData instantiationData;
             public DivingData divingData;
             public RemoteGrabData remoteGrabData;
+            public RemoteInteractionData remoteInteractionData;
+
+            [Header("Global UI Elements")]
+            public GameObject refVirtualKeyboard;
+            public ColorPicker refColorPicker;
 
             private void Awake()
             {
@@ -59,10 +68,10 @@ namespace ECellDive
                 ModulesData.ClearModulesBankWorldPos();
             }
 
-            public void AddInstantiatedGOOfModuleData(GameObject _mdGO)
-            {
-                instantiationData.modulesInstanceList.Add(_mdGO);
-            }
+            //public void AddInstantiatedGOOfModuleData(GameObject _mdGO)
+            //{
+            //    instantiationData.modulesInstanceList.Add(_mdGO);
+            //}
 
             public void CleanInstantiationList()
             {
@@ -83,8 +92,7 @@ namespace ECellDive
                 CleanInstantiationList();
                 InstantiateGOOfModuleData(_rootModule, Vector3.zero);
 
-                divingData.refAnimator.SetTrigger("DiveEnd");
-
+                //divingData.refAnimator.SetTrigger("DiveEnd");
             }
 
             /// <summary>

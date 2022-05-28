@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6761440568255983320}
   - component: {fileID: 6761440568255983323}
-  - component: {fileID: 7788288904989985167}
   m_Layer: 0
   m_Name: CyJsonRootModule
   m_TagString: CyJsonRootModule
@@ -45,33 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   networkGOSettingsModel:
+    nodesBatchSize: 10
+    edgesBatchSize: 10
     PositionScaleFactor: 100
     SizeScaleFactor: 10
     InterLayersDistance: 5
---- !u!114 &7788288904989985167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6761440568255983322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22f3aa5bab49cf4f8ef6dd7d05bc36f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OnPostGrabMovementUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  controllersPositionsData:
-    leftController: {fileID: 3078257815892442391, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    rightController: {fileID: 2543493602832232879, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  leftGrabActionData:
-    select: {fileID: -1109570145681614048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    activate: {fileID: 7575380841398482008, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  rightGrabActionData:
-    select: {fileID: -7001832820132173882, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    activate: {fileID: -5061084761587061651, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  deadzoneDistance: {x: 0.1, y: 0.1, z: 0.1}
-  sensitivity: 2
-  smoothTime: 0.2

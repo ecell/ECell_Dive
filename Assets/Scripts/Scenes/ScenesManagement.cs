@@ -1,8 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-
-using UnityEngine;
-
 using ECellDive.Modules;
 
 namespace ECellDive
@@ -36,7 +32,7 @@ namespace ECellDive
                     sceneID = scenesBank.Count,
                     nbModules = 0
                 };
-                refSceneManagerMonoBehaviour.DiveIn(moduleData);                
+                refSceneManagerMonoBehaviour.DiveIn(moduleData);
             }
 
             public static void Resurface()

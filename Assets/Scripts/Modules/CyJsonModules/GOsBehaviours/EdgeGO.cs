@@ -2,8 +2,8 @@
 using UnityEngine.InputSystem;
 using ECellDive.Utility.SettingsModels;
 using ECellDive.UI;
-using ECellDive.IInteractions;
-using ECellDive.INetworkComponents;
+using ECellDive.Interfaces;
+using ECellDive.SceneManagement;
 
 
 namespace ECellDive
@@ -43,20 +43,22 @@ namespace ECellDive
 
             public EdgeGOSettings edgeGOSettingsModels;
 
-            public Color defaultColor;
-            public Color highlightColor;
-
             private MaterialPropertyBlock mpb;
             private int colorID;
             private int activationID;
             private int panningSpeedID;
 
-            private void Start()
+            private NetworkGO refMasterPathway;
+
+            protected override void Awake()
             {
+                base.Awake();
                 triggerKOActions.leftController.action.performed += ManageKnockout;
                 triggerKOActions.rightController.action.performed += ManageKnockout;
+            }
 
-                knockedOut = false;
+            private void Start()
+            {
                 fluxLevel = 0f;
                 fluxLevelClamped = 1f;
             }
@@ -76,10 +78,284 @@ namespace ECellDive
             {
                 triggerKOActions.leftController.action.performed -= ManageKnockout;
                 triggerKOActions.rightController.action.performed -= ManageKnockout;
+            }
 
-//#if UNITY_EDITOR
-//                refLineRenderer.sharedMaterial.SetFloat("Vector1_A68FF3D0", 0);
-//#endif
+            public void Initialize(NetworkGO _masterPathway, IEdge _edge)
+            {
+                refMasterPathway = _masterPathway;
+                InstantiateInfoTags(new string[] { "" });
+                SetEdgeData(_edge);
+                gameObject.SetActive(true);
+                gameObject.name = edgeData.NAME;
+
+                SetDefaultWidth(1 / refMasterPathway.networkGOSettingsModel.SizeScaleFactor,
+                                1 / refMasterPathway.networkGOSettingsModel.SizeScaleFactor);
+                SetLineRendererWidth();
+
+                Transform start = refMasterPathway.DataID_to_DataGO[edgeData.source].transform;
+                Transform target = refMasterPathway.DataID_to_DataGO[edgeData.target].transform;
+                SetLineRendererPosition(start, target);
+                SetCollider(start, target);
+            }
+
+            /// <summary>
+            /// The public interface to call back on Unity Events to knockout
+            /// or activate a reaction represented by the edge.
+            /// </summary>
+            /// <remarks>Typically called back when the user presses a button
+            /// while pointing at the edge.</remarks>
+            public void ManageKnockout(InputAction.CallbackContext _ctx)
+            {
+                if (isFocused)
+                {
+                    if (knockedOut)
+                    {
+                        SpreadActivationDownward();
+                        SpreadActivationUpward();
+                    }
+
+                    else
+                    {
+                        SpreadKODownward();
+                        SpreadKOUpward();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// The utility function to updates the information string.
+            /// </summary>
+            private void SetInformationString()
+            {
+                informationString = $"SUID: {edgeData.ID} \n" +
+                                    $"Name: {edgeData.NAME} \n" +
+                                    $"Knockedout: {knockedOut} \n" +
+                                    $"Flux: {fluxLevel}";
+                m_refInfoTags[0].GetComponent<InfoDisplayManager>().SetText(informationString);
+            }
+
+            /// <summary>
+            /// </summary>
+            /// <remarks></remarks>
+            public void SpreadActivationDownward()
+            {
+                Activate();
+
+                GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
+                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadActivationDownward();
+                    }
+                }
+
+                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
+                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadActivationUpward();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// </summary>
+            /// <remarks></remarks>
+            public void SpreadActivationUpward()
+            {
+                Activate();
+
+                GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
+                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadActivationUpward();
+                    }
+                }
+
+                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
+                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadActivationDownward();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// </summary>
+            /// <remarks></remarks>
+            public void SpreadKODownward()
+            {
+                Knockout();
+
+                GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
+                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadKODownward();
+                    }
+                }
+
+                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
+                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadKOUpward();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// </summary>
+            /// <remarks></remarks>
+            public void SpreadKOUpward()
+            {
+                Knockout();
+
+                GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
+                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadKOUpward();
+                    }
+                }
+
+                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
+                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadKODownward();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// </summary>
+            /// <remarks></remarks>
+            public void SpreadHighlightDownward()
+            {
+                SetHighlight();
+
+                GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
+                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadHighlightDownward();
+                    }
+                }
+
+                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
+                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadHighlightUpward();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// </summary>
+            /// <remarks></remarks>
+            public void SpreadHighlightUpward()
+            {
+                SetHighlight();
+
+                GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
+                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadHighlightUpward();
+                    }
+                }
+
+                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
+                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadHighlightDownward();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// </summary>
+            /// <remarks></remarks>
+            public void SpreadUnsetHighlightDownward()
+            {
+                UnsetHighlight();
+
+                GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
+                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadUnsetHighlightDownward();
+                    }
+                }
+
+                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
+                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadUnsetHighlightUpward();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// </summary>
+            /// <remarks></remarks>
+            public void SpreadUnsetHighlightUpward()
+            {
+                UnsetHighlight();
+
+                GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
+                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadUnsetHighlightUpward();
+                    }
+                }
+
+                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                {
+                    EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+                    if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
+                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    {
+                        neighbourEdgeGo.SpreadUnsetHighlightDownward();
+                    }
+                }
             }
 
             #region - IEdgeGO - 
@@ -106,13 +382,13 @@ namespace ECellDive
 
             }
 
-            public void SetLineRenderer()
+            public void SetLineRendererWidth()
             {
                 refLineRenderer.startWidth = edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
                 refLineRenderer.endWidth = edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
             }
 
-            public void SetPosition(Transform _start, Transform _end)
+            public void SetLineRendererPosition(Transform _start, Transform _end)
             {
                 refLineRenderer.SetPosition(0, _start.localPosition);
                 refLineRenderer.SetPosition(1, _end.localPosition);
@@ -141,13 +417,28 @@ namespace ECellDive
                 fluxLevel = _level;
                 fluxLevelClamped = _levelClamped;
                 SetInformationString();
-                mpb.SetFloat(panningSpeedID, fluxLevel);
+                mpb.SetFloat(panningSpeedID, _levelClamped);
                 refLineRenderer.SetPropertyBlock(mpb);
                 UnsetHighlight();
             }
             #endregion
 
             #region - IHighlightable -
+
+            public override void SetDefaultColor(Color _c)
+            {
+                base.SetDefaultColor(_c);
+                mpb.SetVector(colorID, defaultColor);
+                refLineRenderer.SetPropertyBlock(mpb);
+            }
+
+            public override void SetHighlightColor(Color _c)
+            {
+                base.SetDefaultColor(_c);
+                mpb.SetVector(colorID, highlightColor);
+                refLineRenderer.SetPropertyBlock(mpb);
+            }
+
             public override void SetHighlight()
             {
                 mpb.SetVector(colorID, highlightColor);
@@ -156,83 +447,15 @@ namespace ECellDive
 
             public override void UnsetHighlight()
             {
-                mpb.SetVector(colorID, defaultColor);
-                refLineRenderer.SetPropertyBlock(mpb);
+                if (!forceHighlight)
+                {
+                    mpb.SetVector(colorID, defaultColor);
+                    refLineRenderer.SetPropertyBlock(mpb);
+                }
             }
             #endregion
 
-            public void Initialize(NetworkGO _masterPathway, IEdge _edge)
-            {
-                InstantiateInfoTags(new string[] { "" });
-                SetEdgeData(_edge);
-                gameObject.SetActive(true);
-                gameObject.name = edgeData.NAME;
-
-                SetDefaultWidth(1 / _masterPathway.networkGOSettingsModel.SizeScaleFactor,
-                                1 / _masterPathway.networkGOSettingsModel.SizeScaleFactor);
-                SetLineRenderer();
-
-                Transform start = _masterPathway.NodeID_to_NodeGO[edgeData.source].transform;
-                Transform target = _masterPathway.NodeID_to_NodeGO[edgeData.target].transform;
-                SetPosition(start, target);
-                SetCollider(start, target);
-            }
-
-            /// <summary>
-            /// Public interface to call back on Unity Events to trigger
-            /// on or off the highlight of the object.
-            /// </summary>
-            /// <remarks>Typically the highlight will be turned on when the
-            /// pointer enters "hovering" and turned off when it exits
-            /// "hovering".</remarks>
-            public void ManageHighlight()
-            {
-                switch (isFocused)
-                {
-                    case true:
-                        UnsetHighlight();
-                        break;
-
-                    case false:
-                        SetHighlight();
-                        break;
-                }
-            }
-
-            /// <summary>
-            /// The public interface to call back on Unity Events to knockout
-            /// or activate a reaction represented by the edge.
-            /// </summary>
-            /// <remarks>Typically called back when the user presses a button
-            /// while pointing at the edge.</remarks>
-            public void ManageKnockout(InputAction.CallbackContext _ctx)
-            {
-                if (isFocused)
-                {
-                    switch (knockedOut)
-                    {
-                        case true:
-                            Activate();
-                            break;
-
-                        case false:
-                            Knockout();
-                            break;
-                    }
-                }
-            }
-
-            /// <summary>
-            /// The utility function to updates the information string.
-            /// </summary>
-            private void SetInformationString()
-            {
-                informationString = $"SUID: {edgeData.ID} \n" +
-                                    $"Name: {edgeData.NAME} \n" +
-                                    $"Knockedout: {knockedOut} \n" +
-                                    $"Flux: {fluxLevel}";
-                m_refInfoTags[0].GetComponent<InfoDisplayManager>().SetText(informationString);
-            }
+            
         }
     }
 }

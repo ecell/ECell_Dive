@@ -129,7 +129,19 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3799698922840848880}
         m_TargetAssemblyTypeName: ECellDive.Modules.EdgeGO, Assembly-CSharp
-        m_MethodName: SetHighlight
+        m_MethodName: SpreadHighlightDownward
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3799698922840848880}
+        m_TargetAssemblyTypeName: ECellDive.Modules.EdgeGO, Assembly-CSharp
+        m_MethodName: SpreadHighlightUpward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -156,7 +168,19 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3799698922840848880}
         m_TargetAssemblyTypeName: ECellDive.Modules.EdgeGO, Assembly-CSharp
-        m_MethodName: UnsetHighlight
+        m_MethodName: SpreadUnsetHighlightDownward
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3799698922840848880}
+        m_TargetAssemblyTypeName: ECellDive.Modules.EdgeGO, Assembly-CSharp
+        m_MethodName: SpreadUnsetHighlightUpward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -388,6 +412,8 @@ MonoBehaviour:
     leftController: {fileID: -6167206992522063489, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
     rightController: {fileID: 1131537533043575416, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   finalLayer: 1
+  m_defaultColor: {r: 1, g: 1, b: 1, a: 0}
+  m_highlightColor: {r: 0, g: 0.8980392, b: 0.8962264, a: 0}
   m_displayInfoTagsActions:
     leftController: {fileID: -2874468441403497665, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
     rightController: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
@@ -396,15 +422,13 @@ MonoBehaviour:
   m_refInfoTags: []
   m_refBoxColliderHolder: {fileID: 1878873688329936020}
   m_triggerKOActions:
-    leftController: {fileID: 7575380841398482008, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    rightController: {fileID: -5061084761587061651, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    leftController: {fileID: -9086459537174069806, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    rightController: {fileID: 6272053831681804322, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   edgeGOSettingsModels:
     startWidthFactor: 0.25
     endWidthFactor: 0.5
     startHWidthFactor: 0.5
     endHWidthFactor: 1
-  defaultColor: {r: 1, g: 1, b: 1, a: 0}
-  highlightColor: {r: 1, g: 0.65916854, b: 0, a: 1}
 --- !u!1 &7694538660087557743
 GameObject:
   m_ObjectHideFlags: 0

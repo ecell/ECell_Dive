@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using ECellDive.INetworkComponents;
+using ECellDive.Interfaces;
 
 namespace ECellDive
 {
@@ -15,17 +14,16 @@ namespace ECellDive
             public string NAME { get; set; }
             public List<int> incommingEdges { get; set; }
             public List<int> outgoingEdges { get; set; }
+            public bool isVirtual { get; set; }
 
-            //AdditionalFields
-            public string keggNodeLabel;
-
-            public Node(int _ID, string _name, Vector3 _position)
+            public Node(int _ID, string _name, Vector3 _position, bool _isVirtual)
             {
                 ID = _ID;
                 position = _position;
                 NAME = _name;
                 incommingEdges = new List<int>();
                 outgoingEdges = new List<int>();
+                isVirtual = _isVirtual;
             }
         }
     }
