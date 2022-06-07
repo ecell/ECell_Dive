@@ -32,17 +32,10 @@ namespace ECellDive
             private int leftControllerModeID = 2;//default is ray mode in left controller
             private int rightControllerModeID = 1;//default is movement mode on right controller
 
-            [Header("Movement XRRayInteractors")]
-            public GameObject leftMvt;
-            public GameObject rightMvt;
-
-            [Header("Group Controls Interactors")]
-            public GameObject leftGC;
-            public GameObject rightGC;
-
             [Header("Ray Based Controls XRRayInteractors")]
-            public XRRayInteractor[] leftRBCs;
-            public XRRayInteractor[] rightRBCs;
+            private XRRayInteractor[] leftRBCs;
+
+            private XRRayInteractor[] rightRBCs;
 
 
             private void Awake()
@@ -62,15 +55,29 @@ namespace ECellDive
 
             private void Start()
             {
+                leftRBCs = new XRRayInteractor[3]
+                {
+                    InteractorsRegister.groupsInteractors.left,
+                    InteractorsRegister.remoteInteractionInteractors.left,
+                    InteractorsRegister.mainPointerInteractors.left
+                };
+
+                rightRBCs = new XRRayInteractor[3]
+                {
+                    InteractorsRegister.groupsInteractors.right,
+                    InteractorsRegister.remoteInteractionInteractors.right,
+                    InteractorsRegister.mainPointerInteractors.right
+                };
+
                 refGCLHMap.Disable();
                 refGCRHMap.Disable();
-                DisableInteractor(leftGC);
-                DisableInteractor(rightGC);
+                DisableInteractor(InteractorsRegister.groupControllersGO.left);
+                DisableInteractor(InteractorsRegister.groupControllersGO.right);
 
                 refMvtLHMap.Disable();
                 refMvtRHMap.Enable();//default is movement mode on right controller
-                DisableInteractor(leftMvt);
-                EnableInteractor(rightMvt);
+                DisableInteractor(InteractorsRegister.mvtControllersGO.left);
+                EnableInteractor(InteractorsRegister.mvtControllersGO.right);
                 GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToRightController(rightControllerModeID);
 
                 refRBCLHMap.Enable();//default is ray mode on left controller
@@ -127,20 +134,20 @@ namespace ECellDive
                         DisableInteractors(leftRBCs);
 
                         refGCLHMap.Enable();
-                        EnableInteractor(leftGC);
+                        EnableInteractor(InteractorsRegister.groupControllersGO.left);
                         break;
 
                     case 1:
                         refGCLHMap.Disable();
-                        DisableInteractor(leftGC);
+                        DisableInteractor(InteractorsRegister.groupControllersGO.left);
 
                         refMvtLHMap.Enable();
-                        EnableInteractor(leftMvt);
+                        EnableInteractor(InteractorsRegister.mvtControllersGO.left);
                         break;
 
                     case 2:
                         refMvtLHMap.Disable();
-                        DisableInteractor(leftMvt);
+                        DisableInteractor(InteractorsRegister.mvtControllersGO.left);
 
                         refRBCLHMap.Enable();
                         EnableInteractors(leftRBCs);
@@ -165,20 +172,20 @@ namespace ECellDive
                         DisableInteractors(rightRBCs);
 
                         refGCRHMap.Enable();
-                        EnableInteractor(rightGC);
+                        EnableInteractor(InteractorsRegister.groupControllersGO.right);
                         break;
 
                     case 1:
                         refGCRHMap.Disable();
-                        DisableInteractor(rightGC);
+                        DisableInteractor(InteractorsRegister.groupControllersGO.right);
 
                         refMvtRHMap.Enable();
-                        EnableInteractor(rightMvt);
+                        EnableInteractor(InteractorsRegister.mvtControllersGO.right);
                         break;
 
                     case 2:
                         refMvtRHMap.Disable();
-                        DisableInteractor(rightMvt);
+                        DisableInteractor(InteractorsRegister.mvtControllersGO.right);
 
                         refRBCRHMap.Enable();
                         EnableInteractors(rightRBCs);
