@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using Unity.Netcode;
 using UnityEngine;
 using TMPro;
 using ECellDive.IO;
@@ -21,10 +22,74 @@ namespace ECellDive
             public TMP_InputField refPortInputField;
         }
 
+        //[RequireComponent(typeof(ModuleImportRPCs))]
         public class HttpServerImporterModule : HttpServerBaseModule
         {
             public UIDisplayData uiDisplayData;
             [HideInInspector] public string activeModelName = "";
+
+            List<byte[]> modelContentFrags = new List<byte[]>();
+
+            private void Start()
+            {
+                if (NetworkManager.Singleton.IsServer)
+                {
+                    GetComponent<NetworkObject>().Spawn();
+                }
+            }
+
+            [ClientRpc]
+            public void DistributeCyJsonModuleClientRpc(NetworkObjectReference _cyJsonModule)
+            {
+                Debug.Log($"DistributeCyJsonModuleClientRpc on client:{NetworkManager.Singleton.LocalClientId}");
+
+                byte[] modelContent = ArrayManipulation.Assemble(modelContentFrags);
+                //Debug.Log(System.Text.Encoding.UTF8.GetString(modelContent));
+                requestData.requestJObject = JObject.Parse(System.Text.Encoding.UTF8.GetString(modelContent));
+
+                //Loading the file
+                NetworkComponents.Network network = NetworkLoader.Initiate(requestData.requestJObject,
+                                                                            activeModelName);
+
+                //Instantiating relevant data structures to store the information about
+                //the layers, nodes and edges.
+                NetworkLoader.Populate(network);
+                CyJsonModulesData.AddData(network);
+
+                NetworkObject cyJsonModuleNet = _cyJsonModule;
+                cyJsonModuleNet.GetComponent<CyJsonModule>().StartUpInfo();
+            }
+
+            [ServerRpc]
+            public void SpawnCyJsModuleServerRpc()//ModuleData _cyJsonMD, string _modelName, string _modelContent)
+            {
+                //Instantiation of the CyJson module corresponding to encapsulate the
+                //CyJson pathway that just has been populated.
+                ModuleData cyJsonMD = new ModuleData
+                {
+                    typeID = 4 // 4 is the type ID of a CyJsonModule
+                };
+                ModulesData.AddModule(cyJsonMD);
+                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
+                GameObject cyJsonModule = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleData(cyJsonMD, pos);
+                cyJsonModule.GetComponent<NetworkObject>().Spawn();
+
+                DistributeCyJsonModuleClientRpc(cyJsonModule);
+            }
+
+            [ClientRpc]
+            public void DistributeFragmentClientRpc(byte[] _frag)
+            {
+                Debug.Log($"Client {NetworkManager.Singleton.LocalClientId} received a fragment of the model of size {_frag.Length}");
+                modelContentFrags.Add(_frag);
+            }
+
+            [ServerRpc]
+            public void DistributeFragmentServerRpc(byte[] _frag)
+            {
+                //Debug.Log($"The server received a fragment of the model of size {_frag.Length}");
+                DistributeFragmentClientRpc(_frag);
+            }
 
             /// <summary>
             /// Requests the models list to the server.
@@ -84,26 +149,49 @@ namespace ECellDive
 
                 if (requestData.requestSuccess)
                 {
-                    requestData.requestJObject = JObject.Parse(requestData.requestText);
+                    byte[] modelContent = System.Text.Encoding.UTF8.GetBytes(requestData.requestText);
+                    //FileStream fs = File.OpenWrite("C:/Users/EliottJacopin/Documents/modelContent.json");
+                    //StreamWriter sw = new StreamWriter(fs);
+                    //fs.Write(modelContent, 0, modelContent.Length);
+                    //fs.Close();
 
-                    //Loading the file
-                    NetworkComponents.Network network = NetworkLoader.Initiate(requestData.requestJObject,
-                                                                                activeModelName);
+                    //Debug.Log($"The request data text represents: {modelContent.Length} bytes. " +
+                    //          $"You need {Mathf.CeilToInt(modelContent.Length / 4096)} FixedString4096Bytes to represent it.");
 
-                    //Instantiating relevant data structures to store the information about
-                    //the layers, nodes and edges.
-                    NetworkLoader.Populate(network);
-                    CyJsonModulesData.AddData(network);
+                    List<byte[]> mCFs = ArrayManipulation.Fragment(modelContent, 4096);
 
-                    //Instantiation of the CyJson module corresponding to encapsulate the
-                    //CyJson pathway that just has been populated.
-                    ModuleData cyJsonMD = new ModuleData
-                    {
-                        typeID = 4 // 4 is the type ID of a CyJsonModule
-                    };
-                    ModulesData.AddModule(cyJsonMD);
-                    Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
-                    ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleData(cyJsonMD, pos);                }
+                    //Debug.Log($"We fragmented the model into {mCFs.Count} chunks");
+                    StartCoroutine(DistributeFragmentC(mCFs));
+                    
+
+                    //DistributeFragmentServerRpc(mCFs[0]);
+
+                    //byte[] modelContentBytes = ArrayManipulation.Assemble(modelContentFrags);
+                    //string modelContentRebuilt = System.Text.Encoding.UTF8.GetString(modelContentBytes);
+
+                    //Debug.Log($"The assembled data text represents: {modelContentBytes.Length} bytes.");
+                    //Debug.Log($"This is same length as the original: {modelContentBytes.Length == modelContent.Length}.");
+
+                    //fs = File.OpenWrite("C:/Users/EliottJacopin/Documents/modelContentRebuilt.json");
+                    //sw = new StreamWriter(fs);
+                    //fs.Write(modelContentBytes, 0, modelContentBytes.Length);
+                    //fs.Close();
+
+                    //Debug.Log(modelContentRebuilt == requestData.requestText);
+
+                    
+                }
+            }
+            
+            IEnumerator DistributeFragmentC(List<byte[]> _mCFs)
+            {
+                foreach (byte[] _frag in _mCFs)
+                {
+                    DistributeFragmentServerRpc(_frag);
+                    yield return new WaitForEndOfFrame();
+                }
+
+                SpawnCyJsModuleServerRpc();
             }
 
             /// <summary>

@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 using ECellDive.Utility;
 using ECellDive.UI;
@@ -17,7 +17,9 @@ namespace ECellDive
         /// Base class holding references and methods used to manipulate
         /// the game object representation of a module.
         /// </summary>
-        public class Module : MonoBehaviour,
+        /// 
+        //[RequireComponent(typeof(NetworkObject))]
+        public class Module : NetworkBehaviour,
                                 IFocus,
                                 IGroupable,
                                 IHighlightable,
@@ -114,7 +116,7 @@ namespace ECellDive
                 m_displayInfoTagsActions.rightController.action.performed += ManageInfoTagsDisplay;
             }
 
-            private void OnDestroy()
+            public override void OnDestroy()
             {
                 diveActions.leftController.action.performed -= DiveIn;
                 diveActions.rightController.action.performed -= DiveIn;

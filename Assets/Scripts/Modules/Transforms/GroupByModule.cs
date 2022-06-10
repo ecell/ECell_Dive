@@ -29,7 +29,7 @@ namespace ECellDive
 
             private void Start()
             {
-                //For now (2022-03-17) we are only looking for a NetworkGO spawned froma cyjson file.
+                //For now (2022-03-17) we are only looking for a NetworkGO spawned from a cyjson file.
                 refNetworkGO = FindObjectOfType<NetworkGO>();
                 if (refNetworkGO != null)
                 {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Netcode;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.Utility.SettingsModels;
 using ECellDive.UI;
@@ -59,6 +60,10 @@ namespace ECellDive
 
             private void Start()
             {
+                if (NetworkManager.Singleton.IsServer)
+                {
+                    GetComponent<NetworkObject>().Spawn();
+                }
                 fluxLevel = 0f;
                 fluxLevelClamped = 1f;
             }
@@ -74,7 +79,7 @@ namespace ECellDive
                 refLineRenderer.SetPropertyBlock(mpb);
             }
 
-            private void OnDestroy()
+            public override void OnDestroy()
             {
                 triggerKOActions.leftController.action.performed -= ManageKnockout;
                 triggerKOActions.rightController.action.performed -= ManageKnockout;

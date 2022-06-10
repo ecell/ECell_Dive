@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Unity.Netcode;
 using ECellDive.IO;
 using ECellDive.SceneManagement;
 
@@ -18,16 +19,6 @@ namespace ECellDive
             private Renderer refRenderer;
             private MaterialPropertyBlock mpb;
             private int colorID;
-
-            private void Start()
-            {
-                SetIndex(CyJsonModulesData.loadedData.Count - 1);
-
-                SetName(CyJsonModulesData.loadedData[refIndex].name);
-
-                InstantiateInfoTags(new string[] {$"nb edges: {CyJsonModulesData.loadedData[refIndex].edges.Length}\n"+
-                                                  $"nb nodes: {CyJsonModulesData.loadedData[refIndex].nodes.Length}"});
-            }
 
             private void OnEnable()
             {
@@ -61,6 +52,18 @@ namespace ECellDive
             public void SetIndex(int _index)
             {
                 refIndex = _index;
+            }
+
+            public void StartUpInfo()
+            {
+                Debug.Log($"StartUpInfo on client:{NetworkManager.Singleton.LocalClientId}");
+
+                SetIndex(CyJsonModulesData.loadedData.Count - 1);
+
+                SetName(CyJsonModulesData.loadedData[refIndex].name);
+
+                InstantiateInfoTags(new string[] {$"nb edges: {CyJsonModulesData.loadedData[refIndex].edges.Length}\n"+
+                                                  $"nb nodes: {CyJsonModulesData.loadedData[refIndex].nodes.Length}"});
             }
 
             #region - IHighlightable -
