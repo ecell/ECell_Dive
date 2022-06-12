@@ -9,10 +9,10 @@ namespace ECellDive
 {
     namespace Modules
     {
-        public class NetworkGO : MonoBehaviour,
-                                 INetworkGO
+        public class CyJsonPathwayGO : MonoBehaviour,
+                                        IGraphGO
         {
-            public INetwork networkData { get; protected set; }
+            public IGraph graphData { get; protected set; }
 
             public NetworkGOSettings networkGOSettingsModel;
 
@@ -35,10 +35,10 @@ namespace ECellDive
             /// </summary>
             private IEnumerator EdgesBatchSpawn()
             {
-                yield return new WaitUntil(areAllNodesSpawned);
-                for (int i = 0; i < networkData.edges.Length; i += networkGOSettingsModel.edgesBatchSize)
+                yield return new WaitUntil(()=>allNodesSpawned);
+                for (int i = 0; i < graphData.edges.Length; i += networkGOSettingsModel.edgesBatchSize)
                 {
-                    for (int j = i; j < Mathf.Min(i + networkGOSettingsModel.edgesBatchSize, networkData.edges.Length); j++)
+                    for (int j = i; j < Mathf.Min(i + networkGOSettingsModel.edgesBatchSize, graphData.edges.Length); j++)
                     {
                         ModuleData edgeMD = new ModuleData
                         {
@@ -48,12 +48,12 @@ namespace ECellDive
                         GameObject edgeGO = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleDataFromParent(edgeMD,
                                                                                                     Vector3.zero,
                                                                                                     gameObject.transform);
-                        edgeGO.GetComponent<EdgeGO>().Initialize(this, networkData.edges[j]);
+                        edgeGO.GetComponent<EdgeGO>().Initialize(this, graphData.edges[j]);
 
-                        DataID_to_DataGO[networkData.edges[j].source].GetComponent<INodeGO>().nodeData.outgoingEdges.Add(networkData.edges[j].ID);
-                        DataID_to_DataGO[networkData.edges[j].target].GetComponent<INodeGO>().nodeData.incommingEdges.Add(networkData.edges[j].ID);
+                        DataID_to_DataGO[graphData.edges[j].source].GetComponent<INodeGO>().nodeData.outgoingEdges.Add(graphData.edges[j].ID);
+                        DataID_to_DataGO[graphData.edges[j].target].GetComponent<INodeGO>().nodeData.incommingEdges.Add(graphData.edges[j].ID);
 
-                        DataID_to_DataGO[networkData.edges[j].ID] = edgeGO;
+                        DataID_to_DataGO[graphData.edges[j].ID] = edgeGO;
                     }
                     yield return null;
                 }
@@ -74,9 +74,9 @@ namespace ECellDive
             /// </summary>
             private IEnumerator NodesBatchSpawn()
             {
-                for (int i = 0; i < networkData.nodes.Length; i += networkGOSettingsModel.nodesBatchSize)
+                for (int i = 0; i < graphData.nodes.Length; i += networkGOSettingsModel.nodesBatchSize)
                 {
-                    for (int j = i; j < Mathf.Min(i + networkGOSettingsModel.nodesBatchSize, networkData.nodes.Length); j++)
+                    for (int j = i; j < Mathf.Min(i + networkGOSettingsModel.nodesBatchSize, graphData.nodes.Length); j++)
                     {
                         ModuleData nodeMD = new ModuleData
                         {
@@ -86,22 +86,17 @@ namespace ECellDive
                         GameObject nodeGO = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleDataFromParent(nodeMD,
                                                                                                     Vector3.zero,
                                                                                                     gameObject.transform);
-                        nodeGO.GetComponent<NodeGO>().Initialize(this, networkData.nodes[j]);
-                        DataID_to_DataGO[networkData.nodes[j].ID] = nodeGO;
+                        nodeGO.GetComponent<NodeGO>().Initialize(this, graphData.nodes[j]);
+                        DataID_to_DataGO[graphData.nodes[j].ID] = nodeGO;
                     }
                     yield return null;
                 }
                 allNodesSpawned = true;
             }
 
-            private bool areAllNodesSpawned()
+            public void SetNetworkData(IGraph _IGraph)
             {
-                return allNodesSpawned;
-            }
-
-            public void SetNetworkData(INetwork _INetwork)
-            {
-                networkData = _INetwork;
+                graphData = _IGraph;
             }
         }
     }

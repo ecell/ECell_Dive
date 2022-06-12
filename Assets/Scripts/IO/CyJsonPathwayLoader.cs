@@ -1,37 +1,37 @@
 ﻿using Newtonsoft.Json.Linq;
 using UnityEngine;
-using ECellDive.NetworkComponents;
+using ECellDive.GraphComponents;
 
 
 namespace ECellDive
 {
     namespace IO
     {
-        public static class NetworkLoader
+        public static class CyJsonPathwayLoader
         {
             /// <summary>
-            /// Instantiate a <see cref="Network"/> data structure
+            /// Instantiate a <see cref="CyJsonPathway"/> data structure
             /// from the Cystoscape network Json file.
             /// </summary>
             /// <param name="_path">Path of the Cytoscape network Json file</param>
             /// <param name="_name">Name of the Cytoscape network Json file</param>
             /// <returns></returns>
-            public static NetworkComponents.Network Initiate(string _path, string _name)
+            public static CyJsonPathway Initiate(string _path, string _name)
             {
-                return new NetworkComponents.Network(_path, _name);
+                return new CyJsonPathway(_path, _name);
             }
 
             /// <summary>
             /// Instantiate a Network data structure from the content of a Cystoscape
             /// network Json file.
             /// </summary>
-            /// <param name="_networkCyJs">Content of the Cytoscape network Json file
+            /// <param name="_CyJspathway">Content of the Cytoscape network Json file
             /// serialized as a JObject</param>
             /// <param name="_name">Name of the Cytoscape network Json file</param>
             /// <returns></returns>
-            public static NetworkComponents.Network Initiate(JObject _networkCyJs, string _name)
+            public static CyJsonPathway Initiate(JObject _CyJspathway, string _name)
             {
-                return new NetworkComponents.Network(_networkCyJs, _name);
+                return new CyJsonPathway(_CyJspathway, _name);
             }
 
             /// <summary>
@@ -40,17 +40,17 @@ namespace ECellDive
             /// </summary>
             /// <param name="_refNetwork">The network object previously instantiated
             /// for the Initiate function.</param>
-            public static void Populate( NetworkComponents.Network _refNetwork)
+            public static void Populate(CyJsonPathway _cyJsonPathway)
             {
                 //Get raw nodes data from the cyjson file
-                _refNetwork.SetNodes();
+                _cyJsonPathway.SetNodes();
 
                 //Get raw edges data from the cyjson file
-                _refNetwork.SetEdges();
+                _cyJsonPathway.SetEdges();
 
                 //Organize edges and nodes information
-                _refNetwork.PopulateNodes();
-                _refNetwork.PopulateEdges();
+                _cyJsonPathway.PopulateNodes();
+                _cyJsonPathway.PopulateEdges();
             }
         }
     }

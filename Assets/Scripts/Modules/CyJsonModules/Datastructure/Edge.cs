@@ -2,7 +2,7 @@
 
 namespace ECellDive
 {
-    namespace NetworkComponents
+    namespace GraphComponents
     {
         public class Edge : IEdge
         {

@@ -6,26 +6,26 @@ using ECellDive.Interfaces;
 
 namespace ECellDive
 {
-    namespace NetworkComponents
+    namespace GraphComponents
     {
-        public class Network : INetwork
+        public class CyJsonPathway : IGraph
         {
             public string name { get; protected set; }
-            public JObject networkData { get;}
+            public JObject graphData { get;}
             public JArray jNodes { get; protected set; }
             public JArray jEdges { get; protected set; }
             public INode[] nodes { get; protected set; }
             public IEdge[] edges { get; protected set; }
 
-            public Network(string _path, string _name)
+            public CyJsonPathway(string _path, string _name)
             {
-                networkData = JsonImporter.OpenFile(_path, _name);
+                graphData = JsonImporter.OpenFile(_path, _name);
                 name = _name;
             }
 
-            public Network(JObject _networkCyJs, string _name)
+            public CyJsonPathway(JObject _networkCyJs, string _name)
             {
-                networkData = _networkCyJs;
+                graphData = _networkCyJs;
                 name = _name;
             }
 
@@ -62,12 +62,12 @@ namespace ECellDive
 
             public void SetNodes()
             {
-                jNodes = CyJsonParser.GetNodes(networkData);
+                jNodes = CyJsonParser.GetNodes(graphData);
             }
 
             public void SetEdges()
             {
-                jEdges = CyJsonParser.GetEdges(networkData);
+                jEdges = CyJsonParser.GetEdges(graphData);
             }
         }
     }

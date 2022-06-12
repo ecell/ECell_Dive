@@ -4,7 +4,7 @@ using ECellDive.Interfaces;
 
 namespace ECellDive
 {
-    namespace NetworkComponents
+    namespace GraphComponents
     {
         public class Node : INode
         {

@@ -1,4 +1,4 @@
-﻿using Unity.Netcode;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.Utility.SettingsModels;
@@ -49,7 +49,7 @@ namespace ECellDive
             private int activationID;
             private int panningSpeedID;
 
-            private NetworkGO refMasterPathway;
+            private CyJsonPathwayGO refMasterPathway;
 
             protected override void Awake()
             {
@@ -85,7 +85,7 @@ namespace ECellDive
                 triggerKOActions.rightController.action.performed -= ManageKnockout;
             }
 
-            public void Initialize(NetworkGO _masterPathway, IEdge _edge)
+            public void Initialize(CyJsonPathwayGO _masterPathway, IEdge _edge)
             {
                 refMasterPathway = _masterPathway;
                 InstantiateInfoTags(new string[] { "" });

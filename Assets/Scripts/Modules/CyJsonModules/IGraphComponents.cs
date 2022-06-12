@@ -40,12 +40,10 @@ namespace ECellDive
         /// The interface for the data structure encoding a graph
         /// made of nodes connected by edges.
         /// </summary>
-        /// <remarks>The name "INetwork" comes from an "interaction
-        /// network" in biology which is represented as a graph.</remarks>
-        public interface INetwork
+        public interface IGraph
         {
             string name { get; }
-            JObject networkData { get;}
+            JObject graphData { get;}
             JArray jNodes { get; }
             JArray jEdges { get;}
 
@@ -170,10 +168,10 @@ namespace ECellDive
         /// The interface encoding the required properties to use
         /// the a graph (<seealso cref="INetwork"/>) in a GameObject.
         /// </summary>
-        public interface INetworkGO
+        public interface IGraphGO
         {
-            INetwork networkData { get; }
-            void SetNetworkData(INetwork _INetwork);
+            IGraph graphData { get; }
+            void SetNetworkData(IGraph _INetwork);
 
         }
     }

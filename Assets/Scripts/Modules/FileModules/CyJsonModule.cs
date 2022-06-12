@@ -94,17 +94,15 @@ namespace ECellDive
                 JObject requestJObject = JObject.Parse(System.Text.Encoding.UTF8.GetString(assembledSourceData));
 
                 //Loading the file
-                NetworkComponents.Network network = NetworkLoader.Initiate(requestJObject,
-                                                                           assembledSourceDataName);
+                CyJsonPathway pathway = CyJsonPathwayLoader.Initiate(requestJObject,
+                                                        assembledSourceDataName);
 
                 //Instantiating relevant data structures to store the information about
                 //the layers, nodes and edges.
-                NetworkLoader.Populate(network);
-                CyJsonModulesData.AddData(network);
+                CyJsonPathwayLoader.Populate(pathway);
+                CyJsonModulesData.AddData(pathway);
                 
                 StartUpInfo();
-
-                isReadyForGeneration = true;
             }
             #endregion
         }

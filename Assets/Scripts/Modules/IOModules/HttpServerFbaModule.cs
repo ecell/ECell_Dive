@@ -33,7 +33,7 @@ namespace ECellDive
 
             public FbaParametersManager fbaParametersManager;
 
-            private NetworkGO LoadedCyJsonRoot;
+            private CyJsonPathwayGO LoadedCyJsonRoot;
 
             private void Start()
             {
@@ -49,9 +49,9 @@ namespace ECellDive
                     LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
                         $"FBA analyses module connected to {fbaAnalysisData.activeModelName}");
 
-                    LoadedCyJsonRoot = GameObject.FindGameObjectWithTag("CyJsonRootModule").GetComponent<NetworkGO>();
+                    LoadedCyJsonRoot = GameObject.FindGameObjectWithTag("CyJsonRootModule").GetComponent<CyJsonPathwayGO>();
 
-                    foreach (IEdge _edgeData in LoadedCyJsonRoot.networkData.edges)
+                    foreach (IEdge _edgeData in LoadedCyJsonRoot.graphData.edges)
                     {
                         fbaAnalysisData.knockOuts[_edgeData.ID] = false;
                         string _name = LoadedCyJsonRoot.DataID_to_DataGO[_edgeData.ID].name;
@@ -78,7 +78,7 @@ namespace ECellDive
                 string knockouts = "";
                 int counter_true = 0;
 
-                foreach (IEdge _edgeData in LoadedCyJsonRoot.networkData.edges)
+                foreach (IEdge _edgeData in LoadedCyJsonRoot.graphData.edges)
                 {
                     if (LoadedCyJsonRoot.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut)
                     {

@@ -1,4 +1,4 @@
-﻿using Unity.Netcode;
+using Unity.Netcode;
 using UnityEngine;
 using ECellDive.UI;
 using ECellDive.Interfaces;
@@ -34,7 +34,7 @@ namespace ECellDive
                 refRenderer.SetPropertyBlock(mpb);
             }
 
-            public void Initialize(NetworkGO _masterPathway, in INode _node)
+            public void Initialize(CyJsonPathwayGO _masterPathway, in INode _node)
             {
                 InstantiateInfoTags(new string[] { "" });
                 SetNodeData(_node);
