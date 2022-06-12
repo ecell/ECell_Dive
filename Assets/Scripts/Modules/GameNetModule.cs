@@ -23,7 +23,9 @@ namespace ECellDive
                                 IGroupable,
                                 IHighlightable,
                                 IInfoTags,
-                                IMlprDataExchange
+                                IMlprData,
+                                IMlprDataBroadcast,
+                                IMlprDataRequest
         {
             [Header("Module Info")]
             public TextMeshProUGUI refName;
@@ -134,12 +136,7 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IMlprDataExchange -
-            public byte[] sourceDataName
-            {
-                get;
-                protected set;
-            }
+            #region - IMlprData Members -
 
             private List<byte[]> m_fragmentedSourceData = new List<byte[]>();
             public List<byte[]> fragmentedSourceData
@@ -148,26 +145,33 @@ namespace ECellDive
                 protected set => m_fragmentedSourceData = value;
             }
 
-            private NetworkVariable<bool> m_isReadyForAssembling = new NetworkVariable<bool>(false,
-                NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-            public NetworkVariable<bool> isReadyForAssembling
+            public byte[] sourceDataName
             {
-                get => m_isReadyForAssembling;
-                protected set { m_isReadyForAssembling = value; }
+                get;
+                protected set;
             }
 
-            bool m_isLoaded = false;
-            public bool isLoaded
+            private int m_sourceDataNbFrags = 0;
+            public int sourceDataNbFrags
             {
-                get => m_isLoaded;
-                protected set { m_isLoaded = value; }
+                get => m_sourceDataNbFrags;
+                protected set => m_sourceDataNbFrags = value;
             }
 
-            bool m_isReadyForGeneration = false;
-            public bool isReadyForGeneration
+            private NetworkVariable<int> m_nbClientReadyLoaded = new NetworkVariable<int>(0,
+                NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+            public NetworkVariable<int> nbClientReadyLoaded
+            {
+                get => m_nbClientReadyLoaded;
+                protected set => m_nbClientReadyLoaded = value;
+            }
+
+            private NetworkVariable<bool> m_isReadyForGeneration = new NetworkVariable<bool>(false,
+                NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+            public NetworkVariable<bool> isReadyForGeneration
             {
                 get => m_isReadyForGeneration;
-                protected set { m_isReadyForGeneration = value; }
+                protected set => m_isReadyForGeneration = value;
             }
 
             #endregion
@@ -261,35 +265,23 @@ namespace ECellDive
 
             public void TryDiveIn(InputAction.CallbackContext _ctx)
             {
-                StartCoroutine(TryDiveInC());
+                //StartCoroutine(TryDiveInC());
+                if (isReadyForGeneration.Value)
+                {
+                    if (isReadyForDive.Value)
+                    {
+                        DirectDiveIn();
+                    }
+                    else
+                    {
+                        RequestSourceDataGenerationServerRpc(NetworkManager.Singleton.LocalClientId);
+                    }
+                }
             }
 
             public virtual IEnumerator TryDiveInC()
             {
-                if (isReadyForAssembling.Value)//data has been copied in the owner version of the netobject
-                {
-                    if (!isReadyForGeneration)//need to assemble data
-                    {
-                        if (!IsOwner)//equivalent to test "isLoaded"
-                        {
-                            RequestSourceDataServerRpc(NetworkManager.Singleton.LocalClientId,
-                                                        OwnerClientId);
-
-                            yield return new WaitUntil(() => isLoaded);
-
-                            AssembleFragmentedData();
-                        }
-                    }
-
-                    if (isReadyForDive.Value)
-                    {
-                        DirectDiveIn();//make visible the network
-                    }
-                    else
-                    {
-                        GenerativeDiveIn();//generate and restrict visibility of network
-                    }
-                }
+                yield return null;
             }
 
             #endregion
@@ -375,114 +367,103 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IMlprDataExchange -
 
+            #region - IMlprData Methods -
             public virtual void AssembleFragmentedData()
             {
-                isReadyForGeneration = true;
+                //isReadyForGeneration = true;
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            public void ConfirmSourceDataReceptionServerRpc()
+            {
+                nbClientReadyLoaded.Value++;
+                if (nbClientReadyLoaded.Value == NetworkManager.Singleton.ConnectedClientsIds.Count)
+                {
+                    isReadyForGeneration.Value = true;
+                }
             }
 
             public void DirectRecieveSourceData(byte[] _sourceDataName, List<byte[]> _fragmentedSourceData)
             {
-                sourceDataName = _sourceDataName;
                 fragmentedSourceData = _fragmentedSourceData;
-                isLoaded = true;
-                isReadyForAssembling.Value = true;
+                sourceDataName = _sourceDataName;
+                sourceDataNbFrags = _fragmentedSourceData.Count;
 
+                ConfirmSourceDataReceptionServerRpc();
                 AssembleFragmentedData();
+
+                BroadcastSourceDataNameServerRpc(sourceDataName);
+                BroadcastSourceDataNbFragsServerRpc((ushort)sourceDataNbFrags);
+                StartCoroutine(BroadcastSourceDataFragsC(fragmentedSourceData));
             }
 
-            [ClientRpc]
-            public virtual void ForwardAuthorizationToAssembleClientRpc(ClientRpcParams _clientRpcParams)
+            [ServerRpc(RequireOwnership = false)]
+            public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
             {
-                isLoaded = true;
+                Debug.LogError("No Generation scheme has been defined for this GameNetModule. " +
+                    "Please, override this method and code how you the data stored in this module" +
+                    " should be represented in the scene.");
             }
+            #endregion
 
+            #region - IMlprDataExchange Methods -
             [ClientRpc]
-            public void ForwardSourceDataFragClientRpc(byte[] _fragment,
-                                                        ClientRpcParams _clientRpcParams)
+            public void BroadcastSourceDataFragClientRpc(byte[] _fragment)
             {
+                if (IsOwner) return;
+
                 fragmentedSourceData.Add(_fragment);
+                if (fragmentedSourceData.Count == sourceDataNbFrags)
+                {
+                    ConfirmSourceDataReceptionServerRpc();
+                    AssembleFragmentedData();
+                    //isLoaded = true;
+                }
             }
 
             [ClientRpc]
-            public void ForwardSourceDataNameClientRpc(byte[] _name,
-                                                        ClientRpcParams _clientRpcParams)
+            public void BroadcastSourceDataNameClientRpc(byte[] _name)
             {
+                if (IsOwner) return;
+
                 sourceDataName = _name;
             }
 
             [ClientRpc]
-            public void RequestSourceDataClientRpc(ulong _expeditorClientID, ClientRpcParams _clientRpcParams)
+            public void BroadcastSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags)
             {
-                SendSourceDataNameServerRpc(sourceDataName, _expeditorClientID);
-                StartCoroutine(SendSourceDataFragsC(_expeditorClientID));
-            }
+                if (IsOwner) return;
 
-            [ServerRpc(RequireOwnership = false)]
-            public void RequestSourceDataServerRpc(ulong _expeditorClientID, ulong _dataOwnerCliendID)
-            {
-
-                ClientRpcParams clientRpcParams = new ClientRpcParams
-                {
-                    Send = new ClientRpcSendParams
-                    {
-                        TargetClientIds = new ulong[1] { _dataOwnerCliendID }
-                    }
-                };
-                RequestSourceDataClientRpc(_expeditorClientID, clientRpcParams);
+                sourceDataNbFrags = _sourceDataNbFrags;
             }
 
             [ServerRpc]
-            public void SendAuthorizationToAssembleServerRpc(ulong _recipientClienID)
+            public void BroadcastSourceDataFragServerRpc(byte[] _fragment)
             {
-                ClientRpcParams clientRpcParams = new ClientRpcParams
-                {
-                    Send = new ClientRpcSendParams
-                    {
-                        TargetClientIds = new ulong[1] { _recipientClienID }
-                    }
-                };
-                ForwardAuthorizationToAssembleClientRpc(clientRpcParams);
+                BroadcastSourceDataFragClientRpc(_fragment);
             }
 
             [ServerRpc]
-            public void SendSourceDataFragServerRpc(byte[] _fragment, ulong _recipientClienID)
+            public void BroadcastSourceDataNameServerRpc(byte[] _name)
             {
-                ClientRpcParams clientRpcParams = new ClientRpcParams
-                {
-                    Send = new ClientRpcSendParams
-                    {
-                        TargetClientIds = new ulong[1] { _recipientClienID }
-                    }
-                };
-                ForwardSourceDataFragClientRpc(_fragment,
-                                                clientRpcParams);
+                BroadcastSourceDataNameClientRpc(_name);
             }
 
             [ServerRpc]
-            public void SendSourceDataNameServerRpc(byte[] _name, ulong _recipientClienID)
+            public void BroadcastSourceDataNbFragsServerRpc(ushort _sourceDataNbFrags)
             {
-                ClientRpcParams clientRpcParams = new ClientRpcParams
-                {
-                    Send = new ClientRpcSendParams
-                    {
-                        TargetClientIds = new ulong[1] { _recipientClienID }
-                    }
-                };
-                ForwardSourceDataNameClientRpc(_name, clientRpcParams);
+                BroadcastSourceDataNbFragsClientRpc(_sourceDataNbFrags);
             }
 
-            public IEnumerator SendSourceDataFragsC(ulong _recipientClienID)
+            public IEnumerator BroadcastSourceDataFragsC(List<byte[]> _fragmentedSourceData)
             {
-                
-                foreach (byte[] _frag in fragmentedSourceData)
+                foreach (byte[] _frag in _fragmentedSourceData)
                 {
+                    BroadcastSourceDataFragServerRpc(_frag);
                     yield return new WaitForEndOfFrame();
                 }
-                SendAuthorizationToAssembleServerRpc(_recipientClienID);
             }
-
             #endregion
         }
     }

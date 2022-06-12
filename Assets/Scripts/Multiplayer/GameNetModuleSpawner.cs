@@ -14,13 +14,12 @@ namespace ECellDive.Multiplayer
         #region - IMlprModuleSpawn Members -
         public List<byte[]> fragmentedSourceData { get; private set; }
         public byte[] sourceDataName { get ; private set; }
-        public GameNetModule lastSpawnedModule { get; private set; }
         #endregion
 
         #region - IMlprModuleSpawn Methods -
-        public void GiveDataToModule()
+        public void GiveDataToModule(GameNetModule _gameNetModule)
         {
-            lastSpawnedModule.DirectRecieveSourceData(sourceDataName, fragmentedSourceData);
+            _gameNetModule.DirectRecieveSourceData(sourceDataName, fragmentedSourceData);
         }
 
         [ClientRpc]
@@ -28,7 +27,7 @@ namespace ECellDive.Multiplayer
                                                         ClientRpcParams _clientRpcParams)
         {
             GameObject networkGameObject = _networkObjectReference;
-            lastSpawnedModule = networkGameObject.GetComponent<GameNetModule>();
+            GiveDataToModule(networkGameObject.GetComponent<GameNetModule>());
         }
 
         public void GiveOwnership(GameObject _of, ulong _newOwnerClientID)
@@ -73,8 +72,6 @@ namespace ECellDive.Multiplayer
             //which initially made the request so that he can continue his 
             //process.
             GiveNetworkObjectReferenceClientRpc(cyJsonModule, clientRpcParams);
-
-            GiveDataToModule();
         }
         #endregion
     }
