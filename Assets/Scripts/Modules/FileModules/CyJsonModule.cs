@@ -1,8 +1,10 @@
 using System.Collections;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using Unity.Netcode;
 using ECellDive.IO;
 using ECellDive.SceneManagement;
+using ECellDive.Utility;
 
 namespace ECellDive
 {
@@ -12,7 +14,7 @@ namespace ECellDive
         /// Derived class with some more specific operations to handle
         /// CyJson modules.
         /// </summary>
-        public class CyJsonModule : Module
+        public class CyJsonModule : GameNetModule
         {
             public int refIndex { get; private set; }
 
@@ -29,26 +31,6 @@ namespace ECellDive
                 refRenderer.SetPropertyBlock(mpb);
             }
 
-            protected override IEnumerator DiveInC()
-            {
-                if (isFocused && !finalLayer)
-                {
-                    CyJsonModulesData.activeData = CyJsonModulesData.loadedData[refIndex];
-
-                    //ScenesData.refSceneManagerMonoBehaviour.divingData.refAnimator.SetTrigger("DiveStart");
-                    //yield return new WaitForSeconds(ScenesData.refSceneManagerMonoBehaviour.divingData.duration);
-                    yield return null;
-
-                    ModulesData.CaptureWorldPositions();
-                    ModulesData.StashToBank();
-
-                    ScenesData.DiveIn(new ModuleData
-                    {
-                        typeID = 5,
-                    });
-                }
-            }
-
             public void SetIndex(int _index)
             {
                 refIndex = _index;
@@ -56,8 +38,6 @@ namespace ECellDive
 
             public void StartUpInfo()
             {
-                Debug.Log($"StartUpInfo on client:{NetworkManager.Singleton.LocalClientId}");
-
                 SetIndex(CyJsonModulesData.loadedData.Count - 1);
 
                 SetName(CyJsonModulesData.loadedData[refIndex].name);
@@ -66,7 +46,29 @@ namespace ECellDive
                                                   $"nb nodes: {CyJsonModulesData.loadedData[refIndex].nodes.Length}"});
             }
 
-            #region - IHighlightable -
+            #region - IDive Methods -
+            public override IEnumerator GenerativeDiveInC()
+            {
+                if (isFocused)// && !isFinalLayer)
+                {
+                    CyJsonModulesData.activeData = CyJsonModulesData.loadedData[refIndex];
+
+                    yield return null;
+
+                    ModulesData.CaptureWorldPositions();
+                    ModulesData.StashToBank();
+
+                    BroadcastIsReadyForDiveServerRpc();
+
+                    ScenesData.DiveIn(new ModuleData
+                    {
+                        typeID = 5,
+                    });
+                }
+            }
+            #endregion
+
+            #region - IHighlightable Methods -
             public override void SetHighlight()
             {
                 mpb.SetVector(colorID, highlightColor);
@@ -80,6 +82,29 @@ namespace ECellDive
                     mpb.SetVector(colorID, defaultColor);
                     refRenderer.SetPropertyBlock(mpb);
                 }
+            }
+            #endregion
+
+            #region - IMlprDataExchange -
+            public override void AssembleFragmentedData()
+            {
+                byte[] assembledSourceData = ArrayManipulation.Assemble(fragmentedSourceData);
+                string assembledSourceDataName = System.Text.Encoding.UTF8.GetString(sourceDataName);
+
+                JObject requestJObject = JObject.Parse(System.Text.Encoding.UTF8.GetString(assembledSourceData));
+
+                //Loading the file
+                NetworkComponents.Network network = NetworkLoader.Initiate(requestJObject,
+                                                                           assembledSourceDataName);
+
+                //Instantiating relevant data structures to store the information about
+                //the layers, nodes and edges.
+                NetworkLoader.Populate(network);
+                CyJsonModulesData.AddData(network);
+                
+                StartUpInfo();
+
+                isReadyForGeneration = true;
             }
             #endregion
         }

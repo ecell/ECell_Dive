@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 using TMPro;
 using ECellDive.Utility;
 using ECellDive.UI;
-using ECellDive.SceneManagement;
 using ECellDive.Interfaces;
 
 namespace ECellDive
@@ -18,8 +17,7 @@ namespace ECellDive
         /// the game object representation of a module.
         /// </summary>
         /// 
-        //[RequireComponent(typeof(NetworkObject))]
-        public class Module : NetworkBehaviour,
+        public class Module : MonoBehaviour,
                                 IFocus,
                                 IGroupable,
                                 IHighlightable,
@@ -27,10 +25,6 @@ namespace ECellDive
         {
             [Header("Module Info")]
             public TextMeshProUGUI refName;
-
-            public ControllersSymetricAction diveActions;
-
-            public bool finalLayer = false;
 
             #region - IFocus Members -
             private bool m_isFocused = false;
@@ -74,7 +68,7 @@ namespace ECellDive
 
             #endregion
 
-            #region - IInfo Tags Members -
+            #region - IInfoTags Members -
             public bool areVisible { get; set; }
 
             [Header("Info Tags Data")]
@@ -109,33 +103,20 @@ namespace ECellDive
             {
                 areVisible = false;
 
-                diveActions.leftController.action.performed += DiveIn;
-                diveActions.rightController.action.performed += DiveIn;
+                //diveActions.leftController.action.performed += TryDiveIn;
+                //diveActions.rightController.action.performed += TryDiveIn;
 
                 m_displayInfoTagsActions.leftController.action.performed += ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.rightController.action.performed += ManageInfoTagsDisplay;
             }
 
-            public override void OnDestroy()
+            public virtual void OnDestroy()
             {
-                diveActions.leftController.action.performed -= DiveIn;
-                diveActions.rightController.action.performed -= DiveIn;
+                //diveActions.leftController.action.performed -= TryDiveIn;
+                //diveActions.rightController.action.performed -= TryDiveIn;
 
                 m_displayInfoTagsActions.leftController.action.performed -= ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.rightController.action.performed -= ManageInfoTagsDisplay;
-            }
-
-            /// <summary>
-            /// Base method to dive in a module.
-            /// </summary>
-            private void DiveIn(InputAction.CallbackContext _ctx)
-            {
-                StartCoroutine(DiveInC());
-            }
-
-            protected virtual IEnumerator DiveInC()
-            {
-                yield return null;
             }
 
             /// <summary>
@@ -185,7 +166,7 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IHighlightable -
+            #region - IHighlightable Methods -
 
             public virtual void SetDefaultColor(Color _c)
             {
@@ -253,7 +234,6 @@ namespace ECellDive
                 }
             }
             #endregion
-            
         }
     }
 }

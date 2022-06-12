@@ -5,10 +5,9 @@ using Newtonsoft.Json.Linq;
 using Unity.Netcode;
 using UnityEngine;
 using TMPro;
-using ECellDive.IO;
+using ECellDive.Multiplayer;
 using ECellDive.Utility;
 using ECellDive.UI;
-using ECellDive.SceneManagement;
 
 namespace ECellDive
 {
@@ -26,70 +25,69 @@ namespace ECellDive
         public class HttpServerImporterModule : HttpServerBaseModule
         {
             public UIDisplayData uiDisplayData;
-            [HideInInspector] public string activeModelName = "";
+            private string activeModelName = "";
 
-            List<byte[]> modelContentFrags = new List<byte[]>();
+            public GameNetModuleSpawner gameNetModuleSpawner;
 
             private void Start()
             {
-                if (NetworkManager.Singleton.IsServer)
-                {
-                    GetComponent<NetworkObject>().Spawn();
-                }
+                gameNetModuleSpawner = GameObject.FindGameObjectWithTag("GameNetModuleSpawner").GetComponent<GameNetModuleSpawner>();
             }
 
-            [ClientRpc]
-            public void DistributeCyJsonModuleClientRpc(NetworkObjectReference _cyJsonModule)
-            {
-                Debug.Log($"DistributeCyJsonModuleClientRpc on client:{NetworkManager.Singleton.LocalClientId}");
+            //[ClientRpc]
+            //public void DistributeCyJsonModuleClientRpc(NetworkObjectReference _cyJsonModule)
+            //{
+            //    Debug.Log($"DistributeCyJsonModuleClientRpc on client:{NetworkManager.Singleton.LocalClientId}");
 
-                byte[] modelContent = ArrayManipulation.Assemble(modelContentFrags);
-                //Debug.Log(System.Text.Encoding.UTF8.GetString(modelContent));
-                requestData.requestJObject = JObject.Parse(System.Text.Encoding.UTF8.GetString(modelContent));
+            //    byte[] modelContent = ArrayManipulation.Assemble(modelContentFrags);
+            //    //Debug.Log(System.Text.Encoding.UTF8.GetString(modelContent));
+            //    requestData.requestJObject = JObject.Parse(System.Text.Encoding.UTF8.GetString(modelContent));
 
-                //Loading the file
-                NetworkComponents.Network network = NetworkLoader.Initiate(requestData.requestJObject,
-                                                                            activeModelName);
+            //    //Loading the file
+            //    NetworkComponents.Network network = NetworkLoader.Initiate(requestData.requestJObject,
+            //                                                                activeModelName);
 
-                //Instantiating relevant data structures to store the information about
-                //the layers, nodes and edges.
-                NetworkLoader.Populate(network);
-                CyJsonModulesData.AddData(network);
+            //    //Instantiating relevant data structures to store the information about
+            //    //the layers, nodes and edges.
+            //    NetworkLoader.Populate(network);
+            //    CyJsonModulesData.AddData(network);
 
-                NetworkObject cyJsonModuleNet = _cyJsonModule;
-                cyJsonModuleNet.GetComponent<CyJsonModule>().StartUpInfo();
-            }
+            //    NetworkObject cyJsonModuleNet = _cyJsonModule;
+            //    cyJsonModuleNet.GetComponent<CyJsonModule>().StartUpInfo();
+            //}
 
-            [ServerRpc]
-            public void SpawnCyJsModuleServerRpc()//ModuleData _cyJsonMD, string _modelName, string _modelContent)
-            {
-                //Instantiation of the CyJson module corresponding to encapsulate the
-                //CyJson pathway that just has been populated.
-                ModuleData cyJsonMD = new ModuleData
-                {
-                    typeID = 4 // 4 is the type ID of a CyJsonModule
-                };
-                ModulesData.AddModule(cyJsonMD);
-                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
-                GameObject cyJsonModule = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleData(cyJsonMD, pos);
-                cyJsonModule.GetComponent<NetworkObject>().Spawn();
+            //[ServerRpc]
+            //public void SpawnCyJsModuleServerRpc()//ModuleData _cyJsonMD, string _modelName, string _modelContent)
+            //{
+            //    //Instantiation of the CyJson module corresponding to encapsulate the
+            //    //CyJson pathway that just has been populated.
+            //    ModuleData cyJsonMD = new ModuleData
+            //    {
+            //        typeID = 4 // 4 is the type ID of a CyJsonModule
+            //    };
+            //    ModulesData.AddModule(cyJsonMD);
+            //    Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
+            //    GameObject cyJsonModule = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleData(cyJsonMD, pos);
+                
+                
+            //    cyJsonModule.GetComponent<NetworkObject>().Spawn();
 
-                DistributeCyJsonModuleClientRpc(cyJsonModule);
-            }
+            //    DistributeCyJsonModuleClientRpc(cyJsonModule);
+            //}
 
-            [ClientRpc]
-            public void DistributeFragmentClientRpc(byte[] _frag)
-            {
-                Debug.Log($"Client {NetworkManager.Singleton.LocalClientId} received a fragment of the model of size {_frag.Length}");
-                modelContentFrags.Add(_frag);
-            }
+            //[ClientRpc]
+            //public void DistributeFragmentClientRpc(byte[] _frag)
+            //{
+            //    Debug.Log($"Client {NetworkManager.Singleton.LocalClientId} received a fragment of the model of size {_frag.Length}");
+            //    modelContentFrags.Add(_frag);
+            //}
 
-            [ServerRpc]
-            public void DistributeFragmentServerRpc(byte[] _frag)
-            {
-                //Debug.Log($"The server received a fragment of the model of size {_frag.Length}");
-                DistributeFragmentClientRpc(_frag);
-            }
+            //[ServerRpc]
+            //public void DistributeFragmentServerRpc(byte[] _frag)
+            //{
+            //    //Debug.Log($"The server received a fragment of the model of size {_frag.Length}");
+            //    DistributeFragmentClientRpc(_frag);
+            //}
 
             /// <summary>
             /// Requests the models list to the server.
@@ -158,10 +156,13 @@ namespace ECellDive
                     //Debug.Log($"The request data text represents: {modelContent.Length} bytes. " +
                     //          $"You need {Mathf.CeilToInt(modelContent.Length / 4096)} FixedString4096Bytes to represent it.");
 
-                    List<byte[]> mCFs = ArrayManipulation.Fragment(modelContent, 4096);
+                    byte[] name = System.Text.Encoding.UTF8.GetBytes(activeModelName);
+                    List<byte[]> mCFs = ArrayManipulation.FragmentToList(modelContent, 4096);
+
+                    gameNetModuleSpawner.RequestModuleSpawnFromData(4, name, mCFs);
 
                     //Debug.Log($"We fragmented the model into {mCFs.Count} chunks");
-                    StartCoroutine(DistributeFragmentC(mCFs));
+                    //StartCoroutine(DistributeFragmentC(mCFs));
                     
 
                     //DistributeFragmentServerRpc(mCFs[0]);
@@ -183,16 +184,16 @@ namespace ECellDive
                 }
             }
             
-            IEnumerator DistributeFragmentC(List<byte[]> _mCFs)
-            {
-                foreach (byte[] _frag in _mCFs)
-                {
-                    DistributeFragmentServerRpc(_frag);
-                    yield return new WaitForEndOfFrame();
-                }
+            //IEnumerator DistributeFragmentC(List<byte[]> _mCFs)
+            //{
+            //    foreach (byte[] _frag in _mCFs)
+            //    {
+            //        DistributeFragmentServerRpc(_frag);
+            //        yield return new WaitForEndOfFrame();
+            //    }
 
-                SpawnCyJsModuleServerRpc();
-            }
+            //    SpawnCyJsModuleServerRpc();
+            //}
 
             /// <summary>
             /// The public interface to ask the server for the list of
