@@ -171,6 +171,9 @@ namespace ECellDive
         public interface IGraphGO
         {
             IGraph graphData { get; }
+
+            void GenerateGraph();
+
             void SetNetworkData(IGraph _INetwork);
 
         }

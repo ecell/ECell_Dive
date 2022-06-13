@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using Unity.Netcode;
 using ECellDive.IO;
+using ECellDive.GraphComponents;
 using ECellDive.SceneManagement;
 using ECellDive.Utility;
 
@@ -17,6 +18,7 @@ namespace ECellDive
         public class CyJsonModule : GameNetModule
         {
             public int refIndex { get; private set; }
+            public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
 
             private Renderer refRenderer;
             private MaterialPropertyBlock mpb;
@@ -29,6 +31,25 @@ namespace ECellDive
                 colorID = Shader.PropertyToID("_Color");
                 mpb.SetVector(colorID, defaultColor);
                 refRenderer.SetPropertyBlock(mpb);
+            }
+
+            [ClientRpc]
+            public void BroadcastIsActiveDataClientRpc()
+            {
+                CyJsonModulesData.activeData = CyJsonModulesData.loadedData[refIndex];
+                ConfirmIsActiveDataStatusServerRpc();
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            public void BroadcastIsActiveDataServerRpc()
+            {
+                BroadcastIsActiveDataClientRpc();
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            public void ConfirmIsActiveDataStatusServerRpc()
+            {
+                nbActiveDataSet.Value++;
             }
 
             public void SetIndex(int _index)
@@ -44,27 +65,32 @@ namespace ECellDive
 
                 InstantiateInfoTags(new string[] {$"nb edges: {CyJsonModulesData.loadedData[refIndex].edges.Length}\n"+
                                                   $"nb nodes: {CyJsonModulesData.loadedData[refIndex].nodes.Length}"});
-            }
+            }            
 
             #region - IDive Methods -
             public override IEnumerator GenerativeDiveInC()
             {
                 if (isFocused)// && !isFinalLayer)
                 {
-                    CyJsonModulesData.activeData = CyJsonModulesData.loadedData[refIndex];
-
-                    yield return null;
-
-                    ModulesData.CaptureWorldPositions();
-                    ModulesData.StashToBank();
-
-                    BroadcastIsReadyForDiveServerRpc();
-
-                    ScenesData.DiveIn(new ModuleData
-                    {
-                        typeID = 5,
-                    });
+                    BroadcastIsActiveDataServerRpc();
+                    yield return new WaitUntil(() => nbActiveDataSet.Value == NetworkManager.Singleton.ConnectedClientsIds.Count);
+                    RequestSourceDataGenerationServerRpc(NetworkManager.Singleton.LocalClientId);
                 }
+            }
+
+
+            [ServerRpc(RequireOwnership = false)]
+            public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
+            {
+                ModulesData.CaptureWorldPositions();
+                ModulesData.StashToBank();
+
+                BroadcastIsReadyForDiveServerRpc();
+
+                ScenesData.DiveIn(new ModuleData
+                {
+                    typeID = 5,
+                });
             }
             #endregion
 

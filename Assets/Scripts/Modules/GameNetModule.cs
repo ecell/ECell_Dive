@@ -274,7 +274,7 @@ namespace ECellDive
                     }
                     else
                     {
-                        RequestSourceDataGenerationServerRpc(NetworkManager.Singleton.LocalClientId);
+                        GenerativeDiveIn();
                     }
                 }
             }

@@ -1,4 +1,4 @@
-using Unity.Netcode;
+﻿using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.Utility.SettingsModels;
@@ -11,7 +11,7 @@ namespace ECellDive
 {
     namespace Modules
     {
-        public class EdgeGO : Module,
+        public class EdgeGO : GameNetModule,
                               IEdgeGO, IModulateFlux
         {
             #region - IEdgeGO Members -
@@ -60,10 +60,6 @@ namespace ECellDive
 
             private void Start()
             {
-                if (NetworkManager.Singleton.IsServer)
-                {
-                    GetComponent<NetworkObject>().Spawn();
-                }
                 fluxLevel = 0f;
                 fluxLevelClamped = 1f;
             }

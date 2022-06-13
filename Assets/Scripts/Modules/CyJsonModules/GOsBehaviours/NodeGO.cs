@@ -1,4 +1,4 @@
-using Unity.Netcode;
+﻿using Unity.Netcode;
 using UnityEngine;
 using ECellDive.UI;
 using ECellDive.Interfaces;
@@ -7,7 +7,7 @@ namespace ECellDive
 {
     namespace Modules
     {
-        public class NodeGO : Module,
+        public class NodeGO : GameNetModule,
                               INodeGO
         {
             public INode nodeData { get; protected set; }
@@ -16,14 +16,6 @@ namespace ECellDive
             private Renderer refRenderer;
             private MaterialPropertyBlock mpb;
             private int colorID;
-
-            private void Start()
-            {
-                if (NetworkManager.Singleton.IsServer)
-                {
-                    GetComponent<NetworkObject>().Spawn();
-                }
-            }
 
             private void OnEnable()
             {

@@ -1,5 +1,6 @@
-﻿using System.Linq;
+using System.Linq;
 using Newtonsoft.Json.Linq;
+using Unity.Netcode;
 using UnityEngine;
 using ECellDive.IO;
 using ECellDive.Interfaces;
@@ -23,9 +24,9 @@ namespace ECellDive
                 name = _name;
             }
 
-            public CyJsonPathway(JObject _networkCyJs, string _name)
+            public CyJsonPathway(JObject _cyJspathway, string _name)
             {
-                graphData = _networkCyJs;
+                graphData = _cyJspathway;
                 name = _name;
             }
 
