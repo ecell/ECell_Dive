@@ -1,34 +1,49 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 using Unity.Netcode;
+using ECellDive.UserActions;
 
-public class NetworkSpawnComponentActivation : NetworkBehaviour
+
+namespace ECellDive.Multiplayer
 {
-    [Header("To ACTIVATE on spawn if IsLocalPlayer")]
-    public GameObject XRDeviceSimulator;
-
-    [Header("To DEACTIVATE on spawn if IsLocalPlayer")]
-    public GameObject headModel;
-
-    [Header("To DEACTIVATE on spawn if NOT IsLocalPlayer")]
-    public Camera refCamera;
-    public AudioListener refAudioListener;
-    public TrackedPoseDriver trackedPoseDriver;
-
-    public override void OnNetworkSpawn()
+    public class NetworkSpawnComponentActivation : NetworkBehaviour
     {
-        if (IsLocalPlayer)
-        {
-            XRDeviceSimulator.SetActive(true);
+        [Header("To ACTIVATE on spawn if IsLocalPlayer")]
+        public GameObject XRDeviceSimulator;
 
-            headModel.SetActive(false);
-        }
+        [Header("To DEACTIVATE on spawn if IsLocalPlayer")]
+        public GameObject headModel;
 
-        if (!IsLocalPlayer)
+        [Header("To DEACTIVATE on spawn if NOT IsLocalPlayer")]
+        public Camera refCamera;
+        public AudioListener refAudioListener;
+        public TrackedPoseDriver trackedPoseDriver;
+        public List<ActionBasedController> actionBasedControllers;
+
+        public override void OnNetworkSpawn()
         {
-            refCamera.enabled = false;
-            refAudioListener.enabled = false;
-            trackedPoseDriver.enabled = false;
+            if (IsLocalPlayer)
+            {
+                XRDeviceSimulator.SetActive(true);
+
+                headModel.SetActive(false);
+            }
+
+            if (!IsLocalPlayer)
+            {
+                refCamera.enabled = false;
+                refAudioListener.enabled = false;
+                trackedPoseDriver.enabled = false;
+                
+
+                foreach (ActionBasedController _abc in actionBasedControllers)
+                {
+                    _abc.enabled = false;
+                }
+            }
         }
     }
 }
+

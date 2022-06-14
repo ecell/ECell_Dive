@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -10,9 +11,10 @@ namespace ECellDive
 {
     namespace Input
     {
-        public class InputModeManager : MonoBehaviour
+        public class InputModeManager : NetworkBehaviour
         {
             public InputActionAsset refInputActionAsset;
+            public InteractorsRegisterer localInteractorsRegisterer;
 
             //controller ID: 0
             private InputActionMap refGCLHMap;
@@ -29,8 +31,11 @@ namespace ECellDive
             public InputActionReference refLeftControlSwitch;
             public InputActionReference refRightControlSwitch;
 
-            private int leftControllerModeID = 2;//default is ray mode in left controller
-            private int rightControllerModeID = 1;//default is movement mode on right controller
+            //default is ray mode on left controller
+            private NetworkVariable<int> leftControllerModeID = new NetworkVariable<int>(2);
+
+            //default is movement mode on right controller
+            private NetworkVariable<int> rightControllerModeID = new NetworkVariable<int>(1);
 
             [Header("Ray Based Controls XRRayInteractors")]
             private XRRayInteractor[] leftRBCs;
@@ -48,43 +53,142 @@ namespace ECellDive
 
                 refRBCLHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_LH");
                 refRBCRHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_RH");
-
-                refLeftControlSwitch.action.performed += LeftControllerModeSwitch;
-                refRightControlSwitch.action.performed += RightControllerModeSwitch;
             }
 
-            private void Start()
+            public override void OnNetworkSpawn()
             {
+                refLeftControlSwitch.action.performed += LeftControllerModeSwitch;
+                refRightControlSwitch.action.performed += RightControllerModeSwitch;
+
                 leftRBCs = new XRRayInteractor[3]
                 {
-                    InteractorsRegister.groupsInteractors.left,
-                    InteractorsRegister.remoteInteractionInteractors.left,
-                    InteractorsRegister.mainPointerInteractors.left
+                    localInteractorsRegisterer.remoteGrabInteractors.left,
+                    localInteractorsRegisterer.remoteInteractionInteractors.left,
+                    localInteractorsRegisterer.mainPointerInteractors.left
                 };
 
                 rightRBCs = new XRRayInteractor[3]
                 {
-                    InteractorsRegister.groupsInteractors.right,
-                    InteractorsRegister.remoteInteractionInteractors.right,
-                    InteractorsRegister.mainPointerInteractors.right
+                    localInteractorsRegisterer.remoteGrabInteractors.right,
+                    localInteractorsRegisterer.remoteInteractionInteractors.right,
+                    localInteractorsRegisterer.mainPointerInteractors.right
                 };
 
-                refGCLHMap.Disable();
-                refGCRHMap.Disable();
-                DisableInteractor(InteractorsRegister.groupControllersGO.left);
-                DisableInteractor(InteractorsRegister.groupControllersGO.right);
+                leftControllerModeID.OnValueChanged += ApplyLeftControllerModeSwitch;
+                rightControllerModeID.OnValueChanged += ApplyRightControllerModeSwitch;
 
-                refMvtLHMap.Disable();
-                refMvtRHMap.Enable();//default is movement mode on right controller
-                DisableInteractor(InteractorsRegister.mvtControllersGO.left);
-                EnableInteractor(InteractorsRegister.mvtControllersGO.right);
-                GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToRightController(rightControllerModeID);
+                ApplyLeftControllerModeSwitch(-1, 2);
+                ApplyRightControllerModeSwitch(-1, 1);
+            }
 
-                refRBCLHMap.Enable();//default is ray mode on left controller
-                refRBCRHMap.Disable();
-                EnableInteractors(leftRBCs);
-                DisableInteractors(rightRBCs);
-                GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToLeftController(leftControllerModeID);
+            public override void OnNetworkDespawn()
+            {
+                refLeftControlSwitch.action.performed -= LeftControllerModeSwitch;
+                refRightControlSwitch.action.performed -= RightControllerModeSwitch;
+
+                leftControllerModeID.OnValueChanged -= ApplyLeftControllerModeSwitch;
+                rightControllerModeID.OnValueChanged -= ApplyRightControllerModeSwitch;
+            }
+
+            private void ApplyLeftControllerModeSwitch(int _previous, int current)
+            {
+                switch (leftControllerModeID.Value)
+                {
+                    case 0:
+                        refRBCLHMap.Disable();
+                        DisableInteractors(leftRBCs);
+
+                        refMvtLHMap.Disable();
+                        DisableInteractor(localInteractorsRegisterer.mvtControllersGO.left);
+
+                        refGCLHMap.Enable();
+                        EnableInteractor(localInteractorsRegisterer.groupControllersGO.left);
+                        break;
+
+                    case 1:
+                        refRBCLHMap.Disable();
+                        DisableInteractors(leftRBCs);
+
+                        refGCLHMap.Disable();
+                        DisableInteractor(localInteractorsRegisterer.groupControllersGO.left);
+
+                        refMvtLHMap.Enable();
+                        EnableInteractor(localInteractorsRegisterer.mvtControllersGO.left);
+                        break;
+
+                    case 2:
+                        refGCLHMap.Disable();
+                        DisableInteractor(localInteractorsRegisterer.groupControllersGO.left);
+
+                        refMvtLHMap.Disable();
+                        DisableInteractor(localInteractorsRegisterer.mvtControllersGO.left);
+
+                        refRBCLHMap.Enable();
+                        EnableInteractors(leftRBCs);
+                        break;
+
+                    default:
+                        leftControllerModeID.Value = 0;
+                        goto case 0;
+                }
+
+                GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToLeftController(leftControllerModeID.Value);
+            }
+
+            private void ApplyRightControllerModeSwitch(int _previous, int current)
+            {
+                switch (rightControllerModeID.Value)
+                {
+                    case 0:
+                        refRBCRHMap.Disable();
+                        DisableInteractors(rightRBCs);
+
+                        refMvtRHMap.Disable();
+                        DisableInteractor(localInteractorsRegisterer.mvtControllersGO.right);
+
+                        refGCRHMap.Enable();
+                        EnableInteractor(localInteractorsRegisterer.groupControllersGO.right);
+                        break;
+
+                    case 1:
+                        refRBCRHMap.Disable();
+                        DisableInteractors(rightRBCs);
+
+                        refGCRHMap.Disable();
+                        DisableInteractor(localInteractorsRegisterer.groupControllersGO.right);
+
+                        refMvtRHMap.Enable();
+                        EnableInteractor(localInteractorsRegisterer.mvtControllersGO.right);
+                        break;
+
+                    case 2:
+                        refGCRHMap.Disable();
+                        DisableInteractor(localInteractorsRegisterer.groupControllersGO.right);
+
+                        refMvtRHMap.Disable();
+                        DisableInteractor(localInteractorsRegisterer.mvtControllersGO.right);
+
+                        refRBCRHMap.Enable();
+                        EnableInteractors(rightRBCs);
+                        break;
+
+                    default:
+                        rightControllerModeID.Value = 0;
+                        goto case 0;
+                }
+                GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToRightController(rightControllerModeID.Value);
+            }
+
+            [ServerRpc]
+            public void BroadcastLeftControllerModeServerRpc()
+            {
+                leftControllerModeID.Value++;
+            }
+
+            [ServerRpc]
+            public void BroadcastRightControllerModeServerRpc()
+            {
+                rightControllerModeID.Value++;
             }
 
             private void DisableInteractors(XRRayInteractor[] _interactors)
@@ -95,10 +199,10 @@ namespace ECellDive
                 }
             }
 
-            private void DisableInteractor(XRRayInteractor _interactor)
-            {
-                _interactor.enabled = false;
-            }
+            //private void DisableInteractor(XRRayInteractor _interactor)
+            //{
+            //    _interactor.enabled = false;
+            //}
 
             private void DisableInteractor(GameObject _selector)
             {
@@ -125,77 +229,18 @@ namespace ECellDive
 
             private void LeftControllerModeSwitch(InputAction.CallbackContext _ctx)
             {
-                leftControllerModeID++;
-
-                switch (leftControllerModeID)
+                if (IsOwner)
                 {
-                    case 0:
-                        refRBCLHMap.Disable();
-                        DisableInteractors(leftRBCs);
-
-                        refGCLHMap.Enable();
-                        EnableInteractor(InteractorsRegister.groupControllersGO.left);
-                        break;
-
-                    case 1:
-                        refGCLHMap.Disable();
-                        DisableInteractor(InteractorsRegister.groupControllersGO.left);
-
-                        refMvtLHMap.Enable();
-                        EnableInteractor(InteractorsRegister.mvtControllersGO.left);
-                        break;
-
-                    case 2:
-                        refMvtLHMap.Disable();
-                        DisableInteractor(InteractorsRegister.mvtControllersGO.left);
-
-                        refRBCLHMap.Enable();
-                        EnableInteractors(leftRBCs);
-                        break;
-
-                    default:
-                        leftControllerModeID = 0;
-                        goto case 0;
+                    BroadcastLeftControllerModeServerRpc();
                 }
-
-                GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToLeftController(leftControllerModeID);
             }
 
             private void RightControllerModeSwitch(InputAction.CallbackContext _ctx)
             {
-                rightControllerModeID++;
-
-                switch (rightControllerModeID)
+                if (IsOwner)
                 {
-                    case 0:
-                        refRBCRHMap.Disable();
-                        DisableInteractors(rightRBCs);
-
-                        refGCRHMap.Enable();
-                        EnableInteractor(InteractorsRegister.groupControllersGO.right);
-                        break;
-
-                    case 1:
-                        refGCRHMap.Disable();
-                        DisableInteractor(InteractorsRegister.groupControllersGO.right);
-
-                        refMvtRHMap.Enable();
-                        EnableInteractor(InteractorsRegister.mvtControllersGO.right);
-                        break;
-
-                    case 2:
-                        refMvtRHMap.Disable();
-                        DisableInteractor(InteractorsRegister.mvtControllersGO.right);
-
-                        refRBCRHMap.Enable();
-                        EnableInteractors(rightRBCs);
-                        break;
-
-                    default:
-                        rightControllerModeID = 0;
-                        goto case 0;
+                    BroadcastRightControllerModeServerRpc();
                 }
-                GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToRightController(rightControllerModeID);
             }
         }
     }

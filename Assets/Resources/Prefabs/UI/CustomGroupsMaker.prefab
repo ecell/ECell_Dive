@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7293695112250564051}
   - component: {fileID: 7293695112250564050}
   - component: {fileID: 7293695112250564049}
-  - component: {fileID: 7293695112250564048}
+  - component: {fileID: 3172622395804676243}
   m_Layer: 0
   m_Name: CustomGroupsMaker
   m_TagString: Untagged
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showOnEnable: 1
---- !u!114 &7293695112250564048
+--- !u!114 &3172622395804676243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,29 +309,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7293695112250564054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46fe9f9ab05e0ad438ab728f96a5b19e, type: 3}
+  m_Script: {fileID: 11500000, guid: 763185fedec5fec4fb6a6b455e8b5796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   refUICanvas: {fileID: 7293695113181082521}
   refGroupNameInputField: {fileID: 1459516942925653202}
-  leftGrpMkgActionData:
-    selection: {fileID: 2384165661180725347, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    switchSelectionMode: {fileID: -900726509401738238, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  rightGrpMkgActionData:
-    selection: {fileID: -8749652606593971610, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    switchSelectionMode: {fileID: -1101054072476948304, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  leftGrpMkgToolsData:
-    discreteSelector: {fileID: 0}
-    volumetricSelector: {fileID: 0}
-    isVolumetric: 0
-    targetLayer: 8
-    maxDistance: 30
-  rightGrpMkgToolsData:
-    discreteSelector: {fileID: 0}
-    volumetricSelector: {fileID: 0}
-    isVolumetric: 0
-    targetLayer: 8
-    maxDistance: 30
 --- !u!1 &7293695112951122308
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +780,7 @@ PrefabInstance:
     - target: {fileID: 4562939959562653811, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7293695112250564048}
+      objectReference: {fileID: 0}
     - target: {fileID: 4562939959562653811, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CancelGroup
@@ -1031,7 +1013,7 @@ PrefabInstance:
     - target: {fileID: 4562939959562653811, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7293695112250564048}
+      objectReference: {fileID: 0}
     - target: {fileID: 4562939959562653811, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ValidateGroup
