@@ -1,13 +1,16 @@
-using UnityEngine;
 using ECellDive.Interfaces;
 
 namespace ECellDive.Interfaces
 {
     public interface ISessionPlayerData
     {
-        bool IsConnected { get; set; }
-        ulong ClientID { get; set; }
-        void Reinitialize();
+        string playerName { get; set; }
+        ulong clientId { get; set; }
+        //bool IsConnected { get; set; }
+        int currentScene { get; set; }
+        //void Reinitialize();
+
+        void SetSceneId(int _newSceneId);
     }
 }
 
@@ -15,36 +18,34 @@ namespace ECellDive.Multiplayer
 {
     public struct NetSessionPlayerData : ISessionPlayerData
     {
-        public string PlayerName;
-        public int PlayerNumber;
-        public Vector3 PlayerPosition;
-        public Quaternion PlayerRotation;
-        //public NetworkGuid AvatarNetworkGuid;
-        //public int CurrentHitPoints;
-        public bool HasCharacterSpawned;
+        #region ISessionPlayerData Members -
+        public string playerName { get; set; }
+        public ulong clientId { get; set; }
+        public int currentScene { get; set; }
+        //public bool HasCharacterSpawned;
 
-        public NetSessionPlayerData(ulong clientID, string name,
-                                //NetworkGuid avatarNetworkGuid,
-                                //int currentHitPoints = 0,
-                                bool isConnected = false, bool hasCharacterSpawned = false)
+        //public bool IsConnected { get; set; }
+        
+        #endregion
+
+        public NetSessionPlayerData(string _playerName, ulong _clientId, int _currentScene)
         {
-            ClientID = clientID;
-            PlayerName = name;
-            PlayerNumber = -1;
-            PlayerPosition = Vector3.zero;
-            PlayerRotation = Quaternion.identity;
-            //AvatarNetworkGuid = avatarNetworkGuid;
-            //CurrentHitPoints = currentHitPoints;
-            IsConnected = isConnected;
-            HasCharacterSpawned = hasCharacterSpawned;
+            playerName = _playerName;
+            clientId = _clientId;
+            currentScene = _currentScene;
         }
 
-        public bool IsConnected { get; set; }
-        public ulong ClientID { get; set; }
+        #region - ISessionPlayerData Methods -
+        //public void Reinitialize()
+        //{
+        //    HasCharacterSpawned = false;
+        //}
 
-        public void Reinitialize()
+        public void SetSceneId(int _newSceneId)
         {
-            HasCharacterSpawned = false;
+            currentScene = _newSceneId;
         }
+
+        #endregion
     }
 }

@@ -57,6 +57,8 @@ namespace ECellDive.Multiplayer
         private ClientGameNetPortal m_ClientPortal;
         private ServerGameNetPortal m_ServerPortal;
 
+        public Dictionary<ulong, NetSessionPlayerData> netSessionPlayersDataMap = new Dictionary<ulong, NetSessionPlayerData>();
+
 
         private void Awake()
         {

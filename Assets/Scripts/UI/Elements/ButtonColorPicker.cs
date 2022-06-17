@@ -20,7 +20,7 @@ namespace ECellDive
 
             private void Awake()
             {
-                picker = ScenesData.refSceneManagerMonoBehaviour.refColorPicker;
+                picker = StaticReferencer.Instance.refColorPicker;
                 picker.onValueChanged.AddListener(ColorChanged);
                 registrationID = picker.nbTargetsRegistered;
                 picker.nbTargetsRegistered++;

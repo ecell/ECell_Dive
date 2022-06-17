@@ -11,6 +11,8 @@ namespace ECellDive
         /// <summary>
         /// Manages the instances of the modules in the main room.
         /// </summary>
+
+        [System.Obsolete]
         public class ModulesManager : MonoBehaviour
         {
             //public Utility.SettingsModels.ModulesTypesReferences modulesTypes;

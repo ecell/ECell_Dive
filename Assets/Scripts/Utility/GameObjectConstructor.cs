@@ -1,24 +1,22 @@
 using UnityEngine;
-using ECellDive.SceneManagement;
 using ECellDive.Utility;
 
 namespace ECellDive
 {
-    namespace Modules
+    namespace Utility
     {
         /// <summary>
         /// Public interface to add module data on callback in
         /// in the Unity Editor.
         /// </summary>
-        public class ModuleDataConstructor : MonoBehaviour
+        public class GameObjectConstructor : MonoBehaviour
         {
-            public ModuleData moduleData;
+            public GameObject refPrefab;
 
             public void Constructor()
             {
                 Vector3 pos = Positioning.PlaceInFrontOfTargetLocal(Camera.main.transform, 2f, 0.3f);
-                ModulesData.AddModule(moduleData);
-                ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleData(moduleData, pos);
+                Instantiate(refPrefab, pos, Quaternion.identity);
             }
         }
     }

@@ -49,7 +49,7 @@ namespace ECellDive
             private int activationID;
             private int panningSpeedID;
 
-            private CyJsonPathwayGO refMasterPathway;
+            private CyJsonModule refMasterPathway;
 
             protected override void Awake()
             {
@@ -81,7 +81,7 @@ namespace ECellDive
                 triggerKOActions.rightController.action.performed -= ManageKnockout;
             }
 
-            public void Initialize(CyJsonPathwayGO _masterPathway, IEdge _edge)
+            public void Initialize(CyJsonModule _masterPathway, IEdge _edge)
             {
                 refMasterPathway = _masterPathway;
                 InstantiateInfoTags(new string[] { "" });
@@ -89,8 +89,8 @@ namespace ECellDive
                 gameObject.SetActive(true);
                 gameObject.name = edgeData.NAME;
 
-                SetDefaultWidth(1 / refMasterPathway.networkGOSettingsModel.SizeScaleFactor,
-                                1 / refMasterPathway.networkGOSettingsModel.SizeScaleFactor);
+                SetDefaultWidth(1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor,
+                                1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor);
                 SetLineRendererWidth();
 
                 Transform start = refMasterPathway.DataID_to_DataGO[edgeData.source].transform;

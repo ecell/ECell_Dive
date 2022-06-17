@@ -24,13 +24,13 @@ namespace ECellDive
             private MaterialPropertyBlock mpb;
             private int colorID;
 
-            private CyJsonPathwayGO refCyJsonPathwayGO;
+            private CyJsonModule refCyJsonPathwayGO;
             List<JArray> data = new List<JArray>();
 
             private void Start()
             {
                 //For now (2022-03-17) we are only looking for a NetworkGO spawned from a cyjson file.
-                refCyJsonPathwayGO = FindObjectOfType<CyJsonPathwayGO>();
+                refCyJsonPathwayGO = FindObjectOfType<CyJsonModule>();
                 if (refCyJsonPathwayGO != null)
                 {
                     AddData("-- Nodes --", refCyJsonPathwayGO.graphData.jNodes, (JObject)refCyJsonPathwayGO.graphData.jNodes[0]["data"]);

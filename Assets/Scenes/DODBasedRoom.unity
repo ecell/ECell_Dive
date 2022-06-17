@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: 1213530096}
   - component: {fileID: 1213530097}
   - component: {fileID: 1213530098}
+  - component: {fileID: 1213530099}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -433,23 +434,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa011e11079db3429925e8197ae83e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instantiationData:
-    instantiationTable:
-    - {fileID: 8854615488637617382, guid: 65db033fc46d95342a01c4035f811601, type: 3}
-    - {fileID: 5679868487447124721, guid: c97b20f787159b44a8585122076ca919, type: 3}
-    - {fileID: 2374937295789145028, guid: 25e6ce370df26ba4d8d04f7e12a9a871, type: 3}
-    - {fileID: 9183378004188021928, guid: e4c45add55dd79344b0c7c60c512d1b5, type: 3}
-    - {fileID: 757060780145655368, guid: 2c6b5b0cc327aa94ab72049f1c018793, type: 3}
-    - {fileID: 6761440568255983322, guid: f8ce519fca5ef614591947e73379a2f5, type: 3}
-    - {fileID: 5669114412949076116, guid: dc3f3d394930fed49a899a73e3cfadd0, type: 3}
-    - {fileID: 4426228637654572098, guid: 6b817574174edda44812f9a7580c8af8, type: 3}
-    - {fileID: 2219261217850899927, guid: 42bf30771b195fa40a45b95344081104, type: 3}
-    modulesInstanceList: []
-  divingData:
+  modulePrefabs:
+  - {fileID: 757060780145655368, guid: 2c6b5b0cc327aa94ab72049f1c018793, type: 3}
+  divingAnimationData:
     refAnimator: {fileID: 0}
     duration: 1
-  refVirtualKeyboard: {fileID: 0}
-  refColorPicker: {fileID: 0}
 --- !u!114 &1213530098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +453,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refLeftResurfaceAction: {fileID: 572066173421814767, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   refRightResurfaceAction: {fileID: 6308184658582378780, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+--- !u!114 &1213530099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213530095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3793699058
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &1403603464
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +650,7 @@ MonoBehaviour:
     PlayerPrefab: {fileID: 5081819281453008317, guid: 408111a9c3de79c44997b2536b329549, type: 3}
     NetworkPrefabs:
     - Override: 0
-      Prefab: {fileID: 6761440568255983322, guid: f8ce519fca5ef614591947e73379a2f5, type: 3}
+      Prefab: {fileID: 747793240316498542, guid: 13afb758b6eee1340a1140b27a95e099, type: 3}
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}

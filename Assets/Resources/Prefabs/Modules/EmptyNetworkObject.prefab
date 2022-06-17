@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6761440568255983322
+--- !u!1 &747793240316498542
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6761440568255983320}
-  - component: {fileID: 6761440568255983323}
-  - component: {fileID: 3170072728522364947}
+  - component: {fileID: 747793240316498448}
+  - component: {fileID: -8588653489776155451}
+  - component: {fileID: 747793240316498543}
   m_Layer: 0
-  m_Name: CyJsonRootModule
-  m_TagString: CyJsonRootModule
+  m_Name: EmptyNetworkObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6761440568255983320
+--- !u!4 &747793240316498448
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6761440568255983322}
+  m_GameObject: {fileID: 747793240316498542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,16 +32,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6761440568255983323
+--- !u!114 &-8588653489776155451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6761440568255983322}
+  m_GameObject: {fileID: 747793240316498542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba5e639a12bb524387f27186b7f86c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 24670cf497b8807418da78d0d4133f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   refName: {fileID: 0}
@@ -56,19 +56,13 @@ MonoBehaviour:
   m_refInfoTagPrefab: {fileID: 0}
   m_refInfoTagsContainer: {fileID: 0}
   m_refInfoTags: []
-  networkGOSettingsModel:
-    nodesBatchSize: 10
-    edgesBatchSize: 10
-    PositionScaleFactor: 100
-    SizeScaleFactor: 10
-    InterLayersDistance: 5
---- !u!114 &3170072728522364947
+--- !u!114 &747793240316498543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6761440568255983322}
+  m_GameObject: {fileID: 747793240316498542}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}

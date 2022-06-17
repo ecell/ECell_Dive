@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using ECellDive.SceneManagement;
 
 namespace ECellDive.Multiplayer
 {
@@ -79,8 +78,7 @@ namespace ECellDive.Multiplayer
             {
                 Debug.Log("Client ID corresponds to local object: this is the host");
                 //Storing about the Host relevant data (as a player)
-                //SessionManager<SessionPlayerData>.Instance.SetupConnectingPlayerSessionData(clientId, m_Portal.GetPlayerId(),
-                //    new SessionPlayerData(clientId, m_Portal.PlayerName, m_Portal.AvatarRegistry.GetRandomAvatar().Guid.ToNetworkGuid(), 0, true));
+                m_Portal.netSessionPlayersDataMap[clientId] = new NetSessionPlayerData(m_Portal.PlayerName, clientId, 0);
 
                 connectionApprovedCallback(true, null, true, null, null);
                 return;
@@ -98,8 +96,9 @@ namespace ECellDive.Multiplayer
                     $"{connectionPayload.playerName}, with GUID {connectionPayload.playerId}");
 
                 //Storing about the new client relevant data (who is a player)
-                //SessionManager<SessionPlayerData>.Instance.SetupConnectingPlayerSessionData(clientId, connectionPayload.playerId,
-                //    new SessionPlayerData(clientId, connectionPayload.playerName, m_Portal.AvatarRegistry.GetRandomAvatar().Guid.ToNetworkGuid(), 0, true));
+                m_Portal.netSessionPlayersDataMap[clientId] = new NetSessionPlayerData(m_Portal.PlayerName, clientId, 0);
+                GameNetScenesManager.Instance.DiverGetsInServerRpc(0, clientId);
+                
                 SendServerToClientConnectResult(clientId, gameReturnStatus);
 
                 //Populate our client scene map

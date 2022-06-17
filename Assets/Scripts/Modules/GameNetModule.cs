@@ -4,9 +4,11 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-using ECellDive.Utility;
-using ECellDive.UI;
 using ECellDive.Interfaces;
+using ECellDive.Multiplayer;
+using ECellDive.SceneManagement;
+using ECellDive.UI;
+using ECellDive.Utility;
 
 namespace ECellDive
 {
@@ -18,19 +20,19 @@ namespace ECellDive
         /// </summary>
         /// 
         public class GameNetModule : NetworkBehaviour,
-                                IDive,
-                                IFocus,
-                                IGroupable,
-                                IHighlightable,
-                                IInfoTags,
-                                IMlprData,
-                                IMlprDataBroadcast,
-                                IMlprDataRequest
+                                    IDive,
+                                    IFocus,
+                                    IGroupable,
+                                    IHighlightable,
+                                    IInfoTags,
+                                    INamed,
+                                    IMlprData,
+                                    IMlprDataBroadcast,
+                                    IMlprDataRequest,
+                                    IMlprVisibility
         {
-            [Header("Module Info")]
-            public TextMeshProUGUI refName;
-
-            ClientRpcParams cachedClientRpcParams;
+            private Renderer m_Renderer;
+            private LineRenderer m_LineRenderer;
 
             #region - IDive Members -
             [SerializeField] private ControllersSymetricAction m_diveActions;
@@ -45,12 +47,21 @@ namespace ECellDive
                 }
             }
 
-            //[SerializeField] private bool m_finalLayer = false;
-            //public bool isFinalLayer
-            //{
-            //    get => m_finalLayer;
-            //    set => m_finalLayer = value;
-            //}
+            private NetworkVariable<int> m_rootSceneId = new NetworkVariable<int>();
+            public NetworkVariable<int> rootSceneId
+            {
+                get => m_rootSceneId;
+                set => m_rootSceneId = value;
+            }
+
+            private NetworkVariable<int> m_targetSceneId = new NetworkVariable<int>();
+
+            public NetworkVariable<int> targetSceneId
+            {
+                get => m_targetSceneId;
+                set => m_targetSceneId = value;
+            }
+
             private NetworkVariable<bool> m_isReadyForDive = new NetworkVariable<bool>(false,
                 NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
             public NetworkVariable<bool> isReadyForDive
@@ -136,6 +147,15 @@ namespace ECellDive
             }
             #endregion
 
+            #region - INamed Members -
+            [SerializeField] private TextMeshProUGUI m_nameField;
+            public TextMeshProUGUI nameField
+            {
+                get => m_nameField;
+                set => m_nameField = value;
+            }
+            #endregion
+
             #region - IMlprData Members -
 
             private List<byte[]> m_fragmentedSourceData = new List<byte[]>();
@@ -176,6 +196,15 @@ namespace ECellDive
 
             #endregion
 
+            #region - IMlrpVisibility Members -
+            private NetworkVariable<bool> m_isActivated = new NetworkVariable<bool>(true);
+            public NetworkVariable<bool> isActivated
+            {
+                get => m_isActivated;
+                protected set => m_isActivated = value;
+            }
+            #endregion
+
             protected virtual void Awake()
             {
                 areVisible = false;
@@ -185,6 +214,13 @@ namespace ECellDive
 
                 m_displayInfoTagsActions.leftController.action.performed += ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.rightController.action.performed += ManageInfoTagsDisplay;
+
+                isActivated.OnValueChanged += ManageActivationStatus;
+
+                //Debug.Log("Starting up " + gameObject.name);
+                m_Renderer = GetComponent<Renderer>();
+                m_LineRenderer = GetComponent<LineRenderer>();
+
             }
 
             public override void OnDestroy()
@@ -194,6 +230,8 @@ namespace ECellDive
 
                 m_displayInfoTagsActions.leftController.action.performed -= ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.rightController.action.performed -= ManageInfoTagsDisplay;
+
+                isActivated.OnValueChanged -= ManageActivationStatus;
             }
 
             /// <summary>
@@ -217,27 +255,16 @@ namespace ECellDive
                 }
             }
 
-            public void SetName(string _name)
-            {
-                refName.text = _name;
-            }
-
             /// <summary>
             /// Makes sure the name of the module's name faces the
             /// Player's POV and is therefore readable.
             /// </summary>
             public void ShowNameToPlayer()
             {
-                Positioning.UIFaceTarget(refName.gameObject.transform.parent.gameObject, Camera.main.transform);
+                Positioning.UIFaceTarget(m_nameField.gameObject.transform.parent.gameObject, Camera.main.transform);
             }
 
             #region - IDive Methods -
-
-            [ServerRpc(RequireOwnership = false)]
-            public void BroadcastIsReadyForDiveServerRpc()
-            {
-                isReadyForDive.Value = true;
-            }
 
             public void DirectDiveIn()
             {
@@ -246,9 +273,15 @@ namespace ECellDive
 
             public virtual IEnumerator DirectDiveInC()
             {
-                Debug.LogError($"Direct dive in {gameObject.name}:{refName.text} but no" +
-                    $"custom behaviour has been defined for that type of module");
                 yield return null;
+
+                Debug.Log($"DirectDiveInC for netobj: {NetworkBehaviourId}");
+                GameNetScenesManager.Instance.SwitchingScenesServerRpc(rootSceneId.Value,
+                                                                        targetSceneId.Value,
+                                                                        NetworkManager.Singleton.LocalClientId);
+                
+
+                //GameNetScenesManager.Instance.DebugScene();
             }
 
             public void GenerativeDiveIn()
@@ -258,16 +291,24 @@ namespace ECellDive
 
             public virtual IEnumerator GenerativeDiveInC()
             {
-                Debug.LogError($"Generative dive in {gameObject.name}:{refName.text} but no" +
+                Debug.LogError($"Generative dive in {gameObject.name}:{m_nameField.text} but no" +
                     $"custom behaviour has been defined for that type of module");
                 yield return null;
             }
 
             public void TryDiveIn(InputAction.CallbackContext _ctx)
             {
-                //StartCoroutine(TryDiveInC());
-                if (isReadyForGeneration.Value)
+                StartCoroutine(TryDiveInC());
+            }
+
+            public virtual IEnumerator TryDiveInC()
+            {
+                if (isFocused && isReadyForGeneration.Value)
                 {
+                    //TODO: DIVE START ANIMATION
+
+                    //Wait for animation to finish;
+                    yield return null;
                     if (isReadyForDive.Value)
                     {
                         DirectDiveIn();
@@ -276,12 +317,9 @@ namespace ECellDive
                     {
                         GenerativeDiveIn();
                     }
-                }
-            }
 
-            public virtual IEnumerator TryDiveInC()
-            {
-                yield return null;
+                    //TODO: DIVE END ANIMATION
+                }
             }
 
             #endregion
@@ -367,6 +405,17 @@ namespace ECellDive
             }
             #endregion
 
+            #region - INamed Methods -
+            public string GetName()
+            {
+                return m_nameField.text;
+            }
+
+            public void SetName(string _name)
+            {
+                m_nameField.text = _name;
+            }
+            #endregion
 
             #region - IMlprData Methods -
             public virtual void AssembleFragmentedData()
@@ -418,7 +467,6 @@ namespace ECellDive
                 {
                     ConfirmSourceDataReceptionServerRpc();
                     AssembleFragmentedData();
-                    //isLoaded = true;
                 }
             }
 
@@ -463,6 +511,74 @@ namespace ECellDive
                     BroadcastSourceDataFragServerRpc(_frag);
                     yield return new WaitForEndOfFrame();
                 }
+            }
+            #endregion
+
+            #region - IMlprVisibility -
+
+            public virtual void ManageActivationStatus(bool _previous, bool _current)
+            {
+                gameObject.SetActive(isActivated.Value);
+            }
+
+            public virtual void NetHide()
+            {
+                //Debug.Log("Try to Hide");
+                if (m_nameField != null)
+                {
+                    m_nameField.gameObject.SetActive(false);
+                }
+
+                if (m_Renderer != null)
+                {
+                    //Debug.Log("Hiding m_Renderer");
+                    m_Renderer.enabled = false;
+                }
+
+                if (m_LineRenderer != null)
+                {
+                    //Debug.Log("Hiding m_LineRenderer");
+                    m_LineRenderer.enabled = false;
+                }
+            }
+
+            [ClientRpc]
+            public virtual void NetHideClientRpc(ClientRpcParams _clientRpcParams)
+            {
+                NetHide();
+            }
+            
+            public virtual void NetShow()
+            {
+                //Debug.Log("Trying to Show");
+                if (m_nameField != null)
+                {
+                    m_nameField.gameObject.SetActive(true);
+                }
+
+                if (m_Renderer != null)
+                {
+                    //Debug.Log("Showing m_Renderer");
+                    m_Renderer.enabled = true;
+                }
+
+                if (m_LineRenderer != null)
+                {
+                    //Debug.Log("Showing m_LineRenderer");
+                    m_LineRenderer.enabled = true;
+                }
+            }
+
+            [ClientRpc]
+            public virtual void NetShowClientRpc(ClientRpcParams _clientRpcParams)
+            {
+                NetShow();
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            public void RequestSetActiveServerRpc(bool _active)
+            {
+                isActivated.Value = _active;
             }
             #endregion
         }

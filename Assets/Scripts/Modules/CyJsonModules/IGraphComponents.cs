@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
 
@@ -166,13 +167,22 @@ namespace ECellDive
 
         /// <summary>
         /// The interface encoding the required properties to use
-        /// the a graph (<seealso cref="INetwork"/>) in a GameObject.
+        /// the a graph (<seealso cref="IGraph"/>) in a GameObject.
         /// </summary>
         public interface IGraphGO
         {
             IGraph graphData { get; }
 
-            void GenerateGraph();
+            /// <summary>
+            /// The list of prefabs that will be used as nodes or edges.
+            /// </summary>
+            /// <remarks>We decided the use a list of gameobjects rather than
+            /// named members for a "node prefab" or an "edge prefab" to allow
+            /// for flexibility.</remarks>
+            List<GameObject> graphPrefabsComponents { get; }
+
+            [ServerRpc(RequireOwnership = false)]
+            void RequestGraphGenerationServerRpc(ulong _expeditorClientId, int _rootSceneId);
 
             void SetNetworkData(IGraph _INetwork);
 

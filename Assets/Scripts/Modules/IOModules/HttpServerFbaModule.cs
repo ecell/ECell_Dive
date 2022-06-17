@@ -33,7 +33,7 @@ namespace ECellDive
 
             public FbaParametersManager fbaParametersManager;
 
-            private CyJsonPathwayGO LoadedCyJsonRoot;
+            private CyJsonModule LoadedCyJsonPathway;
 
             private void Start()
             {
@@ -49,12 +49,12 @@ namespace ECellDive
                     LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
                         $"FBA analyses module connected to {fbaAnalysisData.activeModelName}");
 
-                    LoadedCyJsonRoot = GameObject.FindGameObjectWithTag("CyJsonRootModule").GetComponent<CyJsonPathwayGO>();
+                    LoadedCyJsonPathway = GameObject.FindGameObjectWithTag("CyJsonRootModule").GetComponent<CyJsonModule>();
 
-                    foreach (IEdge _edgeData in LoadedCyJsonRoot.graphData.edges)
+                    foreach (IEdge _edgeData in LoadedCyJsonPathway.graphData.edges)
                     {
                         fbaAnalysisData.knockOuts[_edgeData.ID] = false;
-                        string _name = LoadedCyJsonRoot.DataID_to_DataGO[_edgeData.ID].name;
+                        string _name = LoadedCyJsonPathway.DataID_to_DataGO[_edgeData.ID].name;
                         if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_name))
                         {
                             fbaAnalysisData.edgeName_to_EdgeID[_name].Add(_edgeData.ID);
@@ -78,9 +78,9 @@ namespace ECellDive
                 string knockouts = "";
                 int counter_true = 0;
 
-                foreach (IEdge _edgeData in LoadedCyJsonRoot.graphData.edges)
+                foreach (IEdge _edgeData in LoadedCyJsonPathway.graphData.edges)
                 {
-                    if (LoadedCyJsonRoot.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut)
+                    if (LoadedCyJsonPathway.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut)
                     {
                         knockouts += _edgeData.NAME + ",";
                         counter_true++;
@@ -144,8 +144,8 @@ namespace ECellDive
 
                         foreach (int _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
-                            LoadedCyJsonRoot.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
-                            LoadedCyJsonRoot.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
+                            LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
+                            LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
                         }
                     }
                 }

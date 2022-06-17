@@ -18,7 +18,7 @@ namespace ECellDive
             private void Start()
             {
                 //Searches for the Virtual Keyboard in the scene.
-                refVKGO = ScenesData.refSceneManagerMonoBehaviour.refVirtualKeyboard;
+                refVKGO = StaticReferencer.Instance.refVirtualKeyboard;
                 if (refVKGO == null)
                 {
                     LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,

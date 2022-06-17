@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 
@@ -10,7 +9,7 @@ namespace ECellDive
         namespace SettingsModels
         {
             #region - Data -
-            [System.Serializable]
+            [System.Serializable, Obsolete]
             public class Data
             {
                 [Header("Cystoscape Data")]
@@ -20,7 +19,7 @@ namespace ECellDive
             #endregion
 
             #region - UI -
-            [System.Serializable]
+            [System.Serializable, Obsolete]
             public class InformationPanels
             {
                 public GameObject FixedInformationPanel;
@@ -29,7 +28,7 @@ namespace ECellDive
             #endregion
 
             #region - Modules -
-            [System.Serializable]
+            [Serializable, Obsolete]
             public class ModulesTypesReferences
             {
                 [Header("Prefabs References")]
@@ -52,7 +51,7 @@ namespace ECellDive
             #endregion
 
             #region - NetworkGO - 
-            [System.Serializable]
+            [Serializable, Obsolete]
             public class NetworkGOSettings
             {
                 [Header("Spawning")]
@@ -80,7 +79,7 @@ namespace ECellDive
             #endregion
 
             #region - NodeGO - 
-            [System.Serializable]
+            [System.Serializable, Obsolete]
             public class NodeGOSettings
             {
 

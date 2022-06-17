@@ -94,7 +94,7 @@ namespace ECellDive
                     byte[] name = System.Text.Encoding.UTF8.GetBytes(activeModelName);
                     List<byte[]> mCFs = ArrayManipulation.FragmentToList(modelContent, 4096);
 
-                    gameNetModuleSpawner.RequestModuleSpawnFromData(4, name, mCFs);
+                    gameNetModuleSpawner.RequestModuleSpawnFromData(0, name, mCFs);
                 }
             }
 

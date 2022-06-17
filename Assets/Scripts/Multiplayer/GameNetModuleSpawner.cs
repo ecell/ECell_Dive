@@ -45,16 +45,12 @@ namespace ECellDive.Multiplayer
         [ServerRpc]
         public void RequestModuleSpawnServerRpc(int _moduleTypeID, ulong _expeditorClientID)
         {
-            ModuleData cyJsonMD = new ModuleData
-            {
-                typeID = 4 // 4 is the type ID of a CyJsonModule
-            };
-            ModulesData.AddModule(cyJsonMD);
             Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
-            GameObject cyJsonModule = ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleData(cyJsonMD, pos);
 
-            //Synchroinising across the network
-            cyJsonModule.GetComponent<NetworkObject>().Spawn();
+            GameObject cyJsonModule = GameNetScenesManager.Instance.SpawnModuleInScene(
+                GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene,
+                _moduleTypeID,
+                pos);
             
             //Giving ownership to the client who initially made 
             //the spawning request

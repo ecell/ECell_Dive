@@ -10,13 +10,11 @@ namespace ECellDive.Interfaces
     {
         ControllersSymetricAction diveActions { get; set; }
 
-        //TODO: refactor modules to separate modules that are shared on the
-        //multiplayer network from modules that are only tools to manipulate
-        //data for the player. When refactoring, isFinalLayer, will not be
-        //needed anymore
-        //bool isFinalLayer { get; set; }
-
         NetworkVariable<bool> isReadyForDive { get; }
+
+        NetworkVariable<int> rootSceneId { get; set; }
+
+        NetworkVariable<int> targetSceneId { get; set; }
 
         /// <summary>
         /// Used by the client that is generating the content of a module
@@ -24,8 +22,8 @@ namespace ECellDive.Interfaces
         /// physically represents the data stored by a module) to ask the server
         /// to update the networkVariable <see cref="isReadyForDive"/>.
         /// </summary>
-        [ServerRpc(RequireOwnership = false)]
-        void BroadcastIsReadyForDiveServerRpc();
+        //[ServerRpc(RequireOwnership = false)]
+        //void BroadcastIsReadyForDiveServerRpc();
 
         /// <summary>
         /// The public interface to call when a user is trying to dive into
