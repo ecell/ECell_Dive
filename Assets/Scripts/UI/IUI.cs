@@ -77,6 +77,20 @@ namespace ECellDive
             /// </summary>
             public void InstantiateContent();
         }
+
+        /// <summary>
+        /// Defines the the interface for an object to LookAt (Z-Axis) a target.
+        /// This allows us to wrap or build more complex LookAt behaviour than
+        /// the built-in <see cref="Transform.LookAt"/>.
+        /// </summary>
+        /// <remarks>Particularly used for UI elements to be visible from an active
+        /// Camera.</remarks>
+        public interface ILookAt
+        {
+            Transform target { get; }
+
+            void LookAt();
+        }
     }
 }
 

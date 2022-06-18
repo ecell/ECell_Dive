@@ -3,7 +3,7 @@ using Unity.Netcode;
 using UnityEngine;
 using TMPro;
 using ECellDive.Interfaces;
-
+using ECellDive.Multiplayer;
 
 namespace ECellDive.PlayerComponents
 {
@@ -33,6 +33,33 @@ namespace ECellDive.PlayerComponents
             protected set => m_isActivated = value;
         }
         #endregion
+
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+            SetNameServerRpc(OwnerClientId, NetworkManager.Singleton.LocalClientId);
+        }
+
+        [ClientRpc]
+        private void SetNameClientRpc(byte[] _name, ClientRpcParams _clientRpcParams)
+        {
+            SetName(System.Text.Encoding.UTF8.GetString(_name));
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void SetNameServerRpc(ulong _ownerCliendId, ulong _expeditorClientId)
+        {
+            ClientRpcParams clientRpcParams = new ClientRpcParams
+            {
+                Send = new ClientRpcSendParams
+                {
+                    TargetClientIds = new ulong[] { _expeditorClientId }
+                }
+            };
+            string _nameStr = GameNetPortal.Instance.netSessionPlayersDataMap[_ownerCliendId].playerName;
+            byte[] _nameB = System.Text.Encoding.UTF8.GetBytes(_nameStr);
+            SetNameClientRpc(_nameB, clientRpcParams);
+        }
 
         #region - INamed Methods -
         public string GetName()

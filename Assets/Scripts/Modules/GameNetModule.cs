@@ -400,7 +400,7 @@ namespace ECellDive
             {
                 foreach (GameObject _infoTag in refInfoTags)
                 {
-                    _infoTag.GetComponent<InfoDisplayManager>().ShowInfoToPlayer();
+                    _infoTag.GetComponent<InfoDisplayManager>().LookAt();
                 }
             }
             #endregion

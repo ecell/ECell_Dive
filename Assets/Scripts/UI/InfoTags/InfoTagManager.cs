@@ -1,4 +1,5 @@
 using System;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -47,6 +48,8 @@ namespace ECellDive
                 {
                     Hide();
                 }
+                target = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
+                            GetComponentInChildren<Camera>().transform;
             }
 
             private void AwakeCallBackActions(Tag _tag)
