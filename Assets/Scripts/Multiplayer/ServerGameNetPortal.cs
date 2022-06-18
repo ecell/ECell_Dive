@@ -18,8 +18,6 @@ namespace ECellDive.Multiplayer
     [RequireComponent(typeof(GameNetPortal))]
     public class ServerGameNetPortal : MonoBehaviour
     {
-        [SerializeField]
-        private string password = "1234";
         private GameNetPortal m_Portal;
 
         // used in ApprovalCheck. This is intended as a bit of light protection against DOS attacks that rely on sending silly big buffers of garbage.
@@ -73,20 +71,20 @@ namespace ECellDive.Multiplayer
                 return;
             }
 
+            string payload = System.Text.Encoding.UTF8.GetString(connectionData);
+            ConnectionPayload connectionPayload = JsonUtility.FromJson<ConnectionPayload>(payload); // https://docs.unity3d.com/2020.2/Documentation/Manual/JSONSerialization.html
+
             // Approval check happens for Host too, but obviously we want it to be approved
             if (clientId == NetworkManager.Singleton.LocalClientId)
             {
                 Debug.Log("Client ID corresponds to local object: this is the host");
                 //Storing about the Host relevant data (as a player)
-                m_Portal.netSessionPlayersDataMap[clientId] = new NetSessionPlayerData(m_Portal.PlayerName, clientId, 0);
+                m_Portal.netSessionPlayersDataMap[clientId] = new NetSessionPlayerData(connectionPayload.playerName, clientId, 0);
 
                 connectionApprovedCallback(true, null, true, null, null);
                 return;
             }
 
-            Debug.Log("Deserializing payload");
-            string payload = System.Text.Encoding.UTF8.GetString(connectionData);
-            ConnectionPayload connectionPayload = JsonUtility.FromJson<ConnectionPayload>(payload); // https://docs.unity3d.com/2020.2/Documentation/Manual/JSONSerialization.html
             ConnectStatus gameReturnStatus = GetConnectStatus(connectionPayload);
 
             if (gameReturnStatus == ConnectStatus.Success)
@@ -96,7 +94,7 @@ namespace ECellDive.Multiplayer
                     $"{connectionPayload.playerName}, with GUID {connectionPayload.playerId}");
 
                 //Storing about the new client relevant data (who is a player)
-                m_Portal.netSessionPlayersDataMap[clientId] = new NetSessionPlayerData(m_Portal.PlayerName, clientId, 0);
+                m_Portal.netSessionPlayersDataMap[clientId] = new NetSessionPlayerData(connectionPayload.playerName, clientId, 0);
                 GameNetScenesManager.Instance.DiverGetsInServerRpc(0, clientId);
                 
                 SendServerToClientConnectResult(clientId, gameReturnStatus);
@@ -139,7 +137,7 @@ namespace ECellDive.Multiplayer
 
             //return SessionManager<SessionPlayerData>.Instance.IsDuplicateConnection(connectionPayload.playerId) ?
             //    ConnectStatus.LoggedInAgain : ConnectStatus.Success;
-            if (connectionPayload.psw == password)
+            if (m_Portal.CheckPassword(connectionPayload.psw))
             {
                 Debug.Log("This is a password match");
                 return ConnectStatus.Success;

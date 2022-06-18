@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Netcode;
-using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 
 namespace ECellDive.Multiplayer
@@ -84,65 +83,37 @@ namespace ECellDive.Multiplayer
         }
 
         /// <summary>
-        /// Wraps the invocation of NetworkManager.StartClient, including our GUID as the payload.
+        /// Shuts down the current session and starts a new one as a client.
         /// </summary>
-        /// <remarks>
-        /// This method must be static because, when it is invoked, the client still doesn't know it's a client yet, and in particular, GameNetPortal hasn't
-        /// yet initialized its client and server GameNetPortal objects yet (which it does in OnNetworkSpawn, based on the role that the current player is performing).
-        /// </remarks>
-        /// <param name="ipaddress">the IP address of the host to connect to. (currently IPV4 only)</param>
-        /// <param name="port">The port of the host to connect to. </param>
-        public void StartClient(string ipaddress, int port)
+        IEnumerator Restart()
         {
-            Debug.Log("Setting up target IP & port on the Client Side");
-            UnityTransport unityTransport = NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
-            NetworkManager.Singleton.NetworkConfig.NetworkTransport = unityTransport;
-
-            //switch (chosenTransport)
-            //{
-            //    case UNetTransport unetTransport:
-            //        unetTransport.ConnectAddress = ipaddress;
-            //        unetTransport.ConnectPort = port;
-            //        break;
-            //    case UnityTransport unityTransport:
-            //        // TODO: once this is exposed in the adapter we will be able to change it
-            //        unityTransport.SetConnectionData(ipaddress, (ushort)port);
-            //        break;
-            //    default:
-            //        throw new ArgumentOutOfRangeException(nameof(chosenTransport));
-            //}
-            unityTransport.SetConnectionData(ipaddress, (ushort)port);
-            StartClient();
+            Debug.Log($"Shutting down");
+            m_Portal.NetManager.Shutdown();
+            yield return new WaitForEndOfFrame();
+            Debug.Log("Restarting as a client");
+            m_Portal.NetManager.StartClient();
         }
 
         /// <summary>
-        /// Starts the client with the default IP and port registered from the inspection
-        /// of the Unity Transport component in the editor.
+        /// Starts the client with the IP and port registered in <see cref="GameNetPortal.m_Settings"/>
         /// </summary>
         public void StartClient()
         {
-
             Debug.Log("Building Client payload and connecting.");
-            var payload = JsonUtility.ToJson(new ConnectionPayload()
-            {
-                psw = "1234",
-                playerId = m_Portal.GetPlayerId(),
-                //clientScene = SceneManager.GetActiveScene().buildIndex,
-                playerName = m_Portal.PlayerName,
-                //isDebug = Debug.isDebugBuild
-            });
+            string payload = JsonUtility.ToJson(m_Portal.GetConnectionPayload());
 
-            var payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
+            Debug.Log("Client is connecting with payload:\n" + payload);
+
+            byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
 
             m_Portal.NetManager.NetworkConfig.ConnectionData = payloadBytes;
             m_Portal.NetManager.NetworkConfig.ClientConnectionBufferTimeout = k_TimeoutDuration;
 
+            m_Portal.SetUnityTransport();
+
             //and...we're off! Netcode will establish a socket connection to the host.
             //  If the socket connection fails, we'll hear back by getting an ReceiveServerToClientSetDisconnectReason_CustomMessage callback for ourselves and get a message telling us the reason
             //  If the socket connection succeeds, we'll get our ReceiveServerToClientConnectResult_CustomMessage invoked. This is where game-layer failures will be reported.
-            UnityTransport unityTransport = NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
-            Debug.Log($"Client will try to connect to {unityTransport.ConnectionData.Address}:" +
-                $"{unityTransport.ConnectionData.Port}");
             if (m_Portal.NetManager.IsHost || m_Portal.NetManager.IsClient)
             {
                 Debug.Log("NetManager was already running so we are shutting down before re-launching");
@@ -157,15 +128,6 @@ namespace ECellDive.Multiplayer
             // should only do this once StartClient has been called (start client will initialize CustomMessagingManager
             //NetworkManager.Singleton.CustomMessagingManager.RegisterNamedMessageHandler(nameof(ReceiveServerToClientConnectResult_CustomMessage), ReceiveServerToClientConnectResult_CustomMessage);
             //NetworkManager.Singleton.CustomMessagingManager.RegisterNamedMessageHandler(nameof(ReceiveServerToClientSetDisconnectReason_CustomMessage), ReceiveServerToClientSetDisconnectReason_CustomMessage);
-        }
-
-        IEnumerator Restart()
-        {
-            Debug.Log($"Shutting down");
-            m_Portal.NetManager.Shutdown();
-            yield return new WaitForEndOfFrame();
-            Debug.Log("Restarting as a client");
-            m_Portal.NetManager.StartClient();
         }
     }
 }

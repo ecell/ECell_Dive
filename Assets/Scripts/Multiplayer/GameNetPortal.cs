@@ -23,13 +23,22 @@ namespace ECellDive.Multiplayer
     }
 
     [Serializable]
-    public class ConnectionPayload
+    public struct ConnectionPayload
     {
         public string playerId;
         public string psw;
         //public int clientScene = -1;
         public string playerName;
         //public bool isDebug;
+    }
+
+    [Serializable]
+    public struct ConnectionSettings
+    {
+        public string playerName;
+        public string IP;
+        public int port;
+        public string password;
     }
 
     /// <summary>
@@ -45,17 +54,13 @@ namespace ECellDive.Multiplayer
     /// </remarks>
     public class GameNetPortal : MonoBehaviour
     {
-
-        /// <summary>
-        /// the name of the player chosen at game start
-        /// </summary>
-        public string PlayerName;
-
         public NetworkManager NetManager;
 
         public static GameNetPortal Instance;
         private ClientGameNetPortal m_ClientPortal;
         private ServerGameNetPortal m_ServerPortal;
+        
+        [SerializeField] private ConnectionSettings m_Settings;
 
         public Dictionary<ulong, NetSessionPlayerData> netSessionPlayersDataMap = new Dictionary<ulong, NetSessionPlayerData>();
 
@@ -72,6 +77,11 @@ namespace ECellDive.Multiplayer
 
         private void Start()
         {
+            //default connection payload
+            string payload = JsonUtility.ToJson(GetConnectionPayload());
+            byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
+            NetManager.NetworkConfig.ConnectionData = payloadBytes;
+
             StartHost();
         }
 
@@ -85,7 +95,7 @@ namespace ECellDive.Multiplayer
             Instance = null;
         }
 
-        public string GetPlayerId()
+        private string GetPlayerId()
         {
             //if (UnityServices.State != ServicesInitializationState.Initialized)
             //{
@@ -96,9 +106,26 @@ namespace ECellDive.Multiplayer
             return PlayerPrefsWrap.GetGuid();
         }
 
+        public ConnectionPayload GetConnectionPayload()
+        {
+            return new ConnectionPayload
+            {
+                playerId = GetPlayerId(),
+                playerName = m_Settings.playerName,
+                psw = m_Settings.password
+            };
+        }
+
+        public bool CheckPassword(string _password)
+        {
+            return m_Settings.password == _password;
+        }
+
         /// <summary>
-        /// This method runs when NetworkManager has started up (following a succesful connect on the client, or directly after StartHost is invoked
-        /// on the host). It is named to match NetworkBehaviour.OnNetworkSpawn, and serves the same role, even though GameNetPortal itself isn't a NetworkBehaviour.
+        /// This method runs when NetworkManager has started up (following a
+        /// succesful connect on the client, or directly after StartHost is invoked
+        /// on the host). It is named to match NetworkBehaviour.OnNetworkSpawn,
+        /// and serves the same role, even though GameNetPortal itself isn't a NetworkBehaviour.
         /// </summary>
         private void OnNetworkReady(ulong clientId)
         {
@@ -119,48 +146,57 @@ namespace ECellDive.Multiplayer
         }
 
         /// <summary>
-        /// Initializes host mode on this client. Call this and then other clients should connect to us!
+        /// Shuts down the current session and starts a new one as a host.
         /// </summary>
-        /// <remarks>
-        /// See notes in ClientGameNetPortal.StartClient about why this must be static.
-        /// </remarks>
-        /// <param name="ipaddress">The IP address to connect to (currently IPV4 only).</param>
-        /// <param name="port">The port to connect to. </param>
-        public void StartHost(string ipaddress, int port)
+        IEnumerator Restart()
         {
-            Debug.Log("Setting up IP & port on the Host Side");
-            UnityTransport unityTransport = NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
-            //NetworkManager.Singleton.NetworkConfig.NetworkTransport = chosenTransport;
+            Debug.Log($"Shutting down");
+            NetManager.Shutdown();
+            yield return new WaitForEndOfFrame();
+            Debug.Log($"Restarting a host");
+            NetManager.StartHost();
+        }
 
-            // Note: In most cases, this switch case shouldn't be necessary. It becomes necessary when having to deal with multiple transports like this
-            // sample does, since current Transport API doesn't expose these fields.
-            //switch (chosenTransport)
-            //{
-            //    case UNetTransport unetTransport:
-            //        unetTransport.ConnectAddress = ipaddress;
-            //        unetTransport.ServerListenPort = port;
-            //        break;
-            //    case UnityTransport unityTransport:
-            //        unityTransport.SetConnectionData(ipaddress, (ushort)port);
-            //        break;
-            //    default:
-            //        throw new Exception($"unhandled IpHost transport {chosenTransport.GetType()}");
-            //}
-            unityTransport.SetConnectionData(ipaddress, (ushort)port);
-            StartHost();
+        public void SetConnectionSettings(string _name, string _ip, int _port, string _password)
+        {
+            m_Settings = new ConnectionSettings
+            {
+                playerName = name,
+                IP = _ip,
+                port = _port,
+                password = _password
+            };
+        }
+
+        public void SetUnityTransport()
+        {
+            UnityTransport unityTransport = NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
+            unityTransport.SetConnectionData(m_Settings.IP, (ushort)m_Settings.port);
+
+            Debug.Log($"Setting up transport  connection to {unityTransport.ConnectionData.Address}:" +
+                $"{unityTransport.ConnectionData.Port}");
         }
 
         /// <summary>
-        /// Starts the host with the default IP and port registered from the inspection
-        /// of the Unity Transport component in the editor.
+        /// Public interface to start a client. Forwards a call to <see cref=
+        /// "ClientGameNetPortal.StartClient"/>.
+        /// </summary>
+        public void StartClient()
+        {
+            m_ClientPortal.StartClient();
+
+        }
+
+        /// <summary>
+        /// Initializes host mode on this client. Call this and then other clients 
+        /// should connect to us!
+        /// Uses the IP and port registered in <see cref="m_Settings"/>.
         /// </summary>
         public void StartHost()
         {
             Debug.Log("Net Manager call to Start host");
-            UnityTransport unityTransport = NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
-            Debug.Log($"Host is initialized on {unityTransport.ConnectionData.Address}:" +
-                $"{unityTransport.ConnectionData.Port}");
 
+            SetUnityTransport();
             if (NetManager.IsHost)
             {
                 Debug.Log("NetManager was already running so we are shutting down before re-launching");
@@ -171,15 +207,6 @@ namespace ECellDive.Multiplayer
                 NetManager.StartHost();
             }
 
-        }
-
-        IEnumerator Restart()
-        {
-            Debug.Log($"Shutting down");
-            NetManager.Shutdown();
-            yield return new WaitForEndOfFrame();
-            Debug.Log($"Restarting a host");
-            NetManager.StartHost();
         }
     }
 }

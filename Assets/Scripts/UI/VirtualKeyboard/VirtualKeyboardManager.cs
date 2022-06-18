@@ -60,6 +60,11 @@ namespace ECellDive
                 UnsetTargetInputField();
                 gameObject.SetActive(false);
             }
+
+            public bool IsAlreadySelected(TMP_InputField _targetInputField)
+            {
+                return _targetInputField == refTargetInputField;
+            }
             
             /// <summary>
             /// Deletes the character on the left of the position of the caret
