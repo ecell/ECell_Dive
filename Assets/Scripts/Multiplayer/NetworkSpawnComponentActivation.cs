@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.Netcode;
+using ECellDive.Utility;
 
 
 namespace ECellDive.Multiplayer
@@ -24,6 +25,7 @@ namespace ECellDive.Multiplayer
         public GameObject UIRoot;
         public GameObject XRLocomotionSystemHolder;
         public GameObject XRTeleportationproviderHolder;
+        public StaticReferencer staticReferencer;
 
         public override void OnNetworkSpawn()
         {
@@ -49,8 +51,10 @@ namespace ECellDive.Multiplayer
                 UIRoot.SetActive(false);
                 XRLocomotionSystemHolder.SetActive(false);
                 XRTeleportationproviderHolder.SetActive(false);
+                staticReferencer.enabled = false;
             }
         }
+
     }
 }
 

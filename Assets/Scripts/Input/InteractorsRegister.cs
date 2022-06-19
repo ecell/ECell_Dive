@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 
-namespace ECellDive.Input
+namespace ECellDive.Interfaces
 {
     
     public interface ILeftRightData<T>
@@ -37,6 +37,7 @@ namespace ECellDive.Input
         public U right { get => m_v.right; }
     }
 
+    [System.Obsolete("Deprecated: Refactored in a unique static referencer")]
     public static class InteractorsRegister
     {        
         public static LeftRightDataPointer<ILeftRightData<XRRayInteractor>, XRRayInteractor> groupsInteractors;

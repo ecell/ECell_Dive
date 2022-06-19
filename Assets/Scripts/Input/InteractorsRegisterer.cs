@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using ECellDive.Interfaces;
 
 
 namespace ECellDive.Input
 {
+    [System.Obsolete("Deprecated: Refactored in a unique  static referencer")]
     public class InteractorsRegisterer : MonoBehaviour
     {
         [Header("XR Interactors References")]

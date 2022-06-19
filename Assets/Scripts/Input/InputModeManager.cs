@@ -4,7 +4,9 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using ECellDive.Interfaces;
 using ECellDive.UI;
+using ECellDive.Utility;
 
 
 namespace ECellDive
@@ -14,7 +16,6 @@ namespace ECellDive
         public class InputModeManager : NetworkBehaviour
         {
             public InputActionAsset refInputActionAsset;
-            public InteractorsRegisterer localInteractorsRegisterer;
 
             //controller ID: 0
             private InputActionMap refGCLHMap;
@@ -38,10 +39,16 @@ namespace ECellDive
             private NetworkVariable<int> rightControllerModeID = new NetworkVariable<int>(1);
 
             [Header("Ray Based Controls XRRayInteractors")]
+            public LeftRightData<XRRayInteractor> remoteGrabInteractors;
+            public LeftRightData<XRRayInteractor> remoteInteractionInteractors;
+            public LeftRightData<XRRayInteractor> mainPointerInteractors;
+
+            [Header("Controllers GO References")]
+            public LeftRightData<GameObject> mvtControllersGO;
+            public LeftRightData<GameObject> groupControllersGO;
+
             private XRRayInteractor[] leftRBCs;
-
             private XRRayInteractor[] rightRBCs;
-
 
             private void Awake()
             {
@@ -55,23 +62,23 @@ namespace ECellDive
                 refRBCRHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_RH");
             }
 
-            public override void OnNetworkSpawn()
+            private void Start()
             {
                 refLeftControlSwitch.action.performed += LeftControllerModeSwitch;
                 refRightControlSwitch.action.performed += RightControllerModeSwitch;
 
                 leftRBCs = new XRRayInteractor[3]
                 {
-                    localInteractorsRegisterer.remoteGrabInteractors.left,
-                    localInteractorsRegisterer.remoteInteractionInteractors.left,
-                    localInteractorsRegisterer.mainPointerInteractors.left
+                    remoteGrabInteractors.left,
+                    remoteInteractionInteractors.left,
+                    mainPointerInteractors.left
                 };
 
                 rightRBCs = new XRRayInteractor[3]
                 {
-                    localInteractorsRegisterer.remoteGrabInteractors.right,
-                    localInteractorsRegisterer.remoteInteractionInteractors.right,
-                    localInteractorsRegisterer.mainPointerInteractors.right
+                    remoteGrabInteractors.right,
+                    remoteInteractionInteractors.right,
+                    mainPointerInteractors.right
                 };
 
                 leftControllerModeID.OnValueChanged += ApplyLeftControllerModeSwitch;
@@ -99,10 +106,10 @@ namespace ECellDive
                         DisableInteractors(leftRBCs);
 
                         refMvtLHMap.Disable();
-                        DisableInteractor(localInteractorsRegisterer.mvtControllersGO.left);
+                        DisableInteractor(mvtControllersGO.left);
 
                         refGCLHMap.Enable();
-                        EnableInteractor(localInteractorsRegisterer.groupControllersGO.left);
+                        EnableInteractor(groupControllersGO.left);
                         break;
 
                     case 1:
@@ -110,18 +117,18 @@ namespace ECellDive
                         DisableInteractors(leftRBCs);
 
                         refGCLHMap.Disable();
-                        DisableInteractor(localInteractorsRegisterer.groupControllersGO.left);
+                        DisableInteractor(groupControllersGO.left);
 
                         refMvtLHMap.Enable();
-                        EnableInteractor(localInteractorsRegisterer.mvtControllersGO.left);
+                        EnableInteractor(mvtControllersGO.left);
                         break;
 
                     case 2:
                         refGCLHMap.Disable();
-                        DisableInteractor(localInteractorsRegisterer.groupControllersGO.left);
+                        DisableInteractor(groupControllersGO.left);
 
                         refMvtLHMap.Disable();
-                        DisableInteractor(localInteractorsRegisterer.mvtControllersGO.left);
+                        DisableInteractor(mvtControllersGO.left);
 
                         refRBCLHMap.Enable();
                         EnableInteractors(leftRBCs);
@@ -144,10 +151,10 @@ namespace ECellDive
                         DisableInteractors(rightRBCs);
 
                         refMvtRHMap.Disable();
-                        DisableInteractor(localInteractorsRegisterer.mvtControllersGO.right);
+                        DisableInteractor(mvtControllersGO.right);
 
                         refGCRHMap.Enable();
-                        EnableInteractor(localInteractorsRegisterer.groupControllersGO.right);
+                        EnableInteractor(groupControllersGO.right);
                         break;
 
                     case 1:
@@ -155,18 +162,18 @@ namespace ECellDive
                         DisableInteractors(rightRBCs);
 
                         refGCRHMap.Disable();
-                        DisableInteractor(localInteractorsRegisterer.groupControllersGO.right);
+                        DisableInteractor(groupControllersGO.right);
 
                         refMvtRHMap.Enable();
-                        EnableInteractor(localInteractorsRegisterer.mvtControllersGO.right);
+                        EnableInteractor(mvtControllersGO.right);
                         break;
 
                     case 2:
                         refGCRHMap.Disable();
-                        DisableInteractor(localInteractorsRegisterer.groupControllersGO.right);
+                        DisableInteractor(groupControllersGO.right);
 
                         refMvtRHMap.Disable();
-                        DisableInteractor(localInteractorsRegisterer.mvtControllersGO.right);
+                        DisableInteractor(mvtControllersGO.right);
 
                         refRBCRHMap.Enable();
                         EnableInteractors(rightRBCs);

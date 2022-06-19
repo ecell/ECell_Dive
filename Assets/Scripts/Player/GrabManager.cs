@@ -2,9 +2,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
-using ECellDive.Input;
 using ECellDive.Interfaces;
-using ECellDive.SceneManagement;
+using ECellDive.Utility;
 
 namespace ECellDive
 {
@@ -228,11 +227,11 @@ namespace ECellDive
                 switch (controllerID)
                 {
                     case IGrab.XRControllerID.Left:
-                        currentRemoteInteractor = InteractorsRegister.remoteGrabInteractors.left;
+                        currentRemoteInteractor = StaticReferencer.Instance.remoteGrabInteractors.left;
                         break;
 
                     case IGrab.XRControllerID.Right:
-                        currentRemoteInteractor = InteractorsRegister.remoteGrabInteractors.right;
+                        currentRemoteInteractor = StaticReferencer.Instance.remoteGrabInteractors.right;
                         break;
                 }
             }
