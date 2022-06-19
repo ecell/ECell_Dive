@@ -562,7 +562,7 @@ namespace ECellDive
 
                 if (m_Collider != null)
                 {
-                    m_Collider.enabled = false;
+                    m_Collider.enabled = true;
                 }
 
                 if (m_nameField != null)

@@ -37,7 +37,7 @@ namespace ECellDive
 
             private void Start()
             {
-                //refMainMenu.SetActive(false);
+                refMainMenu.SetActive(false);
             }
 
             /// <summary>

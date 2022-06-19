@@ -42,7 +42,8 @@ namespace ECellDive
             public float fluxLevelClamped { get; protected set; }
             #endregion
 
-            public EdgeGOSettings edgeGOSettingsModels;
+            [Range(0, 1)] public float startWidthFactor = 0.25f;
+            [Range(0, 1)] public float endWidthFactor = 0.75f;
 
             private MaterialPropertyBlock mpb;
             private int colorID;
@@ -136,8 +137,8 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the activation state to every contiguous downstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadActivationDownward()
             {
                 Activate();
@@ -164,8 +165,8 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the activation state to every contiguous upstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadActivationUpward()
             {
                 Activate();
@@ -192,8 +193,8 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the Knockout state to every contiguous downstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadKODownward()
             {
                 Knockout();
@@ -220,8 +221,8 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the Knockout state to every contiguous upstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadKOUpward()
             {
                 Knockout();
@@ -248,8 +249,8 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the highlighted state to every contiguous downstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadHighlightDownward()
             {
                 SetHighlight();
@@ -276,8 +277,8 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the highlighted state to every contiguous upstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadHighlightUpward()
             {
                 SetHighlight();
@@ -304,8 +305,8 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the unhighlighted state to every contiguous upstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadUnsetHighlightDownward()
             {
                 UnsetHighlight();
@@ -332,8 +333,8 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the unhighlighted state to every contiguous downstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadUnsetHighlightUpward()
             {
                 UnsetHighlight();
@@ -380,13 +381,12 @@ namespace ECellDive
                                                                 Mathf.Max(refLineRenderer.startWidth, refLineRenderer.endWidth),
                                                                 Mathf.Max(refLineRenderer.startWidth, refLineRenderer.endWidth),
                                                                 0.95f*Vector3.Distance(_start.localPosition, _end.localPosition));
-
             }
 
             public void SetLineRendererWidth()
             {
-                refLineRenderer.startWidth = edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
-                refLineRenderer.endWidth = edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
+                refLineRenderer.startWidth = startWidthFactor * defaultStartWidth;
+                refLineRenderer.endWidth = endWidthFactor * defaultEndWidth;
             }
 
             public void SetLineRendererPosition(Transform _start, Transform _end)
@@ -418,8 +418,11 @@ namespace ECellDive
                 fluxLevel = _level;
                 fluxLevelClamped = _levelClamped;
                 SetInformationString();
-                mpb.SetFloat(panningSpeedID, _levelClamped);
-                refLineRenderer.SetPropertyBlock(mpb);
+                //mpb.SetFloat(panningSpeedID, _levelClamped);
+                //refLineRenderer.SetPropertyBlock(mpb);
+                defaultStartWidth = Mathf.Max(1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor, _levelClamped);
+                endWidthFactor = Mathf.Max(1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor, _levelClamped);
+                SetLineRendererWidth();
                 UnsetHighlight();
             }
             #endregion

@@ -65,7 +65,7 @@ namespace ECellDive
             #endregion
 
             #region - EdgeGO - 
-            [System.Serializable]
+            [System.Serializable, Obsolete]
             public class EdgeGOSettings
             {
                 [Header("Line Default Width Modificators")]
