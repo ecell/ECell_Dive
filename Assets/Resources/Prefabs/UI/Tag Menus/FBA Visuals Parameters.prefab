@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 9035657342371299377}
   - component: {fileID: 4127560282386280713}
   m_Layer: 0
-  m_Name: HttpServerFbaAnalysisParameters
+  m_Name: FBA Visuals Parameters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -711,19 +711,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 9202704102871564062}
         m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
-        m_MethodName: ShowInfoToPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ECellDive.Utility.FaceCamera, Assembly-CSharp
-        m_MethodName: ShowBackToPlayer
+        m_MethodName: LookAt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

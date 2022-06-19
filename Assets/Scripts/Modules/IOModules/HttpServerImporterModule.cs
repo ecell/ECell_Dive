@@ -12,17 +12,9 @@ namespace ECellDive
 {
     namespace Modules
     {
-        [System.Serializable]
-        public struct UIDisplayData
-        {
-            public OptimizedVertScrollList UISelectorsContainer;
-            public TMP_InputField refIPInputField;
-            public TMP_InputField refPortInputField;
-        }
-
         public class HttpServerImporterModule : HttpServerBaseModule
         {
-            public UIDisplayData uiDisplayData;
+            public OptimizedVertScrollList refModelsScrollList;
             private string activeModelName = "";
 
             public GameNetModuleSpawner gameNetModuleSpawner;
@@ -124,7 +116,7 @@ namespace ECellDive
                     JArray jModelsArray = (JArray)requestData.requestJObject["models"];
                     List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
 
-                    foreach (RectTransform _child in uiDisplayData.UISelectorsContainer.refContent)
+                    foreach (RectTransform _child in refModelsScrollList.refContent)
                     {
                         if (_child.gameObject.activeSelf)
                         {
@@ -134,22 +126,12 @@ namespace ECellDive
 
                     for (int i = 0; i < modelsList.Count; i++)
                     {
-                        GameObject modelUIContainer = uiDisplayData.UISelectorsContainer.AddItem();
+                        GameObject modelUIContainer = refModelsScrollList.AddItem();
                         modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = modelsList[i];
                         modelUIContainer.SetActive(true);
-                        uiDisplayData.UISelectorsContainer.UpdateScrollList();
+                        refModelsScrollList.UpdateScrollList();
                     }
                 }
-            }
-
-            public void UpdateIP()
-            {
-                serverData.serverIP = uiDisplayData.refIPInputField.text;
-            }
-
-            public void UpdatePort()
-            {
-                serverData.port = uiDisplayData.refPortInputField.text;
             }
         }
     }

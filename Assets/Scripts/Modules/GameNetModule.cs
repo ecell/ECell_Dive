@@ -31,6 +31,7 @@ namespace ECellDive
                                     IMlprDataRequest,
                                     IMlprVisibility
         {
+            private Collider m_Collider;
             private Renderer m_Renderer;
             private LineRenderer m_LineRenderer;
 
@@ -218,6 +219,7 @@ namespace ECellDive
                 isActivated.OnValueChanged += ManageActivationStatus;
 
                 //Debug.Log("Starting up " + gameObject.name);
+                m_Collider = GetComponentInChildren<Collider>();
                 m_Renderer = GetComponent<Renderer>();
                 m_LineRenderer = GetComponent<LineRenderer>();
 
@@ -523,7 +525,13 @@ namespace ECellDive
 
             public virtual void NetHide()
             {
+                HideInfoTags();
                 //Debug.Log("Try to Hide");
+                if (m_Collider != null)
+                {
+                    m_Collider.enabled = false;
+                }
+                
                 if (m_nameField != null)
                 {
                     m_nameField.gameObject.SetActive(false);
@@ -551,6 +559,12 @@ namespace ECellDive
             public virtual void NetShow()
             {
                 //Debug.Log("Trying to Show");
+
+                if (m_Collider != null)
+                {
+                    m_Collider.enabled = false;
+                }
+
                 if (m_nameField != null)
                 {
                     m_nameField.gameObject.SetActive(true);

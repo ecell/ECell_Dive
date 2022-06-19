@@ -31,7 +31,10 @@ namespace ECellDive.Multiplayer
         {
             if (IsLocalPlayer)
             {
-                XRDeviceSimulator.SetActive(true);
+                if (XRDeviceSimulator != null)
+                {
+                    XRDeviceSimulator.SetActive(true);
+                }
 
                 headModel.SetActive(false);
                 playerNameRoot.SetActive(false);
