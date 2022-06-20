@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
+using ECellDive.UI;
 using ECellDive.UserActions;
-
 
 namespace ECellDive.Multiplayer
 {
@@ -154,7 +154,18 @@ namespace ECellDive.Multiplayer
             NetManager.Shutdown();
             yield return new WaitForEndOfFrame();
             Debug.Log($"Restarting a host");
-            NetManager.StartHost();
+            bool isHostStarted = NetManager.StartHost();
+
+            if (!isHostStarted)
+            {
+                string msg = "Host couldn't be started: bind and listening to " + m_Settings.IP + ":" + m_Settings.port + " failed.\n" +
+                    "Falling back to 127.0.0.1:7777";
+
+                SetConnectionSettings(m_Settings.playerName, "127.0.0.1", 7777, m_Settings.password);
+                StartHost();
+                yield return new WaitForSeconds(1f);
+                MultiplayerMenuManager.SetMessage(msg);
+            }
         }
 
         public void SetConnectionSettings(string _name, string _ip, int _port, string _password)
