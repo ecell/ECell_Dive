@@ -31,12 +31,12 @@ namespace ECellDive.UI
             
             if(ip.text.Length == 0)
             {
-                ip.text = "127.0.0.1";
+                ip.text = "";
             }
 
             if (port.text.Length == 0)
             {
-                port.text = "7777";
+                port.text = "0";
             }
 
             if (password.text.Length == 0)
@@ -50,7 +50,7 @@ namespace ECellDive.UI
             CheckFieldsContent();
 
             GameNetPortal.Instance.SetConnectionSettings(playerName.text,
-                                                        ip.text, System.Convert.ToInt32(port.text),
+                                                        ip.text, System.Convert.ToUInt16(port.text),
                                                         password.text);
             GameNetPortal.Instance.StartHost();
         }
@@ -60,7 +60,7 @@ namespace ECellDive.UI
             CheckFieldsContent();
 
             GameNetPortal.Instance.SetConnectionSettings(playerName.text,
-                                                        ip.text, System.Convert.ToInt32(port.text),
+                                                        ip.text, System.Convert.ToUInt16(port.text),
                                                         password.text);
             GameNetPortal.Instance.StartClient();
         }

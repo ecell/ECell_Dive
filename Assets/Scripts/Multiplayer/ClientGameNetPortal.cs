@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using ECellDive.UI;
+
 
 namespace ECellDive.Multiplayer
 {
@@ -89,13 +91,31 @@ namespace ECellDive.Multiplayer
         {
             Debug.Log($"Shutting down");
             m_Portal.NetManager.Shutdown();
+            //yield return new WaitForEndOfFrame();
+            yield return new WaitWhile(() => m_Portal.NetManager.IsListening);
+            //SetUnityTransport(true);
+            bool isClientStarted = m_Portal.NetManager.StartClient();
             yield return new WaitForEndOfFrame();
-            Debug.Log("Restarting as a client");
-            m_Portal.NetManager.StartClient();
+            string msg;
+            if (!isClientStarted)
+            {
+                msg = "<color=red>Host couldn't be joined at" + m_Portal.settings.IP + ":" + m_Portal.settings.port +
+                       "Falling back to single player on 127.0.0.1:7777</color>";
+                m_Portal.SetConnectionSettings(m_Portal.settings.playerName, "127.0.0.1", 7777, m_Portal.settings.password);
+                m_Portal.SetUnityTransport();
+                yield return new WaitForSeconds(5);
+                m_Portal.NetManager.StartHost();
+            }
+            else
+            {
+                msg = "<color=green>Successfully joined at " + m_Portal.settings.IP + ":" + m_Portal.settings.port + "</color>";
+            }
+            yield return new WaitForSeconds(1f);
+            MultiplayerMenuManager.SetMessage(msg);
         }
 
         /// <summary>
-        /// Starts the client with the IP and port registered in <see cref="GameNetPortal.m_Settings"/>
+        /// Starts the client with the IP and port registered in <see cref="GameNetPortal.settings"/>
         /// </summary>
         public void StartClient()
         {

@@ -6,6 +6,7 @@ using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using ECellDive.UI;
 using ECellDive.UserActions;
+using ECellDive.Utility;
 
 namespace ECellDive.Multiplayer
 {
@@ -37,8 +38,28 @@ namespace ECellDive.Multiplayer
     {
         public string playerName;
         public string IP;
-        public int port;
+        public ushort port;
         public string password;
+
+        public void SetPlayerName(string _playerName)
+        {
+            playerName = _playerName;
+        }
+        
+        public void SetIP(string _IP)
+        {
+            IP = _IP;
+        }
+
+        public void SetPort(ushort _port)
+        {
+            port = _port;
+        }
+
+        public void SetPassword(string _password)
+        {
+            password = _password;
+        }
     }
 
     /// <summary>
@@ -59,11 +80,17 @@ namespace ECellDive.Multiplayer
         public static GameNetPortal Instance;
         private ClientGameNetPortal m_ClientPortal;
         private ServerGameNetPortal m_ServerPortal;
-        
-        [SerializeField] private ConnectionSettings m_Settings;
+
+        [SerializeField] ConnectionSettings m_settings;
+        public ConnectionSettings settings
+        {
+            get => m_settings;
+            private set => m_settings = value;
+        }
 
         public Dictionary<ulong, NetSessionPlayerData> netSessionPlayersDataMap = new Dictionary<ulong, NetSessionPlayerData>();
 
+        private List<int> successFullPorts = new List<int>();
 
         private void Awake()
         {
@@ -111,14 +138,14 @@ namespace ECellDive.Multiplayer
             return new ConnectionPayload
             {
                 playerId = GetPlayerId(),
-                playerName = m_Settings.playerName,
-                psw = m_Settings.password
+                playerName = m_settings.playerName,
+                psw = m_settings.password
             };
         }
 
         public bool CheckPassword(string _password)
         {
-            return m_Settings.password == _password;
+            return m_settings.password == _password;
         }
 
         /// <summary>
@@ -150,42 +177,70 @@ namespace ECellDive.Multiplayer
         /// </summary>
         IEnumerator Restart()
         {
-            Debug.Log($"Shutting down");
+            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace, "Shutting down");
             NetManager.Shutdown();
             yield return new WaitForEndOfFrame();
-            Debug.Log($"Restarting a host");
+            
+            //yield return new WaitForSeconds(5);
+            yield return new WaitWhile(()=>NetManager.IsListening);
+            //LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace, "Restart a Host");
+            //SetUnityTransport(true);
             bool isHostStarted = NetManager.StartHost();
-
+            yield return new WaitForEndOfFrame();
+            string msg;
             if (!isHostStarted)
             {
-                string msg = "Host couldn't be started: bind and listening to " + m_Settings.IP + ":" + m_Settings.port + " failed.\n" +
-                    "Falling back to 127.0.0.1:7777";
-
-                SetConnectionSettings(m_Settings.playerName, "127.0.0.1", 7777, m_Settings.password);
-                StartHost();
-                yield return new WaitForSeconds(1f);
-                MultiplayerMenuManager.SetMessage(msg);
+                 msg = "<color=red>Host couldn't be started: bind and listening to " + m_settings.IP + ":" + m_settings.port + " failed.\n" +
+                        "Falling back to 127.0.0.1:7777</color>";
+                SetConnectionSettings(m_settings.playerName, "127.0.0.1", 7777, m_settings.password);
+                SetUnityTransport();
+                yield return new WaitForSeconds(5);
+                NetManager.StartHost();
             }
-        }
-
-        public void SetConnectionSettings(string _name, string _ip, int _port, string _password)
-        {
-            m_Settings = new ConnectionSettings
+            else
             {
-                playerName = name,
-                IP = _ip,
-                port = _port,
-                password = _password
-            };
+                msg = "<color=green>Successfully hosting at " + m_settings.IP + ":" + m_settings.port+ "</color>";
+            }
+            yield return new WaitForSeconds(1f);
+            MultiplayerMenuManager.SetMessage(msg);
         }
 
-        public void SetUnityTransport()
+        public void SetConnectionSettings(string _name, string _ip, ushort _port, string _password)
+        {
+            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                "SetConnectionSettings start from GUI: " + _name + ", " + _ip + $", {_port}" + ", " + _password);
+
+            m_settings.SetPlayerName(_name);
+
+            if (_ip != "")
+            {
+                m_settings.SetIP(_ip);
+            }
+
+            if (_port != 0)
+            {
+                m_settings.SetPort(_port);
+            }
+
+            m_settings.SetPassword(_password);
+
+            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                "SetConnectionSettings End from GUI: " + m_settings.playerName + ", " + m_settings.IP+ $", {m_settings.port}" + ", " + m_settings.password);
+        }
+
+        public void SetUnityTransport(bool _verbose=false)
         {
             UnityTransport unityTransport = NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
-            unityTransport.SetConnectionData(m_Settings.IP, (ushort)m_Settings.port);
+            unityTransport.SetConnectionData(m_settings.IP, m_settings.port, m_settings.IP); 
 
-            Debug.Log($"Setting up transport  connection to {unityTransport.ConnectionData.Address}:" +
-                $"{unityTransport.ConnectionData.Port}");
+            if (_verbose)
+            {
+                Debug.Log($"Setting up transport connection to {unityTransport.ConnectionData.Address}:" +
+                $"{unityTransport.ConnectionData.Port} and server listen address is {unityTransport.ConnectionData.ServerListenAddress}");
+
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug, $"Setting up transport connection to {unityTransport.ConnectionData.Address}:" +
+                $"{unityTransport.ConnectionData.Port} and server listen address is {unityTransport.ConnectionData.ServerListenAddress}");
+            }
         }
 
         /// <summary>
@@ -201,23 +256,51 @@ namespace ECellDive.Multiplayer
         /// <summary>
         /// Initializes host mode on this client. Call this and then other clients 
         /// should connect to us!
-        /// Uses the IP and port registered in <see cref="m_Settings"/>.
+        /// Uses the IP and port registered in <see cref="m_settings"/>.
         /// </summary>
         public void StartHost()
         {
             Debug.Log("Net Manager call to Start host");
-
-            SetUnityTransport();
+            
             if (NetManager.IsHost)
             {
+                SetUnityTransport(true);
                 Debug.Log("NetManager was already running so we are shutting down before re-launching");
                 StartCoroutine(Restart());
             }
             else
             {
+                SetUnityTransport();
                 NetManager.StartHost();
             }
 
+        }
+
+        public void PortSearch()
+        {
+            StartCoroutine(PortSearchC());
+        }
+
+        private IEnumerator PortSearchC()
+        {
+            NetManager.Shutdown();
+            yield return new WaitForEndOfFrame();
+            int valid_ports = 0;
+            for (ushort i = 1024; i < 1034; i++)
+            {
+                SetConnectionSettings(m_settings.playerName, m_settings.IP, i, m_settings.password);
+                SetUnityTransport();
+                bool hostStarted = NetManager.StartHost();
+                yield return new WaitForEndOfFrame();
+                if (hostStarted)
+                {
+                    valid_ports++;
+                    NetManager.Shutdown();
+                    yield return new WaitForEndOfFrame();
+                }
+            }
+
+            Debug.Log($"For IP " + m_settings.IP + $" valid_ports: {valid_ports}");
         }
     }
 }

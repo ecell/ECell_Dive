@@ -152,7 +152,7 @@ namespace ECellDive
                     int startSceneId = AddNewDiveScene(-1);
                     DiverGetsInServerRpc(0, NetworkManager.Singleton.LocalClientId);
                     //NetworkManager.Singleton.OnClientConnectedCallback += clientId => DiverGetsInServerRpc(0, clientId);
-                    NetworkManager.Singleton.OnClientConnectedCallback += e => DebugScene();
+                    //NetworkManager.Singleton.OnClientConnectedCallback += e => DebugScene();
                 }
             }
 
@@ -161,7 +161,7 @@ namespace ECellDive
                 if (IsServer)
                 {
                     //NetworkManager.Singleton.OnClientConnectedCallback -= clientId => DiverGetsInServerRpc(0, clientId);
-                    NetworkManager.Singleton.OnClientConnectedCallback -= e => DebugScene();
+                    //NetworkManager.Singleton.OnClientConnectedCallback -= e => DebugScene();
                 }
             }
 
