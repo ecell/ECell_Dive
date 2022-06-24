@@ -18,11 +18,11 @@ namespace ECellDive
         {
             #region - IHighlightable Members - 
 
-            [SerializeField] private Color m_defaultColor;
-            public Color defaultColor
+            [SerializeField] private NetworkVariable<Color> m_defaultColor;
+            public NetworkVariable<Color> defaultColor
             {
                 get => m_defaultColor;
-                set => SetDefaultColor(value);
+                set => defaultColor = value;
             }
 
             [SerializeField] private Color m_highlightColor;
@@ -85,7 +85,7 @@ namespace ECellDive
                 refRenderer = GetComponentInChildren<Renderer>();
                 mpb = new MaterialPropertyBlock();
                 colorID = Shader.PropertyToID("_Color");
-                mpb.SetVector(colorID, defaultColor);
+                mpb.SetVector(colorID, defaultColor.Value);
                 refRenderer.SetPropertyBlock(mpb);
             }
 
@@ -263,7 +263,7 @@ namespace ECellDive
 
             public virtual void SetDefaultColor(Color _c)
             {
-                m_defaultColor = _c;
+                m_defaultColor.Value = _c;
             }
 
             public virtual void SetHighlightColor(Color _c)
@@ -281,7 +281,7 @@ namespace ECellDive
             {
                 if (!forceHighlight)
                 {
-                    mpb.SetVector(colorID, defaultColor);
+                    mpb.SetVector(colorID, defaultColor.Value);
                     refRenderer.SetPropertyBlock(mpb);
                 }
             }

@@ -46,13 +46,14 @@ namespace ECellDive.Multiplayer
             RequestModuleSpawnServerRpc(_moduleTypeID, NetworkManager.Singleton.LocalClientId);
         }
 
-        [ServerRpc]
+        [ServerRpc(RequireOwnership = false)]
         public void RequestModuleSpawnServerRpc(int _moduleTypeID, ulong _expeditorClientID)
         {
             LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
                         "Server Received a request for spawn.");
 
-            Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
+            GameObject player = NetworkManager.Singleton.ConnectedClients[_expeditorClientID].PlayerObject.gameObject;
+            Vector3 pos = Positioning.PlaceInFrontOfTarget(player.GetComponentInChildren<Camera>().transform, 2f, 0.8f);
 
             GameObject cyJsonModule = GameNetScenesManager.Instance.SpawnModuleInScene(
                 GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene,

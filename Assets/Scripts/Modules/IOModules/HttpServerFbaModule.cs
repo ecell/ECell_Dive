@@ -79,7 +79,7 @@ namespace ECellDive
 
                 foreach (IEdge _edgeData in LoadedCyJsonPathway.graphData.edges)
                 {
-                    if (LoadedCyJsonPathway.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut)
+                    if (LoadedCyJsonPathway.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut.Value)
                     {
                         knockouts += _edgeData.NAME + ",";
                         counter_true++;
@@ -122,12 +122,18 @@ namespace ECellDive
                 SolveModel(fbaAnalysisData.activeModelName, knockoutString);
             }
 
+            public void ShowComputedFluxes()
+            {
+                StartCoroutine(ShowComputedFluxesC());
+            }
+
             /// <summary>
             /// Transfers the results of the FBA (fluxes values) to the shaders
             /// of the edges (representing the reactions).
             /// </summary>
-            public void ShowComputedFluxes()
+            private IEnumerator ShowComputedFluxesC()
             {
+                int counter = 0;
                 foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
                 {
                     if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
@@ -145,6 +151,14 @@ namespace ECellDive
                         {
                             LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
                             LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
+
+                            counter++;
+
+                            if (counter == 25)
+                            {
+                                yield return new WaitForEndOfFrame();
+                                counter = 0;
+                            }
                         }
                     }
                 }

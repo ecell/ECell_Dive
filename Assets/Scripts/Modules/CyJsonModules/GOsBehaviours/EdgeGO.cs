@@ -34,12 +34,17 @@ namespace ECellDive
             public ControllersSymetricAction triggerKOActions
             {
                 get => m_triggerKOActions;
-                set => triggerKOActions = m_triggerKOActions;
+                set => m_triggerKOActions = value;
             }
 
-            public bool knockedOut { get; protected set; }
-            public float fluxLevel { get; protected set; }
-            public float fluxLevelClamped { get; protected set; }
+            private NetworkVariable<bool> m_knockedOut = new NetworkVariable<bool>(false);
+            public NetworkVariable<bool> knockedOut { get => m_knockedOut; protected set => m_knockedOut = value; }
+
+            private NetworkVariable<float> m_fluxLevel = new NetworkVariable<float>();
+            public NetworkVariable<float> fluxLevel { get => m_fluxLevel; protected set => m_fluxLevel = value; }
+
+            private NetworkVariable<float> m_fluxLevelClamped = new NetworkVariable<float>();
+            public NetworkVariable<float> fluxLevelClamped { get => m_fluxLevelClamped; protected set => m_fluxLevelClamped = value; }
             #endregion
 
             [Range(0, 1)] public float startWidthFactor = 0.25f;
@@ -59,12 +64,6 @@ namespace ECellDive
                 triggerKOActions.rightController.action.performed += ManageKnockout;
             }
 
-            private void Start()
-            {
-                fluxLevel = 0f;
-                fluxLevelClamped = 1f;
-            }
-
             private void OnEnable()
             {
                 refLineRenderer = GetComponentInChildren<LineRenderer>();
@@ -72,7 +71,7 @@ namespace ECellDive
                 colorID = Shader.PropertyToID("_Color");
                 activationID = Shader.PropertyToID("_Activation");
                 panningSpeedID = Shader.PropertyToID("_PanningSpeed");
-                mpb.SetVector(colorID, defaultColor);
+                mpb.SetVector(colorID, defaultColor.Value);
                 refLineRenderer.SetPropertyBlock(mpb);
             }
 
@@ -80,6 +79,54 @@ namespace ECellDive
             {
                 triggerKOActions.leftController.action.performed -= ManageKnockout;
                 triggerKOActions.rightController.action.performed -= ManageKnockout;
+            }
+
+            public override void OnNetworkSpawn()
+            {
+                base.OnNetworkSpawn();
+
+                defaultColor.OnValueChanged += ApplyDefaultColorChange;
+                fluxLevelClamped.OnValueChanged += ApplyFLCChanges;
+                knockedOut.OnValueChanged += ApplyKOChanges;
+            }
+
+            public override void OnNetworkDespawn()
+            {
+                base.OnNetworkDespawn();
+                fluxLevelClamped.OnValueChanged -= ApplyFLCChanges;
+                knockedOut.OnValueChanged -= ApplyKOChanges;
+
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            private void ActivateServerRpc()
+            {
+                knockedOut.Value = false;
+            }
+
+            private void ApplyDefaultColorChange(Color _previous, Color _current)
+            {
+                mpb.SetVector(colorID, defaultColor.Value);
+                refLineRenderer.SetPropertyBlock(mpb);
+            }
+
+            private void ApplyFLCChanges(float _previous, float _current)
+            {
+                //Debug.Log($"{_previous}, {_current}");
+
+                SetInformationString();
+
+                //Debug.Log($"{defaultStartWidth}, {endWidthFactor}");
+
+                SetLineRendererWidth();
+                UnsetHighlight();
+            }
+
+            private void ApplyKOChanges(bool _previous, bool _current)
+            {
+                SetInformationString();
+                mpb.SetFloat(activationID, knockedOut.Value? 0 : 1);
+                refLineRenderer.SetPropertyBlock(mpb);
             }
 
             public void Initialize(CyJsonModule _masterPathway, IEdge _edge)
@@ -92,12 +139,19 @@ namespace ECellDive
 
                 SetDefaultWidth(1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor,
                                 1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor);
+
                 SetLineRendererWidth();
 
                 Transform start = refMasterPathway.DataID_to_DataGO[edgeData.source].transform;
                 Transform target = refMasterPathway.DataID_to_DataGO[edgeData.target].transform;
                 SetLineRendererPosition(start, target);
                 SetCollider(start, target);
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            private void KnockoutServerRpc()
+            {
+                knockedOut.Value = true;
             }
 
             /// <summary>
@@ -110,16 +164,14 @@ namespace ECellDive
             {
                 if (isFocused)
                 {
-                    if (knockedOut)
+                    if (knockedOut.Value)
                     {
-                        SpreadActivationDownward();
-                        SpreadActivationUpward();
+                        Activate();
                     }
 
                     else
                     {
-                        SpreadKODownward();
-                        SpreadKOUpward();
+                        Knockout();
                     }
                 }
             }
@@ -136,12 +188,19 @@ namespace ECellDive
                 m_refInfoTags[0].GetComponent<InfoDisplayManager>().SetText(informationString);
             }
 
+            [ServerRpc(RequireOwnership = false)]
+            private void SetFluxValuesServerRpc(float _fluxValue, float _fluxClampedValue)
+            {
+                fluxLevel.Value = _fluxValue;
+                fluxLevelClamped.Value = _fluxClampedValue;
+            }
+
             /// <summary>
             /// Spreads the activation state to every contiguous downstream edge that are part of the same reaction.
             /// </summary>
             public void SpreadActivationDownward()
             {
-                Activate();
+                ActivateServerRpc();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
                 foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
@@ -169,7 +228,7 @@ namespace ECellDive
             /// </summary>
             public void SpreadActivationUpward()
             {
-                Activate();
+                ActivateServerRpc();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
                 foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
@@ -197,7 +256,7 @@ namespace ECellDive
             /// </summary>
             public void SpreadKODownward()
             {
-                Knockout();
+                KnockoutServerRpc();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
                 foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
@@ -225,7 +284,7 @@ namespace ECellDive
             /// </summary>
             public void SpreadKOUpward()
             {
-                Knockout();
+                KnockoutServerRpc();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
                 foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
@@ -385,8 +444,9 @@ namespace ECellDive
 
             public void SetLineRendererWidth()
             {
-                refLineRenderer.startWidth = startWidthFactor * defaultStartWidth;
-                refLineRenderer.endWidth = endWidthFactor * defaultEndWidth;
+                refLineRenderer.startWidth = startWidthFactor * Mathf.Max(defaultStartWidth, defaultStartWidth*fluxLevelClamped.Value);
+                refLineRenderer.endWidth = endWidthFactor * Mathf.Max(defaultEndWidth, defaultEndWidth*fluxLevelClamped.Value);
+                //Debug.Log($"{refLineRenderer.startWidth}, {refLineRenderer.endWidth}");
             }
 
             public void SetLineRendererPosition(Transform _start, Transform _end)
@@ -399,42 +459,23 @@ namespace ECellDive
             #region - IModulateFlux - 
             public void Activate()
             {
-                knockedOut = false;
-                SetInformationString();
-                mpb.SetFloat(activationID, 1);
-                refLineRenderer.SetPropertyBlock(mpb);
+                SpreadActivationDownward();
+                SpreadActivationUpward();
             }
 
             public void Knockout()
             {
-                knockedOut = true;
-                SetInformationString();
-                mpb.SetFloat(activationID, 0);
-                refLineRenderer.SetPropertyBlock(mpb);
+                SpreadKODownward();
+                SpreadKOUpward();
             }
 
             public void SetFlux(float _level, float _levelClamped)
             {
-                fluxLevel = _level;
-                fluxLevelClamped = _levelClamped;
-                SetInformationString();
-                //mpb.SetFloat(panningSpeedID, _levelClamped);
-                //refLineRenderer.SetPropertyBlock(mpb);
-                defaultStartWidth = Mathf.Max(1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor, _levelClamped);
-                endWidthFactor = Mathf.Max(1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor, _levelClamped);
-                SetLineRendererWidth();
-                UnsetHighlight();
+                SetFluxValuesServerRpc(_level, _levelClamped);
             }
             #endregion
 
             #region - IHighlightable -
-
-            public override void SetDefaultColor(Color _c)
-            {
-                base.SetDefaultColor(_c);
-                mpb.SetVector(colorID, defaultColor);
-                refLineRenderer.SetPropertyBlock(mpb);
-            }
 
             public override void SetHighlightColor(Color _c)
             {
@@ -453,7 +494,7 @@ namespace ECellDive
             {
                 if (!forceHighlight)
                 {
-                    mpb.SetVector(colorID, defaultColor);
+                    mpb.SetVector(colorID, defaultColor.Value);
                     refLineRenderer.SetPropertyBlock(mpb);
                 }
             }

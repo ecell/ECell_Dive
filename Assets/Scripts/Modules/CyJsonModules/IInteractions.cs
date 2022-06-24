@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,7 +36,7 @@ namespace ECellDive
         /// </summary>
         public interface IHighlightable
         {
-            Color defaultColor { get; }
+            NetworkVariable<Color> defaultColor { get; }
             Color highlightColor { get; }
 
             bool forceHighlight { get; set; }
@@ -97,7 +98,7 @@ namespace ECellDive
         public interface IKnockable
         {
             ControllersSymetricAction triggerKOActions { get; set; }
-            bool knockedOut { get; }
+            NetworkVariable<bool> knockedOut { get; }
             void Activate();
             void Knockout();
         }
@@ -113,12 +114,12 @@ namespace ECellDive
             /// <summary>
             /// The real flux value
             /// </summary>
-            float fluxLevel { get; }
+            NetworkVariable<float> fluxLevel { get; }
 
             /// <summary>
             /// A clamped flux value to control the visualization of the flux
             /// </summary>
-            float fluxLevelClamped { get; }
+            NetworkVariable<float> fluxLevelClamped { get; }
             void SetFlux(float _level, float _levelClamped);
         }
     }

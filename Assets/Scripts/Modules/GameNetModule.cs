@@ -94,11 +94,11 @@ namespace ECellDive
 
             #region - IHighlightable Members - 
 
-            [SerializeField] private Color m_defaultColor;
-            public Color defaultColor
+            [SerializeField] private NetworkVariable<Color> m_defaultColor;
+            public NetworkVariable<Color> defaultColor
             {
                 get => m_defaultColor;
-                set => SetDefaultColor(value);
+                set => defaultColor = value;
             }
 
             [SerializeField] private Color m_highlightColor;
@@ -257,6 +257,12 @@ namespace ECellDive
                 }
             }
 
+            [ServerRpc(RequireOwnership = false)]
+            private void SetDefaultColorServerRpc(Color _color)
+            {
+                defaultColor.Value = _color;
+            }
+
             /// <summary>
             /// Makes sure the name of the module's name faces the
             /// Player's POV and is therefore readable.
@@ -342,7 +348,7 @@ namespace ECellDive
 
             public virtual void SetDefaultColor(Color _c)
             {
-                m_defaultColor = _c;
+                SetDefaultColorServerRpc(_c);
             }
 
             public virtual void SetHighlightColor(Color _c)
@@ -457,7 +463,6 @@ namespace ECellDive
             {
                 LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
                         "The module received its local copy of the fragmented data.");
-
                 fragmentedSourceData = _fragmentedSourceData;
                 sourceDataName = _sourceDataName;
                 sourceDataNbFrags = _fragmentedSourceData.Count;

@@ -62,7 +62,7 @@ namespace ECellDive
                 refRenderer = GetComponentInChildren<Renderer>();
                 mpb = new MaterialPropertyBlock();
                 colorID = Shader.PropertyToID("_Color");
-                mpb.SetVector(colorID, defaultColor);
+                mpb.SetVector(colorID, defaultColor.Value);
                 refRenderer.SetPropertyBlock(mpb);
             }
 
@@ -217,7 +217,7 @@ namespace ECellDive
             {
                 if (!forceHighlight)
                 {
-                    mpb.SetVector(colorID, defaultColor);
+                    mpb.SetVector(colorID, defaultColor.Value);
                     refRenderer.SetPropertyBlock(mpb);
                 }
             }

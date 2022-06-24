@@ -20,7 +20,7 @@ namespace ECellDive
         public class Module : MonoBehaviour,
                                 IFocus,
                                 IGroupable,
-                                IHighlightable,
+                                //IHighlightable,
                                 IInfoTags
         {
             [Header("Module Info")]
