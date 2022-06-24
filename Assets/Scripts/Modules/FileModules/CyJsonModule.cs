@@ -175,7 +175,10 @@ namespace ECellDive
             public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
             {
                 int rootSceneId = GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene;
+                
                 targetSceneId.Value = GameNetScenesManager.Instance.AddNewDiveScene(rootSceneId);
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                    $"targetSceneId of the new module is: {targetSceneId}");
                 RequestGraphGenerationServerRpc(_expeditorClientID, targetSceneId.Value);
             }
             #endregion

@@ -77,6 +77,18 @@ namespace ECellDive
             }
             #endregion
 
+            #region - MlprVisibility -
+            public override void NetShow()
+            {
+                m_Collider.enabled = true;
+
+                if (!nodeData.isVirtual)
+                {
+                    m_Renderer.enabled = true;
+                }
+            }
+            #endregion
+
         }
     }
 }

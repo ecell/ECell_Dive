@@ -19,6 +19,8 @@ namespace ECellDive.Multiplayer
         #region - IMlprModuleSpawn Methods -
         public void GiveDataToModule(GameNetModule _gameNetModule)
         {
+            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                        "Giving module Data.");
             _gameNetModule.DirectRecieveSourceData(sourceDataName, fragmentedSourceData);
         }
 
@@ -26,6 +28,8 @@ namespace ECellDive.Multiplayer
         public void GiveNetworkObjectReferenceClientRpc(NetworkObjectReference _networkObjectReference,
                                                         ClientRpcParams _clientRpcParams)
         {
+            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                        "Receiving ownership of the module that was just spawned.");
             GameObject networkGameObject = _networkObjectReference;
             GiveDataToModule(networkGameObject.GetComponent<GameNetModule>());
         }
@@ -45,6 +49,9 @@ namespace ECellDive.Multiplayer
         [ServerRpc]
         public void RequestModuleSpawnServerRpc(int _moduleTypeID, ulong _expeditorClientID)
         {
+            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                        "Server Received a request for spawn.");
+
             Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
 
             GameObject cyJsonModule = GameNetScenesManager.Instance.SpawnModuleInScene(

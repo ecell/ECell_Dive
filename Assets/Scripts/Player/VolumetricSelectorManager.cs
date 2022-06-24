@@ -94,8 +94,8 @@ namespace ECellDive
                 distanceAndScaleAction.action.performed += DistanceAndScale;
 
                 isActive.OnValueChanged += ApplyActivityStatus;
-                position.OnValueChanged += ApplyPositionTotransform;
-                scale.OnValueChanged += ApplyScaleTotransform;
+                position.OnValueChanged += ApplyPositionToTransform;
+                scale.OnValueChanged += ApplyScaleToTransform;
             }
 
             public override void OnNetworkDespawn()
@@ -103,8 +103,8 @@ namespace ECellDive
                 distanceAndScaleAction.action.performed -= DistanceAndScale;
 
                 isActive.OnValueChanged -= ApplyActivityStatus;
-                position.OnValueChanged -= ApplyPositionTotransform;
-                scale.OnValueChanged -= ApplyScaleTotransform;
+                position.OnValueChanged -= ApplyPositionToTransform;
+                scale.OnValueChanged -= ApplyScaleToTransform;
             }
 
             private void ApplyActivityStatus(bool _past, bool _current)
@@ -119,7 +119,7 @@ namespace ECellDive
                 }
             }
 
-            private void ApplyPositionTotransform(Vector3 _past, Vector3 _current)
+            private void ApplyPositionToTransform(Vector3 _past, Vector3 _current)
             {
                 if (!IsOwner)
                 {
@@ -127,7 +127,7 @@ namespace ECellDive
                 }
             }
 
-            private void ApplyScaleTotransform(Vector3 _past, Vector3 _current)
+            private void ApplyScaleToTransform(Vector3 _past, Vector3 _current)
             {
                 if (!IsOwner)
                 {

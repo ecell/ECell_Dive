@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.Multiplayer;
+using ECellDive.SceneManagement;
+using ECellDive.Utility;
 
 namespace ECellDive.PlayerComponents
 {
@@ -37,28 +39,48 @@ namespace ECellDive.PlayerComponents
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
-            SetNameServerRpc(OwnerClientId, NetworkManager.Singleton.LocalClientId);
+
+            string _nameStr = GameNetPortal.Instance.settings.playerName;
+            byte[] _nameB = System.Text.Encoding.UTF8.GetBytes(_nameStr);
+
+            ExchangeNamesServerRpc(_nameB, NetworkManager.Singleton.LocalClientId);
         }
 
         [ClientRpc]
-        private void SetNameClientRpc(byte[] _name, ClientRpcParams _clientRpcParams)
+        private void ReceiveNameClientRpc(byte[] _name)
         {
             SetName(System.Text.Encoding.UTF8.GetString(_name));
         }
 
-        [ServerRpc(RequireOwnership = false)]
-        private void SetNameServerRpc(ulong _ownerCliendId, ulong _expeditorClientId)
+        [ClientRpc]
+        private void ReceiveNameClientRpc(NetworkObjectReference _playerObj, byte[] _name, ClientRpcParams _clientRpcParams)
         {
-            ClientRpcParams clientRpcParams = new ClientRpcParams
+            GameObject playerGO = _playerObj;
+            playerGO.GetComponent<Player>().SetName(System.Text.Encoding.UTF8.GetString(_name));
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void ExchangeNamesServerRpc(byte[] _nameB, ulong _expeditorClientId)
+        {
+            ReceiveNameClientRpc(_nameB);
+
+            ClientRpcParams expiditorClientRpcParams = new ClientRpcParams
             {
                 Send = new ClientRpcSendParams
                 {
                     TargetClientIds = new ulong[] { _expeditorClientId }
                 }
             };
-            string _nameStr = GameNetPortal.Instance.netSessionPlayersDataMap[_ownerCliendId].playerName;
-            byte[] _nameB = System.Text.Encoding.UTF8.GetBytes(_nameStr);
-            SetNameClientRpc(_nameB, clientRpcParams);
+
+            string name;
+            NetworkObjectReference netObjRef;
+            foreach (ulong _clientId in NetworkManager.Singleton.ConnectedClientsIds)
+            {
+                name = GameNetPortal.Instance.netSessionPlayersDataMap[_clientId].playerName;
+                netObjRef = NetworkManager.Singleton.ConnectedClients[_clientId].PlayerObject;
+
+                ReceiveNameClientRpc(netObjRef, System.Text.Encoding.UTF8.GetBytes(name), expiditorClientRpcParams);
+            }
         }
 
         #region - INamed Methods -
@@ -82,10 +104,10 @@ namespace ECellDive.PlayerComponents
         public virtual void NetHide()
         {
             Debug.Log($"{NetworkManager.Singleton.LocalClientId} devient invisible");
+            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                $"{NetworkManager.Singleton.LocalClientId} devient invisible");
             m_nameField.gameObject.SetActive(false);
-
             head.SetActive(false);
-
             rootControllers.SetActive(false);
         }
 
@@ -98,6 +120,8 @@ namespace ECellDive.PlayerComponents
         public virtual void NetShow()
         {
             Debug.Log($"{NetworkManager.Singleton.LocalClientId} devient visible");
+            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug, 
+                $"{NetworkManager.Singleton.LocalClientId} devient visible");
 
             m_nameField.gameObject.SetActive(true);
 

@@ -78,6 +78,7 @@ namespace ECellDive.Multiplayer
             if (clientId == NetworkManager.Singleton.LocalClientId)
             {
                 Debug.Log("Client ID corresponds to local object: this is the host");
+
                 //Storing about the Host relevant data (as a player)
                 m_Portal.netSessionPlayersDataMap[clientId] = new NetSessionPlayerData(connectionPayload.playerName, clientId, 0);
 

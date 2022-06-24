@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.Netcode;
+using ECellDive.Interfaces;
+using ECellDive.UserActions;
 using ECellDive.Utility;
 
 
@@ -20,11 +22,18 @@ namespace ECellDive.Multiplayer
         [Header("To DEACTIVATE on spawn if NOT IsLocalPlayer")]
         public Camera refCamera;
         public AudioListener refAudioListener;
+        
         public TrackedPoseDriver trackedPoseDriver;
         public List<ActionBasedController> actionBasedControllers;
+        public LeftRightData<MovementManager> movementManagers;
+
+        public List<GameObject> actionInfoTags;
+
         public GameObject UIRoot;
+
         public GameObject XRLocomotionSystemHolder;
         public GameObject XRTeleportationproviderHolder;
+
         public StaticReferencer staticReferencer;
 
         public override void OnNetworkSpawn()
@@ -49,6 +58,14 @@ namespace ECellDive.Multiplayer
                 foreach (ActionBasedController _abc in actionBasedControllers)
                 {
                     _abc.enabled = false;
+                }
+
+                movementManagers.left.enabled = false;
+                movementManagers.right.enabled = false;
+
+                foreach (GameObject _goIT in actionInfoTags)
+                {
+                    _goIT.SetActive(false);
                 }
 
                 UIRoot.SetActive(false);

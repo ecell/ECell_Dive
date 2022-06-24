@@ -20,24 +20,9 @@ namespace ECellDive
                 refMenuOpen.action.performed += ManageOpenStatus;
             }
 
-            private void OnEnable()
-            {
-                refMenuOpen.action.Enable();
-            }
-
-            private void OnDisable()
-            {
-                refMenuOpen.action.Disable();
-            }
-
             private void OnDestroy()
             {
                 refMenuOpen.action.performed -= ManageOpenStatus;
-            }
-
-            private void Start()
-            {
-                //refMainMenu.SetActive(false);
             }
 
             /// <summary>

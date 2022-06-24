@@ -45,6 +45,8 @@ namespace ECellDive
 
             public TeleportationMovementData teleportationData;
             private Vector3 reticleVelocity = Vector3.zero;
+            private NetworkVariable<Vector3> reticlePosition = new NetworkVariable<Vector3>(default,
+                default, NetworkVariableWritePermission.Owner);
 
             public ContinousMovementData continousMovementData;
             private NetworkVariable<bool>isContinuous = new NetworkVariable<bool>(false);
@@ -59,6 +61,7 @@ namespace ECellDive
                 movementActionData.cursorController.action.performed += ReticleUpdate;
 
                 isContinuous.OnValueChanged += ApplyControllerMvtMode;
+                reticlePosition.OnValueChanged += ApplyReticlePosition;
             }
 
             public override void OnNetworkDespawn()
@@ -69,6 +72,7 @@ namespace ECellDive
                 movementActionData.cursorController.action.performed -= ReticleUpdate;
 
                 isContinuous.OnValueChanged -= ApplyControllerMvtMode;
+                reticlePosition.OnValueChanged -= ApplyReticlePosition;
             }
 
             private void OnEnable()
@@ -105,6 +109,15 @@ namespace ECellDive
 
                     //Placing the helper
                     continousMovementData.directionHelper.gameObject.SetActive(false);
+                }
+            }
+
+            private void ApplyReticlePosition(Vector3 previous, Vector3 current)
+            {
+                if (!IsOwner)
+                {
+                    teleportationData.teleportationReticle.transform.localPosition = reticlePosition.Value;
+                    ResetTeleportationLine();
                 }
             }
 
@@ -175,24 +188,28 @@ namespace ECellDive
             /// If lower than 0 then backward movement.</param>
             private void ManageDistance(float _mvtFactor)
             {
-                Vector3 target = teleportationData.teleportationReticle.transform.localPosition +
+                if (IsOwner)
+                {
+                    Vector3 target = teleportationData.teleportationReticle.transform.localPosition +
                                  _mvtFactor * teleportationData.reticleMovementSpeed * Vector3.forward;
-                
-                float _d = (target - teleportationData.defaultReticlePosition).z;
-                if (_d < teleportationData.minTeleportationDistance)
-                {
-                    target = teleportationData.teleportationReticle.transform.localPosition;
+
+                    float _d = (target - teleportationData.defaultReticlePosition).z;
+                    if (_d < teleportationData.minTeleportationDistance)
+                    {
+                        target = teleportationData.teleportationReticle.transform.localPosition;
+                    }
+                    if (_d > teleportationData.maxTeleportationDistance)
+                    {
+                        target = teleportationData.teleportationReticle.transform.localPosition;
+                    }
+                    teleportationData.teleportationReticle.transform.localPosition = Vector3.SmoothDamp(
+                                                teleportationData.teleportationReticle.transform.localPosition,
+                                                target,
+                                                ref reticleVelocity,
+                                                0.1f);
+                    reticlePosition.Value = teleportationData.teleportationReticle.transform.localPosition;
+                    ResetTeleportationLine();
                 }
-                if (_d > teleportationData.maxTeleportationDistance)
-                {
-                    target = teleportationData.teleportationReticle.transform.localPosition;
-                }
-                teleportationData.teleportationReticle.transform.localPosition = Vector3.SmoothDamp(
-                                            teleportationData.teleportationReticle.transform.localPosition,
-                                            target,
-                                            ref reticleVelocity,
-                                            0.1f);
-                ResetTeleportationLine();
             }
 
             private void ResetContinousMoveHelper()
@@ -219,6 +236,7 @@ namespace ECellDive
             /// </summary>
             private void ReticleUpdate(InputAction.CallbackContext _ctx)
             {
+                Debug.Log("Reticle Update for " + gameObject.name, gameObject);
                 Vector2 _das = _ctx.ReadValue<Vector2>();
                 if (!IsInDeadZone(_das.y))
                 {

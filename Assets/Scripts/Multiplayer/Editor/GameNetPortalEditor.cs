@@ -22,13 +22,6 @@ namespace ECellDive.CustomEditors
             }
 
             if (GUILayout.Button(
-                new GUIContent("Check All Ports",
-                                "Go throughs every ports at the designated IP" + buttonDisabledReasonSuffix)))
-            {
-                gameNetPortal.PortSearch();
-            }
-
-            if (GUILayout.Button(
                 new GUIContent("Start Host",
                                 "Starts a host instance" + buttonDisabledReasonSuffix)))
             {

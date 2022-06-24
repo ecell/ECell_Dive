@@ -6,6 +6,7 @@ using UnityEngine;
 using ECellDive.Modules;
 using ECellDive.Multiplayer;
 using ECellDive.PlayerComponents;
+using ECellDive.Utility;
 
 namespace ECellDive
 {
@@ -143,14 +144,20 @@ namespace ECellDive
 
             public static List<SceneData> scenesBank = new List<SceneData>();
 
+            private bool firstSceneisHidden = false;
+
             public override void OnNetworkSpawn()
             {
                 Instance = this;
                 if (IsServer)
                 {
                     Debug.Log("Spawning Scene Management");
-                    int startSceneId = AddNewDiveScene(-1);
-                    DiverGetsInServerRpc(0, NetworkManager.Singleton.LocalClientId);
+                    if (scenesBank.Count == 0)
+                    {
+                        AddNewDiveScene(-1);
+                        DiverGetsInServerRpc(0, NetworkManager.Singleton.LocalClientId);
+                    }
+                    //DebugScene();
                     //NetworkManager.Singleton.OnClientConnectedCallback += clientId => DiverGetsInServerRpc(0, clientId);
                     //NetworkManager.Singleton.OnClientConnectedCallback += e => DebugScene();
                 }
@@ -162,6 +169,16 @@ namespace ECellDive
                 {
                     //NetworkManager.Singleton.OnClientConnectedCallback -= clientId => DiverGetsInServerRpc(0, clientId);
                     //NetworkManager.Singleton.OnClientConnectedCallback -= e => DebugScene();
+                }
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            public void ClearPlayerFromSessionServerRpc(ulong _clientIdToClear)
+            {
+                foreach(SceneData _scene in scenesBank)
+                {
+                    _scene.inDivers.Remove(_clientIdToClear);
+                    _scene.outDivers.Remove(_clientIdToClear);
                 }
             }
 
@@ -198,6 +215,7 @@ namespace ECellDive
                 foreach (SceneData sceneData in scenesBank)
                 {
                     Debug.Log(sceneData);
+                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug, sceneData.ToString());
                 }
             }
 
@@ -210,10 +228,16 @@ namespace ECellDive
             //[ServerRpc(RequireOwnership = false)]
             private IEnumerator HideScene(int _sceneID, ulong _outDiverClientId)
             {
+                Debug.Log($"Original scene information:");
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                    $"Original scene information:");
+                DebugScene();
                 //Updating divers for the scene in the Scene bank
                 scenesBank[_sceneID].DiverGetsOut(_outDiverClientId);
 
-                Debug.Log($"Hiding scene {_sceneID} for for client {_outDiverClientId}");
+                Debug.Log($"Hiding scene {_sceneID} for client {_outDiverClientId}");
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                    $"Hiding scene {_sceneID} for client {_outDiverClientId}");
                 DebugScene();
 
                 ClientRpcParams outDiverClientRpcParams = new ClientRpcParams
@@ -247,6 +271,7 @@ namespace ECellDive
                     }
                 };
 
+                //out-diver GameObject
                 GameObject diverGo = NetworkManager.Singleton.ConnectedClients[_outDiverClientId].PlayerObject.gameObject;
                 //Hide the out diver from all the in-divers
                 diverGo.GetComponent<Player>().NetHideClientRpc(inDiversRpcParams);
@@ -255,9 +280,14 @@ namespace ECellDive
                 foreach (ulong _inDiverCliendId in scenesBank[_sceneID].inDivers)
                 {
                     Debug.Log($"Hiding {_inDiverCliendId} to {_outDiverClientId}");
+                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                    $"Hiding {_inDiverCliendId} to {_outDiverClientId}");
+                    //in-Diver gameObject
                     diverGo = NetworkManager.Singleton.ConnectedClients[_inDiverCliendId].PlayerObject.gameObject;
                     diverGo.GetComponent<Player>().NetHideClientRpc(outDiverClientRpcParams);
                 }
+
+                firstSceneisHidden = true;
             }
 
             /// <summary>
@@ -269,8 +299,12 @@ namespace ECellDive
             //[ServerRpc(RequireOwnership = false)]
             private IEnumerator ShowScene(int _sceneID, ulong _newInDiverClientId)
             {
-                //Debug.Log($"Showing scene {_sceneID} for for client {_newInDiverClientId}");
-                //DebugScene();
+                yield return new WaitUntil(() => firstSceneisHidden);
+                firstSceneisHidden = false;
+                Debug.Log($"Showing scene {_sceneID} for client {_newInDiverClientId}");
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                    $"Showing scene {_sceneID} for client {_newInDiverClientId}");
+                DebugScene();
                 ClientRpcParams newInDiverClientRpcParams = new ClientRpcParams
                 {
                     Send = new ClientRpcSendParams
@@ -280,7 +314,7 @@ namespace ECellDive
                 };
 
                 int moduleCounter = 0;
-                //Show every modules of the new to the new diver
+                //Show every modules of the new scene to the new diver
                 foreach (GameNetModule _gameNetMod in scenesBank[_sceneID].loadedModules)
                 {
                     _gameNetMod.NetShowClientRpc(newInDiverClientRpcParams);
@@ -310,12 +344,18 @@ namespace ECellDive
                 foreach (ulong _oldInDiverCliendId in scenesBank[_sceneID].inDivers)
                 {
                     Debug.Log($"Showing {_oldInDiverCliendId} to {_newInDiverClientId}");
+                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                    $"Showing {_oldInDiverCliendId} to {_newInDiverClientId}");
                     diverGo = NetworkManager.Singleton.ConnectedClients[_oldInDiverCliendId].PlayerObject.gameObject;
                     diverGo.GetComponent<Player>().NetShowClientRpc(newInDiverClientRpcParams);
                 }
 
                 //Updating the scene's data in the scene bank once we finished showing everyone
                 scenesBank[_sceneID].DiverGetsIn(_newInDiverClientId);
+
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                    $"After showing scene, the scene data is: (look at next messages)");
+                DebugScene();
             }
 
             /// <summary>

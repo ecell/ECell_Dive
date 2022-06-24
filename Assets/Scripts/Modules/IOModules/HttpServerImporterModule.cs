@@ -7,6 +7,7 @@ using TMPro;
 using ECellDive.Multiplayer;
 using ECellDive.Utility;
 using ECellDive.UI;
+using ECellDive.Utility;
 
 namespace ECellDive
 {
@@ -85,7 +86,8 @@ namespace ECellDive
                     byte[] modelContent = System.Text.Encoding.UTF8.GetBytes(requestData.requestText);
                     byte[] name = System.Text.Encoding.UTF8.GetBytes(activeModelName);
                     List<byte[]> mCFs = ArrayManipulation.FragmentToList(modelContent, 4096);
-
+                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                        "Just fragmented the Data. Requesting a module spawn to encapsulate it.");
                     gameNetModuleSpawner.RequestModuleSpawnFromData(0, name, mCFs);
                 }
             }
