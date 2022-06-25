@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
+using ECellDive.Interfaces;
 using ECellDive.UI;
 using ECellDive.UserActions;
 using ECellDive.Utility;
@@ -88,6 +89,7 @@ namespace ECellDive.Multiplayer
             private set => m_settings = value;
         }
 
+        public List<IModifiable> modifiables = new List<IModifiable>();
         public Dictionary<ulong, NetSessionPlayerData> netSessionPlayersDataMap = new Dictionary<ulong, NetSessionPlayerData>();
 
         private List<int> successFullPorts = new List<int>();

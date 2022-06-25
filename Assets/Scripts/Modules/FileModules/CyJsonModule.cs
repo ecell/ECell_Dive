@@ -31,7 +31,8 @@ namespace ECellDive
         /// CyJson modules.
         /// </summary>
         public class CyJsonModule : GameNetModule,
-                                    IGraphGO
+                                    IGraphGO,
+                                    IModifiable
         {
             public int refIndex { get; private set; }
             public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
@@ -69,6 +70,7 @@ namespace ECellDive
             public override void OnNetworkSpawn()
             {
                 DataID_to_DataGO = new Dictionary<int, GameObject>();
+                GameNetPortal.Instance.modifiables.Add(this);
             }
 
             [ServerRpc(RequireOwnership = false)]
@@ -223,7 +225,41 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IMlprDataExchange -
+            #region - IModifiable Methods -
+            public void ApplyFileModifications(string _modificationContent)
+            {
+                Debug.Log("Applying modifications");
+                string[] operations = _modificationContent.Split(',');
+                foreach(string _op in operations)
+                {
+                    OperationSwitch(_op);
+                }
+            }
+
+            public bool CheckName(string _name)
+            {
+                return _name == graphData.name;
+            }
+
+            public void OperationSwitch(string _op)
+            {
+                string[] opContent = _op.Split('_');
+
+                switch (opContent[0])
+                {
+                    case "knockout":
+                        GameObject edgeGO;
+                        if (DataID_to_DataGO.TryGetValue(System.Convert.ToInt32(_op[1]), out edgeGO))
+                        {
+                            edgeGO.GetComponent<EdgeGO>().Knockout();
+                            Debug.Log("KO", edgeGO);
+                        }
+                        break;
+                }
+            }
+            #endregion
+
+            #region - IMlprDataExchange Methods -
             public override void AssembleFragmentedData()
             {
                 byte[] assembledSourceData = ArrayManipulation.Assemble(fragmentedSourceData);

@@ -1,6 +1,6 @@
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using TMPro;
@@ -15,7 +15,7 @@ namespace ECellDive
         public class HttpServerImporterModule : HttpServerBaseModule
         {
             public OptimizedVertScrollList refModelsScrollList;
-            private string activeModelName = "";
+            protected string activeModelName = "";
 
             public GameNetModuleSpawner gameNetModuleSpawner;
 
@@ -74,7 +74,7 @@ namespace ECellDive
             /// instantiation of the network module.
             /// </summary>
             /// <returns></returns>
-            private IEnumerator ImportModelCyJsC()
+            protected IEnumerator ImportModelCyJsC()
             {
                 GetModelCyJs(activeModelName);
 

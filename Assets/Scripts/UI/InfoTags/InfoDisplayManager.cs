@@ -44,7 +44,6 @@ namespace ECellDive
 
                 target = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
                             GetComponentInChildren<Camera>().transform;
-                Debug.Log(target.gameObject);
             }
 
             private void Update()
