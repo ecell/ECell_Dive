@@ -217,7 +217,7 @@ namespace ECellDive
             public void StartUpInfo()
             {
                 writingModificationFile = new ModificationFile(
-                    GameNetPortal.Instance.netSessionPlayersDataMap[NetworkManager.Singleton.LocalClientId].playerName,
+                    "",
                     graphData.name,
                     "", "");
 
