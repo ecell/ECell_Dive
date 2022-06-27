@@ -12,11 +12,11 @@ namespace ECellDive
         /// </summary>
         public interface INode
         {
-            int ID { get; set; }
+            uint ID { get; set; }
             Vector3 position { get; set; }
             string NAME { get; set; }
-            List<int> incommingEdges { get; set; }
-            List<int> outgoingEdges { get; set; }
+            List<uint> incommingEdges { get; set; }
+            List<uint> outgoingEdges { get; set; }
 
             /// <summary>
             /// A utility state variable to describe whether the node is
@@ -31,9 +31,9 @@ namespace ECellDive
         /// </summary>
         public interface IEdge
         {
-            int ID { get; set; }
-            int source { get; set; }
-            int target { get; set; }
+            uint ID { get; set; }
+            uint source { get; set; }
+            uint target { get; set; }
             string NAME { get; set; }
         }
 

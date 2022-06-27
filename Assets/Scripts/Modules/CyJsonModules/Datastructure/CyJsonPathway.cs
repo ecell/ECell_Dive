@@ -40,7 +40,7 @@ namespace ECellDive
                     Vector3 nodePos = CyJsonParser.LookForNodePosition(jNodes.ElementAt(i));
                     string name = CyJsonParser.LookForName(jNodes.ElementAt(i));
                     bool isVirtual = CyJsonParser.LookForNodeType(jNodes.ElementAt(i));
-                    nodes[i] = new Node(jNodes.ElementAt(i)["data"]["id"].Value<int>(),
+                    nodes[i] = new Node(jNodes.ElementAt(i)["data"]["id"].Value<uint>(),
                                         name,
                                         nodePos,
                                         isVirtual);
@@ -54,10 +54,10 @@ namespace ECellDive
 
                 for (int i = 0; i < nbEdges; i++)
                 {
-                    edges[i] = new Edge(jEdges.ElementAt(i)["data"]["id"].Value<int>(),
+                    edges[i] = new Edge(jEdges.ElementAt(i)["data"]["id"].Value<uint>(),
                                         jEdges.ElementAt(i)["data"]["name"].Value<string>(),
-                                        jEdges.ElementAt(i)["data"]["source"].Value<int>(),
-                                        jEdges.ElementAt(i)["data"]["target"].Value<int>());
+                                        jEdges.ElementAt(i)["data"]["source"].Value<uint>(),
+                                        jEdges.ElementAt(i)["data"]["target"].Value<uint>());
                 }
             }
 

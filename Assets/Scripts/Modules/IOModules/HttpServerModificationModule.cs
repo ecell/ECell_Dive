@@ -17,15 +17,16 @@ namespace ECellDive.Modules
     /// </summary>
     public class HttpServerModificationModule : HttpServerBaseModule
     {
-        public OptimizedVertScrollList refModelsScrollList;
+        public OptimizedVertScrollList refModificationFilesScrollList;
+        public OptimizedVertScrollList refBaseModelsScrollList;
+
+        public TMP_Text refSelectedBaseModel;
+        public TMP_InputField refSaveNewFileName;
+
         private string targetFileName;
         private IModifiable targetModifiable;
-
-        private string ExtractModelNameFromModelPath(string _modelPath)
-        {
-            string modelFileName = _modelPath.Split('/').Last();
-            return modelFileName.Split('.').First();
-        }
+        private ISaveable targetSaveable;
+        
 
         /// <summary>
         /// Requests the list of modification file to the server.
@@ -80,7 +81,6 @@ namespace ECellDive.Modules
         /// The coroutine handling the request to the server and the
         /// instantiation of the network module.
         /// </summary>
-        /// <returns></returns>
         private IEnumerator ImportModFileC()
         {
             GetModFile(targetFileName);
@@ -92,23 +92,128 @@ namespace ECellDive.Modules
                 //Transfer the modifications to the target module.
                 Debug.Log(requestData.requestText);
                 requestData.requestJObject = JObject.Parse(requestData.requestText);
-                string modelpath = requestData.requestJObject["base_model_path"].Value<string>();
-                string modelName = ExtractModelNameFromModelPath(modelpath);
+                ModificationFile modFile = new ModificationFile(targetFileName, requestData.requestJObject);
 
-                targetModifiable = GetModifiable(modelName);
+                targetModifiable = GetModifiable(modFile.baseModelName);
 
                 if (targetModifiable != null)
                 {
-                    targetModifiable.ApplyFileModifications(requestData.requestJObject["modification"].Value<string>());
+                    targetModifiable.readingModificationFile = new ModificationFile(targetFileName, requestData.requestJObject);
+                    targetModifiable.ApplyFileModifications();
                 }
 
                 else
                 {
                     LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
-                        "No modifiable data module called \"" + modelName + "\" was found. " +
+                        "No modifiable data module called \"" + modFile.baseModelName + "\" was found. " +
                         "Please, make sure you imported the data before trying to import modifications" +
                         "associated with this data.");
                 }
+            }
+        }
+
+        private void RequestSaveModel(ModificationFile _modFile)
+        {
+            string fileName = "";
+            if (refSaveNewFileName.text == "")
+            {
+                fileName = _modFile.baseModelName + "_" + System.DateTime.Now.ToString("yyyyMMddTHHmmssZ");
+            }
+            else
+            {
+                fileName = refSaveNewFileName.text;
+            }
+
+            string requestURL = AddPagesToURL(new string[]
+            {
+                "save_model",
+                fileName,
+                _modFile.baseModelName
+            });
+
+            Debug.Log(requestURL);
+
+            requestURL = AddQueriesToURL(requestURL,
+                new string[]
+                {
+                    "author",
+                    "description",
+                    "modification"
+                },
+                new string[]
+                {
+                    _modFile.author,
+                    _modFile.description,
+                    _modFile.modification
+                });
+
+            Debug.Log(requestURL);
+
+            StartCoroutine(GetRequest(requestURL));
+        }
+
+        /// <summary>
+        /// The public interface to save the modiication file associated to a
+        /// base model.
+        /// </summary>
+        public void SaveModificationFile()
+        {
+            StartCoroutine(SaveModificationFileC());
+        }
+
+        /// <summary>
+        /// The coroutine handling the save request to the server.
+        /// </summary>
+        private IEnumerator SaveModificationFileC()
+        {
+            targetSaveable.CompileModificationFile();
+            RequestSaveModel(targetSaveable.writingModificationFile);
+
+            yield return new WaitUntil(isRequestProcessed);
+
+            if (requestData.requestSuccess)
+            {
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
+                    "File \"" + targetSaveable.writingModificationFile.name + "\" has been succesfully saved.");
+            }
+            else
+            {
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                    "File \"" + targetSaveable.writingModificationFile.name + "\" could not be saved.");
+            }
+        }
+
+        /// <summary>
+        /// Sets the <see cref="targetSaveable"/> to the object that is of the same index in
+        /// <see cref="GameNetPortal.saveables"/> than the <paramref name="_container"/>
+        /// sibling index.
+        /// </summary>
+        public void SetTargetSaveable(GameObject _container)
+        {
+            targetSaveable = GameNetPortal.Instance.saveables[_container.transform.GetSiblingIndex()];
+            refSelectedBaseModel.text = _container.GetComponentInChildren<TMP_Text>().text;
+        }
+
+        /// <summary>
+        /// The public interface to show the list of base models that are currently open
+        /// on the server.
+        /// </summary>
+        public void ShowBaseModelsCandidates()
+        {
+            foreach (RectTransform _child in refBaseModelsScrollList.refContent)
+            {
+                if (_child.gameObject.activeSelf)
+                {
+                    Destroy(_child.gameObject);
+                }
+            }
+
+            foreach(ISaveable _saveable in GameNetPortal.Instance.saveables)
+            {
+                GameObject modelUIContainer = refBaseModelsScrollList.AddItem();
+                modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = _saveable.writingModificationFile.baseModelName;
+                modelUIContainer.SetActive(true);
+                refModificationFilesScrollList.UpdateScrollList();
             }
         }
 
@@ -125,7 +230,6 @@ namespace ECellDive.Modules
         /// The coroutine handling the request to the server and
         /// the parsing+display of the content of the list.
         /// </summary>
-        /// <returns></returns>
         private IEnumerator ShowModFilesListC()
         {
             GetModFilesList();
@@ -138,7 +242,7 @@ namespace ECellDive.Modules
                 JArray jModelsArray = (JArray)requestData.requestJObject["user_defined_models"];
                 List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
 
-                foreach (RectTransform _child in refModelsScrollList.refContent)
+                foreach (RectTransform _child in refModificationFilesScrollList.refContent)
                 {
                     if (_child.gameObject.activeSelf)
                     {
@@ -148,14 +252,13 @@ namespace ECellDive.Modules
 
                 for (int i = 0; i < modelsList.Count; i++)
                 {
-                    GameObject modelUIContainer = refModelsScrollList.AddItem();
+                    GameObject modelUIContainer = refModificationFilesScrollList.AddItem();
                     modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = modelsList[i];
                     modelUIContainer.SetActive(true);
-                    refModelsScrollList.UpdateScrollList();
+                    refModificationFilesScrollList.UpdateScrollList();
                 }
             }
         }
-
     }
 }
 

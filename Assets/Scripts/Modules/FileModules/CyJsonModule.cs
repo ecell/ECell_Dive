@@ -32,20 +32,21 @@ namespace ECellDive
         /// </summary>
         public class CyJsonModule : GameNetModule,
                                     IGraphGO,
-                                    IModifiable
+                                    IModifiable,
+                                    ISaveable
         {
             public int refIndex { get; private set; }
             public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
             public CyJsonPathwaySettingsData cyJsonPathwaySettings;
-            public Dictionary<int, GameObject> DataID_to_DataGO;
+            public Dictionary<uint, GameObject> DataID_to_DataGO;
 
             private GameObject pathwayRoot;
+            private bool allNodesSpawned = false;
+            private Dictionary<uint, Modification<bool>> koModifications = new Dictionary<uint, Modification<bool>>();
 
             private Renderer refRenderer;
             private MaterialPropertyBlock mpb;
             private int colorID;
-            private bool allNodesSpawned = false;
-
 
             #region  - IGraphGO Members - 
             public IGraph graphData { get; protected set; }
@@ -56,6 +57,14 @@ namespace ECellDive
                 get => m_graphPrefabsComponents;
                 private set => m_graphPrefabsComponents = value;
             }
+            #endregion
+
+            #region - IModifiable Members -
+            public ModificationFile readingModificationFile { get; set; }
+            #endregion
+
+            #region - ISaveable Members -
+            public ModificationFile writingModificationFile { get; set; }
             #endregion
 
             private void OnEnable()
@@ -69,8 +78,24 @@ namespace ECellDive
 
             public override void OnNetworkSpawn()
             {
-                DataID_to_DataGO = new Dictionary<int, GameObject>();
+                DataID_to_DataGO = new Dictionary<uint, GameObject>();
                 GameNetPortal.Instance.modifiables.Add(this);
+                GameNetPortal.Instance.saveables.Add(this);
+            }
+
+            [ClientRpc]
+            private void BroadcastKoModificationClientRpc(uint _edgeId)
+            {
+                if (IsServer) return;
+
+                koModifications[_edgeId] = new Modification<bool>(true, OperationTypes.knockout);
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            private void BroadcastKoModificationServerRpc(uint _edgeId)
+            {
+                koModifications[_edgeId] = new Modification<bool>(true, OperationTypes.knockout);
+                BroadcastKoModificationClientRpc(_edgeId);
             }
 
             [ServerRpc(RequireOwnership = false)]
@@ -113,6 +138,17 @@ namespace ECellDive
                 edgeGO.GetComponent<GameNetModule>().NetHide();
             }
 
+            private string MakeKOModificationsString()
+            {
+                string modification = "";
+                foreach (uint _koEdgeId in koModifications.Keys)
+                {
+                    modification += "knockout_" + _koEdgeId + ",";
+                }
+
+                return modification;
+            }
+
             /// <summary>
             /// Coroutine encapsulating the instantiation of the nodes of the pathway.
             /// The coroutine yields until the end of the frame after having instantiated one batch of nodes.
@@ -147,6 +183,32 @@ namespace ECellDive
                 nodeGO.GetComponent<GameNetModule>().NetHide();
             }
 
+            private string ScanForKOModifications()
+            {
+                string modification = "";
+                Modification<bool> koMod;
+                foreach(IEdge edge in graphData.edges)
+                {
+                    if (DataID_to_DataGO[edge.ID].GetComponent<EdgeGO>().knockedOut.Value)
+                    {
+                        if (!koModifications.TryGetValue(edge.ID, out koMod))
+                        {
+                            koModifications[edge.ID] = new Modification<bool>(true, OperationTypes.knockout);
+                        }
+                    }
+
+                    else
+                    {
+                        if (!koModifications.TryGetValue(edge.ID, out koMod))
+                        {
+                            koModifications.Remove(edge.ID);
+                        }
+                    }
+                }
+
+                return modification;
+            }
+
             public void SetIndex(int _index)
             {
                 refIndex = _index;
@@ -154,6 +216,11 @@ namespace ECellDive
 
             public void StartUpInfo()
             {
+                writingModificationFile = new ModificationFile(
+                    GameNetPortal.Instance.netSessionPlayersDataMap[NetworkManager.Singleton.LocalClientId].playerName,
+                    graphData.name,
+                    "", "");
+
                 SetIndex(CyJsonModulesData.loadedData.Count - 1);
 
                 SetName(CyJsonModulesData.loadedData[refIndex].name);
@@ -226,10 +293,10 @@ namespace ECellDive
             #endregion
 
             #region - IModifiable Methods -
-            public void ApplyFileModifications(string _modificationContent)
+            public void ApplyFileModifications()
             {
                 Debug.Log("Applying modifications");
-                string[] operations = _modificationContent.Split(',');
+                string[] operations = readingModificationFile.modification.Split(',');
                 foreach(string _op in operations)
                 {
                     OperationSwitch(_op);
@@ -249,10 +316,14 @@ namespace ECellDive
                 {
                     case "knockout":
                         GameObject edgeGO;
-                        if (DataID_to_DataGO.TryGetValue(System.Convert.ToInt32(_op[1]), out edgeGO))
+                        uint edgeID = System.Convert.ToUInt32(opContent[1]);
+                        Debug.Log("original string: " + opContent[1] + $"; and its converted value {edgeID}");
+                        Debug.Log($"nb elements dict {DataID_to_DataGO.Count}");
+                        if (DataID_to_DataGO.TryGetValue(edgeID, out edgeGO))
                         {
+                            Debug.Log("Ko");
                             edgeGO.GetComponent<EdgeGO>().Knockout();
-                            Debug.Log("KO", edgeGO);
+                            BroadcastKoModificationServerRpc(edgeID);
                         }
                         break;
                 }
@@ -277,9 +348,24 @@ namespace ECellDive
                 CyJsonModulesData.AddData(pathway);
 
                 SetNetworkData(pathway);
-                
+
                 StartUpInfo();
             }
+            #endregion
+
+            #region - ISaveable Methods -
+            public void CompileModificationFile()
+            {
+                string author = GameNetPortal.Instance.netSessionPlayersDataMap[NetworkManager.Singleton.LocalClientId].playerName;
+                string baseModelPath = graphData.name;
+                string description = "";
+
+                ScanForKOModifications();
+                string modification = MakeKOModificationsString();
+
+                writingModificationFile = new ModificationFile(author, baseModelPath, description, modification);
+            }
+
             #endregion
         }
     }

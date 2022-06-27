@@ -90,6 +90,7 @@ namespace ECellDive.Multiplayer
         }
 
         public List<IModifiable> modifiables = new List<IModifiable>();
+        public List<ISaveable> saveables = new List<ISaveable>();
         public Dictionary<ulong, NetSessionPlayerData> netSessionPlayersDataMap = new Dictionary<ulong, NetSessionPlayerData>();
 
         private List<int> successFullPorts = new List<int>();

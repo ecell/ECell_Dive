@@ -100,7 +100,7 @@ namespace ECellDive
                         foreach (JToken _member in _group)
                         {
                             groupMembers[counter] = refCyJsonPathwayGO.
-                                                        DataID_to_DataGO[_member["data"]["id"].Value<int>()].
+                                                        DataID_to_DataGO[_member["data"]["id"].Value<uint>()].
                                                         GetComponent<IHighlightable>();
                             //Debug.Log(groupMembers[counter]);
                             counter++;

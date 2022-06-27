@@ -6,12 +6,12 @@ namespace ECellDive
     {
         public class Edge : IEdge
         {
-            public int ID { get; set; }
-            public int source { get; set; }
-            public int target { get; set; }
+            public uint ID { get; set; }
+            public uint source { get; set; }
+            public uint target { get; set; }
             public string NAME { get; set; }
 
-            public Edge(int _ID, string _name, int _source, int _target)
+            public Edge(uint _ID, string _name, uint _source, uint _target)
             {
                 ID = _ID;
                 source = _source;
