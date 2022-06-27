@@ -25,6 +25,12 @@ namespace ECellDive
             public bool hideOnStart = false;
 
             #region - ILookAt Members-
+            [SerializeField] private bool m_isUI = false;
+            public bool isUI
+            {
+                get => m_isUI;
+                private set => m_isUI = value;
+            }
             public Transform target{ get; protected set; }
             #endregion
 

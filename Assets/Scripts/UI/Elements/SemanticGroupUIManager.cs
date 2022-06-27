@@ -157,7 +157,7 @@ namespace ECellDive
                 //Repositioning the scrollListHolder in front of the user.
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
                 m_scrollListHolder.transform.position = pos;
-                m_scrollListHolder.GetComponent<FaceCamera>().ShowBackToPlayer();
+                m_scrollListHolder.GetComponent<ILookAt>().LookAt();
             }
 
             public void HideContent()
@@ -176,7 +176,7 @@ namespace ECellDive
                 //Positioning the scrollListHolder in front of the user.
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
                 m_scrollListHolder.transform.position = pos;
-                m_scrollListHolder.GetComponent<FaceCamera>().ShowBackToPlayer();
+                m_scrollListHolder.GetComponent<ILookAt>().LookAt();
 
                 m_scrollList = m_content.GetComponentInChildren<OptimizedVertScrollList>();
             }

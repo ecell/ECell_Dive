@@ -87,6 +87,7 @@ namespace ECellDive
         /// Camera.</remarks>
         public interface ILookAt
         {
+            bool isUI { get; }
             Transform target { get; }
 
             void LookAt();
