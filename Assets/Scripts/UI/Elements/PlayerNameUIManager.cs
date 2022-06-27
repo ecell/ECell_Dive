@@ -9,8 +9,8 @@ using ECellDive.Utility;
 namespace ECellDive.UI
 {
     [System.Obsolete("FaceCamera does the same job")]
-    public class PlayerNameUIManager : MonoBehaviour,
-                                        ILookAt
+    public class PlayerNameUIManager : MonoBehaviour
+                                        //ILookAt
     {
         #region - ILookAt Members-
         [SerializeField] private bool m_isUI = false;

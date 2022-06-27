@@ -9,7 +9,8 @@ namespace ECellDive
     namespace Utility
     {
         public class FaceCamera : MonoBehaviour,
-                                    ILookAt
+                                    ILookAt,
+                                    IPopUp
         {
             
             public bool showOnEnable = true;
@@ -21,13 +22,31 @@ namespace ECellDive
                 get => m_isUI;
                 private set => m_isUI = value;
             }
-            public Transform target { get; private set; }
+            public Transform lookAtTarget { get; private set; }
+            #endregion
+
+            #region - IPopUp Members -
+            [SerializeField] private float m_popupDistance;
+            public float popupDistance
+            {
+                get => m_popupDistance;
+                private set => m_popupDistance = value;
+            }
+
+            [SerializeField] private float m_popupRelativeHeight;
+            public float popupRelativeHeight
+            {
+                get => m_popupRelativeHeight;
+                private set => m_popupRelativeHeight = value;
+            }
+            public Transform popupTarget { get; private set; }
             #endregion
 
             private void Start()
             {
-                target = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
+                lookAtTarget = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
                         GetComponentInChildren<Camera>().transform;
+                popupTarget = lookAtTarget;
                 LookAt();
             }
 
@@ -44,12 +63,21 @@ namespace ECellDive
             {
                 if (isUI)
                 {
-                    Positioning.UIFaceTarget(gameObject, target);
+                    Positioning.UIFaceTarget(gameObject, lookAtTarget);
                 }
                 else
                 {
-                    gameObject.transform.LookAt(target);
+                    gameObject.transform.LookAt(lookAtTarget);
                 }
+            }
+            #endregion
+
+            #region - IPopUp Methods -
+            public void PopUp()
+            {
+                Vector3 pos = Positioning.PlaceInFrontOfTargetLocal(popupTarget, m_popupDistance, m_popupRelativeHeight);
+                transform.position = pos;
+                LookAt();
             }
             #endregion
         }
