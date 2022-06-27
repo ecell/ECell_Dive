@@ -50,6 +50,7 @@ namespace ECellDive
 
                 lookAtTarget = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
                             GetComponentInChildren<Camera>().transform;
+                LookAt();
             }
 
             private void Update()
