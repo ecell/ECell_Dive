@@ -21,7 +21,7 @@ namespace ECellDive.UI
         public void NewGroupUiElement(IHighlightable[] _highlitables)
         {
             //Create a groupUI component
-            GroupsManagement.refGroupsMenu.AddGroupUI(new GroupData
+            StaticReferencer.Instance.refGroupsMenu.AddGroupUI(new GroupData
             {
                 value = refGroupNameInputField.text,
                 color = Random.ColorHSV(),

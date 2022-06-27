@@ -116,7 +116,7 @@ namespace ECellDive
                         );
                     }
 
-                    GroupsManagement.refGroupsMenu.AddSemanticTermUI(_attribute, groupsData);
+                    StartCoroutine(StaticReferencer.Instance.refGroupsMenu.AddSemanticTermUI(_attribute, groupsData));
                 }
             }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using HSVPicker;
 using ECellDive.Interfaces;
+using ECellDive.UI;
 
 
 namespace ECellDive.Utility
@@ -22,6 +23,7 @@ namespace ECellDive.Utility
         [Header("UI Elements")]
         public GameObject refVirtualKeyboard;
         public ColorPicker refColorPicker;
+        public GroupsMenu refGroupsMenu;
 
         [Header("XR Interactors References")]
         public LeftRightData<XRRayInteractor> groupsInteractors;

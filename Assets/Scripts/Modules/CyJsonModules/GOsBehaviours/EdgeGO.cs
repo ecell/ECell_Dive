@@ -93,6 +93,8 @@ namespace ECellDive
             public override void OnNetworkDespawn()
             {
                 base.OnNetworkDespawn();
+
+                defaultColor.OnValueChanged -= ApplyDefaultColorChange;
                 fluxLevelClamped.OnValueChanged -= ApplyFLCChanges;
                 knockedOut.OnValueChanged -= ApplyKOChanges;
 
@@ -106,7 +108,7 @@ namespace ECellDive
 
             private void ApplyDefaultColorChange(Color _previous, Color _current)
             {
-                mpb.SetVector(colorID, defaultColor.Value);
+                mpb.SetVector(colorID, _current);
                 refLineRenderer.SetPropertyBlock(mpb);
             }
 
