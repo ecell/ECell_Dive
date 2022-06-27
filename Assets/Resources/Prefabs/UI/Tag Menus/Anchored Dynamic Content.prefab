@@ -216,7 +216,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9118878171053963138}
         m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
-        m_MethodName: ShowInfoToPlayer
+        m_MethodName: LookAt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refMaster: {fileID: 0}
-  defaultPositionOffset: {x: 0.7, y: 0.6, z: 0}
+  defaultPositionOffset: {x: 0, y: 0, z: 0}
   refInfoTextMesh: {fileID: 2575202198671038216}
   refConnectionAnchorHandler: {fileID: 7045651985481547586}
   refConnectionLineHandler: {fileID: 2751556734218079444}
@@ -783,6 +783,34 @@ PrefabInstance:
     - target: {fileID: 371352215053853741, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
       propertyPath: m_Name
       value: Button Scroll List
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426871690614523656, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426871690614523656, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426871690614523656, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3597416004072702324}
+    - target: {fileID: 5426871690614523656, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426871690614523656, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426871690614523656, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426871690614523656, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6163761101047436993, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
       propertyPath: m_Pivot.x

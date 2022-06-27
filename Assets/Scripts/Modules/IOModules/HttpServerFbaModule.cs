@@ -15,8 +15,8 @@ namespace ECellDive
         {
             public string activeModelName;
             public float objectiveValue;
-            public Dictionary<string, List<int>> edgeName_to_EdgeID;// 1 name maps to multiple IDs
-            public Dictionary<int, bool> knockOuts;
+            public Dictionary<string, List<uint>> edgeName_to_EdgeID;// 1 name maps to multiple IDs
+            public Dictionary<uint, bool> knockOuts;
             public Dictionary<string, float> fluxes;
         }
 
@@ -26,8 +26,8 @@ namespace ECellDive
             {
                 activeModelName = "",
                 objectiveValue = 0f,
-                edgeName_to_EdgeID = new Dictionary<string, List<int>>(),
-                knockOuts = new Dictionary<int, bool>(),
+                edgeName_to_EdgeID = new Dictionary<string, List<uint>>(),
+                knockOuts = new Dictionary<uint, bool>(),
                 fluxes = new Dictionary<string, float>()
             };
 
@@ -60,7 +60,7 @@ namespace ECellDive
                         }
                         else
                         {
-                            fbaAnalysisData.edgeName_to_EdgeID[_name] = new List<int> { _edgeData.ID };
+                            fbaAnalysisData.edgeName_to_EdgeID[_name] = new List<uint> { _edgeData.ID };
                         }
                     }
                 }
@@ -147,7 +147,7 @@ namespace ECellDive
                                                       fbaParametersManager.fluxUpperBoundColorPicker.button.colors.normalColor,
                                                       t);
 
-                        foreach (int _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
+                        foreach (uint _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
                             LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
                             LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);

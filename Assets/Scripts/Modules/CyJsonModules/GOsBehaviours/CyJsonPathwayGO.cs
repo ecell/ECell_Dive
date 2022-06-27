@@ -18,12 +18,12 @@ namespace ECellDive
         {
             public IGraph graphData { get; protected set; }
             public NetworkGOSettings networkGOSettingsModel;
-            public Dictionary<int, GameObject> DataID_to_DataGO;
+            public Dictionary<uint, GameObject> DataID_to_DataGO;
             private bool allNodesSpawned = false;
 
             public override void OnNetworkSpawn()
             {
-                DataID_to_DataGO = new Dictionary<int, GameObject>();
+                DataID_to_DataGO = new Dictionary<uint, GameObject>();
                 SetNetworkData(CyJsonModulesData.activeData);
                 GenerateGraph();
             }

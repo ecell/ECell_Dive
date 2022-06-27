@@ -1,13 +1,12 @@
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using TMPro;
 using ECellDive.Multiplayer;
 using ECellDive.Utility;
 using ECellDive.UI;
-using ECellDive.Utility;
 
 namespace ECellDive
 {
@@ -16,7 +15,7 @@ namespace ECellDive
         public class HttpServerImporterModule : HttpServerBaseModule
         {
             public OptimizedVertScrollList refModelsScrollList;
-            private string activeModelName = "";
+            protected string activeModelName = "";
 
             public GameNetModuleSpawner gameNetModuleSpawner;
 
@@ -30,7 +29,7 @@ namespace ECellDive
             /// </summary>
             private void GetModelsList()
             {
-                string requestURL = AddPagesToURL(new string[] { "models" });
+                string requestURL = AddPagesToURL(new string[] { "list_models" });
                 StartCoroutine(GetRequest(requestURL));
             }
 
@@ -41,7 +40,7 @@ namespace ECellDive
             /// stored in the server.</param>
             private void GetModelCyJs(string _modelName)
             {
-                string requestURL = AddPagesToURL(new string[] { "model", _modelName });
+                string requestURL = AddPagesToURL(new string[] { "open_view", _modelName });
                 StartCoroutine(GetRequest(requestURL));
             }
 
@@ -52,7 +51,7 @@ namespace ECellDive
             /// stored in the server.</param>
             private void GetModelSBML(string _modelName)
             {
-                string requestURL = AddPagesToURL(new string[] { "sbml", _modelName });
+                string requestURL = AddPagesToURL(new string[] { "open_sbml", _modelName });
                 StartCoroutine(GetRequest(requestURL));
             }
 
@@ -75,7 +74,7 @@ namespace ECellDive
             /// instantiation of the network module.
             /// </summary>
             /// <returns></returns>
-            private IEnumerator ImportModelCyJsC()
+            protected IEnumerator ImportModelCyJsC()
             {
                 GetModelCyJs(activeModelName);
 

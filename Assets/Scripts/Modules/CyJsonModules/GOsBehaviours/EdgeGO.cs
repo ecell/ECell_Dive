@@ -183,8 +183,8 @@ namespace ECellDive
             {
                 informationString = $"SUID: {edgeData.ID} \n" +
                                     $"Name: {edgeData.NAME} \n" +
-                                    $"Knockedout: {knockedOut} \n" +
-                                    $"Flux: {fluxLevel}";
+                                    $"Knockedout: {knockedOut.Value} \n" +
+                                    $"Flux: {fluxLevel.Value}";
                 m_refInfoTags[0].GetComponent<InfoDisplayManager>().SetText(informationString);
             }
 
@@ -203,7 +203,7 @@ namespace ECellDive
                 ActivateServerRpc();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
@@ -212,7 +212,7 @@ namespace ECellDive
                     }
                 }
 
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
@@ -231,7 +231,7 @@ namespace ECellDive
                 ActivateServerRpc();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
@@ -240,7 +240,7 @@ namespace ECellDive
                     }
                 }
 
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
@@ -259,7 +259,7 @@ namespace ECellDive
                 KnockoutServerRpc();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
@@ -268,7 +268,7 @@ namespace ECellDive
                     }
                 }
 
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
@@ -287,7 +287,7 @@ namespace ECellDive
                 KnockoutServerRpc();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
@@ -296,7 +296,7 @@ namespace ECellDive
                     }
                 }
 
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
@@ -315,7 +315,7 @@ namespace ECellDive
                 SetHighlight();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
@@ -324,7 +324,7 @@ namespace ECellDive
                     }
                 }
 
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
@@ -343,7 +343,7 @@ namespace ECellDive
                 SetHighlight();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
@@ -352,7 +352,7 @@ namespace ECellDive
                     }
                 }
 
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
@@ -371,7 +371,7 @@ namespace ECellDive
                 UnsetHighlight();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
@@ -380,7 +380,7 @@ namespace ECellDive
                     }
                 }
 
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
@@ -399,7 +399,7 @@ namespace ECellDive
                 UnsetHighlight();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
@@ -408,7 +408,7 @@ namespace ECellDive
                     }
                 }
 
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&

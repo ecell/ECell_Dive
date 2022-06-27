@@ -9,20 +9,20 @@ namespace ECellDive
         public class Node : INode
         {
             //Interface members
-            public int ID { get; set; }
+            public uint ID { get; set; }
             public Vector3 position { get; set; }
             public string NAME { get; set; }
-            public List<int> incommingEdges { get; set; }
-            public List<int> outgoingEdges { get; set; }
+            public List<uint> incommingEdges { get; set; }
+            public List<uint> outgoingEdges { get; set; }
             public bool isVirtual { get; set; }
 
-            public Node(int _ID, string _name, Vector3 _position, bool _isVirtual)
+            public Node(uint _ID, string _name, Vector3 _position, bool _isVirtual)
             {
                 ID = _ID;
                 position = _position;
                 NAME = _name;
-                incommingEdges = new List<int>();
-                outgoingEdges = new List<int>();
+                incommingEdges = new List<uint>();
+                outgoingEdges = new List<uint>();
                 isVirtual = _isVirtual;
             }
         }

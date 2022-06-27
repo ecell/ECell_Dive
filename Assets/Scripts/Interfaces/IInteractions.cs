@@ -2,6 +2,7 @@
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using ECellDive.Modules;
 
 namespace ECellDive
 {
@@ -122,5 +123,6 @@ namespace ECellDive
             NetworkVariable<float> fluxLevelClamped { get; }
             void SetFlux(float _level, float _levelClamped);
         }
+
     }
 }
