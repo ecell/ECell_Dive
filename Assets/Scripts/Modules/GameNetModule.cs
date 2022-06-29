@@ -149,11 +149,17 @@ namespace ECellDive
             #endregion
 
             #region - INamed Members -
-            [SerializeField] protected TextMeshProUGUI m_nameField;
+            [SerializeField] protected GameObject m_nameTextFieldContainer;
+            public GameObject nameTextFieldContainer
+            {
+                get => m_nameTextFieldContainer;
+                protected set => m_nameTextFieldContainer = value;
+            }
+
             public TextMeshProUGUI nameField
             {
-                get => m_nameField;
-                set => m_nameField = value;
+                get;
+                protected set;
             }
             #endregion
 
@@ -223,6 +229,10 @@ namespace ECellDive
                 m_Renderer = GetComponent<Renderer>();
                 m_LineRenderer = GetComponent<LineRenderer>();
 
+                if (nameTextFieldContainer != null)
+                {
+                    nameField = nameTextFieldContainer?.GetComponentInChildren<TextMeshProUGUI>();
+                }
             }
 
             public override void OnDestroy()
@@ -263,15 +273,6 @@ namespace ECellDive
                 defaultColor.Value = _color;
             }
 
-            /// <summary>
-            /// Makes sure the name of the module's name faces the
-            /// Player's POV and is therefore readable.
-            /// </summary>
-            public void ShowNameToPlayer()
-            {
-                Positioning.UIFaceTarget(m_nameField.gameObject.transform.parent.gameObject, Camera.main.transform);
-            }
-
             #region - IDive Methods -
 
             public void DirectDiveIn()
@@ -299,7 +300,7 @@ namespace ECellDive
 
             public virtual IEnumerator GenerativeDiveInC()
             {
-                Debug.LogError($"Generative dive in {gameObject.name}:{m_nameField.text} but no" +
+                Debug.LogError($"Generative dive in {gameObject.name}:{nameField.text} but no" +
                     $"custom behaviour has been defined for that type of module");
                 yield return null;
             }
@@ -414,14 +415,32 @@ namespace ECellDive
             #endregion
 
             #region - INamed Methods -
+
+            public virtual void DisplayName()
+            {
+                m_nameTextFieldContainer.gameObject.SetActive(true);
+                nameField.gameObject.SetActive(true);
+            }
+
             public string GetName()
             {
-                return m_nameField.text;
+                return nameField.text;
+            }
+
+            public void HideName()
+            {
+                m_nameTextFieldContainer.gameObject.SetActive(false);
+                nameField.gameObject.SetActive(false);
             }
 
             public void SetName(string _name)
             {
-                m_nameField.text = _name;
+                nameField.text = _name;
+            }
+
+            public void ShowName()
+            {
+                m_nameTextFieldContainer.GetComponent<ILookAt>().LookAt();
             }
             #endregion
 
@@ -442,7 +461,6 @@ namespace ECellDive
                     isReadyForGeneration.Value = true;
                 }
             }
-
 
             private IEnumerator BroadcastData()
             {
@@ -568,9 +586,9 @@ namespace ECellDive
                     m_Collider.enabled = false;
                 }
                 
-                if (m_nameField != null)
+                if (nameField != null)
                 {
-                    m_nameField.gameObject.SetActive(false);
+                    nameField.gameObject.SetActive(false);
                 }
 
                 if (m_Renderer != null)
@@ -601,9 +619,9 @@ namespace ECellDive
                     m_Collider.enabled = true;
                 }
 
-                if (m_nameField != null)
+                if (nameField != null)
                 {
-                    m_nameField.gameObject.SetActive(true);
+                    nameField.gameObject.SetActive(true);
                 }
 
                 if (m_Renderer != null)
