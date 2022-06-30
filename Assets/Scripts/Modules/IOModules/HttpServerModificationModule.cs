@@ -112,7 +112,7 @@ namespace ECellDive.Modules
             }
         }
 
-        private void RequestSaveModel(ModificationFile _modFile)
+        private string RequestSaveModel(ModificationFile _modFile)
         {
             string fileName = "";
             if (refSaveNewFileName.text == "")
@@ -144,12 +144,14 @@ namespace ECellDive.Modules
                     _modFile.author,
                     _modFile.description,
                     _modFile.modification,
-                    targetSaveable.writingModificationFile.baseModelName
+                    _modFile.baseModelName
                 });
 
             Debug.Log(requestURL);
 
             StartCoroutine(GetRequest(requestURL));
+
+            return fileName;
         }
 
         /// <summary>
@@ -167,19 +169,19 @@ namespace ECellDive.Modules
         private IEnumerator SaveModificationFileC()
         {
             targetSaveable.CompileModificationFile();
-            RequestSaveModel(targetSaveable.writingModificationFile);
+            string fileName = RequestSaveModel(targetSaveable.writingModificationFile);
 
             yield return new WaitUntil(isRequestProcessed);
 
             if (requestData.requestSuccess)
             {
                 LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
-                    "File \"" + targetSaveable.writingModificationFile.name + "\" has been succesfully saved.");
+                    "File \"" + fileName + "\" has been succesfully saved.");
             }
             else
             {
                 LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
-                    "File \"" + targetSaveable.writingModificationFile.name + "\" could not be saved.");
+                    "File \"" + fileName + "\" could not be saved.");
             }
         }
 
