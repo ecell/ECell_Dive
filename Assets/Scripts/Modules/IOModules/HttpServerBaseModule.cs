@@ -3,8 +3,8 @@ using System.Collections;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
+using TMPro;
 using ECellDive.Utility;
-using ECellDive.Modules;
 
 
 namespace ECellDive
@@ -16,6 +16,13 @@ namespace ECellDive
         {
             public string serverIP;
             public string port;
+        }
+
+        [System.Serializable]
+        public struct ServerUIData
+        {
+            public TMP_InputField refIPInputField;
+            public TMP_InputField refPortInputField;
         }
 
         public struct RequestData
@@ -34,6 +41,9 @@ namespace ECellDive
                 port = "8000",
                 serverIP = "127.0.0.1"
             };
+
+            public ServerUIData serverUIData;
+
             protected RequestData requestData = new RequestData
             {
                 requestText = "",
@@ -175,6 +185,28 @@ namespace ECellDive
             protected bool isRequestProcessed()
             {
                 return requestData.requestProcessed;
+            }
+
+            /// <summary>
+            /// Sets the value for the IP in <see cref="HttpServerBaseModule.serverData"/>
+            /// </summary>
+            /// <remarks>
+            /// Called back on value change of the input field dedicated to the IP
+            /// </remarks>
+            public void UpdateIP()
+            {
+                serverData.serverIP = serverUIData.refIPInputField.text;
+            }
+
+            /// <summary>
+            /// Sets the value for the Port in <see cref="HttpServerBaseModule.serverData"/>
+            /// </summary>
+            /// <remarks>
+            /// Called back on value change of the input field dedicated to the Port
+            /// </remarks>
+            public void UpdatePort()
+            {
+                serverData.port = serverUIData.refPortInputField.text;
             }
 
             #region - IHighlightable -

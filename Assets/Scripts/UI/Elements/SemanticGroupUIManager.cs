@@ -157,7 +157,7 @@ namespace ECellDive
                 //Repositioning the scrollListHolder in front of the user.
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
                 m_scrollListHolder.transform.position = pos;
-                m_scrollListHolder.GetComponent<FaceCamera>().ShowBackToPlayer();
+                m_scrollListHolder.GetComponent<ILookAt>().LookAt();
             }
 
             public void HideContent()
@@ -168,15 +168,15 @@ namespace ECellDive
             public void InstantiateContent()
             {
                 m_scrollListHolder = Instantiate(m_scrollListHolderPrefab);
-                m_content = Instantiate(m_scrollListPrefab);
-                m_content.transform.parent = m_scrollListHolder.transform;
-                m_scrollListHolder.GetComponent<XRGrabInteractable>().colliders.Add(m_content.GetComponentInChildren<BoxCollider>());
+                m_content = m_scrollListHolder.transform.GetChild(0).gameObject;
+                //m_content.transform.SetParent(m_scrollListHolder.transform, false);
+                //m_scrollListHolder.GetComponent<XRGrabInteractable>().colliders.Add(m_content.GetComponentInChildren<BoxCollider>());
                 m_scrollListHolder.GetComponent<XRGrabInteractable>().enabled = true;
 
                 //Positioning the scrollListHolder in front of the user.
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
                 m_scrollListHolder.transform.position = pos;
-                m_scrollListHolder.GetComponent<FaceCamera>().ShowBackToPlayer();
+                m_scrollListHolder.GetComponent<ILookAt>().LookAt();
 
                 m_scrollList = m_content.GetComponentInChildren<OptimizedVertScrollList>();
             }

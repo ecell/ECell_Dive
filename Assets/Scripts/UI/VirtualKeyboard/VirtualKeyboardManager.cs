@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using ECellDive.Interfaces;
 using ECellDive.Utility;
 
 namespace ECellDive
@@ -18,7 +19,6 @@ namespace ECellDive
             public Canvas NumAndSignsVK;
         }
         
-        [RequireComponent(typeof(FaceCamera))]
         public class VirtualKeyboardManager : MonoBehaviour
         {
             /// <summary>
@@ -60,6 +60,11 @@ namespace ECellDive
                 UnsetTargetInputField();
                 gameObject.SetActive(false);
             }
+
+            public bool IsAlreadySelected(TMP_InputField _targetInputField)
+            {
+                return _targetInputField == refTargetInputField;
+            }
             
             /// <summary>
             /// Deletes the character on the left of the position of the caret
@@ -78,9 +83,7 @@ namespace ECellDive
             public void Show()
             {
                 gameObject.SetActive(true);
-                Vector3 pos = Positioning.PlaceInFrontOfTargetLocal(Camera.main.transform, 1.5f, -0.2f);
-                transform.parent.position = pos;
-                GetComponent<FaceCamera>().ShowBackToPlayer();
+                gameObject.transform.parent.GetComponent<IPopUp>().PopUp();
             }
 
             /// <summary>

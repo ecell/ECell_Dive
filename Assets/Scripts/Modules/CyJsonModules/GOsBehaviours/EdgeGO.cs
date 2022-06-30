@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Unity.Netcode;
+using UnityEngine;
 using UnityEngine.InputSystem;
-using ECellDive.Utility.SettingsModels;
+using ECellDive.Utility;
 using ECellDive.UI;
 using ECellDive.Interfaces;
 using ECellDive.SceneManagement;
@@ -10,7 +11,7 @@ namespace ECellDive
 {
     namespace Modules
     {
-        public class EdgeGO : Module,
+        public class EdgeGO : GameNetModule,
                               IEdgeGO, IModulateFlux
         {
             #region - IEdgeGO Members -
@@ -33,34 +34,34 @@ namespace ECellDive
             public ControllersSymetricAction triggerKOActions
             {
                 get => m_triggerKOActions;
-                set => triggerKOActions = m_triggerKOActions;
+                set => m_triggerKOActions = value;
             }
 
-            public bool knockedOut { get; protected set; }
-            public float fluxLevel { get; protected set; }
-            public float fluxLevelClamped { get; protected set; }
+            private NetworkVariable<bool> m_knockedOut = new NetworkVariable<bool>(false);
+            public NetworkVariable<bool> knockedOut { get => m_knockedOut; protected set => m_knockedOut = value; }
+
+            private NetworkVariable<float> m_fluxLevel = new NetworkVariable<float>();
+            public NetworkVariable<float> fluxLevel { get => m_fluxLevel; protected set => m_fluxLevel = value; }
+
+            private NetworkVariable<float> m_fluxLevelClamped = new NetworkVariable<float>();
+            public NetworkVariable<float> fluxLevelClamped { get => m_fluxLevelClamped; protected set => m_fluxLevelClamped = value; }
             #endregion
 
-            public EdgeGOSettings edgeGOSettingsModels;
+            [Range(0, 1)] public float startWidthFactor = 0.25f;
+            [Range(0, 1)] public float endWidthFactor = 0.75f;
 
             private MaterialPropertyBlock mpb;
             private int colorID;
             private int activationID;
             private int panningSpeedID;
 
-            private NetworkGO refMasterPathway;
+            private CyJsonModule refMasterPathway;
 
             protected override void Awake()
             {
                 base.Awake();
                 triggerKOActions.leftController.action.performed += ManageKnockout;
                 triggerKOActions.rightController.action.performed += ManageKnockout;
-            }
-
-            private void Start()
-            {
-                fluxLevel = 0f;
-                fluxLevelClamped = 1f;
             }
 
             private void OnEnable()
@@ -70,32 +71,93 @@ namespace ECellDive
                 colorID = Shader.PropertyToID("_Color");
                 activationID = Shader.PropertyToID("_Activation");
                 panningSpeedID = Shader.PropertyToID("_PanningSpeed");
-                mpb.SetVector(colorID, defaultColor);
+                mpb.SetVector(colorID, defaultColor.Value);
                 refLineRenderer.SetPropertyBlock(mpb);
             }
 
-            private void OnDestroy()
+            public override void OnDestroy()
             {
                 triggerKOActions.leftController.action.performed -= ManageKnockout;
                 triggerKOActions.rightController.action.performed -= ManageKnockout;
             }
 
-            public void Initialize(NetworkGO _masterPathway, IEdge _edge)
+            public override void OnNetworkSpawn()
+            {
+                base.OnNetworkSpawn();
+
+                defaultColor.OnValueChanged += ApplyDefaultColorChange;
+                fluxLevelClamped.OnValueChanged += ApplyFLCChanges;
+                knockedOut.OnValueChanged += ApplyKOChanges;
+            }
+
+            public override void OnNetworkDespawn()
+            {
+                base.OnNetworkDespawn();
+
+                defaultColor.OnValueChanged -= ApplyDefaultColorChange;
+                fluxLevelClamped.OnValueChanged -= ApplyFLCChanges;
+                knockedOut.OnValueChanged -= ApplyKOChanges;
+
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            private void ActivateServerRpc()
+            {
+                knockedOut.Value = false;
+            }
+
+            private void ApplyDefaultColorChange(Color _previous, Color _current)
+            {
+                mpb.SetVector(colorID, _current);
+                refLineRenderer.SetPropertyBlock(mpb);
+            }
+
+            private void ApplyFLCChanges(float _previous, float _current)
+            {
+                //Debug.Log($"{_previous}, {_current}");
+
+                SetInformationString();
+
+                //Debug.Log($"{defaultStartWidth}, {endWidthFactor}");
+
+                SetLineRendererWidth();
+                UnsetHighlight();
+            }
+
+            private void ApplyKOChanges(bool _previous, bool _current)
+            {
+                SetInformationString();
+                mpb.SetFloat(activationID, knockedOut.Value? 0 : 1);
+                refLineRenderer.SetPropertyBlock(mpb);
+            }
+
+            public void Initialize(CyJsonModule _masterPathway, IEdge _edge)
             {
                 refMasterPathway = _masterPathway;
                 InstantiateInfoTags(new string[] { "" });
                 SetEdgeData(_edge);
                 gameObject.SetActive(true);
-                gameObject.name = edgeData.NAME;
+                gameObject.name = edgeData.name;
+                SetName(edgeData.reaction_name);
+                HideName();
+                SetDefaultWidth(1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor,
+                                1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor);
 
-                SetDefaultWidth(1 / refMasterPathway.networkGOSettingsModel.SizeScaleFactor,
-                                1 / refMasterPathway.networkGOSettingsModel.SizeScaleFactor);
                 SetLineRendererWidth();
 
                 Transform start = refMasterPathway.DataID_to_DataGO[edgeData.source].transform;
                 Transform target = refMasterPathway.DataID_to_DataGO[edgeData.target].transform;
                 SetLineRendererPosition(start, target);
                 SetCollider(start, target);
+
+                m_nameTextFieldContainer.transform.position = 0.5f * (start.position + target.position) +
+                                                                1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor * 1.5f * Vector3.up;
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            private void KnockoutServerRpc()
+            {
+                knockedOut.Value = true;
             }
 
             /// <summary>
@@ -108,16 +170,14 @@ namespace ECellDive
             {
                 if (isFocused)
                 {
-                    if (knockedOut)
+                    if (knockedOut.Value)
                     {
-                        SpreadActivationDownward();
-                        SpreadActivationUpward();
+                        Activate();
                     }
 
                     else
                     {
-                        SpreadKODownward();
-                        SpreadKOUpward();
+                        Knockout();
                     }
                 }
             }
@@ -128,34 +188,42 @@ namespace ECellDive
             private void SetInformationString()
             {
                 informationString = $"SUID: {edgeData.ID} \n" +
-                                    $"Name: {edgeData.NAME} \n" +
-                                    $"Knockedout: {knockedOut} \n" +
-                                    $"Flux: {fluxLevel}";
+                                    $"Name: {edgeData.name} \n" +
+                                    $"Reaction: {edgeData.reaction_name} \n" +
+                                    $"Knockedout: {knockedOut.Value} \n" +
+                                    $"Flux: {fluxLevel.Value}";
                 m_refInfoTags[0].GetComponent<InfoDisplayManager>().SetText(informationString);
             }
 
+            [ServerRpc(RequireOwnership = false)]
+            private void SetFluxValuesServerRpc(float _fluxValue, float _fluxClampedValue)
+            {
+                fluxLevel.Value = _fluxValue;
+                fluxLevelClamped.Value = _fluxClampedValue;
+            }
+
             /// <summary>
+            /// Spreads the activation state to every contiguous downstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadActivationDownward()
             {
-                Activate();
+                ActivateServerRpc();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadActivationDownward();
                     }
                 }
 
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadActivationUpward();
                     }
@@ -163,27 +231,27 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the activation state to every contiguous upstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadActivationUpward()
             {
-                Activate();
+                ActivateServerRpc();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadActivationUpward();
                     }
                 }
 
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadActivationDownward();
                     }
@@ -191,27 +259,27 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the Knockout state to every contiguous downstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadKODownward()
             {
-                Knockout();
+                KnockoutServerRpc();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadKODownward();
                     }
                 }
 
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadKOUpward();
                     }
@@ -219,27 +287,27 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the Knockout state to every contiguous upstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadKOUpward()
             {
-                Knockout();
+                KnockoutServerRpc();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadKOUpward();
                     }
                 }
 
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadKODownward();
                     }
@@ -247,27 +315,27 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the highlighted state to every contiguous downstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadHighlightDownward()
             {
                 SetHighlight();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadHighlightDownward();
                     }
                 }
 
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadHighlightUpward();
                     }
@@ -275,27 +343,27 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the highlighted state to every contiguous upstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadHighlightUpward()
             {
                 SetHighlight();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadHighlightUpward();
                     }
                 }
 
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadHighlightDownward();
                     }
@@ -303,27 +371,27 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the unhighlighted state to every contiguous upstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadUnsetHighlightDownward()
             {
                 UnsetHighlight();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadUnsetHighlightDownward();
                     }
                 }
 
-                foreach (int edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadUnsetHighlightUpward();
                     }
@@ -331,27 +399,27 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Spreads the unhighlighted state to every contiguous downstream edge that are part of the same reaction.
             /// </summary>
-            /// <remarks></remarks>
             public void SpreadUnsetHighlightUpward()
             {
                 UnsetHighlight();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadUnsetHighlightUpward();
                     }
                 }
 
-                foreach (int edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+                foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadUnsetHighlightDownward();
                     }
@@ -379,13 +447,13 @@ namespace ECellDive
                                                                 Mathf.Max(refLineRenderer.startWidth, refLineRenderer.endWidth),
                                                                 Mathf.Max(refLineRenderer.startWidth, refLineRenderer.endWidth),
                                                                 0.95f*Vector3.Distance(_start.localPosition, _end.localPosition));
-
             }
 
             public void SetLineRendererWidth()
             {
-                refLineRenderer.startWidth = edgeGOSettingsModels.startWidthFactor * defaultStartWidth;
-                refLineRenderer.endWidth = edgeGOSettingsModels.endWidthFactor * defaultEndWidth;
+                refLineRenderer.startWidth = startWidthFactor * Mathf.Max(defaultStartWidth, defaultStartWidth*fluxLevelClamped.Value);
+                refLineRenderer.endWidth = endWidthFactor * Mathf.Max(defaultEndWidth, defaultEndWidth*fluxLevelClamped.Value);
+                //Debug.Log($"{refLineRenderer.startWidth}, {refLineRenderer.endWidth}");
             }
 
             public void SetLineRendererPosition(Transform _start, Transform _end)
@@ -398,39 +466,23 @@ namespace ECellDive
             #region - IModulateFlux - 
             public void Activate()
             {
-                knockedOut = false;
-                SetInformationString();
-                mpb.SetFloat(activationID, 1);
-                refLineRenderer.SetPropertyBlock(mpb);
+                SpreadActivationDownward();
+                SpreadActivationUpward();
             }
 
             public void Knockout()
             {
-                knockedOut = true;
-                SetInformationString();
-                mpb.SetFloat(activationID, 0);
-                refLineRenderer.SetPropertyBlock(mpb);
+                SpreadKODownward();
+                SpreadKOUpward();
             }
 
             public void SetFlux(float _level, float _levelClamped)
             {
-                fluxLevel = _level;
-                fluxLevelClamped = _levelClamped;
-                SetInformationString();
-                mpb.SetFloat(panningSpeedID, _levelClamped);
-                refLineRenderer.SetPropertyBlock(mpb);
-                UnsetHighlight();
+                SetFluxValuesServerRpc(_level, _levelClamped);
             }
             #endregion
 
             #region - IHighlightable -
-
-            public override void SetDefaultColor(Color _c)
-            {
-                base.SetDefaultColor(_c);
-                mpb.SetVector(colorID, defaultColor);
-                refLineRenderer.SetPropertyBlock(mpb);
-            }
 
             public override void SetHighlightColor(Color _c)
             {
@@ -449,7 +501,7 @@ namespace ECellDive
             {
                 if (!forceHighlight)
                 {
-                    mpb.SetVector(colorID, defaultColor);
+                    mpb.SetVector(colorID, defaultColor.Value);
                     refLineRenderer.SetPropertyBlock(mpb);
                 }
             }

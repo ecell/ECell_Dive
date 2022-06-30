@@ -24,17 +24,17 @@ namespace ECellDive
             private MaterialPropertyBlock mpb;
             private int colorID;
 
-            private NetworkGO refNetworkGO;
+            private CyJsonModule refCyJsonPathwayGO;
             List<JArray> data = new List<JArray>();
 
             private void Start()
             {
-                //For now (2022-03-17) we are only looking for a NetworkGO spawned froma cyjson file.
-                refNetworkGO = FindObjectOfType<NetworkGO>();
-                if (refNetworkGO != null)
+                //For now (2022-03-17) we are only looking for a NetworkGO spawned from a cyjson file.
+                refCyJsonPathwayGO = FindObjectOfType<CyJsonModule>();
+                if (refCyJsonPathwayGO != null)
                 {
-                    AddData("-- Nodes --", refNetworkGO.networkData.jNodes, (JObject)refNetworkGO.networkData.jNodes[0]["data"]);
-                    AddData("-- Edges --", refNetworkGO.networkData.jEdges, (JObject)refNetworkGO.networkData.jEdges[0]["data"]);
+                    AddData("-- Nodes --", refCyJsonPathwayGO.graphData.jNodes, (JObject)refCyJsonPathwayGO.graphData.jNodes[0]["data"]);
+                    AddData("-- Edges --", refCyJsonPathwayGO.graphData.jEdges, (JObject)refCyJsonPathwayGO.graphData.jEdges[0]["data"]);
                 }
                 else
                 {
@@ -99,8 +99,8 @@ namespace ECellDive
                         //Retrieving group member ids
                         foreach (JToken _member in _group)
                         {
-                            groupMembers[counter] = refNetworkGO.
-                                                        DataID_to_DataGO[_member["data"]["id"].Value<int>()].
+                            groupMembers[counter] = refCyJsonPathwayGO.
+                                                        DataID_to_DataGO[_member["data"]["id"].Value<uint>()].
                                                         GetComponent<IHighlightable>();
                             //Debug.Log(groupMembers[counter]);
                             counter++;
@@ -116,7 +116,7 @@ namespace ECellDive
                         );
                     }
 
-                    GroupsManagement.refGroupsMenu.AddSemanticTermUI(_attribute, groupsData);
+                    StartCoroutine(StaticReferencer.Instance.refGroupsMenu.AddSemanticTermUI(_attribute, groupsData));
                 }
             }
 

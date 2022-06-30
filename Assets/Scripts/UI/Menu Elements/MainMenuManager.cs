@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using ECellDive.Utility;
+using ECellDive.Interfaces;
 
 
 namespace ECellDive
@@ -20,24 +20,9 @@ namespace ECellDive
                 refMenuOpen.action.performed += ManageOpenStatus;
             }
 
-            private void OnEnable()
-            {
-                refMenuOpen.action.Enable();
-            }
-
-            private void OnDisable()
-            {
-                refMenuOpen.action.Disable();
-            }
-
             private void OnDestroy()
             {
                 refMenuOpen.action.performed -= ManageOpenStatus;
-            }
-
-            private void Start()
-            {
-                refMainMenu.SetActive(false);
             }
 
             /// <summary>
@@ -46,6 +31,7 @@ namespace ECellDive
             private void ManageOpenStatus(InputAction.CallbackContext callbackContext)
             {
                 refMainMenu.SetActive(!refMainMenu.activeSelf);
+                refMainMenu.transform.parent.GetComponent<IPopUp>().PopUp();
             }
         }
     }

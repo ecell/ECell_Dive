@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using ECellDive.SceneManagement;
 using ECellDive.Utility;
 
 namespace ECellDive
@@ -13,13 +12,13 @@ namespace ECellDive
         [RequireComponent(typeof(TMP_InputField))]
         public class VirtualKeyboardLinker : MonoBehaviour
         {
-            private GameObject refVKGO;
+            private VirtualKeyboardManager refVKManager;
 
             private void Start()
             {
                 //Searches for the Virtual Keyboard in the scene.
-                refVKGO = ScenesData.refSceneManagerMonoBehaviour.refVirtualKeyboard;
-                if (refVKGO == null)
+                refVKManager = StaticReferencer.Instance.refVirtualKeyboard.GetComponent<VirtualKeyboardManager>();
+                if (refVKManager == null)
                 {
                     LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
                         $"Could not link {gameObject.name} with any virtual keyboard in the scene.");
@@ -33,8 +32,13 @@ namespace ECellDive
             public void OnSelect()
             {
                 TMP_InputField targetInputField = GetComponent<TMP_InputField>();
-                refVKGO.GetComponent<VirtualKeyboardManager>().Show();
-                refVKGO.GetComponent<VirtualKeyboardManager>().SetTargetInputField(GetComponent<TMP_InputField>());
+                
+                if (!refVKManager.IsAlreadySelected(targetInputField))
+                {
+                    refVKManager.Show();
+                    refVKManager.SetTargetInputField(GetComponent<TMP_InputField>());
+                }
+                    
             }
         }
     }
