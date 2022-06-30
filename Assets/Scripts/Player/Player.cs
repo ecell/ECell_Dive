@@ -19,11 +19,17 @@ namespace ECellDive.PlayerComponents
 
         #region - INamed Members -
         [Header("Name")]
-        [SerializeField] private TextMeshProUGUI m_nameField;
+        [SerializeField] private GameObject m_nameTextFieldContainer;
+        public GameObject nameTextFieldContainer
+        {
+            get => m_nameTextFieldContainer;
+            private set => m_nameTextFieldContainer = value;
+        }
+
         public TextMeshProUGUI nameField
         {
-            get => m_nameField;
-            set => m_nameField = value;
+            get;
+            private set;
         }
         #endregion
 
@@ -40,6 +46,7 @@ namespace ECellDive.PlayerComponents
         {
             base.OnNetworkSpawn();
 
+            nameField = m_nameTextFieldContainer.GetComponentInChildren<TextMeshProUGUI>();
             string _nameStr = GameNetPortal.Instance.settings.playerName;
             byte[] _nameB = System.Text.Encoding.UTF8.GetBytes(_nameStr);
 
@@ -84,14 +91,29 @@ namespace ECellDive.PlayerComponents
         }
 
         #region - INamed Methods -
+        public virtual void DisplayName()
+        {
+            m_nameTextFieldContainer.gameObject.SetActive(true);
+        }
+
         public string GetName()
         {
-            return m_nameField.text;
+            return nameField.text;
+        }
+
+        public void HideName()
+        {
+            m_nameTextFieldContainer.gameObject.SetActive(false);
         }
 
         public void SetName(string _name)
         {
-            m_nameField.text = _name;
+            nameField.text = _name;
+        }
+
+        public void ShowName()
+        {
+            m_nameTextFieldContainer.GetComponent<ILookAt>().LookAt();
         }
         #endregion
 
@@ -106,7 +128,7 @@ namespace ECellDive.PlayerComponents
             Debug.Log($"{NetworkManager.Singleton.LocalClientId} devient invisible");
             LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
                 $"{NetworkManager.Singleton.LocalClientId} devient invisible");
-            m_nameField.gameObject.SetActive(false);
+            nameField.gameObject.SetActive(false);
             head.SetActive(false);
             rootControllers.SetActive(false);
         }
@@ -123,7 +145,7 @@ namespace ECellDive.PlayerComponents
             LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug, 
                 $"{NetworkManager.Singleton.LocalClientId} devient visible");
 
-            m_nameField.gameObject.SetActive(true);
+            nameField.gameObject.SetActive(true);
 
             head.SetActive(true);
 

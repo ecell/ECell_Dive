@@ -228,9 +228,10 @@ namespace ECellDive
 
             public void ShowInfoTags()
             {
+                refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
                 foreach (GameObject _infoTag in refInfoTags)
                 {
-                    _infoTag.GetComponent<InfoDisplayManager>().LookAt();
+                    _infoTag.GetComponent<ILookAt>().LookAt();
                 }
             }
             #endregion

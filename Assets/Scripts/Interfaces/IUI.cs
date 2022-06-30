@@ -87,9 +87,38 @@ namespace ECellDive
         /// Camera.</remarks>
         public interface ILookAt
         {
-            Transform target { get; }
+            bool isUI { get; }
+            Transform lookAtTarget { get; }
 
             void LookAt();
+        }
+
+        /// <summary>
+        /// An interface to have the gameobject appear in front of the user's camera.
+        /// </summary>
+        public interface IPopUp
+        {
+            /// <summary>
+            /// The distance to <see cref="popupTarget"/> the the gameobject should
+            /// appear at.
+            /// </summary>
+            float popupDistance { get; }
+
+            /// <summary>
+            /// The height relative to <see cref="popupTarget"/> the gameobject
+            /// should appear at.
+            /// </summary>
+            /// <remarks>A value of 1 means to appear at the same height as <see
+            /// cref="popupTarget"/>.</remarks>
+            float popupRelativeHeight { get; }
+
+            /// <summary>
+            /// The gameobject used as reference for the positioning of the
+            /// gameobject that pops up.
+            /// </summary>
+            Transform popupTarget { get; }
+
+            void PopUp();
         }
     }
 }

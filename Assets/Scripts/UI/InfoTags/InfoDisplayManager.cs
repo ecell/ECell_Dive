@@ -25,7 +25,13 @@ namespace ECellDive
             public bool hideOnStart = false;
 
             #region - ILookAt Members-
-            public Transform target{ get; protected set; }
+            [SerializeField] private bool m_isUI = false;
+            public bool isUI
+            {
+                get => m_isUI;
+                private set => m_isUI = value;
+            }
+            public Transform lookAtTarget{ get; protected set; }
             #endregion
 
 
@@ -42,8 +48,9 @@ namespace ECellDive
                     Hide();
                 }
 
-                target = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
+                lookAtTarget = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
                             GetComponentInChildren<Camera>().transform;
+                LookAt();
             }
 
             private void Update()
@@ -125,7 +132,7 @@ namespace ECellDive
             /// </summary>
             public void LookAt()
             {
-                Positioning.UIFaceTarget(gameObject, target);
+                Positioning.UIFaceTarget(gameObject, lookAtTarget);
                 refConnectionAnchorHandler.SetClosestCorner();
                 refConnectionLineHandler.RefreshLinePositions();
             }

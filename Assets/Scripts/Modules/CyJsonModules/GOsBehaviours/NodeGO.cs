@@ -33,6 +33,8 @@ namespace ECellDive
                 Vector3 nodePos = new Vector3(nodeData.position.x,
                                               nodeData.position.z,
                                               nodeData.position.y) / _pathwaySettings.PositionScaleFactor;
+                SetName(nodeData.label);
+                HideName();
                 gameObject.SetActive(true);
                 if (nodeData.isVirtual)
                 {
@@ -43,13 +45,16 @@ namespace ECellDive
                 gameObject.name = $"{nodeData.ID}";
 
                 m_refInfoTags[0].transform.localScale *= _pathwaySettings.SizeScaleFactor;
+                m_nameTextFieldContainer.transform.localScale *= _pathwaySettings.SizeScaleFactor;
+                m_nameTextFieldContainer.transform.localPosition = 1.5f*Vector3.up;
             }
 
             public void SetNodeData(INode _INode)
             {
                 nodeData = _INode;
                 informationString = $"SUID: {nodeData.ID} \n" +
-                                    $"name: {nodeData.NAME}";
+                                    $"name: {nodeData.name} \n" +
+                                    $"label: {nodeData.label}";
                 m_refInfoTags[0].GetComponent<InfoDisplayManager>().SetText(informationString);
             }
 
@@ -73,6 +78,16 @@ namespace ECellDive
                     {
                         refRenderer.enabled = false;
                     }
+                }
+            }
+            #endregion
+
+            #region - INamed -
+            public override void DisplayName()
+            {
+                if (!nodeData.isVirtual)
+                {
+                    base.DisplayName();
                 }
             }
             #endregion

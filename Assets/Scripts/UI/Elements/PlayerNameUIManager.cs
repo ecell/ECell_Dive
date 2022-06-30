@@ -8,10 +8,17 @@ using ECellDive.Utility;
 
 namespace ECellDive.UI
 {
-    public class PlayerNameUIManager : MonoBehaviour,
-                                        ILookAt
+    [System.Obsolete("FaceCamera does the same job")]
+    public class PlayerNameUIManager : MonoBehaviour
+                                        //ILookAt
     {
         #region - ILookAt Members-
+        [SerializeField] private bool m_isUI = false;
+        public bool isUI
+        {
+            get => m_isUI;
+            private set => m_isUI = value;
+        }
         public Transform target { get; protected set; }
         #endregion
 

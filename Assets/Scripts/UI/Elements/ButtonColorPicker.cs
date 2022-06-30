@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using HSVPicker;
-using ECellDive.SceneManagement;
+using ECellDive.Interfaces;
 using ECellDive.Utility;
 
 
@@ -51,7 +51,7 @@ namespace ECellDive
                 picker.transform.parent.gameObject.SetActive(true);
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
                 picker.transform.parent.transform.position = pos;
-                picker.transform.parent.gameObject.GetComponent<FaceCamera>().ShowBackToPlayer();
+                picker.transform.parent.gameObject.GetComponent<ILookAt>().LookAt();
                 InformColorPickerOfTarget();
                 SetPickerColor();
             }

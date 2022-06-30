@@ -1,7 +1,7 @@
 ﻿using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using ECellDive.Utility.SettingsModels;
+using ECellDive.Utility;
 using ECellDive.UI;
 using ECellDive.Interfaces;
 using ECellDive.SceneManagement;
@@ -93,6 +93,8 @@ namespace ECellDive
             public override void OnNetworkDespawn()
             {
                 base.OnNetworkDespawn();
+
+                defaultColor.OnValueChanged -= ApplyDefaultColorChange;
                 fluxLevelClamped.OnValueChanged -= ApplyFLCChanges;
                 knockedOut.OnValueChanged -= ApplyKOChanges;
 
@@ -106,7 +108,7 @@ namespace ECellDive
 
             private void ApplyDefaultColorChange(Color _previous, Color _current)
             {
-                mpb.SetVector(colorID, defaultColor.Value);
+                mpb.SetVector(colorID, _current);
                 refLineRenderer.SetPropertyBlock(mpb);
             }
 
@@ -135,8 +137,9 @@ namespace ECellDive
                 InstantiateInfoTags(new string[] { "" });
                 SetEdgeData(_edge);
                 gameObject.SetActive(true);
-                gameObject.name = edgeData.NAME;
-
+                gameObject.name = edgeData.name;
+                SetName(edgeData.reaction_name);
+                HideName();
                 SetDefaultWidth(1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor,
                                 1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor);
 
@@ -146,6 +149,9 @@ namespace ECellDive
                 Transform target = refMasterPathway.DataID_to_DataGO[edgeData.target].transform;
                 SetLineRendererPosition(start, target);
                 SetCollider(start, target);
+
+                m_nameTextFieldContainer.transform.position = 0.5f * (start.position + target.position) +
+                                                                1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor * 1.5f * Vector3.up;
             }
 
             [ServerRpc(RequireOwnership = false)]
@@ -182,7 +188,8 @@ namespace ECellDive
             private void SetInformationString()
             {
                 informationString = $"SUID: {edgeData.ID} \n" +
-                                    $"Name: {edgeData.NAME} \n" +
+                                    $"Name: {edgeData.name} \n" +
+                                    $"Reaction: {edgeData.reaction_name} \n" +
                                     $"Knockedout: {knockedOut.Value} \n" +
                                     $"Flux: {fluxLevel.Value}";
                 m_refInfoTags[0].GetComponent<InfoDisplayManager>().SetText(informationString);
@@ -206,7 +213,7 @@ namespace ECellDive
                 foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadActivationDownward();
                     }
@@ -216,7 +223,7 @@ namespace ECellDive
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadActivationUpward();
                     }
@@ -234,7 +241,7 @@ namespace ECellDive
                 foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadActivationUpward();
                     }
@@ -244,7 +251,7 @@ namespace ECellDive
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadActivationDownward();
                     }
@@ -262,7 +269,7 @@ namespace ECellDive
                 foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadKODownward();
                     }
@@ -272,7 +279,7 @@ namespace ECellDive
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadKOUpward();
                     }
@@ -290,7 +297,7 @@ namespace ECellDive
                 foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadKOUpward();
                     }
@@ -300,7 +307,7 @@ namespace ECellDive
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadKODownward();
                     }
@@ -318,7 +325,7 @@ namespace ECellDive
                 foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadHighlightDownward();
                     }
@@ -328,7 +335,7 @@ namespace ECellDive
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadHighlightUpward();
                     }
@@ -346,7 +353,7 @@ namespace ECellDive
                 foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadHighlightUpward();
                     }
@@ -356,7 +363,7 @@ namespace ECellDive
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadHighlightDownward();
                     }
@@ -374,7 +381,7 @@ namespace ECellDive
                 foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadUnsetHighlightDownward();
                     }
@@ -384,7 +391,7 @@ namespace ECellDive
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadUnsetHighlightUpward();
                     }
@@ -402,7 +409,7 @@ namespace ECellDive
                 foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
-                    if (neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                    if (neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadUnsetHighlightUpward();
                     }
@@ -412,7 +419,7 @@ namespace ECellDive
                 {
                     EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
                     if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
-                        neighbourEdgeGo.edgeData.NAME == edgeData.NAME)
+                        neighbourEdgeGo.edgeData.name == edgeData.name)
                     {
                         neighbourEdgeGo.SpreadUnsetHighlightDownward();
                     }

@@ -14,7 +14,8 @@ namespace ECellDive
         {
             uint ID { get; set; }
             Vector3 position { get; set; }
-            string NAME { get; set; }
+            string name { get; set; }
+            string label { get; set; }
             List<uint> incommingEdges { get; set; }
             List<uint> outgoingEdges { get; set; }
 
@@ -34,7 +35,9 @@ namespace ECellDive
             uint ID { get; set; }
             uint source { get; set; }
             uint target { get; set; }
-            string NAME { get; set; }
+            string name { get; set; }
+
+            string reaction_name { get; set; }
         }
 
         /// <summary>

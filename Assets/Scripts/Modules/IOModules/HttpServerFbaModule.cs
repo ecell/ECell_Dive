@@ -81,7 +81,7 @@ namespace ECellDive
                 {
                     if (LoadedCyJsonPathway.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut.Value)
                     {
-                        knockouts += _edgeData.NAME + ",";
+                        knockouts += _edgeData.name + ",";
                         counter_true++;
                     }
                 }
