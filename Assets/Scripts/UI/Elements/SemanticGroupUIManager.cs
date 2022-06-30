@@ -168,9 +168,9 @@ namespace ECellDive
             public void InstantiateContent()
             {
                 m_scrollListHolder = Instantiate(m_scrollListHolderPrefab);
-                m_content = Instantiate(m_scrollListPrefab);
-                m_content.transform.parent = m_scrollListHolder.transform;
-                m_scrollListHolder.GetComponent<XRGrabInteractable>().colliders.Add(m_content.GetComponentInChildren<BoxCollider>());
+                m_content = m_scrollListHolder.transform.GetChild(0).gameObject;
+                //m_content.transform.SetParent(m_scrollListHolder.transform, false);
+                //m_scrollListHolder.GetComponent<XRGrabInteractable>().colliders.Add(m_content.GetComponentInChildren<BoxCollider>());
                 m_scrollListHolder.GetComponent<XRGrabInteractable>().enabled = true;
 
                 //Positioning the scrollListHolder in front of the user.

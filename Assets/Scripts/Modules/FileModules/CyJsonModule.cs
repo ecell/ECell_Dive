@@ -338,11 +338,8 @@ namespace ECellDive
                     case "knockout":
                         GameObject edgeGO;
                         uint edgeID = System.Convert.ToUInt32(opContent[1]);
-                        Debug.Log("original string: " + opContent[1] + $"; and its converted value {edgeID}");
-                        Debug.Log($"nb elements dict {DataID_to_DataGO.Count}");
                         if (DataID_to_DataGO.TryGetValue(edgeID, out edgeGO))
                         {
-                            Debug.Log("Ko");
                             edgeGO.GetComponent<EdgeGO>().Knockout();
                             BroadcastKoModificationServerRpc(edgeID);
                         }

@@ -107,7 +107,7 @@ namespace ECellDive
             public void DistributeColorToMembers(Color _color, IHighlightable[] _members)
             {
                 gameObject.SetActive(true);
-                gameObject.transform.parent.GetComponent<IPopUp>().PopUp();
+                //gameObject.transform.parent.GetComponent<IPopUp>().PopUp();
                 StartCoroutine(DistributeColorToMembersC(_color, _members));
             }
 
