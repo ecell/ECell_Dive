@@ -86,7 +86,7 @@ namespace ECellDive
                         if (!reactionMatch.TryGetValue(_edgeData.name, out reactionMatchCount))
                         {
                             reactionMatch[_edgeData.name] = 1;
-                            knockouts += "knockout_" + _edgeData.name + ",";
+                            knockouts += "knockout_" + _edgeData.ID + ",";
                             counter_true++;
                         }
                     }
@@ -114,7 +114,9 @@ namespace ECellDive
                 string requestURL = AddPagesToURL(new string[] { "solve2", _modelName });
                 if (_knockouts != "")
                 {
-                    requestURL = AddQueryToURL(requestURL, "modification", _knockouts, true);
+                    requestURL = AddQueriesToURL(requestURL,
+                        new string[] { "modification", "view_name" },
+                        new string[] { _knockouts, LoadedCyJsonPathway.graphData.name });
                 }
                 StartCoroutine(GetRequest(requestURL));
             }

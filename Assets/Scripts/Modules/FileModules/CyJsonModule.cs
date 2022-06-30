@@ -138,15 +138,36 @@ namespace ECellDive
                 edgeGO.GetComponent<GameNetModule>().NetHide();
             }
 
-            private string MakeKOModificationsString()
+            /// <summary>
+            /// Translates the information about knockedout reactions stored
+            /// in <see cref="Knockouts"/> as a string usable for a request
+            /// to the server.
+            /// </summary>
+            /// <returns>A string listing the knockedout reactions.</returns>
+            public string GetKnockoutString()
             {
-                string modification = "";
+                string knockouts = "";
+
+                Dictionary<string, ushort> koMatch = new Dictionary<string, ushort>();
+                ushort koMatchCount = 0;
+
+                EdgeGO edgeGO;
                 foreach (uint _koEdgeId in koModifications.Keys)
                 {
-                    modification += "knockout_" + _koEdgeId + ",";
+                    edgeGO = DataID_to_DataGO[_koEdgeId].GetComponent<EdgeGO>();
+                    if (!koMatch.TryGetValue(edgeGO.edgeData.name, out koMatchCount))
+                    {
+                        koMatch[edgeGO.edgeData.name] = 1;
+                        knockouts += "knockout_" + edgeGO.edgeData.ID + ",";
+                    }
                 }
 
-                return modification;
+                if (knockouts.Length > 0)
+                {
+                    knockouts = knockouts.Substring(0, knockouts.Length - 1);
+                }
+
+                return knockouts;
             }
 
             /// <summary>
@@ -361,7 +382,7 @@ namespace ECellDive
                 string description = "";
 
                 ScanForKOModifications();
-                string modification = MakeKOModificationsString();
+                string modification = GetKnockoutString();
 
                 writingModificationFile = new ModificationFile(author, baseModelPath, description, modification);
             }
