@@ -1,37 +1,35 @@
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using TMPro;
-using ECellDive.IO;
+using ECellDive.Multiplayer;
 using ECellDive.Utility;
 using ECellDive.UI;
-using ECellDive.SceneManagement;
 
 namespace ECellDive
 {
     namespace Modules
     {
-        [System.Serializable]
-        public struct UIDisplayData
-        {
-            public OptimizedVertScrollList UISelectorsContainer;
-            public TMP_InputField refIPInputField;
-            public TMP_InputField refPortInputField;
-        }
-
         public class HttpServerImporterModule : HttpServerBaseModule
         {
-            public UIDisplayData uiDisplayData;
-            [HideInInspector] public string activeModelName = "";
+            public OptimizedVertScrollList refModelsScrollList;
+            protected string activeModelName = "";
+
+            public GameNetModuleSpawner gameNetModuleSpawner;
+
+            private void Start()
+            {
+                gameNetModuleSpawner = GameObject.FindGameObjectWithTag("GameNetModuleSpawner").GetComponent<GameNetModuleSpawner>();
+            }
 
             /// <summary>
             /// Requests the models list to the server.
             /// </summary>
             private void GetModelsList()
             {
-                string requestURL = AddPagesToURL(new string[] { "models" });
+                string requestURL = AddPagesToURL(new string[] { "list_models" });
                 StartCoroutine(GetRequest(requestURL));
             }
 
@@ -42,7 +40,7 @@ namespace ECellDive
             /// stored in the server.</param>
             private void GetModelCyJs(string _modelName)
             {
-                string requestURL = AddPagesToURL(new string[] { "model", _modelName });
+                string requestURL = AddPagesToURL(new string[] { "open_view", _modelName });
                 StartCoroutine(GetRequest(requestURL));
             }
 
@@ -53,7 +51,7 @@ namespace ECellDive
             /// stored in the server.</param>
             private void GetModelSBML(string _modelName)
             {
-                string requestURL = AddPagesToURL(new string[] { "sbml", _modelName });
+                string requestURL = AddPagesToURL(new string[] { "open_sbml", _modelName });
                 StartCoroutine(GetRequest(requestURL));
             }
 
@@ -76,7 +74,7 @@ namespace ECellDive
             /// instantiation of the network module.
             /// </summary>
             /// <returns></returns>
-            private IEnumerator ImportModelCyJsC()
+            protected IEnumerator ImportModelCyJsC()
             {
                 GetModelCyJs(activeModelName);
 
@@ -84,26 +82,13 @@ namespace ECellDive
 
                 if (requestData.requestSuccess)
                 {
-                    requestData.requestJObject = JObject.Parse(requestData.requestText);
-
-                    //Loading the file
-                    NetworkComponents.Network network = NetworkLoader.Initiate(requestData.requestJObject,
-                                                                                activeModelName);
-
-                    //Instantiating relevant data structures to store the information about
-                    //the layers, nodes and edges.
-                    NetworkLoader.Populate(network);
-                    CyJsonModulesData.AddData(network);
-
-                    //Instantiation of the CyJson module corresponding to encapsulate the
-                    //CyJson pathway that just has been populated.
-                    ModuleData cyJsonMD = new ModuleData
-                    {
-                        typeID = 4 // 4 is the type ID of a CyJsonModule
-                    };
-                    ModulesData.AddModule(cyJsonMD);
-                    Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 2f, 0.8f);
-                    ScenesData.refSceneManagerMonoBehaviour.InstantiateGOOfModuleData(cyJsonMD, pos);                }
+                    byte[] modelContent = System.Text.Encoding.UTF8.GetBytes(requestData.requestText);
+                    byte[] name = System.Text.Encoding.UTF8.GetBytes(activeModelName);
+                    List<byte[]> mCFs = ArrayManipulation.FragmentToList(modelContent, 1024);
+                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                        "Just fragmented the Data. Requesting a module spawn to encapsulate it.");
+                    gameNetModuleSpawner.RequestModuleSpawnFromData(0, name, mCFs);
+                }
             }
 
             /// <summary>
@@ -132,7 +117,7 @@ namespace ECellDive
                     JArray jModelsArray = (JArray)requestData.requestJObject["models"];
                     List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
 
-                    foreach (RectTransform _child in uiDisplayData.UISelectorsContainer.refContent)
+                    foreach (RectTransform _child in refModelsScrollList.refContent)
                     {
                         if (_child.gameObject.activeSelf)
                         {
@@ -142,22 +127,12 @@ namespace ECellDive
 
                     for (int i = 0; i < modelsList.Count; i++)
                     {
-                        GameObject modelUIContainer = uiDisplayData.UISelectorsContainer.AddItem();
+                        GameObject modelUIContainer = refModelsScrollList.AddItem();
                         modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = modelsList[i];
                         modelUIContainer.SetActive(true);
-                        uiDisplayData.UISelectorsContainer.UpdateScrollList();
+                        refModelsScrollList.UpdateScrollList();
                     }
                 }
-            }
-
-            public void UpdateIP()
-            {
-                serverData.serverIP = uiDisplayData.refIPInputField.text;
-            }
-
-            public void UpdatePort()
-            {
-                serverData.port = uiDisplayData.refPortInputField.text;
             }
         }
     }

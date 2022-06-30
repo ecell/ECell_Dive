@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 using ECellDive.Interfaces;
+using ECellDive.Utility;
 
 
 namespace ECellDive
@@ -51,18 +53,7 @@ namespace ECellDive
                 Destroy(gameObject);
             }
 
-            /// <summary>
-            /// Internal method to update the color of the GameObjects in the group.
-            /// </summary>
-            /// <param name="_color"></param>
-            private void DistributeColorToMembers(Color _color)
-            {
-                foreach(IHighlightable _member in groupData.members)
-                {
-                    _member.SetDefaultColor(_color);
-                    _member.UnsetHighlight();
-                }
-            }
+            
 
             /// <summary>
             /// Public method to be used by external objects that globally controls the
@@ -74,11 +65,11 @@ namespace ECellDive
             {
                 if (_forceValue)
                 {
-                    DistributeColorToMembers(groupData.color);
+                    StaticReferencer.Instance.refGroupsMenu.DistributeColorToMembers(groupData.color, groupData.members);
                 }
                 else
                 {
-                    DistributeColorToMembers(Color.white);
+                    StaticReferencer.Instance.refGroupsMenu.DistributeColorToMembers(Color.white, groupData.members);
                 }
             }
 
@@ -96,7 +87,7 @@ namespace ECellDive
                 {
                     groupData.color = Color.white;
                 }
-                DistributeColorToMembers(groupData.color);
+                StaticReferencer.Instance.refGroupsMenu.DistributeColorToMembers(groupData.color, groupData.members);
             }
 
             /// <summary>

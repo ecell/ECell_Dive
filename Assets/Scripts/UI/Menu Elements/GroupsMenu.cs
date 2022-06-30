@@ -1,8 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using ECellDive.Interfaces;
-using ECellDive.SceneManagement;
 
 namespace ECellDive
 {
@@ -20,18 +20,11 @@ namespace ECellDive
             private List<IDropDown> allDropDowns = new List<IDropDown>();
 
             public bool hideOnStart = true;
-
-            private void Awake()
-            {
-                //Making a global reference to this script so that it can be easily
-                //accessed from outside without having to resort to FindObjectOfType<>
-                //and the like.
-                GroupsManagement.refGroupsMenu = this;
-            }
+            private bool colorBatchDistributed = false;
 
             private void Start()
             {
-                AddSemanticTermUI("Custom Groups", new List<GroupData>() { });
+                StartCoroutine(AddSemanticTermUI("Custom Groups", new List<GroupData>()));
                 if (hideOnStart)
                 {
                     gameObject.SetActive(false);
@@ -49,9 +42,9 @@ namespace ECellDive
             private void AddGroupUI(GroupData _groupData, IDropDown _parent)
             {
                 GameObject groupUI = _parent.AddItem();
+                groupUI.SetActive(true);
                 groupUI.GetComponent<GroupUIManager>().SetData(_groupData);
                 groupUI.GetComponent<GroupUIManager>().ForceDistributeColor(true);
-                groupUI.SetActive(true);
                 _parent.scrollList.UpdateScrollList();
             }
 
@@ -87,7 +80,7 @@ namespace ECellDive
             /// the container.</param>
             /// <remarks>Typically usefull to manage every group produced by
             /// a "Group By" operation.</remarks>
-            public void AddSemanticTermUI(string _semanticTerm, List<GroupData> _groupsData)
+            public IEnumerator AddSemanticTermUI(string _semanticTerm, List<GroupData> _groupsData)
             {
                 //Creating the drop down button
                 GameObject semanticTermUI = semanticGroupsScrollList.AddItem();
@@ -104,9 +97,41 @@ namespace ECellDive
                 foreach (GroupData _groupData in _groupsData)
                 {
                     AddGroupUI(_groupData, ddComponent);
+                    yield return new WaitUntil(()=>colorBatchDistributed);
+                    colorBatchDistributed = false;
                 }
                 semanticGroupsScrollList.UpdateScrollList();
                 semanticGroupsScrollList.UpdateAllChildrenVisibility();
+            }
+
+            public void DistributeColorToMembers(Color _color, IHighlightable[] _members)
+            {
+                gameObject.SetActive(true);
+                //gameObject.transform.parent.GetComponent<IPopUp>().PopUp();
+                StartCoroutine(DistributeColorToMembersC(_color, _members));
+            }
+
+            /// <summary>
+            /// Internal method to update the color of the GameObjects in the group.
+            /// </summary>
+            /// <param name="_color"></param>
+            private IEnumerator DistributeColorToMembersC(Color _color, IHighlightable[] _members)
+            {
+                ushort batchCounter = 0;
+                foreach (IHighlightable _member in _members)
+                {
+                    _member.SetDefaultColor(_color);
+                    _member.UnsetHighlight();
+
+                    batchCounter++;
+
+                    if (batchCounter == 25)
+                    {
+                        yield return new WaitForEndOfFrame();
+                        batchCounter = 0;
+                    }
+                }
+                colorBatchDistributed = true;
             }
         }
     }

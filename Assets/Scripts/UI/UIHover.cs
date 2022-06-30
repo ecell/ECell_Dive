@@ -5,8 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
-
-using ECellDive.SceneManagement;
+using ECellDive.Utility;
 
 namespace ECellDive
 {
@@ -84,14 +83,14 @@ namespace ECellDive
 
             private void HoverEnter(BaseEventData eventData)
             {
-                if (ScenesData.refSceneManagerMonoBehaviour.remoteInteractionData.leftInteractor.
+                if (StaticReferencer.Instance.remoteInteractionInteractors.left.
                     TryGetCurrentUIRaycastResult(out var leftRaycastResultValue)
                     && !leftInteractorActive)
                 {
                     leftInteractorActive = true;
                     leftLastHovered = leftRaycastResultValue.gameObject;
-                    currentXRController = ScenesData.refSceneManagerMonoBehaviour.remoteInteractionData.leftController;
-
+                    currentXRController = StaticReferencer.Instance.remoteInteractionABC.left;
+                    
                     if (hoverEnterHapticData.play)
                     {
                         currentXRController.SendHapticImpulse(
@@ -105,13 +104,13 @@ namespace ECellDive
                     }
                 }
 
-                if (ScenesData.refSceneManagerMonoBehaviour.remoteInteractionData.rightInteractor.
+                if (StaticReferencer.Instance.remoteInteractionInteractors.right.
                     TryGetCurrentUIRaycastResult(out var rightRaycastResultValue)
                     && !rightInteractorActive)
                 {
                     rightInteractorActive = true;
                     rightLastHovered = rightRaycastResultValue.gameObject;
-                    currentXRController = ScenesData.refSceneManagerMonoBehaviour.remoteInteractionData.rightController;
+                    currentXRController = StaticReferencer.Instance.remoteInteractionABC.right;
 
                     if (hoverEnterHapticData.play)
                     {
@@ -129,10 +128,10 @@ namespace ECellDive
 
             private void HoverExit(BaseEventData eventData)
             {
-                ScenesData.refSceneManagerMonoBehaviour.remoteInteractionData.leftInteractor.
+                StaticReferencer.Instance.remoteInteractionInteractors.left.
                     TryGetCurrentUIRaycastResult(out var leftRaycastResultValue);
 
-                ScenesData.refSceneManagerMonoBehaviour.remoteInteractionData.rightInteractor.
+                StaticReferencer.Instance.remoteInteractionInteractors.right.
                     TryGetCurrentUIRaycastResult(out var rightRaycastResultValue);
 
                 if (leftInteractorActive && leftRaycastResultValue.gameObject != leftLastHovered)
@@ -142,7 +141,7 @@ namespace ECellDive
                     {
                         leftLastHovered = null;
                     }
-                    currentXRController = ScenesData.refSceneManagerMonoBehaviour.remoteInteractionData.leftController;
+                    currentXRController = StaticReferencer.Instance.remoteInteractionABC.left;
 
                     if (hoverExitHapticData.play)
                     {
@@ -164,7 +163,7 @@ namespace ECellDive
                     {
                         rightLastHovered = null;
                     }
-                    currentXRController = ScenesData.refSceneManagerMonoBehaviour.remoteInteractionData.rightController;
+                    currentXRController = StaticReferencer.Instance.remoteInteractionABC.right;
 
                     if (hoverExitHapticData.play)
                     {

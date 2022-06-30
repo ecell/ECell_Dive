@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.Interfaces;
@@ -12,15 +13,16 @@ namespace ECellDive
         /// or backward and scaled up or down. The objects that collide with it
         /// are sent to the <seealso cref="GroupMakingManager"/>
         /// </summary>
-        public class VolumetricSelectorManager : MonoBehaviour, IHighlightable
+        public class VolumetricSelectorManager : NetworkBehaviour,
+                                                    IHighlightable
         {
             #region - IHighlightable Members - 
 
-            [SerializeField] private Color m_defaultColor;
-            public Color defaultColor
+            [SerializeField] private NetworkVariable<Color> m_defaultColor;
+            public NetworkVariable<Color> defaultColor
             {
                 get => m_defaultColor;
-                set => SetDefaultColor(value);
+                set => defaultColor = value;
             }
 
             [SerializeField] private Color m_highlightColor;
@@ -63,10 +65,12 @@ namespace ECellDive
             private MaterialPropertyBlock mpb;
             private int colorID;
 
-            private void Awake()
-            {
-                distanceAndScaleAction.action.performed += DistanceAndScale;
-            }
+            private NetworkVariable<bool> isActive = new NetworkVariable<bool>(default,
+                default, NetworkVariableWritePermission.Owner);
+            private NetworkVariable<Vector3> position = new NetworkVariable<Vector3>(default,
+                default, NetworkVariableWritePermission.Owner);
+            private NetworkVariable<Vector3> scale = new NetworkVariable<Vector3>(default,
+                default, NetworkVariableWritePermission.Owner);
 
             private void Start()
             {
@@ -81,8 +85,54 @@ namespace ECellDive
                 refRenderer = GetComponentInChildren<Renderer>();
                 mpb = new MaterialPropertyBlock();
                 colorID = Shader.PropertyToID("_Color");
-                mpb.SetVector(colorID, defaultColor);
+                mpb.SetVector(colorID, defaultColor.Value);
                 refRenderer.SetPropertyBlock(mpb);
+            }
+
+            public override void OnNetworkSpawn()
+            {
+                distanceAndScaleAction.action.performed += DistanceAndScale;
+
+                isActive.OnValueChanged += ApplyActivityStatus;
+                position.OnValueChanged += ApplyPositionToTransform;
+                scale.OnValueChanged += ApplyScaleToTransform;
+            }
+
+            public override void OnNetworkDespawn()
+            {
+                distanceAndScaleAction.action.performed -= DistanceAndScale;
+
+                isActive.OnValueChanged -= ApplyActivityStatus;
+                position.OnValueChanged -= ApplyPositionToTransform;
+                scale.OnValueChanged -= ApplyScaleToTransform;
+            }
+
+            private void ApplyActivityStatus(bool _past, bool _current)
+            {
+                if (isActive.Value)
+                {
+                    SetHighlight();
+                }
+                else
+                {
+                    UnsetHighlight();
+                }
+            }
+
+            private void ApplyPositionToTransform(Vector3 _past, Vector3 _current)
+            {
+                if (!IsOwner)
+                {
+                    transform.localPosition = position.Value;
+                }
+            }
+
+            private void ApplyScaleToTransform(Vector3 _past, Vector3 _current)
+            {
+                if (!IsOwner)
+                {
+                    transform.localScale = scale.Value;
+                }
             }
 
             /// <summary>
@@ -139,14 +189,7 @@ namespace ECellDive
             public void ManageActive(bool _active)
             {
                 refSphereCollider.enabled = _active;
-                if (_active)
-                {
-                    SetHighlight();
-                }
-                else
-                {
-                    UnsetHighlight();
-                }
+                isActive.Value = _active;
             }
 
             /// <summary>
@@ -156,21 +199,25 @@ namespace ECellDive
             /// If lower than 0 then backward movement.</param>
             private void ManageDistance(float _mvtFactor)
             {
-                Vector3 target = transform.localPosition + _mvtFactor * movementSpeed * Vector3.forward;
-                float _d = (target-defaultPosition).z;
-                if (_d < 0)
+                if (IsOwner)
                 {
-                    target = defaultPosition;
+                    Vector3 target = transform.localPosition + _mvtFactor * movementSpeed * Vector3.forward;
+                    float _d = (target - defaultPosition).z;
+                    if (_d < 0)
+                    {
+                        target = defaultPosition;
+                    }
+                    if (_d > maxDistance)
+                    {
+                        target = transform.localPosition;
+                    }
+                    transform.localPosition = Vector3.SmoothDamp(
+                                                transform.localPosition,
+                                                target,
+                                                ref mvtVelocity,
+                                                0.1f);
+                    position.Value = transform.localPosition;
                 }
-                if(_d > maxDistance)
-                {
-                    target = transform.localPosition;
-                }
-                transform.localPosition = Vector3.SmoothDamp(
-                                            transform.localPosition,
-                                            target,
-                                            ref mvtVelocity,
-                                            0.1f);
             }
 
             /// <summary>
@@ -180,22 +227,27 @@ namespace ECellDive
             /// If lower than 0 then scales down.</param>
             private void ManageScale(float _growthFactor)
             {
-                Vector3 target = transform.localScale + _growthFactor * growthSpeed * Vector3.one;
-
-                if (CompareVec3(target, minScale))
+                if (IsOwner)
                 {
-                    target = minScaleFactor * defaultScale;
-                }
-                if (CompareVec3(maxScale, target))
-                {
-                    target = maxScaleFactor * defaultScale;
-                }
 
-                transform.localScale = Vector3.SmoothDamp(
-                                            transform.localScale,
-                                            target,
-                                            ref growthVelocity,
-                                            0.1f);
+                    Vector3 target = transform.localScale + _growthFactor * growthSpeed * Vector3.one;
+
+                    if (CompareVec3(target, minScale))
+                    {
+                        target = minScaleFactor * defaultScale;
+                    }
+                    if (CompareVec3(maxScale, target))
+                    {
+                        target = maxScaleFactor * defaultScale;
+                    }
+
+                    transform.localScale = Vector3.SmoothDamp(
+                                                transform.localScale,
+                                                target,
+                                                ref growthVelocity,
+                                                0.1f);
+                    scale.Value = transform.localScale;
+                }
             }
 
             /// <summary>
@@ -211,7 +263,7 @@ namespace ECellDive
 
             public virtual void SetDefaultColor(Color _c)
             {
-                m_defaultColor = _c;
+                m_defaultColor.Value = _c;
             }
 
             public virtual void SetHighlightColor(Color _c)
@@ -229,7 +281,7 @@ namespace ECellDive
             {
                 if (!forceHighlight)
                 {
-                    mpb.SetVector(colorID, defaultColor);
+                    mpb.SetVector(colorID, defaultColor.Value);
                     refRenderer.SetPropertyBlock(mpb);
                 }
             }

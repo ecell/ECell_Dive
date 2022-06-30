@@ -108,6 +108,23 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Looks for a "label" field in a "data" field in a _JToken.
+            /// </summary>
+            public static string LookForLabel(JToken _jToken)
+            {
+                string name = "No Label";
+                JObject jObj = (JObject)_jToken;
+                if (jObj.ContainsKey("data"))
+                {
+                    if (((JObject)jObj["data"]).ContainsKey("label"))
+                    {
+                        name = jObj["data"]["label"].Value<string>();
+                    }
+                }
+                return name;
+            }
+
+            /// <summary>
             /// Looks for a "name" field in a "data" field in a _JToken.
             /// </summary>
             public static string LookForName(JToken _jToken)

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using TMPro;
+using ECellDive.Interfaces;
 using ECellDive.Utility;
 
 
@@ -9,7 +11,8 @@ namespace ECellDive
 {
     namespace UI
     {
-        public class InfoDisplayManager : MonoBehaviour
+        public class InfoDisplayManager : MonoBehaviour,
+                                            ILookAt
         {
             public Transform refMaster;
             public Vector3 defaultPositionOffset;
@@ -20,6 +23,43 @@ namespace ECellDive
             public bool alwaysShowInfoToPlayer = false;
             [HideInInspector] public bool globalHide = false;
             public bool hideOnStart = false;
+
+            #region - ILookAt Members-
+            [SerializeField] private bool m_isUI = false;
+            public bool isUI
+            {
+                get => m_isUI;
+                private set => m_isUI = value;
+            }
+            public Transform lookAtTarget{ get; protected set; }
+            #endregion
+
+
+            private void Start()
+            {
+                if (refMaster == null)
+                {
+                    refMaster = transform.parent;
+                }
+                transform.position = refMaster.transform.position + defaultPositionOffset;
+
+                if (hideOnStart)
+                {
+                    Hide();
+                }
+
+                lookAtTarget = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
+                            GetComponentInChildren<Camera>().transform;
+                LookAt();
+            }
+
+            private void Update()
+            {
+                if (alwaysShowInfoToPlayer)
+                {
+                    LookAt();
+                }
+            }
 
             /// <summary>
             /// Switches the value of the globalHide field on every call.
@@ -84,39 +124,19 @@ namespace ECellDive
                 gameObject.SetActive(true);
             }
 
+            #region - ILookAt Methods-
             /// <summary>
             /// Computes the info tag position, connection anchor and 
             /// connection start/end so that the info tag is readable
             /// from the player point of view.
             /// </summary>
-            public void ShowInfoToPlayer()
+            public void LookAt()
             {
-                Positioning.UIFaceTarget(gameObject, Camera.main.transform);
+                Positioning.UIFaceTarget(gameObject, lookAtTarget);
                 refConnectionAnchorHandler.SetClosestCorner();
                 refConnectionLineHandler.RefreshLinePositions();
             }
-
-            private void Start()
-            {
-                if (refMaster == null)
-                {
-                    refMaster = transform.parent;
-                }
-                transform.position = refMaster.transform.position + defaultPositionOffset;
-
-                if (hideOnStart)
-                {
-                    Hide();
-                }
-            }
-
-            private void Update()
-            {
-                if (alwaysShowInfoToPlayer)
-                {
-                    ShowInfoToPlayer();
-                }
-            }
+            #endregion
         }
     }
 }

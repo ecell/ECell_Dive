@@ -15,8 +15,8 @@ namespace ECellDive
         {
             public string activeModelName;
             public float objectiveValue;
-            public Dictionary<string, List<int>> edgeName_to_EdgeID;// 1 name maps to multiple IDs
-            public Dictionary<int, bool> knockOuts;
+            public Dictionary<string, List<uint>> edgeName_to_EdgeID;// 1 name maps to multiple IDs
+            public Dictionary<uint, bool> knockOuts;
             public Dictionary<string, float> fluxes;
         }
 
@@ -26,42 +26,41 @@ namespace ECellDive
             {
                 activeModelName = "",
                 objectiveValue = 0f,
-                edgeName_to_EdgeID = new Dictionary<string, List<int>>(),
-                knockOuts = new Dictionary<int, bool>(),
+                edgeName_to_EdgeID = new Dictionary<string, List<uint>>(),
+                knockOuts = new Dictionary<uint, bool>(),
                 fluxes = new Dictionary<string, float>()
             };
 
             public FbaParametersManager fbaParametersManager;
 
-            private NetworkGO LoadedCyJsonRoot;
+            private CyJsonModule LoadedCyJsonPathway;
 
             private void Start()
             {
-                if (CyJsonModulesData.activeData == null)
+                LoadedCyJsonPathway = GameObject.FindGameObjectWithTag("CyJsonModule").GetComponent<CyJsonModule>();
+                if (LoadedCyJsonPathway == null)
                 {
                     LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
                         "There is no active (ie. Dived In) CyJson pathway modules detected.");
                 }
                 else
                 {
-                    fbaAnalysisData.activeModelName = CyJsonModulesData.activeData.name;
+                    fbaAnalysisData.activeModelName = LoadedCyJsonPathway.graphData.name;
 
                     LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
                         $"FBA analyses module connected to {fbaAnalysisData.activeModelName}");
 
-                    LoadedCyJsonRoot = GameObject.FindGameObjectWithTag("CyJsonRootModule").GetComponent<NetworkGO>();
-
-                    foreach (IEdge _edgeData in LoadedCyJsonRoot.networkData.edges)
+                    foreach (IEdge _edgeData in LoadedCyJsonPathway.graphData.edges)
                     {
                         fbaAnalysisData.knockOuts[_edgeData.ID] = false;
-                        string _name = LoadedCyJsonRoot.DataID_to_DataGO[_edgeData.ID].name;
+                        string _name = LoadedCyJsonPathway.DataID_to_DataGO[_edgeData.ID].name;
                         if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_name))
                         {
                             fbaAnalysisData.edgeName_to_EdgeID[_name].Add(_edgeData.ID);
                         }
                         else
                         {
-                            fbaAnalysisData.edgeName_to_EdgeID[_name] = new List<int> { _edgeData.ID };
+                            fbaAnalysisData.edgeName_to_EdgeID[_name] = new List<uint> { _edgeData.ID };
                         }
                     }
                 }
@@ -78,12 +77,18 @@ namespace ECellDive
                 string knockouts = "";
                 int counter_true = 0;
 
-                foreach (IEdge _edgeData in LoadedCyJsonRoot.networkData.edges)
+                Dictionary<string, ushort> reactionMatch = new Dictionary<string, ushort>();
+                ushort reactionMatchCount = 0;
+                foreach (IEdge _edgeData in LoadedCyJsonPathway.graphData.edges)
                 {
-                    if (LoadedCyJsonRoot.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut)
+                    if (LoadedCyJsonPathway.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut.Value)
                     {
-                        knockouts += _edgeData.NAME + ",";
-                        counter_true++;
+                        if (!reactionMatch.TryGetValue(_edgeData.name, out reactionMatchCount))
+                        {
+                            reactionMatch[_edgeData.name] = 1;
+                            knockouts += "knockout_" + _edgeData.ID + ",";
+                            counter_true++;
+                        }
                     }
                 }
 
@@ -106,10 +111,12 @@ namespace ECellDive
             /// the <see cref="FBADiveRoomManager"/></param>
             public void GetModelSolution(string _modelName, string _knockouts)
             {
-                string requestURL = AddPagesToURL(new string[] { "solve", _modelName });
+                string requestURL = AddPagesToURL(new string[] { "solve2", _modelName });
                 if (_knockouts != "")
                 {
-                    requestURL = AddQueryToURL(requestURL, "knockouts", _knockouts, true);
+                    requestURL = AddQueriesToURL(requestURL,
+                        new string[] { "modification", "view_name" },
+                        new string[] { _knockouts, LoadedCyJsonPathway.graphData.name });
                 }
                 StartCoroutine(GetRequest(requestURL));
             }
@@ -123,12 +130,18 @@ namespace ECellDive
                 SolveModel(fbaAnalysisData.activeModelName, knockoutString);
             }
 
+            public void ShowComputedFluxes()
+            {
+                StartCoroutine(ShowComputedFluxesC());
+            }
+
             /// <summary>
             /// Transfers the results of the FBA (fluxes values) to the shaders
             /// of the edges (representing the reactions).
             /// </summary>
-            public void ShowComputedFluxes()
+            private IEnumerator ShowComputedFluxesC()
             {
+                int counter = 0;
                 foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
                 {
                     if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
@@ -142,10 +155,18 @@ namespace ECellDive
                                                       fbaParametersManager.fluxUpperBoundColorPicker.button.colors.normalColor,
                                                       t);
 
-                        foreach (int _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
+                        foreach (uint _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
-                            LoadedCyJsonRoot.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
-                            LoadedCyJsonRoot.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
+                            LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
+                            LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
+
+                            counter++;
+
+                            if (counter == 25)
+                            {
+                                yield return new WaitForEndOfFrame();
+                                counter = 0;
+                            }
                         }
                     }
                 }

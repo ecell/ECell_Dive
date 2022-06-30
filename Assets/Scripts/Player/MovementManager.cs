@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.Utility;
@@ -36,7 +37,7 @@ namespace ECellDive
             public float speed;
         }
 
-        public class MovementManager : MonoBehaviour
+        public class MovementManager : NetworkBehaviour
         {
             public GameObject refXRRig;
 
@@ -44,25 +45,34 @@ namespace ECellDive
 
             public TeleportationMovementData teleportationData;
             private Vector3 reticleVelocity = Vector3.zero;
+            private NetworkVariable<Vector3> reticlePosition = new NetworkVariable<Vector3>(default,
+                default, NetworkVariableWritePermission.Owner);
 
             public ContinousMovementData continousMovementData;
-            private bool isContinuous = false;
+            private NetworkVariable<bool>isContinuous = new NetworkVariable<bool>(false);
             private bool doContinousMove = false;
             private Vector3 continousVelocity = Vector3.zero;
 
-            private void Awake()
+            public override void OnNetworkSpawn()
             {
                 movementActionData.movement.action.started += TryMoveStart;
                 movementActionData.movement.action.canceled += TryMoveEnd;
                 movementActionData.switchMovementMode.action.performed += SwitchMovementMode;
                 movementActionData.cursorController.action.performed += ReticleUpdate;
+
+                isContinuous.OnValueChanged += ApplyControllerMvtMode;
+                reticlePosition.OnValueChanged += ApplyReticlePosition;
             }
 
-            private void OnDestroy()
+            public override void OnNetworkDespawn()
             {
                 movementActionData.movement.action.started -= TryMoveStart;
                 movementActionData.movement.action.canceled -= TryMoveEnd;
+                movementActionData.switchMovementMode.action.performed -= SwitchMovementMode;
                 movementActionData.cursorController.action.performed -= ReticleUpdate;
+
+                isContinuous.OnValueChanged -= ApplyControllerMvtMode;
+                reticlePosition.OnValueChanged -= ApplyReticlePosition;
             }
 
             private void OnEnable()
@@ -79,13 +89,42 @@ namespace ECellDive
                 }
             }
 
-            /// <summary>
-            /// Compares if vector <paramref name="_a"/> is less than
-            /// <paramref name="_b"/> component-wise.
-            /// </summary>
-            private bool CompareVec3(Vector3 _a, Vector3 _b)
+            private void ApplyControllerMvtMode(bool previous, bool current)
             {
-                return (_a.x < _b.x && _a.y < _b.y && _a.z < _b.z);
+                if (isContinuous.Value)
+                {
+                    teleportationData.teleportationLine.enabled = false;
+                    teleportationData.teleportationReticle.SetActive(false);
+
+                    //Placing the helper
+                    continousMovementData.directionHelper.gameObject.SetActive(true);
+                    ResetContinousMoveHelper();
+                    continousMovementData.directionHelper.SetSphereScale(2 * continousMovementData.deadZone);
+                }
+                else
+                {
+                    teleportationData.teleportationLine.enabled = true;
+                    teleportationData.teleportationReticle.SetActive(true);
+                    ResetTeleportationTools();
+
+                    //Placing the helper
+                    continousMovementData.directionHelper.gameObject.SetActive(false);
+                }
+            }
+
+            private void ApplyReticlePosition(Vector3 previous, Vector3 current)
+            {
+                if (!IsOwner)
+                {
+                    teleportationData.teleportationReticle.transform.localPosition = reticlePosition.Value;
+                    ResetTeleportationLine();
+                }
+            }
+
+            [ServerRpc]
+            public void BroadcastControllerMvtModeServerRpc()
+            {
+                isContinuous.Value = !isContinuous.Value;
             }
 
             /// <summary>
@@ -149,24 +188,28 @@ namespace ECellDive
             /// If lower than 0 then backward movement.</param>
             private void ManageDistance(float _mvtFactor)
             {
-                Vector3 target = teleportationData.teleportationReticle.transform.localPosition +
+                if (IsOwner)
+                {
+                    Vector3 target = teleportationData.teleportationReticle.transform.localPosition +
                                  _mvtFactor * teleportationData.reticleMovementSpeed * Vector3.forward;
-                
-                float _d = (target - teleportationData.defaultReticlePosition).z;
-                if (_d < teleportationData.minTeleportationDistance)
-                {
-                    target = teleportationData.teleportationReticle.transform.localPosition;
+
+                    float _d = (target - teleportationData.defaultReticlePosition).z;
+                    if (_d < teleportationData.minTeleportationDistance)
+                    {
+                        target = teleportationData.teleportationReticle.transform.localPosition;
+                    }
+                    if (_d > teleportationData.maxTeleportationDistance)
+                    {
+                        target = teleportationData.teleportationReticle.transform.localPosition;
+                    }
+                    teleportationData.teleportationReticle.transform.localPosition = Vector3.SmoothDamp(
+                                                teleportationData.teleportationReticle.transform.localPosition,
+                                                target,
+                                                ref reticleVelocity,
+                                                0.1f);
+                    reticlePosition.Value = teleportationData.teleportationReticle.transform.localPosition;
+                    ResetTeleportationLine();
                 }
-                if (_d > teleportationData.maxTeleportationDistance)
-                {
-                    target = teleportationData.teleportationReticle.transform.localPosition;
-                }
-                teleportationData.teleportationReticle.transform.localPosition = Vector3.SmoothDamp(
-                                            teleportationData.teleportationReticle.transform.localPosition,
-                                            target,
-                                            ref reticleVelocity,
-                                            0.1f);
-                ResetTeleportationLine();
             }
 
             private void ResetContinousMoveHelper()
@@ -193,6 +236,7 @@ namespace ECellDive
             /// </summary>
             private void ReticleUpdate(InputAction.CallbackContext _ctx)
             {
+                Debug.Log("Reticle Update for " + gameObject.name, gameObject);
                 Vector2 _das = _ctx.ReadValue<Vector2>();
                 if (!IsInDeadZone(_das.y))
                 {
@@ -202,31 +246,15 @@ namespace ECellDive
 
             private void SwitchMovementMode(InputAction.CallbackContext _ctx)
             {
-                isContinuous = !isContinuous;
-                if (isContinuous)
+                if (IsOwner)
                 {
-                    teleportationData.teleportationLine.enabled = false;
-                    teleportationData.teleportationReticle.SetActive(false);
-
-                    //Placing the helper
-                    continousMovementData.directionHelper.gameObject.SetActive(true);
-                    ResetContinousMoveHelper();
-                    continousMovementData.directionHelper.SetSphereScale(2 * continousMovementData.deadZone);
-                }
-                else
-                {
-                    teleportationData.teleportationLine.enabled = true;
-                    teleportationData.teleportationReticle.SetActive(true);
-                    ResetTeleportationTools();
-
-                    //Placing the helper
-                    continousMovementData.directionHelper.gameObject.SetActive(false);
-                }
+                    BroadcastControllerMvtModeServerRpc();
+                }       
             }
 
             private void TryMoveEnd(InputAction.CallbackContext _ctx)
             {
-                if (isContinuous)
+                if (isContinuous.Value)
                 {
                     doContinousMove = false;
                     continousMovementData.directionHelper.gameObject.transform.parent = gameObject.transform;
@@ -235,7 +263,7 @@ namespace ECellDive
             }
             private void TryMoveStart(InputAction.CallbackContext _ctx)
             {
-                if (isContinuous)
+                if (isContinuous.Value)
                 {
                     doContinousMove = true;
                     continousMovementData.directionHelper.gameObject.transform.parent = refXRRig.transform;

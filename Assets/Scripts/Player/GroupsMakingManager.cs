@@ -1,10 +1,9 @@
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
-using TMPro;
 using ECellDive.Interfaces;
-using ECellDive.SceneManagement;
 using ECellDive.UI;
 using ECellDive.Utility;
 
@@ -24,7 +23,6 @@ namespace ECellDive
         {
             public GameObject discreteSelector;
             public VolumetricSelectorManager volumetricSelector;
-            public bool isVolumetric;
             public int targetLayer;
             public float maxDistance;
         }
@@ -33,40 +31,36 @@ namespace ECellDive
         /// The logic to handle custom groups made by the user with
         /// either the discrete or volumetric selectors.
         /// </summary>
-        [RequireComponent(typeof(FaceCamera))]
-        public class GroupsMakingManager : MonoBehaviour
+        public class GroupsMakingManager : NetworkBehaviour
         {
-            public GameObject refUICanvas;
-            public TMP_InputField refGroupNameInputField;
+            public GroupsMakingUIManager refUIManager;
+            public GroupsMakingManager refSecondGrpSelector;
 
-            public GroupMakingActionData leftGrpMkgActionData;
-            public GroupMakingActionData rightGrpMkgActionData;
+            public GroupMakingActionData grpMkgActionData;
 
-            public GroupMakingToolsData leftGrpMkgToolsData;
-            public GroupMakingToolsData rightGrpMkgToolsData;
+            public GroupMakingToolsData grpMkgToolsData;
 
-            List<GameObject> groupMembers = new List<GameObject>();
+            private NetworkVariable<bool> isVolumetric = new NetworkVariable<bool>(false);
 
-            private void Awake()
+            public List<GameObject> groupMembers = new List<GameObject>();
+
+            public override void OnNetworkSpawn()
             {
-                leftGrpMkgActionData.selection.action.started += e => TryAddMemberStart(leftGrpMkgToolsData);
-                leftGrpMkgActionData.selection.action.canceled += e => TryAddMemberEnd(leftGrpMkgToolsData);
-                leftGrpMkgActionData.switchSelectionMode.action.performed += SwitchLeftSelectionMode;
-                
-                rightGrpMkgActionData.selection.action.started += e => TryAddMemberStart(rightGrpMkgToolsData);
-                rightGrpMkgActionData.selection.action.canceled += e => TryAddMemberEnd(rightGrpMkgToolsData);
-                rightGrpMkgActionData.switchSelectionMode.action.performed += SwitchRightSelectionMode;
+                grpMkgActionData.selection.action.started += TryAddMemberStart;
+                grpMkgActionData.selection.action.canceled += TryAddMemberEnd;
+                grpMkgActionData.switchSelectionMode.action.performed += SwitchSelectionMode;
+
+                isVolumetric.OnValueChanged += ApplySwitchSelectionMode;
             }
 
-            private void OnDestroy()
+            public override void OnNetworkDespawn()
             {
-                leftGrpMkgActionData.selection.action.started -= e => TryAddMemberStart(leftGrpMkgToolsData);
-                leftGrpMkgActionData.selection.action.canceled -= e => TryAddMemberEnd(leftGrpMkgToolsData);
-                leftGrpMkgActionData.switchSelectionMode.action.performed -= SwitchLeftSelectionMode;
-                
-                rightGrpMkgActionData.selection.action.started -= e => TryAddMemberStart(rightGrpMkgToolsData);
-                rightGrpMkgActionData.selection.action.canceled -= e => TryAddMemberEnd(rightGrpMkgToolsData);
-                rightGrpMkgActionData.switchSelectionMode.action.performed -= SwitchRightSelectionMode;
+                grpMkgActionData.selection.action.started -= TryAddMemberStart;
+                grpMkgActionData.selection.action.canceled -= TryAddMemberEnd;
+                grpMkgActionData.switchSelectionMode.action.performed -= SwitchSelectionMode;
+
+                isVolumetric.OnValueChanged -= ApplySwitchSelectionMode;
+
             }
 
             /// <summary>
@@ -81,6 +75,31 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// The logic to switch between the discrete and volumetric selection
+            /// mode for the left controller.
+            /// </summary>
+            private void ApplySwitchSelectionMode(bool _past, bool _current)
+            {
+                if (isVolumetric.Value)
+                {
+                    grpMkgToolsData.discreteSelector.SetActive(false);
+                    grpMkgToolsData.volumetricSelector.gameObject.SetActive(true);
+                    grpMkgToolsData.volumetricSelector.ResetTransform();
+                }
+                else
+                {
+                    grpMkgToolsData.volumetricSelector.gameObject.SetActive(false);
+                    grpMkgToolsData.discreteSelector.SetActive(true);
+                }
+            }
+
+            [ServerRpc]
+            public void BroadcastSelectionModeServerRpc()
+            {
+                isVolumetric.Value = !isVolumetric.Value;
+            }
+
+            /// <summary>
             /// Method to call back when cancelling the creation of a group.
             /// </summary>
             public void CancelGroup()
@@ -88,7 +107,7 @@ namespace ECellDive
                 //Reset objects Highlight
                 for (int i = 0; i < groupMembers.Count; i++)
                 {
-                    IHighlightable highlitable = FindComponent<IHighlightable>(groupMembers[i]);
+                    IHighlightable highlitable = ToFind.FindComponent<IHighlightable>(groupMembers[i]);
                     highlitable.forceHighlight = false;
                     highlitable.UnsetHighlight();
                 }
@@ -97,7 +116,7 @@ namespace ECellDive
                 ResetGroupMemberList();
 
                 //Hide the UI dialogue
-                refUICanvas.SetActive(false);
+                refUIManager.CloseUI();
             }
 
             /// <summary>
@@ -116,29 +135,6 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// A utility function that tries to find a component in itself, its children
-            /// gameobject and its parent (if it exists)
-            /// </summary>
-            /// <typeparam name="T">The type of the component to look for.</typeparam>
-            /// <param name="_go">The source gameobject of the search.</param>
-            /// <returns>The component if it found one or null if it didn't.</returns>
-            /// <remarks>Implemented to handle the case when the gameobject that has
-            /// the collider is not the gameobject that has the graphics renderer or any
-            /// other component of interest.</remarks>
-            private T FindComponent<T>(GameObject _go)
-            {
-                T component = _go.GetComponentInChildren<T>();
-                if (component == null)
-                {
-                    if (_go.transform.parent != null)
-                    {
-                        component = _go.transform.parent.gameObject.GetComponent<T>();
-                    }
-                }
-                return component;
-            }
-
-            /// <summary>
             /// A utility method to check if the gameobject <paramref name="_go"/> is
             /// part of the <seealso cref="GroupMakingToolsData.targetLayer"/>.
             /// </summary>
@@ -146,10 +142,10 @@ namespace ECellDive
             /// <returns>True if it is in the target layer; false otherwise.</returns>
             private bool IsObjectInTargetLayer(GameObject _go)
             {
-                XRGrabInteractable interactable = FindComponent<XRGrabInteractable>(_go);
+                XRGrabInteractable interactable = ToFind.FindComponent<XRGrabInteractable>(_go);
                 if (interactable != null)
                 {
-                    int targetLayerMask = 1 << leftGrpMkgToolsData.targetLayer;
+                    int targetLayerMask = 1 << grpMkgToolsData.targetLayer;
                     return (interactable.interactionLayerMask & targetLayerMask) > 0;
                 }
                 return false;
@@ -162,10 +158,10 @@ namespace ECellDive
             /// <param name="_go">The gameobject to add or remove.</param>
             private void ManageGroupMembers(GameObject _go)
             {
-                IGroupable groupable = FindComponent<IGroupable>(_go);
+                IGroupable groupable = ToFind.FindComponent<IGroupable>(_go);
                 if (groupable != null)
                 {
-                    IHighlightable highlightable = FindComponent<IHighlightable>(_go);
+                    IHighlightable highlightable = ToFind.FindComponent<IHighlightable>(_go);
                     if (groupable.grpMemberIndex == -1)
                     {
                         AddMemberToGroup(_go, groupable);
@@ -179,27 +175,7 @@ namespace ECellDive
                         highlightable.UnsetHighlight();
                     }
 
-                    ManageUIConfirmationCanvas();
-                }
-            }
-
-            /// <summary>
-            /// Manages the visibility of the gameobject <see cref="refUICanvas"/>
-            /// containing the canvas of the UI used to validate or cancel the
-            /// creation of the group.
-            /// </summary>
-            private void ManageUIConfirmationCanvas()
-            {
-                if (groupMembers.Count == 0)
-                {
-                    refUICanvas.SetActive(false);
-                }
-                else
-                {
-                    refUICanvas.SetActive(true);
-                    Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
-                    transform.position = pos;
-                    GetComponent<FaceCamera>().ShowBackToPlayer();
+                    refUIManager.ManageUIConfirmationCanvas(groupMembers.Count);
                 }
             }
 
@@ -214,7 +190,7 @@ namespace ECellDive
                 groupMembers.RemoveAt(_goGroupInfo.grpMemberIndex);
                 for (int i = _goGroupInfo.grpMemberIndex; i < groupMembers.Count; i++)
                 {
-                    IGroupable _groupable = FindComponent<IGroupable>(groupMembers[i]);
+                    IGroupable _groupable = ToFind.FindComponent<IGroupable>(groupMembers[i]);
                     _groupable.grpMemberIndex--;
                 }
                 _goGroupInfo.grpMemberIndex = -1;
@@ -227,52 +203,18 @@ namespace ECellDive
             {
                 foreach(GameObject _go in groupMembers)
                 {
-                    IGroupable groupable = FindComponent<IGroupable>(_go);
+                    IGroupable groupable = ToFind.FindComponent<IGroupable>(_go);
                     groupable.grpMemberIndex = -1;
                 }
 
                 groupMembers.Clear();
             }
-
-            /// <summary>
-            /// The logic to switch between the discrete and volumetric selection
-            /// mode for the left controller.
-            /// </summary>
-            private void SwitchLeftSelectionMode(InputAction.CallbackContext _ctx)
+            
+            private void SwitchSelectionMode(InputAction.CallbackContext _ctx)
             {
-                if (leftGrpMkgToolsData.isVolumetric)
+                if (IsOwner)
                 {
-                    leftGrpMkgToolsData.isVolumetric = false;
-                    leftGrpMkgToolsData.volumetricSelector.gameObject.SetActive(false);
-                    leftGrpMkgToolsData.discreteSelector.SetActive(true);
-                }
-                else
-                {
-                    leftGrpMkgToolsData.isVolumetric = true;
-                    leftGrpMkgToolsData.discreteSelector.SetActive(false);
-                    leftGrpMkgToolsData.volumetricSelector.gameObject.SetActive(true);
-                    leftGrpMkgToolsData.volumetricSelector.ResetTransform();
-                }
-            }
-
-            /// <summary>
-            /// The logic to switch between the discrete and volumetric selection
-            /// mode for the right controller.
-            /// </summary>
-            private void SwitchRightSelectionMode(InputAction.CallbackContext _ctx)
-            {
-                if (rightGrpMkgToolsData.isVolumetric)
-                {
-                    rightGrpMkgToolsData.isVolumetric = false;
-                    rightGrpMkgToolsData.volumetricSelector.gameObject.SetActive(false);
-                    rightGrpMkgToolsData.discreteSelector.SetActive(true);
-                }
-                else
-                {
-                    rightGrpMkgToolsData.isVolumetric = true;
-                    rightGrpMkgToolsData.discreteSelector.SetActive(false);
-                    rightGrpMkgToolsData.volumetricSelector.gameObject.SetActive(true);
-                    rightGrpMkgToolsData.volumetricSelector.ResetTransform();
+                BroadcastSelectionModeServerRpc();
                 }
             }
 
@@ -280,15 +222,11 @@ namespace ECellDive
             /// The logic to deactivate the current selector when the
             /// selection button is released.
             /// </summary>
-            /// <param name="_grpMkgToolsData">The data telling us which
-            /// controller and selector is currently used. See the
-            /// <see cref="GroupMakingToolsData"/> struct,
-            /// <see cref="leftGrpMkgToolsData"/> and <see cref="rightGrpMkgToolsData"/>.</param>
-            private void TryAddMemberEnd(GroupMakingToolsData _grpMkgToolsData)
+            private void TryAddMemberEnd(InputAction.CallbackContext _ctx)
             {
-                if (_grpMkgToolsData.isVolumetric)
+                if (isVolumetric.Value)
                 {
-                    _grpMkgToolsData.volumetricSelector.ManageActive(false);
+                    grpMkgToolsData.volumetricSelector.ManageActive(false);
                 }
             }
 
@@ -296,23 +234,19 @@ namespace ECellDive
             /// The logic to activate the current selector when the selection
             /// button has just started being pressed.
             /// </summary>
-            /// <param name="_grpMkgToolsData">The data telling us which
-            /// controller and selector is currently used. See the
-            /// <see cref="GroupMakingToolsData"/> struct,
-            /// <see cref="leftGrpMkgToolsData"/> and <see cref="rightGrpMkgToolsData"/>.</param>
-            private void TryAddMemberStart(GroupMakingToolsData _grpMkgToolsData)
+            private void TryAddMemberStart(InputAction.CallbackContext _ctx)
             {
-                if (_grpMkgToolsData.isVolumetric)
+                if (isVolumetric.Value)
                 {
-                    _grpMkgToolsData.volumetricSelector.ManageActive(true);
+                    grpMkgToolsData.volumetricSelector.ManageActive(true);
                 }
 
                 else
                 {
                     RaycastHit hitInfo;
-                    if (Physics.Raycast(_grpMkgToolsData.discreteSelector.transform.position,
-                                        _grpMkgToolsData.discreteSelector.transform.forward,
-                                        out hitInfo, _grpMkgToolsData.maxDistance))
+                    if (Physics.Raycast(grpMkgToolsData.discreteSelector.transform.position,
+                                        grpMkgToolsData.discreteSelector.transform.forward,
+                                        out hitInfo, grpMkgToolsData.maxDistance))
                     {
                         CheckCollision(hitInfo.collider.gameObject);
                     }
@@ -324,28 +258,24 @@ namespace ECellDive
             /// </summary>
             public void ValidateGroup()
             {
+                List<GameObject> allGroupMembers = groupMembers;
+                allGroupMembers.AddRange(refSecondGrpSelector.groupMembers);
+
                 //Get Highlightables and reset force highlight
-                IHighlightable[] highlitables = new IHighlightable[groupMembers.Count];
-                for(int i = 0; i < groupMembers.Count; i++)
+                IHighlightable[] highlitables = new IHighlightable[allGroupMembers.Count];
+                for (int i = 0; i < allGroupMembers.Count; i++)
                 {
-                    highlitables[i] = FindComponent<IHighlightable>(groupMembers[i]);
+                    highlitables[i] = ToFind.FindComponent<IHighlightable>(allGroupMembers[i]);
                     highlitables[i].forceHighlight = false;
                 }
 
-                //Create a groupUI component
-                GroupsManagement.refGroupsMenu.AddGroupUI(new GroupData
-                    {
-                        value = refGroupNameInputField.text,
-                        color = Random.ColorHSV(),
-                        members = highlitables
-                    },
-                    0);
+                refUIManager.NewGroupUiElement(highlitables);
 
                 //Reset group members list
                 ResetGroupMemberList();
 
                 //Hide the UI dialogue
-                refUICanvas.SetActive(false);
+                refUIManager.CloseUI();
             }
         }
     }

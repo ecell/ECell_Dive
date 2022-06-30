@@ -60,6 +60,7 @@ namespace ECellDive
             /// </summary>
             public void AddMessage(LogSystem.MessageTypes _type, string _content)
             {
+                //Debug.Log(_content);
                 LogSystem.Message msg = LogSystem.GenerateMessage(_type, _content);
                 LogSystem.RecordMessage(msg);
                 RecordMessage(msg);

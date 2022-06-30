@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,38 +10,26 @@ namespace ECellDive
     {
         /*
          Modules Types:
-            - 0: Root type. The type of the module containing the main room.
-                 Only one ModuleData should use it.
+            - 0: Floor type. A module to be able to move by teleportation.
 
-            - 1: Floor type. A module to be able to move by teleportation.
-
-            - 2: Http Server Modules Importer type. A module allowing
-                 connection to a server through HTTP protocol and import
-                 the data files stored on it. Example: .cyjson file.
-            - 3: Http Server Analyses type. A module allowing connection
-                 to a server through HTTP protocol and performs tasks remotely
-                 Example: FBA analysis on a pathway stored in .cyjson.
-
-            - 4: CyJson File type. A module encapsulating the logic and data
+            - 1: CyJson File type. A module encapsulating the logic and data
                  necessary dive and visualize a metabolic pathway stored with
                  the .cyjson extension.
-            - 5: CyJson Pathway Root type. The module at the root of the structure
+            - 2: CyJson Pathway Root type. The module at the root of the structure
                  of a pathway.
-            - 6: CyJson Pathway Node type. A node in the graph made from the
+            - 3: CyJson Pathway Node type. A node in the graph made from the
                  CyJson pathway.
-            - 7: CyJson Pathway Edge type. An Edge between 2 nodes in the graph
+            - 4: CyJson Pathway Edge type. An Edge between 2 nodes in the graph
                  made from a CyJson pathway.
-
-            - 8: Group By type. A module implementing an operator allowing to make
-                 groups of other modules.
          */
 
-        [System.Serializable]
+        [Serializable, Obsolete("Deprecated since the multiplayer update")]
         public struct ModuleData
         {
-            public int typeID;//used as an enum but we only keep the int
+            public int typeID;
         }
 
+        [Obsolete("Deprecated since the multiplayer update.")]
         public static class ModulesData
         {
             #region - Tables -
@@ -70,7 +58,7 @@ namespace ECellDive
             public static void AddModule(ModuleData _md)
             {
                 visibleModules.Add(_md);
-                ScenesData.activeScene.nbModules++;
+               //ScenesData.activeScene.nbModules++;
             }
 
             /// <summary>
@@ -80,8 +68,8 @@ namespace ECellDive
             /// </summary>
             public static void ClearModulesBankWorldPos()
             {
-                modulesBankWorldPos.RemoveRange(modulesBankWorldPos.Count - ScenesData.activeScene.nbModules,
-                                                ScenesData.activeScene.nbModules);
+                //modulesBankWorldPos.RemoveRange(modulesBankWorldPos.Count - ScenesData.activeScene.nbModules,
+                //                                ScenesData.activeScene.nbModules);
             }
 
             /// <summary>
@@ -102,14 +90,14 @@ namespace ECellDive
                 //when using "i" this way.
                 if (ScenesData.activeScene.sceneID > 0)
                 {
-                    for (int i = modulesBank.Count;
-                          i > modulesBank.Count - ScenesData.activeScene.nbModules;
-                          i--)
-                    {
-                        visibleModules.Insert(0, modulesBank[i]);
-                    }
-                    modulesBank.RemoveRange(modulesBank.Count - ScenesData.activeScene.nbModules + 1,
-                                            ScenesData.activeScene.nbModules);
+                    //for (int i = modulesBank.Count;
+                    //      i > modulesBank.Count - ScenesData.activeScene.nbModules;
+                    //      i--)
+                    //{
+                    //    visibleModules.Insert(0, modulesBank[i]);
+                    //}
+                    //modulesBank.RemoveRange(modulesBank.Count - ScenesData.activeScene.nbModules + 1,
+                    //                        ScenesData.activeScene.nbModules);
                 }
 
                 //Second case where we are loading the modules from the root
@@ -144,10 +132,10 @@ namespace ECellDive
             /// modules at their last seen places.</remarks>
             public static void CaptureWorldPositions()
             {
-                foreach (GameObject _mdGO in ScenesData.refSceneManagerMonoBehaviour.instantiationData.modulesInstanceList)
-                {
-                    modulesBankWorldPos.Add(_mdGO.transform.position);
-                }
+                //foreach (GameObject _mdGO in ScenesData.refSceneManagerMonoBehaviour.instantiationData.modulesInstanceList)
+                //{
+                //    modulesBankWorldPos.Add(_mdGO.transform.position);
+                //}
             }
             #endregion
         }
