@@ -131,20 +131,20 @@ namespace ECellDive.Modules
                 _modFile.baseModelName
             });
 
-            Debug.Log(requestURL);
-
             requestURL = AddQueriesToURL(requestURL,
                 new string[]
                 {
                     "author",
                     "description",
-                    "modification"
+                    "modification",
+                    "view_name"
                 },
                 new string[]
                 {
                     _modFile.author,
                     _modFile.description,
-                    _modFile.modification
+                    _modFile.modification,
+                    targetSaveable.writingModificationFile.baseModelName
                 });
 
             Debug.Log(requestURL);

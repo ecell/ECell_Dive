@@ -77,12 +77,18 @@ namespace ECellDive
                 string knockouts = "";
                 int counter_true = 0;
 
+                Dictionary<string, ushort> reactionMatch = new Dictionary<string, ushort>();
+                ushort reactionMatchCount = 0;
                 foreach (IEdge _edgeData in LoadedCyJsonPathway.graphData.edges)
                 {
                     if (LoadedCyJsonPathway.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut.Value)
                     {
-                        knockouts += _edgeData.name + ",";
-                        counter_true++;
+                        if (!reactionMatch.TryGetValue(_edgeData.name, out reactionMatchCount))
+                        {
+                            reactionMatch[_edgeData.name] = 1;
+                            knockouts += "knockout_" + _edgeData.ID + ",";
+                            counter_true++;
+                        }
                     }
                 }
 
@@ -105,10 +111,12 @@ namespace ECellDive
             /// the <see cref="FBADiveRoomManager"/></param>
             public void GetModelSolution(string _modelName, string _knockouts)
             {
-                string requestURL = AddPagesToURL(new string[] { "solve", _modelName });
+                string requestURL = AddPagesToURL(new string[] { "solve2", _modelName });
                 if (_knockouts != "")
                 {
-                    requestURL = AddQueryToURL(requestURL, "knockouts", _knockouts, true);
+                    requestURL = AddQueriesToURL(requestURL,
+                        new string[] { "modification", "view_name" },
+                        new string[] { _knockouts, LoadedCyJsonPathway.graphData.name });
                 }
                 StartCoroutine(GetRequest(requestURL));
             }
