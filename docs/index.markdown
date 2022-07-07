@@ -4,3 +4,8 @@
 
 layout: home
 ---
+
+{% for entry in site.UserManual %}
+  <h2>{{ entry.title }} - {{ entry.position }}</h2>
+  <p>{{ entry.content | markdownify }}</p>
+{% endfor %}

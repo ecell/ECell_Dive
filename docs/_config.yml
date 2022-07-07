@@ -18,19 +18,20 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
-email: your-email@example.com
+title: ECellDive
+email: eliott.jacopin@riken.jp
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  ECellDive is a VR application for systems biology.
+  It is part of a research project exploring how
+  biologists will be working tomorrow in the context of metaverses.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+twitter_username: LittleCoinCoin1
+github_username:  LittleCoinCoin
 
 # Build settings
 theme: minima
+#remote_theme: just-the-docs/just-the-docs
 plugins:
   - jekyll-feed
 
@@ -53,3 +54,11 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# Site structure
+
+# Define Jekyll collections
+collections:
+  # Define a collection named "UserManual", its documents reside in the "_UserManual" directory
+  UserManual:
+    output: true
