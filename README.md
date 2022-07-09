@@ -7,6 +7,9 @@
 # Context
 ECellDive is a VR application for systems biology. It is part of a research project exploring how biologists will be working tomorrow in the context of metaverses. Our first target is to provide an integrated workspace for visualization, simulation and modelling of biological systems in real-time between colleagues. In the meantime, it will be the space of experimentations regarding exploration of data in a virtual reality environment. As such, this project is under active development and subject to a lot of changes: features may come and go depending on their actual usefullness.
 
+# Documentation
+Documentation about ECellDive's in-app features is accessible [here](https://ecell.github.io/ECell_Dive/). **Documentation about the source code will also be published soon.**
+
 # Quick start-up with iJO1366
 ## Installation
 ECellDive runs on the Meta Quest 2. The .apk file can be downloaded from the release page and installed on any Quest 2 heasdset thanks to [SideQuest](https://sidequestvr.com/).
