@@ -2,7 +2,7 @@
 <img src="https://img.shields.io/badge/unity-2020.3-green.svg?style=flat-square" alt="unity 2020.3">
 <img src="https://img.shields.io/badge/Virtual Reality-Meta Quest 2-green.svg?style=flat-square" alt="unity 2020.3">
 
-<img src="./docs/_includes/images/ecellDive_white_1280-990.png" width="640" height="495">
+<img src="./DocFX/resources/images/ecellDive_white_1280-990.png" width="640" height="495">
 
 # Context
 ECellDive is a VR application for systems biology. It is part of a research project exploring how biologists will be working tomorrow in the context of metaverses. Our first target is to provide an integrated workspace for visualization, simulation and modelling of biological systems in real-time between colleagues. In the meantime, it will be the space of experimentations regarding exploration of data in a virtual reality environment. As such, this project is under active development and subject to a lot of changes: features may come and go depending on their actual usefullness.

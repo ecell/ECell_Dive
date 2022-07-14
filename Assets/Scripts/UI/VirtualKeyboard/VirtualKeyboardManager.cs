@@ -88,7 +88,7 @@ namespace ECellDive
 
             /// <summary>
             /// Interfgace to display the Lower Case sub-layout of the
-            /// <see cref="VirtualKeyBoardData"> struct.
+            /// <see cref="VirtualKeyBoardData"/> struct.
             /// </summary>
             public void SwitchToLowerCaseVK()
             {
@@ -99,7 +99,7 @@ namespace ECellDive
 
             /// <summary>
             /// Interfgace to display the Num and Signs sub-layout of the
-            /// <see cref="VirtualKeyBoardData"> struct.
+            /// <see cref="VirtualKeyBoardData"/> struct.
             /// </summary>
             public void SwitchToNumAndSignsVK()
             {
@@ -110,7 +110,7 @@ namespace ECellDive
 
             /// <summary>
             /// Interfgace to display the Upper Case sub-layout of the
-            /// <see cref="VirtualKeyBoardData"> struct.
+            /// <see cref="VirtualKeyBoardData"/> struct.
             /// </summary>
             public void SwitchToUpperCaseVK()
             {
@@ -120,7 +120,7 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// Focuses the attention of the virtual keyboard on <paramref name="_targetInputField"/><
+            /// Focuses the attention of the virtual keyboard on <paramref name="_targetInputField"/>
             /// </summary>
             public void SetTargetInputField(TMP_InputField _targetInputField)
             {
