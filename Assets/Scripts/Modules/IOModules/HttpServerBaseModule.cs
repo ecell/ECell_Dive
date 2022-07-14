@@ -181,7 +181,7 @@ namespace ECellDive
             /// Typically used by the coroutines to wait until the
             /// request sent to the servers has been processed.
             /// </summary>
-            /// <returns><see cref="requestProcessed"/></returns>
+            /// <returns><see cref="RequestData.requestProcessed"/></returns>
             protected bool isRequestProcessed()
             {
                 return requestData.requestProcessed;
