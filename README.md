@@ -40,6 +40,6 @@ In progress
 
 ## Videos
 
-- *ECellDive alpha-0.8.3 | WIP*. March 2022. Supplementary Material of a poster presented at RIKEN BDR Symposium on the theme ["Emergence in Biological Systems: Challenges to Bridging Hierarchies"](https://www2.bdr.riken.jp/sympo/2022/)
+- *ECellDive  v0.10.0-alpha, ISMB Biovis 2022 Poster 42, WIP*. July 2022. Poster video for the 30th conference on [Intelligent Systems for Molecular Biology](https://www.iscb.org/ismb2022)
 
-[![Alt text](https://img.youtube.com/vi/bJ2kC5_XLx8/0.jpg)](https://youtu.be/bJ2kC5_XLx8)
+[![Alt text](https://img.youtube.com/vi/AODXRwEa3WI/0.jpg)](https://youtu.be/AODXRwEa3WI)
