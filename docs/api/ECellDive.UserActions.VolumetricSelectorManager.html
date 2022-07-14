@@ -1,0 +1,1061 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class VolumetricSelectorManager
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class VolumetricSelectorManager
+   ">
+    <meta name="generator" content="docfx 2.59.3.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ECellDive.UserActions.VolumetricSelectorManager">
+  
+  
+  <h1 id="ECellDive_UserActions_VolumetricSelectorManager" data-uid="ECellDive.UserActions.VolumetricSelectorManager" class="text-break">Class VolumetricSelectorManager
+  </h1>
+  <div class="markdown level0 summary"><p>The logic to control a collider that can be used to perform volumetric
+selection of objects in the scene. It can be moved forward
+or backward and scaled up or down. The objects that collide with it
+are sent to the <a class="xref" href="ECellDive.UserActions.GroupsMakingManager.html">GroupsMakingManager</a></p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
+    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
+    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
+    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
+    <div class="level5"><span class="xref">Unity.Netcode.NetworkBehaviour</span></div>
+    <div class="level6"><span class="xref">VolumetricSelectorManager</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.__rpc_exec_stage</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendServerRpc(System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendServerRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendClientRpc(System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendClientRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkBehaviour(System.UInt16)</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.OnGainedOwnership()</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.OnLostOwnership()</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkObjectParentChanged(Unity.Netcode.NetworkObject)</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkObject(System.UInt64)</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.OnDestroy()</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkManager</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.IsLocalPlayer</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwner</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.IsServer</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.IsClient</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.IsHost</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwnedByServer</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.IsSpawned</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObject</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.HasNetworkObject</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObjectId</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkBehaviourId</span>
+    </div>
+    <div>
+      <span class="xref">Unity.Netcode.NetworkBehaviour.OwnerClientId</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.Invoke(System.String, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.InvokeRepeating(System.String, System.Single, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.Collections.IEnumerator)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine_Auto(System.Collections.IEnumerator)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.Collections.IEnumerator)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(UnityEngine.Coroutine)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StopAllCoroutines()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.print(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.useGUILayout</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.runInEditMode</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Behaviour.enabled</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Behaviour.isActiveAndEnabled</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponent(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponent&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.TryGetComponent(System.Type, UnityEngine.Component)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.TryGetComponent&lt;T&gt;(T)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInParent(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInParent&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponents(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponents(System.Type, System.Collections.Generic.List&lt;UnityEngine.Component&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.CompareTag(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessage(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessage(System.String, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.transform</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.gameObject</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.tag</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.GetInstanceID()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.name</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.hideFlags</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.UserActions.html">ECellDive.UserActions</a></h6>
+  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h5 id="ECellDive_UserActions_VolumetricSelectorManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class VolumetricSelectorManager : NetworkBehaviour, IHighlightable</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_defaultPosition.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.defaultPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L48">View Source</a>
+  </span>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_defaultPosition" data-uid="ECellDive.UserActions.VolumetricSelectorManager.defaultPosition">defaultPosition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Header(&quot;Movement Parameters&quot;)]
+public Vector3 defaultPosition</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_defaultScale.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.defaultScale%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L54">View Source</a>
+  </span>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_defaultScale" data-uid="ECellDive.UserActions.VolumetricSelectorManager.defaultScale">defaultScale</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Header(&quot;Scale Parameters&quot;)]
+public Vector3 defaultScale</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_distanceAndScaleAction.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.distanceAndScaleAction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L45">View Source</a>
+  </span>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_distanceAndScaleAction" data-uid="ECellDive.UserActions.VolumetricSelectorManager.distanceAndScaleAction">distanceAndScaleAction</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InputActionReference distanceAndScaleAction</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.InputSystem.InputActionReference</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_growthSpeed.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.growthSpeed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L59">View Source</a>
+  </span>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_growthSpeed" data-uid="ECellDive.UserActions.VolumetricSelectorManager.growthSpeed">growthSpeed</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Range(0F, 1F)]
+public float growthSpeed</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_maxDistance.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.maxDistance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L49">View Source</a>
+  </span>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_maxDistance" data-uid="ECellDive.UserActions.VolumetricSelectorManager.maxDistance">maxDistance</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float maxDistance</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_maxScaleFactor.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.maxScaleFactor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L57">View Source</a>
+  </span>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_maxScaleFactor" data-uid="ECellDive.UserActions.VolumetricSelectorManager.maxScaleFactor">maxScaleFactor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float maxScaleFactor</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_minScaleFactor.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.minScaleFactor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L55">View Source</a>
+  </span>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_minScaleFactor" data-uid="ECellDive.UserActions.VolumetricSelectorManager.minScaleFactor">minScaleFactor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float minScaleFactor</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_movementSpeed.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.movementSpeed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L50">View Source</a>
+  </span>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_movementSpeed" data-uid="ECellDive.UserActions.VolumetricSelectorManager.movementSpeed">movementSpeed</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Range(0F, 1F)]
+public float movementSpeed</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_refGrpMkgManager.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.refGrpMkgManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L44">View Source</a>
+  </span>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_refGrpMkgManager" data-uid="ECellDive.UserActions.VolumetricSelectorManager.refGrpMkgManager">refGrpMkgManager</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GroupsMakingManager refGrpMkgManager</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ECellDive.UserActions.GroupsMakingManager.html">GroupsMakingManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_defaultColor.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.defaultColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L22">View Source</a>
+  </span>
+  <a id="ECellDive_UserActions_VolumetricSelectorManager_defaultColor_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.defaultColor*"></a>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_defaultColor" data-uid="ECellDive.UserActions.VolumetricSelectorManager.defaultColor">defaultColor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NetworkVariable&lt;Color&gt; defaultColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">UnityEngine.Color</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_forceHighlight.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.forceHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L36">View Source</a>
+  </span>
+  <a id="ECellDive_UserActions_VolumetricSelectorManager_forceHighlight_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.forceHighlight*"></a>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_forceHighlight" data-uid="ECellDive.UserActions.VolumetricSelectorManager.forceHighlight">forceHighlight</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool forceHighlight { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_highlightColor.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.highlightColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L29">View Source</a>
+  </span>
+  <a id="ECellDive_UserActions_VolumetricSelectorManager_highlightColor_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.highlightColor*"></a>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_highlightColor" data-uid="ECellDive.UserActions.VolumetricSelectorManager.highlightColor">highlightColor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color highlightColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_ManageActive_System_Boolean_.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.ManageActive(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L189">View Source</a>
+  </span>
+  <a id="ECellDive_UserActions_VolumetricSelectorManager_ManageActive_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.ManageActive*"></a>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_ManageActive_System_Boolean_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.ManageActive(System.Boolean)">ManageActive(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Controls whether the volumetric selector is activated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ManageActive(bool _active)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">_active</span></td>
+        <td><p>If True, the collider is enabled and
+the selector highlighted. If False, the collider is disabled
+and the selector has a default color.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_OnNetworkDespawn.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.OnNetworkDespawn%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L101">View Source</a>
+  </span>
+  <a id="ECellDive_UserActions_VolumetricSelectorManager_OnNetworkDespawn_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.OnNetworkDespawn*"></a>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_OnNetworkDespawn" data-uid="ECellDive.UserActions.VolumetricSelectorManager.OnNetworkDespawn">OnNetworkDespawn()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnNetworkDespawn()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkDespawn()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_OnNetworkSpawn.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.OnNetworkSpawn%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L92">View Source</a>
+  </span>
+  <a id="ECellDive_UserActions_VolumetricSelectorManager_OnNetworkSpawn_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.OnNetworkSpawn*"></a>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_OnNetworkSpawn" data-uid="ECellDive.UserActions.VolumetricSelectorManager.OnNetworkSpawn">OnNetworkSpawn()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnNetworkSpawn()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkSpawn()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_ResetTransform.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.ResetTransform%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L256">View Source</a>
+  </span>
+  <a id="ECellDive_UserActions_VolumetricSelectorManager_ResetTransform_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.ResetTransform*"></a>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_ResetTransform" data-uid="ECellDive.UserActions.VolumetricSelectorManager.ResetTransform">ResetTransform()</h4>
+  <div class="markdown level1 summary"><p>Resets the gameobject trasnforms to start position and scale.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetTransform()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_SetDefaultColor_UnityEngine_Color_.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.SetDefaultColor(UnityEngine.Color)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L264">View Source</a>
+  </span>
+  <a id="ECellDive_UserActions_VolumetricSelectorManager_SetDefaultColor_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.SetDefaultColor*"></a>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_SetDefaultColor_UnityEngine_Color_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.SetDefaultColor(UnityEngine.Color)">SetDefaultColor(Color)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void SetDefaultColor(Color _c)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Color</span></td>
+        <td><span class="parametername">_c</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_SetHighlight.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.SetHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L274">View Source</a>
+  </span>
+  <a id="ECellDive_UserActions_VolumetricSelectorManager_SetHighlight_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.SetHighlight*"></a>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_SetHighlight" data-uid="ECellDive.UserActions.VolumetricSelectorManager.SetHighlight">SetHighlight()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetHighlight()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_SetHighlightColor_UnityEngine_Color_.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.SetHighlightColor(UnityEngine.Color)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L269">View Source</a>
+  </span>
+  <a id="ECellDive_UserActions_VolumetricSelectorManager_SetHighlightColor_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.SetHighlightColor*"></a>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_SetHighlightColor_UnityEngine_Color_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.SetHighlightColor(UnityEngine.Color)">SetHighlightColor(Color)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void SetHighlightColor(Color _c)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Color</span></td>
+        <td><span class="parametername">_c</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager_UnsetHighlight.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager.UnsetHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L280">View Source</a>
+  </span>
+  <a id="ECellDive_UserActions_VolumetricSelectorManager_UnsetHighlight_" data-uid="ECellDive.UserActions.VolumetricSelectorManager.UnsetHighlight*"></a>
+  <h4 id="ECellDive_UserActions_VolumetricSelectorManager_UnsetHighlight" data-uid="ECellDive.UserActions.VolumetricSelectorManager.UnsetHighlight">UnsetHighlight()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnsetHighlight()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/new/source_doc/apiSpec/new?filename=ECellDive_UserActions_VolumetricSelectorManager.md&amp;value=---%0Auid%3A%20ECellDive.UserActions.VolumetricSelectorManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/blob/source_doc/Assets/Scripts/Player/VolumetricSelectorManager.cs/#L16" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
