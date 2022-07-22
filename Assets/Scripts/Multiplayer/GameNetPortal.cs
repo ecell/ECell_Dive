@@ -5,6 +5,7 @@ using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using ECellDive.Interfaces;
+using ECellDive.Modules;
 using ECellDive.UI;
 using ECellDive.UserActions;
 using ECellDive.Utility;
@@ -89,6 +90,7 @@ namespace ECellDive.Multiplayer
             private set => m_settings = value;
         }
 
+        public List<IMlprData> dataModules = new List<IMlprData>();
         public List<IModifiable> modifiables = new List<IModifiable>();
         public List<ISaveable> saveables = new List<ISaveable>();
         public Dictionary<ulong, NetSessionPlayerData> netSessionPlayersDataMap = new Dictionary<ulong, NetSessionPlayerData>();
@@ -157,10 +159,10 @@ namespace ECellDive.Multiplayer
         /// on the host). It is named to match NetworkBehaviour.OnNetworkSpawn,
         /// and serves the same role, even though GameNetPortal itself isn't a NetworkBehaviour.
         /// </summary>
-        private void OnNetworkReady(ulong clientId)
+        private void OnNetworkReady(ulong _clientId)
         {
-            Debug.Log("OnNetworkReady called from Client Connection");
-            if (clientId == NetManager.LocalClientId)
+            Debug.Log($"OnNetworkReady called from Client Connection with id {_clientId}");
+            if (_clientId == NetManager.LocalClientId)
             {
                 if (NetManager.IsHost)
                 {
@@ -172,6 +174,11 @@ namespace ECellDive.Multiplayer
 
                 m_ClientPortal.OnNetworkReady();
                 m_ServerPortal.OnNetworkReady();
+            }
+
+            if (NetManager.IsServer)
+            {
+                StartCoroutine(SendData(_clientId));
             }
         }
 
@@ -218,6 +225,38 @@ namespace ECellDive.Multiplayer
             }
             yield return new WaitForSeconds(1f);
             MultiplayerMenuManager.SetMessage(msgStr);
+        }
+
+        /// <summary>
+        /// Synchronizes the content of the data modules that already exist
+        /// in the scene (and stored in <see cref="dataModules"/>) for the
+        /// client with id <paramref name="_clientID"/>.
+        /// </summary>
+        /// <param name="_clientID">The id of the target client to which
+        /// we send the content of the data modules in the scene.</param>
+        /// <remarks>This should be used only with (or after) <see
+        /// cref="OnNetworkReady(ulong)"/> to be sure that the data modules
+        /// have been spawned in the scene of the target client.</remarks>
+        private IEnumerator SendData(ulong _clientID)
+        {
+            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                $"Synchronizing data with newly connected client {_clientID}." +
+                $"There are {dataModules.Count} modules to synchronize.");
+            int nbClientReadyLoaded;
+            foreach (IMlprData mlprData in dataModules)
+            {
+                Debug.Log($"Sending data {mlprData.sourceDataName}");
+                nbClientReadyLoaded = mlprData.nbClientReadyLoaded.Value;
+                StartCoroutine(mlprData.SendSourceDataC(_clientID));
+
+                //We wait for the current data to be completely loaded
+                //in the scene of the new client before starting to load
+                //the next one (next step of the foreach loop.
+                //We know when the data has been loaded once the network
+                //variable storing the number of client that has loaded
+                //the data has been incremented by 1.
+                yield return new WaitUntil(() => mlprData.nbClientReadyLoaded.Value == nbClientReadyLoaded + 1);
+            }
         }
 
         public void SetConnectionSettings(string _name, string _ip, ushort _port, string _password)

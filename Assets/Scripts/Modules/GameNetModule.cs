@@ -27,8 +27,6 @@ namespace ECellDive
                                     IInfoTags,
                                     INamed,
                                     IMlprData,
-                                    IMlprDataBroadcast,
-                                    IMlprDataRequest,
                                     IMlprVisibility
         {
             protected Collider m_Collider;
@@ -450,19 +448,7 @@ namespace ECellDive
                 //isReadyForGeneration = true;
             }
 
-            [ServerRpc(RequireOwnership = false)]
-            public void ConfirmSourceDataReceptionServerRpc()
-            {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
-                        "A Client Confirms reception of all the fragments.");
-                nbClientReadyLoaded.Value++;
-                if (nbClientReadyLoaded.Value == NetworkManager.Singleton.ConnectedClientsIds.Count)
-                {
-                    isReadyForGeneration.Value = true;
-                }
-            }
-
-            private IEnumerator BroadcastData()
+            public IEnumerator BroadcastSourceDataC()
             {
                 yield return new WaitForEndOfFrame();
 
@@ -477,30 +463,6 @@ namespace ECellDive
                 StartCoroutine(BroadcastSourceDataFragsC(fragmentedSourceData));
             }
 
-            public void DirectRecieveSourceData(byte[] _sourceDataName, List<byte[]> _fragmentedSourceData)
-            {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
-                        "The module received its local copy of the fragmented data.");
-                fragmentedSourceData = _fragmentedSourceData;
-                sourceDataName = _sourceDataName;
-                sourceDataNbFrags = _fragmentedSourceData.Count;
-
-                ConfirmSourceDataReceptionServerRpc();
-                AssembleFragmentedData();
-
-                StartCoroutine(BroadcastData());
-            }
-
-            [ServerRpc(RequireOwnership = false)]
-            public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
-            {
-                Debug.LogError("No Generation scheme has been defined for this GameNetModule. " +
-                    "Please, override this method and code how you the data stored in this module" +
-                    " should be represented in the scene.");
-            }
-            #endregion
-
-            #region - IMlprDataExchange Methods -
             [ClientRpc]
             public void BroadcastSourceDataFragClientRpc(byte[] _fragment)
             {
@@ -565,12 +527,103 @@ namespace ECellDive
                 foreach (byte[] _frag in _fragmentedSourceData)
                 {
                     BroadcastSourceDataFragServerRpc(_frag);
-                    yield return new WaitForEndOfFrame();
+                    yield return new WaitForEndOfFrame();//waiting to avoid going over max network payload
+                }
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            public void ConfirmSourceDataReceptionServerRpc()
+            {
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                        "A Client Confirms reception of all the fragments.");
+                nbClientReadyLoaded.Value++;
+                if (nbClientReadyLoaded.Value == NetworkManager.Singleton.ConnectedClientsIds.Count)
+                {
+                    isReadyForGeneration.Value = true;
+                }
+            }
+
+            public void DirectReceiveSourceData(byte[] _sourceDataName, List<byte[]> _fragmentedSourceData)
+            {
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                        "The module received its local copy of the fragmented data.");
+                fragmentedSourceData = _fragmentedSourceData;
+                sourceDataName = _sourceDataName;
+                sourceDataNbFrags = _fragmentedSourceData.Count;
+
+                ConfirmSourceDataReceptionServerRpc();
+                AssembleFragmentedData();
+
+                StartCoroutine(BroadcastSourceDataC());
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
+            {
+                Debug.LogError("No Generation scheme has been defined for this GameNetModule. " +
+                    "Please, override this method and code how you the data stored in this module" +
+                    " should be represented in the scene.");
+            }
+
+            public IEnumerator SendSourceDataC(ulong _targetClientID)
+            {
+                ClientRpcParams clientRpcParams = new ClientRpcParams
+                {
+                    Send = new ClientRpcSendParams
+                    {
+                        TargetClientIds = new ulong[] { _targetClientID },
+                    }
+                };
+
+                SendSourceDataNameClientRpc(sourceDataName, clientRpcParams);
+
+                yield return new WaitForEndOfFrame();
+
+                SendSourceDataNbFragsClientRpc((ushort)sourceDataNbFrags, clientRpcParams);
+
+                yield return new WaitForEndOfFrame();
+
+                StartCoroutine(SendSourceDataFragsC(fragmentedSourceData, clientRpcParams));
+            }
+
+            [ClientRpc]
+            public void SendSourceDataFragClientRpc(byte[] _fragment, ClientRpcParams _clientRpcParams)
+            {
+                fragmentedSourceData.Add(_fragment);
+                if (fragmentedSourceData.Count == sourceDataNbFrags)
+                {
+                    ConfirmSourceDataReceptionServerRpc();
+                    AssembleFragmentedData();
+                }
+            }
+
+            [ClientRpc]
+            public void SendSourceDataNameClientRpc(byte[] _name, ClientRpcParams _clientRpcParams)
+            {
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                        "Client receives source data name.");
+                sourceDataName = _name;
+            }
+
+            [ClientRpc]
+            public void SendSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags, ClientRpcParams _clientRpcParams)
+            {
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                        "Client receives source nb frags.");
+                sourceDataNbFrags = _sourceDataNbFrags;
+            }
+
+            public IEnumerator SendSourceDataFragsC(List<byte[]> _fragmentedSourceData, ClientRpcParams _clientRpcParams)
+            {
+                foreach (byte[] _frag in _fragmentedSourceData)
+                {
+                    SendSourceDataFragClientRpc(_frag, _clientRpcParams);
+                    yield return new WaitForEndOfFrame();//waiting to avoid going over max network payload
                 }
             }
             #endregion
 
-            #region - IMlprVisibility -
+                #region - IMlprVisibility -
 
             public virtual void ManageActivationStatus(bool _previous, bool _current)
             {

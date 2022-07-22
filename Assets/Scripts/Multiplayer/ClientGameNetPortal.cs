@@ -141,11 +141,7 @@ namespace ECellDive.Multiplayer
         /// </summary>
         public void StartClient()
         {
-            Debug.Log("Building Client payload and connecting.");
             string payload = JsonUtility.ToJson(m_Portal.GetConnectionPayload());
-
-            Debug.Log("Client is connecting with payload:\n" + payload);
-
             byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
 
             m_Portal.NetManager.NetworkConfig.ConnectionData = payloadBytes;
