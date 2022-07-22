@@ -42,9 +42,7 @@ namespace ECellDive
             /// </summary>
             public List<GameNetModule> loadedModules;
 
-            /// <summary>
-            /// Indeces of sceneData in the sceneBank of Dive scenes that take root in this scene.
-            /// </summary>
+
             //public NetworkList<int> childrenScenes; 
 
             public SceneData(int _sceneID, int _parentSceneID)
@@ -363,10 +361,16 @@ namespace ECellDive
             /// This method can only be called on the SERVER. So, be sure to call from a server object
             /// or called inside a ServerRpc.
             /// </summary>
-            /// <param name="_sceneId">The Id of the scene in which it the new game object is instantiated.</param>
-            /// <param name="_prefab">The gameobject to instantiate and spawn.
-            /// It MUST be a <see cref="GameNetModule"/> and a <see cref="NetworkObject"/>.</param>
-            /// <param name="_position">The position at which to instantiate the gameobject.</param>
+            /// <param name="_sceneId">
+            /// The Id of the scene in which it the new game object is instantiated.
+            /// </param>
+            /// <param name="_prefab">
+            /// The gameobject to instantiate and spawn.
+            /// It MUST be a <see cref="GameNetModule"/> and a <see cref="NetworkObject"/>.
+            /// </param>
+            /// <param name="_position">
+            /// The position at which to instantiate the gameobject.
+            /// </param>
             /// <returns>The game object that got instantiated & spawned.</returns>
             public GameObject SpawnModuleInScene(int _sceneId, GameObject _prefab, Vector3 _position)
             {
@@ -390,8 +394,6 @@ namespace ECellDive
             /// <param name="_prefabIdx">The index of the game object in the .
             /// It MUST be a <see cref="GameNetModule"/> and a <see cref="NetworkObject"/>.</param>
             /// <param name="_position">The position at which to instantiate the gameobject.</param>
-            /// <param name="hide">Whether to call <see cref="GameNetModule.NetHide"/> BEFORE spawn
-            /// to globally hide the network object.</param>
             /// <returns>The game object that got instantiated & spawned.</returns>
             public GameObject SpawnModuleInScene(int _sceneId, int _prefabIdx, Vector3 _position)
             {

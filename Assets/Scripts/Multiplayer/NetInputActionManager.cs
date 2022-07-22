@@ -67,7 +67,7 @@ namespace ECellDive.Multiplayer
         /// Enable all actions referenced by this component.
         /// </summary>
         /// <remarks>
-        /// This function will automatically be called when this <see cref="InputActionManager"/> component is enabled.
+        /// This function will automatically be called when this <see cref="NetInputActionManager"/> component is enabled.
         /// However, this method can be called to enable input manually, such as after disabling it with <see cref="DisableInput"/>.
         /// <br />
         /// Note that enabling inputs will only enable the action maps contained within the referenced
@@ -92,7 +92,7 @@ namespace ECellDive.Multiplayer
         /// Disable all actions referenced by this component.
         /// </summary>
         /// <remarks>
-        /// This function will automatically be called when this <see cref="InputActionManager"/> component is disabled.
+        /// This function will automatically be called when this <see cref="NetInputActionManager"/> component is disabled.
         /// However, this method can be called to disable input manually, such as after enabling it with <see cref="EnableInput"/>.
         /// <br />
         /// Note that disabling inputs will only disable the action maps contained within the referenced

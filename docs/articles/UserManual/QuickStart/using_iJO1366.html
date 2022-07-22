@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Importing iJO1366 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Importing iJO1366 ">
+    <meta name="generator" content="docfx 2.59.3.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h2 id="importing-ijo1366">Importing iJO1366</h2>
+
+<p>Open the main menu and navigate to the module menu. Add a <a href="/articles/UserManual/Modules/remote_importer_module.html">remote importer module</a> to the dive scene. Enter the IP address where your instance of answer_talker is hosted and request the list of available modules. You should have access to iJO1366 by default: click on the corresponding button to import the data.</p>
+<h2 id="diving-in-ijo1366">Diving in iJO1366</h2>
+<p>Once iJO1366 is in the scene, point at the 3D model of the module with the <a href="/articles/UserManual/Controls/ray_based_interaction_controls.html">Ray-based Interaction Controls</a> and hold the main button of the controller you are using for 1 second to dive into it (either <em>A Button</em> or <em>X Button</em>). <strong>This takes about 10 seconds. For now, there is no visual, sound or haptic feedback to tell you that you are currently diving. But there is actually a noticeable framerate drop because the process is too intense for the Meta Quest 2 hardware. This is obviously not the intended behaviour and we are still figuring out how to make this step smoother.</strong></p>
+<h2 id="visualizing-the-main-parts-of-the-pathway">Visualizing the main parts of the pathway.</h2>
+<p>Once you can see the pathway, you are free to <a href="/articles/UserManual/Controls/movement_controls.html">move around</a> the dive scene to explore and familiarize yourself with its structure. Navigate to the Module menu and add a <a href="/articles/UserManual/Modules/groupby_module.html">GroupBy module</a> to the dive scene. Click on <em>edges</em> and select <em>Subsystem</em> to group edges according to the main parts of the pathway (membrane transport, glycolysis, citric acid cycle, etc...).</p>
+<h2 id="requesting-a-flux-balance-analysis">Requesting a flux balance analysis.</h2>
+<p>Get back to the module menu and add a <a href="/articles/UserManual/Modules/fba_module.html">FBA module</a>. Input the IP address where your instance of answer_talker is hosted and request the FBA to run. This takes 2-3 seconds.
+Running the FBA will reset the color of the edges. You can visualize back the groups you defined by navigating to the <a href="/articles/UserManual/UIMenus/groups_menu.html">Groups menu</a> and checking/unchecking the checkbox associated with the group you are interrested in.
+You can knockout reactions if you wish by pointing at them with the <a href="/articles/UserManual/Controls/ray_based_interaction_controls.html">Ray-based Interaction Controls</a> and pressing the <em>Front Trigger</em>. A knocked out reaction will appear as a solide edge instead of dashed. After knocking out the reactions you are interrested in, you can re-run the FBA.</p>
+<h2 id="saving-the-mofications">Saving the mofications.</h2>
+<p>You can save the current state of iJO1366 (knocked out reactions) thanks to the <a href="/articles/UserManual/Modules/modification_handler_module.html">Modifications Handler Module</a>. In the <em>Server Parameters</em> panel, input the IP address where your instance of <em>answer_talker</em> is hosted. Then, select the base model for which you wish to save the modifications (in this case it should be iJO1366). Chose a name for the file if you wish to (by default it will be <em>NameOfBaseModel_yyyyMMddTHHmmssZ</em>). After hitting the <em>Save Button</em>, you can confirm whether the file was correctly saved by taking a look at the last Trace message in the <a href="/articles/UserManual/UIMenus/log_menu.html">Log menu</a> or by clicking the <em>Query Available Modification Files Button</em>. In the latter case, the new file should appear in the <em>Modification Files</em> panel.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/QuickStart/using_iJO1366.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

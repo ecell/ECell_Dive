@@ -140,7 +140,7 @@ namespace ECellDive
 
             /// <summary>
             /// Translates the information about knockedout reactions stored
-            /// in <see cref="Knockouts"/> as a string usable for a request
+            /// in <see cref="koModifications"/> as a string usable for a request
             /// to the server.
             /// </summary>
             /// <returns>A string listing the knockedout reactions.</returns>

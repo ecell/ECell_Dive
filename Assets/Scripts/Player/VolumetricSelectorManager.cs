@@ -11,7 +11,7 @@ namespace ECellDive
         /// The logic to control a collider that can be used to perform volumetric
         /// selection of objects in the scene. It can be moved forward
         /// or backward and scaled up or down. The objects that collide with it
-        /// are sent to the <seealso cref="GroupMakingManager"/>
+        /// are sent to the <seealso cref="GroupsMakingManager"/>
         /// </summary>
         public class VolumetricSelectorManager : NetworkBehaviour,
                                                     IHighlightable

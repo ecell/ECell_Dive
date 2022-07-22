@@ -1,0 +1,2 @@
+## Groups Menu
+The menu to visualize the groups of elements that have been either specifically defined by the user or [automatically grouped](/articles/UserManual/Modules/groupby_module.html) together according to some metadate.

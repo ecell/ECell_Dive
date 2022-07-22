@@ -81,7 +81,7 @@ namespace ECellDive
         /// <summary>
         /// The interface encoding the required properties to use
         /// the an edge (<seealso cref="INode"/>) of a graph
-        /// (<seealso cref="INetwork"/>) in a GameObject.
+        /// (<seealso cref="IGraph"/>) in a GameObject.
         /// </summary>
         public interface INodeGO
         {
@@ -99,7 +99,7 @@ namespace ECellDive
         /// <summary>
         /// The interface encoding the required properties to use
         /// the an edge (<seealso cref="IEdge"/>) of a graph
-        /// (<seealso cref="INetwork"/>) in a GameObject.
+        /// (<seealso cref="IGraph"/>) in a GameObject.
         /// </summary>
         public interface IEdgeGO
         {
