@@ -53,8 +53,6 @@ namespace ECellDive
                 Destroy(gameObject);
             }
 
-            
-
             /// <summary>
             /// Public method to be used by external objects that globally controls the
             /// activation or deactivation of the visualization of the group.
@@ -93,7 +91,6 @@ namespace ECellDive
             /// <summary>
             /// Sets the data about the group represented by the GUI this script is attached to.
             /// </summary>
-            /// <param name="_data"></param>
             public void SetData(GroupData _data)
             {
                 groupData = _data;

@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IMlprVisibility
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IMlprVisibility
+   ">
+    <meta name="generator" content="docfx 2.59.3.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ECellDive.Interfaces.IMlprVisibility">
+  
+  
+  <h1 id="ECellDive_Interfaces_IMlprVisibility" data-uid="ECellDive.Interfaces.IMlprVisibility" class="text-break">Interface IMlprVisibility
+  </h1>
+  <div class="markdown level0 summary"><p>The interface used to manipulate the visibility status of a
+network object. We cannot use Netcode's API for that (<span class="xref">Unity.Netcode.NetworkObject.NetworkHide(System.UInt64)</span> and <span class="xref">Unity.Netcode.NetworkObject.NetworkShow(System.UInt64)</span>) because the Server
+cannot be affected by it. It is an understandable behaviour
+as it seems that this API  simply deletes the replicated
+version of a NetworkObject for a target client.
+However, we also want to the host to not see some NetworkObject.
+Namely, the content of a scene that the host may not have dived
+in.</p>
+<p>
+So, we define our own NetworkObject visibility scheme
+which will unable network-replicated but locally executed
+activation/deactivate of the whole gameobject when there are no
+divers that are interacting with them; and hide/show the graphics
+when at least one diver is currently seeing them but not everyone
+should. That way, an object can be activate but hidden: it will then
+receive network updates related to another client interacting with it
+but will stay hidden from the local client.
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Interfaces.html">ECellDive.Interfaces</a></h6>
+  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h5 id="ECellDive_Interfaces_IMlprVisibility_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IMlprVisibility</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprVisibility_isActivated.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprVisibility.isActivated%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L121">View Source</a>
+  </span>
+  <a id="ECellDive_Interfaces_IMlprVisibility_isActivated_" data-uid="ECellDive.Interfaces.IMlprVisibility.isActivated*"></a>
+  <h4 id="ECellDive_Interfaces_IMlprVisibility_isActivated" data-uid="ECellDive.Interfaces.IMlprVisibility.isActivated">isActivated</h4>
+  <div class="markdown level1 summary"><p>Network variable keeping track of whether a NetworkObject's
+gameobject is selfActive = true for at least one replicated
+version of it on the network.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">NetworkVariable&lt;bool&gt; isActivated { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprVisibility_ManageActivationStatus_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprVisibility.ManageActivationStatus(System.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L128">View Source</a>
+  </span>
+  <a id="ECellDive_Interfaces_IMlprVisibility_ManageActivationStatus_" data-uid="ECellDive.Interfaces.IMlprVisibility.ManageActivationStatus*"></a>
+  <h4 id="ECellDive_Interfaces_IMlprVisibility_ManageActivationStatus_System_Boolean_System_Boolean_" data-uid="ECellDive.Interfaces.IMlprVisibility.ManageActivationStatus(System.Boolean,System.Boolean)">ManageActivationStatus(Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Intended to active/deactivate the gameobject's version
+of the local client on value change of <a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html#ECellDive_Interfaces_IMlprVisibility_isActivated">isActivated</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ManageActivationStatus(bool _previous, bool _current)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">_previous</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">_current</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprVisibility_NetHide.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprVisibility.NetHide%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L136">View Source</a>
+  </span>
+  <a id="ECellDive_Interfaces_IMlprVisibility_NetHide_" data-uid="ECellDive.Interfaces.IMlprVisibility.NetHide*"></a>
+  <h4 id="ECellDive_Interfaces_IMlprVisibility_NetHide" data-uid="ECellDive.Interfaces.IMlprVisibility.NetHide">NetHide()</h4>
+  <div class="markdown level1 summary"><p>Intended to disable graphics (and Colliders or anything
+else that could allow the local client to interact with
+the game object) for the gameobject's version of the
+local client.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void NetHide()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprVisibility_NetHideClientRpc_Unity_Netcode_ClientRpcParams_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprVisibility.NetHideClientRpc(Unity.Netcode.ClientRpcParams)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L144">View Source</a>
+  </span>
+  <a id="ECellDive_Interfaces_IMlprVisibility_NetHideClientRpc_" data-uid="ECellDive.Interfaces.IMlprVisibility.NetHideClientRpc*"></a>
+  <h4 id="ECellDive_Interfaces_IMlprVisibility_NetHideClientRpc_Unity_Netcode_ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprVisibility.NetHideClientRpc(Unity.Netcode.ClientRpcParams)">NetHideClientRpc(ClientRpcParams)</h4>
+  <div class="markdown level1 summary"><p>The equivalent of <a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html#ECellDive_Interfaces_IMlprVisibility_NetHide">NetHide()</a> but for the server
+to call.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ClientRpc]
+void NetHideClientRpc(ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Unity.Netcode.ClientRpcParams</span></td>
+        <td><span class="parametername">_clientRpcParams</span></td>
+        <td><p>Params to target a specific
+client.<span class="xref">Unity.Netcode.ClientRpcParams</span></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprVisibility_NetShow.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprVisibility.NetShow%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L153">View Source</a>
+  </span>
+  <a id="ECellDive_Interfaces_IMlprVisibility_NetShow_" data-uid="ECellDive.Interfaces.IMlprVisibility.NetShow*"></a>
+  <h4 id="ECellDive_Interfaces_IMlprVisibility_NetShow" data-uid="ECellDive.Interfaces.IMlprVisibility.NetShow">NetShow()</h4>
+  <div class="markdown level1 summary"><p>Intended to enable graphics (and Colliders or anything
+else that could allow the local client to interact with
+the game object) for the gameobject's version of the
+local client.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ClientRpc]
+void NetShow()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprVisibility_NetShowClientRpc_Unity_Netcode_ClientRpcParams_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprVisibility.NetShowClientRpc(Unity.Netcode.ClientRpcParams)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L162">View Source</a>
+  </span>
+  <a id="ECellDive_Interfaces_IMlprVisibility_NetShowClientRpc_" data-uid="ECellDive.Interfaces.IMlprVisibility.NetShowClientRpc*"></a>
+  <h4 id="ECellDive_Interfaces_IMlprVisibility_NetShowClientRpc_Unity_Netcode_ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprVisibility.NetShowClientRpc(Unity.Netcode.ClientRpcParams)">NetShowClientRpc(ClientRpcParams)</h4>
+  <div class="markdown level1 summary"><p>The equivalent of <a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html#ECellDive_Interfaces_IMlprVisibility_NetShow">NetShow()</a> but for the server
+to call.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ClientRpc]
+void NetShowClientRpc(ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Unity.Netcode.ClientRpcParams</span></td>
+        <td><span class="parametername">_clientRpcParams</span></td>
+        <td><p>Params to target a specific
+client.<span class="xref">Unity.Netcode.ClientRpcParams</span></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprVisibility_RequestSetActiveServerRpc_System_Boolean_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprVisibility.RequestSetActiveServerRpc(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L170">View Source</a>
+  </span>
+  <a id="ECellDive_Interfaces_IMlprVisibility_RequestSetActiveServerRpc_" data-uid="ECellDive.Interfaces.IMlprVisibility.RequestSetActiveServerRpc*"></a>
+  <h4 id="ECellDive_Interfaces_IMlprVisibility_RequestSetActiveServerRpc_System_Boolean_" data-uid="ECellDive.Interfaces.IMlprVisibility.RequestSetActiveServerRpc(System.Boolean)">RequestSetActiveServerRpc(Boolean)</h4>
+  <div class="markdown level1 summary"><p>A client requests the server to change the value of
+<a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html#ECellDive_Interfaces_IMlprVisibility_isActivated">isActivated</a>;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ServerRpc(RequireOwnership = false)]
+void RequestSetActiveServerRpc(bool _active)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">_active</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprVisibility.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprVisibility%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L114" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

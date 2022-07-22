@@ -32,13 +32,13 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// Adds a <see cref="groupUIPrefab"/> object at the end of the 
+            /// Adds a <see cref="GroupUIManager"/> object at the end of the 
             /// <see cref="allUIContainer"/>.
             /// </summary>
             /// <param name="_groupData">The data needed to correctly initialize
-            /// the <see cref="groupUIPrefab"/>.</param>
+            /// the <see cref="GroupUIManager"/>.</param>
             /// <param name="_parent">The reference to the drop down the new
-            /// <see cref="groupUIPrefab"/> should be part of.</param>
+            /// <see cref="GroupUIManager"/> should be part of.</param>
             private void AddGroupUI(GroupData _groupData, IDropDown _parent)
             {
                 GameObject groupUI = _parent.AddItem();
@@ -49,16 +49,16 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// Adds a <see cref="groupUIPrefab"/> object to the drop down with 
+            /// Adds a <see cref="GroupUIManager"/> object to the drop down with 
             /// index <paramref name="_parentIndex"/> in the list
             /// <see cref="allDropDowns"/>.
             /// </summary>
             /// <param name="_groupData">The data needed to correctly initialize
-            /// the <see cref="groupUIPrefab"/>.</param>
+            /// the <see cref="GroupUIManager"/>.</param>
             /// <param name="_parentIndex">The index of the parent drop down in 
-            /// which we want to insert the newly created <see cref="groupUIPrefab"/>.</param>
-            /// <remarks>This is useful when we want to add a <see cref="groupUIPrefab"/>
-            /// to a previously created <see cref="semanticTermUIPrefab"/>.</remarks>
+            /// which we want to insert the newly created <see cref="GroupUIManager"/>.</param>
+            /// <remarks>This is useful when we want to add a <see cref="GroupUIManager"/>
+            /// to a previously created <see cref="IDropDown"/>.</remarks>
             public void AddGroupUI(GroupData _groupData, int _parentIndex)
             {
                 IDropDown parent = allDropDowns[_parentIndex];
