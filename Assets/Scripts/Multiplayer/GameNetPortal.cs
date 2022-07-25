@@ -159,10 +159,10 @@ namespace ECellDive.Multiplayer
         /// on the host). It is named to match NetworkBehaviour.OnNetworkSpawn,
         /// and serves the same role, even though GameNetPortal itself isn't a NetworkBehaviour.
         /// </summary>
-        private void OnNetworkReady(ulong _clientId)
+        private void OnNetworkReady(ulong _clientID)
         {
-            Debug.Log($"OnNetworkReady called from Client Connection with id {_clientId}");
-            if (_clientId == NetManager.LocalClientId)
+            Debug.Log($"OnNetworkReady called from Client Connection with id {_clientID}");
+            if (_clientID == NetManager.LocalClientId)
             {
                 if (NetManager.IsHost)
                 {
@@ -178,14 +178,14 @@ namespace ECellDive.Multiplayer
 
             if (NetManager.IsServer)
             {
-                StartCoroutine(SendData(_clientId));
+                StartCoroutine(SendData(_clientID));
             }
         }
 
         /// <summary>
         /// Shuts down the current session and starts a new one as a host.
         /// </summary>
-        IEnumerator Restart()
+        private IEnumerator Restart()
         {
             NetManager.Shutdown();
             
@@ -239,9 +239,6 @@ namespace ECellDive.Multiplayer
         /// have been spawned in the scene of the target client.</remarks>
         private IEnumerator SendData(ulong _clientID)
         {
-            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
-                $"Synchronizing data with newly connected client {_clientID}." +
-                $"There are {dataModules.Count} modules to synchronize.");
             int nbClientReadyLoaded;
             foreach (IMlprData mlprData in dataModules)
             {
