@@ -280,15 +280,15 @@ namespace ECellDive
 
             public virtual IEnumerator DirectDiveInC()
             {
+                //TODO: DIVE START ANIMATION
                 yield return null;
 
                 Debug.Log($"DirectDiveInC for netobj: {NetworkBehaviourId}");
                 GameNetScenesManager.Instance.SwitchingScenesServerRpc(rootSceneId.Value,
                                                                         targetSceneId.Value,
                                                                         NetworkManager.Singleton.LocalClientId);
-                
+                //TODO: DIVE END ANIMATION
 
-                //GameNetScenesManager.Instance.DebugScene();
             }
 
             public void GenerativeDiveIn()
@@ -298,9 +298,13 @@ namespace ECellDive
 
             public virtual IEnumerator GenerativeDiveInC()
             {
+                //TODO: DATA GENERATION START ANIMATION
+
                 Debug.LogError($"Generative dive in {gameObject.name}:{nameField.text} but no" +
                     $"custom behaviour has been defined for that type of module");
                 yield return null;
+                //TODO: DATA GENERATION END ANIMATION
+
             }
 
             public void TryDiveIn(InputAction.CallbackContext _ctx)
@@ -312,8 +316,6 @@ namespace ECellDive
             {
                 if (isFocused && isReadyForGeneration.Value)
                 {
-                    //TODO: DIVE START ANIMATION
-
                     //Wait for animation to finish;
                     yield return null;
                     if (isReadyForDive.Value)
@@ -324,8 +326,6 @@ namespace ECellDive
                     {
                         GenerativeDiveIn();
                     }
-
-                    //TODO: DIVE END ANIMATION
                 }
             }
 

@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using ECellDive.Utility;
+using ECellDive.Interfaces;
 
 namespace ECellDive
 {
@@ -12,39 +13,44 @@ namespace ECellDive
         /// </summary>
         public class ResurfaceManager : MonoBehaviour
         {
-
-            public InputActionReference refLeftResurfaceAction;
-            public InputActionReference refRightResurfaceAction;
+            public LeftRightData<InputActionReference> resurfaceAction;
 
             private void Awake()
             {
-                refLeftResurfaceAction.action.performed += Resurface;
-                refRightResurfaceAction.action.performed += Resurface;
+                resurfaceAction.left.action.performed += ResurfaceLeft;
+                resurfaceAction.right.action.performed += ResurfaceRight;
             }
 
             private void OnEnable()
             {
-                refLeftResurfaceAction.action.Enable();
-                refRightResurfaceAction.action.Enable();
+                resurfaceAction.left.action.Enable();
+                resurfaceAction.right.action.Enable();
             }
 
             private void OnDisable()
             {
-                refLeftResurfaceAction.action.Disable();
-                refRightResurfaceAction.action.Disable();
+                resurfaceAction.left.action.Disable();
+                resurfaceAction.right.action.Disable();
             }
 
-            private void Resurface(InputAction.CallbackContext _ctx)
+            private void OnDestroy()
             {
-                if (ScenesData.activeScene.sceneID > 0)
-                {
-                    ScenesData.Resurface();
-                }
-                else
-                {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
-                        "You tried to resurface while you are at the root scene");
-                }
+                resurfaceAction.left.action.performed -= ResurfaceLeft;
+                resurfaceAction.right.action.performed -= ResurfaceRight;
+            }
+
+            private void ResurfaceLeft(InputAction.CallbackContext _ctx)
+            {
+                Resurface();
+            }
+            
+            private void ResurfaceRight(InputAction.CallbackContext _ctx)
+            {
+                Resurface();
+            }
+            private void Resurface()
+            {
+                GameNetScenesManager.Instance.ResurfaceServerRpc(NetworkManager.Singleton.LocalClientId);
             }
         }
     }
