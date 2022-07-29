@@ -32,6 +32,8 @@ namespace ECellDive
             protected Collider m_Collider;
             protected Renderer m_Renderer;
             protected LineRenderer m_LineRenderer;
+            protected MaterialPropertyBlock mpb;
+            protected int colorID;
 
             #region - IDive Members -
             [SerializeField] private ControllersSymetricAction m_diveActions;
@@ -92,18 +94,25 @@ namespace ECellDive
 
             #region - IHighlightable Members - 
 
-            [SerializeField] private NetworkVariable<Color> m_defaultColor;
-            public NetworkVariable<Color> defaultColor
+            [SerializeField] private NetworkVariable<Color> m_currentColor;
+            public NetworkVariable<Color> currentColor
+            {
+                get => m_currentColor;
+                set => m_currentColor = value;
+            }
+
+            [SerializeField] private Color m_defaultColor;
+            public Color defaultColor
             {
                 get => m_defaultColor;
-                set => defaultColor = value;
+                set => m_defaultColor = value;
             }
 
             [SerializeField] private Color m_highlightColor;
             public Color highlightColor
             {
                 get => m_highlightColor;
-                set => SetHighlightColor(value);
+                set => m_highlightColor = value;
             }
 
             private bool m_forceHighlight = false;
@@ -220,8 +229,6 @@ namespace ECellDive
                 m_displayInfoTagsActions.leftController.action.performed += ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.rightController.action.performed += ManageInfoTagsDisplay;
 
-                isActivated.OnValueChanged += ManageActivationStatus;
-
                 //Debug.Log("Starting up " + gameObject.name);
                 m_Collider = GetComponentInChildren<Collider>();
                 m_Renderer = GetComponent<Renderer>();
@@ -241,7 +248,22 @@ namespace ECellDive
                 m_displayInfoTagsActions.leftController.action.performed -= ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.rightController.action.performed -= ManageInfoTagsDisplay;
 
+                currentColor.OnValueChanged -= ApplyCurrentColorChange;
                 isActivated.OnValueChanged -= ManageActivationStatus;
+            }
+
+            public override void OnNetworkSpawn()
+            {
+                mpb = new MaterialPropertyBlock();
+                colorID = Shader.PropertyToID("_Color");
+                currentColor.OnValueChanged += ApplyCurrentColorChange;
+                isActivated.OnValueChanged += ManageActivationStatus;
+                currentColor.Value = defaultColor;
+            }
+
+            protected virtual void ApplyCurrentColorChange(Color _previous, Color _current)
+            {
+
             }
 
             /// <summary>
@@ -266,9 +288,9 @@ namespace ECellDive
             }
 
             [ServerRpc(RequireOwnership = false)]
-            private void SetDefaultColorServerRpc(Color _color)
+            private void SetCurrentColorServerRpc(Color _color)
             {
-                defaultColor.Value = _color;
+                currentColor.Value = _color;
             }
 
             #region - IDive Methods -
@@ -344,23 +366,37 @@ namespace ECellDive
             #endregion
 
             #region - IHighlightable Methods -
-
-            public virtual void SetDefaultColor(Color _c)
+            /// <inheritdoc/>
+            public void SetDefault()
             {
-                SetDefaultColorServerRpc(_c);
+                m_currentColor.Value = m_defaultColor;
             }
 
-            public virtual void SetHighlightColor(Color _c)
+            /// <inheritdoc/>
+            public void SetDefaultColor(Color _c)
+            {
+                m_defaultColor = _c;
+            }
+
+            /// <inheritdoc/>
+            public virtual void SetHighlight()
+            {
+                m_currentColor.Value = m_highlightColor;
+            }
+
+            /// <inheritdoc/>
+            public void SetHighlightColor(Color _c)
             {
                 m_highlightColor = _c;
             }
 
-            public virtual void SetHighlight()
-            {
-            }
-
+            /// <inheritdoc/>
             public virtual void UnsetHighlight()
             {
+                if (!forceHighlight)
+                {
+                    m_currentColor.Value = m_defaultColor;
+                }
             }
             #endregion
 
@@ -623,8 +659,7 @@ namespace ECellDive
             }
             #endregion
 
-                #region - IMlprVisibility -
-
+            #region - IMlprVisibility -
             public virtual void ManageActivationStatus(bool _previous, bool _current)
             {
                 gameObject.SetActive(isActivated.Value);

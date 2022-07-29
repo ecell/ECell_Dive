@@ -44,10 +44,6 @@ namespace ECellDive
             private bool allNodesSpawned = false;
             private Dictionary<uint, Modification<bool>> koModifications = new Dictionary<uint, Modification<bool>>();
 
-            private Renderer refRenderer;
-            private MaterialPropertyBlock mpb;
-            private int colorID;
-
             #region  - IGraphGO Members - 
             public IGraph graphData { get; protected set; }
 
@@ -67,20 +63,17 @@ namespace ECellDive
             public ModificationFile writingModificationFile { get; set; }
             #endregion
 
-            private void OnEnable()
-            {
-                refRenderer = GetComponentInChildren<Renderer>();
-                mpb = new MaterialPropertyBlock();
-                colorID = Shader.PropertyToID("_Color");
-                mpb.SetVector(colorID, defaultColor.Value);
-                refRenderer.SetPropertyBlock(mpb);
-            }
-
             public override void OnNetworkSpawn()
             {
+                base.OnNetworkSpawn();
                 DataID_to_DataGO = new Dictionary<uint, GameObject>();
                 GameNetPortal.Instance.modifiables.Add(this);
                 GameNetPortal.Instance.saveables.Add(this);
+            }
+            protected override void ApplyCurrentColorChange(Color _previous, Color _current)
+            {
+                mpb.SetVector(colorID, _current);
+                m_Renderer.SetPropertyBlock(mpb);
             }
 
             [ClientRpc]
@@ -293,23 +286,6 @@ namespace ECellDive
             public void SetNetworkData(IGraph _IGraph)
             {
                 graphData = _IGraph;
-            }
-            #endregion
-
-            #region - IHighlightable Methods -
-            public override void SetHighlight()
-            {
-                mpb.SetVector(colorID, highlightColor);
-                refRenderer.SetPropertyBlock(mpb);
-            }
-
-            public override void UnsetHighlight()
-            {
-                if (!forceHighlight)
-                {
-                    mpb.SetVector(colorID, defaultColor.Value);
-                    refRenderer.SetPropertyBlock(mpb);
-                }
             }
             #endregion
 

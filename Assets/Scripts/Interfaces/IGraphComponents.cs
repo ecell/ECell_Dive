@@ -122,11 +122,6 @@ namespace ECellDive
             float defaultEndWidth { get; }
 
             /// <summary>
-            /// The LineRenderer representing the edge.
-            /// </summary>
-            LineRenderer refLineRenderer { get; }
-
-            /// <summary>
             /// The game object containing a box collider to be placed
             /// dynamically around the edge so that the user can interact with it.
             /// </summary>

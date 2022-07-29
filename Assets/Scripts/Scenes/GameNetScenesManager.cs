@@ -126,6 +126,10 @@ namespace ECellDive
             }
         }
 
+        /// <summary>
+        /// Implements the logic for the scene transitions when a player is diving
+        /// or resurfacing.
+        /// </summary>
         public class GameNetScenesManager : NetworkBehaviour
         {
             public static GameNetScenesManager Instance { get; private set; }
@@ -208,6 +212,10 @@ namespace ECellDive
                 return newScene.sceneID;
             }
 
+            /// <summary>
+            /// Outputs the content of the <see cref="scenesBank"/>.
+            /// </summary>
+            /// <remarks>Used for Debug purposes.</remarks>
             public void DebugScene()
             {
                 foreach (SceneData sceneData in scenesBank)
@@ -223,6 +231,8 @@ namespace ECellDive
             /// for the local client.
             /// </summary>
             /// <param name="_sceneID">Index of the scene in <see cref="scenesBank"/></param>
+            /// <param name="_outDiverClientId">Client Id of the diver leaving the scene
+            /// with id <paramref name="_sceneID"/>.</param>
             //[ServerRpc(RequireOwnership = false)]
             private IEnumerator HideScene(int _sceneID, ulong _outDiverClientId)
             {
@@ -294,6 +304,8 @@ namespace ECellDive
             /// for the local client.
             /// </summary>
             /// <param name="_sceneID">Index of the scene in <see cref="scenesBank"/></param>
+            /// <param name="_newInDiverClientId">Client Id of the diver entering the scene
+            /// with id <paramref name="_sceneID"/>.</param>
             //[ServerRpc(RequireOwnership = false)]
             private IEnumerator ShowScene(int _sceneID, ulong _newInDiverClientId)
             {

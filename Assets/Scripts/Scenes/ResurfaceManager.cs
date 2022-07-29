@@ -8,9 +8,11 @@ namespace ECellDive
     namespace SceneManagement
     {
         /// <summary>
-        /// Resurfacing is at the level of the scene while
-        /// diving is at the level of the module.
+        /// Implements the logic to let a diver resurface from an Input.
         /// </summary>
+        /// <remarks>
+        /// While diving is implemented at the level of a module, resurfacing
+        /// is at the level of the scene.</remarks>
         public class ResurfaceManager : MonoBehaviour
         {
             public LeftRightData<InputActionReference> resurfaceAction;
@@ -39,15 +41,32 @@ namespace ECellDive
                 resurfaceAction.right.action.performed -= ResurfaceRight;
             }
 
+            /// <summary>
+            /// Buffer logic to callback <see cref="Resurface"/> when the
+            /// input on the left controller is triggered.
+            /// </summary>
+            /// <remarks>Same as <see cref="ResurfaceRight(InputAction.CallbackContext)"/>
+            /// but for the left controller.</remarks>
             private void ResurfaceLeft(InputAction.CallbackContext _ctx)
             {
                 Resurface();
             }
-            
+
+            /// <summary>
+            /// Buffer logic to callback <see cref="Resurface"/> when the
+            /// input on the left controller is triggered.
+            /// </summary>
+            /// <remarks>Same as <see cref="ResurfaceLeft(InputAction.CallbackContext)"/>
+            /// but for the right controller.</remarks>
             private void ResurfaceRight(InputAction.CallbackContext _ctx)
             {
                 Resurface();
             }
+
+            /// <summary>
+            /// Start point of the logic allowing a user to resurface from a child
+            /// dive scene to the parent dive scene.
+            /// </summary>
             private void Resurface()
             {
                 GameNetScenesManager.Instance.ResurfaceServerRpc(NetworkManager.Singleton.LocalClientId);

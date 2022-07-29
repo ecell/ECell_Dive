@@ -19,7 +19,6 @@ namespace ECellDive
             public string informationString { get; protected set; }
             public float defaultStartWidth { get; protected set; }
             public float defaultEndWidth { get; protected set; }
-            public LineRenderer refLineRenderer { get; protected set; }
 
             [SerializeField] private GameObject m_refBoxColliderHolder;
             public GameObject refBoxColliderHolder
@@ -50,8 +49,6 @@ namespace ECellDive
             [Range(0, 1)] public float startWidthFactor = 0.25f;
             [Range(0, 1)] public float endWidthFactor = 0.75f;
 
-            private MaterialPropertyBlock mpb;
-            private int colorID;
             private int activationID;
             private int panningSpeedID;
 
@@ -66,13 +63,8 @@ namespace ECellDive
 
             private void OnEnable()
             {
-                refLineRenderer = GetComponentInChildren<LineRenderer>();
-                mpb = new MaterialPropertyBlock();
-                colorID = Shader.PropertyToID("_Color");
                 activationID = Shader.PropertyToID("_Activation");
                 panningSpeedID = Shader.PropertyToID("_PanningSpeed");
-                mpb.SetVector(colorID, defaultColor.Value);
-                refLineRenderer.SetPropertyBlock(mpb);
             }
 
             public override void OnDestroy()
@@ -85,7 +77,6 @@ namespace ECellDive
             {
                 base.OnNetworkSpawn();
 
-                defaultColor.OnValueChanged += ApplyDefaultColorChange;
                 fluxLevelClamped.OnValueChanged += ApplyFLCChanges;
                 knockedOut.OnValueChanged += ApplyKOChanges;
             }
@@ -94,7 +85,6 @@ namespace ECellDive
             {
                 base.OnNetworkDespawn();
 
-                defaultColor.OnValueChanged -= ApplyDefaultColorChange;
                 fluxLevelClamped.OnValueChanged -= ApplyFLCChanges;
                 knockedOut.OnValueChanged -= ApplyKOChanges;
 
@@ -106,10 +96,10 @@ namespace ECellDive
                 knockedOut.Value = false;
             }
 
-            private void ApplyDefaultColorChange(Color _previous, Color _current)
+            protected override void ApplyCurrentColorChange(Color _previous, Color _current)
             {
                 mpb.SetVector(colorID, _current);
-                refLineRenderer.SetPropertyBlock(mpb);
+                m_LineRenderer.SetPropertyBlock(mpb);
             }
 
             private void ApplyFLCChanges(float _previous, float _current)
@@ -128,7 +118,7 @@ namespace ECellDive
             {
                 SetInformationString();
                 mpb.SetFloat(activationID, knockedOut.Value? 0 : 1);
-                refLineRenderer.SetPropertyBlock(mpb);
+                m_LineRenderer.SetPropertyBlock(mpb);
             }
 
             public void Initialize(CyJsonModule _masterPathway, IEdge _edge)
@@ -444,22 +434,22 @@ namespace ECellDive
                 m_refBoxColliderHolder.transform.localPosition = 0.5f * (_start.localPosition + _end.localPosition);
                 m_refBoxColliderHolder.transform.LookAt(_end);
                 m_refBoxColliderHolder.transform.localScale = new Vector3(
-                                                                Mathf.Max(refLineRenderer.startWidth, refLineRenderer.endWidth),
-                                                                Mathf.Max(refLineRenderer.startWidth, refLineRenderer.endWidth),
+                                                                Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),
+                                                                Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),
                                                                 0.95f*Vector3.Distance(_start.localPosition, _end.localPosition));
             }
 
             public void SetLineRendererWidth()
             {
-                refLineRenderer.startWidth = startWidthFactor * Mathf.Max(defaultStartWidth, defaultStartWidth*fluxLevelClamped.Value);
-                refLineRenderer.endWidth = endWidthFactor * Mathf.Max(defaultEndWidth, defaultEndWidth*fluxLevelClamped.Value);
-                //Debug.Log($"{refLineRenderer.startWidth}, {refLineRenderer.endWidth}");
+                m_LineRenderer.startWidth = startWidthFactor * Mathf.Max(defaultStartWidth, defaultStartWidth*fluxLevelClamped.Value);
+                m_LineRenderer.endWidth = endWidthFactor * Mathf.Max(defaultEndWidth, defaultEndWidth*fluxLevelClamped.Value);
+                //Debug.Log($"{m_LineRenderer.startWidth}, {m_LineRenderer.endWidth}");
             }
 
             public void SetLineRendererPosition(Transform _start, Transform _end)
             {
-                refLineRenderer.SetPosition(0, _start.localPosition);
-                refLineRenderer.SetPosition(1, _end.localPosition);
+                m_LineRenderer.SetPosition(0, _start.localPosition);
+                m_LineRenderer.SetPosition(1, _end.localPosition);
             }
             #endregion
 
@@ -480,34 +470,7 @@ namespace ECellDive
             {
                 SetFluxValuesServerRpc(_level, _levelClamped);
             }
-            #endregion
-
-            #region - IHighlightable -
-
-            public override void SetHighlightColor(Color _c)
-            {
-                base.SetDefaultColor(_c);
-                mpb.SetVector(colorID, highlightColor);
-                refLineRenderer.SetPropertyBlock(mpb);
-            }
-
-            public override void SetHighlight()
-            {
-                mpb.SetVector(colorID, highlightColor);
-                refLineRenderer.SetPropertyBlock(mpb);
-            }
-
-            public override void UnsetHighlight()
-            {
-                if (!forceHighlight)
-                {
-                    mpb.SetVector(colorID, defaultColor.Value);
-                    refLineRenderer.SetPropertyBlock(mpb);
-                }
-            }
-            #endregion
-
-            
+            #endregion            
         }
     }
 }

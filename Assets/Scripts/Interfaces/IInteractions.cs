@@ -37,15 +37,39 @@ namespace ECellDive
         /// </summary>
         public interface IHighlightable
         {
-            NetworkVariable<Color> defaultColor { get; }
+            NetworkVariable<Color> currentColor { get; }
+            Color defaultColor { get; }
             Color highlightColor { get; }
 
             bool forceHighlight { get; set; }
 
-            abstract void SetDefaultColor(Color _c);
-            abstract void SetHighlightColor(Color _c);
+            /// <summary>
+            /// Applies <see cref="defaultColor"/> to <see cref="currentColor"/>.
+            /// </summary>
+            void SetDefault();
 
+            /// <summary>
+            /// Sets the value of <see cref="defaultColor"/> to <paramref name="_c"/>.
+            /// </summary>
+            /// <param name="_c">The new value for <see cref="defaultColor"/></param>
+            void SetDefaultColor(Color _c);
+
+            /// <summary>
+            /// Applies <see cref="highlightColor"/> to <see cref="currentColor"/>.
+            /// </summary>
             abstract void SetHighlight();
+
+            /// <summary>
+            /// Sets the value of <see cref="highlightColor"/> to <paramref name="_c"/>.
+            /// </summary>
+            /// <param name="_c">The new value for <see cref="highlightColor"/></param>
+            void SetHighlightColor(Color _c);
+
+            /// <summary>
+            /// Checks for <see cref="forceHighlight"/>.
+            /// If false, applies <see cref="defaultColor"/> to <see cref="currentColor"/>.
+            /// If true, nothing happens.
+            /// </summary>
             abstract void UnsetHighlight();
         }
 
