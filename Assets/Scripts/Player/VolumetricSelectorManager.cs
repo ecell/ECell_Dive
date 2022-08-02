@@ -193,11 +193,11 @@ namespace ECellDive
                 isActive.Value = _active;
                 if (_active)
                 {
-                    SetHighlight();
+                    SetHighlightServerRpc();
                 }
                 else
                 {
-                    UnsetHighlight();
+                    UnsetHighlightServerRpc();
                 }
             }
 
@@ -271,7 +271,8 @@ namespace ECellDive
             #region - IHighlightable -
 
             /// <inheritdoc/>
-            public void SetDefault()
+            [ServerRpc(RequireOwnership = false)]
+            public void SetDefaultServerRpc()
             {
                 m_currentColor.Value = m_defaultColor;
             }
@@ -283,7 +284,8 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
-            public virtual void SetHighlight()
+            [ServerRpc(RequireOwnership = false)]
+            public virtual void SetHighlightServerRpc()
             {
                 m_currentColor.Value = m_highlightColor;
             }
@@ -295,7 +297,8 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
-            public virtual void UnsetHighlight()
+            [ServerRpc(RequireOwnership = false)]
+            public virtual void UnsetHighlightServerRpc()
             {
                 if (!forceHighlight)
                 {

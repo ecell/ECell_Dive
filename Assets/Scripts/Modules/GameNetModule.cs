@@ -367,7 +367,8 @@ namespace ECellDive
 
             #region - IHighlightable Methods -
             /// <inheritdoc/>
-            public void SetDefault()
+            [ServerRpc(RequireOwnership = false)]
+            public void SetDefaultServerRpc()
             {
                 m_currentColor.Value = m_defaultColor;
             }
@@ -379,7 +380,8 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
-            public virtual void SetHighlight()
+            [ServerRpc(RequireOwnership = false)]
+            public virtual void SetHighlightServerRpc()
             {
                 m_currentColor.Value = m_highlightColor;
             }
@@ -391,7 +393,8 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
-            public virtual void UnsetHighlight()
+            [ServerRpc(RequireOwnership = false)]
+            public virtual void UnsetHighlightServerRpc()
             {
                 if (!forceHighlight)
                 {
@@ -558,8 +561,6 @@ namespace ECellDive
 
             public IEnumerator BroadcastSourceDataFragsC(List<byte[]> _fragmentedSourceData)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
-                        "Server starts the coroutine to send fragmented data.");
                 foreach (byte[] _frag in _fragmentedSourceData)
                 {
                     BroadcastSourceDataFragServerRpc(_frag);

@@ -87,7 +87,6 @@ namespace ECellDive
 
                 fluxLevelClamped.OnValueChanged -= ApplyFLCChanges;
                 knockedOut.OnValueChanged -= ApplyKOChanges;
-
             }
 
             [ServerRpc(RequireOwnership = false)]
@@ -111,7 +110,7 @@ namespace ECellDive
                 //Debug.Log($"{defaultStartWidth}, {endWidthFactor}");
 
                 SetLineRendererWidth();
-                UnsetHighlight();
+                UnsetHighlightServerRpc();
             }
 
             private void ApplyKOChanges(bool _previous, bool _current)
@@ -309,7 +308,7 @@ namespace ECellDive
             /// </summary>
             public void SpreadHighlightDownward()
             {
-                SetHighlight();
+                SetHighlightServerRpc();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
                 foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
@@ -337,7 +336,7 @@ namespace ECellDive
             /// </summary>
             public void SpreadHighlightUpward()
             {
-                SetHighlight();
+                SetHighlightServerRpc();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
                 foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
@@ -365,7 +364,7 @@ namespace ECellDive
             /// </summary>
             public void SpreadUnsetHighlightDownward()
             {
-                UnsetHighlight();
+                UnsetHighlightServerRpc();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
                 foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
@@ -393,7 +392,7 @@ namespace ECellDive
             /// </summary>
             public void SpreadUnsetHighlightUpward()
             {
-                UnsetHighlight();
+                UnsetHighlightServerRpc();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
                 foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)

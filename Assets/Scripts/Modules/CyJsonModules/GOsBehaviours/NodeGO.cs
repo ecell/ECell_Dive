@@ -59,13 +59,15 @@ namespace ECellDive
             }
 
             #region - IHighlightable -
-            public override void SetHighlight()
+            [ServerRpc(RequireOwnership = false)]
+            public override void SetHighlightServerRpc()
             {
-                base.SetHighlight();
+                base.SetHighlightServerRpc();
                 m_Renderer.enabled = true;
             }
 
-            public override void UnsetHighlight()
+            [ServerRpc(RequireOwnership = false)]
+            public override void UnsetHighlightServerRpc()
             {
                 if (!forceHighlight)
                 {

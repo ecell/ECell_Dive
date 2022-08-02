@@ -200,10 +200,9 @@ namespace ECellDive.Multiplayer
                 msgStr = "<color=red>Host couldn't be started: bind and listening to " + m_settings.IP + ":" +
                      m_settings.port + " failed.\n" + "Falling back to 127.0.0.1:7777</color>";
 
-                LogSystem.Message msg = LogSystem.GenerateMessage(LogSystem.MessageTypes.Errors,
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
                     "Host couldn't be started: bind and listening to " + m_settings.IP + ":" +
                      m_settings.port + " failed.\n" + "Falling back to 127.0.0.1:7777");
-                LogSystem.RecordMessage(msg);
 
                 SetConnectionSettings(m_settings.playerName, "127.0.0.1", 7777, m_settings.password);
                 SetUnityTransport();
@@ -218,9 +217,8 @@ namespace ECellDive.Multiplayer
             {
                 msgStr = "<color=green>Successfully hosting at " + m_settings.IP + ":" + m_settings.port+ "</color>";
                 
-                LogSystem.Message msg = LogSystem.GenerateMessage(LogSystem.MessageTypes.Trace,
+                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
                     "Successfully hosting at " + m_settings.IP + ":" + m_settings.port);
-                LogSystem.RecordMessage(msg);
 
             }
             yield return new WaitForSeconds(1f);

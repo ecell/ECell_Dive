@@ -44,9 +44,14 @@ namespace ECellDive
             bool forceHighlight { get; set; }
 
             /// <summary>
-            /// Applies <see cref="defaultColor"/> to <see cref="currentColor"/>.
+            /// Contacts the server to applies <see cref="defaultColor"/>
+            /// to <see cref="currentColor"/>.
             /// </summary>
-            void SetDefault();
+            /// <remarks>Since <see cref="currentColor"/> is a <see cref=
+            /// "NetworkVariable{T}"/>, the value will be synchronized to all
+            /// clients.</remarks>
+            [ServerRpc(RequireOwnership = false)]
+            void SetDefaultServerRpc();
 
             /// <summary>
             /// Sets the value of <see cref="defaultColor"/> to <paramref name="_c"/>.
@@ -55,9 +60,14 @@ namespace ECellDive
             void SetDefaultColor(Color _c);
 
             /// <summary>
-            /// Applies <see cref="highlightColor"/> to <see cref="currentColor"/>.
+            /// Contacts the server to applies <see cref="highlightColor"/>
+            /// to <see cref="currentColor"/>.
             /// </summary>
-            abstract void SetHighlight();
+            /// <remarks>Since <see cref="currentColor"/> is a <see cref=
+            /// "NetworkVariable{T}"/>, the value will be synchronized to all
+            /// clients.</remarks>
+            [ServerRpc(RequireOwnership = false)]
+            abstract void SetHighlightServerRpc();
 
             /// <summary>
             /// Sets the value of <see cref="highlightColor"/> to <paramref name="_c"/>.
@@ -70,7 +80,11 @@ namespace ECellDive
             /// If false, applies <see cref="defaultColor"/> to <see cref="currentColor"/>.
             /// If true, nothing happens.
             /// </summary>
-            abstract void UnsetHighlight();
+            /// <remarks>Since <see cref="currentColor"/> is a <see cref=
+            /// "NetworkVariable{T}"/>, the value will be synchronized to all
+            /// clients.</remarks>
+            [ServerRpc(RequireOwnership = false)]
+            abstract void UnsetHighlightServerRpc();
         }
 
         /// <summary>
