@@ -126,6 +126,10 @@ namespace ECellDive
             }
         }
 
+        /// <summary>
+        /// Implements the logic for the scene transitions when a player is diving
+        /// or resurfacing.
+        /// </summary>
         public class GameNetScenesManager : NetworkBehaviour
         {
             public static GameNetScenesManager Instance { get; private set; }
@@ -208,6 +212,10 @@ namespace ECellDive
                 return newScene.sceneID;
             }
 
+            /// <summary>
+            /// Outputs the content of the <see cref="scenesBank"/>.
+            /// </summary>
+            /// <remarks>Used for Debug purposes.</remarks>
             public void DebugScene()
             {
                 foreach (SceneData sceneData in scenesBank)
@@ -223,6 +231,8 @@ namespace ECellDive
             /// for the local client.
             /// </summary>
             /// <param name="_sceneID">Index of the scene in <see cref="scenesBank"/></param>
+            /// <param name="_outDiverClientId">Client Id of the diver leaving the scene
+            /// with id <paramref name="_sceneID"/>.</param>
             //[ServerRpc(RequireOwnership = false)]
             private IEnumerator HideScene(int _sceneID, ulong _outDiverClientId)
             {
@@ -294,6 +304,8 @@ namespace ECellDive
             /// for the local client.
             /// </summary>
             /// <param name="_sceneID">Index of the scene in <see cref="scenesBank"/></param>
+            /// <param name="_newInDiverClientId">Client Id of the diver entering the scene
+            /// with id <paramref name="_sceneID"/>.</param>
             //[ServerRpc(RequireOwnership = false)]
             private IEnumerator ShowScene(int _sceneID, ulong _newInDiverClientId)
             {
@@ -415,23 +427,51 @@ namespace ECellDive
 
                 StartCoroutine(ShowScene(_to, _clientId));
 
-                GameNetPortal.Instance.netSessionPlayersDataMap[_clientId].SetSceneId(_to);
+                //update the situation of the player data in the server
+                NetSessionPlayerData plrData = GameNetPortal.Instance.netSessionPlayersDataMap[_clientId];
+                plrData.SetSceneId(_to);
+                GameNetPortal.Instance.netSessionPlayersDataMap[_clientId] = plrData;         }
+
+            /// <summary>
+            /// The server call to resurface a diver.
+            /// </summary>
+            /// <param name="_surfacingDiverId">The clientID of the diver asking to resurface
+            /// from his current dive scene.</param>
+            [ServerRpc(RequireOwnership = false)]
+            public void ResurfaceServerRpc(ulong _surfacingDiverId)
+            {
+                StartCoroutine(ResurfaceC(_surfacingDiverId));
             }
 
-            public void Resurface()
+            /// <summary>
+            /// The coroutine performing the work to actually move a diver from its
+            /// current dive scene to the parent of that dive scene (resurface).
+            /// </summary>
+            /// <param name="_surfacingDiverId">The clientID of the diver asking to resurface
+            /// from his current dive scene.</param>
+            private IEnumerator ResurfaceC(ulong _surfacingDiverId)
             {
-                StartCoroutine(ResurfaceC());
-            }
+                //TODO: dive animation start
 
-            private IEnumerator ResurfaceC()
-            {
-                //divingData.refAnimator.SetTrigger("DiveStart");
+                yield return null;
+                int from = GameNetPortal.Instance.netSessionPlayersDataMap[_surfacingDiverId].currentScene;
+                int to = scenesBank[from].parentSceneID;
 
-                yield return new WaitForSeconds(divingAnimationData.duration);
+                Debug.Log($"Resurfacing client {_surfacingDiverId} from {from} to {to}");
 
-                //divingData.refAnimator.SetTrigger("DiveEnd");
+                if (to >= 0)
+                {
+                    SwitchingScenesServerRpc(from, to, _surfacingDiverId);
+                }
+
+                else
+                {
+                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                        "You tried to resurface while being in the root scene.");
+                }
+
+                //TODO: dive animation ends
             }
         }
     }
 }
-

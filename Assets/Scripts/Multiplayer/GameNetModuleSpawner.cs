@@ -21,7 +21,7 @@ namespace ECellDive.Multiplayer
         {
             LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
                         "Giving module Data.");
-            _gameNetModule.DirectRecieveSourceData(sourceDataName, fragmentedSourceData);
+            _gameNetModule.DirectReceiveSourceData(sourceDataName, fragmentedSourceData);
         }
 
         [ClientRpc]
@@ -55,14 +55,16 @@ namespace ECellDive.Multiplayer
             GameObject player = NetworkManager.Singleton.ConnectedClients[_expeditorClientID].PlayerObject.gameObject;
             Vector3 pos = Positioning.PlaceInFrontOfTarget(player.GetComponentInChildren<Camera>().transform, 2f, 0.8f);
 
-            GameObject cyJsonModule = GameNetScenesManager.Instance.SpawnModuleInScene(
+            GameObject module = GameNetScenesManager.Instance.SpawnModuleInScene(
                 GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene,
                 _moduleTypeID,
                 pos);
+
+            GameNetPortal.Instance.dataModules.Add(module.GetComponent<IMlprData>());
             
             //Giving ownership to the client who initially made 
             //the spawning request
-            GiveOwnership(cyJsonModule, _expeditorClientID);
+            GiveOwnership(module, _expeditorClientID);
 
             ClientRpcParams clientRpcParams = new ClientRpcParams
             {
@@ -75,7 +77,7 @@ namespace ECellDive.Multiplayer
             //Sending the spawned object reference back to the client
             //which initially made the request so that he can continue his 
             //process.
-            GiveNetworkObjectReferenceClientRpc(cyJsonModule, clientRpcParams);
+            GiveNetworkObjectReferenceClientRpc(module, clientRpcParams);
         }
         #endregion
     }

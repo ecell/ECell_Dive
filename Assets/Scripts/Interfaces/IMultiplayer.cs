@@ -44,51 +44,51 @@ namespace ECellDive.Interfaces
 
         NetworkVariable<bool> isReadyForGeneration { get; }
 
-        [ServerRpc(RequireOwnership = false)]
-
         void AssembleFragmentedData();
 
-        void DirectRecieveSourceData(byte[] _sourceDataName, List<byte[]> _sourceData);        
+        IEnumerator BroadcastSourceDataC();
 
-        [ServerRpc(RequireOwnership = false)]
-        void ConfirmSourceDataReceptionServerRpc();
-
-        [ServerRpc(RequireOwnership = false)]
-        abstract void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID);
-    }
-
-    /// <summary>
-    /// Interface for a module data owner to distribute the associated data
-    /// to every connected client through the server in a multiplayer context.
-    /// The implementation will probably require <see cref="IMlprData"/>.
-    /// </summary>
-    public interface IMlprDataBroadcast
-    {
         [ClientRpc]
         void BroadcastSourceDataFragClientRpc(byte[] _fragment);
 
         [ClientRpc]
         void BroadcastSourceDataNameClientRpc(byte[] _name);
-        
+
+        [ClientRpc]
+        void BroadcastSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags);
+
         [ServerRpc]
         void BroadcastSourceDataFragServerRpc(byte[] _fragment);
 
         [ServerRpc]
         void BroadcastSourceDataNameServerRpc(byte[] _name);
 
+        [ServerRpc]
+        void BroadcastSourceDataNbFragsServerRpc(ushort _sourceDataNbFrags);
+
         IEnumerator BroadcastSourceDataFragsC(List<byte[]> _fragmentedSourceData);
+
+        [ServerRpc(RequireOwnership = false)]
+        void ConfirmSourceDataReceptionServerRpc();
+
+        void DirectReceiveSourceData(byte[] _sourceDataName, List<byte[]> _sourceData);
+
+        [ServerRpc(RequireOwnership = false)]
+        abstract void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID);
+
+        IEnumerator SendSourceDataC(ulong _targetClientID);
+
+        [ClientRpc]
+        void SendSourceDataFragClientRpc(byte[] _fragment, ClientRpcParams _clientRpcParams);
+
+        [ClientRpc]
+        void SendSourceDataNameClientRpc(byte[] _name, ClientRpcParams _clientRpcParams);
+
+        [ClientRpc]
+        void SendSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags, ClientRpcParams _clientRpcParams);
+
+        IEnumerator SendSourceDataFragsC(List<byte[]> _fragmentedSourceData, ClientRpcParams _clientRpcParams);
     }
-
-    /// <summary>
-    /// Interface for a client to request to the server the data
-    /// associated with a data module in a multiplayer context.
-    /// The implementation will probably require <see cref="IMlprData"/>.
-    /// </summary>
-    public interface IMlprDataRequest
-    {
-
-    }
-
 
     /// <summary>
     /// The interface used to manipulate the visibility status of a 

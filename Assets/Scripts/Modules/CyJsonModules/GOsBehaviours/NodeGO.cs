@@ -13,17 +13,17 @@ namespace ECellDive
             public INode nodeData { get; protected set; }
             public string informationString { get; protected set; }
 
-            private Renderer refRenderer;
-            private MaterialPropertyBlock mpb;
-            private int colorID;
-
-            private void OnEnable()
+            public override void OnNetworkSpawn()
             {
-                refRenderer = GetComponentInChildren<Renderer>();
+                base.OnNetworkSpawn();
                 mpb = new MaterialPropertyBlock();
                 colorID = Shader.PropertyToID("_Color");
-                mpb.SetVector(colorID, defaultColor.Value);
-                refRenderer.SetPropertyBlock(mpb);
+            }
+
+            protected override void ApplyCurrentColorChange(Color _previous, Color _current)
+            {
+                mpb.SetVector(colorID, _current);
+                m_Renderer.SetPropertyBlock(mpb);
             }
 
             public void Initialize(CyJsonPathwaySettingsData _pathwaySettings, in INode _node)
@@ -38,7 +38,7 @@ namespace ECellDive
                 gameObject.SetActive(true);
                 if (nodeData.isVirtual)
                 {
-                    refRenderer.enabled = false;
+                    m_Renderer.enabled = false;
                 }
                 gameObject.transform.position = nodePos;
                 gameObject.transform.localScale /= _pathwaySettings.SizeScaleFactor;
@@ -59,24 +59,24 @@ namespace ECellDive
             }
 
             #region - IHighlightable -
-            public override void SetHighlight()
+            [ServerRpc(RequireOwnership = false)]
+            public override void SetHighlightServerRpc()
             {
-                refRenderer.enabled = true;
-                mpb.SetVector(colorID, highlightColor);
-                refRenderer.SetPropertyBlock(mpb);
+                base.SetHighlightServerRpc();
+                m_Renderer.enabled = true;
             }
 
-            public override void UnsetHighlight()
+            [ServerRpc(RequireOwnership = false)]
+            public override void UnsetHighlightServerRpc()
             {
                 if (!forceHighlight)
                 {
-                    refRenderer.enabled = true;
-                    mpb.SetVector(colorID, defaultColor.Value);
-                    refRenderer.SetPropertyBlock(mpb);
+                    m_Renderer.enabled = true;
+                    currentColor.Value = defaultColor;
 
                     if (nodeData.isVirtual)
                     {
-                        refRenderer.enabled = false;
+                        m_Renderer.enabled = false;
                     }
                 }
             }

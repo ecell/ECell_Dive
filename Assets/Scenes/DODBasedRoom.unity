@@ -451,8 +451,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0022b429deaf34482c3b4238e36201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refLeftResurfaceAction: {fileID: 572066173421814767, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  refRightResurfaceAction: {fileID: 6308184658582378780, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  resurfaceAction:
+    m_left: {fileID: 572066173421814767, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_right: {fileID: 6308184658582378780, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
 --- !u!114 &1213530099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,11 +651,11 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1945276319}
-    PlayerPrefab: {fileID: 1845728611502412229, guid: 22b825dd5fd4d4940b55fd6756c1c1a7, type: 3}
+    PlayerPrefab: {fileID: 5081819281453008317, guid: 408111a9c3de79c44997b2536b329549, type: 3}
     NetworkPrefabs:
     - Override: 0
       Prefab: {fileID: 747793240316498542, guid: 13afb758b6eee1340a1140b27a95e099, type: 3}
-      SourcePrefabToOverride: {fileID: 0}
+      SourcePrefabToOverride: {fileID: 747793240316498542, guid: 13afb758b6eee1340a1140b27a95e099, type: 3}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
     - Override: 0

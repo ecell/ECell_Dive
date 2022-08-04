@@ -109,7 +109,7 @@ namespace ECellDive
                 {
                     IHighlightable highlitable = ToFind.FindComponent<IHighlightable>(groupMembers[i]);
                     highlitable.forceHighlight = false;
-                    highlitable.UnsetHighlight();
+                    highlitable.UnsetHighlightServerRpc();
                 }
 
                 //Reset group members list
@@ -166,13 +166,13 @@ namespace ECellDive
                     {
                         AddMemberToGroup(_go, groupable);
                         highlightable.forceHighlight = true;
-                        highlightable.SetHighlight();
+                        highlightable.SetHighlightServerRpc();
                     }
                     else
                     {
                         RemoveMemberFromGroup(_go, groupable);
                         highlightable.forceHighlight = false;
-                        highlightable.UnsetHighlight();
+                        highlightable.UnsetHighlightServerRpc();
                     }
 
                     refUIManager.ManageUIConfirmationCanvas(groupMembers.Count);
