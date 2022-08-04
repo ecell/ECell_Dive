@@ -15,7 +15,7 @@ namespace ECellDive
         [Obsolete("Deprecated since the multiplayer update.")]
         public static class ScenesData
         {
-            public static GameNetScenesManager refSceneManagerMonoBehaviour;
+            public static DiveScenesManager refSceneManagerMonoBehaviour;
 
             public static List<SceneData> scenesBank = new List<SceneData>();
 

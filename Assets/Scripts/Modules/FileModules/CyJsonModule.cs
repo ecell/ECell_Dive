@@ -109,7 +109,7 @@ namespace ECellDive
                     for (int j = i; j < Mathf.Min(i + cyJsonPathwaySettings.edgesBatchSize, graphData.edges.Length); j++)
                     {
                         //ModulesData.AddModule(edgeMD);
-                        GameObject edgeGO = GameNetScenesManager.Instance.SpawnModuleInScene(_sceneId, graphPrefabsComponents[2], Vector3.zero);
+                        GameObject edgeGO = DiveScenesManager.Instance.SpawnModuleInScene(_sceneId, graphPrefabsComponents[2], Vector3.zero);
                         edgeGO.transform.parent = pathwayRoot.transform;
                         EdgeSpawnClientRpc(edgeGO, j);
                     }
@@ -175,7 +175,7 @@ namespace ECellDive
                     {
                         //ModulesData.AddModule(nodeMD);
 
-                        GameObject nodeGO = GameNetScenesManager.Instance.SpawnModuleInScene(_sceneId, graphPrefabsComponents[1], Vector3.zero);
+                        GameObject nodeGO = DiveScenesManager.Instance.SpawnModuleInScene(_sceneId, graphPrefabsComponents[1], Vector3.zero);
                         nodeGO.transform.parent = pathwayRoot.transform;
                         NodeSpawnClientRpc(nodeGO, j);
 
@@ -259,7 +259,7 @@ namespace ECellDive
             {
                 int rootSceneId = GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene;
                 
-                targetSceneId.Value = GameNetScenesManager.Instance.AddNewDiveScene(rootSceneId);
+                targetSceneId.Value = DiveScenesManager.Instance.AddNewDiveScene(rootSceneId);
                 LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
                     $"targetSceneId of the new module is: {targetSceneId}");
                 RequestGraphGenerationServerRpc(_expeditorClientID, targetSceneId.Value);
@@ -271,9 +271,9 @@ namespace ECellDive
             [ServerRpc]
             public void RequestGraphGenerationServerRpc(ulong _expeditorClientId, int _rootSceneId)
             {
-                pathwayRoot = GameNetScenesManager.Instance.SpawnModuleInScene(_rootSceneId,
-                                                                                graphPrefabsComponents[0],
-                                                                                Vector3.zero);
+                pathwayRoot = DiveScenesManager.Instance.SpawnModuleInScene(_rootSceneId,
+                                                                            graphPrefabsComponents[0],
+                                                                            Vector3.zero);
                 pathwayRoot.name = graphData.name;
 
                 //Instantiate Nodes of Layer
