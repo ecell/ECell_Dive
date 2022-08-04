@@ -44,6 +44,13 @@ namespace ECellDive.Utility
             if (IsLocalPlayer)
             {
                 Instance = this;
+                GUIManager guiManager = FindObjectOfType<GUIManager>();
+
+                Instance.refVirtualKeyboard = guiManager.refVirtualKeyboard;
+                Instance.refColorPicker = guiManager.refColorPicker;
+                Instance.refGroupsMenu = guiManager.refGroupsMenu;
+
+                guiManager.Initialize(GetComponent<PlayerComponents.Player>());
             }
         }
     }
