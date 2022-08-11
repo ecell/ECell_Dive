@@ -48,8 +48,9 @@ namespace ECellDive
                 {
                     Hide();
                 }
-                lookAtTarget = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
-                                GetComponentInChildren<Camera>().transform;
+                //lookAtTarget = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
+                //                GetComponentInChildren<Camera>().transform;
+                lookAtTarget = Camera.main.transform;
             }
 
             private void AwakeCallBackActions(Tag _tag)
