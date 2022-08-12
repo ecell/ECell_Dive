@@ -51,7 +51,7 @@ namespace ECellDive.PlayerComponents
 
             NetworkManager.Singleton.OnClientConnectedCallback += clientID => ExchangeNamesServerRpc(_nameB, clientID);
 
-            GetComponent<NetworkObject>().DestroyWithScene = true;
+            //GetComponent<NetworkObject>().DestroyWithScene = true;
         }
 
         [ClientRpc]

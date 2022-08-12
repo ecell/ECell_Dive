@@ -38,14 +38,16 @@ namespace ECellDive.Tutorials
         }
 
         /// <inheritdoc/>
-        public void Conclude()
+        public virtual void Conclude()
         {
+            Debug.Log("Conclude step " + gameObject.name);
             conclusionInstructions.Invoke();
         }
 
         /// <inheritdoc/>
-        public void Initialize()
+        public virtual void Initialize()
         {
+            Debug.Log("Initialize step " + gameObject.name);
             initializationInstructions.Invoke();
         }
 

@@ -3333,9 +3333,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d310129a921d14e879f035e442e62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  refAllGuiMenusContainer: {fileID: 0}
   refVirtualKeyboard: {fileID: 0}
   refColorPicker: {fileID: 0}
   refGroupsMenu: {fileID: 0}
+  refInfoTags:
+  - {fileID: 3316641495130682250}
+  - {fileID: 8228238842994776659}
+  - {fileID: 6664928082796352704}
+  - {fileID: 3422392660066268370}
+  - {fileID: 2122948806125570482}
+  - {fileID: 8909983207693121245}
+  - {fileID: 2804532520689219780}
+  - {fileID: 6856473430402058716}
+  - {fileID: 6892934265721721799}
+  - {fileID: 4493483555785887940}
+  - {fileID: 7093164653858645132}
   groupsInteractors:
     m_left: {fileID: 5081819282262264101}
     m_right: {fileID: 5081819280637628420}
@@ -3357,6 +3370,10 @@ MonoBehaviour:
   groupControllersGO:
     m_left: {fileID: 5081819280540731714}
     m_right: {fileID: 5081819281744983518}
+  riControllersGO:
+    m_left: {fileID: 5081819281373105825}
+    m_right: {fileID: 5081819282123180899}
+  inputModeManager: {fileID: 5220068157395964815}
 --- !u!1 &5081819281674312125
 GameObject:
   m_ObjectHideFlags: 0
@@ -5051,7 +5068,7 @@ GameObject:
   - component: {fileID: 5220068157395964815}
   - component: {fileID: 8584925348892557699}
   m_Layer: 0
-  m_Name: Controllers Local Player
+  m_Name: Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

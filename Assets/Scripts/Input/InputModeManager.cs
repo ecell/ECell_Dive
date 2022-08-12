@@ -187,15 +187,15 @@ namespace ECellDive
             }
 
             [ServerRpc]
-            public void BroadcastLeftControllerModeServerRpc()
+            public void BroadcastLeftControllerModeServerRpc(int _modeIdx)
             {
-                leftControllerModeID.Value++;
+                leftControllerModeID.Value = _modeIdx;
             }
 
             [ServerRpc]
-            public void BroadcastRightControllerModeServerRpc()
+            public void BroadcastRightControllerModeServerRpc(int _modeIdx)
             {
-                rightControllerModeID.Value++;
+                rightControllerModeID.Value = _modeIdx;
             }
 
             private void DisableInteractors(XRRayInteractor[] _interactors)
@@ -228,7 +228,7 @@ namespace ECellDive
             {
                 if (IsOwner)
                 {
-                    BroadcastLeftControllerModeServerRpc();
+                    BroadcastLeftControllerModeServerRpc(leftControllerModeID.Value + 1);
                 }
             }
 
@@ -236,7 +236,7 @@ namespace ECellDive
             {
                 if (IsOwner)
                 {
-                    BroadcastRightControllerModeServerRpc();
+                    BroadcastRightControllerModeServerRpc(rightControllerModeID.Value + 1);
                 }
             }
         }
