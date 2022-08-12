@@ -32,15 +32,14 @@ namespace ECellDive.Tutorials
         [SerializeField, TextArea] private string m_details;
         public string details { get => m_details; }
 
-        [SerializeField] private GameObject m_learningResource;
-        public GameObject learningResource { get => m_learningResource; }
-
         [SerializeField] private UnityEvent m_initializationInstructions;
         public UnityEvent initializationInstructions { get => m_initializationInstructions; }
 
         [SerializeField] private UnityEvent m_conclusionInstructions;
         public UnityEvent conclusionInstructions { get => m_conclusionInstructions; }
         #endregion
+
+
 
         /// <inheritdoc/>
         public virtual bool CheckCondition()

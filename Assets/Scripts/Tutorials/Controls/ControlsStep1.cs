@@ -8,13 +8,14 @@ using ECellDive.Utility;
 namespace ECellDive.Tutorials
 {
     /// <summary>
-    /// The step 1 of the Tutorial on Controls is about
-    /// learning how to point at objects and use the front
-    /// trigger buttons.
+    /// The step 1 of the Tutorial on Controls.
+    /// Learn how to point at objects and use the front
+    /// trigger button of each controller.
     /// </summary>
     public class ControlsStep1 : Step
     {
         [Header("Local Step Members")]
+        public GameObject target;
         public int targetRepetitions = 5;
         public LeftRightData<InputActionReference> refInteractionFrontTrigger;
 
@@ -83,9 +84,9 @@ namespace ECellDive.Tutorials
 
         private void RelocateTarget()
         {
-            learningResource.transform.localPosition = new Vector3(Random.Range(-2f, 2f),
-                                                                    Random.Range(0f, 2f),
-                                                                    Random.Range(0f, 2f));
+            target.transform.localPosition = new Vector3(Random.Range(-2f, 2f),
+                                                         Random.Range(0f, 2f),
+                                                         Random.Range(0f, 2f));
         }
     }
 }

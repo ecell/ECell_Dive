@@ -383,6 +383,7 @@ namespace ECellDive
             [ServerRpc(RequireOwnership = false)]
             public virtual void SetHighlightServerRpc()
             {
+                Debug.Log("Highlight");
                 m_currentColor.Value = m_highlightColor;
             }
 

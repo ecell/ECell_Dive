@@ -44,6 +44,11 @@ namespace ECellDive
 
             private void Start()
             {
+                if (Camera.main != null)
+                {
+                    SetTargets(Camera.main.transform);
+                }
+                
                 LookAt();
             }
 

@@ -23,10 +23,10 @@ namespace ECellDive.Utility
         public static StaticReferencer Instance;
 
         [Header("UI Elements")]
-        public GameObject refAllGuiMenusContainer;
-        public GameObject refVirtualKeyboard;
-        public ColorPicker refColorPicker;
-        public GroupsMenu refGroupsMenu;
+        [HideInInspector] public GameObject refAllGuiMenusContainer;
+        [HideInInspector] public GameObject refVirtualKeyboard;
+        [HideInInspector] public ColorPicker refColorPicker;
+        [HideInInspector] public GroupsMenu refGroupsMenu;
 
         /// <summary>
         /// The list of all gameobjects representing the information tags of 

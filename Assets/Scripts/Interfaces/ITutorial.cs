@@ -12,8 +12,6 @@ namespace ECellDive.Interfaces
         string task { get; }
         string details { get; }
 
-        GameObject learningResource { get; }
-
         UnityEvent initializationInstructions { get; }
         UnityEvent conclusionInstructions { get; }
 
