@@ -9,6 +9,17 @@ namespace ECellDive.Tutorials
     public class Step : MonoBehaviour,
                         ITutorialStep
     {
+#if UNITY_EDITOR
+        /// <summary>
+        /// Set to true if you want to skip this step.
+        /// ONLY IN EDITOR.
+        /// </summary>
+        /// <remarks>
+        /// Usefull when designing the tutorial.
+        /// </remarks>
+        public bool skip = false;
+#endif
+
         [Header("Global Step Members")]
         #region - ITutorialStep Members-
         [SerializeField] private string m_goal;

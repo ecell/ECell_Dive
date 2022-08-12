@@ -29,6 +29,16 @@ namespace ECellDive.Tutorials
 
         public IEnumerator ImplementStep(int _stepIdx)
         {
+#if UNITY_EDITOR
+            if (steps[_stepIdx].skip)
+            {
+                steps[_stepIdx].Initialize();
+                steps[_stepIdx].Conclude();
+                NextStep();
+                yield break;
+            }
+#endif
+
             steps[_stepIdx].Initialize();
 
             title.text = baseTitle + $" ({currentStep}/{officialNumberOfSteps})";
