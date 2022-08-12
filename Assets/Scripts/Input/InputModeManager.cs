@@ -18,22 +18,22 @@ namespace ECellDive
             public InputActionAsset refInputActionAsset;
 
             //controller ID: 0
-            private InputActionMap refGCLHMap;
-            private InputActionMap refGCRHMap;
+            private InputActionMap refRBCLHMap;
+            private InputActionMap refRBCRHMap;
 
             //controller ID: 1
             private InputActionMap refMvtLHMap;
             private InputActionMap refMvtRHMap;
 
             //controller ID: 2
-            private InputActionMap refRBCLHMap;
-            private InputActionMap refRBCRHMap;
+            private InputActionMap refGCLHMap;
+            private InputActionMap refGCRHMap;
 
             public InputActionReference refLeftControlSwitch;
             public InputActionReference refRightControlSwitch;
 
             //default is ray mode on left controller
-            private NetworkVariable<int> leftControllerModeID = new NetworkVariable<int>(2);
+            private NetworkVariable<int> leftControllerModeID = new NetworkVariable<int>(0);
 
             //default is movement mode on right controller
             private NetworkVariable<int> rightControllerModeID = new NetworkVariable<int>(1);
@@ -52,14 +52,14 @@ namespace ECellDive
 
             private void Awake()
             {
-                refGCLHMap = refInputActionAsset.FindActionMap("Group_Controls_LH");
-                refGCRHMap = refInputActionAsset.FindActionMap("Group_Controls_RH");
+                refRBCLHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_LH");
+                refRBCRHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_RH");
 
                 refMvtLHMap = refInputActionAsset.FindActionMap("Movement_LH");
                 refMvtRHMap = refInputActionAsset.FindActionMap("Movement_RH");
 
-                refRBCLHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_LH");
-                refRBCRHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_RH");
+                refGCLHMap = refInputActionAsset.FindActionMap("Group_Controls_LH");
+                refGCRHMap = refInputActionAsset.FindActionMap("Group_Controls_RH");
             }
 
             private void Start()
@@ -84,7 +84,7 @@ namespace ECellDive
                 leftControllerModeID.OnValueChanged += ApplyLeftControllerModeSwitch;
                 rightControllerModeID.OnValueChanged += ApplyRightControllerModeSwitch;
 
-                ApplyLeftControllerModeSwitch(-1, 2);
+                ApplyLeftControllerModeSwitch(-1, 0);
                 ApplyRightControllerModeSwitch(-1, 1);
             }
 
@@ -102,14 +102,14 @@ namespace ECellDive
                 switch (leftControllerModeID.Value)
                 {
                     case 0:
-                        refRBCLHMap.Disable();
-                        DisableInteractors(leftRBCs);
+                        refGCLHMap.Disable();
+                        DisableInteractor(groupControllersGO.left);
 
                         refMvtLHMap.Disable();
                         DisableInteractor(mvtControllersGO.left);
 
-                        refGCLHMap.Enable();
-                        EnableInteractor(groupControllersGO.left);
+                        refRBCLHMap.Enable();
+                        EnableInteractors(leftRBCs);
                         break;
 
                     case 1:
@@ -124,14 +124,14 @@ namespace ECellDive
                         break;
 
                     case 2:
-                        refGCLHMap.Disable();
-                        DisableInteractor(groupControllersGO.left);
+                        refRBCLHMap.Disable();
+                        DisableInteractors(leftRBCs);
 
                         refMvtLHMap.Disable();
                         DisableInteractor(mvtControllersGO.left);
 
-                        refRBCLHMap.Enable();
-                        EnableInteractors(leftRBCs);
+                        refGCLHMap.Enable();
+                        EnableInteractor(groupControllersGO.left);
                         break;
 
                     default:
@@ -147,14 +147,14 @@ namespace ECellDive
                 switch (rightControllerModeID.Value)
                 {
                     case 0:
-                        refRBCRHMap.Disable();
-                        DisableInteractors(rightRBCs);
+                        refGCRHMap.Disable();
+                        DisableInteractor(groupControllersGO.right);
 
                         refMvtRHMap.Disable();
                         DisableInteractor(mvtControllersGO.right);
 
-                        refGCRHMap.Enable();
-                        EnableInteractor(groupControllersGO.right);
+                        refRBCRHMap.Enable();
+                        EnableInteractors(rightRBCs);
                         break;
 
                     case 1:
@@ -169,14 +169,14 @@ namespace ECellDive
                         break;
 
                     case 2:
-                        refGCRHMap.Disable();
-                        DisableInteractor(groupControllersGO.right);
+                        refRBCRHMap.Disable();
+                        DisableInteractors(rightRBCs);
 
                         refMvtRHMap.Disable();
                         DisableInteractor(mvtControllersGO.right);
 
-                        refRBCRHMap.Enable();
-                        EnableInteractors(rightRBCs);
+                        refGCRHMap.Enable();
+                        EnableInteractor(groupControllersGO.right);
                         break;
 
                     default:
@@ -206,11 +206,6 @@ namespace ECellDive
                 }
             }
 
-            //private void DisableInteractor(XRRayInteractor _interactor)
-            //{
-            //    _interactor.enabled = false;
-            //}
-
             private void DisableInteractor(GameObject _selector)
             {
                 _selector.SetActive(false);
@@ -222,11 +217,6 @@ namespace ECellDive
                 {
                     interactor.enabled = true;
                 }
-            }
-
-            private void EnableInteractor(XRRayInteractor _interactor)
-            {
-                _interactor.enabled = true;
             }
 
             private void EnableInteractor(GameObject _selector)
