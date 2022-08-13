@@ -302,6 +302,132 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3129959241636354862, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 28286119}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &70398262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 70398263}
+  - component: {fileID: 70398267}
+  - component: {fileID: 70398266}
+  - component: {fileID: 70398265}
+  - component: {fileID: 70398268}
+  - component: {fileID: 70398264}
+  m_Layer: 0
+  m_Name: Cylinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &70398263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70398262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.145, y: 0, z: 1.568}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 842924648}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &70398264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70398262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14e4f55ad601d9b41876aa639085557d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &70398265
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70398262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!23 &70398266
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70398262}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &70398267
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70398262}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &70398268
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70398262}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &252009511 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7932024736400225365, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
@@ -318,6 +444,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3736753909790639510, guid: cf14145dc52b1084ba5eeecc5a60a820, type: 3}
   m_PrefabInstance: {fileID: 1737519225}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &382152606 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5016764923900078323, guid: cf14145dc52b1084ba5eeecc5a60a820, type: 3}
+  m_PrefabInstance: {fileID: 1737519225}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382152604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24670cf497b8807418da78d0d4133f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &673743322 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6577075339098115531, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
@@ -329,6 +466,119 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &842924647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 842924648}
+  - component: {fileID: 842924649}
+  m_Layer: 0
+  m_Name: ControlsStep3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &842924648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842924647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 70398263}
+  m_Father: {fileID: 1095495557}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &842924649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842924647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25726fb657b4f24498da1f464eb6eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skip: 0
+  m_goal: Grab & Move an object
+  m_task: Grab the objects and move it to the green areas around you.
+  m_details: To grab the module, point at it with a controller and hold down its
+    grip trigger. With the object grabbed, push or pull the joystick of that same
+    controller to control the distance of the object.
+  m_initializationInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 382152604}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 382152606}
+        m_TargetAssemblyTypeName: ECellDive.Modules.GameNetModule, Assembly-CSharp
+        m_MethodName: HideInfoTags
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 252009511}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_conclusionInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 252009511}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  module: {fileID: 382152604}
+  targetArea: {fileID: 70398262}
+  refGrabObjects:
+    m_left: {fileID: 1901161901490888043, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_right: {fileID: -4479098549160383614, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  refDistanceControl:
+    m_left: {fileID: -3848924210200324891, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_right: {fileID: 2490823375165310329, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  targetCollision: 5
 --- !u!1 &1020924958
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +589,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1020924959}
   - component: {fileID: 1020924960}
+  - component: {fileID: 1020924961}
   m_Layer: 0
   m_Name: ControlsStep2
   m_TagString: Untagged
@@ -430,6 +681,22 @@ MonoBehaviour:
   refDisplayObjectMenu:
     m_left: {fileID: -2874468441403497665, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
     m_right: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+--- !u!114 &1020924961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020924958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3099839032
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &1095495556
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +727,7 @@ Transform:
   - {fileID: 1825641086}
   - {fileID: 1290362965}
   - {fileID: 1020924959}
+  - {fileID: 842924648}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
