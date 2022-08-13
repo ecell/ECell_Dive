@@ -27,7 +27,7 @@ namespace ECellDive.SceneManagement
             {
                 //SceneManager.LoadScene(scenes[_sceneIdx].name);
                 SceneEventProgressStatus status = NetworkManager.SceneManager.LoadScene(
-                                                        scenes[_sceneIdx].name, LoadSceneMode.Single);
+                                                        scenes[_sceneIdx].name, LoadSceneMode.Additive);
 
             }
         }

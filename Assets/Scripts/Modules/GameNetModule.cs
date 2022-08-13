@@ -263,7 +263,11 @@ namespace ECellDive
 
             protected virtual void ApplyCurrentColorChange(Color _previous, Color _current)
             {
-
+                mpb.SetVector(colorID, _current);
+                if (m_Renderer != null)
+                {
+                    m_Renderer.SetPropertyBlock(mpb);
+                }
             }
 
             /// <summary>
@@ -383,7 +387,6 @@ namespace ECellDive
             [ServerRpc(RequireOwnership = false)]
             public virtual void SetHighlightServerRpc()
             {
-                Debug.Log("Highlight");
                 m_currentColor.Value = m_highlightColor;
             }
 
