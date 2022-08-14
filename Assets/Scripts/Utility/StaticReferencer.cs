@@ -6,6 +6,7 @@ using HSVPicker;
 using ECellDive.Interfaces;
 using ECellDive.Input;
 using ECellDive.UI;
+using ECellDive.UserActions;
 
 
 namespace ECellDive.Utility
@@ -66,6 +67,7 @@ namespace ECellDive.Utility
 
         [Header("Other")]
         public InputModeManager inputModeManager;
+        public GroupsMakingManager groupsMakingManager;
 
         // Start is called before the first frame update
         public override void OnNetworkSpawn()
