@@ -7,7 +7,7 @@ using ECellDive.Utility;
 namespace ECellDive.Tutorials
 {
     /// <summary>
-    /// The step 4 of the tutorial on controls.
+    /// The step 5 of the tutorial on controls.
     /// Learn about the differnet types of controls input modes
     /// and how to switch from one to another.
     /// </summary>
@@ -22,6 +22,15 @@ namespace ECellDive.Tutorials
         {
             return switchedInputModes;
         }
+
+        public override void Conclude()
+        {
+            base.Conclude();
+
+            switchInputModes.left.action.performed -= SwitchInputModesConfirmed;
+            switchInputModes.right.action.performed -= SwitchInputModesConfirmed;
+        }
+
         public override void Initialize()
         {
             base.Initialize();
@@ -38,13 +47,6 @@ namespace ECellDive.Tutorials
 
         }
 
-        public override void Conclude()
-        {
-            base.Conclude();
-
-            switchInputModes.left.action.performed -= SwitchInputModesConfirmed;
-            switchInputModes.right.action.performed -= SwitchInputModesConfirmed;
-        }
         private void SwitchInputModesConfirmed(InputAction.CallbackContext _ctx)
         {
             switchedInputModes = true;
