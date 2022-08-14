@@ -53,7 +53,6 @@ namespace ECellDive.Tutorials
 
             //Enable the InfoTags of the grip trigger.
             StaticReferencer.Instance.refInfoTags[5].SetActive(true);
-            Debug.Log($"{StaticReferencer.Instance.refInfoTags[5]}");
             StaticReferencer.Instance.refInfoTags[10].SetActive(true);
 
             //Enable the InfoTags of the JoySticks.

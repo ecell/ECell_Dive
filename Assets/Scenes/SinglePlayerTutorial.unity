@@ -477,8 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd343a7aca680bb4588487a2f78262c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skip: 0
-  m_goal: Grab & Move a UI menu
+  skip: 1
+  m_goal: Grab & Move a UI menu.
   m_task: Point at the white horizontal bar of UI element and grab it.
   m_details: You can grab a UI (User Interface) element using the same grip button
     as for grabing a module. You can also manage the distance of the UI element using
@@ -551,6 +551,109 @@ MonoBehaviour:
         m_CallState: 2
   grabManagerofTarget1: {fileID: 1966285579}
   grabManagerofTarget2: {fileID: 1125021175}
+--- !u!1 &577305643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 577305644}
+  - component: {fileID: 577305645}
+  m_Layer: 0
+  m_Name: ControlsStep5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &577305644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577305643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1095495557}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &577305645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577305643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ba4bbac04079bc4abd060fe87519d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skip: 0
+  m_goal: Learn about the different controls input modes.
+  m_task: Press the secondary button of a controller to switch controls input modes.
+  m_details: 'On the left controller, the secondary button if the "Y Button". On
+    the right controller, it is the "B Button".
+
+    In ECellDive, we separated different
+    classes of controls for clarity and consistency. There are 3 types of controls:
+    the <b>Ray-Based Controls</b> (orange ray, the one you used until now), the <b>Movement
+    Controls</b> (green ray and sphere) and the <b>Groups Controls</b> (white ray). 
+    Repeatedly pressing the secondary button of a controller will cycle through the
+    controls input modes.
+
+    <color=orange>Warning: Always go back to <b>Ray-Based
+    Controls</b> to interact with UI.</color>'
+  m_initializationInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 252009511}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 382152604}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_conclusionInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 252009511}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  switchInputModes:
+    m_left: {fileID: 8617445865269668666, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_right: {fileID: -1308900984660770716, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
 --- !u!114 &673743322 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6577075339098115531, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
@@ -607,7 +710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skip: 1
-  m_goal: Grab & Move an object
+  m_goal: Grab & Move an object.
   m_task: Grab the objects and move it to the green areas around you.
   m_details: To grab the module, point at it with a controller and hold down its
     grip trigger. With the object grabbed, push or pull the joystick of that same
@@ -837,6 +940,7 @@ Transform:
   - {fileID: 1020924959}
   - {fileID: 842924648}
   - {fileID: 392865399}
+  - {fileID: 577305644}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -849,7 +953,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 238767312609805975, guid: 7eddbd484b3093949a8a0b311faa75a6, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 238767312609805975, guid: 7eddbd484b3093949a8a0b311faa75a6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1161,6 +1265,7 @@ MonoBehaviour:
   - {fileID: 1020924960}
   - {fileID: 842924649}
   - {fileID: 392865400}
+  - {fileID: 577305645}
   officialNumberOfSteps: 4
 --- !u!4 &1535554227
 Transform:
@@ -1174,7 +1279,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1737519225
 PrefabInstance:
