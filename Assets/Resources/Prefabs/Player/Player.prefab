@@ -1622,13 +1622,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refUIManager: {fileID: 5810305602639473905}
-  refSecondGrpSelector: {fileID: 1050077697241804974}
-  grpMkgActionData:
-    selection: {fileID: 2384165661180725347, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    switchSelectionMode: {fileID: -900726509401738238, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  selection:
+    m_left: {fileID: 0}
+    m_right: {fileID: 0}
+  switchSelectionMode:
+    m_left: {fileID: 0}
+    m_right: {fileID: 0}
+  discreteSelector:
+    m_left: {fileID: 0}
+    m_right: {fileID: 0}
+  volumetricSelector:
+    m_left: {fileID: 0}
+    m_right: {fileID: 0}
   grpMkgToolsData:
-    discreteSelector: {fileID: 1845728612840742209}
-    volumetricSelector: {fileID: 1845728611393612946}
     targetLayer: 8
     maxDistance: 30
   groupMembers: []
@@ -1778,9 +1784,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d310129a921d14e879f035e442e62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  refAllGuiMenusContainer: {fileID: 0}
   refVirtualKeyboard: {fileID: 1845728613084939979}
   refColorPicker: {fileID: 4740664920185968305}
   refGroupsMenu: {fileID: 2064760150944060475}
+  refInfoTags: []
   groupsInteractors:
     m_left: {fileID: 1845728612840742237}
     m_right: {fileID: 1845728611244409980}
@@ -1802,6 +1810,10 @@ MonoBehaviour:
   groupControllersGO:
     m_left: {fileID: 1845728611470941498}
     m_right: {fileID: 1845728612418806182}
+  riControllersGO:
+    m_left: {fileID: 0}
+    m_right: {fileID: 0}
+  inputModeManager: {fileID: 0}
 --- !u!1 &1845728611662518056
 GameObject:
   m_ObjectHideFlags: 0
@@ -3169,13 +3181,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refUIManager: {fileID: 5810305602639473905}
-  refSecondGrpSelector: {fileID: 8842317675869009180}
-  grpMkgActionData:
-    selection: {fileID: -8749652606593971610, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    switchSelectionMode: {fileID: -1101054072476948304, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  selection:
+    m_left: {fileID: 0}
+    m_right: {fileID: 0}
+  switchSelectionMode:
+    m_left: {fileID: 0}
+    m_right: {fileID: 0}
+  discreteSelector:
+    m_left: {fileID: 0}
+    m_right: {fileID: 0}
+  volumetricSelector:
+    m_left: {fileID: 0}
+    m_right: {fileID: 0}
   grpMkgToolsData:
-    discreteSelector: {fileID: 1845728611244409952}
-    volumetricSelector: {fileID: 1845728611662518054}
     targetLayer: 8
     maxDistance: 30
   groupMembers: []
@@ -3621,7 +3639,8 @@ MonoBehaviour:
   refMainMenu: {fileID: 1845728612707481103}
   refVirtualKeyboard: {fileID: 0}
   refColorPicker: {fileID: 0}
-  refGroupMenu: {fileID: 0}
+  refGroupsMenu: {fileID: 0}
+  refMultiplayerMenuManager: {fileID: 0}
 --- !u!1 &1845728612840742209
 GameObject:
   m_ObjectHideFlags: 0

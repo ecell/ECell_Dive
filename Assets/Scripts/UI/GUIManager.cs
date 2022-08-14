@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using HSVPicker;
 using ECellDive.Interfaces;
 using ECellDive.PlayerComponents;
+using ECellDive.UserActions;
 using ECellDive.Utility;
 
 
@@ -20,6 +21,7 @@ namespace ECellDive
             public GameObject refMainMenu;
             public GameObject refVirtualKeyboard;
             public ColorPicker refColorPicker;
+            public GroupsMakingUIManager refGroupsMakingUIManager;
             public GroupsMenu refGroupsMenu;
             public MultiplayerMenuManager refMultiplayerMenuManager;
 
@@ -54,6 +56,7 @@ namespace ECellDive
 
                 refGroupsMenu.Initialize();
                 refMultiplayerMenuManager.Initialize();
+                _player.GetComponentInChildren<GroupsMakingManager>().SetUIManager(refGroupsMakingUIManager);
             }
 
             /// <summary>

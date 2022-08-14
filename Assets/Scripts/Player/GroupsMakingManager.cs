@@ -12,17 +12,8 @@ namespace ECellDive
     namespace UserActions
     {
         [System.Serializable]
-        public struct GroupMakingActionData
-        {
-            public InputActionReference selection;
-            public InputActionReference switchSelectionMode;
-        }
-
-        [System.Serializable]
         public struct GroupMakingToolsData
         {
-            public GameObject discreteSelector;
-            public VolumetricSelectorManager volumetricSelector;
             public int targetLayer;
             public float maxDistance;
         }
@@ -33,33 +24,52 @@ namespace ECellDive
         /// </summary>
         public class GroupsMakingManager : NetworkBehaviour
         {
-            public GroupsMakingUIManager refUIManager;
-            public GroupsMakingManager refSecondGrpSelector;
+            private GroupsMakingUIManager refUIManager;
 
-            public GroupMakingActionData grpMkgActionData;
+            public LeftRightData<InputActionReference> selection;
+            public LeftRightData<InputActionReference> switchSelectionMode;
+
+            public LeftRightData<GameObject> discreteSelector;
+            public LeftRightData<VolumetricSelectorManager> volumetricSelector;
 
             public GroupMakingToolsData grpMkgToolsData;
 
-            private NetworkVariable<bool> isVolumetric = new NetworkVariable<bool>(false);
+            private LeftRightData<NetworkVariable<bool>> isVolumetric = new LeftRightData<NetworkVariable<bool>>
+            {
+                left = new NetworkVariable<bool>(false),
+                right = new NetworkVariable<bool>(false)
+            };
 
             public List<GameObject> groupMembers = new List<GameObject>();
 
             public override void OnNetworkSpawn()
             {
-                grpMkgActionData.selection.action.started += TryAddMemberStart;
-                grpMkgActionData.selection.action.canceled += TryAddMemberEnd;
-                grpMkgActionData.switchSelectionMode.action.performed += SwitchSelectionMode;
+                selection.left.action.started += TryAddMemberStartLeft;
+                selection.left.action.canceled += TryAddMemberEndLeft;
+                selection.right.action.started += TryAddMemberStartRight;
+                selection.right.action.canceled += TryAddMemberEndRight;
 
-                isVolumetric.OnValueChanged += ApplySwitchSelectionMode;
+
+                switchSelectionMode.left.action.performed += SwitchSelectionModeLeft;
+                switchSelectionMode.right.action.performed += SwitchSelectionModeRight;
+
+                isVolumetric.left.OnValueChanged += ApplySwitchSelectionModeLeft;
+                isVolumetric.right.OnValueChanged += ApplySwitchSelectionModeRight;
             }
 
             public override void OnNetworkDespawn()
             {
-                grpMkgActionData.selection.action.started -= TryAddMemberStart;
-                grpMkgActionData.selection.action.canceled -= TryAddMemberEnd;
-                grpMkgActionData.switchSelectionMode.action.performed -= SwitchSelectionMode;
+                selection.left.action.started -= TryAddMemberStartLeft;
+                selection.left.action.canceled -= TryAddMemberEndLeft;
+                selection.right.action.started -= TryAddMemberStartRight;
+                selection.right.action.canceled -= TryAddMemberEndRight;
 
-                isVolumetric.OnValueChanged -= ApplySwitchSelectionMode;
+
+                switchSelectionMode.left.action.performed -= SwitchSelectionModeLeft;
+                switchSelectionMode.right.action.performed -= SwitchSelectionModeRight;
+
+                isVolumetric.left.OnValueChanged -= ApplySwitchSelectionModeLeft;
+                isVolumetric.right.OnValueChanged -= ApplySwitchSelectionModeRight;
 
             }
 
@@ -78,25 +88,50 @@ namespace ECellDive
             /// The logic to switch between the discrete and volumetric selection
             /// mode for the left controller.
             /// </summary>
-            private void ApplySwitchSelectionMode(bool _past, bool _current)
+            private void ApplySwitchSelectionModeLeft(bool _past, bool _current)
             {
-                if (isVolumetric.Value)
+                if (isVolumetric.left.Value)
                 {
-                    grpMkgToolsData.discreteSelector.SetActive(false);
-                    grpMkgToolsData.volumetricSelector.gameObject.SetActive(true);
-                    grpMkgToolsData.volumetricSelector.ResetTransform();
+                    discreteSelector.left.SetActive(false);
+                    volumetricSelector.left.gameObject.SetActive(true);
+                    volumetricSelector.left.ResetTransform();
                 }
                 else
                 {
-                    grpMkgToolsData.volumetricSelector.gameObject.SetActive(false);
-                    grpMkgToolsData.discreteSelector.SetActive(true);
+                    volumetricSelector.left.gameObject.SetActive(false);
+                    discreteSelector.left.SetActive(true);
+                }
+            }
+
+            /// <summary>
+            /// The logic to switch between the discrete and volumetric selection
+            /// mode for the left controller.
+            /// </summary>
+            private void ApplySwitchSelectionModeRight(bool _past, bool _current)
+            {
+                if (isVolumetric.right.Value)
+                {
+                    discreteSelector.right.SetActive(false);
+                    volumetricSelector.right.gameObject.SetActive(true);
+                    volumetricSelector.right.ResetTransform();
+                }
+                else
+                {
+                    volumetricSelector.right.gameObject.SetActive(false);
+                    discreteSelector.right.SetActive(true);
                 }
             }
 
             [ServerRpc]
-            public void BroadcastSelectionModeServerRpc()
+            public void BroadcastSelectionModeLeftServerRpc()
             {
-                isVolumetric.Value = !isVolumetric.Value;
+                isVolumetric.left.Value = !isVolumetric.left.Value;
+            }
+
+            [ServerRpc]
+            public void BroadcastSelectionModeRightServerRpc()
+            {
+                isVolumetric.right.Value = !isVolumetric.right.Value;
             }
 
             /// <summary>
@@ -209,43 +244,95 @@ namespace ECellDive
 
                 groupMembers.Clear();
             }
-            
-            private void SwitchSelectionMode(InputAction.CallbackContext _ctx)
+
+            /// <summary>
+            /// Mutator for <see cref="refUIManager"/>.
+            /// </summary>
+            /// <param name="_UImanager">The value for <see cref="refUIManager"/>.</param>
+            public void SetUIManager(GroupsMakingUIManager _UImanager)
+            {
+                refUIManager = _UImanager;
+            }
+
+            private void SwitchSelectionModeLeft(InputAction.CallbackContext _ctx)
             {
                 if (IsOwner)
                 {
-                BroadcastSelectionModeServerRpc();
+                    BroadcastSelectionModeLeftServerRpc();
+                }
+            }
+
+            private void SwitchSelectionModeRight(InputAction.CallbackContext _ctx)
+            {
+                if (IsOwner)
+                {
+                    BroadcastSelectionModeRightServerRpc();
                 }
             }
 
             /// <summary>
             /// The logic to deactivate the current selector when the
-            /// selection button is released.
+            /// selection button is released for the left controller.
             /// </summary>
-            private void TryAddMemberEnd(InputAction.CallbackContext _ctx)
+            private void TryAddMemberEndLeft(InputAction.CallbackContext _ctx)
             {
-                if (isVolumetric.Value)
+                if (isVolumetric.left.Value)
                 {
-                    grpMkgToolsData.volumetricSelector.ManageActive(false);
+                    volumetricSelector.left.ManageActive(false);
+                }
+            }
+
+            /// <summary>
+            /// The logic to deactivate the current selector when the
+            /// selection button is released for the right controller.
+            /// </summary>
+            private void TryAddMemberEndRight(InputAction.CallbackContext _ctx)
+            {
+                if (isVolumetric.right.Value)
+                {
+                    volumetricSelector.left.ManageActive(false);
                 }
             }
 
             /// <summary>
             /// The logic to activate the current selector when the selection
-            /// button has just started being pressed.
+            /// button has just started being pressed for the left controller.
             /// </summary>
-            private void TryAddMemberStart(InputAction.CallbackContext _ctx)
+            private void TryAddMemberStartLeft(InputAction.CallbackContext _ctx)
             {
-                if (isVolumetric.Value)
+                if (isVolumetric.left.Value)
                 {
-                    grpMkgToolsData.volumetricSelector.ManageActive(true);
+                    volumetricSelector.left.ManageActive(true);
                 }
 
                 else
                 {
                     RaycastHit hitInfo;
-                    if (Physics.Raycast(grpMkgToolsData.discreteSelector.transform.position,
-                                        grpMkgToolsData.discreteSelector.transform.forward,
+                    if (Physics.Raycast(discreteSelector.left.transform.position,
+                                        discreteSelector.left.transform.forward,
+                                        out hitInfo, grpMkgToolsData.maxDistance))
+                    {
+                        CheckCollision(hitInfo.collider.gameObject);
+                    }
+                }
+            }
+
+            /// <summary>
+            /// The logic to activate the current selector when the selection
+            /// button has just started being pressed for the right controller.
+            /// </summary>
+            private void TryAddMemberStartRight(InputAction.CallbackContext _ctx)
+            {
+                if (isVolumetric.right.Value)
+                {
+                    volumetricSelector.right.ManageActive(true);
+                }
+
+                else
+                {
+                    RaycastHit hitInfo;
+                    if (Physics.Raycast(discreteSelector.right.transform.position,
+                                        discreteSelector.right.transform.forward,
                                         out hitInfo, grpMkgToolsData.maxDistance))
                     {
                         CheckCollision(hitInfo.collider.gameObject);
@@ -258,14 +345,11 @@ namespace ECellDive
             /// </summary>
             public void ValidateGroup()
             {
-                List<GameObject> allGroupMembers = groupMembers;
-                allGroupMembers.AddRange(refSecondGrpSelector.groupMembers);
-
                 //Get Highlightables and reset force highlight
-                IHighlightable[] highlitables = new IHighlightable[allGroupMembers.Count];
-                for (int i = 0; i < allGroupMembers.Count; i++)
+                IHighlightable[] highlitables = new IHighlightable[groupMembers.Count];
+                for (int i = 0; i < groupMembers.Count; i++)
                 {
-                    highlitables[i] = ToFind.FindComponent<IHighlightable>(allGroupMembers[i]);
+                    highlitables[i] = ToFind.FindComponent<IHighlightable>(groupMembers[i]);
                     highlitables[i].forceHighlight = false;
                 }
 
