@@ -24,7 +24,7 @@ namespace ECellDive.Tutorials
 
         private void Start()
         {
-            targetArea.GetComponent<TriggerBroadcaster>().onCollisionEnter += CheckCollision;
+            targetArea.GetComponent<TriggerBroadcaster>().onTriggerEnter += CheckCollision;
         }
 
         private void CheckCollision(Collider _other)

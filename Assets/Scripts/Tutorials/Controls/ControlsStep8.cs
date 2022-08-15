@@ -9,7 +9,7 @@ namespace ECellDive.Tutorials
 {
     /// <summary>
     /// The step 8 of the tutorial on controls.
-    /// Learn how to make a group of objects.
+    /// Learn how to make a group of objects with the ray selector.
     /// </summary>
     public class ControlsStep8 : Step
     {
@@ -26,14 +26,11 @@ namespace ECellDive.Tutorials
 
         private void CheckGroupComposition(InputAction.CallbackContext _ctx)
         {
-            Debug.Log("CheckGroupComposition");
             if (targetGroupContent.Length == StaticReferencer.Instance.groupsMakingManager.groupMembers.Count)
             {
-                Debug.Log("Same size");
                 bool _validGroup = true;
                 foreach (GameObject _member in targetGroupContent)
                 {
-                    Debug.Log($"member {_member} is in group: {StaticReferencer.Instance.groupsMakingManager.groupMembers.Contains(_member)}");
                     _validGroup &= StaticReferencer.Instance.groupsMakingManager.groupMembers.Contains(_member);
                 }
                 validGroup = _validGroup;
@@ -49,6 +46,14 @@ namespace ECellDive.Tutorials
             
             groupSelect.left.action.performed += CheckGroupComposition;
             groupSelect.right.action.performed += CheckGroupComposition;
+        }
+
+        public override void Conclude()
+        {
+            base.Conclude();
+
+            groupSelect.left.action.performed -= CheckGroupComposition;
+            groupSelect.right.action.performed -= CheckGroupComposition;
         }
     }
 }

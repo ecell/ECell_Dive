@@ -65,6 +65,9 @@ namespace ECellDive.Utility
         public LeftRightData<GameObject> groupControllersGO;
         public LeftRightData<GameObject> riControllersGO;
 
+        [Header("Controllers Other References")]
+        public LeftRightData<VolumetricSelectorManager> volumetricSelectorManagers;
+
         [Header("Other")]
         public InputModeManager inputModeManager;
         public GroupsMakingManager groupsMakingManager;
