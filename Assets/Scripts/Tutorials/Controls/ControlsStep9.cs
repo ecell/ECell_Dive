@@ -48,9 +48,6 @@ namespace ECellDive.Tutorials
             voluSelLeft = StaticReferencer.Instance.volumetricSelectorManagers.left.GetComponent<TriggerBroadcaster>();
             voluSelRight = StaticReferencer.Instance.volumetricSelectorManagers.right.GetComponent<TriggerBroadcaster>();
 
-            Debug.Log($"voluSelLeft: {voluSelLeft}");
-            Debug.Log($"voluSelRight: {voluSelRight}");
-
             switchGroupSelector.left.action.Enable();
             switchGroupSelector.right.action.Enable();
 
