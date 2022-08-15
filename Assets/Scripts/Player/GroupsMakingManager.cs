@@ -44,11 +44,13 @@ namespace ECellDive
 
             public override void OnNetworkSpawn()
             {
+                volumetricSelector.left.gameObject.GetComponent<TriggerBroadcaster>().onTriggerEnter += CheckCollision;
+                volumetricSelector.right.gameObject.GetComponent<TriggerBroadcaster>().onTriggerEnter += CheckCollision;
+
                 selection.left.action.started += TryAddMemberStartLeft;
                 selection.left.action.canceled += TryAddMemberEndLeft;
                 selection.right.action.started += TryAddMemberStartRight;
                 selection.right.action.canceled += TryAddMemberEndRight;
-
 
                 switchSelectionMode.left.action.performed += SwitchSelectionModeLeft;
                 switchSelectionMode.right.action.performed += SwitchSelectionModeRight;
@@ -59,11 +61,13 @@ namespace ECellDive
 
             public override void OnNetworkDespawn()
             {
+                volumetricSelector.left.gameObject.GetComponent<TriggerBroadcaster>().onTriggerEnter -= CheckCollision;
+                volumetricSelector.right.gameObject.GetComponent<TriggerBroadcaster>().onTriggerEnter -= CheckCollision;
+
                 selection.left.action.started -= TryAddMemberStartLeft;
                 selection.left.action.canceled -= TryAddMemberEndLeft;
                 selection.right.action.started -= TryAddMemberStartRight;
                 selection.right.action.canceled -= TryAddMemberEndRight;
-
 
                 switchSelectionMode.left.action.performed -= SwitchSelectionModeLeft;
                 switchSelectionMode.right.action.performed -= SwitchSelectionModeRight;
@@ -159,13 +163,12 @@ namespace ECellDive
             /// with the selector being used is part of the target layer and
             /// proceeds if it is.
             /// </summary>
-            /// <param name="_go">The gameobject that collided with the discrete
-            /// or volumetric selector.</param>
-            public void CheckCollision(GameObject _go)
+            /// <param name="_collider">The collider we want to check.</param>
+            public void CheckCollision(Collider _collider)
             {
-                if (IsObjectInTargetLayer(_go))
+                if (IsObjectInTargetLayer(_collider.gameObject))
                 {
-                    ManageGroupMembers(_go);
+                    ManageGroupMembers(_collider.gameObject);
                 }
             }
 
@@ -312,7 +315,7 @@ namespace ECellDive
                                         discreteSelector.left.transform.forward,
                                         out hitInfo, grpMkgToolsData.maxDistance))
                     {
-                        CheckCollision(hitInfo.collider.gameObject);
+                        CheckCollision(hitInfo.collider);
                     }
                 }
             }
@@ -335,7 +338,7 @@ namespace ECellDive
                                         discreteSelector.right.transform.forward,
                                         out hitInfo, grpMkgToolsData.maxDistance))
                     {
-                        CheckCollision(hitInfo.collider.gameObject);
+                        CheckCollision(hitInfo.collider);
                     }
                 }
             }

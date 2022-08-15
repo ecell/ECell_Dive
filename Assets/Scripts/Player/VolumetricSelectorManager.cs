@@ -137,14 +137,6 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// Collision Event with objects in the scene.
-            /// </summary>
-            private void OnTriggerEnter(Collider collider)
-            {
-                refGrpMkgManager.CheckCollision(collider.gameObject);
-            }
-
-            /// <summary>
             /// Compares if vector <paramref name="_a"/> is less than
             /// <paramref name="_b"/> component-wise.
             /// </summary>

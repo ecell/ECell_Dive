@@ -13,10 +13,10 @@ namespace ECellDive.Utility
     /// </summary>
     public class TriggerBroadcaster : MonoBehaviour
     {
-        public event Action<Collider> onCollisionEnter;
+        public event Action<Collider> onTriggerEnter;
         private void OnTriggerEnter(Collider other)
         {
-            onCollisionEnter?.Invoke(other);
+            onTriggerEnter?.Invoke(other);
         }
     }
 
