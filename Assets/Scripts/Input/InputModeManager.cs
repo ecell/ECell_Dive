@@ -81,56 +81,63 @@ namespace ECellDive
                     mainPointerInteractors.right
                 };
 
-                leftControllerModeID.OnValueChanged += ApplyLeftControllerModeSwitch;
-                rightControllerModeID.OnValueChanged += ApplyRightControllerModeSwitch;
+                //Subscribe the switch of Interactors and Action Maps
+                //to a change of value for leftControllerModeID
+                leftControllerModeID.OnValueChanged += ApplyLeftControllerInteractorsSwitch;
+                leftControllerModeID.OnValueChanged += ApplyLeftControllerActionMapSwitch;
 
-                ApplyLeftControllerModeSwitch(-1, 0);
-                ApplyRightControllerModeSwitch(-1, 1);
+                //Subscribe the switch of Interactors and Action Maps
+                //to a change of value for rightControllerModeID
+                rightControllerModeID.OnValueChanged += ApplyRightControllerInteractorsSwitch;
+                rightControllerModeID.OnValueChanged += ApplyRightControllerActionMapSwitch;
+
+                //Apply default input mode for the left controller
+                ApplyLeftControllerInteractorsSwitch(-1, 0);
+                ApplyLeftControllerActionMapSwitch(-1, 0);
+
+                //Apply default input mode for the right controller
+                ApplyRightControllerInteractorsSwitch(-1, 1);
+                ApplyRightControllerActionMapSwitch(-1, 1);
             }
 
             public override void OnNetworkDespawn()
             {
+                //Unsubscride to every event.
                 refLeftControlSwitch.action.performed -= LeftControllerModeSwitch;
                 refRightControlSwitch.action.performed -= RightControllerModeSwitch;
 
-                leftControllerModeID.OnValueChanged -= ApplyLeftControllerModeSwitch;
-                rightControllerModeID.OnValueChanged -= ApplyRightControllerModeSwitch;
+                leftControllerModeID.OnValueChanged -= ApplyLeftControllerInteractorsSwitch;
+                leftControllerModeID.OnValueChanged -= ApplyLeftControllerActionMapSwitch;
+
+                rightControllerModeID.OnValueChanged -= ApplyRightControllerInteractorsSwitch;
+                rightControllerModeID.OnValueChanged -= ApplyRightControllerActionMapSwitch;
             }
 
-            private void ApplyLeftControllerModeSwitch(int _previous, int current)
+            private void ApplyLeftControllerInteractorsSwitch(int _previous, int current)
             {
                 switch (leftControllerModeID.Value)
                 {
                     case 0:
-                        refGCLHMap.Disable();
                         DisableInteractor(groupControllersGO.left);
 
-                        refMvtLHMap.Disable();
                         DisableInteractor(mvtControllersGO.left);
 
-                        refRBCLHMap.Enable();
                         EnableInteractors(leftRBCs);
                         break;
 
                     case 1:
-                        refRBCLHMap.Disable();
                         DisableInteractors(leftRBCs);
 
-                        refGCLHMap.Disable();
                         DisableInteractor(groupControllersGO.left);
 
-                        refMvtLHMap.Enable();
                         EnableInteractor(mvtControllersGO.left);
                         break;
 
                     case 2:
-                        refRBCLHMap.Disable();
                         DisableInteractors(leftRBCs);
 
-                        refMvtLHMap.Disable();
                         DisableInteractor(mvtControllersGO.left);
 
-                        refGCLHMap.Enable();
                         EnableInteractor(groupControllersGO.left);
                         break;
 
@@ -142,40 +149,65 @@ namespace ECellDive
                 GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToLeftController(leftControllerModeID.Value);
             }
 
-            private void ApplyRightControllerModeSwitch(int _previous, int current)
+            private void ApplyLeftControllerActionMapSwitch(int _previous, int current)
+            {
+                switch (leftControllerModeID.Value)
+                {
+                    case 0:
+                        refGCLHMap.Disable();
+
+                        refMvtLHMap.Disable();
+
+                        refRBCLHMap.Enable();
+                        break;
+
+                    case 1:
+                        refRBCLHMap.Disable();
+
+                        refGCLHMap.Disable();
+
+                        refMvtLHMap.Enable();
+                        break;
+
+                    case 2:
+                        refRBCLHMap.Disable();
+
+                        refMvtLHMap.Disable();
+
+                        refGCLHMap.Enable();
+                        break;
+
+                    default:
+                        leftControllerModeID.Value = 0;
+                        goto case 0;
+                }
+            }
+
+            private void ApplyRightControllerInteractorsSwitch(int _previous, int current)
             {
                 switch (rightControllerModeID.Value)
                 {
                     case 0:
-                        refGCRHMap.Disable();
                         DisableInteractor(groupControllersGO.right);
 
-                        refMvtRHMap.Disable();
                         DisableInteractor(mvtControllersGO.right);
 
-                        refRBCRHMap.Enable();
                         EnableInteractors(rightRBCs);
                         break;
 
                     case 1:
-                        refRBCRHMap.Disable();
                         DisableInteractors(rightRBCs);
 
-                        refGCRHMap.Disable();
                         DisableInteractor(groupControllersGO.right);
 
-                        refMvtRHMap.Enable();
                         EnableInteractor(mvtControllersGO.right);
                         break;
 
                     case 2:
-                        refRBCRHMap.Disable();
                         DisableInteractors(rightRBCs);
 
-                        refMvtRHMap.Disable();
                         DisableInteractor(mvtControllersGO.right);
 
-                        refGCRHMap.Enable();
                         EnableInteractor(groupControllersGO.right);
                         break;
 
@@ -184,6 +216,40 @@ namespace ECellDive
                         goto case 0;
                 }
                 GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToRightController(rightControllerModeID.Value);
+            }
+
+            private void ApplyRightControllerActionMapSwitch(int _previous, int current)
+            {
+                switch (rightControllerModeID.Value)
+                {
+                    case 0:
+                        refGCRHMap.Disable();
+
+                        refMvtRHMap.Disable();
+
+                        refRBCRHMap.Enable();
+                        break;
+
+                    case 1:
+                        refRBCRHMap.Disable();
+
+                        refGCRHMap.Disable();
+
+                        refMvtRHMap.Enable();
+                        break;
+
+                    case 2:
+                        refRBCRHMap.Disable();
+
+                        refMvtRHMap.Disable();
+
+                        refGCRHMap.Enable();
+                        break;
+
+                    default:
+                        rightControllerModeID.Value = 0;
+                        goto case 0;
+                }
             }
 
             [ServerRpc]
@@ -238,6 +304,18 @@ namespace ECellDive
                 {
                     BroadcastRightControllerModeServerRpc(rightControllerModeID.Value + 1);
                 }
+            }
+
+            public void SubscribeActionMapsSwitch()
+            {
+                leftControllerModeID.OnValueChanged += ApplyLeftControllerActionMapSwitch;
+                rightControllerModeID.OnValueChanged += ApplyRightControllerActionMapSwitch;
+            }
+            
+            public void UnsubscribeActionMapsSwitch()
+            {
+                leftControllerModeID.OnValueChanged -= ApplyLeftControllerActionMapSwitch;
+                rightControllerModeID.OnValueChanged -= ApplyRightControllerActionMapSwitch;
             }
         }
     }
