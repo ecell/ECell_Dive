@@ -15,8 +15,14 @@ namespace ECellDive.Tutorials
         public TMP_Text goalContainer;
         public TMP_Text taskContainer;
         public TMP_Text detailsContainer;
+        public TMP_Text finalMessageContainer;
+        [TextArea] public string finalMessage;
+
         public List<Step> steps;
         public int officialNumberOfSteps;
+
+        public UnityEvent initializationInstructions;
+        public UnityEvent conclusionInstructions;
 
         private string baseTitle;
         private int currentStep = 0;
@@ -24,7 +30,26 @@ namespace ECellDive.Tutorials
         private void Start()
         {
             baseTitle = title.text;
+            Initialize();
             StartCoroutine(ImplementStep(currentStep));
+        }
+
+        protected virtual void Conclude()
+        {
+            conclusionInstructions.Invoke();
+
+            goalContainer.gameObject.SetActive(false);
+            taskContainer.gameObject.SetActive(false);
+            detailsContainer.gameObject.SetActive(false);
+            finalMessageContainer.gameObject.SetActive(true);
+        }
+
+        protected virtual void Initialize()
+        {
+            initializationInstructions.Invoke();
+
+            finalMessageContainer.text = finalMessage;
+            finalMessageContainer.gameObject.SetActive(false);
         }
 
         public IEnumerator ImplementStep(int _stepIdx)
@@ -41,7 +66,7 @@ namespace ECellDive.Tutorials
 
             steps[_stepIdx].Initialize();
 
-            title.text = baseTitle + $" ({currentStep}/{officialNumberOfSteps})";
+            title.text = baseTitle + $" ({currentStep+1}/{officialNumberOfSteps})";
             goalContainer.text = $"Goal: " + steps[_stepIdx].goal;
             taskContainer.text = $"Task: " + steps[_stepIdx].task;
             detailsContainer.text = $"Details:\n" + steps[_stepIdx].details;
@@ -59,6 +84,10 @@ namespace ECellDive.Tutorials
             {
                 Debug.Log($"Going for the next step numbered {currentStep}");
                 StartCoroutine(ImplementStep(currentStep));
+            }
+            else
+            {
+                Conclude();
             }
         }
     }
