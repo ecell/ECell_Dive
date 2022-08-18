@@ -36,15 +36,15 @@ namespace ECellDive
             protected int colorID;
 
             #region - IDive Members -
-            [SerializeField] private ControllersSymetricAction m_diveActions;
-            public ControllersSymetricAction diveActions
+            [SerializeField] private LeftRightData<InputActionReference> m_diveActions;
+            public LeftRightData<InputActionReference> diveActions
             {
                 get => m_diveActions;
                 set
                 {
                     m_diveActions = value;
-                    m_diveActions.leftController = value.leftController;
-                    m_diveActions.rightController = value.rightController;
+                    m_diveActions.left = value.left;
+                    m_diveActions.right = value.right;
                 }
             }
 
@@ -128,8 +128,8 @@ namespace ECellDive
             public bool areVisible { get; set; }
 
             [Header("Info Tags Data")]
-            public ControllersSymetricAction m_displayInfoTagsActions;
-            public ControllersSymetricAction displayInfoTagsActions
+            public LeftRightData<InputActionReference> m_displayInfoTagsActions;
+            public LeftRightData<InputActionReference> displayInfoTagsActions
             {
                 get => m_displayInfoTagsActions;
                 set => m_displayInfoTagsActions = value;
@@ -223,11 +223,11 @@ namespace ECellDive
             {
                 areVisible = false;
 
-                diveActions.leftController.action.performed += TryDiveIn;
-                diveActions.rightController.action.performed += TryDiveIn;
+                diveActions.left.action.performed += TryDiveIn;
+                diveActions.right.action.performed += TryDiveIn;
 
-                m_displayInfoTagsActions.leftController.action.performed += ManageInfoTagsDisplay;
-                m_displayInfoTagsActions.rightController.action.performed += ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
 
                 //Debug.Log("Starting up " + gameObject.name);
                 m_Collider = GetComponentInChildren<Collider>();
@@ -242,11 +242,11 @@ namespace ECellDive
 
             public override void OnDestroy()
             {
-                diveActions.leftController.action.performed -= TryDiveIn;
-                diveActions.rightController.action.performed -= TryDiveIn;
+                diveActions.left.action.performed -= TryDiveIn;
+                diveActions.right.action.performed -= TryDiveIn;
 
-                m_displayInfoTagsActions.leftController.action.performed -= ManageInfoTagsDisplay;
-                m_displayInfoTagsActions.rightController.action.performed -= ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.left.action.performed -= ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.right.action.performed -= ManageInfoTagsDisplay;
 
                 currentColor.OnValueChanged -= ApplyCurrentColorChange;
                 isActivated.OnValueChanged -= ManageActivationStatus;

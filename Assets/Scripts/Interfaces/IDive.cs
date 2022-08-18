@@ -8,7 +8,7 @@ namespace ECellDive.Interfaces
 {
     public interface IDive
     {
-        ControllersSymetricAction diveActions { get; set; }
+        LeftRightData<InputActionReference> diveActions { get; set; }
 
         NetworkVariable<bool> isReadyForDive { get; }
 

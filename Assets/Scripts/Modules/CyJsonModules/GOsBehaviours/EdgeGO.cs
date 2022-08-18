@@ -29,8 +29,8 @@ namespace ECellDive
             #endregion
 
             #region - IModulateFlux Members -
-            [SerializeField] private ControllersSymetricAction m_triggerKOActions;
-            public ControllersSymetricAction triggerKOActions
+            [SerializeField] private LeftRightData<InputActionReference> m_triggerKOActions;
+            public LeftRightData<InputActionReference> triggerKOActions
             {
                 get => m_triggerKOActions;
                 set => m_triggerKOActions = value;
@@ -57,8 +57,8 @@ namespace ECellDive
             protected override void Awake()
             {
                 base.Awake();
-                triggerKOActions.leftController.action.performed += ManageKnockout;
-                triggerKOActions.rightController.action.performed += ManageKnockout;
+                triggerKOActions.left.action.performed += ManageKnockout;
+                triggerKOActions.right.action.performed += ManageKnockout;
             }
 
             private void OnEnable()
@@ -69,8 +69,8 @@ namespace ECellDive
 
             public override void OnDestroy()
             {
-                triggerKOActions.leftController.action.performed -= ManageKnockout;
-                triggerKOActions.rightController.action.performed -= ManageKnockout;
+                triggerKOActions.left.action.performed -= ManageKnockout;
+                triggerKOActions.right.action.performed -= ManageKnockout;
             }
 
             public override void OnNetworkSpawn()

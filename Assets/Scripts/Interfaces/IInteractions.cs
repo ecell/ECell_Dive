@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,13 +8,6 @@ namespace ECellDive
 {
     namespace Interfaces
     {
-        [System.Serializable]
-        public struct ControllersSymetricAction
-        {
-            public InputActionReference leftController;
-            public InputActionReference rightController;
-        }
-
         /// <summary>
         /// An interface to encode knowledge about whether a gameobject
         /// is pointed at by a ray interactor.
@@ -95,7 +88,7 @@ namespace ECellDive
         {
             bool areVisible { get; }
 
-            ControllersSymetricAction displayInfoTagsActions { get; set; }
+            LeftRightData<InputActionReference> displayInfoTagsActions { get; set; }
 
             GameObject refInfoTagPrefab { get; set; }
             GameObject refInfoTagsContainer { get; set; }
@@ -136,7 +129,7 @@ namespace ECellDive
         /// <remarks>Initially used on edges of a metabolic pathway.</remarks>
         public interface IKnockable
         {
-            ControllersSymetricAction triggerKOActions { get; set; }
+            LeftRightData<InputActionReference> triggerKOActions { get; set; }
             NetworkVariable<bool> knockedOut { get; }
             void Activate();
             void Knockout();

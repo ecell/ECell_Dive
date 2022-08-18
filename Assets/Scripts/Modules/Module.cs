@@ -72,8 +72,8 @@ namespace ECellDive
             public bool areVisible { get; set; }
 
             [Header("Info Tags Data")]
-            public ControllersSymetricAction m_displayInfoTagsActions;
-            public ControllersSymetricAction displayInfoTagsActions
+            public LeftRightData<InputActionReference> m_displayInfoTagsActions;
+            public LeftRightData<InputActionReference> displayInfoTagsActions
             {
                 get => m_displayInfoTagsActions;
                 set => m_displayInfoTagsActions = value;
@@ -106,8 +106,6 @@ namespace ECellDive
                 //diveActions.leftController.action.performed += TryDiveIn;
                 //diveActions.rightController.action.performed += TryDiveIn;
 
-                m_displayInfoTagsActions.leftController.action.performed += ManageInfoTagsDisplay;
-                m_displayInfoTagsActions.rightController.action.performed += ManageInfoTagsDisplay;
             }
 
             public virtual void OnDestroy()
@@ -115,8 +113,6 @@ namespace ECellDive
                 //diveActions.leftController.action.performed -= TryDiveIn;
                 //diveActions.rightController.action.performed -= TryDiveIn;
 
-                m_displayInfoTagsActions.leftController.action.performed -= ManageInfoTagsDisplay;
-                m_displayInfoTagsActions.rightController.action.performed -= ManageInfoTagsDisplay;
             }
 
             /// <summary>
