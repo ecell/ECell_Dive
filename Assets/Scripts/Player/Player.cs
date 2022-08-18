@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.Multiplayer;
-using ECellDive.SceneManagement;
 using ECellDive.Utility;
 
 namespace ECellDive.PlayerComponents
@@ -50,7 +49,9 @@ namespace ECellDive.PlayerComponents
             string _nameStr = GameNetPortal.Instance.settings.playerName;
             byte[] _nameB = System.Text.Encoding.UTF8.GetBytes(_nameStr);
 
-            ExchangeNamesServerRpc(_nameB, NetworkManager.Singleton.LocalClientId);
+            NetworkManager.Singleton.OnClientConnectedCallback += clientID => ExchangeNamesServerRpc(_nameB, clientID);
+
+            //GetComponent<NetworkObject>().DestroyWithScene = true;
         }
 
         [ClientRpc]
@@ -85,6 +86,7 @@ namespace ECellDive.PlayerComponents
             {
                 name = GameNetPortal.Instance.netSessionPlayersDataMap[_clientId].playerName;
                 netObjRef = NetworkManager.Singleton.ConnectedClients[_clientId].PlayerObject;
+                
 
                 ReceiveNameClientRpc(netObjRef, System.Text.Encoding.UTF8.GetBytes(name), expiditorClientRpcParams);
             }

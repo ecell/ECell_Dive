@@ -130,9 +130,12 @@ namespace ECellDive
         /// Implements the logic for the scene transitions when a player is diving
         /// or resurfacing.
         /// </summary>
-        public class GameNetScenesManager : NetworkBehaviour
+        /// <remarks>
+        /// Synchronized with multiplayer.
+        /// </remarks>
+        public class DiveScenesManager : NetworkBehaviour
         {
-            public static GameNetScenesManager Instance { get; private set; }
+            public static DiveScenesManager Instance { get; private set; }
 
             /// <summary>
             /// A list of prefabs that may be instantiated by the user at runtime.

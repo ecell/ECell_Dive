@@ -44,9 +44,11 @@ namespace ECellDive
 
             private void Start()
             {
-                lookAtTarget = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
-                        GetComponentInChildren<Camera>().transform;
-                popupTarget = lookAtTarget;
+                if (Camera.main != null)
+                {
+                    SetTargets(Camera.main.transform);
+                }
+                
                 LookAt();
             }
 
@@ -56,6 +58,18 @@ namespace ECellDive
                 {
                     LookAt();
                 }
+            }
+
+            /// <summary>
+            /// Sets the value of <see cref="lookAtTarget"/> and <see cref="popupTarget"/>
+            /// to <paramref name="target"/>.
+            /// </summary>
+            /// <param name="target">The target of the <see cref="LookAt"/> and
+            /// <see cref="PopUp"/> methods.</param>
+            public void SetTargets(Transform target)
+            {
+                lookAtTarget = target;
+                popupTarget = target;
             }
 
             #region - ILookAt Methods -

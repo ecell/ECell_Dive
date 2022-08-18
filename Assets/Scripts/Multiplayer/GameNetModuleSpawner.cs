@@ -55,7 +55,7 @@ namespace ECellDive.Multiplayer
             GameObject player = NetworkManager.Singleton.ConnectedClients[_expeditorClientID].PlayerObject.gameObject;
             Vector3 pos = Positioning.PlaceInFrontOfTarget(player.GetComponentInChildren<Camera>().transform, 2f, 0.8f);
 
-            GameObject module = GameNetScenesManager.Instance.SpawnModuleInScene(
+            GameObject module = DiveScenesManager.Instance.SpawnModuleInScene(
                 GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene,
                 _moduleTypeID,
                 pos);

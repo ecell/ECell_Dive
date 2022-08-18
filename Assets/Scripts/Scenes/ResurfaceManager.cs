@@ -69,7 +69,7 @@ namespace ECellDive
             /// </summary>
             private void Resurface()
             {
-                GameNetScenesManager.Instance.ResurfaceServerRpc(NetworkManager.Singleton.LocalClientId);
+                DiveScenesManager.Instance.ResurfaceServerRpc(NetworkManager.Singleton.LocalClientId);
             }
         }
     }

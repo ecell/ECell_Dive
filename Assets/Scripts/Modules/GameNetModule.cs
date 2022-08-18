@@ -263,7 +263,11 @@ namespace ECellDive
 
             protected virtual void ApplyCurrentColorChange(Color _previous, Color _current)
             {
-
+                mpb.SetVector(colorID, _current);
+                if (m_Renderer != null)
+                {
+                    m_Renderer.SetPropertyBlock(mpb);
+                }
             }
 
             /// <summary>
@@ -306,9 +310,9 @@ namespace ECellDive
                 yield return null;
 
                 Debug.Log($"DirectDiveInC for netobj: {NetworkBehaviourId}");
-                GameNetScenesManager.Instance.SwitchingScenesServerRpc(rootSceneId.Value,
-                                                                        targetSceneId.Value,
-                                                                        NetworkManager.Singleton.LocalClientId);
+                DiveScenesManager.Instance.SwitchingScenesServerRpc(rootSceneId.Value,
+                                                                    targetSceneId.Value,
+                                                                    NetworkManager.Singleton.LocalClientId);
                 //TODO: DIVE END ANIMATION
 
             }
