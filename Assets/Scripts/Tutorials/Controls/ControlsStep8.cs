@@ -40,9 +40,6 @@ namespace ECellDive.Tutorials
         public override void Initialize()
         {
             base.Initialize();
-
-            groupSelect.left.action.Enable();
-            groupSelect.right.action.Enable();
             
             groupSelect.left.action.performed += CheckGroupComposition;
             groupSelect.right.action.performed += CheckGroupComposition;

@@ -15,7 +15,6 @@ namespace ECellDive.Tutorials
     {
         [Header("Local Step Members")]
         public LeftRightData<InputActionReference> switchGroupSelector;
-        public LeftRightData<InputActionReference> manageDistanceAndScale;
         public GameObject[] targetGroupContent;
 
         private TriggerBroadcaster voluSelLeft;
@@ -45,14 +44,11 @@ namespace ECellDive.Tutorials
         {
             base.Initialize();
 
+            //Destroying the group started at the previous step.
+            StaticReferencer.Instance.groupsMakingManager.CancelGroup();
+
             voluSelLeft = StaticReferencer.Instance.volumetricSelectorManagers.left.GetComponent<TriggerBroadcaster>();
             voluSelRight = StaticReferencer.Instance.volumetricSelectorManagers.right.GetComponent<TriggerBroadcaster>();
-
-            switchGroupSelector.left.action.Enable();
-            switchGroupSelector.right.action.Enable();
-
-            manageDistanceAndScale.left.action.Enable();
-            manageDistanceAndScale.right.action.Enable();
 
             voluSelLeft.onTriggerEnter += CheckGroupComposition;
             voluSelRight.onTriggerEnter += CheckGroupComposition;

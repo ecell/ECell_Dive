@@ -17,15 +17,8 @@ namespace ECellDive.Tutorials
         [Header("Local Step Members")]
         public GameObject module;
         public GameObject targetArea;
-        public LeftRightData<InputActionReference> refGrabObjects;
-        public LeftRightData<InputActionReference> refDistanceControl;
         public ushort targetCollision = 5;
         private ushort collisionsDetected = 0;
-
-        private void Start()
-        {
-            targetArea.GetComponent<TriggerBroadcaster>().onTriggerEnter += CheckCollision;
-        }
 
         private void CheckCollision(Collider _other)
         {
@@ -45,11 +38,7 @@ namespace ECellDive.Tutorials
         {
             base.Initialize();
 
-            refGrabObjects.left.action.Enable();
-            refGrabObjects.right.action.Enable();
-
-            refDistanceControl.left.action.Enable();
-            refDistanceControl.right.action.Enable();
+            targetArea.GetComponent<TriggerBroadcaster>().onTriggerEnter += CheckCollision;
 
             //Enable the InfoTags of the grip trigger.
             StaticReferencer.Instance.refInfoTags[5].SetActive(true);
@@ -63,8 +52,8 @@ namespace ECellDive.Tutorials
         private void RelocateTarget()
         {
             targetArea.transform.localPosition = new Vector3(Random.Range(-2f, 2f),
-                                                         Random.Range(0f, 2f),
-                                                         Random.Range(0f, 2f));
+                                                             Random.Range(0f, 2f),
+                                                             Random.Range(0f, 2f));
         }
     }
 }

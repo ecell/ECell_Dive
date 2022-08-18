@@ -21,16 +21,18 @@ namespace ECellDive.Tutorials
 
         private int currentRepetitions = 0;
 
-        private void Awake()
-        {
-            refInteractionFrontTrigger.left.action.performed += FireRayFromLeftController;
-            refInteractionFrontTrigger.right.action.performed += FireRayFromRightController;
-        }
-
         /// <inheritdoc/>
         public override bool CheckCondition()
         {
             return currentRepetitions >= targetRepetitions;
+        }
+
+        public override void Conclude()
+        {
+            base.Conclude();
+
+            refInteractionFrontTrigger.left.action.performed -= FireRayFromLeftController;
+            refInteractionFrontTrigger.right.action.performed -= FireRayFromRightController;
         }
 
         private void FireRayFromLeftController(InputAction.CallbackContext _ctx)
@@ -52,7 +54,7 @@ namespace ECellDive.Tutorials
                 StaticReferencer.Instance.riControllersGO.right.transform.position,
                 StaticReferencer.Instance.riControllersGO.right.transform.forward,
                 30,
-                8))
+                LayerMask.GetMask(new string[] { "Remote Interaction Raycast" })))
             {
                 IncrementRepetitions();
                 RelocateTarget();
@@ -68,9 +70,8 @@ namespace ECellDive.Tutorials
             StaticReferencer.Instance.inputModeManager.BroadcastLeftControllerModeServerRpc(0);
             StaticReferencer.Instance.inputModeManager.BroadcastRightControllerModeServerRpc(0);
 
-            //Enable the action associated with the front trigger of both controller.
-            refInteractionFrontTrigger.left.action.Enable();
-            refInteractionFrontTrigger.right.action.Enable();
+            refInteractionFrontTrigger.left.action.performed += FireRayFromLeftController;
+            refInteractionFrontTrigger.right.action.performed += FireRayFromRightController;
 
             //Enable the InfoTags of the front trigger.
             StaticReferencer.Instance.refInfoTags[4].SetActive(true);
@@ -84,9 +85,9 @@ namespace ECellDive.Tutorials
 
         private void RelocateTarget()
         {
-            target.transform.localPosition = new Vector3(Random.Range(-2f, 2f),
-                                                         Random.Range(0f, 2f),
-                                                         Random.Range(0f, 2f));
+            target.transform.localPosition = new Vector3(Random.Range(-1.5f, 1.5f),
+                                                         1.5f,
+                                                         0f);
         }
     }
 }

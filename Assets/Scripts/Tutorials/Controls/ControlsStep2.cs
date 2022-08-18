@@ -17,7 +17,6 @@ namespace ECellDive.Tutorials
     {
         [Header("Local Step Members")]
         public GameObject target;
-        public LeftRightData<InputActionReference> refDisplayObjectMenu;
 
         /// <inheritdoc/>
         public override bool CheckCondition()
@@ -29,9 +28,6 @@ namespace ECellDive.Tutorials
         public override void Initialize()
         {
             base.Initialize();
-
-            refDisplayObjectMenu.left.action.Enable();
-            refDisplayObjectMenu.right.action.Enable();
 
             //Enable the InfoTags of the front trigger.
             StaticReferencer.Instance.refInfoTags[1].SetActive(true);

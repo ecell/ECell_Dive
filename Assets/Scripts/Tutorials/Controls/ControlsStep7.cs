@@ -12,16 +12,7 @@ namespace ECellDive.Tutorials
     /// </summary>
     public class ControlsStep7 : Step
     {
-        [Header("Local Step Members")]
-        public LeftRightData<InputActionReference> switchMovementMode;
-
-        public override void Initialize()
-        {
-            base.Initialize();
-
-            switchMovementMode.left.action.Enable();
-            switchMovementMode.right.action.Enable();
-        }
+        
     }
 }
 

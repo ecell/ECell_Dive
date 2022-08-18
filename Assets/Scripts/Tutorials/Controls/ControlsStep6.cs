@@ -14,7 +14,6 @@ namespace ECellDive.Tutorials
     {
         [Header("Local Step Members")]
         public LeftRightData<InputActionReference> teleport;
-        public LeftRightData<InputActionReference> manageDistance;
 
         private bool hasTeleported;
 
@@ -34,12 +33,6 @@ namespace ECellDive.Tutorials
         public override void Initialize()
         {
             base.Initialize();
-
-            teleport.left.action.Enable();
-            teleport.right.action.Enable();
-
-            manageDistance.left.action.Enable();
-            manageDistance.right.action.Enable();
 
             teleport.left.action.performed += TeleportationConfirmed;
             teleport.right.action.performed += TeleportationConfirmed;
