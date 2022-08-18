@@ -98,6 +98,8 @@ namespace ECellDive
 
             public override void OnNetworkSpawn()
             {
+                SetDefaultServerRpc();
+
                 distanceAndScaleAction.action.performed += DistanceAndScale;
 
                 currentColor.OnValueChanged += ApplyCurrentColorChange;
