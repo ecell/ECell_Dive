@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using ECellDive.Utility;
@@ -14,9 +13,9 @@ namespace ECellDive.SceneManagement
     /// </summary>
     public class AssetScenesManager : NetworkBehaviour
     {
-        public SceneAsset[] scenes;
+        public string[] scenePaths;
 
-        private Dictionary<string, Scene> loadedScenes =new Dictionary<string, Scene>();
+        private Dictionary<string, Scene> loadedScenes = new Dictionary<string, Scene>();
 
         public override void OnNetworkSpawn()
         {
@@ -37,7 +36,7 @@ namespace ECellDive.SceneManagement
             {
                 //SceneManager.LoadScene(scenes[_sceneIdx].name);
                 SceneEventProgressStatus status = NetworkManager.SceneManager.LoadScene(
-                                                        scenes[_sceneIdx].name, LoadSceneMode.Additive);
+                                                        scenePaths[_sceneIdx], LoadSceneMode.Additive);
             }
         }
 
@@ -95,7 +94,7 @@ namespace ECellDive.SceneManagement
             if (IsServer && NetworkManager.Singleton.ConnectedClientsIds.Count == 1)
             {
                 Scene scene;
-                if (loadedScenes.TryGetValue(scenes[_sceneIdx].name, out scene))
+                if (loadedScenes.TryGetValue(scenePaths[_sceneIdx], out scene))
                 {
                     NetworkManager.SceneManager.UnloadScene(scene);
                 }
