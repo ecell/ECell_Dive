@@ -103,11 +103,7 @@ namespace ECellDive
 
             private void ApplyFLCChanges(float _previous, float _current)
             {
-                //Debug.Log($"{_previous}, {_current}");
-
                 SetInformationString();
-
-                //Debug.Log($"{defaultStartWidth}, {endWidthFactor}");
 
                 SetLineRendererWidth();
                 UnsetHighlightServerRpc();
@@ -172,7 +168,7 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// The utility function to updates the information string.
+            /// The utility function to update the information string.
             /// </summary>
             private void SetInformationString()
             {
@@ -415,7 +411,7 @@ namespace ECellDive
                 }
             }
 
-            #region - IEdgeGO - 
+            #region - IEdgeGO Methods- 
             public void SetDefaultWidth(float _start, float _end)
             {
                 defaultStartWidth = _start;
@@ -442,7 +438,6 @@ namespace ECellDive
             {
                 m_LineRenderer.startWidth = startWidthFactor * Mathf.Max(defaultStartWidth, defaultStartWidth*fluxLevelClamped.Value);
                 m_LineRenderer.endWidth = endWidthFactor * Mathf.Max(defaultEndWidth, defaultEndWidth*fluxLevelClamped.Value);
-                //Debug.Log($"{m_LineRenderer.startWidth}, {m_LineRenderer.endWidth}");
             }
 
             public void SetLineRendererPosition(Transform _start, Transform _end)
@@ -452,7 +447,7 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IModulateFlux - 
+            #region - IModulateFlux Methods- 
             public void Activate()
             {
                 SpreadActivationDownward();

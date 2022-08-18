@@ -103,16 +103,14 @@ namespace ECellDive
             {
                 areVisible = false;
 
-                //diveActions.leftController.action.performed += TryDiveIn;
-                //diveActions.rightController.action.performed += TryDiveIn;
-
+                m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
             }
 
             public virtual void OnDestroy()
             {
-                //diveActions.leftController.action.performed -= TryDiveIn;
-                //diveActions.rightController.action.performed -= TryDiveIn;
-
+                m_displayInfoTagsActions.left.action.performed -= ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.right.action.performed -= ManageInfoTagsDisplay;
             }
 
             /// <summary>

@@ -93,26 +93,31 @@ namespace ECellDive.PlayerComponents
         }
 
         #region - INamed Methods -
+        /// <inheritdoc/>
         public virtual void DisplayName()
         {
             m_nameTextFieldContainer.gameObject.SetActive(true);
         }
 
+        /// <inheritdoc/>
         public string GetName()
         {
             return nameField.text;
         }
 
+        /// <inheritdoc/>
         public void HideName()
         {
             m_nameTextFieldContainer.gameObject.SetActive(false);
         }
 
+        /// <inheritdoc/>
         public void SetName(string _name)
         {
             nameField.text = _name;
         }
 
+        /// <inheritdoc/>
         public void ShowName()
         {
             m_nameTextFieldContainer.GetComponent<ILookAt>().LookAt();

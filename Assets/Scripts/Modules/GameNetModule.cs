@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using ECellDive.Interfaces;
-using ECellDive.Multiplayer;
 using ECellDive.SceneManagement;
 using ECellDive.UI;
 using ECellDive.Utility;
@@ -18,7 +17,6 @@ namespace ECellDive
         /// Base class holding references and methods used to manipulate
         /// the game object representation of a module.
         /// </summary>
-        /// 
         public class GameNetModule : NetworkBehaviour,
                                     IDive,
                                     IFocus,
@@ -229,7 +227,6 @@ namespace ECellDive
                 m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
 
-                //Debug.Log("Starting up " + gameObject.name);
                 m_Collider = GetComponentInChildren<Collider>();
                 m_Renderer = GetComponent<Renderer>();
                 m_LineRenderer = GetComponent<LineRenderer>();
@@ -298,12 +295,13 @@ namespace ECellDive
             }
 
             #region - IDive Methods -
-
+            /// <inheritdoc/>
             public void DirectDiveIn()
             {
                 StartCoroutine(DirectDiveInC());
             }
 
+            /// <inheritdoc/>
             public virtual IEnumerator DirectDiveInC()
             {
                 //TODO: DIVE START ANIMATION
@@ -317,11 +315,13 @@ namespace ECellDive
 
             }
 
+            /// <inheritdoc/>
             public void GenerativeDiveIn()
             {
                 StartCoroutine(GenerativeDiveInC());
             }
 
+            /// <inheritdoc/>
             public virtual IEnumerator GenerativeDiveInC()
             {
                 //TODO: DATA GENERATION START ANIMATION
@@ -333,11 +333,13 @@ namespace ECellDive
 
             }
 
+            /// <inheritdoc/>
             public void TryDiveIn(InputAction.CallbackContext _ctx)
             {
                 StartCoroutine(TryDiveInC());
             }
 
+            /// <inheritdoc/>
             public virtual IEnumerator TryDiveInC()
             {
                 if (isFocused && isReadyForGeneration.Value)
@@ -456,29 +458,33 @@ namespace ECellDive
             #endregion
 
             #region - INamed Methods -
-
+            /// <inheritdoc/>
             public virtual void DisplayName()
             {
                 m_nameTextFieldContainer.gameObject.SetActive(true);
                 nameField.gameObject.SetActive(true);
             }
 
+            /// <inheritdoc/>
             public string GetName()
             {
                 return nameField.text;
             }
 
+            /// <inheritdoc/>
             public void HideName()
             {
                 m_nameTextFieldContainer.gameObject.SetActive(false);
                 nameField.gameObject.SetActive(false);
             }
 
+            /// <inheritdoc/>
             public void SetName(string _name)
             {
                 nameField.text = _name;
             }
 
+            /// <inheritdoc/>
             public void ShowName()
             {
                 m_nameTextFieldContainer.GetComponent<ILookAt>().LookAt();
@@ -488,7 +494,7 @@ namespace ECellDive
             #region - IMlprData Methods -
             public virtual void AssembleFragmentedData()
             {
-                //isReadyForGeneration = true;
+
             }
 
             public IEnumerator BroadcastSourceDataC()
@@ -664,7 +670,7 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IMlprVisibility -
+            #region - IMlprVisibility Methods -
             public virtual void ManageActivationStatus(bool _previous, bool _current)
             {
                 gameObject.SetActive(isActivated.Value);
