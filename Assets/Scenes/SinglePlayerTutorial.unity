@@ -286,11 +286,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3736753909790639510, guid: cf14145dc52b1084ba5eeecc5a60a820, type: 3}
   m_PrefabInstance: {fileID: 3331793}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &13449907 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4731735753399129367, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
-  m_PrefabInstance: {fileID: 28286119}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &28286119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,6 +296,10 @@ PrefabInstance:
     - target: {fileID: 483170236101783845, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_Name
       value: Tutorial Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059424877897710113, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2137447024224771406, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_Pivot.x
@@ -437,7 +436,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2398323849417010373, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 28286119}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 13449907}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -448,7 +447,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7251794246879192575, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 28286119}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 384297072}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -459,7 +458,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3410550949746795197, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 28286119}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685428675}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -516,8 +515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e4f55ad601d9b41876aa639085557d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &70398265
-CapsuleCollider:
+--- !u!135 &70398265
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -526,10 +525,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &70398266
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -549,7 +547,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 389ee97777278fb468800054bfc9b176, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -578,7 +576,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70398262}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &132210413
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +610,7 @@ Transform:
   - {fileID: 2013151636}
   - {fileID: 386614649}
   m_Father: {fileID: 1095495557}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &132210415
 MonoBehaviour:
@@ -626,12 +624,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8e4c158e0613747a7cad42ce185e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skip: 1
+  skip: 0
   m_goal: Learn how to move by teleporting.
   m_task: Switch to Movement Input Control and press the front trigger to teleport
     at least once.
-  m_details: Use the secondary button of a controller to switch to the movement input
-    controls on that controller. The movement input control is the <color=green>green</color>
+  m_details: Use the <b>secondary button</b> of a controller to switch to the movement
+    input controls on that controller. The movement input control is the <color=green>green</color>
     ray and sphere. The sphere represents the teleportation target. You can use the
     <b>Joystick</b> to adjust the teleportation distance.
   m_initializationInstructions:
@@ -697,6 +695,58 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddLeftMvtControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8583988281170676290, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddRightMvtControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8392637693358797716, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddLeftMvtControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -1486429036219247337, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddRightMvtControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -8294150996015412041, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_conclusionInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -715,9 +765,6 @@ MonoBehaviour:
   teleport:
     m_left: {fileID: 8583988281170676290, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
     m_right: {fileID: 8392637693358797716, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  manageDistance:
-    m_left: {fileID: -1486429036219247337, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    m_right: {fileID: -8294150996015412041, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
 --- !u!1001 &142936652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -981,7 +1028,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7932024736400225365, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 28286119}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413326256}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -1019,7 +1066,7 @@ Transform:
   - {fileID: 3331794}
   - {fileID: 1556287387}
   m_Father: {fileID: 1095495557}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &303172463
 MonoBehaviour:
@@ -1033,7 +1080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4ddcf0de6752041b54b88538ffd9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skip: 1
+  skip: 0
   m_goal: Learn how to make groups for visualization with the Volumetric Selector
   m_task: Make a group with module A, B and C
   m_details: 'With the group controls enabled on a controller, you can switch from
@@ -1042,9 +1089,9 @@ MonoBehaviour:
 
     You
     can activate the Volumetric Selector by holding down the <b>front trigger</b>
-    (sphere becomes <color=green>green</color>). Once activated, every module that
-    collides with the sphere is added to the group. You can control the distance
-    and the scale of the sphere with the <b>Joystick</b>. '
+    (<color=green>sphere becomes green</color>). Once activated, every module that
+    collides with the sphere is added to the group. You can control the <b>distance
+    and scale</b> of the sphere with the <b>Joystick</b>. '
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -1132,6 +1179,58 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddLeftGroupControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -900726509401738238, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddRightGroupControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -1308900984660770716, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddLeftGroupControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -1959605817029038065, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddRightGroupControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 821757002298402855, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_conclusionInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -1150,9 +1249,6 @@ MonoBehaviour:
   switchGroupSelector:
     m_left: {fileID: -900726509401738238, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
     m_right: {fileID: -1101054072476948304, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  manageDistanceAndScale:
-    m_left: {fileID: -1959605817029038065, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    m_right: {fileID: 821757002298402855, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   targetGroupContent:
   - {fileID: 142936654}
   - {fileID: 3331795}
@@ -1189,7 +1285,7 @@ Transform:
   - {fileID: 1099079486}
   - {fileID: 1596975796}
   m_Father: {fileID: 1095495557}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &327263232
 MonoBehaviour:
@@ -1307,6 +1403,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddLeftGroupControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2384165661180725347, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddRightGroupControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -8749652606593971610, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_conclusionInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -1344,11 +1466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24670cf497b8807418da78d0d4133f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &384297072 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1455660006054206602, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
-  m_PrefabInstance: {fileID: 28286119}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &386614648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1449,7 +1566,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1095495557}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &392865400
 MonoBehaviour:
@@ -1463,27 +1580,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd343a7aca680bb4588487a2f78262c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skip: 1
+  skip: 0
   m_goal: Learn how to Grab & Move a UI menu.
-  m_task: Point at the white horizontal bar of UI element and grab it.
-  m_details: You can grab a UI (User Interface) element using the same grip button
-    as for grabing a module. You can also manage the distance of the UI element using
-    the joystick.
+  m_task: Point at the white horizontal bar of a UI menu and grab it.
+  m_details: You can grab a UI (User Interface) menu using the same <b>grip button</b>
+    as for grabing a module. You can also manage its distance using the <b>joystick</b>.
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 70398262}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 252009511}
         m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
         m_MethodName: set_interactable
@@ -1661,7 +1765,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1095495557}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &577305645
 MonoBehaviour:
@@ -1675,21 +1779,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba4bbac04079bc4abd060fe87519d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skip: 1
+  skip: 0
   m_goal: Learn about the different controls input modes.
-  m_task: Press the secondary button of a controller to switch controls input modes.
-  m_details: 'On the left controller, the secondary button if the "Y Button". On
-    the right controller, it is the "B Button".
+  m_task: Press the <b>secondary button</b> of a controller to switch controls input
+    modes.
+  m_details: 'On the left controller, the secondary button is the <b>Y Button</b>.
+    On the right controller, it is the <b>B Button</b>.
 
-    In ECellDive, we separated different
-    classes of controls for clarity and consistency. There are 3 types of controls:
-    the <b>Ray-Based Controls</b> (orange ray, the one you used until now), the <b>Movement
-    Controls</b> (green ray and sphere) and the <b>Groups Controls</b> (white ray). 
-    Repeatedly pressing the secondary button of a controller will cycle through the
-    controls input modes.
+    In ECellDive, we separated
+    different classes of controls for clarity and consistency. There are 3 types
+    of controls: the <b>Ray-Based Controls</b> (<color=orange>orange ray</color>,
+    the one you used until now), the <b>Movement Controls</b> (<color=green>green
+    ray and sphere</color>) and the <b>Groups Controls</b> (white ray).  Repeatedly
+    pressing the secondary button of a controller will cycle through the controls
+    input modes.
 
-    <color=orange>Warning: Always go back to <b>Ray-Based
-    Controls</b> to interact with UI.</color>'
+    <color=#FF3030>Warning: Always go back to <b>Ray-Based Controls</b>
+    to interact with UI.</color>'
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -1776,7 +1882,7 @@ Transform:
   m_Children:
   - {fileID: 70398263}
   m_Father: {fileID: 1095495557}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &842924649
 MonoBehaviour:
@@ -1790,12 +1896,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25726fb657b4f24498da1f464eb6eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skip: 1
+  skip: 0
   m_goal: Learn how to Grab & Move an object.
-  m_task: Grab the objects and move it to the green areas around you.
-  m_details: To grab the module, point at it with a controller and hold down its
-    grip trigger. With the object grabbed, push or pull the joystick of that same
-    controller to control the distance of the object.
+  m_task: Grab the <b>module</b> and move it 5 times to the </color=green>green</color>
+    areas around you.
+  m_details: To grab the module, point at it with a controller and <b>hold down its
+    grip trigger</b>. With the object grabbed, <b>push or pull the joystick</b> of
+    that same controller to control the distance of the object.
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -1835,6 +1942,70 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 70398262}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddLeftRayBasedControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1901161901490888043, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddRightRayBasedControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -4479098549160383614, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddLeftRayBasedControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -3848924210200324891, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddRightRayBasedControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2490823375165310329, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_conclusionInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -1850,14 +2021,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 70398262}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   module: {fileID: 382152604}
   targetArea: {fileID: 70398262}
-  refGrabObjects:
-    m_left: {fileID: 1901161901490888043, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    m_right: {fileID: -4479098549160383614, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  refDistanceControl:
-    m_left: {fileID: -3848924210200324891, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    m_right: {fileID: 2490823375165310329, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   targetCollision: 5
 --- !u!1 &1020924958
 GameObject:
@@ -1890,7 +2067,7 @@ Transform:
   m_Children:
   - {fileID: 1737519226}
   m_Father: {fileID: 1095495557}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1020924960
 MonoBehaviour:
@@ -1906,15 +2083,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skip: 1
   m_goal: Learn how to open the menu of a module.
-  m_task: Point at the target and press the primary button of the controller.
-  m_details: 'On the left controller, the primary button if the "X Button". On the
-    right controller, it is the "A Button".
+  m_task: Point at the <b>module</b> and press the primary button of the controller.
+  m_details: 'On the left controller, the primary button is the <b>X Button</b>.
+    On the right controller, it is the <b>A Button</b>.
 
-    In ECellDive, 3D objects usually
-    represent data or a transform on data. They are called modules. Every module
-    has at least one menu attached to it to display its basic information. In most
-    cases, the menus are more complex and let the user perform some tasks like importing
-    a file or requesting a simulation.'
+    In ECellDive, 3D objects
+    usually represent data or a transform on data. They are called modules. Every
+    module has at least one menu attached to it to display its basic information.
+    In most cases, the menus are more complex and let the user perform some tasks
+    like importing a file or requesting a simulation.'
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -1954,6 +2131,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddLeftRayBasedControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -2874468441403497665, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddRightRayBasedControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_conclusionInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -1970,9 +2173,6 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   target: {fileID: 382152604}
-  refDisplayObjectMenu:
-    m_left: {fileID: -2874468441403497665, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    m_right: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
 --- !u!114 &1020924961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2016,7 +2216,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1825641086}
   - {fileID: 1290362965}
   - {fileID: 1020924959}
   - {fileID: 842924648}
@@ -2026,7 +2225,6 @@ Transform:
   - {fileID: 2077110384}
   - {fileID: 327263231}
   - {fileID: 303172462}
-  - {fileID: 1623075327}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2192,11 +2390,6 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3736753909790639510, guid: cf14145dc52b1084ba5eeecc5a60a820, type: 3}
   m_PrefabInstance: {fileID: 1099079485}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1122375901 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4411896395759705052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
-  m_PrefabInstance: {fileID: 28286119}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1125021173
 PrefabInstance:
@@ -2364,7 +2557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196840250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.568, y: 0.601, z: 0}
+  m_LocalPosition: {x: 1.5, y: 1.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1290362965}
@@ -2401,11 +2594,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skip: 1
   m_goal: Learn the basics of ray-based controls
-  m_task: Point at the target and press the front trigger button 5 times.
-  m_details: Controls in virtual reality rely a lot on "rays". They are used to point
-    at particular objects with which a user wishes to interact. Once an object is
-    pointed at, it is common to press different button of the controllers to achieve
-    different effects.
+  m_task: Point at the <b>cube</b> and press the front trigger button 5 times.
+  m_details: The current paradigm about controls in virtual reality heavily emphasizes
+    "rays". They are used to point at particular objects with which a user wishes
+    to interact. Once an object is pointed at, it is common to press different button
+    of the controllers to achieve different effects.
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -2428,6 +2621,32 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddLeftRayBasedControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -9086459537174069806, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddRightRayBasedControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 6272053831681804322, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2478,150 +2697,19 @@ Transform:
   m_Children:
   - {fileID: 1196840254}
   m_Father: {fileID: 1095495557}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1413326256 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1679204126489944202, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+--- !u!114 &1420096843 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1059424877897710113, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 28286119}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1420096841
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1420096842}
-  - component: {fileID: 1420096844}
-  - component: {fileID: 1420096843}
-  m_Layer: 5
-  m_Name: Final Message
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1420096842
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420096841}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1122375901}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.15}
-  m_SizeDelta: {x: 2, y: 0.575}
-  m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1420096843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420096841}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 'You finished the tutorial on Controls.
-
-    Press the Quit Button to exit
-    the tutorial space.'
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 0.1
-  m_fontSizeBase: 0.1
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1420096844
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420096841}
-  m_CullTransparentMesh: 1
 --- !u!1 &1535554225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,15 +2736,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1535554225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b433ee48cdbcf6f47993a5f8f872eae3, type: 3}
+  m_Script: {fileID: 11500000, guid: bf65b91765c62c14db773a740b6289b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 673743322}
   goalContainer: {fileID: 28286122}
   taskContainer: {fileID: 28286121}
   detailsContainer: {fileID: 28286120}
+  finalMessageContainer: {fileID: 1420096843}
+  finalMessage: 'You finished the tutorial on controls.
+
+    Press <b>Quit</b> at
+    the bottom left corner to go back to the main scene.'
   steps:
-  - {fileID: 1825641087}
   - {fileID: 1290362964}
   - {fileID: 1020924960}
   - {fileID: 842924649}
@@ -2666,8 +2758,185 @@ MonoBehaviour:
   - {fileID: 2077110385}
   - {fileID: 327263232}
   - {fileID: 303172463}
-  - {fileID: 1623075328}
-  officialNumberOfSteps: 10
+  officialNumberOfSteps: 9
+  initializationInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1196840250}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 382152604}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 28286123}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 70398262}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 198590942}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 492451674}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2013151635}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 386614650}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1796812532}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1099079487}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1596975797}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 142936654}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3331795}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1556287388}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  conclusionInstructions:
+    m_PersistentCalls:
+      m_Calls: []
+  refInputActionAsset: {fileID: -944628639613478452, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  refInputSwitchMode:
+    m_left: {fileID: 8617445865269668666, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_right: {fileID: -1308900984660770716, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
 --- !u!4 &1535554227
 Transform:
   m_ObjectHideFlags: 0
@@ -3008,160 +3277,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3736753909790639510, guid: cf14145dc52b1084ba5eeecc5a60a820, type: 3}
   m_PrefabInstance: {fileID: 1596975795}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1623075326
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1623075327}
-  - component: {fileID: 1623075328}
-  m_Layer: 0
-  m_Name: ControlsStep10
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1623075327
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623075326}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1095495557}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1623075328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623075326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caa272e2a7eceea4182fdcb42e106bd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skip: 0
-  m_goal: 
-  m_task: 
-  m_details: 
-  m_initializationInstructions:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1420096841}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1413326256}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1685428675}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 384297072}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 13449907}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 142936654}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3331795}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1556287388}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_conclusionInstructions:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!1 &1685428675 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2105207342576293934, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
-  m_PrefabInstance: {fileID: 28286119}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1737519225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3500,243 +3615,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3736753909790639510, guid: cf14145dc52b1084ba5eeecc5a60a820, type: 3}
   m_PrefabInstance: {fileID: 1796812530}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1825641085
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1825641086}
-  - component: {fileID: 1825641087}
-  m_Layer: 0
-  m_Name: ControlsStep0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1825641086
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825641085}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1095495557}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1825641087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825641085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63f7c330fc6e15a4ea0a46efecef6215, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skip: 0
-  m_goal: 
-  m_task: 
-  m_details: 
-  m_initializationInstructions:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1196840250}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 382152604}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 28286123}
-        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 198590942}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 492451674}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2013151635}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 386614650}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1796812532}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1099079487}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1596975797}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 142936654}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3331795}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1556287388}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1420096841}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_conclusionInstructions:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1535554226}
-        m_TargetAssemblyTypeName: ECellDive.Tutorials.TutorialManager, Assembly-CSharp
-        m_MethodName: NextStep
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  refInputActionAsset: {fileID: -944628639613478452, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  refInputSwitchMode:
-    m_left: {fileID: 8617445865269668666, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    m_right: {fileID: -1308900984660770716, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
 --- !u!1001 &1966285577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3754,7 +3632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 872680225068267353, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 872680225068267353, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3762,7 +3640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 872680225068267353, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.6
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 872680225068267353, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3820,7 +3698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4862822861443727790, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: defaultPositionOffset.x
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 4862822861443727790, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: defaultPositionOffset.y
@@ -3828,7 +3706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4862822861443727790, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: defaultPositionOffset.z
-      value: -0.6
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 5453654609989585644, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3917,7 +3795,7 @@ GameObject:
   - component: {fileID: 1974830046}
   - component: {fileID: 1974830043}
   m_Layer: 0
-  m_Name: SceneManager (1)
+  m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3951,9 +3829,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d967a3e620e61e74e886f5040bf23ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenes:
-  - {fileID: 102900000, guid: 17c746bb6af492545a84aeb5c1316ecc, type: 3}
-  - {fileID: 102900000, guid: c0b36b3602c517a479c2af7a6d512721, type: 3}
+  scenePaths:
+  - DODBasedRoom
+  - SinglePlayerTutorial
 --- !u!4 &1974830047
 Transform:
   m_ObjectHideFlags: 0
@@ -4093,7 +3971,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1095495557}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2077110385
 MonoBehaviour:
@@ -4107,25 +3985,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21088f9b7d17b34987129e4fcb34446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skip: 1
-  m_goal: Learn how to move by teleporting.
-  m_task: Learn how to switch movement mode and try moving continuously.
-  m_details: '<color=orange>Warning: continous movement can cause motion sickness
-    if used too much. Everybody has different sensitivity to motion sickness: be
-    careful and try to learn your limit. You can skip this step if you wish.</color>
+  skip: 0
+  m_goal: Learn how to move continously.
+  m_task: Switch movement mode and try moving continuously.
+  m_details: '<color=#FF3030>Warning: continuous movement can cause motion sickness.
+    Everybody has different sensitivity to motion sickness: be careful and try to
+    learn your limit. You can skip this step if you wish by directly pressing <b>Next</b>.</color>
 
     With
-    the movement controls enbled on one controller, you can switch the movement mode
-    from <b>teleportation</b> to <b>continous</b> by pressing the <b>primary button</b>
-    (X and A on left  and right controllers repsectively). The continous movement
-    mode is represented by a transparent sphere with three axes. To activate continous
-    movement, press the <b>front trigger</b> and move your hand.'
+    the movement controls enabled on one controller, you can switch the movement
+    mode from <b>teleportation</b> to <b>continuous</b> by pressing the <b>primary
+    button</b> of that controller (X and A on left and right controllers repsectively).
+    The continous movement mode is represented by a transparent sphere with three
+    axes (<color=red>X</color>, <color=green>Y</color>, <color=blue>Z</color>). To
+    activate continuous movement, press the <b>front trigger</b> and move your hand
+    in the desired direction.'
   m_initializationInstructions:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddLeftMvtControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -6647584849509411504, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1535554226}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+        m_MethodName: AddRightMvtControlAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -8165226652436647990, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_conclusionInstructions:
     m_PersistentCalls:
       m_Calls: []
-  switchMovementMode:
-    m_left: {fileID: -6647584849509411504, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    m_right: {fileID: -8165226652436647990, guid: 20c9f019e259ffd43bcace5674974990, type: 3}

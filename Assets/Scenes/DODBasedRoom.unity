@@ -303,6 +303,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1284037295433609375, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
+      propertyPath: m_Colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 1862556104}
     - target: {fileID: 1482637755837525561, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -377,6 +381,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2227907496089352916, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2647147821202355987, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
+      propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2647147822161416535, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
@@ -896,9 +904,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d967a3e620e61e74e886f5040bf23ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenes:
-  - {fileID: 102900000, guid: 17c746bb6af492545a84aeb5c1316ecc, type: 3}
-  - {fileID: 102900000, guid: c0b36b3602c517a479c2af7a6d512721, type: 3}
+  scenePaths:
+  - DODBasedRoom
+  - SinglePlayerTutorial
 --- !u!1 &1403603464
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,6 +982,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1862556104 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 2647147821493324900, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
+  m_PrefabInstance: {fileID: 348304875}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1867705712
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,7 +1093,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1945276319}
-    PlayerPrefab: {fileID: 5081819281453008317, guid: 408111a9c3de79c44997b2536b329549, type: 3}
+    PlayerPrefab: {fileID: 1845728611502412229, guid: 22b825dd5fd4d4940b55fd6756c1c1a7, type: 3}
     NetworkPrefabs:
     - Override: 0
       Prefab: {fileID: 747793240316498542, guid: 13afb758b6eee1340a1140b27a95e099, type: 3}
