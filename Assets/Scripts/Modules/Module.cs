@@ -76,26 +76,26 @@ namespace ECellDive
             public ControllersSymetricAction displayInfoTagsActions
             {
                 get => m_displayInfoTagsActions;
-                set => displayInfoTagsActions = m_displayInfoTagsActions;
+                set => m_displayInfoTagsActions = value;
             }
             public GameObject m_refInfoTagPrefab;
             public GameObject refInfoTagPrefab
             {
                 get => m_refInfoTagPrefab;
-                set => refInfoTagPrefab = m_refInfoTagPrefab;
+                set => m_refInfoTagPrefab = value;
             }
             public GameObject m_refInfoTagsContainer;
             public GameObject refInfoTagsContainer
             {
                 get => m_refInfoTagsContainer;
-                set => refInfoTagsContainer = m_refInfoTagsContainer;
+                set => m_refInfoTagsContainer = value;
             }
 
             public List<GameObject> m_refInfoTags;
             public List<GameObject> refInfoTags
             {
                 get => m_refInfoTags;
-                set => refInfoTags = m_refInfoTags;
+                set => m_refInfoTags = value;
             }
             #endregion
 
