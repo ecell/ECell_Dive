@@ -11,6 +11,7 @@ namespace ECellDive.Tutorials
     
     public class TutorialManager : MonoBehaviour
     {
+        [Header("General References")]
         public TMP_Text title;
         public TMP_Text goalContainer;
         public TMP_Text taskContainer;
@@ -18,10 +19,17 @@ namespace ECellDive.Tutorials
         public TMP_Text finalMessageContainer;
         [TextArea] public string finalMessage;
 
-        public List<Step> steps;
-        public int officialNumberOfSteps;
-
+        [Header("Chronology")]
         public UnityEvent initializationInstructions;
+        [Tooltip("Sometimes, you may define tutorial steps to set up" +
+            "the tutorial's behavior. Therefore, those steps are " +
+            "inivisible to the user and the number of step in the list " +
+            "\"steps\" does not equal the number of steps the user will " +
+            "read and execute. Thus, \"officialNumberOfSteps\" is here " +
+            "to describe this actual total number (the one that will " +
+            "be displayed on the title bar).")]
+        public int officialNumberOfSteps;
+        public List<Step> steps;
         public UnityEvent conclusionInstructions;
 
         private string baseTitle;
@@ -78,11 +86,8 @@ namespace ECellDive.Tutorials
 
         public void NextStep()
         {
-            Debug.Log($"Current step was number {currentStep}. " +
-                "Checking if there are any left.");
             if (++currentStep < steps.Count)
             {
-                Debug.Log($"Going for the next step numbered {currentStep}");
                 StartCoroutine(ImplementStep(currentStep));
             }
             else
