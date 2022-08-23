@@ -194,18 +194,6 @@ MonoBehaviour:
   m_conclusionInstructions:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 441521338}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 2143762824}
         m_TargetAssemblyTypeName: ECellDive.Tutorials.TutorialManager, Assembly-CSharp
         m_MethodName: NextStep
@@ -223,7 +211,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7932024736400225365, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 949993373}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2080184769}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -567,18 +555,6 @@ MonoBehaviour:
   m_conclusionInstructions:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 441521338}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 2143762824}
         m_TargetAssemblyTypeName: ECellDive.Tutorials.TutorialManager, Assembly-CSharp
         m_MethodName: NextStep
@@ -589,7 +565,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1190507054
 GameObject:
@@ -684,6 +660,88 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3129959241636354862, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 949993373}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1660384881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1660384882}
+  - component: {fileID: 1660384883}
+  m_Layer: 0
+  m_Name: ModNavStep6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1660384882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660384881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2143762825}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1660384883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660384881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605b7906db4d3674f84d8cc98906f95e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skip: 0
+  m_goal: Learn how to make groups
+  m_task: Add a GroupBy module and make groups
+  m_details: 'Go to the UI menu for modules and click on the button <b>Group By Operator</b>
+    to add the module in the scene.
+
+    Open its menus and group the nodes and/or
+    the edges according to one of their respective metadata. We recommand grouping
+    edges and nodes according to <b>Subsystems</b> and <b>Compartments</b> respectively.'
+  m_initializationInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 441521338}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_conclusionInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 441521338}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1739650357
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,15 +850,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skip: 0
-  m_goal: 
-  m_task: 
-  m_details: 
+  m_goal: Learn how to request a Flux Balance Analysis (2/2).
+  m_task: Request the FBA from the server.
+  m_details: 'Open the menu of the FBA module and input the IP. As a reminder, you
+    do not need to set the Port unless you changed the value when you launched Answer_Talker.
+
+    Once
+    you entered the information, click on the buton <b>Run FBA</b> to request the
+    simulation from the server. <color=#FF3030>Warning: It will take a few seconds.</color>
+
+    The
+    result of the FBA will be clearly visible as the edges''s widths are scaled according
+    to the value of the fluxes. You can use the options to clamp the values or set
+    a color gradient.<b>You can also KNOCKOUT reactions by pointing at the edges
+    with the <color=orange>Ray-Based Controls</color> and pressing the front trigger</b>.
+    Then, click on <b>Run FBA</b> again.'
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls: []
   m_conclusionInstructions:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 441521338}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &2028496002
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,18 +955,6 @@ MonoBehaviour:
   m_conclusionInstructions:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 441521338}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2143762824}
         m_TargetAssemblyTypeName: ECellDive.Tutorials.TutorialManager, Assembly-CSharp
         m_MethodName: NextStep
@@ -897,6 +967,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &2080184769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1679204126489944202, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+  m_PrefabInstance: {fileID: 949993373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2143762823
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,13 +1024,27 @@ MonoBehaviour:
   - {fileID: 1013638115}
   - {fileID: 1190507056}
   - {fileID: 2028496004}
+  - {fileID: 1961897783}
+  - {fileID: 1660384883}
   endMessage: 'You completed the tutorial on Modules Navigation!
 
     Press the <b>Quit</b>
-    button to go back to the main scene.'
+    button to go back to the main scene or stay here to continue exploring the network.'
   conclusionInstructions:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2080184769}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &2143762825
 Transform:
   m_ObjectHideFlags: 0
@@ -972,6 +1061,7 @@ Transform:
   - {fileID: 1190507055}
   - {fileID: 2028496003}
   - {fileID: 1961897782}
+  - {fileID: 1660384882}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

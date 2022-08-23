@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.Interfaces;
@@ -28,9 +26,9 @@ namespace ECellDive.Tutorials
         private void CheckDive(RaycastHit _hit)
         {
             GameNetModule gnm;
-            if (_hit.transform.TryGetComponent(out gnm) && _hit.transform.name == "iJO1366")
+            if (_hit.transform.TryGetComponent(out gnm))
             {
-                hasStartedDiving = gnm.isReadyForDive.Value;
+                hasStartedDiving = true;
             }
         }
 
@@ -44,6 +42,7 @@ namespace ECellDive.Tutorials
                 30,
                 LayerMask.GetMask(new string[] { "Remote Grab Raycast" })))
             {
+                Debug.Log("Left Hit");
                 CheckDive(hit);
             }
         }
