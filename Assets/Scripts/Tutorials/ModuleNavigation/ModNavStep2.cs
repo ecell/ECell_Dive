@@ -6,6 +6,10 @@ using ECellDive.Modules;
 
 namespace ECellDive.Tutorials
 {
+    /// <summary>
+    /// The step 2 of the Tutorial on Modules Navigation.
+    /// Import a data module.
+    /// </summary>
     public class ModNavStep2 : Step
     {
         private HttpServerImporterModule httpSIM;
