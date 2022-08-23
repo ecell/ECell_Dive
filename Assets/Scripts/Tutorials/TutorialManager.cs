@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
-using ECellDive.Interfaces;
 
 
 namespace ECellDive.Tutorials
@@ -16,10 +15,12 @@ namespace ECellDive.Tutorials
         public TMP_Text goalContainer;
         public TMP_Text taskContainer;
         public TMP_Text detailsContainer;
-        public TMP_Text finalMessageContainer;
-        [TextArea] public string finalMessage;
+        public TMP_Text globalMessageContainer;
+        
 
         [Header("Chronology")]
+        [TextArea] public string startMessage;
+
         public UnityEvent initializationInstructions;
         [Tooltip("Sometimes, you may define tutorial steps to set up" +
             "the tutorial's behavior. Therefore, those steps are " +
@@ -30,6 +31,8 @@ namespace ECellDive.Tutorials
             "be displayed on the title bar).")]
         public int officialNumberOfSteps;
         public List<Step> steps;
+
+        [TextArea] public string endMessage;
         public UnityEvent conclusionInstructions;
 
         private string baseTitle;
@@ -39,25 +42,30 @@ namespace ECellDive.Tutorials
         {
             baseTitle = title.text;
             Initialize();
-            StartCoroutine(ImplementStep(currentStep));
         }
 
         protected virtual void Conclude()
         {
             conclusionInstructions.Invoke();
 
+            globalMessageContainer.text = endMessage;
+
             goalContainer.gameObject.SetActive(false);
             taskContainer.gameObject.SetActive(false);
             detailsContainer.gameObject.SetActive(false);
-            finalMessageContainer.gameObject.SetActive(true);
+            globalMessageContainer.gameObject.SetActive(true);
         }
 
         protected virtual void Initialize()
         {
             initializationInstructions.Invoke();
 
-            finalMessageContainer.text = finalMessage;
-            finalMessageContainer.gameObject.SetActive(false);
+            globalMessageContainer.text = startMessage;
+
+            goalContainer.gameObject.SetActive(false);
+            taskContainer.gameObject.SetActive(false);
+            detailsContainer.gameObject.SetActive(false);
+            globalMessageContainer.gameObject.SetActive(true);
         }
 
         public IEnumerator ImplementStep(int _stepIdx)
@@ -94,6 +102,16 @@ namespace ECellDive.Tutorials
             {
                 Conclude();
             }
+        }
+
+        public void StartTutorial()
+        {
+            goalContainer.gameObject.SetActive(true);
+            taskContainer.gameObject.SetActive(true);
+            detailsContainer.gameObject.SetActive(true);
+            globalMessageContainer.gameObject.SetActive(false);
+
+            StartCoroutine(ImplementStep(currentStep));
         }
     }
 }

@@ -7,6 +7,10 @@ using ECellDive.Utility;
 
 namespace ECellDive.Tutorials
 {
+    /// <summary>
+    /// The class controlling the chronology and logic of the
+    /// tutorial on controls.
+    /// </summary>
     public class ControlsTutorialManager : TutorialManager
     {
         public InputActionAsset refInputActionAsset;
