@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 using ECellDive.Multiplayer;
 using ECellDive.Utility;
@@ -18,6 +19,8 @@ namespace ECellDive
             protected string activeModelName = "";
 
             public GameNetModuleSpawner gameNetModuleSpawner;
+
+            public UnityAction<bool> OnDataModuleImport;
 
             private void Start()
             {
@@ -79,6 +82,8 @@ namespace ECellDive
                 GetModelCyJs(activeModelName);
 
                 yield return new WaitUntil(isRequestProcessed);
+
+                OnDataModuleImport?.Invoke(requestData.requestSuccess);
 
                 if (requestData.requestSuccess)
                 {
