@@ -35,9 +35,12 @@ namespace ECellDive.Tutorials
             httpSIM.OnDataModuleImport += ProcessResult;
         }
 
-        private void ProcessResult(bool _result)
+        private void ProcessResult(bool _result, string _modelName)
         {
-            moduleImported = _result;
+            if (_modelName == "iJO1366")
+            {
+                moduleImported = _result;
+            }
         }
     }
 }

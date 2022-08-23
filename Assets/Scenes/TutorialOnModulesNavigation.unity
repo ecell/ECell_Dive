@@ -169,9 +169,13 @@ MonoBehaviour:
   skip: 0
   m_goal: Learn how to add a module.
   m_task: Open the Modules Menu and add a Data Importer.
-  m_details: On the left controller, you can open the main menu by pressing the <b>Start
-    Button</b>. From here, click on the UI <b>Modules</b> button to open the corresponding
-    sub-menu. Then, do the same by clicking on the <b>Data Importer</b> button.
+  m_details: 'On the left controller, you can open the main menu by pressing the
+    <b>Start Button</b>. From here, click on the UI <b>Modules</b> button to open
+    the corresponding sub-menu. Then, do the same by clicking on the <b>Data Importer</b>
+    button.
+
+    <color=green>You will advance to the next step of the tutorial automatically
+    once you add the module.</color>'
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -390,6 +394,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6325728008717661887, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 3
@@ -533,10 +541,14 @@ MonoBehaviour:
   skip: 0
   m_goal: Learn how to import data from a server
   m_task: Add the data module of iJO1366 to the scene.
-  m_details: Open the menu of the data importer. Input the IP adress of the Answer_Talker
+  m_details: 'Open the menu of the data importer. Input the IP adress of the Answer_Talker
     server. If you did not specify a port when launching Answer_Talker, you can leave
-    that input field blank. Then, click on the correcponding button to query the
+    that input field blank. Then, click on the corresponding button to query the
     available models and select iJO1366 on the second panel.
+
+    <color=green>You
+    will advance to the next step of the tutorial automatically once you add the
+    module.</color>'
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -567,18 +579,106 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: 
+      - m_Target: {fileID: 2143762824}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.TutorialManager, Assembly-CSharp
+        m_MethodName: NextStep
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!1 &1190507054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1190507055}
+  - component: {fileID: 1190507056}
+  m_Layer: 0
+  m_Name: ModNavStep3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1190507055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190507054}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2143762825}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1190507056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190507054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba280460135e7c4d8bb92730d675fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skip: 0
+  m_goal: Learn how to dive into a module
+  m_task: Dive and explore the network
+  m_details: 'Point at the data module iJO1366 you just imported with the <color=orange>Ray-Based
+    Controls</color> and hold the primary button of the controller.
+
+    <color=#FF3030>Warning:
+    The loading of the next dive scene will take a few seconds and framerate will
+    drop significantly.</color>
+
+    Then, move around and explore the network. Click
+    the <b>Next</b> button when you are ready.'
+  m_initializationInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 441521338}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_conclusionInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 441521338}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  diveActions:
+    m_left: {fileID: -6167206992522063489, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_right: {fileID: 1131537533043575416, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
 --- !u!65 &1384238055 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3129959241636354862, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
@@ -648,6 +748,155 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1961897781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1961897782}
+  - component: {fileID: 1961897783}
+  m_Layer: 0
+  m_Name: ModNavStep5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1961897782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961897781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2143762825}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1961897783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961897781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d307a913408e4e4aa357e78ad8ed835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skip: 0
+  m_goal: 
+  m_task: 
+  m_details: 
+  m_initializationInstructions:
+    m_PersistentCalls:
+      m_Calls: []
+  m_conclusionInstructions:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &2028496002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2028496003}
+  - component: {fileID: 2028496004}
+  m_Layer: 0
+  m_Name: ModNavStep4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2028496003
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028496002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2143762825}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2028496004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028496002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd6262edf7e675049b5f5df46bd837fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skip: 0
+  m_goal: Learn how to request a Flux Balance Analysis (1/2).
+  m_task: Add a FBA module to the dive scene via the UI menu.
+  m_details: 'Go back to the UI Modules Menu that you previously used to add a Data
+    Importer to the scene.
+
+    This time, click on the <b>FBA</b> button to add
+    a FBA Module.
+
+    <color=green>You will advance to the next step of the tutorial
+    automatically once you add the module.</color>'
+  m_initializationInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 441521338}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_conclusionInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 441521338}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2143762824}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.TutorialManager, Assembly-CSharp
+        m_MethodName: NextStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2143762823
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,6 +947,8 @@ MonoBehaviour:
   steps:
   - {fileID: 34642055}
   - {fileID: 1013638115}
+  - {fileID: 1190507056}
+  - {fileID: 2028496004}
   endMessage: 'You completed the tutorial on Modules Navigation!
 
     Press the <b>Quit</b>
@@ -718,6 +969,9 @@ Transform:
   m_Children:
   - {fileID: 34642054}
   - {fileID: 1013638114}
+  - {fileID: 1190507055}
+  - {fileID: 2028496003}
+  - {fileID: 1961897782}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

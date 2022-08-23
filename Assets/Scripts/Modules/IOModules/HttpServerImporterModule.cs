@@ -20,7 +20,7 @@ namespace ECellDive
 
             public GameNetModuleSpawner gameNetModuleSpawner;
 
-            public UnityAction<bool> OnDataModuleImport;
+            public UnityAction<bool, string> OnDataModuleImport;
 
             private void Start()
             {
@@ -83,7 +83,7 @@ namespace ECellDive
 
                 yield return new WaitUntil(isRequestProcessed);
 
-                OnDataModuleImport?.Invoke(requestData.requestSuccess);
+                OnDataModuleImport?.Invoke(requestData.requestSuccess, activeModelName);
 
                 if (requestData.requestSuccess)
                 {
