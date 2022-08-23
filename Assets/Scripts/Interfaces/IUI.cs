@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using ECellDive.UI;
 
 namespace ECellDive
@@ -79,7 +81,7 @@ namespace ECellDive
         }
 
         /// <summary>
-        /// Defines the the interface for an object to LookAt (Z-Axis) a target.
+        /// Defines the interface for an object to LookAt (Z-Axis) a target.
         /// This allows us to wrap or build more complex LookAt behaviour than
         /// the built-in <see cref="Transform.LookAt"/>.
         /// </summary>
@@ -119,6 +121,33 @@ namespace ECellDive
             Transform popupTarget { get; }
 
             void PopUp();
+        }
+
+        /// <summary>
+        /// An interface to allow control of the "interactibility" of
+        /// UI elements.
+        /// </summary>
+        public interface IInteractibility
+        {
+            /// <summary>
+            /// An array of references to <see cref="Selectable"/> component.
+            /// </summary>
+            Selectable[] targetGroup { get; }
+
+            /// <summary>
+            /// Switches the value of <see cref="Selectable.interactable"/> to
+            /// its opposite for each member of the <see cref="targetGroup"/>.
+            /// </summary>
+            void SwitchGroupInteractibility();
+
+            /// <summary>
+            /// Switches the value of <see cref="Selectable.interactable"/> to
+            /// its opposite for the member with index <paramref name="targetIdx"/>
+            /// in <see cref="targetGroup"/>.
+            /// </summary>
+            /// <param name="targetIdx">Index of a <see cref="Selectable"/> in <see
+            /// cref="targetGroup"/></param>
+            void SwitchSingleInteractibility(int targetIdx);
         }
     }
 }

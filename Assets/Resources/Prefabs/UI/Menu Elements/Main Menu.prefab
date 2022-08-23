@@ -1394,6 +1394,7 @@ GameObject:
   - component: {fileID: 4891561554638327142}
   - component: {fileID: 4891561554638327143}
   - component: {fileID: 4891561554638327144}
+  - component: {fileID: 5018800761404342514}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -1466,7 +1467,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!222 &4891561554638327140
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1568,6 +1569,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &5018800761404342514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891561554638327150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1308b2ee4089e408f045498874a0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_targetGroup:
+  - {fileID: 4891561553845094378}
+  - {fileID: 4891561554764587438}
+  - {fileID: 5971155544920193083}
+  - {fileID: 1217324041620306077}
+  - {fileID: 4891561553981759365}
 --- !u!1 &4891561554764587345
 GameObject:
   m_ObjectHideFlags: 0

@@ -384,8 +384,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2647147821202355987, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
-      propertyPath: m_Interactable
-      value: 0
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2647147821202355987, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1213530100}
+    - target: {fileID: 2647147821202355987, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 2647147821202355987, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ECellDive.SceneManagement.AssetScenesManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2647147821202355987, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2647147822161416535, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -594,6 +610,10 @@ PrefabInstance:
     - target: {fileID: 6241237707592976581, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
       propertyPath: m_Name
       value: All GUI Menus
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241237707602522760, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6393652198830261178, guid: 696dd258e1567af47bc53342fcff715d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1094,7 +1114,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1945276319}
-    PlayerPrefab: {fileID: 1845728611502412229, guid: 22b825dd5fd4d4940b55fd6756c1c1a7, type: 3}
+    PlayerPrefab: {fileID: 5081819281453008317, guid: 408111a9c3de79c44997b2536b329549, type: 3}
     NetworkPrefabs:
     - Override: 0
       Prefab: {fileID: 747793240316498542, guid: 13afb758b6eee1340a1140b27a95e099, type: 3}
