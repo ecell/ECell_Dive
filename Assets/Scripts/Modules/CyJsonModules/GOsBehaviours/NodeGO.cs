@@ -18,8 +18,6 @@ namespace ECellDive
             public override void OnNetworkSpawn()
             {
                 base.OnNetworkSpawn();
-                mpb = new MaterialPropertyBlock();
-                colorID = Shader.PropertyToID("_Color");
             }
 
             protected override void ApplyCurrentColorChange(Color _previous, Color _current)
