@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.Interfaces;
@@ -15,7 +16,8 @@ namespace ECellDive.Tutorials
     {
         [Header("Local Step Members")]
         public LeftRightData<InputActionReference> diveActions;
-        
+
+        private CyJsonModule refCyJsonModule;
         private bool hasStartedDiving;
 
         public override bool CheckCondition()
@@ -42,7 +44,6 @@ namespace ECellDive.Tutorials
                 30,
                 LayerMask.GetMask(new string[] { "Remote Grab Raycast" })))
             {
-                Debug.Log("Left Hit");
                 CheckDive(hit);
             }
         }
@@ -67,6 +68,8 @@ namespace ECellDive.Tutorials
 
             diveActions.left.action.performed -= CheckDiveLeft;
             diveActions.right.action.performed -= CheckDiveRight;
+
+            StartCoroutine(DelaySearch());
         }
 
         public override void Initialize()
@@ -75,9 +78,27 @@ namespace ECellDive.Tutorials
 
             diveActions.left.action.performed += CheckDiveLeft;
             diveActions.right.action.performed += CheckDiveRight;
+
+            refCyJsonModule = FindObjectOfType<CyJsonModule>();
+
+            //We collect the CyJson module (created at the previous step) to
+            //make sure that it is cleaned up when the user quits the tutorial.
+            ModNavTutorialManager.tutorialGarbage.Add(refCyJsonModule.gameObject);
+
         }
 
-        
+        private IEnumerator DelaySearch()
+        {
+            //We just wait a bit to make sure the object we will be looking
+            //for has been instantiated by the server.
+            yield return new WaitForSeconds(0.5f);
+
+            refCyJsonModule = FindObjectOfType<CyJsonModule>();
+            //At this stage the user has started diving into the data module.
+            //So there should be a rootPathway created that we can capture.
+            Debug.Log($"refCyJsonModule.pathwayRoot", refCyJsonModule.pathwayRoot);
+            ModNavTutorialManager.tutorialGarbage.Add(refCyJsonModule.pathwayRoot);
+        }
     }
 }
 

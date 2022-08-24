@@ -18,7 +18,17 @@ namespace ECellDive.UI
             get => m_targetGroup;
         }
 
+
+
         #region - IInteractibility Methods -
+        /// <inheritdoc/>
+        public void ForceGroupInteractibility(bool _interactibility)
+        {
+            foreach (Selectable selectable in m_targetGroup)
+            {
+                selectable.interactable = _interactibility;
+            }
+        }
 
         /// <inheritdoc/>
         public void SwitchGroupInteractibility()

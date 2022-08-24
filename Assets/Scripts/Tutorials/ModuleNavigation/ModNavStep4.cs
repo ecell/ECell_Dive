@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using ECellDive.UI;
+using ECellDive.Modules;
 
 namespace ECellDive.Tutorials
 {
@@ -11,6 +12,7 @@ namespace ECellDive.Tutorials
     public class ModNavStep4 : Step
     {
         private Button targetButton;
+        private GUIManager guiManager;
         private bool targetButtonSelected;
 
         public override bool CheckCondition()
@@ -23,19 +25,23 @@ namespace ECellDive.Tutorials
             base.Conclude();
 
             targetButton.onClick.RemoveListener(OnSelect);
+
+            //We block the usage of the button to import a FBA module
+            //since the user already added one.
+            guiManager.refModulesMenuManager.SwitchSingleInteractibility(2);
         }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            GUIManager refGuiManager = GameObject.
+            guiManager = GameObject.
                               FindGameObjectWithTag("AllUIAnchor").
                               GetComponent<GUIManager>();
 
-            //The user can interact with the button to add a remote importer to the scene.
-            refGuiManager.refModulesMenuManager.SwitchSingleInteractibility(2);
-            targetButton = refGuiManager.refModulesMenuManager.targetGroup[2].GetComponent<Button>();
+            //The user can interact with the button to add a FBA module to the scene.
+            guiManager.refModulesMenuManager.SwitchSingleInteractibility(2);
+            targetButton = guiManager.refModulesMenuManager.targetGroup[2].GetComponent<Button>();
             targetButton.onClick.AddListener(OnSelect);
         }
 

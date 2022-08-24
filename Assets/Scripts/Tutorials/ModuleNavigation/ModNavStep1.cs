@@ -10,6 +10,7 @@ namespace ECellDive.Tutorials
     /// </summary>
     public class ModNavStep1 : Step
     {
+        private GUIManager guiManager;
         private Button targetButton;
         private bool targetButtonSelected;
 
@@ -23,29 +24,29 @@ namespace ECellDive.Tutorials
             base.Conclude();
 
             targetButton.onClick.RemoveListener(OnSelect);
+
+            //We block the usage of the button to import a FBA module
+            //since the user already added one.
+            guiManager.refModulesMenuManager.SwitchSingleInteractibility(0);
         }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            GUIManager refGuiManager = GameObject.
+            guiManager = GameObject.
                               FindGameObjectWithTag("AllUIAnchor").
                               GetComponent<GUIManager>();
 
             //The user can interact with the button leading to the Module Menu
-            refGuiManager.refMainMenu.GetComponent<MainMenuManager>().SwitchSingleInteractibility(0);
+            guiManager.refMainMenu.GetComponent<MainMenuManager>().SwitchSingleInteractibility(0);
 
             //The user can interact with the button leading to the Log Menu
-            refGuiManager.refMainMenu.GetComponent<MainMenuManager>().SwitchSingleInteractibility(4);
-
-
-            //The user cannot interact with any of the buttons of the module menu
-            refGuiManager.refModulesMenuManager.SwitchGroupInteractibility();
+            guiManager.refMainMenu.GetComponent<MainMenuManager>().SwitchSingleInteractibility(4);
 
             //The user can interact with the button to add a remote importer to the scene.
-            refGuiManager.refModulesMenuManager.SwitchSingleInteractibility(0);
-            targetButton = refGuiManager.refModulesMenuManager.targetGroup[0].GetComponent<Button>();
+            guiManager.refModulesMenuManager.SwitchSingleInteractibility(0);
+            targetButton = guiManager.refModulesMenuManager.targetGroup[0].GetComponent<Button>();
             targetButton.onClick.AddListener(OnSelect);
         }
 

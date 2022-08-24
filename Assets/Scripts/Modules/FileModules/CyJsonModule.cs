@@ -39,8 +39,8 @@ namespace ECellDive
             public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
             public CyJsonPathwaySettingsData cyJsonPathwaySettings;
             public Dictionary<uint, GameObject> DataID_to_DataGO;
+            public GameObject pathwayRoot;
 
-            private GameObject pathwayRoot;
             private bool allNodesSpawned = false;
             private Dictionary<uint, Modification<bool>> koModifications = new Dictionary<uint, Modification<bool>>();
 

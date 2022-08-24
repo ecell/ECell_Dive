@@ -135,6 +135,15 @@ namespace ECellDive
             Selectable[] targetGroup { get; }
 
             /// <summary>
+            /// Forces the value <paramref name="_interactibility"/> upon 
+            /// <see cref="Selectable.interactable"/> for every member of
+            /// <see cref="targetGroup"/>.
+            /// </summary>
+            /// <param name="_interactibility">The value to apply to 
+            /// <see cref="Selectable.interactable"/>.</param>
+            void ForceGroupInteractibility(bool _interactibility);
+
+            /// <summary>
             /// Switches the value of <see cref="Selectable.interactable"/> to
             /// its opposite for each member of the <see cref="targetGroup"/>.
             /// </summary>
@@ -148,6 +157,15 @@ namespace ECellDive
             /// <param name="targetIdx">Index of a <see cref="Selectable"/> in <see
             /// cref="targetGroup"/></param>
             void SwitchSingleInteractibility(int targetIdx);
+
+            /// <summary>
+            /// Switches the value of <see cref="Selectable.interactable"/> to
+            /// its opposite for every target member in <see cref="targetGroup"/>
+            /// as defined by the indeces in <paramref name="targetsIdx"/>.
+            /// </summary>
+            /// <param name="targetsIdx">Array of indeces of <see cref="Selectable"/>s
+            /// in <see cref="targetGroup"/></param>
+            //void SwitchTargetsInteractibility(int[] _targetsIdx);
         }
     }
 }

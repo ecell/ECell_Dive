@@ -67,7 +67,7 @@ namespace ECellDive
             /// Start point of the logic allowing a user to resurface from a child
             /// dive scene to the parent dive scene.
             /// </summary>
-            private void Resurface()
+            public void Resurface()
             {
                 DiveScenesManager.Instance.ResurfaceServerRpc(NetworkManager.Singleton.LocalClientId);
             }

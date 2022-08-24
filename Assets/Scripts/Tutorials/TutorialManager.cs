@@ -104,6 +104,11 @@ namespace ECellDive.Tutorials
             }
         }
 
+        public virtual void Quit()
+        {
+
+        }
+
         public void StartTutorial()
         {
             goalContainer.gameObject.SetActive(true);

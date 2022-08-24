@@ -406,7 +406,7 @@ namespace ECellDive
             /// or called inside a ServerRpc.
             /// </summary>
             /// <param name="_sceneId">The Id of the scene in which it the new game object is instantiated.</param>
-            /// <param name="_prefabIdx">The index of the game object in the .
+            /// <param name="_prefabIdx">The index of the game object in the.
             /// It MUST be a <see cref="GameNetModule"/> and a <see cref="NetworkObject"/>.</param>
             /// <param name="_position">The position at which to instantiate the gameobject.</param>
             /// <returns>The game object that got instantiated & spawned.</returns>
@@ -465,12 +465,6 @@ namespace ECellDive
                 if (to >= 0)
                 {
                     SwitchingScenesServerRpc(from, to, _surfacingDiverId);
-                }
-
-                else
-                {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
-                        "You tried to resurface while being in the root scene.");
                 }
 
                 //TODO: dive animation ends

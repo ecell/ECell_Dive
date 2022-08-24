@@ -30,6 +30,10 @@ namespace ECellDive.Tutorials
 
             httpFbaM = FindObjectOfType<HttpServerFbaModule>();
             httpFbaM.OnFbaResultsReceive += ProcessResult;
+
+            //We collect the FBA module (created at the previous step) to
+            //make sure that it is cleaned up when the user quits the tutorial.
+            ModNavTutorialManager.tutorialGarbage.Add(httpFbaM.gameObject);
         }
 
         private void ProcessResult(bool _result)

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using ECellDive.UI;
+using ECellDive.Modules;
 
 namespace ECellDive.Tutorials
 {
@@ -10,6 +11,7 @@ namespace ECellDive.Tutorials
     /// </summary>
     public class ModNavStep6 : Step
     {
+        private GUIManager guiManager;
         private Button targetButton;
         private bool targetButtonSelected;
 
@@ -23,19 +25,30 @@ namespace ECellDive.Tutorials
             base.Conclude();
 
             targetButton.onClick.RemoveListener(OnSelect);
+
+            //We block the usage of the button to import a group by module
+            //since the user already added one.
+            guiManager.refModulesMenuManager.SwitchSingleInteractibility(3);
+
+            //The user can interact with the button to open the group menu.
+            guiManager.refMainMenu.GetComponent<MainMenuManager>().SwitchSingleInteractibility(1);
+
+            GroupByModule GrpBM = FindObjectOfType<GroupByModule>();
+
+            //We collect the FBA module (created at the previous step) to
+            //make sure that it is cleaned up when the user quits the tutorial.
+            ModNavTutorialManager.tutorialGarbage.Add(GrpBM.gameObject);
         }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            GUIManager refGuiManager = GameObject.
-                              FindGameObjectWithTag("AllUIAnchor").
-                              GetComponent<GUIManager>();
+            guiManager = GameObject.FindGameObjectWithTag("AllUIAnchor").GetComponent<GUIManager>();
 
-            //The user can interact with the button to add a remote importer to the scene.
-            refGuiManager.refModulesMenuManager.SwitchSingleInteractibility(3);
-            targetButton = refGuiManager.refModulesMenuManager.targetGroup[3].GetComponent<Button>();
+            //The user can interact with the button to add a Group By module to the scene.
+            guiManager.refModulesMenuManager.SwitchSingleInteractibility(3);
+            targetButton = guiManager.refModulesMenuManager.targetGroup[3].GetComponent<Button>();
             targetButton.onClick.AddListener(OnSelect);
         }
 

@@ -117,6 +117,14 @@ namespace ECellDive.Tutorials
             }
         }
 
+        private void EnableLearnedActions(List<InputActionReference> _learnedActions)
+        {
+            foreach (InputActionReference action in _learnedActions)
+            {
+                action.action.Enable();
+            }
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
@@ -135,7 +143,7 @@ namespace ECellDive.Tutorials
             //Disable the Groups Action Map
             refInputActionAsset.FindActionMap("Group_Controls_LH").Disable();
             refInputActionAsset.FindActionMap("Group_Controls_RH").Disable();
-            
+
             //Disable the capacity to switch input action modes 
             refInputSwitchMode.left.action.Disable();
             refInputSwitchMode.right.action.Disable();
@@ -156,14 +164,6 @@ namespace ECellDive.Tutorials
             foreach (GameObject _tag in StaticReferencer.Instance.refInfoTags)
             {
                 _tag.SetActive(false);
-            }
-        }
-
-        private void EnableLearnedActions(List<InputActionReference> _learnedActions)
-        {
-            foreach (InputActionReference action in _learnedActions)
-            {
-                action.action.Enable();
             }
         }
 
@@ -195,6 +195,25 @@ namespace ECellDive.Tutorials
                     leftControllerModeID = 0;
                     goto case 0;
             }
+        }
+
+        public override void Quit()
+        {
+            //Destroying the group started at the previous step.
+            StaticReferencer.Instance.groupsMakingManager.CancelGroup();
+
+            //The tutorial is finished so we unsubscribe the local solution
+            //for switching input controls.
+            refInputSwitchMode.left.action.performed -= LeftControllerActionMapSwitch;
+            refInputSwitchMode.right.action.performed -= RightControllerActionMapSwitch;
+
+            //Resubscribe the Action map switch within the InputModeManager
+            //in order to restore default behaviour: when the user presses
+            //the button binded to switching controls input actions, the 
+            //corresponding action maps are also automatically switched
+            //on or off entirely and not just the actions we added to the
+            //"learnedXXXActions" lists declared in this script.
+            StaticReferencer.Instance.inputModeManager.SubscribeActionMapsSwitch();
         }
 
         private void RightControllerActionMapSwitch(InputAction.CallbackContext _ctx)

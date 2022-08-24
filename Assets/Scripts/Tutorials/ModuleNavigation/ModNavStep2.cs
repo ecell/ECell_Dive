@@ -29,6 +29,10 @@ namespace ECellDive.Tutorials
 
             httpSIM = FindObjectOfType<HttpServerImporterModule>();
             httpSIM.OnDataModuleImport += ProcessResult;
+
+            //We collect the Remote importer module (created at the previous step) to
+            //make sure that it is cleaned up when the user quits the tutorial.
+            ModNavTutorialManager.tutorialGarbage.Add(httpSIM.gameObject);
         }
 
         private void ProcessResult(bool _result, string _modelName)
@@ -40,4 +44,3 @@ namespace ECellDive.Tutorials
         }
     }
 }
-
