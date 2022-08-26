@@ -190,7 +190,7 @@ namespace ECellDive
             /// <inheritdoc/>
             public void DisplayInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTagsContainer.transform)
+                foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
                     _infoTag.gameObject.SetActive(true);
                 }
@@ -199,7 +199,7 @@ namespace ECellDive
             /// <inheritdoc/>
             public void HideInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTagsContainer.transform)
+                foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
                     _infoTag.gameObject.SetActive(false);
                 }
@@ -233,7 +233,7 @@ namespace ECellDive
             public void ShowInfoTags()
             {
                 refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
-                foreach (GameObject _infoTag in refInfoTagsContainer.transform)
+                foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
                     _infoTag.gameObject.GetComponent<InfoDisplayManager>().LookAt();
                 }
