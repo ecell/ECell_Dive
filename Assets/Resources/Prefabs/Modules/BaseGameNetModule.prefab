@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc6fa794660ef24784ded0358f6755d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showOnEnable: 1
-  m_isUI: 0
+  showOnEnable: 0
+  m_isUI: 1
   m_popupDistance: 0
   m_popupRelativeHeight: 0
 --- !u!1 &1641300223965979892
@@ -491,6 +491,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5016764923900078323}
         m_TargetAssemblyTypeName: ECellDive.Modules.GameNetModule, Assembly-CSharp
         m_MethodName: SetHighlightServerRpc
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 5016764923900078323}
+        m_TargetAssemblyTypeName: ECellDive.Modules.GameNetModule, Assembly-CSharp
+        m_MethodName: ShowInfoTags
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
