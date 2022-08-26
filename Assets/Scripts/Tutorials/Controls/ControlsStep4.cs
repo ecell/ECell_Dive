@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using ECellDive.UserActions;
+using ECellDive.PlayerComponents;
 
 namespace ECellDive.Tutorials
 {
@@ -16,7 +14,7 @@ namespace ECellDive.Tutorials
         public GrabManager grabManagerofTarget2;
         public override bool CheckCondition()
         {
-            return grabManagerofTarget1.isGrabed || grabManagerofTarget2.isGrabed;
+            return grabManagerofTarget1.IsGrabed() || grabManagerofTarget2.IsGrabed();
         }
     }
 }

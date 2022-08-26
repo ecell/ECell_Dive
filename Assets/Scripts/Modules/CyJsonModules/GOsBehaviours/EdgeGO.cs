@@ -1,10 +1,8 @@
 ﻿using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using ECellDive.Utility;
 using ECellDive.UI;
 using ECellDive.Interfaces;
-using ECellDive.SceneManagement;
 
 
 namespace ECellDive
@@ -177,7 +175,7 @@ namespace ECellDive
                                     $"Reaction: {edgeData.reaction_name} \n" +
                                     $"Knockedout: {knockedOut.Value} \n" +
                                     $"Flux: {fluxLevel.Value}";
-                m_refInfoTags[0].GetComponent<InfoDisplayManager>().SetText(informationString);
+                m_refInfoTagsContainer.transform.GetChild(0).GetComponent<InfoDisplayManager>().SetText(informationString);
             }
 
             [ServerRpc(RequireOwnership = false)]
@@ -448,18 +446,22 @@ namespace ECellDive
             #endregion
 
             #region - IModulateFlux Methods- 
+
+            /// <inheritdoc/>
             public void Activate()
             {
                 SpreadActivationDownward();
                 SpreadActivationUpward();
             }
 
+            /// <inheritdoc/>
             public void Knockout()
             {
                 SpreadKODownward();
                 SpreadKOUpward();
             }
 
+            /// <inheritdoc/>
             public void SetFlux(float _level, float _levelClamped)
             {
                 SetFluxValuesServerRpc(_level, _levelClamped);

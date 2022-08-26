@@ -44,7 +44,7 @@ namespace ECellDive
                 gameObject.transform.localScale /= _pathwaySettings.SizeScaleFactor;
                 gameObject.name = $"{nodeData.ID}";
 
-                m_refInfoTags[0].transform.localScale *= _pathwaySettings.SizeScaleFactor;
+                m_refInfoTagsContainer.transform.GetChild(0).localScale *= _pathwaySettings.SizeScaleFactor;
                 m_nameTextFieldContainer.transform.localScale *= _pathwaySettings.SizeScaleFactor;
                 m_nameTextFieldContainer.transform.localPosition = 1.5f*Vector3.up;
             }
@@ -56,7 +56,7 @@ namespace ECellDive
                 informationString = $"SUID: {nodeData.ID} \n" +
                                     $"name: {nodeData.name} \n" +
                                     $"label: {nodeData.label}";
-                m_refInfoTags[0].GetComponent<InfoDisplayManager>().SetText(informationString);
+                m_refInfoTagsContainer.transform.GetChild(0).GetComponent<InfoDisplayManager>().SetText(informationString);
             }
             #endregion
 

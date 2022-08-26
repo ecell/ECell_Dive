@@ -1,18 +1,38 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
-
 
 namespace ECellDive.Interfaces
 {
+    /// <summary>
+    /// The interface used to declare the logic characterizing a
+    /// step of a tutorial.
+    /// </summary>
     public interface ITutorialStep 
     {
+        /// <summary>
+        /// A string used to descrie the goal of this tutorial step
+        /// </summary>
         string goal { get; }
+
+        /// <summary>
+        /// A string used to describe the task the user should accomplish
+        /// to reach the goal and be able to move on to the next step.
+        /// </summary>
         string task { get; }
+
+        /// <summary>
+        /// A string used to give a more detailed description of the task.
+        /// </summary>
         string details { get; }
 
+        /// <summary>
+        /// A unity event invoked during <see cref="Initialize"/>.
+        /// </summary>
         UnityEvent initializationInstructions { get; }
+
+        /// <summary>
+        /// A unity event invoked during <see cref="Conclude"/>.
+        /// </summary>
         UnityEvent conclusionInstructions { get; }
 
         /// <summary>

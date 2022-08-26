@@ -144,13 +144,6 @@ namespace ECellDive
                 get => m_refInfoTagsContainer;
                 set => m_refInfoTagsContainer = value;
             }
-
-            public List<GameObject> m_refInfoTags;
-            public List<GameObject> refInfoTags
-            {
-                get => m_refInfoTags;
-                set => m_refInfoTags = value;
-            }
             #endregion
 
             #region - INamed Members -
@@ -360,11 +353,12 @@ namespace ECellDive
             #endregion
 
             #region - IFocus Methods -
+            /// <inheritdoc/>
             public void SetFocus()
             {
                 m_isFocused = true;
             }
-
+            /// <inheritdoc/>
             public void UnsetFocus()
             {
                 m_isFocused = false;
@@ -410,30 +404,33 @@ namespace ECellDive
             #endregion
 
             #region - IInfoTags Methods -
+            /// <inheritdoc/>
             public void DisplayInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTags)
+                foreach (GameObject _infoTag in refInfoTagsContainer.transform)
                 {
-                    _infoTag.SetActive(true);
+                    _infoTag.gameObject.SetActive(true);
                 }
             }
 
+            /// <inheritdoc/>
             public void HideInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTags)
+                foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
-                    _infoTag.SetActive(false);
+                    _infoTag.gameObject.SetActive(false);
                 }
             }
 
+            /// <inheritdoc/>
             public void InstantiateInfoTag(Vector2 _xyPosition, string _content)
             {
                 GameObject infoTag = Instantiate(refInfoTagPrefab, refInfoTagsContainer.transform);
                 infoTag.transform.localPosition = new Vector3(_xyPosition.x, _xyPosition.y, 0f);
                 infoTag.GetComponent<InfoDisplayManager>().SetText(_content);
-                refInfoTags.Add(infoTag);
             }
 
+            /// <inheritdoc/>
             public void InstantiateInfoTags(string[] _content)
             {
                 float angle = 360 / _content.Length;
@@ -448,11 +445,13 @@ namespace ECellDive
                 }
             }
 
+            /// <inheritdoc/>
             public void ShowInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTags)
+                refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
+                foreach (GameObject _infoTag in refInfoTagsContainer.transform)
                 {
-                    _infoTag.GetComponent<InfoDisplayManager>().LookAt();
+                    _infoTag.gameObject.GetComponent<InfoDisplayManager>().LookAt();
                 }
             }
             #endregion

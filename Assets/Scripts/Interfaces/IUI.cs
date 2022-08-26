@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ECellDive.UI;
@@ -157,15 +156,6 @@ namespace ECellDive
             /// <param name="targetIdx">Index of a <see cref="Selectable"/> in <see
             /// cref="targetGroup"/></param>
             void SwitchSingleInteractibility(int targetIdx);
-
-            /// <summary>
-            /// Switches the value of <see cref="Selectable.interactable"/> to
-            /// its opposite for every target member in <see cref="targetGroup"/>
-            /// as defined by the indeces in <paramref name="targetsIdx"/>.
-            /// </summary>
-            /// <param name="targetsIdx">Array of indeces of <see cref="Selectable"/>s
-            /// in <see cref="targetGroup"/></param>
-            //void SwitchTargetsInteractibility(int[] _targetsIdx);
         }
     }
 }
