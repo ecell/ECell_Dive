@@ -21,7 +21,7 @@ namespace ECellDive.Interfaces
         /// The references to the input actions on the left and right controller
         /// used to grab objects.
         /// </summary>
-        LeftRightData<InputActionReference> grab { get; }
+        //LeftRightData<InputActionReference> grab { get; }
 
         /// <summary>
         /// The references to the input actions on the left and right controller
@@ -59,27 +59,15 @@ namespace ECellDive.Interfaces
 
         /// <summary>
         /// Operations to perform when the user is grabing an object
-        /// after making a remote contact with the left controller.
+        /// after making a remote contact with it.
         /// </summary>
-        void OnRemoteGrabLeft(InputAction.CallbackContext _ctx);
-
-        /// <summary>
-        /// Operations to perform when the user is grabing an object
-        /// after making a remote contact with the right controller.
-        /// </summary>
-        void OnRemoteGrabRight(InputAction.CallbackContext _ctx);
-
-        /// <summary>
-        /// Operations to perform when a user realeases the object
-        /// it had grabed from a remote contact with the left controller.
-        /// </summary>
-        void OnRemoteReleaseLeft(InputAction.CallbackContext _ctx);
+        void OnGrab();
         
         /// <summary>
         /// Operations to perform when a user realeases the object
-        /// it had grabed from a remote contact with the right controller.
+        /// it had grabed from a remote contact with it.
         /// </summary>
-        void OnRemoteReleaseRight(InputAction.CallbackContext _ctx);
+        void OnReleaseGrab();
     }
 }
 
