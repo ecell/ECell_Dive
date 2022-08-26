@@ -14,6 +14,7 @@ namespace ECellDive.Tutorials
     public class ControlsTutorialManager : TutorialManager
     {
         public InputActionAsset refInputActionAsset;
+        public LeftRightData<InputActionReference> refRBSelect;
         public LeftRightData<InputActionReference> refInputSwitchMode;
 
         //ControllerModeID = 0
@@ -159,6 +160,14 @@ namespace ECellDive.Tutorials
             //that will be valid for the duration of the tutorial.
             refInputSwitchMode.left.action.performed += LeftControllerActionMapSwitch;
             refInputSwitchMode.right.action.performed += RightControllerActionMapSwitch;
+
+            //Force the Ray-based controls for both controllers.
+            StaticReferencer.Instance.inputModeManager.BroadcastLeftControllerModeServerRpc(0);
+            StaticReferencer.Instance.inputModeManager.BroadcastRightControllerModeServerRpc(0);
+
+            //Allow user to click on UI Buttons at least.
+            AddLeftRayBasedControlAction(refRBSelect.left);
+            AddRightRayBasedControlAction(refRBSelect.right);
 
             //Hide every information tags
             foreach (GameObject _tag in StaticReferencer.Instance.refInfoTags)

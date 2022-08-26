@@ -66,10 +66,6 @@ namespace ECellDive.Tutorials
         {
             base.Initialize();
 
-            //Force the Ray-based controls for both controllers.
-            StaticReferencer.Instance.inputModeManager.BroadcastLeftControllerModeServerRpc(0);
-            StaticReferencer.Instance.inputModeManager.BroadcastRightControllerModeServerRpc(0);
-
             refInteractionFrontTrigger.left.action.performed += FireRayFromLeftController;
             refInteractionFrontTrigger.right.action.performed += FireRayFromRightController;
 
