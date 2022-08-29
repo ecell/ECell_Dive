@@ -96,7 +96,7 @@ namespace ECellDive.Multiplayer
 
                 //Storing about the new client relevant data (who is a player)
                 m_Portal.netSessionPlayersDataMap[clientId] = new NetSessionPlayerData(connectionPayload.playerName, clientId, 0);
-                GameNetScenesManager.Instance.DiverGetsInServerRpc(0, clientId);
+                DiveScenesManager.Instance.DiverGetsInServerRpc(0, clientId);
                 
                 SendServerToClientConnectResult(clientId, gameReturnStatus);
 

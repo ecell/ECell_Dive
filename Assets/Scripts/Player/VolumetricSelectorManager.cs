@@ -18,18 +18,25 @@ namespace ECellDive
         {
             #region - IHighlightable Members - 
 
-            [SerializeField] private NetworkVariable<Color> m_defaultColor;
-            public NetworkVariable<Color> defaultColor
+            [SerializeField] private NetworkVariable<Color> m_currentColor;
+            public NetworkVariable<Color> currentColor
+            {
+                get => m_currentColor;
+                set => m_currentColor = value;
+            }
+
+            [SerializeField] private Color m_defaultColor;
+            public Color defaultColor
             {
                 get => m_defaultColor;
-                set => defaultColor = value;
+                set => m_defaultColor = value;
             }
 
             [SerializeField] private Color m_highlightColor;
             public Color highlightColor
             {
                 get => m_highlightColor;
-                set => SetHighlightColor(value);
+                set => m_highlightColor = value;
             }
 
             private bool m_forceHighlight = false;
@@ -75,6 +82,7 @@ namespace ECellDive
             private void Start()
             {
                 refSphereCollider = GetComponent<SphereCollider>();
+                refSphereCollider.enabled = false;
                 ResetTransform();
                 minScale = minScaleFactor * defaultScale;
                 maxScale = maxScaleFactor * defaultScale;
@@ -85,15 +93,17 @@ namespace ECellDive
                 refRenderer = GetComponentInChildren<Renderer>();
                 mpb = new MaterialPropertyBlock();
                 colorID = Shader.PropertyToID("_Color");
-                mpb.SetVector(colorID, defaultColor.Value);
+                mpb.SetVector(colorID, currentColor.Value);
                 refRenderer.SetPropertyBlock(mpb);
             }
 
             public override void OnNetworkSpawn()
             {
+                SetDefaultServerRpc();
+
                 distanceAndScaleAction.action.performed += DistanceAndScale;
 
-                isActive.OnValueChanged += ApplyActivityStatus;
+                currentColor.OnValueChanged += ApplyCurrentColorChange;
                 position.OnValueChanged += ApplyPositionToTransform;
                 scale.OnValueChanged += ApplyScaleToTransform;
             }
@@ -102,21 +112,15 @@ namespace ECellDive
             {
                 distanceAndScaleAction.action.performed -= DistanceAndScale;
 
-                isActive.OnValueChanged -= ApplyActivityStatus;
+                currentColor.OnValueChanged -= ApplyCurrentColorChange;
                 position.OnValueChanged -= ApplyPositionToTransform;
                 scale.OnValueChanged -= ApplyScaleToTransform;
             }
 
-            private void ApplyActivityStatus(bool _past, bool _current)
+            private void ApplyCurrentColorChange(Color _previous, Color _current)
             {
-                if (isActive.Value)
-                {
-                    SetHighlight();
-                }
-                else
-                {
-                    UnsetHighlight();
-                }
+                mpb.SetVector(colorID, _current);
+                refRenderer.SetPropertyBlock(mpb);
             }
 
             private void ApplyPositionToTransform(Vector3 _past, Vector3 _current)
@@ -133,14 +137,6 @@ namespace ECellDive
                 {
                     transform.localScale = scale.Value;
                 }
-            }
-
-            /// <summary>
-            /// Collision Event with objects in the scene.
-            /// </summary>
-            private void OnTriggerEnter(Collider collider)
-            {
-                refGrpMkgManager.CheckCollision(collider.gameObject);
             }
 
             /// <summary>
@@ -190,6 +186,14 @@ namespace ECellDive
             {
                 refSphereCollider.enabled = _active;
                 isActive.Value = _active;
+                if (_active)
+                {
+                    SetHighlightServerRpc();
+                }
+                else
+                {
+                    UnsetHighlightServerRpc();
+                }
             }
 
             /// <summary>
@@ -261,28 +265,39 @@ namespace ECellDive
 
             #region - IHighlightable -
 
-            public virtual void SetDefaultColor(Color _c)
+            /// <inheritdoc/>
+            [ServerRpc(RequireOwnership = false)]
+            public void SetDefaultServerRpc()
             {
-                m_defaultColor.Value = _c;
+                m_currentColor.Value = m_defaultColor;
             }
 
-            public virtual void SetHighlightColor(Color _c)
+            /// <inheritdoc/>
+            public void SetDefaultColor(Color _c)
+            {
+                m_defaultColor = _c;
+            }
+
+            /// <inheritdoc/>
+            [ServerRpc(RequireOwnership = false)]
+            public virtual void SetHighlightServerRpc()
+            {
+                m_currentColor.Value = m_highlightColor;
+            }
+
+            /// <inheritdoc/>
+            public void SetHighlightColor(Color _c)
             {
                 m_highlightColor = _c;
             }
 
-            public void SetHighlight()
-            {
-                mpb.SetVector(colorID, highlightColor);
-                refRenderer.SetPropertyBlock(mpb);
-            }
-
-            public void UnsetHighlight()
+            /// <inheritdoc/>
+            [ServerRpc(RequireOwnership = false)]
+            public virtual void UnsetHighlightServerRpc()
             {
                 if (!forceHighlight)
                 {
-                    mpb.SetVector(colorID, defaultColor.Value);
-                    refRenderer.SetPropertyBlock(mpb);
+                    m_currentColor.Value = m_defaultColor;
                 }
             }
             #endregion

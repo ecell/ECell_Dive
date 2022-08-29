@@ -1,39 +1,49 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using ECellDive.Interfaces;
 
-
-namespace ECellDive
+namespace ECellDive.UI
 {
-    namespace UI
+    /// <summary>
+    /// The class to manage the main menu UI.
+    /// </summary>
+    public class MainMenuManager : MonoBehaviour,
+                                    IInteractibility
     {
-        /// <summary>
-        /// Logic to switch On and Off the main menu.
-        /// </summary>
-        public class MainMenuManager : MonoBehaviour
+        [SerializeField] private Selectable[] m_targetGroup;
+        ///<inheritdoc/>
+        public Selectable[] targetGroup
         {
-            public InputActionReference refMenuOpen;
-            public GameObject refMainMenu;
+            get => m_targetGroup;
+        }
 
-            private void Awake()
-            {
-                refMenuOpen.action.performed += ManageOpenStatus;
-            }
 
-            private void OnDestroy()
-            {
-                refMenuOpen.action.performed -= ManageOpenStatus;
-            }
 
-            /// <summary>
-            /// Shows or hides the UI corresponding to the Main Menu.
-            /// </summary>
-            private void ManageOpenStatus(InputAction.CallbackContext callbackContext)
+        #region - IInteractibility Methods -
+        /// <inheritdoc/>
+        public void ForceGroupInteractibility(bool _interactibility)
+        {
+            foreach (Selectable selectable in m_targetGroup)
             {
-                refMainMenu.SetActive(!refMainMenu.activeSelf);
-                refMainMenu.transform.parent.GetComponent<IPopUp>().PopUp();
+                selectable.interactable = _interactibility;
             }
         }
-    }
-}
 
+        /// <inheritdoc/>
+        public void SwitchGroupInteractibility()
+        {
+            foreach (Selectable selectable in m_targetGroup)
+            {
+                selectable.interactable = !selectable.interactable;
+            }
+        }
+
+        /// <inheritdoc/>
+        public void SwitchSingleInteractibility(int _targetIdx)
+        {
+            m_targetGroup[_targetIdx].interactable = !m_targetGroup[_targetIdx].interactable;
+        }
+        #endregion
+    }
+
+}

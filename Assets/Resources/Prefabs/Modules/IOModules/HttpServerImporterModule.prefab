@@ -427,8 +427,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7823218410774017041}
-        m_TargetAssemblyTypeName: ECellDive.UserActions.GrabManager, Assembly-CSharp
-        m_MethodName: HandleInteractorsSorting
+        m_TargetAssemblyTypeName: ECellDive.PlayerComponents.GrabManager, Assembly-CSharp
+        m_MethodName: OnGrab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -442,8 +442,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7823218410774017041}
-        m_TargetAssemblyTypeName: ECellDive.UserActions.GrabManager, Assembly-CSharp
-        m_MethodName: ResetLogic
+        m_TargetAssemblyTypeName: ECellDive.PlayerComponents.GrabManager, Assembly-CSharp
+        m_MethodName: OnReleaseGrab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -535,12 +535,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2e1ae825e2035488d80d33ed5dee95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftGrabActionData:
-    select: {fileID: 1901161901490888043, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    attractRepulse: {fileID: -3848924210200324891, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  rightGrabActionData:
-    select: {fileID: -4479098549160383614, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    attractRepulse: {fileID: 2490823375165310329, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  m_manageDistance:
+    m_left: {fileID: -3848924210200324891, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_right: {fileID: 2490823375165310329, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  m_OnPostGrabMovementUpdate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7768257950668000874}
+        m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
+        m_MethodName: ShowNameToPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7768257950668000874}
+        m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
+        m_MethodName: ShowInfoTags
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   objectMaxDistance: 25
   objectMinDistance: 0.1
   attractionSpeedCurve:
@@ -600,33 +624,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_OnPostGrabMovementUpdate:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7768257950668000874}
-        m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
-        m_MethodName: ShowNameToPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7768257950668000874}
-        m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
-        m_MethodName: ShowInfoTags
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &7768257950668000874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,11 +637,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refName: {fileID: 4073288287257308116}
-  m_defaultColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  m_defaultColor: {r: 1, g: 1, b: 1, a: 0}
   m_highlightColor: {r: 0, g: 0.8980392, b: 0.8962264, a: 1}
   m_displayInfoTagsActions:
-    leftController: {fileID: -2874468441403497665, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    rightController: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_left: {fileID: -2874468441403497665, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_right: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   m_refInfoTagPrefab: {fileID: 2994898854734172957}
   m_refInfoTagsContainer: {fileID: 2028680248485601315}
   m_refInfoTags:

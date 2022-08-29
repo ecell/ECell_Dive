@@ -1,29 +1,39 @@
 using System.Collections;
 using Unity.Netcode;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 
 namespace ECellDive.Interfaces
 {
+    /// <summary>
+    /// The interface to describe the required elements to implement a module
+    /// that a user can dive in.
+    /// </summary>
     public interface IDive
     {
-        ControllersSymetricAction diveActions { get; set; }
-
-        NetworkVariable<bool> isReadyForDive { get; }
-
-        NetworkVariable<int> rootSceneId { get; set; }
-
-        NetworkVariable<int> targetSceneId { get; set; }
+        /// <summary>
+        /// The reference to the input actions the user can perform
+        /// to dive.
+        /// </summary>
+        LeftRightData<InputActionReference> diveActions { get; set; }
 
         /// <summary>
-        /// Used by the client that is generating the content of a module
-        /// (i.e. instantiating all the gameObjects/networkObjects that
-        /// physically represents the data stored by a module) to ask the server
-        /// to update the networkVariable <see cref="isReadyForDive"/>.
+        /// A variable synchronized over the multiplayer network to
+        /// inform the clients when a module has finished generating
+        /// its content and is therefore ready to accept divers.
         /// </summary>
-        //[ServerRpc(RequireOwnership = false)]
-        //void BroadcastIsReadyForDiveServerRpc();
+        NetworkVariable<bool> isReadyForDive { get; }
+
+        /// <summary>
+        /// The id of the dive scene where the module was added.
+        /// </summary>
+        NetworkVariable<int> rootSceneId { get; set; }
+
+        /// <summary>
+        /// The id of the dive scene the module will transfer
+        /// the divers to.
+        /// </summary>
+        NetworkVariable<int> targetSceneId { get; set; }
 
         /// <summary>
         /// The public interface to call when a user is trying to dive into
@@ -32,10 +42,14 @@ namespace ECellDive.Interfaces
         /// in the scene and the NetworkObjects have ALREADY been replicated
         /// across the multiplayer network.
         /// </summary>
+        /// <remarks>
+        /// Asynchronous: it calls the coroutine <see cref="DirectDiveInC"/>
+        /// </remarks>
         void DirectDiveIn();
 
         /// <summary>
         /// Coroutine started by <see cref="DirectDiveIn"/>.
+        /// Transfers the user to the dive scene associated to the module.
         /// </summary>
         abstract IEnumerator DirectDiveInC();
 
@@ -46,24 +60,33 @@ namespace ECellDive.Interfaces
         /// scene and the NetworkObjects have NOT been replicated yet
         /// across the multiplayer network.
         /// </summary>
+        /// <remarks>
+        /// Asynchronous: it calls the coroutine <see cref="GenerativeDiveInC"/>
+        /// </remarks>
         void GenerativeDiveIn();
 
         /// <summary>
         /// Coroutine started by <see cref="GenerativeDiveIn"/>.
+        /// Generates the content of the module before transfering the diver
+        /// to the dive scene.
         /// </summary>
         abstract IEnumerator GenerativeDiveInC();
 
         /// <summary>
         /// The public interface to call when a user wants to dive into a 
-        /// module. Performs tests to check whether the data of the module is
-        /// accessible and whether a user has already generated the physical
-        /// represenbtation of the data.
+        /// module.
         /// </summary>
         /// <param name="_ctx">Input action callback</param>
+        /// <remarks>
+        /// Asynchronous: it calls the coroutine <see cref="TryDiveInC"/>
+        /// </remarks>
         void TryDiveIn(InputAction.CallbackContext _ctx);
 
         /// <summary>
         /// Coroutine started by <see cref="TryDiveIn(InputAction.CallbackContext)"/>.
+        /// Performs tests to check whether the data of the module is
+        /// accessible and whether a user has already generated the physical
+        /// representation of the data.
         /// </summary>
         abstract IEnumerator TryDiveInC();
     }

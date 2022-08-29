@@ -236,7 +236,6 @@ namespace ECellDive
             /// </summary>
             private void ReticleUpdate(InputAction.CallbackContext _ctx)
             {
-                Debug.Log("Reticle Update for " + gameObject.name, gameObject);
                 Vector2 _das = _ctx.ReadValue<Vector2>();
                 if (!IsInDeadZone(_das.y))
                 {

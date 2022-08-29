@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using HSVPicker;
 using ECellDive.Interfaces;
+using ECellDive.Input;
 using ECellDive.UI;
+using ECellDive.UserActions;
 
 
 namespace ECellDive.Utility
@@ -21,9 +24,32 @@ namespace ECellDive.Utility
         public static StaticReferencer Instance;
 
         [Header("UI Elements")]
-        public GameObject refVirtualKeyboard;
-        public ColorPicker refColorPicker;
-        public GroupsMenu refGroupsMenu;
+        [HideInInspector] public GameObject refAllGuiMenusContainer;
+        [HideInInspector] public GameObject refVirtualKeyboard;
+        [HideInInspector] public ColorPicker refColorPicker;
+        [HideInInspector] public GroupsMenu refGroupsMenu;
+
+        /// <summary>
+        /// The list of all gameobjects representing the information tags of 
+        /// the controllers' buttons. This is mainly used when an external code
+        /// wants to forcefully deactivate/activate them (very relevant when
+        /// designing tutorials).
+        /// </summary>
+        /// <remarks>
+        /// In the order of the list we find:
+        ///     - 0: Oculus Button IT
+        ///     - 1: X Button IT
+        ///     - 2: Y Button IT
+        ///     - 3: Left Joystick IT
+        ///     - 4: Left Trigger Front IT
+        ///     - 5: Left Trigger Grip IT
+        ///     - 6: A Button IT
+        ///     - 7: B Button IT
+        ///     - 8: Right Joystik IT
+        ///     - 9: Right Trigger Front IT
+        ///     - 10: Right Trigger Grip IT
+        /// </remarks>
+        public List<GameObject> refInfoTags;
 
         [Header("XR Interactors References")]
         public LeftRightData<XRRayInteractor> groupsInteractors;
@@ -37,6 +63,14 @@ namespace ECellDive.Utility
         [Header("Controllers GO References")]
         public LeftRightData<GameObject> mvtControllersGO;
         public LeftRightData<GameObject> groupControllersGO;
+        public LeftRightData<GameObject> riControllersGO;
+
+        [Header("Controllers Other References")]
+        public LeftRightData<VolumetricSelectorManager> volumetricSelectorManagers;
+
+        [Header("Other")]
+        public InputModeManager inputModeManager;
+        public GroupsMakingManager groupsMakingManager;
 
         // Start is called before the first frame update
         public override void OnNetworkSpawn()
@@ -44,6 +78,14 @@ namespace ECellDive.Utility
             if (IsLocalPlayer)
             {
                 Instance = this;
+                GUIManager guiManager = FindObjectOfType<GUIManager>();
+                refAllGuiMenusContainer = guiManager.gameObject;
+
+                Instance.refVirtualKeyboard = guiManager.refVirtualKeyboard;
+                Instance.refColorPicker = guiManager.refColorPicker;
+                Instance.refGroupsMenu = guiManager.refGroupsMenu;
+
+                guiManager.Initialize(GetComponent<PlayerComponents.Player>());
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using ECellDive.Utility;
 using ECellDive.UI;
 using ECellDive.Interfaces;
@@ -32,6 +33,8 @@ namespace ECellDive
             };
 
             public FbaParametersManager fbaParametersManager;
+
+            public UnityAction<bool> OnFbaResultsReceive;
 
             private CyJsonModule LoadedCyJsonPathway;
 
@@ -141,6 +144,7 @@ namespace ECellDive
             private IEnumerator ShowComputedFluxesC()
             {
                 int counter = 0;
+                EdgeGO edgeGO;
                 foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
                 {
                     if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
@@ -154,10 +158,13 @@ namespace ECellDive
                                                       fbaParametersManager.fluxUpperBoundColorPicker.button.colors.normalColor,
                                                       t);
 
+                        
                         foreach (uint _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
-                            LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
-                            LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
+                            edgeGO = LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>();
+                            edgeGO.SetDefaultColor(levelColor);
+                            edgeGO.SetFlux(level, levelClamped);
+                            edgeGO.UnsetHighlightServerRpc();
 
                             counter++;
 
@@ -198,6 +205,8 @@ namespace ECellDive
                 GetModelSolution(_modelName, _knockouts);
 
                 yield return new WaitUntil(isRequestProcessed);
+
+                OnFbaResultsReceive?.Invoke(requestData.requestSuccess);
 
                 if (requestData.requestSuccess)
                 {

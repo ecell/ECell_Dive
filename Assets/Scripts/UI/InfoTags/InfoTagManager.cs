@@ -48,8 +48,9 @@ namespace ECellDive
                 {
                     Hide();
                 }
-                lookAtTarget = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
-                                GetComponentInChildren<Camera>().transform;
+                //lookAtTarget = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.
+                //                GetComponentInChildren<Camera>().transform;
+                lookAtTarget = Camera.main.transform;
             }
 
             private void AwakeCallBackActions(Tag _tag)
@@ -99,13 +100,13 @@ namespace ECellDive
                 switch (_controlModeID)
                 {
                     case 0:
-                        currentTag = tagGC;
+                        currentTag = tagRBC;
                         break;
                     case 1:
                         currentTag = tagMvt;
                         break;
                     case 2:
-                        currentTag = tagRBC;
+                        currentTag = tagGC;
                         break;
                 }
                 updateTagText();

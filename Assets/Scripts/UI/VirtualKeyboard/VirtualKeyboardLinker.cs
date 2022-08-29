@@ -16,13 +16,19 @@ namespace ECellDive
 
             private void Start()
             {
-                //Searches for the Virtual Keyboard in the scene.
-                refVKManager = StaticReferencer.Instance.refVirtualKeyboard.GetComponent<VirtualKeyboardManager>();
-                if (refVKManager == null)
+                if (StaticReferencer.Instance != null)
                 {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
-                        $"Could not link {gameObject.name} with any virtual keyboard in the scene.");
+                    GetSetVKManager();
                 }
+            }
+
+            /// <summary>
+            /// Gets the value of <see cref="StaticReferencer.Instance.refVirtualKeyboard"/>
+            /// and sets the value of <see cref="refVKManager"/> from it.
+            /// </summary>
+            public void GetSetVKManager()
+            {
+                refVKManager = StaticReferencer.Instance.refVirtualKeyboard.GetComponent<VirtualKeyboardManager>();
             }
 
             /// <summary>
@@ -38,7 +44,6 @@ namespace ECellDive
                     refVKManager.Show();
                     refVKManager.SetTargetInputField(GetComponent<TMP_InputField>());
                 }
-                    
             }
         }
     }

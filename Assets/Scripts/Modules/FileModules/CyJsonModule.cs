@@ -39,14 +39,10 @@ namespace ECellDive
             public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
             public CyJsonPathwaySettingsData cyJsonPathwaySettings;
             public Dictionary<uint, GameObject> DataID_to_DataGO;
+            public GameObject pathwayRoot;
 
-            private GameObject pathwayRoot;
             private bool allNodesSpawned = false;
             private Dictionary<uint, Modification<bool>> koModifications = new Dictionary<uint, Modification<bool>>();
-
-            private Renderer refRenderer;
-            private MaterialPropertyBlock mpb;
-            private int colorID;
 
             #region  - IGraphGO Members - 
             public IGraph graphData { get; protected set; }
@@ -67,20 +63,17 @@ namespace ECellDive
             public ModificationFile writingModificationFile { get; set; }
             #endregion
 
-            private void OnEnable()
-            {
-                refRenderer = GetComponentInChildren<Renderer>();
-                mpb = new MaterialPropertyBlock();
-                colorID = Shader.PropertyToID("_Color");
-                mpb.SetVector(colorID, defaultColor.Value);
-                refRenderer.SetPropertyBlock(mpb);
-            }
-
             public override void OnNetworkSpawn()
             {
+                base.OnNetworkSpawn();
                 DataID_to_DataGO = new Dictionary<uint, GameObject>();
                 GameNetPortal.Instance.modifiables.Add(this);
                 GameNetPortal.Instance.saveables.Add(this);
+            }
+            protected override void ApplyCurrentColorChange(Color _previous, Color _current)
+            {
+                mpb.SetVector(colorID, _current);
+                m_Renderer.SetPropertyBlock(mpb);
             }
 
             [ClientRpc]
@@ -116,7 +109,7 @@ namespace ECellDive
                     for (int j = i; j < Mathf.Min(i + cyJsonPathwaySettings.edgesBatchSize, graphData.edges.Length); j++)
                     {
                         //ModulesData.AddModule(edgeMD);
-                        GameObject edgeGO = GameNetScenesManager.Instance.SpawnModuleInScene(_sceneId, graphPrefabsComponents[2], Vector3.zero);
+                        GameObject edgeGO = DiveScenesManager.Instance.SpawnModuleInScene(_sceneId, graphPrefabsComponents[2], Vector3.zero);
                         edgeGO.transform.parent = pathwayRoot.transform;
                         EdgeSpawnClientRpc(edgeGO, j);
                     }
@@ -182,7 +175,7 @@ namespace ECellDive
                     {
                         //ModulesData.AddModule(nodeMD);
 
-                        GameObject nodeGO = GameNetScenesManager.Instance.SpawnModuleInScene(_sceneId, graphPrefabsComponents[1], Vector3.zero);
+                        GameObject nodeGO = DiveScenesManager.Instance.SpawnModuleInScene(_sceneId, graphPrefabsComponents[1], Vector3.zero);
                         nodeGO.transform.parent = pathwayRoot.transform;
                         NodeSpawnClientRpc(nodeGO, j);
 
@@ -251,7 +244,7 @@ namespace ECellDive
             }
 
             #region - IDive Methods -
-
+            /// <inheritdoc/>
             public override IEnumerator GenerativeDiveInC()
             {
                 RequestSourceDataGenerationServerRpc(NetworkManager.Singleton.LocalClientId);
@@ -261,12 +254,13 @@ namespace ECellDive
                 DirectDiveIn();
             }
 
+            /// <inheritdoc/>
             [ServerRpc(RequireOwnership = false)]
             public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
             {
                 int rootSceneId = GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene;
                 
-                targetSceneId.Value = GameNetScenesManager.Instance.AddNewDiveScene(rootSceneId);
+                targetSceneId.Value = DiveScenesManager.Instance.AddNewDiveScene(rootSceneId);
                 LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
                     $"targetSceneId of the new module is: {targetSceneId}");
                 RequestGraphGenerationServerRpc(_expeditorClientID, targetSceneId.Value);
@@ -275,12 +269,13 @@ namespace ECellDive
 
             #region - IGraph Methods -
 
-            [ServerRpc]
+            /// <inheritdoc/>
+            [ServerRpc(RequireOwnership = false)]
             public void RequestGraphGenerationServerRpc(ulong _expeditorClientId, int _rootSceneId)
             {
-                pathwayRoot = GameNetScenesManager.Instance.SpawnModuleInScene(_rootSceneId,
-                                                                                graphPrefabsComponents[0],
-                                                                                Vector3.zero);
+                pathwayRoot = DiveScenesManager.Instance.SpawnModuleInScene(_rootSceneId,
+                                                                            graphPrefabsComponents[0],
+                                                                            Vector3.zero);
                 pathwayRoot.name = graphData.name;
 
                 //Instantiate Nodes of Layer
@@ -290,30 +285,15 @@ namespace ECellDive
                 StartCoroutine(EdgesBatchSpawn(_rootSceneId));
             }
 
+            /// <inheritdoc/>
             public void SetNetworkData(IGraph _IGraph)
             {
                 graphData = _IGraph;
             }
             #endregion
 
-            #region - IHighlightable Methods -
-            public override void SetHighlight()
-            {
-                mpb.SetVector(colorID, highlightColor);
-                refRenderer.SetPropertyBlock(mpb);
-            }
-
-            public override void UnsetHighlight()
-            {
-                if (!forceHighlight)
-                {
-                    mpb.SetVector(colorID, defaultColor.Value);
-                    refRenderer.SetPropertyBlock(mpb);
-                }
-            }
-            #endregion
-
             #region - IModifiable Methods -
+            /// <inheritdoc/>
             public void ApplyFileModifications()
             {
                 Debug.Log("Applying modifications");
@@ -323,12 +303,12 @@ namespace ECellDive
                     OperationSwitch(_op);
                 }
             }
-
+            /// <inheritdoc/>
             public bool CheckName(string _name)
             {
                 return _name == graphData.name;
             }
-
+            /// <inheritdoc/>
             public void OperationSwitch(string _op)
             {
                 string[] opContent = _op.Split('_');
@@ -372,6 +352,7 @@ namespace ECellDive
             #endregion
 
             #region - ISaveable Methods -
+            /// <inheritdoc/>
             public void CompileModificationFile()
             {
                 string author = GameNetPortal.Instance.netSessionPlayersDataMap[NetworkManager.Singleton.LocalClientId].playerName;

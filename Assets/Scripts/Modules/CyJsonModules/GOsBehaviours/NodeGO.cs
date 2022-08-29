@@ -10,20 +10,20 @@ namespace ECellDive
         public class NodeGO : GameNetModule,
                               INodeGO
         {
+            #region - INodeGO Members -
             public INode nodeData { get; protected set; }
             public string informationString { get; protected set; }
+            #endregion
 
-            private Renderer refRenderer;
-            private MaterialPropertyBlock mpb;
-            private int colorID;
-
-            private void OnEnable()
+            public override void OnNetworkSpawn()
             {
-                refRenderer = GetComponentInChildren<Renderer>();
-                mpb = new MaterialPropertyBlock();
-                colorID = Shader.PropertyToID("_Color");
-                mpb.SetVector(colorID, defaultColor.Value);
-                refRenderer.SetPropertyBlock(mpb);
+                base.OnNetworkSpawn();
+            }
+
+            protected override void ApplyCurrentColorChange(Color _previous, Color _current)
+            {
+                mpb.SetVector(colorID, _current);
+                m_Renderer.SetPropertyBlock(mpb);
             }
 
             public void Initialize(CyJsonPathwaySettingsData _pathwaySettings, in INode _node)
@@ -38,51 +38,54 @@ namespace ECellDive
                 gameObject.SetActive(true);
                 if (nodeData.isVirtual)
                 {
-                    refRenderer.enabled = false;
+                    m_Renderer.enabled = false;
                 }
                 gameObject.transform.position = nodePos;
                 gameObject.transform.localScale /= _pathwaySettings.SizeScaleFactor;
                 gameObject.name = $"{nodeData.ID}";
 
-                m_refInfoTags[0].transform.localScale *= _pathwaySettings.SizeScaleFactor;
+                m_refInfoTagsContainer.transform.GetChild(0).localScale *= _pathwaySettings.SizeScaleFactor;
                 m_nameTextFieldContainer.transform.localScale *= _pathwaySettings.SizeScaleFactor;
                 m_nameTextFieldContainer.transform.localPosition = 1.5f*Vector3.up;
             }
 
+            #region - INodeGO Methods -
             public void SetNodeData(INode _INode)
             {
                 nodeData = _INode;
                 informationString = $"SUID: {nodeData.ID} \n" +
                                     $"name: {nodeData.name} \n" +
                                     $"label: {nodeData.label}";
-                m_refInfoTags[0].GetComponent<InfoDisplayManager>().SetText(informationString);
+                m_refInfoTagsContainer.transform.GetChild(0).GetComponent<InfoDisplayManager>().SetText(informationString);
             }
+            #endregion
 
-            #region - IHighlightable -
-            public override void SetHighlight()
+            #region - IHighlightable Methods -
+            [ServerRpc(RequireOwnership = false)]
+            public override void SetHighlightServerRpc()
             {
-                refRenderer.enabled = true;
-                mpb.SetVector(colorID, highlightColor);
-                refRenderer.SetPropertyBlock(mpb);
+                base.SetHighlightServerRpc();
+                m_Renderer.enabled = true;
             }
 
-            public override void UnsetHighlight()
+            [ServerRpc(RequireOwnership = false)]
+            public override void UnsetHighlightServerRpc()
             {
                 if (!forceHighlight)
                 {
-                    refRenderer.enabled = true;
-                    mpb.SetVector(colorID, defaultColor.Value);
-                    refRenderer.SetPropertyBlock(mpb);
+                    m_Renderer.enabled = true;
+                    currentColor.Value = defaultColor;
 
                     if (nodeData.isVirtual)
                     {
-                        refRenderer.enabled = false;
+                        m_Renderer.enabled = false;
                     }
                 }
             }
             #endregion
 
-            #region - INamed -
+            #region - INamed Methods -
+            /// <inheritdoc/>
             public override void DisplayName()
             {
                 if (!nodeData.isVirtual)
@@ -92,7 +95,7 @@ namespace ECellDive
             }
             #endregion
 
-            #region - MlprVisibility -
+            #region - MlprVisibility Methods -
             public override void NetShow()
             {
                 m_Collider.enabled = true;

@@ -18,14 +18,16 @@ namespace ECellDive.Multiplayer
         [Header("To DEACTIVATE on spawn if IsLocalPlayer")]
         public GameObject headModel;
         public GameObject playerNameRoot;
+        public LeftRightData<GameObject> imgrReplicatedClient;
 
         [Header("To DEACTIVATE on spawn if NOT IsLocalPlayer")]
         public Camera refCamera;
         public AudioListener refAudioListener;
         
         public TrackedPoseDriver trackedPoseDriver;
-        public List<ActionBasedController> actionBasedControllers;
-        public LeftRightData<MovementManager> movementManagers;
+
+        public LeftRightData<GameObject> imgrLocalClient;
+        public LeftRightData<ActionBasedController> actionBasedControllers;
 
         public List<GameObject> actionInfoTags;
 
@@ -47,21 +49,21 @@ namespace ECellDive.Multiplayer
 
                 headModel.SetActive(false);
                 playerNameRoot.SetActive(false);
+                imgrReplicatedClient.left.SetActive(false);
+                imgrReplicatedClient.right.SetActive(false);
             }
 
             if (!IsLocalPlayer)
             {
+                imgrLocalClient.left.SetActive(false);
+                imgrLocalClient.right.SetActive(false);
+
                 refCamera.enabled = false;
                 refAudioListener.enabled = false;
                 trackedPoseDriver.enabled = false;
 
-                foreach (ActionBasedController _abc in actionBasedControllers)
-                {
-                    _abc.enabled = false;
-                }
-
-                movementManagers.left.enabled = false;
-                movementManagers.right.enabled = false;
+                actionBasedControllers.left.enabled = false;
+                actionBasedControllers.right.enabled = false;
 
                 foreach (GameObject _goIT in actionInfoTags)
                 {
