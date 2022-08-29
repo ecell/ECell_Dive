@@ -82,6 +82,7 @@ namespace ECellDive
             private void Start()
             {
                 refSphereCollider = GetComponent<SphereCollider>();
+                refSphereCollider.enabled = false;
                 ResetTransform();
                 minScale = minScaleFactor * defaultScale;
                 maxScale = maxScaleFactor * defaultScale;
