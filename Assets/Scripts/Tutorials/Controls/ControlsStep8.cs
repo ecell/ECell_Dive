@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.Interfaces;
@@ -37,20 +35,20 @@ namespace ECellDive.Tutorials
             }
         }
 
-        public override void Initialize()
-        {
-            base.Initialize();
-            
-            groupSelect.left.action.performed += CheckGroupComposition;
-            groupSelect.right.action.performed += CheckGroupComposition;
-        }
-
         public override void Conclude()
         {
             base.Conclude();
 
             groupSelect.left.action.performed -= CheckGroupComposition;
             groupSelect.right.action.performed -= CheckGroupComposition;
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            
+            groupSelect.left.action.performed += CheckGroupComposition;
+            groupSelect.right.action.performed += CheckGroupComposition;
         }
     }
 }

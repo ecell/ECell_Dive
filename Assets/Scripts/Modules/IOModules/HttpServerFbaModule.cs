@@ -144,6 +144,7 @@ namespace ECellDive
             private IEnumerator ShowComputedFluxesC()
             {
                 int counter = 0;
+                EdgeGO edgeGO;
                 foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
                 {
                     if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
@@ -157,10 +158,13 @@ namespace ECellDive
                                                       fbaParametersManager.fluxUpperBoundColorPicker.button.colors.normalColor,
                                                       t);
 
+                        
                         foreach (uint _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
-                            LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetDefaultColor(levelColor);
-                            LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>().SetFlux(level, levelClamped);
+                            edgeGO = LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>();
+                            edgeGO.SetDefaultColor(levelColor);
+                            edgeGO.SetFlux(level, levelClamped);
+                            edgeGO.UnsetHighlightServerRpc();
 
                             counter++;
 

@@ -293,7 +293,7 @@ namespace ECellDive
             {
                 if (isVolumetric.right.Value)
                 {
-                    volumetricSelector.left.ManageActive(false);
+                    volumetricSelector.right.ManageActive(false);
                 }
             }
 
