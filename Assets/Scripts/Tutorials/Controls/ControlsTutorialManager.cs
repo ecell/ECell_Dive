@@ -229,6 +229,15 @@ namespace ECellDive.Tutorials
             //"learnedXXXActions" lists declared in this script.
             StaticReferencer.Instance.inputModeManager.SubscribeActionMapsSwitch();
 
+            //Force the Ray-based controls for both controllers. This will
+            //impact the visuals and the actions since we subscribed back to
+            //the Action Map Switch above. Using the value -1 makes sure that
+            //we get back to 0 with a change of value which will call the event
+            //.OnValueChanged for leftControllerModeID and right ControllerModeID
+            //in the InputModeManager.cs.
+            StaticReferencer.Instance.inputModeManager.BroadcastLeftControllerModeServerRpc(-1);
+            StaticReferencer.Instance.inputModeManager.BroadcastRightControllerModeServerRpc(-1);
+
             //Force back activation of every InfoTags
             foreach (GameObject _tag in StaticReferencer.Instance.refInfoTags)
             {
