@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -161,7 +160,8 @@ namespace ECellDive.Tutorials
             refInputSwitchMode.left.action.performed += LeftControllerActionMapSwitch;
             refInputSwitchMode.right.action.performed += RightControllerActionMapSwitch;
 
-            //Force the Ray-based controls for both controllers.
+            //Force the Ray-based controls for both controllers. This only
+            //impacts the visuals this we unsubscribed the Action Map Switch above.
             StaticReferencer.Instance.inputModeManager.BroadcastLeftControllerModeServerRpc(0);
             StaticReferencer.Instance.inputModeManager.BroadcastRightControllerModeServerRpc(0);
 
@@ -169,11 +169,15 @@ namespace ECellDive.Tutorials
             AddLeftRayBasedControlAction(refRBSelect.left);
             AddRightRayBasedControlAction(refRBSelect.right);
 
-            //Hide every information tags
+            //Hide every InfoTags...
             foreach (GameObject _tag in StaticReferencer.Instance.refInfoTags)
             {
                 _tag.SetActive(false);
             }
+
+            //... but still show the InfoTags of the front trigger.
+            StaticReferencer.Instance.refInfoTags[4].SetActive(true);
+            StaticReferencer.Instance.refInfoTags[9].SetActive(true);
         }
 
         private void LeftControllerActionMapSwitch(InputAction.CallbackContext _ctx)
@@ -208,7 +212,8 @@ namespace ECellDive.Tutorials
 
         public override void Quit()
         {
-            //Destroying the group started at the previous step.
+            //Destroying the group that may have been started if the
+            //user reached the group making step.
             StaticReferencer.Instance.groupsMakingManager.CancelGroup();
 
             //The tutorial is finished so we unsubscribe the local solution
@@ -223,6 +228,12 @@ namespace ECellDive.Tutorials
             //on or off entirely and not just the actions we added to the
             //"learnedXXXActions" lists declared in this script.
             StaticReferencer.Instance.inputModeManager.SubscribeActionMapsSwitch();
+
+            //Force back activation of every InfoTags
+            foreach (GameObject _tag in StaticReferencer.Instance.refInfoTags)
+            {
+                _tag.SetActive(true);
+            }
         }
 
         private void RightControllerActionMapSwitch(InputAction.CallbackContext _ctx)
