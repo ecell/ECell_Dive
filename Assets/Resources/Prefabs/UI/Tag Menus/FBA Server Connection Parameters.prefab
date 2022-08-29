@@ -464,7 +464,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2288943537978776175}
         m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
-        m_MethodName: ShowInfoToPlayer
+        m_MethodName: LookAt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -481,8 +481,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4385768610092702330}
-        m_TargetAssemblyTypeName: ECellDive.UserActions.GrabManager, Assembly-CSharp
-        m_MethodName: HandleInteractorsSorting
+        m_TargetAssemblyTypeName: ECellDive.PlayerComponents.GrabManager, Assembly-CSharp
+        m_MethodName: OnGrab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -496,8 +496,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4385768610092702330}
-        m_TargetAssemblyTypeName: ECellDive.UserActions.GrabManager, Assembly-CSharp
-        m_MethodName: ResetLogic
+        m_TargetAssemblyTypeName: ECellDive.PlayerComponents.GrabManager, Assembly-CSharp
+        m_MethodName: OnReleaseGrab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -589,12 +589,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2e1ae825e2035488d80d33ed5dee95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftGrabActionData:
-    select: {fileID: 1901161901490888043, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    attractRepulse: {fileID: -3848924210200324891, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  rightGrabActionData:
-    select: {fileID: -4479098549160383614, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    attractRepulse: {fileID: 2490823375165310329, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  m_manageDistance:
+    m_left: {fileID: -3848924210200324891, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_right: {fileID: 2490823375165310329, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  m_OnPostGrabMovementUpdate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 38309469586559663}
+        m_TargetAssemblyTypeName: ECellDive.UI.ConnectionAnchorPosition, Assembly-CSharp
+        m_MethodName: SetClosestCorner
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5143193382549299513}
+        m_TargetAssemblyTypeName: ECellDive.Utility.LinePositionHandler, Assembly-CSharp
+        m_MethodName: RefreshLinePositions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2288943537978776175}
+        m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
+        m_MethodName: LookAt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   objectMaxDistance: 25
   objectMinDistance: 0.1
   attractionSpeedCurve:
@@ -645,45 +681,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_OnPostGrabMovementUpdate:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 38309469586559663}
-        m_TargetAssemblyTypeName: ECellDive.UI.ConnectionAnchorPosition, Assembly-CSharp
-        m_MethodName: SetClosestCorner
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5143193382549299513}
-        m_TargetAssemblyTypeName: ECellDive.Utility.LinePositionHandler, Assembly-CSharp
-        m_MethodName: RefreshLinePositions
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2288943537978776175}
-        m_TargetAssemblyTypeName: ECellDive.UI.InfoDisplayManager, Assembly-CSharp
-        m_MethodName: LookAt
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2288943537978776175
 MonoBehaviour:
   m_ObjectHideFlags: 0

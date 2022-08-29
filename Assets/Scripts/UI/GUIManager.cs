@@ -6,7 +6,6 @@ using ECellDive.PlayerComponents;
 using ECellDive.UserActions;
 using ECellDive.Utility;
 
-
 namespace ECellDive
 {
     namespace UI
@@ -21,6 +20,7 @@ namespace ECellDive
             public GameObject refMainMenu;
             public GameObject refVirtualKeyboard;
             public ColorPicker refColorPicker;
+            public ModulesMenuManager refModulesMenuManager;
             public GroupsMakingUIManager refGroupsMakingUIManager;
             public GroupsMenu refGroupsMenu;
             public MultiplayerMenuManager refMultiplayerMenuManager;
@@ -70,4 +70,3 @@ namespace ECellDive
         }
     }
 }
-

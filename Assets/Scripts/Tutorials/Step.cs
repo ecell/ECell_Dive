@@ -39,8 +39,6 @@ namespace ECellDive.Tutorials
         public UnityEvent conclusionInstructions { get => m_conclusionInstructions; }
         #endregion
 
-
-
         /// <inheritdoc/>
         public virtual bool CheckCondition()
         {

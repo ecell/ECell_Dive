@@ -39,8 +39,8 @@ namespace ECellDive
             public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
             public CyJsonPathwaySettingsData cyJsonPathwaySettings;
             public Dictionary<uint, GameObject> DataID_to_DataGO;
+            public GameObject pathwayRoot;
 
-            private GameObject pathwayRoot;
             private bool allNodesSpawned = false;
             private Dictionary<uint, Modification<bool>> koModifications = new Dictionary<uint, Modification<bool>>();
 
@@ -244,7 +244,7 @@ namespace ECellDive
             }
 
             #region - IDive Methods -
-
+            /// <inheritdoc/>
             public override IEnumerator GenerativeDiveInC()
             {
                 RequestSourceDataGenerationServerRpc(NetworkManager.Singleton.LocalClientId);
@@ -254,6 +254,7 @@ namespace ECellDive
                 DirectDiveIn();
             }
 
+            /// <inheritdoc/>
             [ServerRpc(RequireOwnership = false)]
             public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
             {
@@ -268,7 +269,8 @@ namespace ECellDive
 
             #region - IGraph Methods -
 
-            [ServerRpc]
+            /// <inheritdoc/>
+            [ServerRpc(RequireOwnership = false)]
             public void RequestGraphGenerationServerRpc(ulong _expeditorClientId, int _rootSceneId)
             {
                 pathwayRoot = DiveScenesManager.Instance.SpawnModuleInScene(_rootSceneId,
@@ -283,6 +285,7 @@ namespace ECellDive
                 StartCoroutine(EdgesBatchSpawn(_rootSceneId));
             }
 
+            /// <inheritdoc/>
             public void SetNetworkData(IGraph _IGraph)
             {
                 graphData = _IGraph;
@@ -290,6 +293,7 @@ namespace ECellDive
             #endregion
 
             #region - IModifiable Methods -
+            /// <inheritdoc/>
             public void ApplyFileModifications()
             {
                 Debug.Log("Applying modifications");
@@ -299,12 +303,12 @@ namespace ECellDive
                     OperationSwitch(_op);
                 }
             }
-
+            /// <inheritdoc/>
             public bool CheckName(string _name)
             {
                 return _name == graphData.name;
             }
-
+            /// <inheritdoc/>
             public void OperationSwitch(string _op)
             {
                 string[] opContent = _op.Split('_');
@@ -348,6 +352,7 @@ namespace ECellDive
             #endregion
 
             #region - ISaveable Methods -
+            /// <inheritdoc/>
             public void CompileModificationFile()
             {
                 string author = GameNetPortal.Instance.netSessionPlayersDataMap[NetworkManager.Singleton.LocalClientId].playerName;

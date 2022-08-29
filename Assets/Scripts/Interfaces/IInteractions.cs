@@ -2,32 +2,61 @@
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using ECellDive.Modules;
 
 namespace ECellDive
 {
     namespace Interfaces
     {
-        [System.Serializable]
-        public struct ControllersSymetricAction
-        {
-            public InputActionReference leftController;
-            public InputActionReference rightController;
-        }
-
         /// <summary>
         /// An interface to encode knowledge about whether a gameobject
         /// is pointed at by a ray interactor.
         /// </summary>
         public interface IFocus
         {
+            /// <summary>
+            /// A boolean to inform whether a gameobject is currently
+            /// being focus.
+            /// </summary>
+            /// <remarks>
+            /// In most cases, this will be set to true when a ray interactor
+            /// is pointing at it, and false otherwise.
+            /// </remarks>
             bool isFocused { get;}
+
+            /// <summary>
+            /// A mutator to set the value of <see cref="isFocused"/> to true.
+            /// </summary>
+            /// <remarks>
+            /// It is mainly used as a subscriber to<see cref="UnityEngine.XR.
+            /// Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(
+            /// UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)"/>
+            /// </remarks>
             void SetFocus();
+
+            /// <summary>
+            /// A mutator to set the value of <see cref="isFocused"/> to false.
+            /// </summary>
+            /// <remarks>
+            /// It is mainly used as a subscriber to<see cref="UnityEngine.XR.
+            /// Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(
+            /// UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)"/>
+            /// </remarks>
             void UnsetFocus();
         }
 
+        /// <summary>
+        /// An interface to for any objects that may be grouped
+        /// manually. It is mainly used as a "marker" for different
+        /// FindComponent methods. So, if we create a new Monobehaviour
+        /// or NetworkBehaviour and we expect to be able to use the 
+        /// manual grouping features, this interface needs to be implemented.
+        /// </summary>
         public interface IGroupable
         {
+            /// <summary>
+            /// The index of the gameobject in the last group he was made
+            /// part of.
+            /// </summary>
             int grpMemberIndex { get; set; }
         }
 
@@ -93,18 +122,36 @@ namespace ECellDive
         /// </summary>
         public interface IInfoTags
         {
+            /// <summary>
+            /// A boolean to inform whether the infotags are currently visible (i.e. displayed).
+            /// </summary>
             bool areVisible { get; }
 
-            ControllersSymetricAction displayInfoTagsActions { get; set; }
+            /// <summary>
+            /// The references to the input actions on the left and right controller
+            /// used to trigger the info tags visibility.
+            /// </summary>
+            LeftRightData<InputActionReference> displayInfoTagsActions { get; set; }
 
+            /// <summary>
+            /// The prefab used to instantiate more infotags programatically.
+            /// </summary>
             GameObject refInfoTagPrefab { get; set; }
+
+            /// <summary>
+            /// The reference to the parent gameobject each info tag will
+            /// be made a child upon instantiation.
+            /// </summary>
             GameObject refInfoTagsContainer { get; set; }
-            List<GameObject> refInfoTags { get; set; }
 
             /// <summary>
             /// Make the InfoTags visible in the scene
             /// </summary>
             void DisplayInfoTags();
+
+            /// <summary>
+            /// Make the InfoTags invisible in the scene
+            /// </summary>
             void HideInfoTags();
 
             /// <summary>
@@ -136,9 +183,28 @@ namespace ECellDive
         /// <remarks>Initially used on edges of a metabolic pathway.</remarks>
         public interface IKnockable
         {
-            ControllersSymetricAction triggerKOActions { get; set; }
+            /// <summary>
+            /// The references to the input actions on the left and right controller
+            /// used to trigger the knockout status.
+            /// </summary>
+            LeftRightData<InputActionReference> triggerKOActions { get; set; }
+
+            /// <summary>
+            /// A boolean used to inform whether the gameobject is considered
+            /// knocked out.
+            /// </summary>
             NetworkVariable<bool> knockedOut { get; }
+
+            /// <summary>
+            /// The logic to implement when the gameobject transitions from
+            /// <see cref="knockedOut"/>=true to <see cref="knockedOut"/>=false.
+            /// </summary>
             void Activate();
+
+            /// <summary>
+            /// The logic to implement when the gameobject transitions from
+            /// <see cref="knockedOut"/>=false to <see cref="knockedOut"/>=true.
+            /// </summary>
             void Knockout();
         }
 
@@ -151,14 +217,21 @@ namespace ECellDive
         public interface IModulateFlux: IKnockable
         {
             /// <summary>
-            /// The real flux value
+            /// The real flux value.
             /// </summary>
             NetworkVariable<float> fluxLevel { get; }
 
             /// <summary>
-            /// A clamped flux value to control the visualization of the flux
+            /// A clamped flux value to control the visualization of the flux.
             /// </summary>
             NetworkVariable<float> fluxLevelClamped { get; }
+
+            /// <summary>
+            /// A mutator for values of <see cref="fluxLevel"/> and 
+            /// <see cref="fluxLevelClamped"/>.
+            /// </summary>
+            /// <param name="_level">The value to pass on to <see cref="fluxLevel"/>.</param>
+            /// <param name="_levelClamped">The value to pass on to <see cref="fluxLevelClamped"/>.</param>
             void SetFlux(float _level, float _levelClamped);
         }
 

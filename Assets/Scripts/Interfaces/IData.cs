@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using UnityEngine;
 using ECellDive.Modules;
 
 
 namespace ECellDive.Interfaces
 {
+    /// <summary>
+    /// Enumeration of the modifications we can expect to find in
+    /// a modification file.
+    /// </summary>
     public enum OperationTypes
     {
         bound,
@@ -19,10 +20,21 @@ namespace ECellDive.Interfaces
     /// </summary>
     public struct ModificationFile
     {
+        /// <summary>
+        /// The name of the author of the modification file.
+        /// </summary>
         public string author;
 
+        /// <summary>
+        /// The name of the model file this modification file is
+        /// applied to.
+        /// </summary>
         public string baseModelName;
         
+        /// <summary>
+        /// The memeber holding the content of the "description" 
+        /// field in the original modification file.
+        /// </summary>
         public string description;
 
         /// <summary>
@@ -44,15 +56,6 @@ namespace ECellDive.Interfaces
             name = _name;
             ExtractModelNameFromModelPath(_jFileContent["base_model_path"].Value<string>());
         }
-        
-        public ModificationFile(ModificationFile _modFile)
-        {
-            author = _modFile.author;
-            baseModelName = _modFile.baseModelName;
-            description = _modFile.description;
-            modification = _modFile.modification;
-            name = _modFile.name;
-        }
 
         public ModificationFile(string _author, string _baseModelName,
                                 string _description, string _modification)
@@ -71,6 +74,10 @@ namespace ECellDive.Interfaces
         }
     }
 
+    /// <summary>
+    /// The struct to store information about a modification that can be
+    /// found in a modification file.
+    /// </summary>
     public struct Modification<T>
     {
         /// <summary>
@@ -129,7 +136,15 @@ namespace ECellDive.Interfaces
     /// "HttpServerModificationModule"/> and stored on a server.</remarks>
     public interface ISaveable
     {
+        /// <summary>
+        /// Stores the information about the modification file 
+        /// we wish to save.
+        /// </summary>
         ModificationFile writingModificationFile { get; set; }
+
+        /// <summary>
+        /// Builds <see cref="writingModificationFile"/>.
+        /// </summary>
         void CompileModificationFile();
     }
 }

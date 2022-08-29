@@ -72,30 +72,30 @@ namespace ECellDive
             public bool areVisible { get; set; }
 
             [Header("Info Tags Data")]
-            public ControllersSymetricAction m_displayInfoTagsActions;
-            public ControllersSymetricAction displayInfoTagsActions
+            public LeftRightData<InputActionReference> m_displayInfoTagsActions;
+            public LeftRightData<InputActionReference> displayInfoTagsActions
             {
                 get => m_displayInfoTagsActions;
-                set => displayInfoTagsActions = m_displayInfoTagsActions;
+                set => m_displayInfoTagsActions = value;
             }
             public GameObject m_refInfoTagPrefab;
             public GameObject refInfoTagPrefab
             {
                 get => m_refInfoTagPrefab;
-                set => refInfoTagPrefab = m_refInfoTagPrefab;
+                set => m_refInfoTagPrefab = value;
             }
             public GameObject m_refInfoTagsContainer;
             public GameObject refInfoTagsContainer
             {
                 get => m_refInfoTagsContainer;
-                set => refInfoTagsContainer = m_refInfoTagsContainer;
+                set => m_refInfoTagsContainer = value;
             }
 
             public List<GameObject> m_refInfoTags;
             public List<GameObject> refInfoTags
             {
                 get => m_refInfoTags;
-                set => refInfoTags = m_refInfoTags;
+                set => m_refInfoTags = value;
             }
             #endregion
 
@@ -103,20 +103,14 @@ namespace ECellDive
             {
                 areVisible = false;
 
-                //diveActions.leftController.action.performed += TryDiveIn;
-                //diveActions.rightController.action.performed += TryDiveIn;
-
-                m_displayInfoTagsActions.leftController.action.performed += ManageInfoTagsDisplay;
-                m_displayInfoTagsActions.rightController.action.performed += ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
             }
 
             public virtual void OnDestroy()
             {
-                //diveActions.leftController.action.performed -= TryDiveIn;
-                //diveActions.rightController.action.performed -= TryDiveIn;
-
-                m_displayInfoTagsActions.leftController.action.performed -= ManageInfoTagsDisplay;
-                m_displayInfoTagsActions.rightController.action.performed -= ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.left.action.performed -= ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.right.action.performed -= ManageInfoTagsDisplay;
             }
 
             /// <summary>
@@ -155,11 +149,13 @@ namespace ECellDive
             }
 
             #region - IFocus Methods -
+            /// <inheritdoc/>
             public void SetFocus()
             {
                 m_isFocused = true;
             }
 
+            /// <inheritdoc/>
             public void UnsetFocus()
             {
                 m_isFocused = false;
@@ -167,43 +163,49 @@ namespace ECellDive
             #endregion
 
             #region - IHighlightable Methods -
-
+            /// <inheritdoc/>
             public virtual void SetDefaultColor(Color _c)
             {
                 m_defaultColor = _c;
             }
 
+            /// <inheritdoc/>
             public virtual void SetHighlightColor(Color _c)
             {
                 m_highlightColor = _c;
             }
 
+            /// <inheritdoc/>
             public virtual void SetHighlight()
             {
             }
 
+            /// <inheritdoc/>
             public virtual void UnsetHighlight()
             {
             }
             #endregion
 
             #region - IInfoTags Methods-
+            /// <inheritdoc/>
             public void DisplayInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTags)
+                foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
-                    _infoTag.SetActive(true);
+                    _infoTag.gameObject.SetActive(true);
                 }
             }
 
+            /// <inheritdoc/>
             public void HideInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTags)
+                foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
-                    _infoTag.SetActive(false);
+                    _infoTag.gameObject.SetActive(false);
                 }
             }
 
+            /// <inheritdoc/>
             public void InstantiateInfoTag(Vector2 _xyPosition, string _content)
             {
                 GameObject infoTag = Instantiate(refInfoTagPrefab, refInfoTagsContainer.transform);
@@ -212,6 +214,7 @@ namespace ECellDive
                 refInfoTags.Add(infoTag);
             }
 
+            /// <inheritdoc/>
             public void InstantiateInfoTags(string[] _content)
             {
                 float angle = 360 / _content.Length;
@@ -226,12 +229,13 @@ namespace ECellDive
                 }
             }
 
+            /// <inheritdoc/>
             public void ShowInfoTags()
             {
                 refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
-                foreach (GameObject _infoTag in refInfoTags)
+                foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
-                    _infoTag.GetComponent<ILookAt>().LookAt();
+                    _infoTag.gameObject.GetComponent<InfoDisplayManager>().LookAt();
                 }
             }
             #endregion

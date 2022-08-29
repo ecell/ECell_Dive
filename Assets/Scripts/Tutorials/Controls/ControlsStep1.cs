@@ -66,16 +66,8 @@ namespace ECellDive.Tutorials
         {
             base.Initialize();
 
-            //Force the Ray-based controls for both controllers.
-            StaticReferencer.Instance.inputModeManager.BroadcastLeftControllerModeServerRpc(0);
-            StaticReferencer.Instance.inputModeManager.BroadcastRightControllerModeServerRpc(0);
-
             refInteractionFrontTrigger.left.action.performed += FireRayFromLeftController;
             refInteractionFrontTrigger.right.action.performed += FireRayFromRightController;
-
-            //Enable the InfoTags of the front trigger.
-            StaticReferencer.Instance.refInfoTags[4].SetActive(true);
-            StaticReferencer.Instance.refInfoTags[9].SetActive(true);
         }
 
         private void IncrementRepetitions()

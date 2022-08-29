@@ -30,6 +30,7 @@ namespace ECellDive
                 name = _name;
             }
 
+            /// <inheritdoc/>
             public void PopulateNodes()
             {
                 int nbNodes = jNodes.Count();
@@ -49,6 +50,7 @@ namespace ECellDive
                 }
             }
 
+            /// <inheritdoc/>
             public void PopulateEdges()
             {
                 int nbEdges = jEdges.Count();
@@ -64,11 +66,13 @@ namespace ECellDive
                 }
             }
 
+            /// <inheritdoc/>
             public void SetNodes()
             {
                 jNodes = CyJsonParser.GetNodes(graphData);
             }
 
+            /// <inheritdoc/>
             public void SetEdges()
             {
                 jEdges = CyJsonParser.GetEdges(graphData);

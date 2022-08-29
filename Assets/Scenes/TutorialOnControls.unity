@@ -301,6 +301,10 @@ PrefabInstance:
       propertyPath: m_text
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1059424877897710113, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.075
+      objectReference: {fileID: 0}
     - target: {fileID: 2137447024224771406, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -373,6 +377,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2327022418437498828, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327022418437498828, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327022418437498828, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1535554226}
+    - target: {fileID: 2327022418437498828, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327022418437498828, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: StartTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327022418437498828, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: ECellDive.Tutorials.TutorialManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327022418437498828, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2398323849417010373, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
@@ -382,24 +414,60 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1535554226}
+    - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
       objectReference: {fileID: 1974830046}
     - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: UnloadScene
       objectReference: {fileID: 0}
     - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: ECellDive.SceneManagement.AssetScenesManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546488030683974052, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6577075339098115531, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_text
@@ -408,10 +476,6 @@ PrefabInstance:
     - target: {fileID: 6592127042760347615, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6592127042760347615, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
-      propertyPath: m_ReferencePixelsPerUnit
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7924061405109210615, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_SizeDelta.x
@@ -467,6 +531,11 @@ MonoBehaviour:
 --- !u!65 &28286123 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3129959241636354862, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+  m_PrefabInstance: {fileID: 28286119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &28286124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1679204126489944202, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 28286119}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &70398262
@@ -601,7 +670,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132210413}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -609,7 +678,7 @@ Transform:
   - {fileID: 492451675}
   - {fileID: 2013151636}
   - {fileID: 386614649}
-  m_Father: {fileID: 1095495557}
+  m_Father: {fileID: 1535554227}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &132210415
@@ -1028,7 +1097,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7932024736400225365, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 28286119}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 28286124}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -1058,14 +1127,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303172461}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 142936653}
   - {fileID: 3331794}
   - {fileID: 1556287387}
-  m_Father: {fileID: 1095495557}
+  m_Father: {fileID: 1535554227}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &303172463
@@ -1277,14 +1346,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327263230}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1796812531}
   - {fileID: 1099079486}
   - {fileID: 1596975796}
-  m_Father: {fileID: 1095495557}
+  m_Father: {fileID: 1535554227}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &327263232
@@ -1299,7 +1368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b6d8046a670f04fbd913ed119a36ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skip: 1
+  skip: 0
   m_goal: Learn how to make groups for visualization with the Ray Selector
   m_task: Make a group with module A and C
   m_details: With the group controls enabled (white Ray), point at the modules A
@@ -1561,11 +1630,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392865398}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1095495557}
+  m_Father: {fileID: 1535554227}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &392865400
@@ -1760,11 +1829,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577305643}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1095495557}
+  m_Father: {fileID: 1535554227}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &577305645
@@ -1876,12 +1945,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842924647}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 70398263}
-  m_Father: {fileID: 1095495557}
+  m_Father: {fileID: 1535554227}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &842924649
@@ -2061,12 +2130,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020924958}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1737519226}
-  m_Father: {fileID: 1095495557}
+  m_Father: {fileID: 1535554227}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1020924960
@@ -2081,7 +2150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a02f4c2f417a9d41b9ae7c3018fa06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skip: 1
+  skip: 0
   m_goal: Learn how to open the menu of a module.
   m_task: Point at the <b>module</b> and press the primary button of the controller.
   m_details: 'On the left controller, the primary button is the <b>X Button</b>.
@@ -2189,45 +2258,6 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!1 &1095495556
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1095495557}
-  m_Layer: 0
-  m_Name: ControlsSteps
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1095495557
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095495556}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1290362965}
-  - {fileID: 1020924959}
-  - {fileID: 842924648}
-  - {fileID: 392865399}
-  - {fileID: 577305644}
-  - {fileID: 132210414}
-  - {fileID: 2077110384}
-  - {fileID: 327263231}
-  - {fileID: 303172462}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1099079485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2391,6 +2421,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3736753909790639510, guid: cf14145dc52b1084ba5eeecc5a60a820, type: 3}
   m_PrefabInstance: {fileID: 1099079485}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1116573676 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1059424877897710113, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+  m_PrefabInstance: {fileID: 28286119}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1125021173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2592,7 +2633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837368265023d794e82e2334db6c81a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skip: 1
+  skip: 0
   m_goal: Learn the basics of ray-based controls
   m_task: Point at the <b>cube</b> and press the front trigger button 5 times.
   m_details: The current paradigm about controls in virtual reality heavily emphasizes
@@ -2621,32 +2662,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1535554226}
-        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
-        m_MethodName: AddLeftRayBasedControlAction
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: -9086459537174069806, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
-            Unity.InputSystem
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1535554226}
-        m_TargetAssemblyTypeName: ECellDive.Tutorials.ControlsTutorialManager, Assembly-CSharp
-        m_MethodName: AddRightRayBasedControlAction
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 6272053831681804322, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
-            Unity.InputSystem
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2696,20 +2711,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1196840254}
-  m_Father: {fileID: 1095495557}
+  m_Father: {fileID: 1535554227}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1420096843 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1059424877897710113, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
-  m_PrefabInstance: {fileID: 28286119}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1535554225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,7 +2725,7 @@ GameObject:
   - component: {fileID: 1535554227}
   - component: {fileID: 1535554226}
   m_Layer: 0
-  m_Name: TutorialManager
+  m_Name: ControlsTutorialManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2743,22 +2747,10 @@ MonoBehaviour:
   goalContainer: {fileID: 28286122}
   taskContainer: {fileID: 28286121}
   detailsContainer: {fileID: 28286120}
-  finalMessageContainer: {fileID: 1420096843}
-  finalMessage: 'You finished the tutorial on controls.
-
-    Press <b>Quit</b> at
-    the bottom left corner to go back to the main scene.'
-  steps:
-  - {fileID: 1290362964}
-  - {fileID: 1020924960}
-  - {fileID: 842924649}
-  - {fileID: 392865400}
-  - {fileID: 577305645}
-  - {fileID: 132210415}
-  - {fileID: 2077110385}
-  - {fileID: 327263232}
-  - {fileID: 303172463}
-  officialNumberOfSteps: 9
+  globalMessageContainer: {fileID: 1116573676}
+  startMessage: Welcome to the tutorial on controls. Here you will learn how to use
+    the controllers to manipulate your environment in ECellDive. Press the <b>Start</b>
+    button when you are ready.
   initializationInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -2930,10 +2922,40 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  officialNumberOfSteps: 9
+  steps:
+  - {fileID: 1290362964}
+  - {fileID: 1020924960}
+  - {fileID: 842924649}
+  - {fileID: 392865400}
+  - {fileID: 577305645}
+  - {fileID: 132210415}
+  - {fileID: 2077110385}
+  - {fileID: 327263232}
+  - {fileID: 303172463}
+  endMessage: 'You completed the tutorial on Controls!
+
+    Press the <b>Quit</b>
+    button to go back to the main scene.'
   conclusionInstructions:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 28286124}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   refInputActionAsset: {fileID: -944628639613478452, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  refRBSelect:
+    m_left: {fileID: -9086459537174069806, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_right: {fileID: 6272053831681804322, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   refInputSwitchMode:
     m_left: {fileID: 8617445865269668666, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
     m_right: {fileID: -1308900984660770716, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
@@ -2947,7 +2969,16 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1290362965}
+  - {fileID: 1020924959}
+  - {fileID: 842924648}
+  - {fileID: 392865399}
+  - {fileID: 577305644}
+  - {fileID: 132210414}
+  - {fileID: 2077110384}
+  - {fileID: 327263231}
+  - {fileID: 303172462}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3632,7 +3663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 872680225068267353, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.65
+      value: -0.65
       objectReference: {fileID: 0}
     - target: {fileID: 872680225068267353, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3698,7 +3729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4862822861443727790, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: defaultPositionOffset.x
-      value: 0.65
+      value: -0.65
       objectReference: {fileID: 0}
     - target: {fileID: 4862822861443727790, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: defaultPositionOffset.y
@@ -3830,8 +3861,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scenePaths:
-  - DODBasedRoom
-  - SinglePlayerTutorial
+  - Main
+  - TutorialOnControls
+  - TutorialOnModulesNavigation
 --- !u!4 &1974830047
 Transform:
   m_ObjectHideFlags: 0
@@ -3966,11 +3998,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077110383}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1095495557}
+  m_Father: {fileID: 1535554227}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2077110385

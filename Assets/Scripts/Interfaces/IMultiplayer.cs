@@ -7,6 +7,11 @@ using ECellDive.Modules;
 
 namespace ECellDive.Interfaces
 {
+    /// <summary>
+    /// The interface defining the logic used for the intermediate object
+    /// that will help requesting the server to spawn a root module (e.g.
+    /// <see cref="CyJsonModule"/>).
+    /// </summary>
     public interface IMlprModuleSpawn
     {
         public List<byte[]> fragmentedSourceData { get; }
@@ -96,7 +101,7 @@ namespace ECellDive.Interfaces
     /// cref="NetworkObject.NetworkHide(ulong)"/> and <see cref=
     /// "NetworkObject.NetworkShow(ulong)"/>) because the Server
     /// cannot be affected by it. It is an understandable behaviour 
-    /// as it seems that this API  simply deletes the replicated 
+    /// as it seems that this API simply deletes the replicated 
     /// version of a NetworkObject for a target client.
     /// However, we also want to the host to not see some NetworkObject.
     /// Namely, the content of a scene that the host may not have dived
@@ -119,7 +124,6 @@ namespace ECellDive.Interfaces
         /// version of it on the network.
         /// </summary>
         NetworkVariable<bool> isActivated { get; }
-        //NetworkVariable<bool> isVisible { get; }
 
         /// <summary>
         /// Intended to active/deactivate the gameobject's version 
