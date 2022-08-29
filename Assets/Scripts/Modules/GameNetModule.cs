@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using ECellDive.Interfaces;
-using ECellDive.Multiplayer;
 using ECellDive.SceneManagement;
 using ECellDive.UI;
 using ECellDive.Utility;
@@ -18,7 +17,6 @@ namespace ECellDive
         /// Base class holding references and methods used to manipulate
         /// the game object representation of a module.
         /// </summary>
-        /// 
         public class GameNetModule : NetworkBehaviour,
                                     IDive,
                                     IFocus,
@@ -36,15 +34,15 @@ namespace ECellDive
             protected int colorID;
 
             #region - IDive Members -
-            [SerializeField] private ControllersSymetricAction m_diveActions;
-            public ControllersSymetricAction diveActions
+            [SerializeField] private LeftRightData<InputActionReference> m_diveActions;
+            public LeftRightData<InputActionReference> diveActions
             {
                 get => m_diveActions;
                 set
                 {
                     m_diveActions = value;
-                    m_diveActions.leftController = value.leftController;
-                    m_diveActions.rightController = value.rightController;
+                    m_diveActions.left = value.left;
+                    m_diveActions.right = value.right;
                 }
             }
 
@@ -128,30 +126,23 @@ namespace ECellDive
             public bool areVisible { get; set; }
 
             [Header("Info Tags Data")]
-            public ControllersSymetricAction m_displayInfoTagsActions;
-            public ControllersSymetricAction displayInfoTagsActions
+            public LeftRightData<InputActionReference> m_displayInfoTagsActions;
+            public LeftRightData<InputActionReference> displayInfoTagsActions
             {
                 get => m_displayInfoTagsActions;
-                set => displayInfoTagsActions = m_displayInfoTagsActions;
+                set => m_displayInfoTagsActions = value;
             }
             public GameObject m_refInfoTagPrefab;
             public GameObject refInfoTagPrefab
             {
                 get => m_refInfoTagPrefab;
-                set => refInfoTagPrefab = m_refInfoTagPrefab;
+                set => m_refInfoTagPrefab = value;
             }
             public GameObject m_refInfoTagsContainer;
             public GameObject refInfoTagsContainer
             {
                 get => m_refInfoTagsContainer;
-                set => refInfoTagsContainer = m_refInfoTagsContainer;
-            }
-
-            public List<GameObject> m_refInfoTags;
-            public List<GameObject> refInfoTags
-            {
-                get => m_refInfoTags;
-                set => refInfoTags = m_refInfoTags;
+                set => m_refInfoTagsContainer = value;
             }
             #endregion
 
@@ -223,13 +214,12 @@ namespace ECellDive
             {
                 areVisible = false;
 
-                diveActions.leftController.action.performed += TryDiveIn;
-                diveActions.rightController.action.performed += TryDiveIn;
+                diveActions.left.action.performed += TryDiveIn;
+                diveActions.right.action.performed += TryDiveIn;
 
-                m_displayInfoTagsActions.leftController.action.performed += ManageInfoTagsDisplay;
-                m_displayInfoTagsActions.rightController.action.performed += ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
 
-                //Debug.Log("Starting up " + gameObject.name);
                 m_Collider = GetComponentInChildren<Collider>();
                 m_Renderer = GetComponent<Renderer>();
                 m_LineRenderer = GetComponent<LineRenderer>();
@@ -242,11 +232,11 @@ namespace ECellDive
 
             public override void OnDestroy()
             {
-                diveActions.leftController.action.performed -= TryDiveIn;
-                diveActions.rightController.action.performed -= TryDiveIn;
+                diveActions.left.action.performed -= TryDiveIn;
+                diveActions.right.action.performed -= TryDiveIn;
 
-                m_displayInfoTagsActions.leftController.action.performed -= ManageInfoTagsDisplay;
-                m_displayInfoTagsActions.rightController.action.performed -= ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.left.action.performed -= ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.right.action.performed -= ManageInfoTagsDisplay;
 
                 currentColor.OnValueChanged -= ApplyCurrentColorChange;
                 isActivated.OnValueChanged -= ManageActivationStatus;
@@ -263,7 +253,11 @@ namespace ECellDive
 
             protected virtual void ApplyCurrentColorChange(Color _previous, Color _current)
             {
-
+                mpb.SetVector(colorID, _current);
+                if (m_Renderer != null)
+                {
+                    m_Renderer.SetPropertyBlock(mpb);
+                }
             }
 
             /// <summary>
@@ -294,30 +288,33 @@ namespace ECellDive
             }
 
             #region - IDive Methods -
-
+            /// <inheritdoc/>
             public void DirectDiveIn()
             {
                 StartCoroutine(DirectDiveInC());
             }
 
+            /// <inheritdoc/>
             public virtual IEnumerator DirectDiveInC()
             {
                 //TODO: DIVE START ANIMATION
                 yield return null;
 
                 Debug.Log($"DirectDiveInC for netobj: {NetworkBehaviourId}");
-                GameNetScenesManager.Instance.SwitchingScenesServerRpc(rootSceneId.Value,
-                                                                        targetSceneId.Value,
-                                                                        NetworkManager.Singleton.LocalClientId);
+                DiveScenesManager.Instance.SwitchingScenesServerRpc(rootSceneId.Value,
+                                                                    targetSceneId.Value,
+                                                                    NetworkManager.Singleton.LocalClientId);
                 //TODO: DIVE END ANIMATION
 
             }
 
+            /// <inheritdoc/>
             public void GenerativeDiveIn()
             {
                 StartCoroutine(GenerativeDiveInC());
             }
 
+            /// <inheritdoc/>
             public virtual IEnumerator GenerativeDiveInC()
             {
                 //TODO: DATA GENERATION START ANIMATION
@@ -329,11 +326,13 @@ namespace ECellDive
 
             }
 
+            /// <inheritdoc/>
             public void TryDiveIn(InputAction.CallbackContext _ctx)
             {
                 StartCoroutine(TryDiveInC());
             }
 
+            /// <inheritdoc/>
             public virtual IEnumerator TryDiveInC()
             {
                 if (isFocused && isReadyForGeneration.Value)
@@ -354,11 +353,12 @@ namespace ECellDive
             #endregion
 
             #region - IFocus Methods -
+            /// <inheritdoc/>
             public void SetFocus()
             {
                 m_isFocused = true;
             }
-
+            /// <inheritdoc/>
             public void UnsetFocus()
             {
                 m_isFocused = false;
@@ -404,30 +404,33 @@ namespace ECellDive
             #endregion
 
             #region - IInfoTags Methods -
+            /// <inheritdoc/>
             public void DisplayInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTags)
+                foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
-                    _infoTag.SetActive(true);
+                    _infoTag.gameObject.SetActive(true);
                 }
             }
 
+            /// <inheritdoc/>
             public void HideInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTags)
+                foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
-                    _infoTag.SetActive(false);
+                    _infoTag.gameObject.SetActive(false);
                 }
             }
 
+            /// <inheritdoc/>
             public void InstantiateInfoTag(Vector2 _xyPosition, string _content)
             {
                 GameObject infoTag = Instantiate(refInfoTagPrefab, refInfoTagsContainer.transform);
                 infoTag.transform.localPosition = new Vector3(_xyPosition.x, _xyPosition.y, 0f);
                 infoTag.GetComponent<InfoDisplayManager>().SetText(_content);
-                refInfoTags.Add(infoTag);
             }
 
+            /// <inheritdoc/>
             public void InstantiateInfoTags(string[] _content)
             {
                 float angle = 360 / _content.Length;
@@ -442,39 +445,45 @@ namespace ECellDive
                 }
             }
 
+            /// <inheritdoc/>
             public void ShowInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTags)
+                refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
+                foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
-                    _infoTag.GetComponent<InfoDisplayManager>().LookAt();
+                    _infoTag.gameObject.GetComponent<InfoDisplayManager>().LookAt();
                 }
             }
             #endregion
 
             #region - INamed Methods -
-
+            /// <inheritdoc/>
             public virtual void DisplayName()
             {
                 m_nameTextFieldContainer.gameObject.SetActive(true);
                 nameField.gameObject.SetActive(true);
             }
 
+            /// <inheritdoc/>
             public string GetName()
             {
                 return nameField.text;
             }
 
+            /// <inheritdoc/>
             public void HideName()
             {
                 m_nameTextFieldContainer.gameObject.SetActive(false);
                 nameField.gameObject.SetActive(false);
             }
 
+            /// <inheritdoc/>
             public void SetName(string _name)
             {
                 nameField.text = _name;
             }
 
+            /// <inheritdoc/>
             public void ShowName()
             {
                 m_nameTextFieldContainer.GetComponent<ILookAt>().LookAt();
@@ -484,7 +493,7 @@ namespace ECellDive
             #region - IMlprData Methods -
             public virtual void AssembleFragmentedData()
             {
-                //isReadyForGeneration = true;
+
             }
 
             public IEnumerator BroadcastSourceDataC()
@@ -660,7 +669,7 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IMlprVisibility -
+            #region - IMlprVisibility Methods -
             public virtual void ManageActivationStatus(bool _previous, bool _current)
             {
                 gameObject.SetActive(isActivated.Value);

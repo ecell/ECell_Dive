@@ -55,6 +55,17 @@ namespace ECellDive.UI
             GameNetPortal.Instance.StartHost();
         }
 
+        /// <summary>
+        /// Will set the link to the VirtualKeyboard
+        /// </summary>
+        public void Initialize()
+        {
+            playerName.gameObject.GetComponent<VirtualKeyboardLinker>().GetSetVKManager();
+            ip.gameObject.GetComponent<VirtualKeyboardLinker>().GetSetVKManager();
+            port.gameObject.GetComponent<VirtualKeyboardLinker>().GetSetVKManager();
+            password.gameObject.GetComponent<VirtualKeyboardLinker>().GetSetVKManager();
+        }
+
         public void Join()
         {
             CheckFieldsContent();

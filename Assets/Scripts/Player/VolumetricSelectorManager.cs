@@ -98,6 +98,8 @@ namespace ECellDive
 
             public override void OnNetworkSpawn()
             {
+                SetDefaultServerRpc();
+
                 distanceAndScaleAction.action.performed += DistanceAndScale;
 
                 currentColor.OnValueChanged += ApplyCurrentColorChange;
@@ -134,14 +136,6 @@ namespace ECellDive
                 {
                     transform.localScale = scale.Value;
                 }
-            }
-
-            /// <summary>
-            /// Collision Event with objects in the scene.
-            /// </summary>
-            private void OnTriggerEnter(Collider collider)
-            {
-                refGrpMkgManager.CheckCollision(collider.gameObject);
             }
 
             /// <summary>

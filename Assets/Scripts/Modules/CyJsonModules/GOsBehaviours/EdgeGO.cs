@@ -1,10 +1,8 @@
 ﻿using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using ECellDive.Utility;
 using ECellDive.UI;
 using ECellDive.Interfaces;
-using ECellDive.SceneManagement;
 
 
 namespace ECellDive
@@ -29,8 +27,8 @@ namespace ECellDive
             #endregion
 
             #region - IModulateFlux Members -
-            [SerializeField] private ControllersSymetricAction m_triggerKOActions;
-            public ControllersSymetricAction triggerKOActions
+            [SerializeField] private LeftRightData<InputActionReference> m_triggerKOActions;
+            public LeftRightData<InputActionReference> triggerKOActions
             {
                 get => m_triggerKOActions;
                 set => m_triggerKOActions = value;
@@ -57,8 +55,8 @@ namespace ECellDive
             protected override void Awake()
             {
                 base.Awake();
-                triggerKOActions.leftController.action.performed += ManageKnockout;
-                triggerKOActions.rightController.action.performed += ManageKnockout;
+                triggerKOActions.left.action.performed += ManageKnockout;
+                triggerKOActions.right.action.performed += ManageKnockout;
             }
 
             private void OnEnable()
@@ -69,8 +67,8 @@ namespace ECellDive
 
             public override void OnDestroy()
             {
-                triggerKOActions.leftController.action.performed -= ManageKnockout;
-                triggerKOActions.rightController.action.performed -= ManageKnockout;
+                triggerKOActions.left.action.performed -= ManageKnockout;
+                triggerKOActions.right.action.performed -= ManageKnockout;
             }
 
             public override void OnNetworkSpawn()
@@ -103,11 +101,7 @@ namespace ECellDive
 
             private void ApplyFLCChanges(float _previous, float _current)
             {
-                //Debug.Log($"{_previous}, {_current}");
-
                 SetInformationString();
-
-                //Debug.Log($"{defaultStartWidth}, {endWidthFactor}");
 
                 SetLineRendererWidth();
                 UnsetHighlightServerRpc();
@@ -172,7 +166,7 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// The utility function to updates the information string.
+            /// The utility function to update the information string.
             /// </summary>
             private void SetInformationString()
             {
@@ -181,7 +175,7 @@ namespace ECellDive
                                     $"Reaction: {edgeData.reaction_name} \n" +
                                     $"Knockedout: {knockedOut.Value} \n" +
                                     $"Flux: {fluxLevel.Value}";
-                m_refInfoTags[0].GetComponent<InfoDisplayManager>().SetText(informationString);
+                m_refInfoTagsContainer.transform.GetChild(0).GetComponent<InfoDisplayManager>().SetText(informationString);
             }
 
             [ServerRpc(RequireOwnership = false)]
@@ -415,7 +409,7 @@ namespace ECellDive
                 }
             }
 
-            #region - IEdgeGO - 
+            #region - IEdgeGO Methods- 
             public void SetDefaultWidth(float _start, float _end)
             {
                 defaultStartWidth = _start;
@@ -442,7 +436,6 @@ namespace ECellDive
             {
                 m_LineRenderer.startWidth = startWidthFactor * Mathf.Max(defaultStartWidth, defaultStartWidth*fluxLevelClamped.Value);
                 m_LineRenderer.endWidth = endWidthFactor * Mathf.Max(defaultEndWidth, defaultEndWidth*fluxLevelClamped.Value);
-                //Debug.Log($"{m_LineRenderer.startWidth}, {m_LineRenderer.endWidth}");
             }
 
             public void SetLineRendererPosition(Transform _start, Transform _end)
@@ -452,19 +445,23 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IModulateFlux - 
+            #region - IModulateFlux Methods- 
+
+            /// <inheritdoc/>
             public void Activate()
             {
                 SpreadActivationDownward();
                 SpreadActivationUpward();
             }
 
+            /// <inheritdoc/>
             public void Knockout()
             {
                 SpreadKODownward();
                 SpreadKOUpward();
             }
 
+            /// <inheritdoc/>
             public void SetFlux(float _level, float _levelClamped)
             {
                 SetFluxValuesServerRpc(_level, _levelClamped);

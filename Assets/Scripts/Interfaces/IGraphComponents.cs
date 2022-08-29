@@ -12,11 +12,38 @@ namespace ECellDive
         /// </summary>
         public interface INode
         {
+            /// <summary>
+            /// A unique ID.
+            /// </summary>
             uint ID { get; set; }
+
+            /// <summary>
+            /// Position in the 3D space of the node
+            /// </summary>
             Vector3 position { get; set; }
             string name { get; set; }
+
+            /// <summary>
+            /// A string to store additional textual information about the 
+            /// node.
+            /// </summary>
+            /// <remarks>
+            /// In CyJson graphs, the user-readable name for nodes is
+            /// actually encoded the Label and while the Name is shorter
+            /// and less explicit.
+            /// </remarks>
             string label { get; set; }
+
+            /// <summary>
+            /// The list of the <see cref="IEdge.ID"/> of the edges that
+            /// started from somewhere and are arriving to this node.
+            /// </summary>
             List<uint> incommingEdges { get; set; }
+
+            /// <summary>
+            /// The list of the <see cref="IEdge.ID"/> of the edges that
+            /// are starting from this node.
+            /// </summary>
             List<uint> outgoingEdges { get; set; }
 
             /// <summary>
@@ -32,8 +59,21 @@ namespace ECellDive
         /// </summary>
         public interface IEdge
         {
+            /// <summary>
+            /// A unique ID.
+            /// </summary>
             uint ID { get; set; }
+
+            /// <summary>
+            /// The <see cref="INode.ID"/> of the node used from where the
+            /// edge is starting.
+            /// </summary>
             uint source { get; set; }
+
+            /// <summary>
+            /// The <see cref="INode.ID"/> of the node used where the
+            /// edge is heading.
+            /// </summary>
             uint target { get; set; }
             string name { get; set; }
 
@@ -47,11 +87,30 @@ namespace ECellDive
         public interface IGraph
         {
             string name { get; }
+
+            /// <summary>
+            /// The JObject extracted from the Json file that encodes the graph.
+            /// </summary>
             JObject graphData { get;}
+
+            /// <summary>
+            /// The <see cref="JArray"/> representing the nodes in <see cref="graphData"/>.
+            /// </summary>
             JArray jNodes { get; }
+
+            /// <summary>
+            /// The <see cref="JArray"/> representing the edges in <see cref="graphData"/>.
+            /// </summary>
             JArray jEdges { get;}
 
+            /// <summary>
+            /// The array of <see cref="INode"/> translating the nodes stored in <see cref="jNodes"/>.
+            /// </summary>
             INode[] nodes { get; }
+
+            /// <summary>
+            /// The array of <see cref="IEdge"/> translating the edges stored in <see cref="jEdges"/>.
+            /// </summary>
             IEdge[] edges { get; }
 
             /// <summary>
@@ -79,9 +138,9 @@ namespace ECellDive
         }
 
         /// <summary>
-        /// The interface encoding the required properties to use
-        /// the an edge (<seealso cref="INode"/>) of a graph
-        /// (<seealso cref="IGraph"/>) in a GameObject.
+        /// The interface defining the required logic to manipulate
+        /// the information stored in a <see cref="INode"/> of a
+        /// <see cref="IGraph"/>.
         /// </summary>
         public interface INodeGO
         {
@@ -97,9 +156,9 @@ namespace ECellDive
         }
 
         /// <summary>
-        /// The interface encoding the required properties to use
-        /// the an edge (<seealso cref="IEdge"/>) of a graph
-        /// (<seealso cref="IGraph"/>) in a GameObject.
+        /// The interface defining the required logic to manipulate
+        /// the information stored in a <see cref="IEdge"/> of a
+        /// <see cref="IGraph"/>.
         /// </summary>
         public interface IEdgeGO
         {
@@ -164,8 +223,8 @@ namespace ECellDive
         }
 
         /// <summary>
-        /// The interface encoding the required properties to use
-        /// the a graph (<seealso cref="IGraph"/>) in a GameObject.
+        /// The interface defining the required logic to manipulate
+        /// the information stored in a <see cref="IGraph"/>.
         /// </summary>
         public interface IGraphGO
         {
@@ -179,9 +238,22 @@ namespace ECellDive
             /// for flexibility.</remarks>
             List<GameObject> graphPrefabsComponents { get; }
 
+            /// <summary>
+            /// Executes the logic on the server side that is needed to 
+            /// spawn all the nodes and edges of the graph.
+            /// </summary>
+            /// <param name="_expeditorClientId">The ID of the client
+            /// that made the request.</param>
+            /// <param name="_rootSceneId">The ID of the dive scene
+            /// where the graph should be generated (i.e. where the
+            /// nodes and edges will be spawned.</param>
             [ServerRpc(RequireOwnership = false)]
             void RequestGraphGenerationServerRpc(ulong _expeditorClientId, int _rootSceneId);
 
+            /// <summary>
+            /// Sets the value for <see cref="graphData"/>.
+            /// </summary>
+            /// <param name="_INetwork"></param>
             void SetNetworkData(IGraph _INetwork);
 
         }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using ECellDive.Utility;
 using ECellDive.UI;
 using ECellDive.Interfaces;
@@ -32,6 +33,8 @@ namespace ECellDive
             };
 
             public FbaParametersManager fbaParametersManager;
+
+            public UnityAction<bool> OnFbaResultsReceive;
 
             private CyJsonModule LoadedCyJsonPathway;
 
@@ -198,6 +201,8 @@ namespace ECellDive
                 GetModelSolution(_modelName, _knockouts);
 
                 yield return new WaitUntil(isRequestProcessed);
+
+                OnFbaResultsReceive?.Invoke(requestData.requestSuccess);
 
                 if (requestData.requestSuccess)
                 {
