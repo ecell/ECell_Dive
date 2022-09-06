@@ -5,9 +5,8 @@ using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using ECellDive.Interfaces;
-using ECellDive.Modules;
 using ECellDive.UI;
-using ECellDive.UserActions;
+using ECellDive.PlayerComponents;
 using ECellDive.Utility;
 
 namespace ECellDive.Multiplayer

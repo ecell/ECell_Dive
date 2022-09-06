@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 using ECellDive.UI;
 using ECellDive.Interfaces;
 
-
 namespace ECellDive
 {
     namespace Modules
