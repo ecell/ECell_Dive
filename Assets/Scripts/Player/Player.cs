@@ -40,6 +40,16 @@ namespace ECellDive.PlayerComponents
             protected set => m_isActivated = value;
         }
         #endregion
+        public override void OnNetworkDespawn()
+        {
+            base.OnNetworkDespawn();
+
+            //We detach the UI from the player to avoid it being destroyed
+            //with the player network object.
+            StaticReferencer.Instance.refAllGuiMenusContainer.transform.parent = null;
+
+
+        }
 
         public override void OnNetworkSpawn()
         {
