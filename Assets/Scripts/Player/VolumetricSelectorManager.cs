@@ -86,17 +86,12 @@ namespace ECellDive.PlayerComponents
             maxScale = maxScaleFactor * defaultScale;
         }
 
-        private void OnEnable()
+        public override void OnNetworkSpawn()
         {
             refRenderer = GetComponentInChildren<Renderer>();
             mpb = new MaterialPropertyBlock();
             colorID = Shader.PropertyToID("_Color");
-            mpb.SetVector(colorID, currentColor.Value);
-            refRenderer.SetPropertyBlock(mpb);
-        }
-
-        public override void OnNetworkSpawn()
-        {
+            
             SetDefaultServerRpc();
 
             distanceAndScaleAction.action.performed += DistanceAndScale;
