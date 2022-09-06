@@ -78,14 +78,14 @@ namespace ECellDive.Utility
             if (IsLocalPlayer)
             {
                 Instance = this;
-                GUIManager guiManager = FindObjectOfType<GUIManager>();
-                refAllGuiMenusContainer = guiManager.gameObject;
+                refAllGuiMenusContainer = GameObject.FindGameObjectWithTag("AllUIAnchor");
 
+                GUIManager guiManager = refAllGuiMenusContainer.GetComponent<GUIManager>();
                 Instance.refVirtualKeyboard = guiManager.refVirtualKeyboard;
                 Instance.refColorPicker = guiManager.refColorPicker;
                 Instance.refGroupsMenu = guiManager.refGroupsMenu;
 
-                guiManager.Initialize(GetComponent<PlayerComponents.Player>());
+                guiManager.Initialize(GetComponent<Player>());
             }
         }
     }
