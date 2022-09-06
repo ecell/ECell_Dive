@@ -30,8 +30,6 @@ namespace ECellDive.Multiplayer
 
         public List<GameObject> actionInfoTags;
 
-        public GameObject UIRoot;
-
         public GameObject XRLocomotionSystemHolder;
         public GameObject XRTeleportationproviderHolder;
 
@@ -69,7 +67,6 @@ namespace ECellDive.Multiplayer
                     _goIT.SetActive(false);
                 }
 
-                UIRoot.SetActive(false);
                 XRLocomotionSystemHolder.SetActive(false);
                 XRTeleportationproviderHolder.SetActive(false);
                 staticReferencer.enabled = false;
