@@ -261,7 +261,7 @@ namespace ECellDive
                 int rootSceneId = GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene;
                 
                 targetSceneId.Value = DiveScenesManager.Instance.AddNewDiveScene(rootSceneId);
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                LogSystem.AddMessage(LogMessageTypes.Debug,
                     $"targetSceneId of the new module is: {targetSceneId}");
                 RequestGraphGenerationServerRpc(_expeditorClientID, targetSceneId.Value);
             }

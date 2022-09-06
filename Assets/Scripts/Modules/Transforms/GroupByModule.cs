@@ -37,7 +37,7 @@ namespace ECellDive
                 }
                 else
                 {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                    LogSystem.AddMessage(LogMessageTypes.Errors,
                         "The GroupBy Module could not find any data to link to.");
                 }
             }
@@ -81,12 +81,12 @@ namespace ECellDive
                 IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(data[_dataID], _attribute);
                 if (groups == null)
                 {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                    LogSystem.AddMessage(LogMessageTypes.Errors,
                         "Failed to group data by " + _attribute);
                 }
                 else
                 {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
+                    LogSystem.AddMessage(LogMessageTypes.Trace,
                         "Succesfully groupe data by " + _attribute+ $". {groups.Count()} were found.");
 
                     List<GroupData> groupsData = new List<GroupData>();

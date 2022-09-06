@@ -514,7 +514,7 @@ namespace ECellDive
             [ClientRpc]
             public void BroadcastSourceDataFragClientRpc(byte[] _fragment)
             {
-                //LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                //LogSystem.AddMessage(LogMessageTypes.Debug,
                 //        "Client receives boradcasted source data fragment.");
                 if (IsOwner) return;
 
@@ -529,7 +529,7 @@ namespace ECellDive
             [ClientRpc]
             public void BroadcastSourceDataNameClientRpc(byte[] _name)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Client receives boradcasted source data name.");
                 if (IsOwner) return;
 
@@ -539,7 +539,7 @@ namespace ECellDive
             [ClientRpc]
             public void BroadcastSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Client receives boradcasted source nb frags.");
                 if (IsOwner) return;
 
@@ -549,7 +549,7 @@ namespace ECellDive
             [ServerRpc]
             public void BroadcastSourceDataFragServerRpc(byte[] _fragment)
             {
-                //LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                //LogSystem.AddMessage(LogMessageTypes.Debug,
                 //        "Server Sends 1 fragment.");
                 BroadcastSourceDataFragClientRpc(_fragment);
             }
@@ -557,7 +557,7 @@ namespace ECellDive
             [ServerRpc]
             public void BroadcastSourceDataNameServerRpc(byte[] _name)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Server boradcasts source data name.");
                 BroadcastSourceDataNameClientRpc(_name);
             }
@@ -580,7 +580,7 @@ namespace ECellDive
             [ServerRpc(RequireOwnership = false)]
             public void ConfirmSourceDataReceptionServerRpc()
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                LogSystem.AddMessage(LogMessageTypes.Debug,
                         "A Client Confirms reception of all the fragments.");
                 nbClientReadyLoaded.Value++;
                 if (nbClientReadyLoaded.Value == NetworkManager.Singleton.ConnectedClientsIds.Count)
@@ -591,7 +591,7 @@ namespace ECellDive
 
             public void DirectReceiveSourceData(byte[] _sourceDataName, List<byte[]> _fragmentedSourceData)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                LogSystem.AddMessage(LogMessageTypes.Debug,
                         "The module received its local copy of the fragmented data.");
                 fragmentedSourceData = _fragmentedSourceData;
                 sourceDataName = _sourceDataName;
@@ -646,7 +646,7 @@ namespace ECellDive
             [ClientRpc]
             public void SendSourceDataNameClientRpc(byte[] _name, ClientRpcParams _clientRpcParams)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Client receives source data name.");
                 sourceDataName = _name;
             }
@@ -654,7 +654,7 @@ namespace ECellDive
             [ClientRpc]
             public void SendSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags, ClientRpcParams _clientRpcParams)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Client receives source nb frags.");
                 sourceDataNbFrags = _sourceDataNbFrags;
             }

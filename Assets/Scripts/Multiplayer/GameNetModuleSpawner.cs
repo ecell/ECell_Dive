@@ -19,7 +19,7 @@ namespace ECellDive.Multiplayer
         #region - IMlprModuleSpawn Methods -
         public void GiveDataToModule(GameNetModule _gameNetModule)
         {
-            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+            LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Giving module Data.");
             _gameNetModule.DirectReceiveSourceData(sourceDataName, fragmentedSourceData);
         }
@@ -28,7 +28,7 @@ namespace ECellDive.Multiplayer
         public void GiveNetworkObjectReferenceClientRpc(NetworkObjectReference _networkObjectReference,
                                                         ClientRpcParams _clientRpcParams)
         {
-            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+            LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Receiving ownership of the module that was just spawned.");
             GameObject networkGameObject = _networkObjectReference;
             GiveDataToModule(networkGameObject.GetComponent<GameNetModule>());
@@ -49,7 +49,7 @@ namespace ECellDive.Multiplayer
         [ServerRpc(RequireOwnership = false)]
         public void RequestModuleSpawnServerRpc(int _moduleTypeID, ulong _expeditorClientID)
         {
-            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+            LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Server Received a request for spawn.");
 
             GameObject player = NetworkManager.Singleton.ConnectedClients[_expeditorClientID].PlayerObject.gameObject;

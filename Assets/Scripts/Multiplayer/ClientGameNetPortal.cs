@@ -107,7 +107,7 @@ namespace ECellDive.Multiplayer
                 msgStr = "<color=red>Client couldn't connect to " + m_Portal.settings.IP + ":" + m_Portal.settings.port +
                        ". Falling back to single player on 127.0.0.1:7777</color>";
 
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                LogSystem.AddMessage(LogMessageTypes.Errors,
                     "Client couldn't connect to " + m_Portal.settings.IP + ":" + m_Portal.settings.port +
                     ". Falling back to single player on 127.0.0.1:7777");
 
@@ -128,7 +128,7 @@ namespace ECellDive.Multiplayer
             {
                 msgStr = "<color=green>Successfully joined at " + m_Portal.settings.IP + ":" + m_Portal.settings.port + "</color>";
 
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
+                LogSystem.AddMessage(LogMessageTypes.Trace,
                     "Successfully joinet at " + m_Portal.settings.IP + ":" + m_Portal.settings.port);
             }
 

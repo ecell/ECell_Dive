@@ -140,7 +140,7 @@ namespace ECellDive
                 requestData.requestSuccess = false;
                 using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
                 {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                    LogSystem.AddMessage(LogMessageTypes.Debug,
                                                    "Sending Request: " + uri);
                     // Request and wait for the desired page.
                     yield return webRequest.SendWebRequest();
@@ -151,23 +151,23 @@ namespace ECellDive
                     switch (webRequest.result)
                     {
                         case UnityWebRequest.Result.ConnectionError:
-                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                            LogSystem.AddMessage(LogMessageTypes.Errors,
                                                                pages[page] + ": Connection Error: " + webRequest.error);
                             break;
 
                         case UnityWebRequest.Result.DataProcessingError:
                             //Debug.LogError(pages[page] + ": Error: " + webRequest.error);
-                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                            LogSystem.AddMessage(LogMessageTypes.Errors,
                                                                pages[page] + ": Error: " + webRequest.error);
                             break;
                         case UnityWebRequest.Result.ProtocolError:
                             //Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
-                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                            LogSystem.AddMessage(LogMessageTypes.Errors,
                                                                pages[page] + ": HTTP Error: " + webRequest.error);
                             break;
                         case UnityWebRequest.Result.Success:
                             //Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
+                            LogSystem.AddMessage(LogMessageTypes.Trace,
                                                                pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                             requestData.requestText = webRequest.downloadHandler.text;
                             requestData.requestSuccess = true;

@@ -1,11 +1,27 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using ECellDive.UI;
 
 namespace ECellDive
 {
     namespace Utility
     {
+        /// <summary>
+        /// The different types of Log messages we handle.
+        /// </summary>
+        public enum LogMessageTypes { Trace, Ping, Debug, Errors }
+
+        /// <summary>
+        /// A struct to hold the data nessecary to handle Log messages
+        /// </summary>
+        public struct LogMessage
+        {
+            public int id;
+            public string content;
+            public RectTransform refUI;
+        }
+
         /// <summary>
         /// Class handling the recording of messages to display
         /// in the log.
@@ -17,82 +33,59 @@ namespace ECellDive
         {
             public static LogManager refLogManager;
 
-            [Serializable]
-            public enum MessageTypes { Trace, Ping, Debug, Errors }
+            public static List<LogMessage> traceMessages;
+            public static List<LogMessage> pingMessages;
+            public static List<LogMessage> debugMessages;
+            public static List<LogMessage> errorMessages;
 
-            [Serializable]
-            public struct Message
+            /// <summary>
+            /// Public interface to add a message to the log.
+            /// </summary>
+            public static void AddMessage(LogMessageTypes _type, string _content)
             {
-                public MessageTypes type;
-                public string content;
-            }
-
-            public static List<Message> recordedMessages = new List<Message>
-            {
-                new Message()
-                {
-                    type = MessageTypes.Trace,
-                    content = "This is a Trace message"
-                },
-                new Message()
-                {
-                    type = MessageTypes.Ping,
-                    content = "This is a Ping message"
-                },
-                new Message()
-                {
-                    type= MessageTypes.Debug,
-                    content = "This is a Debug message"
-                },
-                new Message()
-                {
-                    type= MessageTypes.Errors,
-                    content = "This is an Error message"
-                }
-            };
-
-            public static Message GenerateMessage(MessageTypes _type, string _content)
-            {
-                Message msg = new Message();
-                msg.type = _type;
-
+                //Truncating the message string if it's too long to 
+                //avoid performance drop on very big messages.
                 if (_content.Length > 450)
                 {
-                    msg.content = _content.Substring(0, 450)+ 
+                    _content = _content.Substring(0, 450) +
                                     "..... \n" +
                                     "-- TRUNCATED message to avoid frame drops --";
                 }
-                else
+
+                LogMessage msg = new LogMessage
                 {
-                    msg.content= _content;
+                    id = GetMessageCount(),
+                    content = _content,
+                    refUI = refLogManager.GenerateMessageUI(_content, _type)
+                };
+
+                switch (_type)
+                {
+                    case LogMessageTypes.Trace:
+                        traceMessages.Add(msg);
+                        break;
+
+                    case LogMessageTypes.Ping:
+                        pingMessages.Add(msg);
+                        break;
+
+                    case LogMessageTypes.Debug:
+                        debugMessages.Add(msg);
+                        break;
+
+                    case LogMessageTypes.Errors:
+                        errorMessages.Add(msg);
+                        break;
                 }
-
-                return msg;
             }
 
-            /// <summary>
-            /// Add a message info to the list of messages
-            /// </summary>
-            /// <param name="_msg"></param>
-            public static void RecordMessage(Message _msg)
+            private static int GetMessageCount()
             {
-                recordedMessages.Add(_msg);
+                return traceMessages.Count +
+                       pingMessages.Count +
+                       debugMessages.Count +
+                       errorMessages.Count;
             }
-
-            /// <summary>
-            /// Adds a message info to the list of messages.
-            /// The message will be truncated to 450 characters in the
-            /// case that it is longer in order to avoid frame drops.
-            /// </summary>
-            /// <param name="_type"></param>
-            /// <param name="_content"></param>
-            //public static void RecordMessage(MessageTypes _type, string _content)
-            //{
-            //    Message msg = new Message{type = _type,
-            //                              content = tr_content
-            //    };
-            //    RecordMessage(msg);
-            //}
         }
     }
 }

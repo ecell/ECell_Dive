@@ -150,7 +150,7 @@ namespace ECellDive.PlayerComponents
         public virtual void NetHide()
         {
             Debug.Log($"{NetworkManager.Singleton.LocalClientId} devient invisible");
-            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+            LogSystem.AddMessage(LogMessageTypes.Debug,
                 $"{NetworkManager.Singleton.LocalClientId} devient invisible");
             nameField.gameObject.SetActive(false);
             head.SetActive(false);
@@ -166,7 +166,7 @@ namespace ECellDive.PlayerComponents
         public virtual void NetShow()
         {
             Debug.Log($"{NetworkManager.Singleton.LocalClientId} devient visible");
-            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug, 
+            LogSystem.AddMessage(LogMessageTypes.Debug, 
                 $"{NetworkManager.Singleton.LocalClientId} devient visible");
 
             nameField.gameObject.SetActive(true);

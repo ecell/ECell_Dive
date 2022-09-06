@@ -535,7 +535,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 975168987656357475}
         m_TargetAssemblyTypeName: ECellDive.UI.LogManager, Assembly-CSharp
-        m_MethodName: UpdateMessageActivity
+        m_MethodName: DrawMessageList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -892,6 +892,41 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &3445182897093951872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8037867839006942294}
+  m_Layer: 5
+  m_Name: HiddenMessages
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &8037867839006942294
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445182897093951872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3390745763744813190}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3730209058804950606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,6 +1091,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6864466320171767644}
+  - {fileID: 8037867839006942294}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1077,6 +1113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refMessageScrollList: {fileID: 1733808396266381741}
+  refHiddenMessageStorage: {fileID: 8037867839006942294}
   refMessageSpace: {fileID: 5800202547680338837}
   toggleAll: {fileID: 4034456057144279223}
   toggleIndividuals:
@@ -1203,7 +1240,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 975168987656357475}
         m_TargetAssemblyTypeName: ECellDive.UI.LogManager, Assembly-CSharp
-        m_MethodName: UpdateMessageActivity
+        m_MethodName: DrawMessageList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1508,7 +1545,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 975168987656357475}
         m_TargetAssemblyTypeName: ECellDive.UI.LogManager, Assembly-CSharp
-        m_MethodName: UpdateMessageActivity
+        m_MethodName: DrawMessageList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2463,7 +2500,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 975168987656357475}
         m_TargetAssemblyTypeName: ECellDive.UI.LogManager, Assembly-CSharp
-        m_MethodName: UpdateMessageActivity
+        m_MethodName: DrawMessageList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3298,7 +3335,7 @@ GameObject:
   - component: {fileID: 1543831665946990464}
   - component: {fileID: 846727317887072278}
   m_Layer: 5
-  m_Name: Content
+  m_Name: Message area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3453,7 +3490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 371352215053853741, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
       propertyPath: m_Name
-      value: Button Scroll List
+      value: Visible Messages Scroll List
       objectReference: {fileID: 0}
     - target: {fileID: 2502074269928372799, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
       propertyPath: m_overflowMode
@@ -3614,11 +3651,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 371352215053853741, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
   m_PrefabInstance: {fileID: 8166517117289925148}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &2656939185280851165 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6163761101047436993, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
-  m_PrefabInstance: {fileID: 8166517117289925148}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1733808396266381741 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7591650052867271601, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
@@ -3641,6 +3673,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &2656939185280851165 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6163761101047436993, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
+  m_PrefabInstance: {fileID: 8166517117289925148}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8257245878889629331
 PrefabInstance:
   m_ObjectHideFlags: 0

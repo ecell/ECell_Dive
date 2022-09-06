@@ -104,7 +104,7 @@ namespace ECellDive.Modules
 
                 else
                 {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                    LogSystem.AddMessage(LogMessageTypes.Errors,
                         "No modifiable data module called \"" + modFile.baseModelName + "\" was found. " +
                         "Please, make sure you imported the data before trying to import modifications" +
                         "associated with this data.");
@@ -175,12 +175,12 @@ namespace ECellDive.Modules
 
             if (requestData.requestSuccess)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
+                LogSystem.AddMessage(LogMessageTypes.Trace,
                     "File \"" + fileName + "\" has been succesfully saved.");
             }
             else
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                LogSystem.AddMessage(LogMessageTypes.Errors,
                     "File \"" + fileName + "\" could not be saved.");
             }
         }

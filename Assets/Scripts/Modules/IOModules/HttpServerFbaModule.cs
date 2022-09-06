@@ -43,14 +43,14 @@ namespace ECellDive
                 LoadedCyJsonPathway = GameObject.FindGameObjectWithTag("CyJsonModule").GetComponent<CyJsonModule>();
                 if (LoadedCyJsonPathway == null)
                 {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                    LogSystem.AddMessage(LogMessageTypes.Errors,
                         "There is no active (ie. Dived In) CyJson pathway modules detected.");
                 }
                 else
                 {
                     fbaAnalysisData.activeModelName = LoadedCyJsonPathway.graphData.name;
 
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
+                    LogSystem.AddMessage(LogMessageTypes.Trace,
                         $"FBA analyses module connected to {fbaAnalysisData.activeModelName}");
 
                     foreach (IEdge _edgeData in LoadedCyJsonPathway.graphData.edges)
