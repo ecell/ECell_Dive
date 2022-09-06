@@ -22,6 +22,13 @@ namespace ECellDive
             public bool hideOnStart = true;
             private bool colorBatchDistributed = false;
 
+            private void Start()
+            {
+                if (hideOnStart)
+                {
+                    gameObject.SetActive(false);
+                }
+            }
 
             /// <summary>
             /// Adds a <see cref="GroupUIManager"/> object at the end of the 
@@ -131,13 +138,11 @@ namespace ECellDive
             /// </summary>
             public void Initialize()
             {
-                StartCoroutine(AddSemanticTermUI("Custom Groups", new List<GroupData>()));
-                if (hideOnStart)
+                if (gameObject.activeSelf)
                 {
-                    gameObject.SetActive(false);
+                    StartCoroutine(AddSemanticTermUI("Custom Groups", new List<GroupData>()));
                 }
             }
         }
     }
 }
-
