@@ -47,7 +47,6 @@ namespace ECellDive
             [Range(0, 1)] public float endWidthFactor = 0.75f;
 
             private int activationID;
-            private int panningSpeedID;
 
             private CyJsonModule refMasterPathway;
 
@@ -61,7 +60,6 @@ namespace ECellDive
             private void OnEnable()
             {
                 activationID = Shader.PropertyToID("_Activation");
-                panningSpeedID = Shader.PropertyToID("_PanningSpeed");
             }
 
             public override void OnDestroy()
