@@ -47,6 +47,10 @@ namespace ECellDive
             [Range(0, 1)] public float endWidthFactor = 0.75f;
 
             private int activationID;
+            private ParticleSystem refParticleSystem;
+            private ParticleSystem.MainModule mainModule;
+            private ParticleSystem.EmissionModule emissionModule;
+            private ParticleSystem.ShapeModule shapeModule;
 
             private CyJsonModule refMasterPathway;
 
@@ -55,11 +59,12 @@ namespace ECellDive
                 base.Awake();
                 triggerKOActions.left.action.performed += ManageKnockout;
                 triggerKOActions.right.action.performed += ManageKnockout;
-            }
 
-            private void OnEnable()
-            {
                 activationID = Shader.PropertyToID("_Activation");
+                refParticleSystem = GetComponentInChildren<ParticleSystem>();
+                mainModule = refParticleSystem.main;
+                emissionModule = refParticleSystem.emission;
+                shapeModule = refParticleSystem.shape;
             }
 
             public override void OnDestroy()
@@ -72,6 +77,7 @@ namespace ECellDive
             {
                 base.OnNetworkSpawn();
 
+                fluxLevel.OnValueChanged += ApplyFLChanges;
                 fluxLevelClamped.OnValueChanged += ApplyFLCChanges;
                 knockedOut.OnValueChanged += ApplyKOChanges;
             }
@@ -96,11 +102,28 @@ namespace ECellDive
                 m_LineRenderer.SetPropertyBlock(mpb);
             }
 
+            private void ApplyFLChanges(float _previous, float _current)
+            {
+                //control direction of the edge if the flux is reversed
+                if ((_previous < 0 && _current > 0) || (_previous > 0 && _current < 0))
+                {
+                    Vector3 startBuffer = m_LineRenderer.GetPosition(0);
+                    m_LineRenderer.SetPosition(0, m_LineRenderer.GetPosition(1));
+                    m_LineRenderer.SetPosition(1, startBuffer);
+                    refParticleSystem.transform.localPosition = m_LineRenderer.GetPosition(0);
+                    refParticleSystem.transform.LookAt(m_LineRenderer.GetPosition(1));
+                }
+
+                //Update emission rate
+                emissionModule.rateOverTime = _current;
+            }
+
             private void ApplyFLCChanges(float _previous, float _current)
             {
                 SetInformationString();
 
                 SetLineRendererWidth();
+
                 UnsetHighlightServerRpc();
             }
 
@@ -129,6 +152,13 @@ namespace ECellDive
                 Transform target = refMasterPathway.DataID_to_DataGO[edgeData.target].transform;
                 SetLineRendererPosition(start, target);
                 SetCollider(start, target);
+
+                //Particle system parameters
+                shapeModule.scale = m_refBoxColliderHolder.transform.localScale;
+                refParticleSystem.transform.position = start.position;
+                refParticleSystem.transform.LookAt(target.position);
+                mainModule.startLifetime = Vector3.Distance(start.position, target.position);
+                
 
                 m_nameTextFieldContainer.transform.position = 0.5f * (start.position + target.position) +
                                                                 1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor * 1.5f * Vector3.up;
@@ -299,7 +329,9 @@ namespace ECellDive
             /// </summary>
             public void SpreadHighlightDownward()
             {
-                SetHighlightServerRpc();
+                SetCurrentColorToHighlightServerRpc();
+                refParticleSystem.gameObject.SetActive(true);
+                refParticleSystem.Play();
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
                 foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
@@ -327,7 +359,9 @@ namespace ECellDive
             /// </summary>
             public void SpreadHighlightUpward()
             {
-                SetHighlightServerRpc();
+                SetCurrentColorToHighlightServerRpc();
+                refParticleSystem.gameObject.SetActive(true);
+                refParticleSystem.Play();
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
                 foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
@@ -356,6 +390,7 @@ namespace ECellDive
             public void SpreadUnsetHighlightDownward()
             {
                 UnsetHighlightServerRpc();
+                refParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
                 foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
@@ -384,6 +419,7 @@ namespace ECellDive
             public void SpreadUnsetHighlightUpward()
             {
                 UnsetHighlightServerRpc();
+                refParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
                 foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
@@ -406,19 +442,36 @@ namespace ECellDive
                 }
             }
 
+            #region - IColorHighlightable Methods -
+            public override void SetHighlight()
+            {
+                SpreadHighlightUpward();
+                SpreadHighlightDownward();
+            }
+            
+            public override void UnsetHighlight()
+            {
+                SpreadUnsetHighlightUpward();
+                SpreadUnsetHighlightDownward();
+            }
+            #endregion
+
             #region - IEdgeGO Methods- 
+            /// <inheritdoc/>
             public void SetDefaultWidth(float _start, float _end)
             {
                 defaultStartWidth = _start;
                 defaultEndWidth = _end;
             }
 
+            /// <inheritdoc/>
             public void SetEdgeData(IEdge _IEdge)
             {
                 edgeData = _IEdge;
                 SetInformationString();
             }
 
+            /// <inheritdoc/>
             public void SetCollider(Transform _start, Transform _end)
             {
                 m_refBoxColliderHolder.transform.localPosition = 0.5f * (_start.localPosition + _end.localPosition);
@@ -429,12 +482,14 @@ namespace ECellDive
                                                                 0.95f*Vector3.Distance(_start.localPosition, _end.localPosition));
             }
 
+            /// <inheritdoc/>
             public void SetLineRendererWidth()
             {
                 m_LineRenderer.startWidth = startWidthFactor * Mathf.Max(defaultStartWidth, defaultStartWidth*fluxLevelClamped.Value);
                 m_LineRenderer.endWidth = endWidthFactor * Mathf.Max(defaultEndWidth, defaultEndWidth*fluxLevelClamped.Value);
             }
 
+            /// <inheritdoc/>
             public void SetLineRendererPosition(Transform _start, Transform _end)
             {
                 m_LineRenderer.SetPosition(0, _start.localPosition);

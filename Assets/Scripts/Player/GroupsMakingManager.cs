@@ -144,9 +144,9 @@ namespace ECellDive.PlayerComponents
             //Reset objects Highlight
             for (int i = 0; i < groupMembers.Count; i++)
             {
-                IHighlightable highlitable = ToFind.FindComponent<IHighlightable>(groupMembers[i]);
+                IColorHighlightable highlitable = ToFind.FindComponent<IColorHighlightable>(groupMembers[i]);
                 highlitable.forceHighlight = false;
-                highlitable.UnsetHighlightServerRpc();
+                highlitable.UnsetHighlight();
             }
 
             //Reset group members list
@@ -197,12 +197,12 @@ namespace ECellDive.PlayerComponents
             IGroupable groupable = ToFind.FindComponent<IGroupable>(_go);
             if (groupable != null)
             {
-                IHighlightable highlightable = ToFind.FindComponent<IHighlightable>(_go);
+                IColorHighlightable highlightable = ToFind.FindComponent<IColorHighlightable>(_go);
                 if (groupable.grpMemberIndex == -1)
                 {
                     AddMemberToGroup(_go, groupable);
                     highlightable.forceHighlight = true;
-                    highlightable.SetHighlightServerRpc();
+                    highlightable.SetCurrentColorToHighlightServerRpc();
                 }
                 else
                 {
@@ -347,10 +347,10 @@ namespace ECellDive.PlayerComponents
         public void ValidateGroup()
         {
             //Get Highlightables and reset force highlight
-            IHighlightable[] highlitables = new IHighlightable[groupMembers.Count];
+            IColorHighlightable[] highlitables = new IColorHighlightable[groupMembers.Count];
             for (int i = 0; i < groupMembers.Count; i++)
             {
-                highlitables[i] = ToFind.FindComponent<IHighlightable>(groupMembers[i]);
+                highlitables[i] = ToFind.FindComponent<IColorHighlightable>(groupMembers[i]);
                 highlitables[i].forceHighlight = false;
             }
 

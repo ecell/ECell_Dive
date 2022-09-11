@@ -62,9 +62,9 @@ namespace ECellDive
 
             #region - IHighlightable Methods -
             [ServerRpc(RequireOwnership = false)]
-            public override void SetHighlightServerRpc()
+            public override void SetCurrentColorToHighlightServerRpc()
             {
-                base.SetHighlightServerRpc();
+                base.SetCurrentColorToHighlightServerRpc();
                 m_Renderer.enabled = true;
             }
 

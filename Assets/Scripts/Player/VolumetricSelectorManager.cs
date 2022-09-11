@@ -12,7 +12,7 @@ namespace ECellDive.PlayerComponents
     /// are sent to the <seealso cref="GroupsMakingManager"/>
     /// </summary>
     public class VolumetricSelectorManager : NetworkBehaviour,
-                                                IHighlightable
+                                                IColorHighlightable
     {
         #region - IHighlightable Members - 
 
@@ -91,8 +91,8 @@ namespace ECellDive.PlayerComponents
             refRenderer = GetComponentInChildren<Renderer>();
             mpb = new MaterialPropertyBlock();
             colorID = Shader.PropertyToID("_Color");
-            
-            SetDefaultServerRpc();
+
+            SetCurrentColorToDefaultServerRpc();
 
             distanceAndScaleAction.action.performed += DistanceAndScale;
 
@@ -181,7 +181,7 @@ namespace ECellDive.PlayerComponents
             isActive.Value = _active;
             if (_active)
             {
-                SetHighlightServerRpc();
+                SetCurrentColorToHighlightServerRpc();
             }
             else
             {
@@ -256,13 +256,20 @@ namespace ECellDive.PlayerComponents
             transform.localScale = defaultScale;
         }
 
-        #region - IHighlightable -
+        #region - IColorHighlightable -
 
         /// <inheritdoc/>
         [ServerRpc(RequireOwnership = false)]
-        public void SetDefaultServerRpc()
+        public void SetCurrentColorToDefaultServerRpc()
         {
             m_currentColor.Value = m_defaultColor;
+        }
+
+        /// <inheritdoc/>
+        [ServerRpc(RequireOwnership = false)]
+        public virtual void SetCurrentColorToHighlightServerRpc()
+        {
+            m_currentColor.Value = m_highlightColor;
         }
 
         /// <inheritdoc/>
@@ -272,16 +279,21 @@ namespace ECellDive.PlayerComponents
         }
 
         /// <inheritdoc/>
-        [ServerRpc(RequireOwnership = false)]
-        public virtual void SetHighlightServerRpc()
+        public virtual void SetHighlight()
         {
-            m_currentColor.Value = m_highlightColor;
+            SetCurrentColorToDefaultServerRpc();
         }
 
         /// <inheritdoc/>
         public void SetHighlightColor(Color _c)
         {
             m_highlightColor = _c;
+        }
+
+        /// <inheritdoc/>
+        public virtual void UnsetHighlight()
+        {
+            SetCurrentColorToHighlightServerRpc();
         }
 
         /// <inheritdoc/>

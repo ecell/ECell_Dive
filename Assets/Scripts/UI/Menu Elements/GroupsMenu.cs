@@ -117,7 +117,7 @@ namespace ECellDive
             private IEnumerator DistributeColorToMembersC(Color _color, IHighlightable[] _members)
             {
                 ushort batchCounter = 0;
-                foreach (IHighlightable _member in _members)
+                foreach (IColorHighlightable _member in _members)
                 {
                     _member.SetDefaultColor(_color);
                     _member.UnsetHighlightServerRpc();

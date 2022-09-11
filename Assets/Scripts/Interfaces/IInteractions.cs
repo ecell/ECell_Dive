@@ -60,17 +60,48 @@ namespace ECellDive
             int grpMemberIndex { get; set; }
         }
 
+        public interface IHighlightable
+        {
+            /// <summary>
+            /// A boolean to inform whether the object should stay in an
+            /// highlighted state even when it should go back to default.
+            /// </summary>
+            bool forceHighlight { get; set; }
+
+            /// <summary>
+            /// The function to call when the object should enter highlighted
+            /// state.
+            /// </summary>
+            abstract void SetHighlight();
+
+            /// <summary>
+            /// The function to call when the object should exit the highlighted
+            /// state.
+            /// </summary>
+            abstract void UnsetHighlight();
+        }
+
         /// <summary>
         /// An interface to change switch between two colors when a gameobject
         /// needs to be highlighted.
         /// </summary>
-        public interface IHighlightable
+        public interface IColorHighlightable : IHighlightable
         {
+            /// <summary>
+            /// The current color of the object synchronized over the 
+            /// network.
+            /// </summary>
             NetworkVariable<Color> currentColor { get; }
-            Color defaultColor { get; }
-            Color highlightColor { get; }
 
-            bool forceHighlight { get; set; }
+            /// <summary>
+            /// The color the object should be when non highlighted.
+            /// </summary>
+            Color defaultColor { get; }
+
+            /// <summary>
+            /// The color the object should be when highlighted.
+            /// </summary>
+            Color highlightColor { get; }
 
             /// <summary>
             /// Contacts the server to applies <see cref="defaultColor"/>
@@ -80,13 +111,7 @@ namespace ECellDive
             /// "NetworkVariable{T}"/>, the value will be synchronized to all
             /// clients.</remarks>
             [ServerRpc(RequireOwnership = false)]
-            void SetDefaultServerRpc();
-
-            /// <summary>
-            /// Sets the value of <see cref="defaultColor"/> to <paramref name="_c"/>.
-            /// </summary>
-            /// <param name="_c">The new value for <see cref="defaultColor"/></param>
-            void SetDefaultColor(Color _c);
+            void SetCurrentColorToDefaultServerRpc();
 
             /// <summary>
             /// Contacts the server to applies <see cref="highlightColor"/>
@@ -96,7 +121,13 @@ namespace ECellDive
             /// "NetworkVariable{T}"/>, the value will be synchronized to all
             /// clients.</remarks>
             [ServerRpc(RequireOwnership = false)]
-            abstract void SetHighlightServerRpc();
+            abstract void SetCurrentColorToHighlightServerRpc();
+
+            /// <summary>
+            /// Sets the value of <see cref="defaultColor"/> to <paramref name="_c"/>.
+            /// </summary>
+            /// <param name="_c">The new value for <see cref="defaultColor"/></param>
+            void SetDefaultColor(Color _c);
 
             /// <summary>
             /// Sets the value of <see cref="highlightColor"/> to <paramref name="_c"/>.

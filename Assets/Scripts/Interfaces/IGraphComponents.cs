@@ -186,6 +186,10 @@ namespace ECellDive
             /// </summary>
             GameObject refBoxColliderHolder { get; }
 
+            /// <summary>
+            /// Set the value for <see cref="edgeData"/>.
+            /// </summary>
+            /// <param name="_IEdge">The value to pass on to <see cref="edgeData"/>.</param>
             void SetEdgeData(IEdge _IEdge);
 
             /// <summary>

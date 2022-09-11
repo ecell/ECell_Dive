@@ -21,7 +21,7 @@ namespace ECellDive
                                     IDive,
                                     IFocus,
                                     IGroupable,
-                                    IHighlightable,
+                                    IColorHighlightable,
                                     IInfoTags,
                                     INamed,
                                     IMlprData,
@@ -90,7 +90,14 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IHighlightable Members - 
+            #region - IColorHighlightable Members - 
+
+            private bool m_forceHighlight = false;
+            public bool forceHighlight
+            {
+                get => m_forceHighlight;
+                set => m_forceHighlight = value;
+            }
 
             [SerializeField] private NetworkVariable<Color> m_currentColor;
             public NetworkVariable<Color> currentColor
@@ -112,14 +119,6 @@ namespace ECellDive
                 get => m_highlightColor;
                 set => m_highlightColor = value;
             }
-
-            private bool m_forceHighlight = false;
-            public bool forceHighlight
-            {
-                get => m_forceHighlight;
-                set => m_forceHighlight = value;
-            }
-
             #endregion
 
             #region - IInfoTags Members -
@@ -238,7 +237,7 @@ namespace ECellDive
                 m_displayInfoTagsActions.left.action.performed -= ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.right.action.performed -= ManageInfoTagsDisplay;
 
-                currentColor.OnValueChanged -= ApplyCurrentColorChange;
+                m_currentColor.OnValueChanged -= ApplyCurrentColorChange;
                 isActivated.OnValueChanged -= ManageActivationStatus;
             }
 
@@ -246,9 +245,9 @@ namespace ECellDive
             {
                 mpb = new MaterialPropertyBlock();
                 colorID = Shader.PropertyToID("_Color");
-                currentColor.OnValueChanged += ApplyCurrentColorChange;
+                m_currentColor.OnValueChanged += ApplyCurrentColorChange;
                 isActivated.OnValueChanged += ManageActivationStatus;
-                currentColor.Value = defaultColor;
+                SetCurrentColorToDefaultServerRpc();
             }
 
             protected virtual void ApplyCurrentColorChange(Color _previous, Color _current)
@@ -279,12 +278,6 @@ namespace ECellDive
                         HideInfoTags();
                     }
                 }
-            }
-
-            [ServerRpc(RequireOwnership = false)]
-            private void SetCurrentColorServerRpc(Color _color)
-            {
-                currentColor.Value = _color;
             }
 
             #region - IDive Methods -
@@ -365,12 +358,20 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IHighlightable Methods -
+            #region - IColorHighlightable Methods -
+
             /// <inheritdoc/>
             [ServerRpc(RequireOwnership = false)]
-            public void SetDefaultServerRpc()
+            public void SetCurrentColorToDefaultServerRpc()
             {
                 m_currentColor.Value = m_defaultColor;
+            }
+
+            /// <inheritdoc/>
+            [ServerRpc(RequireOwnership = false)]
+            public virtual void SetCurrentColorToHighlightServerRpc()
+            {
+                m_currentColor.Value = m_highlightColor;
             }
 
             /// <inheritdoc/>
@@ -380,16 +381,21 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
-            [ServerRpc(RequireOwnership = false)]
-            public virtual void SetHighlightServerRpc()
+            public virtual void SetHighlight()
             {
-                m_currentColor.Value = m_highlightColor;
+                SetCurrentColorToHighlightServerRpc();
             }
 
             /// <inheritdoc/>
             public void SetHighlightColor(Color _c)
             {
                 m_highlightColor = _c;
+            }
+
+            /// <inheritdoc/>
+            public virtual void UnsetHighlight()
+            {
+                SetCurrentColorToDefaultServerRpc();
             }
 
             /// <inheritdoc/>

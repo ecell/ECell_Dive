@@ -91,7 +91,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -709,8 +709,8 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0.49997598}
-    m_Rotation: {x: -0, y: 0.0019415286, z: 0}
+    m_Position: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: -0, y: 0, z: 0}
     m_Scale: {x: 0.7499991, y: 0.75, z: 8.629727}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -4938,19 +4938,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3799698922840848880}
         m_TargetAssemblyTypeName: ECellDive.Modules.EdgeGO, Assembly-CSharp
-        m_MethodName: SpreadHighlightDownward
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3799698922840848880}
-        m_TargetAssemblyTypeName: ECellDive.Modules.EdgeGO, Assembly-CSharp
-        m_MethodName: SpreadHighlightUpward
+        m_MethodName: SetHighlight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5001,19 +4989,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3799698922840848880}
         m_TargetAssemblyTypeName: ECellDive.Modules.EdgeGO, Assembly-CSharp
-        m_MethodName: SpreadUnsetHighlightDownward
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3799698922840848880}
-        m_TargetAssemblyTypeName: ECellDive.Modules.EdgeGO, Assembly-CSharp
-        m_MethodName: SpreadUnsetHighlightUpward
+        m_MethodName: UnsetHighlight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5191,15 +5167,6 @@ LineRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -5269,8 +5236,8 @@ MonoBehaviour:
   m_triggerKOActions:
     m_left: {fileID: -9086459537174069806, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
     m_right: {fileID: 6272053831681804322, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  startWidthFactor: 0.25
-  endWidthFactor: 0.75
+  startWidthFactor: 0.3
+  endWidthFactor: 0.3
 --- !u!114 &4876809418776335857
 MonoBehaviour:
   m_ObjectHideFlags: 0
