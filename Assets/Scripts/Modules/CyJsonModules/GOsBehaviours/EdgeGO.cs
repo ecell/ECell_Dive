@@ -1,4 +1,4 @@
-﻿using Unity.Netcode;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.UI;
@@ -124,7 +124,10 @@ namespace ECellDive
 
                 SetLineRendererWidth();
 
-                UnsetHighlightServerRpc();
+                SetColliderHeightWidth();
+                shapeModule.scale = m_refBoxColliderHolder.transform.localScale;
+
+                //UnsetHighlightServerRpc();
             }
 
             private void ApplyKOChanges(bool _previous, bool _current)
@@ -154,6 +157,7 @@ namespace ECellDive
                 SetCollider(start, target);
 
                 //Particle system parameters
+                emissionModule.rateOverTime = 0;
                 shapeModule.scale = m_refBoxColliderHolder.transform.localScale;
                 refParticleSystem.transform.position = start.position;
                 refParticleSystem.transform.LookAt(target.position);
@@ -210,6 +214,17 @@ namespace ECellDive
             {
                 fluxLevel.Value = _fluxValue;
                 fluxLevelClamped.Value = _fluxClampedValue;
+            }
+
+            /// <summary>
+            /// Sets the X and Y scale of the box collider relatively to the line renderer's width.
+            /// </summary>
+            private void SetColliderHeightWidth()
+            {
+                m_refBoxColliderHolder.transform.localScale = new Vector3(
+                                                                0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),
+                                                                0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),
+                                                                m_refBoxColliderHolder.transform.localScale.z);
             }
 
             /// <summary>
@@ -477,9 +492,9 @@ namespace ECellDive
                 m_refBoxColliderHolder.transform.localPosition = 0.5f * (_start.localPosition + _end.localPosition);
                 m_refBoxColliderHolder.transform.LookAt(_end);
                 m_refBoxColliderHolder.transform.localScale = new Vector3(
-                                                                Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),
-                                                                Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),
-                                                                0.95f*Vector3.Distance(_start.localPosition, _end.localPosition));
+                                                                0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),//0.33f is custom for the inner size of the arrow texture
+                                                                0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),//0.33f is custom for the inner size of the arrow texture
+                                                                0.95f * Vector3.Distance(_start.localPosition, _end.localPosition));//0.95f is custom to avoid overlapping of the edge box collider with the nodes colliders
             }
 
             /// <inheritdoc/>
