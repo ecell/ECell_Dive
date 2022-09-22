@@ -395,16 +395,9 @@ namespace ECellDive
             /// <inheritdoc/>
             public virtual void UnsetHighlight()
             {
-                SetCurrentColorToDefaultServerRpc();
-            }
-
-            /// <inheritdoc/>
-            [ServerRpc(RequireOwnership = false)]
-            public virtual void UnsetHighlightServerRpc()
-            {
-                if (!forceHighlight)
+                if (!m_forceHighlight)
                 {
-                    m_currentColor.Value = m_defaultColor;
+                    SetCurrentColorToDefaultServerRpc();
                 }
             }
             #endregion

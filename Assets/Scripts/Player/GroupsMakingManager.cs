@@ -208,7 +208,7 @@ namespace ECellDive.PlayerComponents
                 {
                     RemoveMemberFromGroup(_go, groupable);
                     highlightable.forceHighlight = false;
-                    highlightable.UnsetHighlightServerRpc();
+                    highlightable.SetCurrentColorToDefaultServerRpc();
                 }
 
                 refUIManager.ManageUIConfirmationCanvas(groupMembers.Count);

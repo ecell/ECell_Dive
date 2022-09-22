@@ -68,13 +68,12 @@ namespace ECellDive
                 m_Renderer.enabled = true;
             }
 
-            [ServerRpc(RequireOwnership = false)]
-            public override void UnsetHighlightServerRpc()
+            public override void UnsetHighlight()
             {
                 if (!forceHighlight)
                 {
                     m_Renderer.enabled = true;
-                    currentColor.Value = defaultColor;
+                    SetCurrentColorToDefaultServerRpc();
 
                     if (nodeData.isVirtual)
                     {

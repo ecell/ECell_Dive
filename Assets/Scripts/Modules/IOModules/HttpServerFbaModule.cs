@@ -164,7 +164,7 @@ namespace ECellDive
                             edgeGO = LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>();
                             edgeGO.SetDefaultColor(levelColor);
                             edgeGO.SetFlux(level, levelClamped);
-                            edgeGO.UnsetHighlightServerRpc();
+                            edgeGO.SetCurrentColorToDefaultServerRpc();
 
                             counter++;
 

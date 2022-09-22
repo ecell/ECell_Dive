@@ -120,7 +120,7 @@ namespace ECellDive
                 foreach (IColorHighlightable _member in _members)
                 {
                     _member.SetDefaultColor(_color);
-                    _member.UnsetHighlightServerRpc();
+                    _member.SetCurrentColorToDefaultServerRpc();
 
                     batchCounter++;
 

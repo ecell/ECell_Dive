@@ -404,7 +404,7 @@ namespace ECellDive
             /// </summary>
             public void SpreadUnsetHighlightDownward()
             {
-                UnsetHighlightServerRpc();
+                SetCurrentColorToDefaultServerRpc();
                 refParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 
                 GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
@@ -433,7 +433,7 @@ namespace ECellDive
             /// </summary>
             public void SpreadUnsetHighlightUpward()
             {
-                UnsetHighlightServerRpc();
+                SetCurrentColorToDefaultServerRpc();
                 refParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 
                 GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
@@ -466,8 +466,11 @@ namespace ECellDive
             
             public override void UnsetHighlight()
             {
-                SpreadUnsetHighlightUpward();
-                SpreadUnsetHighlightDownward();
+                if (!forceHighlight)
+                {
+                    SpreadUnsetHighlightUpward();
+                    SpreadUnsetHighlightDownward();
+                }
             }
             #endregion
 

@@ -77,6 +77,9 @@ namespace ECellDive
             /// <summary>
             /// The function to call when the object should exit the highlighted
             /// state.
+            /// Checks for <see cref="forceHighlight"/>.
+            /// If false, applies <see cref="defaultColor"/> to <see cref="currentColor"/>.
+            /// If true, nothing happens.
             /// </summary>
             abstract void UnsetHighlight();
         }
@@ -134,17 +137,6 @@ namespace ECellDive
             /// </summary>
             /// <param name="_c">The new value for <see cref="highlightColor"/></param>
             void SetHighlightColor(Color _c);
-
-            /// <summary>
-            /// Checks for <see cref="forceHighlight"/>.
-            /// If false, applies <see cref="defaultColor"/> to <see cref="currentColor"/>.
-            /// If true, nothing happens.
-            /// </summary>
-            /// <remarks>Since <see cref="currentColor"/> is a <see cref=
-            /// "NetworkVariable{T}"/>, the value will be synchronized to all
-            /// clients.</remarks>
-            [ServerRpc(RequireOwnership = false)]
-            abstract void UnsetHighlightServerRpc();
         }
 
         /// <summary>
