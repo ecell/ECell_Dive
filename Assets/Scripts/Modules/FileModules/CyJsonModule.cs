@@ -14,31 +14,18 @@ namespace ECellDive
 {
     namespace Modules
     {
-        [System.Serializable]
-        public struct CyJsonPathwaySettingsData
-        {
-            [Header("Spawning")]
-            public int nodesBatchSize;
-            public int edgesBatchSize;
-            [Header("Scaling")]
-            [Min(1)] public float PositionScaleFactor;
-            [Min(1)] public float SizeScaleFactor;
-            [Min(0)] public float InterLayersDistance;
-        }
-
         /// <summary>
         /// Derived class with some more specific operations to handle
         /// CyJson modules.
         /// </summary>
         public class CyJsonModule : GameNetModule,
-                                    IGraphGO,
+                                    IGraphGONet,
                                     IModifiable,
                                     ISaveable
         {
             public int refIndex { get; private set; }
             public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
-            public CyJsonPathwaySettingsData cyJsonPathwaySettings;
-            public Dictionary<uint, GameObject> DataID_to_DataGO;
+            
             public GameObject pathwayRoot;
 
             private bool allNodesSpawned = false;
@@ -47,8 +34,22 @@ namespace ECellDive
             public Texture2D mainTex;
 
 
-            #region  - IGraphGO Members - 
+            #region  - IGraphGONet Members - 
             public IGraph graphData { get; protected set; }
+
+            [SerializeField] private GraphScalingData m_graphScalingData;
+            public GraphScalingData graphScalingData
+            {
+                get => m_graphScalingData;
+            }
+            
+            [SerializeField] private GraphBatchSpawning m_graphBatchSpawning;
+            public GraphBatchSpawning graphBatchSpawning
+            {
+                get => m_graphBatchSpawning;
+            }
+
+            public Dictionary<uint, GameObject> DataID_to_DataGO { get; set; }
 
             [SerializeField] private List<GameObject> m_graphPrefabsComponents;
             public List<GameObject> graphPrefabsComponents
@@ -114,9 +115,9 @@ namespace ECellDive
             private IEnumerator EdgesBatchSpawn(int _sceneId)
             {
                 yield return new WaitUntil(() => allNodesSpawned);
-                for (int i = 0; i < graphData.edges.Length; i += cyJsonPathwaySettings.edgesBatchSize)
+                for (int i = 0; i < graphData.edges.Length; i += m_graphBatchSpawning.edgesBatchSize)
                 {
-                    for (int j = i; j < Mathf.Min(i + cyJsonPathwaySettings.edgesBatchSize, graphData.edges.Length); j++)
+                    for (int j = i; j < Mathf.Min(i + m_graphBatchSpawning.edgesBatchSize, graphData.edges.Length); j++)
                     {
                         //ModulesData.AddModule(edgeMD);
                         GameObject edgeGO = DiveScenesManager.Instance.SpawnModuleInScene(_sceneId, graphPrefabsComponents[2], Vector3.zero);
@@ -179,9 +180,9 @@ namespace ECellDive
             /// </summary>
             private IEnumerator NodesBatchSpawn(int _sceneId)
             {
-                for (int i = 0; i < graphData.nodes.Length; i += cyJsonPathwaySettings.nodesBatchSize)
+                for (int i = 0; i < graphData.nodes.Length; i += m_graphBatchSpawning.nodesBatchSize)
                 {
-                    for (int j = i; j < Mathf.Min(i + cyJsonPathwaySettings.nodesBatchSize, graphData.nodes.Length); j++)
+                    for (int j = i; j < Mathf.Min(i + m_graphBatchSpawning.nodesBatchSize, graphData.nodes.Length); j++)
                     {
                         //ModulesData.AddModule(nodeMD);
 
@@ -202,7 +203,7 @@ namespace ECellDive
                 GameObject nodeGO = _nodeNetObj;
                 //Debug.Log($"_nodeNetObj: {nodeGO}, DataID_to_DataGO:{DataID_to_DataGO}, graphData: {graphData}");
                 
-                nodeGO.GetComponent<NodeGO>().Initialize(cyJsonPathwaySettings, graphData.nodes[_nodeIdx]);
+                nodeGO.GetComponent<NodeGO>().Initialize(m_graphScalingData, graphData.nodes[_nodeIdx]);
                 DataID_to_DataGO[graphData.nodes[_nodeIdx].ID] = nodeGO;
                 nodeGO.GetComponent<GameNetModule>().NetHide();
             }
@@ -277,7 +278,7 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IGraph Methods -
+            #region - IGraphGONet Methods -
 
             /// <inheritdoc/>
             [ServerRpc(RequireOwnership = false)]

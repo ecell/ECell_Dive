@@ -52,7 +52,7 @@ namespace ECellDive
             private ParticleSystem.EmissionModule emissionModule;
             private ParticleSystem.ShapeModule shapeModule;
 
-            private CyJsonModule refMasterPathway;
+            private IGraphGO refMasterPathway;
 
             protected override void Awake()
             {
@@ -146,8 +146,8 @@ namespace ECellDive
                 gameObject.name = edgeData.name;
                 SetName(edgeData.reaction_name);
                 HideName();
-                SetDefaultWidth(1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor,
-                                1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor);
+                SetDefaultWidth(1 / refMasterPathway.graphScalingData.sizeScaleFactor,
+                                1 / refMasterPathway.graphScalingData.sizeScaleFactor);
 
                 SetLineRendererWidth();
 
@@ -165,7 +165,7 @@ namespace ECellDive
                 
 
                 m_nameTextFieldContainer.transform.position = 0.5f * (start.position + target.position) +
-                                                                1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor * 1.5f * Vector3.up;
+                                                                1 / refMasterPathway.graphScalingData.sizeScaleFactor * 1.5f * Vector3.up;
             }
 
             [ServerRpc(RequireOwnership = false)]

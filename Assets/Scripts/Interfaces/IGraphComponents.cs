@@ -227,6 +227,36 @@ namespace ECellDive
         }
 
         /// <summary>
+        /// The struct encapsulating the parameters relevant to
+        /// controlling the scale of the graph.
+        /// </summary>
+        [System.Serializable]
+        public struct GraphScalingData
+        {
+            //[Min(0)] public float interLayersDistance;
+
+            /// <summary>
+            /// Modulates the values of <see cref="Transform.position"/> for
+            /// every node of the graph.
+            /// </summary>
+            /// <remarks>
+            /// Useful when the original coordinates of the nodes spans over
+            /// hundreds of equivalent Unity distance units.
+            /// </remarks>
+            [Min(1)] public float positionScaleFactor;
+
+            /// <summary>
+            /// Modulates the values of <see cref="Transform.localScale"/> for
+            /// every node and edge of the graph.
+            /// </summary>
+            /// <remarks>
+            /// Usefull when to change the size of the whole graph.
+            /// </remarks>
+            [Min(1)] public float sizeScaleFactor;
+            
+        }
+
+        /// <summary>
         /// The interface defining the required logic to manipulate
         /// the information stored in a <see cref="IGraph"/>.
         /// </summary>
@@ -241,6 +271,18 @@ namespace ECellDive
             /// named members for a "node prefab" or an "edge prefab" to allow
             /// for flexibility.</remarks>
             List<GameObject> graphPrefabsComponents { get; }
+
+            /// <summary>
+            /// The struct encapsulating the parameters relevant to
+            /// controlling the scale of the graph.
+            /// </summary>
+            GraphScalingData graphScalingData { get; }
+
+            /// <summary>
+            /// The dictionnary to find <see cref="INodeGO"/> and <see cref="IEdgeGO"/>
+            /// of the graph according to their ids.
+            /// </summary>
+            Dictionary<uint, GameObject> DataID_to_DataGO { get; set; }
 
             /// <summary>
             /// Executes the logic on the server side that is needed to 
@@ -260,6 +302,43 @@ namespace ECellDive
             /// <param name="_INetwork"></param>
             void SetNetworkData(IGraph _INetwork);
 
+        }
+
+        /// <summary>
+        /// The struct encapsulating the parameters relevant to
+        /// controlling the batched instantiation of the nodes and
+        /// the edges of the graph.
+        /// </summary>
+        /// <remarks>
+        /// Usefull when instantiating the nodes and edges of a graph
+        /// that is synchronized over the network between a host and
+        /// its clients. When the graph is big we need to batch the
+        /// instantiation of the networkbjects to avoid overflowing
+        /// the authorized bandwitdh (since the server sends the
+        /// instantiation message to every clients).
+        /// </remarks>
+        [System.Serializable]
+        public struct GraphBatchSpawning
+        {
+            /// <summary>
+            /// The number of nodes instantiated within a frame.
+            /// </summary>
+            public int nodesBatchSize;
+
+            /// <summary>
+            /// The number of edges instantiated within a frame.
+            /// </summary>
+            public int edgesBatchSize;
+        }
+
+        /// <summary>
+        /// The interface defining the logic to manipulate a graph
+        /// synchronized over the network between the host and the 
+        /// clients
+        /// </summary>
+        public interface IGraphGONet : IGraphGO
+        {
+            GraphBatchSpawning graphBatchSpawning { get; }
         }
     }
 }
