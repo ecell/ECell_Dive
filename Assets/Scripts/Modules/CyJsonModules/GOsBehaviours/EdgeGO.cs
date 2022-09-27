@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.UI;
 using ECellDive.Interfaces;
+using TMPro;
 
 namespace ECellDive
 {
@@ -139,6 +140,18 @@ namespace ECellDive
 
             public void Initialize(CyJsonModule _masterPathway, IEdge _edge)
             {
+#if UNITY_EDITOR
+                m_LineRenderer = GetComponent<LineRenderer>();
+                if (nameTextFieldContainer != null)
+                {
+                    nameField = nameTextFieldContainer?.GetComponentInChildren<TextMeshProUGUI>();
+                }
+                activationID = Shader.PropertyToID("_Activation");
+                refParticleSystem = GetComponentInChildren<ParticleSystem>();
+                mainModule = refParticleSystem.main;
+                emissionModule = refParticleSystem.emission;
+                shapeModule = refParticleSystem.shape;
+#endif
                 refMasterPathway = _masterPathway;
                 InstantiateInfoTags(new string[] { "" });
                 SetEdgeData(_edge);

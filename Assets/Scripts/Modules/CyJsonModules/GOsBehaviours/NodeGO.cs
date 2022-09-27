@@ -2,6 +2,7 @@
 using UnityEngine;
 using ECellDive.UI;
 using ECellDive.Interfaces;
+using TMPro;
 
 namespace ECellDive
 {
@@ -28,6 +29,13 @@ namespace ECellDive
 
             public void Initialize(GraphScalingData _pathwaySettings, in INode _node)
             {
+#if UNITY_EDITOR
+                m_Renderer = GetComponent<Renderer>();
+                if (nameTextFieldContainer != null)
+                {
+                    nameField = nameTextFieldContainer?.GetComponentInChildren<TextMeshProUGUI>();
+                }
+#endif
                 InstantiateInfoTags(new string[] { "" });
                 SetNodeData(_node);
                 Vector3 nodePos = new Vector3(nodeData.position.x,

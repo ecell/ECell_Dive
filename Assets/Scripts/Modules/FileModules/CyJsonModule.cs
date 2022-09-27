@@ -143,6 +143,44 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// USED ONLY FOR DEVELOPMENT: generates the structure of the graph outside
+            /// of runtime. Use <see cref="EdgesBatchSpawn(int)"/> instead if you want to
+            /// spawn the edges at runtime.
+            /// </summary>
+            private void EdgesSpawn()
+            {
+                for (int i = 0; i < graphData.edges.Length; i++)
+                {
+                    //ModulesData.AddModule(edgeMD);
+                    GameObject edgeGO = Instantiate(graphPrefabsComponents[2]);
+                    edgeGO.transform.parent = pathwayRoot.transform;
+                    edgeGO.GetComponent<EdgeGO>().Initialize(this, graphData.edges[i]);
+
+                    DataID_to_DataGO[graphData.edges[i].source].GetComponent<INodeGO>().nodeData.outgoingEdges.Add(graphData.edges[i].ID);
+                    DataID_to_DataGO[graphData.edges[i].target].GetComponent<INodeGO>().nodeData.incommingEdges.Add(graphData.edges[i].ID);
+
+                    DataID_to_DataGO[graphData.edges[i].ID] = edgeGO;
+                }
+            }
+
+            /// <summary>
+            /// USED ONLY FOR DEVELOPMENT: generates the structure of the graph outside
+            /// of runtime. Use <see cref="RequestGraphGenerationServerRpc(ulong, int)"/>
+            /// instead if you want to spawn the graph at runtime.
+            /// </summary>
+            public void GenerateGraph()
+            {
+                pathwayRoot = Instantiate(graphPrefabsComponents[0]);
+                pathwayRoot.name = graphData.name;
+                DataID_to_DataGO = new Dictionary<uint, GameObject>();
+                //Instantiate Nodes of Layer
+                NodesSpawn();
+
+                //Instantiate Edges of Layer
+                EdgesSpawn();
+            }
+
+            /// <summary>
             /// Translates the information about knockedout reactions stored
             /// in <see cref="koModifications"/> as a string usable for a request
             /// to the server.
@@ -176,7 +214,8 @@ namespace ECellDive
 
             /// <summary>
             /// Coroutine encapsulating the instantiation of the nodes of the pathway.
-            /// The coroutine yields until the end of the frame after having instantiated one batch of nodes.
+            /// The coroutine yields until the end of the frame after having instantiated
+            /// one batch of nodes.
             /// </summary>
             private IEnumerator NodesBatchSpawn(int _sceneId)
             {
@@ -206,6 +245,22 @@ namespace ECellDive
                 nodeGO.GetComponent<NodeGO>().Initialize(m_graphScalingData, graphData.nodes[_nodeIdx]);
                 DataID_to_DataGO[graphData.nodes[_nodeIdx].ID] = nodeGO;
                 nodeGO.GetComponent<GameNetModule>().NetHide();
+            }
+
+            /// <summary>
+            /// USED ONLY FOR DEVELOPMENT: generates the structure of the graph outside
+            /// of runtime. Use <see cref="NodesBatchSpawn(int)"/> instead if you want to
+            /// spawn the nodes at runtime.
+            /// </summary>
+            private void NodesSpawn()
+            {
+                for (int i = 0; i < graphData.nodes.Length; i++)
+                {
+                    GameObject nodeGO = Instantiate(graphPrefabsComponents[1]);
+                    nodeGO.transform.parent = pathwayRoot.transform;
+                    nodeGO.GetComponent<NodeGO>().Initialize(m_graphScalingData, graphData.nodes[i]);
+                    DataID_to_DataGO[graphData.nodes[i].ID] = nodeGO;
+                }
             }
 
             private string ScanForKOModifications()
@@ -357,12 +412,13 @@ namespace ECellDive
                 CyJsonModulesData.AddData(pathway);
 
                 SetNetworkData(pathway);
-
+#if !UNITY_EDITOR
                 StartUpInfo();
+#endif
             }
             #endregion
 
-            #region - ISaveable Methods -
+#region - ISaveable Methods -
             /// <inheritdoc/>
             public void CompileModificationFile()
             {
@@ -376,7 +432,7 @@ namespace ECellDive
                 writingModificationFile = new ModificationFile(author, baseModelPath, description, modification);
             }
 
-            #endregion
+#endregion
         }
     }
 }
