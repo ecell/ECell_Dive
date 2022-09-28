@@ -1,4 +1,4 @@
-﻿using Unity.Netcode;
+using Unity.Netcode;
 using UnityEngine;
 using ECellDive.UI;
 using ECellDive.Interfaces;
@@ -35,6 +35,10 @@ namespace ECellDive
                 {
                     nameField = nameTextFieldContainer?.GetComponentInChildren<TextMeshProUGUI>();
                 }
+                mpb = new MaterialPropertyBlock();
+                colorID = Shader.PropertyToID("_Color");
+                mpb.SetVector(colorID, defaultColor);
+                m_Renderer.SetPropertyBlock(mpb);
 #endif
                 InstantiateInfoTags(new string[] { "" });
                 SetNodeData(_node);

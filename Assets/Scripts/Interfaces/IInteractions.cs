@@ -91,20 +91,33 @@ namespace ECellDive
         public interface IColorHighlightable : IHighlightable
         {
             /// <summary>
-            /// The current color of the object synchronized over the 
-            /// network.
-            /// </summary>
-            NetworkVariable<Color> currentColor { get; }
-
-            /// <summary>
             /// The color the object should be when non highlighted.
             /// </summary>
-            Color defaultColor { get; }
+            Color defaultColor { get; set; }
 
             /// <summary>
             /// The color the object should be when highlighted.
             /// </summary>
-            Color highlightColor { get; }
+            Color highlightColor { get; set; }
+
+            /// <summary>
+            /// The function to call when we wish to apply a color to the material
+            /// of the gameobject.
+            /// </summary>
+            abstract void ApplyColor(Color _color);
+        }
+
+        /// <summary>
+        /// An interface to change switch between two colors when a NetworkObject
+        /// needs to be highlighted.
+        /// </summary>
+        public interface IColorHighlightableNet : IColorHighlightable
+        {
+            /// <summary>
+            /// The current color of the object synchronized over the 
+            /// network.
+            /// </summary>
+            NetworkVariable<Color> currentColor { get; }
 
             /// <summary>
             /// Contacts the server to applies <see cref="defaultColor"/>
@@ -125,18 +138,6 @@ namespace ECellDive
             /// clients.</remarks>
             [ServerRpc(RequireOwnership = false)]
             abstract void SetCurrentColorToHighlightServerRpc();
-
-            /// <summary>
-            /// Sets the value of <see cref="defaultColor"/> to <paramref name="_c"/>.
-            /// </summary>
-            /// <param name="_c">The new value for <see cref="defaultColor"/></param>
-            void SetDefaultColor(Color _c);
-
-            /// <summary>
-            /// Sets the value of <see cref="highlightColor"/> to <paramref name="_c"/>.
-            /// </summary>
-            /// <param name="_c">The new value for <see cref="highlightColor"/></param>
-            void SetHighlightColor(Color _c);
         }
 
         /// <summary>

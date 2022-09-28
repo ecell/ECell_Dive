@@ -157,12 +157,11 @@ namespace ECellDive
                         Color levelColor = Color.Lerp(fbaParametersManager.fluxLowerBoundColorPicker.button.colors.normalColor,
                                                       fbaParametersManager.fluxUpperBoundColorPicker.button.colors.normalColor,
                                                       t);
-
                         
                         foreach (uint _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
                             edgeGO = LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>();
-                            edgeGO.SetDefaultColor(levelColor);
+                            edgeGO.defaultColor = levelColor;
                             edgeGO.SetFlux(level, levelClamped);
                             edgeGO.SetCurrentColorToDefaultServerRpc();
 

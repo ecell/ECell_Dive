@@ -119,8 +119,8 @@ namespace ECellDive
                 ushort batchCounter = 0;
                 foreach (IColorHighlightable _member in _members)
                 {
-                    _member.SetDefaultColor(_color);
-                    _member.SetCurrentColorToDefaultServerRpc();
+                    _member.defaultColor = _color;
+                    _member.ApplyColor(_color);
 
                     batchCounter++;
 

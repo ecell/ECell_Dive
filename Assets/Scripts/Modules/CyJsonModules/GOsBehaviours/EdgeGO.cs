@@ -146,6 +146,12 @@ namespace ECellDive
                 {
                     nameField = nameTextFieldContainer?.GetComponentInChildren<TextMeshProUGUI>();
                 }
+
+                mpb = new MaterialPropertyBlock();
+                colorID = Shader.PropertyToID("_Color");
+                mpb.SetVector(colorID, defaultColor);
+                m_LineRenderer.SetPropertyBlock(mpb);
+
                 activationID = Shader.PropertyToID("_Activation");
                 refParticleSystem = GetComponentInChildren<ParticleSystem>();
                 mainModule = refParticleSystem.main;
@@ -471,6 +477,16 @@ namespace ECellDive
             }
 
             #region - IColorHighlightable Methods -
+
+            public override void ApplyColor(Color _color)
+            {
+                mpb.SetVector(colorID, _color);
+                if (m_LineRenderer != null)
+                {
+                    m_LineRenderer.SetPropertyBlock(mpb);
+                }
+            }
+
             public override void SetHighlight()
             {
                 SpreadHighlightUpward();

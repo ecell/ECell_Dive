@@ -21,7 +21,7 @@ namespace ECellDive
                                     IDive,
                                     IFocus,
                                     IGroupable,
-                                    IColorHighlightable,
+                                    IColorHighlightableNet,
                                     IInfoTags,
                                     INamed,
                                     IMlprData,
@@ -90,7 +90,7 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IColorHighlightable Members - 
+            #region - IColorHighlightableNet Members - 
 
             private bool m_forceHighlight = false;
             public bool forceHighlight
@@ -252,11 +252,7 @@ namespace ECellDive
 
             protected virtual void ApplyCurrentColorChange(Color _previous, Color _current)
             {
-                mpb.SetVector(colorID, _current);
-                if (m_Renderer != null)
-                {
-                    m_Renderer.SetPropertyBlock(mpb);
-                }
+                ApplyColor(_current);
             }
 
             /// <summary>
@@ -360,6 +356,15 @@ namespace ECellDive
 
             #region - IColorHighlightable Methods -
 
+            public virtual void ApplyColor(Color _color)
+            {
+                mpb.SetVector(colorID, _color);
+                if (m_Renderer != null)
+                {
+                    m_Renderer.SetPropertyBlock(mpb);
+                }
+            }
+
             /// <inheritdoc/>
             [ServerRpc(RequireOwnership = false)]
             public void SetCurrentColorToDefaultServerRpc()
@@ -375,21 +380,9 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
-            public void SetDefaultColor(Color _c)
-            {
-                m_defaultColor = _c;
-            }
-
-            /// <inheritdoc/>
             public virtual void SetHighlight()
             {
                 SetCurrentColorToHighlightServerRpc();
-            }
-
-            /// <inheritdoc/>
-            public void SetHighlightColor(Color _c)
-            {
-                m_highlightColor = _c;
             }
 
             /// <inheritdoc/>
