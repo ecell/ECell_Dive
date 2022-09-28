@@ -1,14 +1,16 @@
-using ECellDive.GraphComponents;
-using ECellDive.IO;
-using ECellDive.Modules;
-using ECellDive.Utility;
-using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using ECellDive.Modules;
+using ECellDive.Utility;
+
 namespace ECellDive.CustomEditors
 {
+    /// <summary>
+    /// The class to import a CyJson file and generate the associated
+    /// graph from the editor ouside of runtime.
+    /// </summary>
     public class ImportCyJsDev : ATServerInterface
     {
         public CyJsonModule cyJsonDataHolder;

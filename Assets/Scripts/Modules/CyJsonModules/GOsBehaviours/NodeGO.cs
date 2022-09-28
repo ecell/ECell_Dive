@@ -1,4 +1,4 @@
-using Unity.Netcode;
+﻿using Unity.Netcode;
 using UnityEngine;
 using ECellDive.UI;
 using ECellDive.Interfaces;
@@ -15,11 +15,6 @@ namespace ECellDive
             public INode nodeData { get; protected set; }
             public string informationString { get; protected set; }
             #endregion
-
-            public override void OnNetworkSpawn()
-            {
-                base.OnNetworkSpawn();
-            }
 
             protected override void ApplyCurrentColorChange(Color _previous, Color _current)
             {
