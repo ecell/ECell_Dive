@@ -11,6 +11,7 @@ namespace ECellDive
 {
     namespace UI
     {
+        [System.Serializable]
         public struct GroupData
         {
             public string value;
