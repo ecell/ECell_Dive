@@ -34,7 +34,7 @@ namespace ECellDive.CustomEditors
         /// Simple API to add pages to the base server url.
         /// </summary>
         /// <param name="_pages">The name of successive pages.</param>
-        /// <returns>The server address plus the concanated pages.</returns>
+        /// <returns>The server address plus the appended pages.</returns>
         protected string AddPagesToURL(string[] _pages)
         {
             string url = "http://" + serverData.serverIP + ":" + serverData.port;
@@ -128,7 +128,7 @@ namespace ECellDive.CustomEditors
                         break;
                     case UnityWebRequest.Result.Success:
                         //Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                        Debug.Log(pages[page] + ":<color=green> Success </color>");
+                        Debug.Log(pages[page] + ":<color=green> Success</color>");
                         requestData.requestText = webRequest.downloadHandler.text;
                         requestData.requestSuccess = true;
                         break;

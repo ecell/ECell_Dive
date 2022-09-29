@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 1033565067}
   - component: {fileID: 1033565066}
   - component: {fileID: 1033565068}
+  - component: {fileID: 1033565069}
   m_Layer: 0
   m_Name: CyJsGraphGeneratorDev
   m_TagString: Untagged
@@ -282,31 +283,31 @@ MonoBehaviour:
   nodesGroupAttribute: compartment
   edgesGroups:
   - value: Unassigned
-    color: {r: 0.115124, g: 0.054843012, b: 0.02851941, a: 1}
+    color: {r: 0.32558104, g: 0.529532, b: 0.45623335, a: 1}
   - value: Transport, Outer Membrane Porin
-    color: {r: 0.5888141, g: 0.3995514, b: 0.9051802, a: 1}
+    color: {r: 0.726145, g: 0.98956037, b: 0.53607947, a: 1}
   - value: Transport, Inner Membrane
-    color: {r: 0.30232036, g: 0.7518385, b: 0.84119165, a: 1}
+    color: {r: 0.26552925, g: 0.8365948, b: 0.66247463, a: 1}
   - value: Pyruvate Metabolism
-    color: {r: 0.71936506, g: 0.4081273, b: 0.38267666, a: 1}
+    color: {r: 0.07392562, g: 0.054720536, b: 0.030956335, a: 1}
   - value: Pentose Phosphate Pathway
-    color: {r: 0.36721802, g: 0.80096257, b: 0.6054812, a: 1}
+    color: {r: 0.3125906, g: 0.9157176, b: 0.2947713, a: 1}
   - value: Oxidative Phosphorylation
-    color: {r: 0.4514988, g: 0.24128115, b: 0.36398855, a: 1}
+    color: {r: 0.55769366, g: 0.34189898, b: 0.016163435, a: 1}
   - value: Nitrogen Metabolism
-    color: {r: 0.14244294, g: 0.13778989, b: 0.15514602, a: 1}
+    color: {r: 0.6559339, g: 0.40489596, b: 0.22411816, a: 1}
   - value: Methylglyoxal Metabolism
-    color: {r: 0.5122997, g: 0.5087087, b: 0.48802617, a: 1}
+    color: {r: 0.38161707, g: 0.048059806, b: 0.45876342, a: 1}
   - value: Glycolysis/Gluconeogenesis
-    color: {r: 0.6949292, g: 0.8754972, b: 0.3898147, a: 1}
+    color: {r: 0.5179916, g: 0.07767493, b: 0.026195953, a: 1}
   - value: Citric Acid Cycle
-    color: {r: 1, g: 0.7118232, b: 0, a: 1}
+    color: {r: 0.8328123, g: 0.86560607, b: 0.12951182, a: 1}
   - value: Biomass and maintenance functions
-    color: {r: 0.6569783, g: 0.41790307, b: 0.59448993, a: 1}
+    color: {r: 0.12134931, g: 0.25626758, b: 0.18698362, a: 1}
   - value: Anaplerotic Reactions
-    color: {r: 0.03828408, g: 0.8657341, b: 0.39507186, a: 1}
+    color: {r: 0.18027724, g: 0.13934727, b: 0.16591452, a: 1}
   - value: Alternate Carbon Metabolism
-    color: {r: 0.068016775, g: 0.007980056, b: 0.04190092, a: 1}
+    color: {r: 0.34683618, g: 0.38025084, b: 0.40860087, a: 1}
   nodesGroups:
   - value: periplasm
     color: {r: 0.91011107, g: 0.9339623, b: 0.085172564, a: 1}
@@ -314,6 +315,24 @@ MonoBehaviour:
     color: {r: 0.8584906, g: 0.1329636, b: 0.037795104, a: 1}
   - value: cytosol
     color: {r: 0.17698663, g: 0.7613777, b: 0.057031024, a: 1}
+--- !u!114 &1033565069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033565065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec3617d4fb3a54847bfbd30e6e3b1b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverData:
+    serverIP: 127.0.0.1
+    port: 8000
+  cyJsonDataHolder: {fileID: 1671005610}
+  minFluxLevelsClamp: -10
+  maxFluxLevelsClamp: 10
 --- !u!1001 &1671005609
 PrefabInstance:
   m_ObjectHideFlags: 0
