@@ -251,6 +251,18 @@ namespace ECellDive
             NetworkVariable<float> fluxLevelClamped { get; }
 
             /// <summary>
+            /// The logic to apply the effects associated to the value of
+            /// <see cref="fluxLevel"/>.
+            /// </summary>
+            void ApplyFluxLevel();
+
+            /// <summary>
+            /// The logic to apply the effects associated to the value of
+            /// <see cref="fluxLevelClamped"/>.
+            /// </summary>
+            void ApplyFluxLevelClamped();
+
+            /// <summary>
             /// A mutator for values of <see cref="fluxLevel"/> and 
             /// <see cref="fluxLevelClamped"/>.
             /// </summary>

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
@@ -185,6 +185,12 @@ namespace ECellDive
             /// dynamically around the edge so that the user can interact with it.
             /// </summary>
             GameObject refBoxColliderHolder { get; }
+
+            /// <summary>
+            /// The logic to graphically reverse the orientation of the edge GO.
+            /// The current start point becomes the end and the end becomes the start point.
+            /// </summary>
+            void ReverseOrientation();
 
             /// <summary>
             /// Set the value for <see cref="edgeData"/>.

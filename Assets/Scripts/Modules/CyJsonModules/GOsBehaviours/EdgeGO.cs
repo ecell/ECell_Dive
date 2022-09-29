@@ -105,30 +105,12 @@ namespace ECellDive
 
             private void ApplyFLChanges(float _previous, float _current)
             {
-                //control direction of the edge if the flux is reversed
-                if ((_previous < 0 && _current > 0) || (_previous > 0 && _current < 0))
-                {
-                    Vector3 startBuffer = m_LineRenderer.GetPosition(0);
-                    m_LineRenderer.SetPosition(0, m_LineRenderer.GetPosition(1));
-                    m_LineRenderer.SetPosition(1, startBuffer);
-                    refParticleSystem.transform.localPosition = m_LineRenderer.GetPosition(0);
-                    refParticleSystem.transform.LookAt(m_LineRenderer.GetPosition(1));
-                }
-
-                //Update emission rate
-                emissionModule.rateOverTime = _current;
+                ApplyFluxLevel();
             }
 
             private void ApplyFLCChanges(float _previous, float _current)
             {
-                SetInformationString();
-
-                SetLineRendererWidth();
-
-                SetColliderHeightWidth();
-                shapeModule.scale = m_refBoxColliderHolder.transform.localScale;
-
-                //UnsetHighlightServerRpc();
+                ApplyFluxLevelClamped();
             }
 
             private void ApplyKOChanges(bool _previous, bool _current)
@@ -231,6 +213,7 @@ namespace ECellDive
             [ServerRpc(RequireOwnership = false)]
             private void SetFluxValuesServerRpc(float _fluxValue, float _fluxClampedValue)
             {
+                Debug.Log("SetFlux");
                 fluxLevel.Value = _fluxValue;
                 fluxLevelClamped.Value = _fluxClampedValue;
             }
@@ -505,6 +488,16 @@ namespace ECellDive
 
             #region - IEdgeGO Methods- 
             /// <inheritdoc/>
+            public void ReverseOrientation()
+            {
+                Vector3 startBuffer = m_LineRenderer.GetPosition(0);
+                m_LineRenderer.SetPosition(0, m_LineRenderer.GetPosition(1));
+                m_LineRenderer.SetPosition(1, startBuffer);
+                refParticleSystem.transform.localPosition = m_LineRenderer.GetPosition(0);
+                refParticleSystem.transform.LookAt(m_LineRenderer.GetPosition(1));
+            }
+
+            /// <inheritdoc/>
             public void SetDefaultWidth(float _start, float _end)
             {
                 defaultStartWidth = _start;
@@ -561,11 +554,34 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
+            public void ApplyFluxLevel()
+            {
+                //Update emission rate
+                emissionModule.rateOverTime = fluxLevel.Value;
+            }
+
+            /// <inheritdoc/>
+            public void ApplyFluxLevelClamped()
+            {
+                SetInformationString();
+
+                SetLineRendererWidth();
+
+                SetColliderHeightWidth();
+                shapeModule.scale = m_refBoxColliderHolder.transform.localScale;
+            }
+
+            /// <inheritdoc/>
             public void SetFlux(float _level, float _levelClamped)
             {
+#if UNITY_EDITOR
+                fluxLevel.Value = _level;
+                fluxLevelClamped.Value = _levelClamped;
+#else
                 SetFluxValuesServerRpc(_level, _levelClamped);
+#endif
             }
-            #endregion            
+            #endregion
         }
     }
 }
