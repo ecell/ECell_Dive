@@ -242,6 +242,7 @@ MonoBehaviour:
   cyJsGoGrouped: {fileID: 958761313521910244}
   cyJsModuleGroupedFBA: {fileID: 925965153}
   cyJsGoGroupedFBA: {fileID: 4085378348493167803}
+  shortDemoUiPanel: {fileID: 1995334508}
   initialization:
     m_PersistentCalls:
       m_Calls:
@@ -737,11 +738,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Short Demo Menu Graphics Holder
       objectReference: {fileID: 0}
+    - target: {fileID: 4322227133576788731, guid: 7eddbd484b3093949a8a0b311faa75a6, type: 3}
+      propertyPath: m_Colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 6727170230296629006}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eddbd484b3093949a8a0b311faa75a6, type: 3}
 --- !u!4 &1995334507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 238767312609805975, guid: 7eddbd484b3093949a8a0b311faa75a6, type: 3}
+  m_PrefabInstance: {fileID: 1995334506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1995334508 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2991400471240366036, guid: 7eddbd484b3093949a8a0b311faa75a6, type: 3}
   m_PrefabInstance: {fileID: 1995334506}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &958761313521910243
@@ -27734,3 +27744,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5c8614ac14054949a1f1214207ff0f7, type: 3}
+--- !u!65 &6727170230296629006 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 2483728004708754011, guid: a5c8614ac14054949a1f1214207ff0f7, type: 3}
+  m_PrefabInstance: {fileID: 6727170230296629005}
+  m_PrefabAsset: {fileID: 0}

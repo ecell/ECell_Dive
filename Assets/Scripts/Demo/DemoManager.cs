@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
+using ECellDive.PlayerComponents;
+
 namespace ECellDive.Tutorials
 {
     public class DemoManager : MonoBehaviour
@@ -36,6 +38,9 @@ namespace ECellDive.Tutorials
         public CyJsonModule cyJsModuleGroupedFBA;
         public GameObject cyJsGoGroupedFBA;
 
+        [Header("References to UI")]
+        public GameObject shortDemoUiPanel;
+
         public UnityEvent initialization;
         public UnityEvent quit;
 
@@ -50,6 +55,9 @@ namespace ECellDive.Tutorials
 
             //Disable the General GUI
             StaticReferencer.Instance.refAllGuiMenusContainer.SetActive(false);
+
+            //Attach/pin the local gui to the player
+            shortDemoUiPanel.transform.SetParent(FindObjectOfType<Player>().transform);
 
             //Disable the RayBased Action Map
             refInputActionAsset.FindActionMap("Ray_Based_Controls_LH").Disable();
