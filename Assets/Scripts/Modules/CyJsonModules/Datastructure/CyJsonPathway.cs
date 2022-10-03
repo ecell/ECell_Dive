@@ -1,6 +1,6 @@
 using System.Linq;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
-using Unity.Netcode;
 using UnityEngine;
 using ECellDive.IO;
 using ECellDive.Interfaces;
@@ -9,14 +9,18 @@ namespace ECellDive
 {
     namespace GraphComponents
     {
-        public class CyJsonPathway : IGraph
+        public class CyJsonPathway : ScriptableObject, IGraph
         {
-            public string name { get; protected set; }
-            public JObject graphData { get;}
+            new public string name { get; protected set; }
+            public JObject graphData { get; protected set; }
             public JArray jNodes { get; protected set; }
             public JArray jEdges { get; protected set; }
-            public INode[] nodes { get; protected set; }
-            public IEdge[] edges { get; protected set; }
+
+            [SerializeReference] private INode[] m_nodes;
+            public INode[] nodes { get => m_nodes; protected set => m_nodes = value; }
+
+            [SerializeReference] private IEdge[] m_edges;
+            public IEdge[] edges { get => m_edges; protected set => m_edges = value; }
 
             public CyJsonPathway(string _path, string _name)
             {
@@ -28,6 +32,34 @@ namespace ECellDive
             {
                 graphData = _cyJspathway;
                 name = _name;
+            }
+
+            /// <inheritdoc/>
+            public void Copy(IGraph _graph)
+            {
+                name = _graph.name;
+                graphData = _graph.graphData;
+                jNodes = _graph.jNodes;
+                jEdges = _graph.jEdges;
+                nodes = _graph.nodes;
+                edges = _graph.edges;
+            }
+
+            /// <inheritdoc/>
+            public void MapInOutEdgesIntoNodes()
+            {
+                Dictionary<uint, uint> nodesMap = new Dictionary<uint, uint>();
+
+                for(uint i = 0; i<nodes.Length; i++)
+                {
+                    nodesMap[nodes[i].ID] = i;
+                }
+
+                foreach(IEdge edge in edges)
+                {
+                    nodes[nodesMap[edge.source]].outgoingEdges.Add(edge.ID);
+                    nodes[nodesMap[edge.target]].incommingEdges.Add(edge.ID);
+                }
             }
 
             /// <inheritdoc/>

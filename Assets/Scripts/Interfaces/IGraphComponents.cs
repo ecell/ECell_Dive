@@ -114,6 +114,19 @@ namespace ECellDive
             IEdge[] edges { get; }
 
             /// <summary>
+            /// Copies all data stored in <paramref name="_graph"/> into the current object
+            /// implementing <see cref="IGraph"/>.
+            /// </summary>
+            /// <param name="_graph">The graph data to copy.</param>
+            void Copy(IGraph _graph);
+
+            /// <summary>
+            /// Uses the information stored in the <see cref="edges"/> to fill the 
+            /// <see cref="INode.incommingEdges"/> and <see cref="INode.outgoingEdges"/> lists.
+            /// </summary>
+            void MapInOutEdgesIntoNodes();
+
+            /// <summary>
             /// Creates the <see cref="nodes"/> array mirroring the information
             /// stored in <see cref="jNodes"/> but in a more accessible way.
             /// </summary>

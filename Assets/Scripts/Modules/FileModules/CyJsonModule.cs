@@ -10,6 +10,10 @@ using ECellDive.Multiplayer;
 using ECellDive.SceneManagement;
 using ECellDive.Utility;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace ECellDive
 {
     namespace Modules
@@ -35,7 +39,8 @@ namespace ECellDive
 
 
             #region  - IGraphGONet Members - 
-            public IGraph graphData { get; protected set; }
+            [SerializeField] private CyJsonPathway m_graphData;
+            public IGraph graphData { get => m_graphData; protected set => m_graphData = (CyJsonPathway)value; }
 
             [SerializeField] private GraphScalingData m_graphScalingData;
             public GraphScalingData graphScalingData
@@ -135,13 +140,11 @@ namespace ECellDive
                 GameObject edgeGO = _edgeNetObj;
                 edgeGO.GetComponent<EdgeGO>().Initialize(this, graphData.edges[_edgeIdx]);
 
-                DataID_to_DataGO[graphData.edges[_edgeIdx].source].GetComponent<INodeGO>().nodeData.outgoingEdges.Add(graphData.edges[_edgeIdx].ID);
-                DataID_to_DataGO[graphData.edges[_edgeIdx].target].GetComponent<INodeGO>().nodeData.incommingEdges.Add(graphData.edges[_edgeIdx].ID);
-
                 DataID_to_DataGO[graphData.edges[_edgeIdx].ID] = edgeGO;
                 edgeGO.GetComponent<GameNetModule>().NetHide();
             }
 
+#if UNITY_EDITOR
             /// <summary>
             /// USED ONLY FOR DEVELOPMENT: generates the structure of the graph outside
             /// of runtime. Use <see cref="EdgesBatchSpawn(int)"/> instead if you want to
@@ -155,9 +158,6 @@ namespace ECellDive
                     GameObject edgeGO = Instantiate(graphPrefabsComponents[2]);
                     edgeGO.transform.parent = pathwayRoot.transform;
                     edgeGO.GetComponent<EdgeGO>().Initialize(this, graphData.edges[i]);
-
-                    DataID_to_DataGO[graphData.edges[i].source].GetComponent<INodeGO>().nodeData.outgoingEdges.Add(graphData.edges[i].ID);
-                    DataID_to_DataGO[graphData.edges[i].target].GetComponent<INodeGO>().nodeData.incommingEdges.Add(graphData.edges[i].ID);
 
                     DataID_to_DataGO[graphData.edges[i].ID] = edgeGO;
                 }
@@ -179,6 +179,17 @@ namespace ECellDive
                 //Instantiate Edges of Layer
                 EdgesSpawn();
             }
+
+            /// <summary>
+            /// USED ONLY FOR DEVELOPMENT: Creates an asset for <see cref="graphData"/>.
+            /// </summary>
+            public void GenerateGraphAsset()
+            {
+                CyJsonPathway graphDataAsset = ScriptableObject.CreateInstance<CyJsonPathway>();
+                graphDataAsset.Copy(graphData);
+                AssetDatabase.CreateAsset(graphDataAsset, "Assets/Resources/Prefabs/Modules/Demo_iJO1366/"+graphData.name+".asset");
+            }
+#endif
 
             /// <summary>
             /// Translates the information about knockedout reactions stored
@@ -247,6 +258,7 @@ namespace ECellDive
                 nodeGO.GetComponent<GameNetModule>().NetHide();
             }
 
+#if UNITY_EDITOR
             /// <summary>
             /// USED ONLY FOR DEVELOPMENT: generates the structure of the graph outside
             /// of runtime. Use <see cref="NodesBatchSpawn(int)"/> instead if you want to
@@ -262,6 +274,7 @@ namespace ECellDive
                     DataID_to_DataGO[graphData.nodes[i].ID] = nodeGO;
                 }
             }
+#endif
 
             private string ScanForKOModifications()
             {
@@ -418,7 +431,7 @@ namespace ECellDive
             }
             #endregion
 
-#region - ISaveable Methods -
+            #region - ISaveable Methods -
             /// <inheritdoc/>
             public void CompileModificationFile()
             {
