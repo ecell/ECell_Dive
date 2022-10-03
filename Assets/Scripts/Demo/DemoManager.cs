@@ -143,6 +143,10 @@ namespace ECellDive.Tutorials
             //"learnedXXXActions" lists declared in this script.
             StaticReferencer.Instance.inputModeManager.SubscribeActionMapsSwitch();
 
+            //Re-enable the capacity to switch input action modes 
+            refInputSwitchMode.left.action.Enable();
+            refInputSwitchMode.right.action.Enable();
+
             //Force the Ray-based controls for both controllers. This will
             //impact the visuals and the actions since we subscribed back to
             //the Action Map Switch above. Using the value -1 makes sure that
@@ -157,6 +161,9 @@ namespace ECellDive.Tutorials
             {
                 _tag.SetActive(true);
             }
+
+            //Since we pinned the UiPanel to the Player, we need to destroy manually on Quit
+            Destroy(shortDemoUiPanel);
         }
 
         public void SetReferencing()
