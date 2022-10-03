@@ -144,7 +144,7 @@ namespace ECellDive
                 InstantiateInfoTags(new string[] { "" });
                 SetEdgeData(_edge);
                 gameObject.SetActive(true);
-                gameObject.name = edgeData.name;
+                gameObject.name = $"{edgeData.ID}";
                 SetName(edgeData.reaction_name);
                 HideName();
                 SetDefaultWidth(1 / refMasterPathway.graphScalingData.sizeScaleFactor,
