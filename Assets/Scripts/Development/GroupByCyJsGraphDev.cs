@@ -1,4 +1,5 @@
-using System.Collections;
+#if UNITY_EDITOR
+
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
@@ -184,3 +185,5 @@ namespace ECellDive.CustomEditors
 
     }
 }
+
+#endif
