@@ -230,6 +230,15 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Sets the value for <see cref="refMasterPathway"/>.
+            /// </summary>
+            /// <param name="_masterPathway">The value for <see cref="refMasterPathway"/>.</param>
+            public void SetRefMasterPathway(IGraphGO _masterPathway)
+            {
+                refMasterPathway = _masterPathway;
+            }
+
+            /// <summary>
             /// Spreads the activation state to every contiguous downstream edge that are part of the same reaction.
             /// </summary>
             public void SpreadActivationDownward()

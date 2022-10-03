@@ -36,7 +36,7 @@ namespace ECellDive.CustomEditors
             }
         }
 
-        public void GroupEdges()
+        public void CreateGroupEdges()
         {
             IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.graphData.jEdges, edgesGroupAttribute);
             if (groups == null)
@@ -76,7 +76,7 @@ namespace ECellDive.CustomEditors
             }
         }
 
-        public void GroupNodes()
+        public void CreateGroupNodes()
         {
             IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.graphData.jNodes, nodesGroupAttribute);
             if (groups == null)
@@ -115,6 +115,71 @@ namespace ECellDive.CustomEditors
                 }
             }
         }
+
+        public void ReuseDefinedEdgeGroups()
+        {
+            IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.graphData.jEdges, edgesGroupAttribute);
+            if (groups == null)
+            {
+                Debug.LogError("Failed to group data by " + edgesGroupAttribute);
+            }
+            else
+            {
+                Debug.Log("<color=green>Succesfully</color> grouped data by " + edgesGroupAttribute + $". {groups.Count()} were found.");
+                int nbGroups = groups.Count();
+                for (int i = 0; i < nbGroups; i++)
+                {
+                    int nbMembers = groups.ElementAt(i).Count();
+                    IColorHighlightable[] groupMembers = new IColorHighlightable[nbMembers];
+
+                    //Retrieving group member ids
+                    for (int j = 0; j < nbMembers; j++)
+                    {
+                        groupMembers[j] = refCyJsonPathwayGO.
+                                                    DataID_to_DataGO[groups.ElementAt(i).ElementAt(j)["data"]["id"].Value<uint>()].
+                                                    GetComponent<IColorHighlightable>();
+                        groupMembers[j].defaultColor = edgesGroups[i].color;
+                        groupMembers[j].ApplyColor(edgesGroups[i].color);
+                    }
+
+                    //Adding group memebers information
+                    edgesGroups[i].members = groupMembers;
+                }
+            }
+        }
+
+        public void ReuseDefinedNodesGroups()
+        {
+            IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.graphData.jNodes, nodesGroupAttribute);
+            if (groups == null)
+            {
+                Debug.LogError("Failed to group data by " + nodesGroupAttribute);
+            }
+            else
+            {
+                Debug.Log("<color=green>Succesfully</color> grouped data by " + nodesGroupAttribute + $". {groups.Count()} were found.");
+                int nbGroups = groups.Count();
+                for (int i = 0; i < nbGroups; i++)
+                {
+                    int nbMembers = groups.ElementAt(i).Count();
+                    IColorHighlightable[] groupMembers = new IColorHighlightable[nbMembers];
+
+                    //Retrieving group member ids
+                    for (int j = 0; j < nbMembers; j++)
+                    {
+                        groupMembers[j] = refCyJsonPathwayGO.
+                                                    DataID_to_DataGO[groups.ElementAt(i).ElementAt(j)["data"]["id"].Value<uint>()].
+                                                    GetComponent<IColorHighlightable>();
+                        groupMembers[j].defaultColor = nodesGroups[i].color;
+                        groupMembers[j].ApplyColor(nodesGroups[i].color);
+                    }
+
+                    //Adding group memebers information
+                    nodesGroups[i].members = groupMembers;
+                }
+            }
+        }
+
 
 
     }

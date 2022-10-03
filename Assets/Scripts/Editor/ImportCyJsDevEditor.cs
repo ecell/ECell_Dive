@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
@@ -18,9 +16,14 @@ namespace ECellDive.CustomEditors
 
             m_importCyJsDev = (ImportCyJsDev)target;
 
-            if (GUILayout.Button("Import Target Model"))
+            if (GUILayout.Button("Generate Graph Model"))
             {
-                m_importCyJsDev.ImportModelCyJs();
+                m_importCyJsDev.GenerateGraphCyJs();
+            }
+
+            if (GUILayout.Button("Generate Graph Asset"))
+            {
+                m_importCyJsDev.GenerateGraphCyJsAsset();
             }
 
             serializedObject.ApplyModifiedProperties();

@@ -16,14 +16,28 @@ namespace ECellDive.CustomEditors
             groupByCyJsGraphDev = (GroupByCyJsGraphDev)target;
 
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Group Edges"))
+            if (GUILayout.Button("Create Group Edges"))
             {
-                groupByCyJsGraphDev.GroupEdges();
+                groupByCyJsGraphDev.CreateGroupEdges();
             }
 
-            if (GUILayout.Button("Group Nodes"))
+            if (GUILayout.Button("Create Group Nodes"))
             {
-                groupByCyJsGraphDev.GroupNodes();
+                groupByCyJsGraphDev.CreateGroupNodes();
+            }
+            GUILayout.EndHorizontal();
+
+            EditorGUILayout.Space();
+
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("Reuse Defined Edge Groups"))
+            {
+                groupByCyJsGraphDev.ReuseDefinedEdgeGroups();
+            }
+
+            if (GUILayout.Button("Reuse Defined Nodes Groups"))
+            {
+                groupByCyJsGraphDev.ReuseDefinedNodesGroups();
             }
             GUILayout.EndHorizontal();
 

@@ -32,9 +32,9 @@ namespace ECellDive.CustomEditors
         /// file of a model and instantiating its corresponding
         /// module in the main room.
         /// </summary>
-        public void ImportModelCyJs()
+        public void GenerateGraphCyJs()
         {
-            StartCoroutine(ImportModelCyJsC());
+            StartCoroutine(GenerateGraphCyJsC());
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace ECellDive.CustomEditors
         /// instantiation of the network module.
         /// </summary>
         /// <returns></returns>
-        private IEnumerator ImportModelCyJsC()
+        private IEnumerator GenerateGraphCyJsC()
         {
             GetModelCyJs(targetModelName);
 
@@ -56,6 +56,38 @@ namespace ECellDive.CustomEditors
                 cyJsonDataHolder.DirectReceiveSourceData(name, mCFs);
 
                 cyJsonDataHolder.GenerateGraph();
+            }
+        }
+        
+        /// <summary>
+        /// The public interface to ask the server for the .cyjs
+        /// file of a model and instantiating its corresponding
+        /// module in the main room.
+        /// </summary>
+        public void GenerateGraphCyJsAsset()
+        {
+            StartCoroutine(GenerateGraphCyJsAssetC());
+        }
+
+        /// <summary>
+        /// The coroutine handling the request to the server and the
+        /// instantiation of the network module.
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator GenerateGraphCyJsAssetC()
+        {
+            GetModelCyJs(targetModelName);
+
+            yield return new WaitUntil(() => requestData.requestProcessed);
+
+            if (requestData.requestSuccess)
+            {
+                byte[] modelContent = System.Text.Encoding.UTF8.GetBytes(requestData.requestText);
+                byte[] name = System.Text.Encoding.UTF8.GetBytes(targetModelName);
+                List<byte[]> mCFs = ArrayManipulation.FragmentToList(modelContent, 1024);
+                cyJsonDataHolder.DirectReceiveSourceData(name, mCFs);
+
+                cyJsonDataHolder.GenerateGraphAsset();
             }
         }
     }

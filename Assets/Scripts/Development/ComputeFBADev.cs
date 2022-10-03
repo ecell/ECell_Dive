@@ -6,7 +6,6 @@ using UnityEngine;
 
 using ECellDive.Interfaces;
 using ECellDive.Modules;
-using ECellDive.UI;
 
 namespace ECellDive.CustomEditors
 {
@@ -34,8 +33,9 @@ namespace ECellDive.CustomEditors
 
             foreach (IEdge _edgeData in cyJsonDataHolder.graphData.edges)
             {
+                Debug.Log($"adding {cyJsonDataHolder.graphData.edges}");
                 fbaAnalysisData.knockOuts[_edgeData.ID] = false;
-                string _name = cyJsonDataHolder.DataID_to_DataGO[_edgeData.ID].name;
+                string _name = _edgeData.name;
                 if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_name))
                 {
                     fbaAnalysisData.edgeName_to_EdgeID[_name].Add(_edgeData.ID);
@@ -115,11 +115,13 @@ namespace ECellDive.CustomEditors
         /// </summary>
         public void ShowComputedFluxes()
         {
+            Debug.Log($"ShowComputedFluxes; {fbaAnalysisData.fluxes.Count}");
             EdgeGO edgeGO;
             foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
             {
                 if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
                 {
+                    Debug.Log(fbaAnalysisData.edgeName_to_EdgeID[_edgeName].Count);
                     float level = fbaAnalysisData.fluxes[_edgeName];
                     float levelClamped = Mathf.Clamp(level,
                                                      minFluxLevelsClamp,
@@ -154,7 +156,6 @@ namespace ECellDive.CustomEditors
             GetModelSolution(_modelName, _knockouts);
 
             yield return new WaitUntil(() => requestData.requestProcessed);
-
             if (requestData.requestSuccess)
             {
                 requestData.requestJObject = JObject.Parse(requestData.requestText);
