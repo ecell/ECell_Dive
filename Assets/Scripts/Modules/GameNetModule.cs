@@ -222,11 +222,6 @@ namespace ECellDive
                 m_Collider = GetComponentInChildren<Collider>();
                 m_Renderer = GetComponent<Renderer>();
                 m_LineRenderer = GetComponent<LineRenderer>();
-
-                if (nameTextFieldContainer != null)
-                {
-                    nameField = nameTextFieldContainer?.GetComponentInChildren<TextMeshProUGUI>();
-                }
             }
 
             public override void OnDestroy()
@@ -248,6 +243,13 @@ namespace ECellDive
                 m_currentColor.OnValueChanged += ApplyCurrentColorChange;
                 isActivated.OnValueChanged += ManageActivationStatus;
                 SetCurrentColorToDefaultServerRpc();
+
+                if (nameTextFieldContainer != null)
+                {
+                    nameTextFieldContainer.SetActive(true);
+                    nameField = nameTextFieldContainer.GetComponentInChildren<TextMeshProUGUI>();
+                    nameTextFieldContainer.SetActive(false);
+                }
             }
 
             protected virtual void ApplyCurrentColorChange(Color _previous, Color _current)
@@ -453,7 +455,7 @@ namespace ECellDive
             public virtual void DisplayName()
             {
                 m_nameTextFieldContainer.gameObject.SetActive(true);
-                nameField.gameObject.SetActive(true);
+                //nameField.gameObject.SetActive(true);
             }
 
             /// <inheritdoc/>
@@ -466,7 +468,7 @@ namespace ECellDive
             public void HideName()
             {
                 m_nameTextFieldContainer.gameObject.SetActive(false);
-                nameField.gameObject.SetActive(false);
+                //nameField.gameObject.SetActive(false);
             }
 
             /// <inheritdoc/>
