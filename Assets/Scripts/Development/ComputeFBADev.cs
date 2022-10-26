@@ -8,6 +8,7 @@ using UnityEngine;
 
 using ECellDive.Interfaces;
 using ECellDive.Modules;
+using UnityEditor;
 
 namespace ECellDive.CustomEditors
 {
@@ -111,19 +112,59 @@ namespace ECellDive.CustomEditors
             StartCoroutine(SolveModelC(fbaAnalysisData.activeModelName, knockoutString));
         }
 
+        public void SaveFluxes()
+        {
+            FluxDataSerializer fluxDataSerializer = ScriptableObject.CreateInstance<FluxDataSerializer>();
+
+            int count = 0;
+            foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
+            {
+                if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
+                {
+                    count += fbaAnalysisData.edgeName_to_EdgeID[_edgeName].Count;
+                }
+            }
+
+            fluxDataSerializer.data = new FluxData[count];
+
+            count = 0;
+            foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
+            {
+                if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
+                {
+                    float level = fbaAnalysisData.fluxes[_edgeName];
+                    float levelClamped = Mathf.Clamp(level,
+                                                     minFluxLevelsClamp,
+                                                     maxFluxLevelsClamp);
+
+                    foreach (uint _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
+                    {
+                        fluxDataSerializer.data[count] = new FluxData
+                        {
+                            fluxLevel = level,
+                            fluxLevelClamped = levelClamped,
+                            targetGoID = _id
+                        };
+                        count++;
+                    }
+                }
+            }
+
+            AssetDatabase.CreateAsset(fluxDataSerializer, "Assets/Resources/Prefabs/Modules/Demo_iJO1366/" + cyJsonDataHolder.name + "_FluxData.asset");
+
+        }
+
         /// <summary>
         /// Transfers the results of the FBA (fluxes values) to the shaders
         /// of the edges (representing the reactions).
         /// </summary>
         public void ShowComputedFluxes()
         {
-            Debug.Log($"ShowComputedFluxes; {fbaAnalysisData.fluxes.Count}");
             EdgeGO edgeGO;
             foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
             {
                 if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
                 {
-                    Debug.Log(fbaAnalysisData.edgeName_to_EdgeID[_edgeName].Count);
                     float level = fbaAnalysisData.fluxes[_edgeName];
                     float levelClamped = Mathf.Clamp(level,
                                                      minFluxLevelsClamp,

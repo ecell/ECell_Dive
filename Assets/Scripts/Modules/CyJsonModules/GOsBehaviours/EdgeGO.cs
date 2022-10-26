@@ -87,6 +87,7 @@ namespace ECellDive
             {
                 base.OnNetworkDespawn();
 
+                fluxLevel.OnValueChanged -= ApplyFLChanges;
                 fluxLevelClamped.OnValueChanged -= ApplyFLCChanges;
                 knockedOut.OnValueChanged -= ApplyKOChanges;
             }

@@ -12,6 +12,7 @@ using ECellDive.Utility;
 
 #if UNITY_EDITOR
 using UnityEditor;
+using ECellDive.CustomEditors;
 #endif
 
 namespace ECellDive
@@ -185,9 +186,9 @@ namespace ECellDive
             /// </summary>
             public void GenerateGraphAsset()
             {
-                CyJsonPathway graphDataAsset = ScriptableObject.CreateInstance<CyJsonPathway>();
-                graphDataAsset.Copy(graphData);
-                AssetDatabase.CreateAsset(graphDataAsset, "Assets/Resources/Prefabs/Modules/Demo_iJO1366/"+graphData.name+".asset");
+                GraphDataSerializer graphDataAsset = ScriptableObject.CreateInstance<GraphDataSerializer>();
+                graphDataAsset.Initialize(graphData);
+                AssetDatabase.CreateAsset(graphDataAsset, "Assets/Resources/Prefabs/Modules/Demo_iJO1366/"+graphData.name+"_GraphData.asset");
             }
 #endif
 

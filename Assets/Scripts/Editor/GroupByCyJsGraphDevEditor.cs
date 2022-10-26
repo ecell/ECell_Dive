@@ -55,6 +55,11 @@ namespace ECellDive.CustomEditors
             }
             GUILayout.EndHorizontal();
 
+            if(GUILayout.Button("Save Nodes and Edges Color Groups"))
+            {
+                groupByCyJsGraphDev.SaveEdgesAndNodesColors();
+            }
+
             serializedObject.ApplyModifiedProperties();
         }
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UnityEditor;
 using ECellDive.Modules;
 using ECellDive.Interfaces;
 using ECellDive.IO;
@@ -53,15 +54,15 @@ namespace ECellDive.CustomEditors
                 {
                     int nbMembers = groups.ElementAt(i).Count();
                     IColorHighlightable[] groupMembers = new IColorHighlightable[nbMembers];
+                    uint[] groupMemberIds = new uint[nbMembers];
 
                     Color grpColor = Random.ColorHSV();
 
                     //Retrieving group member ids
                     for (int j = 0; j < nbMembers; j++)
                     {
-                        groupMembers[j] = refCyJsonPathwayGO.
-                                                    DataID_to_DataGO[groups.ElementAt(i).ElementAt(j)["data"]["id"].Value<uint>()].
-                                                    GetComponent<IColorHighlightable>();
+                        groupMemberIds[j] = groups.ElementAt(i).ElementAt(j)["data"]["id"].Value<uint>();
+                        groupMembers[j] = refCyJsonPathwayGO.DataID_to_DataGO[groupMemberIds[j]].GetComponent<IColorHighlightable>();
                         groupMembers[j].defaultColor = grpColor;
                         groupMembers[j].ApplyColor(grpColor);
                     }
@@ -71,7 +72,8 @@ namespace ECellDive.CustomEditors
                         {
                             value = groups.ElementAt(i).Key,
                             color = grpColor,
-                            members = groupMembers
+                            members = groupMembers,
+                            membersIds = groupMemberIds
                         };
                 }
             }
@@ -93,12 +95,14 @@ namespace ECellDive.CustomEditors
                 {
                     int nbMembers = groups.ElementAt(i).Count();
                     IColorHighlightable[] groupMembers = new IColorHighlightable[nbMembers];
+                    uint[] groupMemberIds = new uint[nbMembers];
 
                     Color grpColor = Random.ColorHSV();
 
                     //Retrieving group member ids
                     for (int j = 0; j < nbMembers; j++)
                     {
+                        groupMemberIds[j] = groups.ElementAt(i).ElementAt(j)["data"]["id"].Value<uint>();
                         groupMembers[j] = refCyJsonPathwayGO.
                                                     DataID_to_DataGO[groups.ElementAt(i).ElementAt(j)["data"]["id"].Value<uint>()].
                                                     GetComponent<IColorHighlightable>();
@@ -111,7 +115,8 @@ namespace ECellDive.CustomEditors
                     {
                         value = groups.ElementAt(i).Key,
                         color = grpColor,
-                        members = groupMembers
+                        members = groupMembers,
+                        membersIds = groupMemberIds
                     };
                 }
             }
@@ -181,8 +186,52 @@ namespace ECellDive.CustomEditors
             }
         }
 
+        public void SaveEdgesAndNodesColors()
+        {
+            ColorDataSerializer colorDataSerializer = ScriptableObject.CreateInstance<ColorDataSerializer>();
 
+            int count = 0;
+            foreach (GroupData groupData in edgesGroups)
+            {
+                count += groupData.members.Length;
+            }
 
+            foreach (GroupData groupData in nodesGroups)
+            {
+                count += groupData.members.Length;
+            }
+
+            colorDataSerializer.data = new ColorData[count];
+
+            int offset = 0;
+            foreach (GroupData groupData in edgesGroups)
+            {
+                for (int i = 0; i < groupData.membersIds.Length; i++)
+                {
+                    colorDataSerializer.data[offset + i] = new ColorData
+                    {
+                        color = groupData.color,
+                        targetGoID = groupData.membersIds[i]
+                    };
+                }
+                offset += groupData.membersIds.Length;
+            }
+
+            foreach (GroupData groupData in nodesGroups)
+            {
+                for (int i = 0; i < groupData.membersIds.Length; i++)
+                {
+                    colorDataSerializer.data[offset + i] = new ColorData
+                    {
+                        color = groupData.color,
+                        targetGoID = groupData.membersIds[i]
+                    };
+                }
+                offset += groupData.membersIds.Length;
+            }
+
+            AssetDatabase.CreateAsset(colorDataSerializer, "Assets/Resources/Prefabs/Modules/Demo_iJO1366/" + refCyJsonPathwayGO.name + "_ColorData.asset");
+        }
     }
 }
 

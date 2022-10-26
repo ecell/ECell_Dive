@@ -21,6 +21,11 @@ namespace ECellDive.CustomEditors
                 m_ComputeFBADev.InitializeFbaAnalysisData();
                 m_ComputeFBADev.RequestModelSolve();
             }
+
+            if (GUILayout.Button("Save Fluxes"))
+            {
+                m_ComputeFBADev.SaveFluxes();
+            }
         }
     }
 }

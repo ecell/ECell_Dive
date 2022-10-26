@@ -17,6 +17,7 @@ namespace ECellDive
             public string value;
             public Color color;
             public IHighlightable[] members;
+            public uint[] membersIds;
         }
 
         /// <summary>
