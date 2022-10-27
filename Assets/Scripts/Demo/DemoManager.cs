@@ -1,13 +1,16 @@
-using ECellDive.Interfaces;
-using ECellDive.Modules;
-using ECellDive.Utility;
-using System.Collections;
-using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 using ECellDive.PlayerComponents;
+using ECellDive.CustomEditors;
+using ECellDive.GraphComponents;
+using ECellDive.IO;
+using ECellDive.Interfaces;
+using ECellDive.Modules;
+using ECellDive.Utility;
 
 namespace ECellDive.Tutorials
 {
@@ -29,14 +32,10 @@ namespace ECellDive.Tutorials
 
 
         [Header("References to CyJsonModules")]
-        public CyJsonModule cyJsModulePlain;
-        public GameObject cyJsGoPlain;
-        
-        public CyJsonModule cyJsModuleGrouped;
-        public GameObject cyJsGoGrouped;
-        
-        public CyJsonModule cyJsModuleGroupedFBA;
-        public GameObject cyJsGoGroupedFBA;
+        public CyJsonModule cyJsonModule;
+        public TextAsset cyJsonGraphData;
+        public ColorDataSerializer cyJsonColorData;
+        public FluxDataSerializer cyJsonFluxData;
 
         [Header("References to UI")]
         public GameObject shortDemoUiPanel;
@@ -108,26 +107,24 @@ namespace ECellDive.Tutorials
             StaticReferencer.Instance.refInfoTags[5].SetActive(true);//Left Grab Trigger
             StaticReferencer.Instance.refInfoTags[9].SetActive(true);//Right Front Trigger
 
-            //We make sure to synchronize the cyJsonModules with the gameobjects.
-            //Supposedly we should have been able to better deal with this by 
-            //correctly handling serialization aof the cyJsonModule and the graph.
-            foreach(Transform _graphComponent in cyJsGoPlain.transform)
-            {
-                cyJsModulePlain.DataID_to_DataGO[System.Convert.ToUInt32(_graphComponent.name)] = _graphComponent.gameObject;
-            }
+            GenerateDemoGraph();
+        }
 
-            foreach(Transform _graphComponent in cyJsGoGrouped.transform)
-            {
-                cyJsModuleGrouped.DataID_to_DataGO[System.Convert.ToUInt32(_graphComponent.name)] = _graphComponent.gameObject;
-            }
+        public void GenerateDemoGraph()
+        {
+            JObject graphData = JObject.Parse(cyJsonGraphData.text);
+            //Loading the file
+            CyJsonPathway pathway = CyJsonPathwayLoader.Initiate(graphData,
+                                                                cyJsonGraphData.name);
 
-            foreach(Transform _graphComponent in cyJsGoGroupedFBA.transform)
-            {
-                cyJsModuleGroupedFBA.DataID_to_DataGO[System.Convert.ToUInt32(_graphComponent.name)] = _graphComponent.gameObject;
-            }
+            //Instantiating relevant data structures to store the information about
+            //the layers, nodes and edges.
+            CyJsonPathwayLoader.Populate(pathway);
+            CyJsonModulesData.AddData(pathway);
 
-            SetReferencing();
+            cyJsonModule.SetNetworkData(pathway);
 
+            cyJsonModule.GenerativeDiveIn();            
         }
 
 
@@ -166,33 +163,42 @@ namespace ECellDive.Tutorials
             Destroy(shortDemoUiPanel);
         }
 
-        public void SetReferencing()
+        public void ResetNetwork()
         {
-            EdgeGO edgeGO;
-            //Since the graph data will be the same for the 3 variations of the graph,
-            //we can use the same loops to set the referencing for all.
-            foreach (IEdge edge in cyJsModulePlain.graphData.edges)
+            IColorHighlightableNet cHN;
+            foreach (ColorData _cd in cyJsonColorData.data)
             {
-                edgeGO = cyJsModulePlain.DataID_to_DataGO[edge.ID].GetComponent<EdgeGO>();
-                edgeGO.SetEdgeData(edge);
-                edgeGO.SetRefMasterPathway(cyJsModulePlain);
-                
-                edgeGO = cyJsModuleGrouped.DataID_to_DataGO[edge.ID].GetComponent<EdgeGO>();
-                edgeGO.SetEdgeData(edge);
-                edgeGO.SetRefMasterPathway(cyJsModuleGrouped);
-                
-                edgeGO = cyJsModuleGroupedFBA.DataID_to_DataGO[edge.ID].GetComponent<EdgeGO>();
-                edgeGO.SetEdgeData(edge);
-                edgeGO.SetRefMasterPathway(cyJsModuleGroupedFBA);
+                cHN = cyJsonModule.DataID_to_DataGO[_cd.targetGoID].GetComponent<IColorHighlightableNet>();
+                cHN.defaultColor = Color.white;
+                cHN.ApplyColor(Color.white);
             }
 
-            foreach (INode node in cyJsModulePlain.graphData.nodes)
+            EdgeGO edgeGO;
+            foreach (FluxData _fd in cyJsonFluxData.data)
             {
-                cyJsModulePlain.DataID_to_DataGO[node.ID].GetComponent<NodeGO>().SetNodeData(node);
+                edgeGO = cyJsonModule.DataID_to_DataGO[_fd.targetGoID].GetComponent<EdgeGO>();
+                edgeGO.SetFlux(0f, 0f);
+            }
+        }
 
-                cyJsModuleGrouped.DataID_to_DataGO[node.ID].GetComponent<NodeGO>().SetNodeData(node);
+        public void ShowGroups()
+        {
+            IColorHighlightableNet cHN;
+            foreach (ColorData _cd in cyJsonColorData.data)
+            {
+                cHN = cyJsonModule.DataID_to_DataGO[_cd.targetGoID].GetComponent<IColorHighlightableNet>();
+                cHN.defaultColor = _cd.color;
+                cHN.ApplyColor(_cd.color);
+            }
+        }
 
-                cyJsModuleGroupedFBA.DataID_to_DataGO[node.ID].GetComponent<NodeGO>().SetNodeData(node);
+        public void ShowFBA()
+        {
+            EdgeGO edgeGO;
+            foreach (FluxData _fd in cyJsonFluxData.data)
+            {
+                edgeGO = cyJsonModule.DataID_to_DataGO[_fd.targetGoID].GetComponent<EdgeGO>();
+                edgeGO.SetFlux(_fd.fluxLevel, _fd.fluxLevelClamped);
             }
         }
     }

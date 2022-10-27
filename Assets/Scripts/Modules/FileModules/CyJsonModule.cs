@@ -186,9 +186,9 @@ namespace ECellDive
             /// </summary>
             public void GenerateGraphAsset()
             {
-                GraphDataSerializer graphDataAsset = ScriptableObject.CreateInstance<GraphDataSerializer>();
-                graphDataAsset.Initialize(graphData);
+                TextAsset graphDataAsset = new TextAsset(graphData.graphData.ToString());
                 AssetDatabase.CreateAsset(graphDataAsset, "Assets/Resources/Prefabs/Modules/Demo_iJO1366/"+graphData.name+"_GraphData.asset");
+                
             }
 #endif
 
