@@ -3,13 +3,15 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
-using ECellDive.PlayerComponents;
 using ECellDive.CustomEditors;
 using ECellDive.GraphComponents;
 using ECellDive.IO;
 using ECellDive.Interfaces;
 using ECellDive.Modules;
+using ECellDive.PlayerComponents;
+using ECellDive.SceneManagement;
 using ECellDive.Utility;
 
 namespace ECellDive.Tutorials
@@ -57,6 +59,8 @@ namespace ECellDive.Tutorials
 
             //Attach/pin the local gui to the player
             shortDemoUiPanel.transform.SetParent(FindObjectOfType<Player>().transform);
+            shortDemoUiPanel.transform.localPosition = new Vector3(-1f, 0.8f, 1.5f);
+            shortDemoUiPanel.GetComponent<FaceCamera>().LookAt();
 
             //Disable the RayBased Action Map
             refInputActionAsset.FindActionMap("Ray_Based_Controls_LH").Disable();
@@ -90,8 +94,6 @@ namespace ECellDive.Tutorials
             refLeftSelect.action.Enable();
             //Allow user to grab objects (the UI menu) with the left controller.
             refLeftGrab.action.Enable();
-            //Allow user to open objects' menu with left controller.
-            refLeftOpenObjectMenu.action.Enable();
             //Allow user to teleport with right controller
             refRightTeleportation.action.Enable();
 
@@ -102,7 +104,6 @@ namespace ECellDive.Tutorials
             }
 
             //... but still show the InfoTags of the front trigger.
-            StaticReferencer.Instance.refInfoTags[1].SetActive(true);//X
             StaticReferencer.Instance.refInfoTags[4].SetActive(true);//Left Front Trigger
             StaticReferencer.Instance.refInfoTags[5].SetActive(true);//Left Grab Trigger
             StaticReferencer.Instance.refInfoTags[9].SetActive(true);//Right Front Trigger
@@ -123,15 +124,13 @@ namespace ECellDive.Tutorials
             CyJsonModulesData.AddData(pathway);
 
             cyJsonModule.SetNetworkData(pathway);
-
-            cyJsonModule.GenerativeDiveIn();            
+            cyJsonModule.isReadyForGeneration.Value = true;
+            cyJsonModule.TryDiveIn();            
         }
 
 
         public void Quit()
         {
-            quit.Invoke();
-
             //Resubscribe the Action map switch within the InputModeManager
             //in order to restore default behaviour: when the user presses
             //the button binded to switching controls input actions, the 
@@ -161,6 +160,11 @@ namespace ECellDive.Tutorials
 
             //Since we pinned the UiPanel to the Player, we need to destroy manually on Quit
             Destroy(shortDemoUiPanel);
+
+            //Destroy the Network that was spawned
+            FindObjectOfType<DiveScenesManager>().ResurfaceServerRpc(NetworkManager.Singleton.LocalClientId);
+
+            quit.Invoke();
         }
 
         public void ResetNetwork()
