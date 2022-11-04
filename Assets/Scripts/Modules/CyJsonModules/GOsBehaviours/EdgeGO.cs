@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.UI;
 using ECellDive.Interfaces;
+using TMPro;
 
 namespace ECellDive
 {
@@ -52,7 +53,7 @@ namespace ECellDive
             private ParticleSystem.EmissionModule emissionModule;
             private ParticleSystem.ShapeModule shapeModule;
 
-            private CyJsonModule refMasterPathway;
+            private IGraphGO refMasterPathway;
 
             protected override void Awake()
             {
@@ -86,6 +87,7 @@ namespace ECellDive
             {
                 base.OnNetworkDespawn();
 
+                fluxLevel.OnValueChanged -= ApplyFLChanges;
                 fluxLevelClamped.OnValueChanged -= ApplyFLCChanges;
                 knockedOut.OnValueChanged -= ApplyKOChanges;
             }
@@ -104,30 +106,12 @@ namespace ECellDive
 
             private void ApplyFLChanges(float _previous, float _current)
             {
-                //control direction of the edge if the flux is reversed
-                if ((_previous < 0 && _current > 0) || (_previous > 0 && _current < 0))
-                {
-                    Vector3 startBuffer = m_LineRenderer.GetPosition(0);
-                    m_LineRenderer.SetPosition(0, m_LineRenderer.GetPosition(1));
-                    m_LineRenderer.SetPosition(1, startBuffer);
-                    refParticleSystem.transform.localPosition = m_LineRenderer.GetPosition(0);
-                    refParticleSystem.transform.LookAt(m_LineRenderer.GetPosition(1));
-                }
-
-                //Update emission rate
-                emissionModule.rateOverTime = _current;
+                ApplyFluxLevel();
             }
 
             private void ApplyFLCChanges(float _previous, float _current)
             {
-                SetInformationString();
-
-                SetLineRendererWidth();
-
-                SetColliderHeightWidth();
-                shapeModule.scale = m_refBoxColliderHolder.transform.localScale;
-
-                //UnsetHighlightServerRpc();
+                ApplyFluxLevelClamped();
             }
 
             private void ApplyKOChanges(bool _previous, bool _current)
@@ -139,15 +123,33 @@ namespace ECellDive
 
             public void Initialize(CyJsonModule _masterPathway, IEdge _edge)
             {
+#if UNITY_EDITOR
+                m_LineRenderer = GetComponent<LineRenderer>();
+                if (nameTextFieldContainer != null)
+                {
+                    nameField = nameTextFieldContainer?.GetComponentInChildren<TextMeshProUGUI>();
+                }
+
+                mpb = new MaterialPropertyBlock();
+                colorID = Shader.PropertyToID("_Color");
+                mpb.SetVector(colorID, defaultColor);
+                m_LineRenderer.SetPropertyBlock(mpb);
+
+                activationID = Shader.PropertyToID("_Activation");
+                refParticleSystem = GetComponentInChildren<ParticleSystem>();
+                mainModule = refParticleSystem.main;
+                emissionModule = refParticleSystem.emission;
+                shapeModule = refParticleSystem.shape;
+#endif
                 refMasterPathway = _masterPathway;
                 InstantiateInfoTags(new string[] { "" });
                 SetEdgeData(_edge);
                 gameObject.SetActive(true);
-                gameObject.name = edgeData.name;
+                gameObject.name = $"{edgeData.ID}";
                 SetName(edgeData.reaction_name);
                 HideName();
-                SetDefaultWidth(1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor,
-                                1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor);
+                SetDefaultWidth(1 / refMasterPathway.graphScalingData.sizeScaleFactor,
+                                1 / refMasterPathway.graphScalingData.sizeScaleFactor);
 
                 SetLineRendererWidth();
 
@@ -165,7 +167,7 @@ namespace ECellDive
                 
 
                 m_nameTextFieldContainer.transform.position = 0.5f * (start.position + target.position) +
-                                                                1 / refMasterPathway.cyJsonPathwaySettings.SizeScaleFactor * 1.5f * Vector3.up;
+                                                                1 / refMasterPathway.graphScalingData.sizeScaleFactor * 1.5f * Vector3.up;
             }
 
             [ServerRpc(RequireOwnership = false)]
@@ -212,6 +214,7 @@ namespace ECellDive
             [ServerRpc(RequireOwnership = false)]
             private void SetFluxValuesServerRpc(float _fluxValue, float _fluxClampedValue)
             {
+                Debug.Log("SetFlux");
                 fluxLevel.Value = _fluxValue;
                 fluxLevelClamped.Value = _fluxClampedValue;
             }
@@ -225,6 +228,15 @@ namespace ECellDive
                                                                 0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),
                                                                 0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),
                                                                 m_refBoxColliderHolder.transform.localScale.z);
+            }
+
+            /// <summary>
+            /// Sets the value for <see cref="refMasterPathway"/>.
+            /// </summary>
+            /// <param name="_masterPathway">The value for <see cref="refMasterPathway"/>.</param>
+            public void SetRefMasterPathway(IGraphGO _masterPathway)
+            {
+                refMasterPathway = _masterPathway;
             }
 
             /// <summary>
@@ -458,6 +470,16 @@ namespace ECellDive
             }
 
             #region - IColorHighlightable Methods -
+
+            public override void ApplyColor(Color _color)
+            {
+                mpb.SetVector(colorID, _color);
+                if (m_LineRenderer != null)
+                {
+                    m_LineRenderer.SetPropertyBlock(mpb);
+                }
+            }
+
             public override void SetHighlight()
             {
                 SpreadHighlightUpward();
@@ -475,6 +497,16 @@ namespace ECellDive
             #endregion
 
             #region - IEdgeGO Methods- 
+            /// <inheritdoc/>
+            public void ReverseOrientation()
+            {
+                Vector3 startBuffer = m_LineRenderer.GetPosition(0);
+                m_LineRenderer.SetPosition(0, m_LineRenderer.GetPosition(1));
+                m_LineRenderer.SetPosition(1, startBuffer);
+                refParticleSystem.transform.localPosition = m_LineRenderer.GetPosition(0);
+                refParticleSystem.transform.LookAt(m_LineRenderer.GetPosition(1));
+            }
+
             /// <inheritdoc/>
             public void SetDefaultWidth(float _start, float _end)
             {
@@ -532,11 +564,34 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
+            public void ApplyFluxLevel()
+            {
+                //Update emission rate
+                emissionModule.rateOverTime = fluxLevel.Value;
+            }
+
+            /// <inheritdoc/>
+            public void ApplyFluxLevelClamped()
+            {
+                SetInformationString();
+
+                SetLineRendererWidth();
+
+                SetColliderHeightWidth();
+                shapeModule.scale = m_refBoxColliderHolder.transform.localScale;
+            }
+
+            /// <inheritdoc/>
             public void SetFlux(float _level, float _levelClamped)
             {
+#if UNITY_EDITOR
+                fluxLevel.Value = _level;
+                fluxLevelClamped.Value = _levelClamped;
+#else
                 SetFluxValuesServerRpc(_level, _levelClamped);
+#endif
             }
-            #endregion            
+            #endregion
         }
     }
 }

@@ -21,7 +21,7 @@ namespace ECellDive
                                     IDive,
                                     IFocus,
                                     IGroupable,
-                                    IColorHighlightable,
+                                    IColorHighlightableNet,
                                     IInfoTags,
                                     INamed,
                                     IMlprData,
@@ -34,18 +34,6 @@ namespace ECellDive
             protected int colorID;
 
             #region - IDive Members -
-            [SerializeField] private LeftRightData<InputActionReference> m_diveActions;
-            public LeftRightData<InputActionReference> diveActions
-            {
-                get => m_diveActions;
-                set
-                {
-                    m_diveActions = value;
-                    m_diveActions.left = value.left;
-                    m_diveActions.right = value.right;
-                }
-            }
-
             private NetworkVariable<int> m_rootSceneId = new NetworkVariable<int>();
             public NetworkVariable<int> rootSceneId
             {
@@ -90,7 +78,7 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IColorHighlightable Members - 
+            #region - IColorHighlightableNet Members - 
 
             private bool m_forceHighlight = false;
             public bool forceHighlight
@@ -213,27 +201,16 @@ namespace ECellDive
             {
                 areVisible = false;
 
-                diveActions.left.action.performed += TryDiveIn;
-                diveActions.right.action.performed += TryDiveIn;
-
                 m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
 
                 m_Collider = GetComponentInChildren<Collider>();
                 m_Renderer = GetComponent<Renderer>();
                 m_LineRenderer = GetComponent<LineRenderer>();
-
-                if (nameTextFieldContainer != null)
-                {
-                    nameField = nameTextFieldContainer?.GetComponentInChildren<TextMeshProUGUI>();
-                }
             }
 
             public override void OnDestroy()
             {
-                diveActions.left.action.performed -= TryDiveIn;
-                diveActions.right.action.performed -= TryDiveIn;
-
                 m_displayInfoTagsActions.left.action.performed -= ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.right.action.performed -= ManageInfoTagsDisplay;
 
@@ -248,15 +225,18 @@ namespace ECellDive
                 m_currentColor.OnValueChanged += ApplyCurrentColorChange;
                 isActivated.OnValueChanged += ManageActivationStatus;
                 SetCurrentColorToDefaultServerRpc();
+
+                if (nameTextFieldContainer != null)
+                {
+                    nameTextFieldContainer.SetActive(true);
+                    nameField = nameTextFieldContainer.GetComponentInChildren<TextMeshProUGUI>();
+                    nameTextFieldContainer.SetActive(false);
+                }
             }
 
             protected virtual void ApplyCurrentColorChange(Color _previous, Color _current)
             {
-                mpb.SetVector(colorID, _current);
-                if (m_Renderer != null)
-                {
-                    m_Renderer.SetPropertyBlock(mpb);
-                }
+                ApplyColor(_current);
             }
 
             /// <summary>
@@ -320,7 +300,7 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
-            public void TryDiveIn(InputAction.CallbackContext _ctx)
+            public void TryDiveIn()
             {
                 StartCoroutine(TryDiveInC());
             }
@@ -328,7 +308,7 @@ namespace ECellDive
             /// <inheritdoc/>
             public virtual IEnumerator TryDiveInC()
             {
-                if (isFocused && isReadyForGeneration.Value)
+                if (isReadyForGeneration.Value)
                 {
                     //Wait for animation to finish;
                     yield return null;
@@ -360,6 +340,15 @@ namespace ECellDive
 
             #region - IColorHighlightable Methods -
 
+            public virtual void ApplyColor(Color _color)
+            {
+                mpb.SetVector(colorID, _color);
+                if (m_Renderer != null)
+                {
+                    m_Renderer.SetPropertyBlock(mpb);
+                }
+            }
+
             /// <inheritdoc/>
             [ServerRpc(RequireOwnership = false)]
             public void SetCurrentColorToDefaultServerRpc()
@@ -375,21 +364,9 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
-            public void SetDefaultColor(Color _c)
-            {
-                m_defaultColor = _c;
-            }
-
-            /// <inheritdoc/>
             public virtual void SetHighlight()
             {
                 SetCurrentColorToHighlightServerRpc();
-            }
-
-            /// <inheritdoc/>
-            public void SetHighlightColor(Color _c)
-            {
-                m_highlightColor = _c;
             }
 
             /// <inheritdoc/>
@@ -406,18 +383,24 @@ namespace ECellDive
             /// <inheritdoc/>
             public void DisplayInfoTags()
             {
-                foreach (Transform _infoTag in refInfoTagsContainer.transform)
+                if (refInfoTagsContainer != null)
                 {
-                    _infoTag.gameObject.SetActive(true);
+                    foreach (Transform _infoTag in refInfoTagsContainer.transform)
+                    {
+                        _infoTag.gameObject.SetActive(true);
+                    }
                 }
             }
 
             /// <inheritdoc/>
             public void HideInfoTags()
             {
-                foreach (Transform _infoTag in refInfoTagsContainer.transform)
+                if (refInfoTagsContainer != null)
                 {
-                    _infoTag.gameObject.SetActive(false);
+                    foreach (Transform _infoTag in refInfoTagsContainer.transform)
+                    {
+                        _infoTag.gameObject.SetActive(false);
+                    }
                 }
             }
 
@@ -460,7 +443,6 @@ namespace ECellDive
             public virtual void DisplayName()
             {
                 m_nameTextFieldContainer.gameObject.SetActive(true);
-                nameField.gameObject.SetActive(true);
             }
 
             /// <inheritdoc/>
@@ -473,7 +455,6 @@ namespace ECellDive
             public void HideName()
             {
                 m_nameTextFieldContainer.gameObject.SetActive(false);
-                nameField.gameObject.SetActive(false);
             }
 
             /// <inheritdoc/>
@@ -682,11 +663,6 @@ namespace ECellDive
                 {
                     m_Collider.enabled = false;
                 }
-                
-                if (nameField != null)
-                {
-                    nameField.gameObject.SetActive(false);
-                }
 
                 if (m_Renderer != null)
                 {
@@ -714,11 +690,6 @@ namespace ECellDive
                 if (m_Collider != null)
                 {
                     m_Collider.enabled = true;
-                }
-
-                if (nameField != null)
-                {
-                    nameField.gameObject.SetActive(true);
                 }
 
                 if (m_Renderer != null)

@@ -144,9 +144,9 @@ namespace ECellDive.PlayerComponents
             //Reset objects Highlight
             for (int i = 0; i < groupMembers.Count; i++)
             {
-                IColorHighlightable highlitable = ToFind.FindComponent<IColorHighlightable>(groupMembers[i]);
-                highlitable.forceHighlight = false;
-                highlitable.UnsetHighlight();
+                IColorHighlightable highlightable = ToFind.FindComponent<IColorHighlightable>(groupMembers[i]);
+                highlightable.forceHighlight = false;
+                highlightable.UnsetHighlight();
             }
 
             //Reset group members list
@@ -202,13 +202,13 @@ namespace ECellDive.PlayerComponents
                 {
                     AddMemberToGroup(_go, groupable);
                     highlightable.forceHighlight = true;
-                    highlightable.SetCurrentColorToHighlightServerRpc();
+                    highlightable.SetHighlight();
                 }
                 else
                 {
                     RemoveMemberFromGroup(_go, groupable);
                     highlightable.forceHighlight = false;
-                    highlightable.SetCurrentColorToDefaultServerRpc();
+                    highlightable.UnsetHighlight();
                 }
 
                 refUIManager.ManageUIConfirmationCanvas(groupMembers.Count);

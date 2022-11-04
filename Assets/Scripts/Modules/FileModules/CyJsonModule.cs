@@ -10,35 +10,27 @@ using ECellDive.Multiplayer;
 using ECellDive.SceneManagement;
 using ECellDive.Utility;
 
+#if UNITY_EDITOR
+using UnityEditor;
+using ECellDive.CustomEditors;
+#endif
+
 namespace ECellDive
 {
     namespace Modules
     {
-        [System.Serializable]
-        public struct CyJsonPathwaySettingsData
-        {
-            [Header("Spawning")]
-            public int nodesBatchSize;
-            public int edgesBatchSize;
-            [Header("Scaling")]
-            [Min(1)] public float PositionScaleFactor;
-            [Min(1)] public float SizeScaleFactor;
-            [Min(0)] public float InterLayersDistance;
-        }
-
         /// <summary>
         /// Derived class with some more specific operations to handle
         /// CyJson modules.
         /// </summary>
         public class CyJsonModule : GameNetModule,
-                                    IGraphGO,
+                                    IGraphGONet,
                                     IModifiable,
                                     ISaveable
         {
             public int refIndex { get; private set; }
             public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
-            public CyJsonPathwaySettingsData cyJsonPathwaySettings;
-            public Dictionary<uint, GameObject> DataID_to_DataGO;
+            
             public GameObject pathwayRoot;
 
             private bool allNodesSpawned = false;
@@ -47,8 +39,23 @@ namespace ECellDive
             public Texture2D mainTex;
 
 
-            #region  - IGraphGO Members - 
-            public IGraph graphData { get; protected set; }
+            #region  - IGraphGONet Members - 
+            [SerializeField] private CyJsonPathway m_graphData;
+            public IGraph graphData { get => m_graphData; protected set => m_graphData = (CyJsonPathway)value; }
+
+            [SerializeField] private GraphScalingData m_graphScalingData;
+            public GraphScalingData graphScalingData
+            {
+                get => m_graphScalingData;
+            }
+            
+            [SerializeField] private GraphBatchSpawning m_graphBatchSpawning;
+            public GraphBatchSpawning graphBatchSpawning
+            {
+                get => m_graphBatchSpawning;
+            }
+
+            public Dictionary<uint, GameObject> DataID_to_DataGO { get; set; }
 
             [SerializeField] private List<GameObject> m_graphPrefabsComponents;
             public List<GameObject> graphPrefabsComponents
@@ -114,9 +121,9 @@ namespace ECellDive
             private IEnumerator EdgesBatchSpawn(int _sceneId)
             {
                 yield return new WaitUntil(() => allNodesSpawned);
-                for (int i = 0; i < graphData.edges.Length; i += cyJsonPathwaySettings.edgesBatchSize)
+                for (int i = 0; i < graphData.edges.Length; i += m_graphBatchSpawning.edgesBatchSize)
                 {
-                    for (int j = i; j < Mathf.Min(i + cyJsonPathwaySettings.edgesBatchSize, graphData.edges.Length); j++)
+                    for (int j = i; j < Mathf.Min(i + m_graphBatchSpawning.edgesBatchSize, graphData.edges.Length); j++)
                     {
                         //ModulesData.AddModule(edgeMD);
                         GameObject edgeGO = DiveScenesManager.Instance.SpawnModuleInScene(_sceneId, graphPrefabsComponents[2], Vector3.zero);
@@ -134,12 +141,56 @@ namespace ECellDive
                 GameObject edgeGO = _edgeNetObj;
                 edgeGO.GetComponent<EdgeGO>().Initialize(this, graphData.edges[_edgeIdx]);
 
-                DataID_to_DataGO[graphData.edges[_edgeIdx].source].GetComponent<INodeGO>().nodeData.outgoingEdges.Add(graphData.edges[_edgeIdx].ID);
-                DataID_to_DataGO[graphData.edges[_edgeIdx].target].GetComponent<INodeGO>().nodeData.incommingEdges.Add(graphData.edges[_edgeIdx].ID);
-
                 DataID_to_DataGO[graphData.edges[_edgeIdx].ID] = edgeGO;
                 edgeGO.GetComponent<GameNetModule>().NetHide();
             }
+
+#if UNITY_EDITOR
+            /// <summary>
+            /// USED ONLY FOR DEVELOPMENT: generates the structure of the graph outside
+            /// of runtime. Use <see cref="EdgesBatchSpawn(int)"/> instead if you want to
+            /// spawn the edges at runtime.
+            /// </summary>
+            private void EdgesSpawn()
+            {
+                for (int i = 0; i < graphData.edges.Length; i++)
+                {
+                    //ModulesData.AddModule(edgeMD);
+                    GameObject edgeGO = Instantiate(graphPrefabsComponents[2]);
+                    edgeGO.transform.parent = pathwayRoot.transform;
+                    edgeGO.GetComponent<EdgeGO>().Initialize(this, graphData.edges[i]);
+
+                    DataID_to_DataGO[graphData.edges[i].ID] = edgeGO;
+                }
+            }
+
+            /// <summary>
+            /// USED ONLY FOR DEVELOPMENT: generates the structure of the graph outside
+            /// of runtime. Use <see cref="RequestGraphGenerationServerRpc(ulong, int)"/>
+            /// instead if you want to spawn the graph at runtime.
+            /// </summary>
+            public void GenerateGraph()
+            {
+                pathwayRoot = Instantiate(graphPrefabsComponents[0]);
+                pathwayRoot.name = graphData.name;
+                DataID_to_DataGO = new Dictionary<uint, GameObject>();
+                //Instantiate Nodes of Layer
+                NodesSpawn();
+
+                //Instantiate Edges of Layer
+                EdgesSpawn();
+            }
+
+            /// <summary>
+            /// USED ONLY FOR DEVELOPMENT: Creates an asset for <see cref="graphData"/>.
+            /// </summary>
+            public void GenerateGraphAsset()
+            {
+                TextAsset graphDataAsset = new TextAsset(graphData.graphData.ToString());
+                AssetDatabase.CreateAsset(graphDataAsset, "Assets/Resources/Prefabs/Modules/Demo_iJO1366/"+graphData.name+"_GraphData.asset");
+                
+            }
+#endif
 
             /// <summary>
             /// Translates the information about knockedout reactions stored
@@ -175,13 +226,14 @@ namespace ECellDive
 
             /// <summary>
             /// Coroutine encapsulating the instantiation of the nodes of the pathway.
-            /// The coroutine yields until the end of the frame after having instantiated one batch of nodes.
+            /// The coroutine yields until the end of the frame after having instantiated
+            /// one batch of nodes.
             /// </summary>
             private IEnumerator NodesBatchSpawn(int _sceneId)
             {
-                for (int i = 0; i < graphData.nodes.Length; i += cyJsonPathwaySettings.nodesBatchSize)
+                for (int i = 0; i < graphData.nodes.Length; i += m_graphBatchSpawning.nodesBatchSize)
                 {
-                    for (int j = i; j < Mathf.Min(i + cyJsonPathwaySettings.nodesBatchSize, graphData.nodes.Length); j++)
+                    for (int j = i; j < Mathf.Min(i + m_graphBatchSpawning.nodesBatchSize, graphData.nodes.Length); j++)
                     {
                         //ModulesData.AddModule(nodeMD);
 
@@ -202,10 +254,28 @@ namespace ECellDive
                 GameObject nodeGO = _nodeNetObj;
                 //Debug.Log($"_nodeNetObj: {nodeGO}, DataID_to_DataGO:{DataID_to_DataGO}, graphData: {graphData}");
                 
-                nodeGO.GetComponent<NodeGO>().Initialize(cyJsonPathwaySettings, graphData.nodes[_nodeIdx]);
+                nodeGO.GetComponent<NodeGO>().Initialize(m_graphScalingData, graphData.nodes[_nodeIdx]);
                 DataID_to_DataGO[graphData.nodes[_nodeIdx].ID] = nodeGO;
                 nodeGO.GetComponent<GameNetModule>().NetHide();
             }
+
+#if UNITY_EDITOR
+            /// <summary>
+            /// USED ONLY FOR DEVELOPMENT: generates the structure of the graph outside
+            /// of runtime. Use <see cref="NodesBatchSpawn(int)"/> instead if you want to
+            /// spawn the nodes at runtime.
+            /// </summary>
+            private void NodesSpawn()
+            {
+                for (int i = 0; i < graphData.nodes.Length; i++)
+                {
+                    GameObject nodeGO = Instantiate(graphPrefabsComponents[1]);
+                    nodeGO.transform.parent = pathwayRoot.transform;
+                    nodeGO.GetComponent<NodeGO>().Initialize(m_graphScalingData, graphData.nodes[i]);
+                    DataID_to_DataGO[graphData.nodes[i].ID] = nodeGO;
+                }
+            }
+#endif
 
             private string ScanForKOModifications()
             {
@@ -277,7 +347,7 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IGraph Methods -
+            #region - IGraphGONet Methods -
 
             /// <inheritdoc/>
             [ServerRpc(RequireOwnership = false)]
@@ -356,8 +426,9 @@ namespace ECellDive
                 CyJsonModulesData.AddData(pathway);
 
                 SetNetworkData(pathway);
-
+#if !UNITY_EDITOR
                 StartUpInfo();
+#endif
             }
             #endregion
 
@@ -375,7 +446,7 @@ namespace ECellDive
                 writingModificationFile = new ModificationFile(author, baseModelPath, description, modification);
             }
 
-            #endregion
+#endregion
         }
     }
 }

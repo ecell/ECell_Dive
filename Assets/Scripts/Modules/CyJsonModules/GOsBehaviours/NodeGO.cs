@@ -1,7 +1,8 @@
-﻿using Unity.Netcode;
+using Unity.Netcode;
 using UnityEngine;
 using ECellDive.UI;
 using ECellDive.Interfaces;
+using TMPro;
 
 namespace ECellDive
 {
@@ -15,24 +16,30 @@ namespace ECellDive
             public string informationString { get; protected set; }
             #endregion
 
-            public override void OnNetworkSpawn()
-            {
-                base.OnNetworkSpawn();
-            }
-
             protected override void ApplyCurrentColorChange(Color _previous, Color _current)
             {
                 mpb.SetVector(colorID, _current);
                 m_Renderer.SetPropertyBlock(mpb);
             }
 
-            public void Initialize(CyJsonPathwaySettingsData _pathwaySettings, in INode _node)
+            public void Initialize(GraphScalingData _pathwaySettings, in INode _node)
             {
+#if UNITY_EDITOR
+                m_Renderer = GetComponent<Renderer>();
+                if (nameTextFieldContainer != null)
+                {
+                    nameField = nameTextFieldContainer.GetComponentInChildren<TextMeshProUGUI>();
+                }
+                mpb = new MaterialPropertyBlock();
+                colorID = Shader.PropertyToID("_Color");
+                mpb.SetVector(colorID, defaultColor);
+                m_Renderer.SetPropertyBlock(mpb);
+#endif
                 InstantiateInfoTags(new string[] { "" });
                 SetNodeData(_node);
                 Vector3 nodePos = new Vector3(nodeData.position.x,
                                               nodeData.position.z,
-                                              nodeData.position.y) / _pathwaySettings.PositionScaleFactor;
+                                              nodeData.position.y) / _pathwaySettings.positionScaleFactor;
                 SetName(nodeData.label);
                 HideName();
                 gameObject.SetActive(true);
@@ -41,11 +48,11 @@ namespace ECellDive
                     m_Renderer.enabled = false;
                 }
                 gameObject.transform.position = nodePos;
-                gameObject.transform.localScale /= _pathwaySettings.SizeScaleFactor;
+                gameObject.transform.localScale /= _pathwaySettings.sizeScaleFactor;
                 gameObject.name = $"{nodeData.ID}";
 
-                m_refInfoTagsContainer.transform.GetChild(0).localScale *= _pathwaySettings.SizeScaleFactor;
-                m_nameTextFieldContainer.transform.localScale *= _pathwaySettings.SizeScaleFactor;
+                m_refInfoTagsContainer.transform.GetChild(0).localScale *= _pathwaySettings.sizeScaleFactor;
+                m_nameTextFieldContainer.transform.localScale *= _pathwaySettings.sizeScaleFactor;
                 m_nameTextFieldContainer.transform.localPosition = 1.5f*Vector3.up;
             }
 

@@ -43,6 +43,7 @@ namespace ECellDive
             /// </summary>
             public static void AddMessage(LogMessageTypes _type, string _content)
             {
+#if !UNITY_EDITOR
                 //Truncating the message string if it's too long to 
                 //avoid performance drop on very big messages.
                 if (_content.Length > 450)
@@ -77,6 +78,7 @@ namespace ECellDive
                         errorMessages.Add(msg);
                         break;
                 }
+#endif
             }
 
             private static int GetMessageCount()

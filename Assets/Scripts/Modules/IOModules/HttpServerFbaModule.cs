@@ -157,13 +157,19 @@ namespace ECellDive
                         Color levelColor = Color.Lerp(fbaParametersManager.fluxLowerBoundColorPicker.button.colors.normalColor,
                                                       fbaParametersManager.fluxUpperBoundColorPicker.button.colors.normalColor,
                                                       t);
-
                         
                         foreach (uint _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                         {
                             edgeGO = LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>();
-                            edgeGO.SetDefaultColor(levelColor);
+                            
+                            //control direction of the edge if the flux is reversed
+                            if ((edgeGO.fluxLevel.Value < 0 && level > 0) || (edgeGO.fluxLevel.Value > 0 && level < 0))
+                            {
+                                edgeGO.ReverseOrientation();
+                            }
                             edgeGO.SetFlux(level, levelClamped);
+
+                            edgeGO.defaultColor = levelColor;
                             edgeGO.SetCurrentColorToDefaultServerRpc();
 
                             counter++;
