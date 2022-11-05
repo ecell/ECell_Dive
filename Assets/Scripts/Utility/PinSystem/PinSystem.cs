@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ECellDive.Utility
 {
@@ -18,10 +17,13 @@ namespace ECellDive.Utility
         public GameObject unpinnedButton;
 
         /// <summary>
-        /// Updates the parent of the gamobject depending on the value of <see cref="pinStatus"/>.
+        /// Pins <see cref="goToPin"/> to the gameobject
+        /// defined by <paramref name="_pinData"/>.
         /// </summary>
-        public void Pin()
+        /// <param name="_pinData">The description of the future parent gameobject.</param>
+        public void PinTo(PinData _pinData)
         {
+            pinStatus = _pinData.pinTarget;
             switch (pinStatus)
             {
                 case PinStatus.ToPlayer:
@@ -37,18 +39,6 @@ namespace ECellDive.Utility
                     break;
             }
         }
-
-        /// <summary>
-        /// Pins <see cref="goToPin"/> to the gameobject
-        /// defined by <paramref name="_pinData"/>.
-        /// </summary>
-        /// <param name="_pinData">The description of the future parent gameobject.</param>
-        public void PinTo(PinData _pinData)
-        {
-            pinStatus = _pinData.pinTarget;
-            Pin();
-        }
-
     }
 }
 
