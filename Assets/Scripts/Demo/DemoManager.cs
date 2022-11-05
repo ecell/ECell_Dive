@@ -45,6 +45,9 @@ namespace ECellDive.Tutorials
         public UnityEvent initialization;
         public UnityEvent quit;
 
+        private bool previousStateEOC;
+        private bool previousStateIOC;
+
         private void Start()
         {
             Initialization();
@@ -55,7 +58,10 @@ namespace ECellDive.Tutorials
             initialization.Invoke();
 
             //Disable the General GUI
-            StaticReferencer.Instance.refAllGuiMenusContainer.SetActive(false);
+            previousStateEOC = StaticReferencer.Instance.refExternalObjectContainer.activeSelf;
+            previousStateIOC = StaticReferencer.Instance.refExternalObjectContainer.activeSelf;
+            StaticReferencer.Instance.refExternalObjectContainer.SetActive(false);
+            StaticReferencer.Instance.refInternalObjectContainer.SetActive(false);
 
             //Attach/pin the local gui to the player
             shortDemoUiPanel.transform.SetParent(FindObjectOfType<Player>().transform);
@@ -161,8 +167,12 @@ namespace ECellDive.Tutorials
             //Since we pinned the UiPanel to the Player, we need to destroy manually on Quit
             Destroy(shortDemoUiPanel);
 
-            //Destroy the Network that was spawned
+            //Change scenes back to the initial one.
             FindObjectOfType<DiveScenesManager>().ResurfaceServerRpc(NetworkManager.Singleton.LocalClientId);
+
+            //Revert the active state of the UI and modules that may have been imported.
+            StaticReferencer.Instance.refExternalObjectContainer.SetActive(previousStateEOC);
+            StaticReferencer.Instance.refInternalObjectContainer.SetActive(previousStateIOC);
 
             quit.Invoke();
         }

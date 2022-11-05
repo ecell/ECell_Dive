@@ -45,7 +45,7 @@ namespace ECellDive.PlayerComponents
 
             //We detach the UI from the player to avoid it being destroyed
             //with the player network object.
-            StaticReferencer.Instance.refAllGuiMenusContainer.transform.parent = null;
+            //StaticReferencer.Instance.refAllGuiMenusContainer.transform.parent = null;
 
             NetworkManager.Singleton.OnClientConnectedCallback -= ExchangeNames;
 

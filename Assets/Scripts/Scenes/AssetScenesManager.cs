@@ -78,7 +78,7 @@ namespace ECellDive.SceneManagement
                         var loadUnload = _sceneEvent.SceneEventType == SceneEventType.LoadEventCompleted ? "Load" : "Unload";
                         Debug.Log($"{loadUnload} event completed for the following client " +
                             $"identifiers:({_sceneEvent.ClientsThatCompleted})");
-                        StaticReferencer.Instance.refAllGuiMenusContainer.SetActive(true);
+
                         if (_sceneEvent.ClientsThatTimedOut.Count > 0)
                         {
                             Debug.LogWarning($"{loadUnload} event timed out for the following client " +
