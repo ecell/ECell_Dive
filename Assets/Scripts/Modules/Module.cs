@@ -134,6 +134,14 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// The method to call when we wish to destroy a GameNetModule.
+            /// </summary>
+            public void SelfDestroy()
+            {
+                Destroy(gameObject);
+            }
+
             public void SetName(string _name)
             {
                 refName.text = _name;

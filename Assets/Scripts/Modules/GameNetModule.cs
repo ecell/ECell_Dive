@@ -260,6 +260,31 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// The method to call when we wish the server to destroy a GameNetModule.
+            /// </summary>
+            [ServerRpc(RequireOwnership = false)]
+            public void SelfDestroyServerRpc()
+            {
+                if (targetSceneId != null)//if a dive scene has been generated for the data module
+                {
+                    if (!DiveScenesManager.Instance.CheckIfDiveSceneHasPlayers(targetSceneId.Value))
+                    {
+                        DiveScenesManager.Instance.DestroyDiveScene(targetSceneId.Value);
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        LogSystem.AddMessage(LogMessageTypes.Errors,
+                            "You are trying to destroy a dive scene while divers are inside.");
+                    }
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+
             #region - IDive Methods -
             /// <inheritdoc/>
             public void DirectDiveIn()

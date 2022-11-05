@@ -253,7 +253,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4743865552316629300}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4121836892299767802}
+        m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
+        m_MethodName: SelfDestroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2231859386930716354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3597416004072702325, guid: 17ce4510c023c15459e1773d437474af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3597416004072702325, guid: 17ce4510c023c15459e1773d437474af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1779,7 +1791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3597416004072702325, guid: 17ce4510c023c15459e1773d437474af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3597416004072702325, guid: 17ce4510c023c15459e1773d437474af, type: 3}
       propertyPath: m_LocalPosition.z

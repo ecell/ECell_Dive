@@ -41,9 +41,6 @@ namespace ECellDive
             /// </summary>
             public List<GameNetModule> loadedModules;
 
-
-            //public NetworkList<int> childrenScenes; 
-
             public SceneData(int _sceneID, int _parentSceneID)
             {
                 sceneID = _sceneID;
@@ -51,13 +48,7 @@ namespace ECellDive
                 inDivers = new List<ulong>();
                 outDivers = new List<ulong>();
                 loadedModules = new List<GameNetModule>();
-                //childrenScenes = new NetworkList<int>();
             }
-
-            //public void AddChildScene(int _childSceneIdx)
-            //{
-            //    childrenScenes.Add(_childSceneIdx);
-            //}
 
             public void AddOutDiver(ulong _diverClientId)
             {
@@ -107,19 +98,11 @@ namespace ECellDive
                 }
                 loadedModulesStr += "\n";
 
-                //string childrenScenesIdsStr = "";
-                //foreach (ulong id in childrenScenes)
-                //{
-                //    childrenScenesIdsStr += id.ToString() + " ";
-                //}
-                //childrenScenesIdsStr += "\n";
-
                 string final = $"Scene Id: {sceneID}\n" +
                                $"Parent Scene Id: {parentSceneID}\n" +
                                $"In Divers: " + inDiversStr +
                                $"Out Divers: " + outDiversStr +
-                               $"Loaded modules: " + loadedModulesStr;// +
-                               //$"Clidren scenes: " + childrenScenesIdsStr;
+                               $"Loaded modules: " + loadedModulesStr;
 
                 return final;
             }
@@ -161,18 +144,6 @@ namespace ECellDive
                         AddNewDiveScene(-1);
                         DiverGetsInServerRpc(0, NetworkManager.Singleton.LocalClientId);
                     }
-                    //DebugScene();
-                    //NetworkManager.Singleton.OnClientConnectedCallback += clientId => DiverGetsInServerRpc(0, clientId);
-                    //NetworkManager.Singleton.OnClientConnectedCallback += e => DebugScene();
-                }
-            }
-
-            public override void OnNetworkDespawn()
-            {
-                if (IsServer)
-                {
-                    //NetworkManager.Singleton.OnClientConnectedCallback -= clientId => DiverGetsInServerRpc(0, clientId);
-                    //NetworkManager.Singleton.OnClientConnectedCallback -= e => DebugScene();
                 }
             }
 
@@ -184,6 +155,25 @@ namespace ECellDive
                     _scene.inDivers.Remove(_clientIdToClear);
                     _scene.outDivers.Remove(_clientIdToClear);
                 }
+            }
+
+            /// <summary>
+            ///  Checks whether a dive scenes has at least one player in.
+            /// </summary>
+            /// <param name="_sceneId">The index of the scene in the <see cref="scenesBank"/>.</param>
+            /// <returns>Returns true if the scene contains at least a diver. False, otherwise.</returns>
+            public bool CheckIfDiveSceneHasPlayers(int _sceneId)
+            {
+                return scenesBank[_sceneId].inDivers.Count > 0;
+            }
+
+            /// <summary>
+            /// Removes the scene at index <paramref name="_sceneId"/> from the <see cref="scenesBank"/>.
+            /// </summary>
+            /// <param name="_sceneId">The index of the scene to remove from the <see cref="scenesBank"/>.</param>
+            public void DestroyDiveScene(int _sceneId)
+            {
+                scenesBank.RemoveAt(_sceneId);
             }
 
             [ServerRpc]
