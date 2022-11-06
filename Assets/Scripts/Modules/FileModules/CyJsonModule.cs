@@ -369,6 +369,7 @@ namespace ECellDive
             public void SetNetworkData(IGraph _IGraph)
             {
                 graphData = _IGraph;
+                SetName(_IGraph.name);
             }
             #endregion
 

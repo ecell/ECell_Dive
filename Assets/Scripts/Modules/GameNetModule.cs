@@ -230,7 +230,6 @@ namespace ECellDive
                 {
                     nameTextFieldContainer.SetActive(true);
                     nameField = nameTextFieldContainer.GetComponentInChildren<TextMeshProUGUI>();
-                    nameTextFieldContainer.SetActive(false);
                 }
             }
 
