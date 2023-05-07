@@ -56,14 +56,14 @@ namespace ECellDive
                     foreach (IEdge _edgeData in LoadedCyJsonPathway.graphData.edges)
                     {
                         fbaAnalysisData.knockOuts[_edgeData.ID] = false;
-                        string _name = LoadedCyJsonPathway.DataID_to_DataGO[_edgeData.ID].name;
-                        if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_name))
+                        //string _name = LoadedCyJsonPathway.DataID_to_DataGO[_edgeData.ID].name;
+                        if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeData.name))
                         {
-                            fbaAnalysisData.edgeName_to_EdgeID[_name].Add(_edgeData.ID);
+                            fbaAnalysisData.edgeName_to_EdgeID[_edgeData.name].Add(_edgeData.ID);
                         }
                         else
                         {
-                            fbaAnalysisData.edgeName_to_EdgeID[_name] = new List<uint> { _edgeData.ID };
+                            fbaAnalysisData.edgeName_to_EdgeID[_edgeData.name] = new List<uint> { _edgeData.ID };
                         }
                     }
                 }
@@ -76,7 +76,7 @@ namespace ECellDive
             /// <returns>A string listing the knockedout reactions.</returns>
             public string GetKnockoutString()
             {
-                string knockouts = "";
+                string knockouts = "knockout";
                 int counter_true = 0;
 
                 Dictionary<string, ushort> reactionMatch = new Dictionary<string, ushort>();
@@ -88,15 +88,15 @@ namespace ECellDive
                         if (!reactionMatch.TryGetValue(_edgeData.name, out reactionMatchCount))
                         {
                             reactionMatch[_edgeData.name] = 1;
-                            knockouts += "knockout_" + _edgeData.ID + ",";
+                            knockouts += "#" + _edgeData.ID;
                             counter_true++;
                         }
                     }
                 }
 
-                if (counter_true > 0)
+                if (knockouts == "knockout")
                 {
-                    knockouts = knockouts.Substring(0, knockouts.Length - 1);
+                    knockouts = "";
                 }
 
                 return knockouts;
@@ -113,11 +113,11 @@ namespace ECellDive
             /// the <see cref="GetKnockoutString"/></param>
             public void GetModelSolution(string _modelName, string _knockouts)
             {
-                string requestURL = AddPagesToURL(new string[] { "solve2", _modelName });
+                string requestURL = AddPagesToURL(new string[] { "solve", _modelName });
                 if (_knockouts != "")
                 {
                     requestURL = AddQueriesToURL(requestURL,
-                        new string[] { "modification", "view_name" },
+                        new string[] { "commands", "view_name" },
                         new string[] { _knockouts, LoadedCyJsonPathway.graphData.name });
                 }
                 StartCoroutine(GetRequest(requestURL));

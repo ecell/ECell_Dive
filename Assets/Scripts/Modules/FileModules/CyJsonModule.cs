@@ -34,7 +34,7 @@ namespace ECellDive
             public GameObject pathwayRoot;
 
             private bool allNodesSpawned = false;
-            private Dictionary<uint, Modification<bool>> koModifications = new Dictionary<uint, Modification<bool>>();
+            //private Dictionary<uint, Modification<bool>> koModifications = new Dictionary<uint, Modification<bool>>();
 
             public Texture2D mainTex;
 
@@ -93,20 +93,20 @@ namespace ECellDive
                 m_Renderer.SetPropertyBlock(mpb);
             }
 
-            [ClientRpc]
-            private void BroadcastKoModificationClientRpc(uint _edgeId)
-            {
-                if (IsServer) return;
+            //[ClientRpc]
+            //private void BroadcastKoModificationClientRpc(uint _edgeId)
+            //{
+            //    if (IsServer) return;
 
-                koModifications[_edgeId] = new Modification<bool>(true, OperationTypes.knockout);
-            }
+            //    koModifications[_edgeId] = new Modification<bool>(true, OperationTypes.knockout);
+            //}
 
-            [ServerRpc(RequireOwnership = false)]
-            private void BroadcastKoModificationServerRpc(uint _edgeId)
-            {
-                koModifications[_edgeId] = new Modification<bool>(true, OperationTypes.knockout);
-                BroadcastKoModificationClientRpc(_edgeId);
-            }
+            //[ServerRpc(RequireOwnership = false)]
+            //private void BroadcastKoModificationServerRpc(uint _edgeId)
+            //{
+            //    koModifications[_edgeId] = new Modification<bool>(true, OperationTypes.knockout);
+            //    BroadcastKoModificationClientRpc(_edgeId);
+            //}
 
             [ServerRpc(RequireOwnership = false)]
             public void ConfirmIsActiveDataStatusServerRpc()
@@ -200,25 +200,22 @@ namespace ECellDive
             /// <returns>A string listing the knockedout reactions.</returns>
             public string GetKnockoutString()
             {
-                string knockouts = "";
+                string knockouts = "knockout";
 
+                //We use a dictionnary for the reaction names to avoid repetition
+                //since edges with different IDs can be part of the same reaction.
                 Dictionary<string, ushort> koMatch = new Dictionary<string, ushort>();
                 ushort koMatchCount = 0;
 
                 EdgeGO edgeGO;
-                foreach (uint _koEdgeId in koModifications.Keys)
+                foreach (IEdge _edge in graphData.edges)
                 {
-                    edgeGO = DataID_to_DataGO[_koEdgeId].GetComponent<EdgeGO>();
+                    edgeGO = DataID_to_DataGO[_edge.ID].GetComponent<EdgeGO>();
                     if (!koMatch.TryGetValue(edgeGO.edgeData.name, out koMatchCount))
                     {
                         koMatch[edgeGO.edgeData.name] = 1;
-                        knockouts += "knockout_" + edgeGO.edgeData.ID + ",";
+                        knockouts += "#" + edgeGO.edgeData.ID;
                     }
-                }
-
-                if (knockouts.Length > 0)
-                {
-                    knockouts = knockouts.Substring(0, knockouts.Length - 1);
                 }
 
                 return knockouts;
@@ -277,51 +274,48 @@ namespace ECellDive
             }
 #endif
 
-            private string ScanForKOModifications()
-            {
-                string modification = "";
-                Modification<bool> koMod;
-                foreach(IEdge edge in graphData.edges)
-                {
-                    if (DataID_to_DataGO[edge.ID].GetComponent<EdgeGO>().knockedOut.Value)
-                    {
-                        if (!koModifications.TryGetValue(edge.ID, out koMod))
-                        {
-                            koModifications[edge.ID] = new Modification<bool>(true, OperationTypes.knockout);
-                        }
-                    }
+            //private string ScanForKOModifications()
+            //{
+            //    string modification = "";
+            //    Modification<bool> koMod;
+            //    foreach(IEdge edge in graphData.edges)
+            //    {
+            //        if (DataID_to_DataGO[edge.ID].GetComponent<EdgeGO>().knockedOut.Value)
+            //        {
+            //            if (!koModifications.TryGetValue(edge.ID, out koMod))
+            //            {
+            //                koModifications[edge.ID] = new Modification<bool>(true, OperationTypes.knockout);
+            //            }
+            //        }
 
-                    else
-                    {
-                        if (!koModifications.TryGetValue(edge.ID, out koMod))
-                        {
-                            koModifications.Remove(edge.ID);
-                        }
-                    }
-                }
+            //        else
+            //        {
+            //            if (!koModifications.TryGetValue(edge.ID, out koMod))
+            //            {
+            //                koModifications.Remove(edge.ID);
+            //            }
+            //        }
+            //    }
 
-                return modification;
-            }
+            //    return modification;
+            //}
 
             public void SetIndex(int _index)
             {
                 refIndex = _index;
             }
 
-            public void StartUpInfo()
-            {
-                writingModificationFile = new ModificationFile(
-                    "",
-                    graphData.name,
-                    "", "");
+            //public void StartUpInfo()
+            //{
+            //    writingModificationFile = new ModificationFile(graphData.name);
 
-                SetIndex(CyJsonModulesData.loadedData.Count - 1);
+            //    SetIndex(CyJsonModulesData.loadedData.Count - 1);
 
-                SetName(CyJsonModulesData.loadedData[refIndex].name);
+            //    SetName(CyJsonModulesData.loadedData[refIndex].name);
 
-                InstantiateInfoTags(new string[] {$"nb edges: {CyJsonModulesData.loadedData[refIndex].edges.Length}\n"+
-                                                  $"nb nodes: {CyJsonModulesData.loadedData[refIndex].nodes.Length}"});
-            }
+            //    InstantiateInfoTags(new string[] {$"nb edges: {CyJsonModulesData.loadedData[refIndex].edges.Length}\n"+
+            //                                      $"nb nodes: {CyJsonModulesData.loadedData[refIndex].nodes.Length}"});
+            //}
 
             #region - IDive Methods -
             /// <inheritdoc/>
@@ -378,7 +372,7 @@ namespace ECellDive
             public void ApplyFileModifications()
             {
                 Debug.Log("Applying modifications");
-                string[] operations = readingModificationFile.modification.Split(',');
+                string[] operations = readingModificationFile.GetAllCommands().Split('|');
                 foreach(string _op in operations)
                 {
                     OperationSwitch(_op);
@@ -392,7 +386,7 @@ namespace ECellDive
             /// <inheritdoc/>
             public void OperationSwitch(string _op)
             {
-                string[] opContent = _op.Split('_');
+                string[] opContent = _op.Split('#');
 
                 switch (opContent[0])
                 {
@@ -402,7 +396,7 @@ namespace ECellDive
                         if (DataID_to_DataGO.TryGetValue(edgeID, out edgeGO))
                         {
                             edgeGO.GetComponent<EdgeGO>().Knockout();
-                            BroadcastKoModificationServerRpc(edgeID);
+                            //BroadcastKoModificationServerRpc(edgeID);
                         }
                         break;
                 }
@@ -438,13 +432,15 @@ namespace ECellDive
             public void CompileModificationFile()
             {
                 string author = GameNetPortal.Instance.netSessionPlayersDataMap[NetworkManager.Singleton.LocalClientId].playerName;
-                string baseModelPath = graphData.name;
-                string description = "";
+                string baseModelName = graphData.name;
 
-                ScanForKOModifications();
-                string modification = GetKnockoutString();
+                //ScanForKOModifications();
+                string KOCommand = GetKnockoutString();
+                Modification modification = new Modification(author,
+                    System.DateTime.Now.ToString("yyyyMMddTHHmmssZ"),
+                    KOCommand);
 
-                writingModificationFile = new ModificationFile(author, baseModelPath, description, modification);
+                writingModificationFile = new ModificationFile(baseModelName, modification);
             }
 
 #endregion

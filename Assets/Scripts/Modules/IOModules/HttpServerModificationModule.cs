@@ -34,6 +34,7 @@ namespace ECellDive.Modules
         private void GetModFilesList()
         {
             string requestURL = AddPagesToURL(new string[] { "list_user_model" });
+            requestURL = AddQueryToURL(requestURL, "base_model_name", "iJO1366", true);
             StartCoroutine(GetRequest(requestURL));
         }
 
@@ -44,7 +45,7 @@ namespace ECellDive.Modules
         /// stored in the server.</param>
         private void GetModFile(string _filelName)
         {
-            string requestURL = AddPagesToURL(new string[] { "get_user_modification", _filelName });
+            string requestURL = AddPagesToURL(new string[] { "open_user_model", _filelName });
             StartCoroutine(GetRequest(requestURL));
         }
 
@@ -126,24 +127,20 @@ namespace ECellDive.Modules
 
             string requestURL = AddPagesToURL(new string[]
             {
-                "save_model",
-                fileName,
-                _modFile.baseModelName
+                "save",
+                _modFile.baseModelName,
+                _modFile.GetCommandsOfMod(0),
+                _modFile.GetAuthorOfMod(0),
+                fileName
             });
 
             requestURL = AddQueriesToURL(requestURL,
                 new string[]
                 {
-                    "author",
-                    "description",
-                    "modification",
                     "view_name"
                 },
                 new string[]
                 {
-                    _modFile.author,
-                    _modFile.description,
-                    _modFile.modification,
                     _modFile.baseModelName
                 });
 
@@ -241,8 +238,8 @@ namespace ECellDive.Modules
             if (requestData.requestSuccess)
             {
                 requestData.requestJObject = JObject.Parse(requestData.requestText);
-                JArray jModelsArray = (JArray)requestData.requestJObject["user_defined_models"];
-                List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
+                JArray jModelsArray = (JArray)requestData.requestJObject["user_models"];
+                //List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
 
                 foreach (RectTransform _child in refModificationFilesScrollList.refContent)
                 {
@@ -251,11 +248,13 @@ namespace ECellDive.Modules
                         Destroy(_child.gameObject);
                     }
                 }
+                Debug.Log(requestData.requestText);
+                Debug.Log(jModelsArray.ToString());
 
-                for (int i = 0; i < modelsList.Count; i++)
+                for (int i = 0; i < jModelsArray.Count; i++)
                 {
                     GameObject modelUIContainer = refModificationFilesScrollList.AddItem();
-                    modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = modelsList[i];
+                    modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = jModelsArray.ElementAt(i).Value<string>();
                     modelUIContainer.SetActive(true);
                     refModificationFilesScrollList.UpdateScrollList();
                 }
