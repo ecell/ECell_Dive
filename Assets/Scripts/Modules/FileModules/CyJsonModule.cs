@@ -433,6 +433,23 @@ namespace ECellDive
             }
             #endregion
 
+            #region - IMlprVisibility Methods -
+
+            public override void NetHide()
+            {
+                base.NetHide();
+
+                m_nameTextFieldContainer.SetActive(false);
+            }
+
+            public override void NetShow()
+            {
+                base.NetHide();
+
+                m_nameTextFieldContainer.SetActive(true);
+            }
+            #endregion
+
             #region - ISaveable Methods -
             /// <inheritdoc/>
             public void CompileModificationFile()
