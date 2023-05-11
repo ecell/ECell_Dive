@@ -51,9 +51,12 @@ namespace ECellDive.Portal
         #region - IHighlightable Methods -
         public void SetHighlight()
         {
-            isHighlighted = true;
-            emissionModule.rateOverTimeMultiplier *= highlightEmissionFactor;
-            StartCoroutine(ScaleUpC());
+            if (gameObject.activeSelf)
+            {
+                isHighlighted = true;
+                emissionModule.rateOverTimeMultiplier *= highlightEmissionFactor;
+                StartCoroutine(ScaleUpC());
+            }
         }
 
         private IEnumerator ScaleUpC()
@@ -85,11 +88,14 @@ namespace ECellDive.Portal
 
         public void UnsetHighlight()
         {
-            isHighlighted=false;
-            if (!forceHighlight)
+            if (gameObject.activeSelf)
             {
-                emissionModule.rateOverTimeMultiplier /= highlightEmissionFactor;
-                StartCoroutine(ScaleDownC());
+                isHighlighted=false;
+                if (!forceHighlight)
+                {
+                    emissionModule.rateOverTimeMultiplier /= highlightEmissionFactor;
+                    StartCoroutine(ScaleDownC());
+                }
             }
         }
         #endregion
