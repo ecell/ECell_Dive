@@ -22,6 +22,8 @@ namespace ECellDive
 
             public UnityAction<bool, string> OnDataModuleImport;//added for the tutorials check
 
+            public AnimationLoopWrapper animLW;
+
             private void Start()
             {
                 gameNetModuleSpawner = GameObject.FindGameObjectWithTag("GameNetModuleSpawner").GetComponent<GameNetModuleSpawner>();
@@ -70,6 +72,7 @@ namespace ECellDive
             {
                 activeModelName = _textMeshProUGUI.text;
                 StartCoroutine(ImportModelCyJsC());
+                animLW.PlayLoop("HttpServerImporterModule");
             }
 
             /// <summary>
@@ -82,6 +85,9 @@ namespace ECellDive
                 GetModelCyJs(activeModelName);
 
                 yield return new WaitUntil(isRequestProcessed);
+
+                //stop the "Work In Progress" animation of this module
+                animLW.StopLoop();
 
                 OnDataModuleImport?.Invoke(requestData.requestSuccess, activeModelName);
 

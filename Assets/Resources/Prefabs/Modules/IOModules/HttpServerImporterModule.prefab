@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 5327318578212062619}
   - component: {fileID: 1855747651875927229}
   - component: {fileID: 4303859120454411312}
+  - component: {fileID: 4734137043493672906}
   m_Layer: 0
   m_Name: Module Graphics
   m_TagString: Untagged
@@ -487,6 +488,19 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &4734137043493672906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2320292461214164336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556b39ba55421714baf4e060a648fab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animation: {fileID: 4303859120454411312}
 --- !u!1 &2374937295789145028
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,6 +878,7 @@ MonoBehaviour:
     refPortInputField: {fileID: 7120475224984631579}
   refModelsScrollList: {fileID: 767087888332667046}
   gameNetModuleSpawner: {fileID: 0}
+  animLW: {fileID: 4734137043493672906}
 --- !u!1 &3184364344469443716
 GameObject:
   m_ObjectHideFlags: 0
