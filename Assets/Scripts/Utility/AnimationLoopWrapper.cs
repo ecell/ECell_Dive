@@ -5,7 +5,7 @@ namespace ECellDive.Utility
 {
     public class AnimationLoopWrapper : MonoBehaviour
     {
-        public Animation animation;
+        public Animation anim;
 
         private bool playLoop = false;
 
@@ -19,8 +19,8 @@ namespace ECellDive.Utility
         {
             while (playLoop)
             {
-                animation.Play(_anim);
-                yield return new WaitWhile( () => animation.IsPlaying(_anim));
+                anim.Play(_anim);
+                yield return new WaitWhile( () => anim.IsPlaying(_anim));
             }
         }
 
