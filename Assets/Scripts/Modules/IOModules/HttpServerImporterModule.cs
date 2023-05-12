@@ -93,6 +93,9 @@ namespace ECellDive
 
                 if (requestData.requestSuccess)
                 {
+                    //Flash of the succesful color.
+                    GetComponentInChildren<ColorFlash>().Flash(1);
+
                     byte[] modelContent = System.Text.Encoding.UTF8.GetBytes(requestData.requestText);
                     byte[] name = System.Text.Encoding.UTF8.GetBytes(activeModelName);
                     List<byte[]> mCFs = ArrayManipulation.FragmentToList(modelContent, 1024);
@@ -103,6 +106,8 @@ namespace ECellDive
                 else
                 {
                     Debug.Log("Import ModelCyJs Fail");
+                    //Flash of the fail color
+                    GetComponentInChildren<ColorFlash>().Flash(0);
                 }
             }
 
@@ -113,6 +118,7 @@ namespace ECellDive
             public void ShowModelsList()
             {
                 StartCoroutine(ShowModelsListC());
+                animLW.PlayLoop("HttpServerImporterModule");
             }
 
             /// <summary>
@@ -126,8 +132,14 @@ namespace ECellDive
 
                 yield return new WaitUntil(isRequestProcessed);
 
+                //stop the "Work In Progress" animation of this module
+                animLW.StopLoop();
+
                 if (requestData.requestSuccess)
                 {
+                    //Flash of the succesful color.
+                    GetComponentInChildren<ColorFlash>().Flash(1);
+
                     requestData.requestJObject = JObject.Parse(requestData.requestText);
                     JArray jModelsArray = (JArray)requestData.requestJObject["models"];
                     List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
@@ -147,6 +159,12 @@ namespace ECellDive
                         modelUIContainer.SetActive(true);
                         refModelsScrollList.UpdateScrollList();
                     }
+                }
+
+                else
+                {
+                    //Flash of the fail color
+                    GetComponentInChildren<ColorFlash>().Flash(0);
                 }
             }
         }

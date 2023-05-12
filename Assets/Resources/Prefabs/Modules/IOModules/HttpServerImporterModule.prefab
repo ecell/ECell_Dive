@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 1855747651875927229}
   - component: {fileID: 4303859120454411312}
   - component: {fileID: 4734137043493672906}
+  - component: {fileID: 2977229848326632786}
   m_Layer: 0
   m_Name: Module Graphics
   m_TagString: Untagged
@@ -501,6 +502,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animation: {fileID: 4303859120454411312}
+--- !u!114 &2977229848326632786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2320292461214164336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfe8a37c331ce4cbb6bd4cfc209d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.42854515, g: 0.8396226, b: 0.2891153, a: 1}
+  period: 0.33
+  nbPeriods: 3
+  renderers:
+  - {fileID: 8030565255793293298}
+  - {fileID: 144790259667800321}
+  - {fileID: 7314336899610306726}
+  - {fileID: 2075388042397357633}
 --- !u!1 &2374937295789145028
 GameObject:
   m_ObjectHideFlags: 0
