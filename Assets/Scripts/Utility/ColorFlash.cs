@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace ECellDive.Utility
 {
@@ -14,8 +15,9 @@ namespace ECellDive.Utility
         private float omega; //angular frequency
 
         [SerializeField] private Renderer[] renderers;
+        [SerializeField] private string[] propertyNames;
         private MaterialPropertyBlock[] mpbs;
-        private int colorID;
+        private int[] colorIDs;
         private Color[] startColors;
 
         private Color flashColor;
@@ -30,12 +32,13 @@ namespace ECellDive.Utility
 
             startColors = new Color[renderers.Length];
             mpbs = new MaterialPropertyBlock[renderers.Length];
-            colorID = Shader.PropertyToID("_Color");
+            colorIDs = new int[renderers.Length];
             for (int i = 0; i < renderers.Length; i++)
             {
+                colorIDs[i] = Shader.PropertyToID(propertyNames[i]);
                 mpbs[i] = new MaterialPropertyBlock();
                 renderers[i].GetPropertyBlock(mpbs[i]);
-                startColors[i] = mpbs[i].GetVector(colorID);
+                startColors[i] = mpbs[i].GetVector(colorIDs[i]);
             }
         }
 
@@ -52,7 +55,7 @@ namespace ECellDive.Utility
             for (int i = 0; i < renderers.Length; i++)
             {
                 renderers[i].GetPropertyBlock(mpbs[i]);
-                startColors[i] = mpbs[i].GetVector(colorID);
+                startColors[i] = mpbs[i].GetVector(colorIDs[i]);
             }
 
             StartCoroutine(FlashC());
@@ -67,7 +70,7 @@ namespace ECellDive.Utility
                 {
                     processColor = Color.Lerp(startColors[i], flashColor, 0.5f * Mathf.Sin(omega * currentTime - 0.5f * Mathf.PI) + 0.5f);
 
-                    mpbs[i].SetVector(colorID, processColor);
+                    mpbs[i].SetVector(colorIDs[i], processColor);
                     renderers[i].SetPropertyBlock(mpbs[i]);
                 }
                 currentTime += Time.deltaTime;

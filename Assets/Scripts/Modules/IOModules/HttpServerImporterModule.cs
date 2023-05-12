@@ -105,7 +105,6 @@ namespace ECellDive
                 }
                 else
                 {
-                    Debug.Log("Import ModelCyJs Fail");
                     //Flash of the fail color
                     GetComponentInChildren<ColorFlash>().Flash(0);
                 }
