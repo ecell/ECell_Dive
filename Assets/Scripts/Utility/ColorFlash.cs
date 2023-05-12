@@ -23,7 +23,7 @@ namespace ECellDive.Utility
 
         private bool isFlashing = false;
 
-        void Start()
+        void Awake()
         {
             omega = 2*Mathf.PI / period;
             endTime = nbPeriods * period;
@@ -36,7 +36,6 @@ namespace ECellDive.Utility
                 mpbs[i] = new MaterialPropertyBlock();
                 renderers[i].GetPropertyBlock(mpbs[i]);
                 startColors[i] = mpbs[i].GetVector(colorID);
-                //Debug.Log(startColors[i]);
             }
         }
 
