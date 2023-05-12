@@ -100,6 +100,10 @@ namespace ECellDive
                         "Just fragmented the Data. Requesting a module spawn to encapsulate it.");
                     gameNetModuleSpawner.RequestModuleSpawnFromData(0, name, mCFs);
                 }
+                else
+                {
+                    Debug.Log("Import ModelCyJs Fail");
+                }
             }
 
             /// <summary>
