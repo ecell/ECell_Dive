@@ -305,18 +305,6 @@ namespace ECellDive
                 refIndex = _index;
             }
 
-            //public void StartUpInfo()
-            //{
-            //    writingModificationFile = new ModificationFile(graphData.name);
-
-            //    SetIndex(CyJsonModulesData.loadedData.Count - 1);
-
-            //    SetName(CyJsonModulesData.loadedData[refIndex].name);
-
-            //    InstantiateInfoTags(new string[] {$"nb edges: {CyJsonModulesData.loadedData[refIndex].edges.Length}\n"+
-            //                                      $"nb nodes: {CyJsonModulesData.loadedData[refIndex].nodes.Length}"});
-            //}
-
             #region - IDive Methods -
             /// <inheritdoc/>
             public override IEnumerator GenerativeDiveInC()
@@ -418,12 +406,10 @@ namespace ECellDive
                 //Instantiating relevant data structures to store the information about
                 //the layers, nodes and edges.
                 CyJsonPathwayLoader.Populate(pathway);
-                CyJsonModulesData.AddData(pathway);
+                CyJsonModulesData.AddData(this);
+                SetIndex(CyJsonModulesData.loadedData.Count - 1);
 
                 SetNetworkData(pathway);
-#if !UNITY_EDITOR
-                StartUpInfo();
-#endif
             }
             #endregion
 
