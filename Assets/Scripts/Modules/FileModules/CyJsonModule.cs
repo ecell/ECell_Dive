@@ -211,10 +211,13 @@ namespace ECellDive
                 foreach (IEdge _edge in graphData.edges)
                 {
                     edgeGO = DataID_to_DataGO[_edge.ID].GetComponent<EdgeGO>();
+                    if (edgeGO.knockedOut.Value)
+                    {
                     if (!koMatch.TryGetValue(edgeGO.edgeData.name, out koMatchCount))
                     {
                         koMatch[edgeGO.edgeData.name] = 1;
                         knockouts += "#" + edgeGO.edgeData.ID;
+                        }
                     }
                 }
 
