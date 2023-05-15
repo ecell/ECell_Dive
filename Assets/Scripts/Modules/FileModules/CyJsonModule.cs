@@ -213,10 +213,10 @@ namespace ECellDive
                     edgeGO = DataID_to_DataGO[_edge.ID].GetComponent<EdgeGO>();
                     if (edgeGO.knockedOut.Value)
                     {
-                    if (!koMatch.TryGetValue(edgeGO.edgeData.name, out koMatchCount))
-                    {
-                        koMatch[edgeGO.edgeData.name] = 1;
-                        knockouts += "#" + edgeGO.edgeData.ID;
+                        if (!koMatch.TryGetValue(edgeGO.edgeData.name, out koMatchCount))
+                        {
+                            koMatch[edgeGO.edgeData.name] = 1;
+                            knockouts += "-" + edgeGO.edgeData.ID;
                         }
                     }
                 }
@@ -362,8 +362,7 @@ namespace ECellDive
             /// <inheritdoc/>
             public void ApplyFileModifications()
             {
-                Debug.Log("Applying modifications");
-                string[] operations = readingModificationFile.GetAllCommands().Split('|');
+                string[] operations = readingModificationFile.GetAllCommands().Split('&');
                 foreach(string _op in operations)
                 {
                     OperationSwitch(_op);
@@ -377,7 +376,7 @@ namespace ECellDive
             /// <inheritdoc/>
             public void OperationSwitch(string _op)
             {
-                string[] opContent = _op.Split('#');
+                string[] opContent = _op.Split('-');
 
                 switch (opContent[0])
                 {

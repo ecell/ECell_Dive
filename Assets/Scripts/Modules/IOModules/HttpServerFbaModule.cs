@@ -92,7 +92,7 @@ namespace ECellDive
                         if (!reactionMatch.TryGetValue(_edgeData.name, out reactionMatchCount))
                         {
                             reactionMatch[_edgeData.name] = 1;
-                            knockouts += "#" + _edgeData.ID;
+                            knockouts += "-" + _edgeData.ID;
                             counter_true++;
                         }
                     }
@@ -117,13 +117,14 @@ namespace ECellDive
             /// the <see cref="GetKnockoutString"/></param>
             public void GetModelSolution(string _modelName, string _knockouts)
             {
-                string requestURL = AddPagesToURL(new string[] { "solve", _modelName });
+                string requestURL = AddPagesToURL(new string[] { "solve2", _modelName });
                 if (_knockouts != "")
                 {
                     requestURL = AddQueriesToURL(requestURL,
-                        new string[] { "commands", "view_name" },
+                        new string[] { "command", "view_name" },
                         new string[] { _knockouts, LoadedCyJsonPathway.graphData.name });
                 }
+                Debug.Log("FBA query: " + requestURL);
                 StartCoroutine(GetRequest(requestURL));
             }
 

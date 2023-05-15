@@ -144,9 +144,8 @@ namespace ECellDive.Modules
 
             string requestURL = AddPagesToURL(new string[]
             {
-                "save",
+                "save2",
                 _modFile.baseModelName,
-                _modFile.GetCommandsOfMod(0),
                 _modFile.GetAuthorOfMod(0),
                 fileName
             });
@@ -154,14 +153,16 @@ namespace ECellDive.Modules
             requestURL = AddQueriesToURL(requestURL,
                 new string[]
                 {
+                    "command",
                     "view_name"
                 },
                 new string[]
                 {
+                    _modFile.GetAllCommands(),
                     _modFile.baseModelName
                 });
 
-            Debug.Log(requestURL);
+            Debug.Log("Save Request" + requestURL);
 
             StartCoroutine(GetRequest(requestURL));
 

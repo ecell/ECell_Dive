@@ -82,16 +82,16 @@ namespace ECellDive.Interfaces
         /// <param name="_date">The value for <see cref="author"/></param>
         /// <param name="_commands">All the commands associated with the
         /// modification in the format:
-        /// Cmd1#Param1#...#ParamN|...|CmdM#Param1#...#ParamL.</param>
+        /// Cmd1-Param1-...-ParamN&...&CmdM-Param1-...-ParamL.</param>
         public Modification(string _author, string _date, string _commands)
         {
             author = _author;
             date = _date;
 
             commands = new List<string[]>();
-            foreach (string _cmd in _commands.Split('|'))
+            foreach (string _cmd in _commands.Split('&'))
             {
-                commands.Add(_cmd.Split('#'));
+                commands.Add(_cmd.Split('-'));
             }
         }
 
@@ -99,21 +99,32 @@ namespace ECellDive.Interfaces
         /// Gets the string version of all the commands stored in <see cref="commands"/>.
         /// </summary>
         /// <returns>Returns all the commands in the format:
-        /// Cmd1#Param1#...#ParamN|...|CmdM#Param1#...#ParamL
+        /// Cmd1-Param1-...-ParamN&...&CmdM-Param1-...-ParamL
         /// </returns>
         public string GetCommands()
         {
             string strCommands = "";
-            foreach (string[] _command in commands)
+            //string strCommand = "";
+            if (commands.Count > 0)
             {
                 string strCommand = _command[0];
-                for (int i = 1; i < _command.Length; i++)
+
+                strCommands = commands[0][0];
+                for (int j = 1; j < commands[0].Length; j++)
                 {
-                    strCommand += "#" + _command[i];
+                    strCommands += "-" + commands[0][j];
                 }
-                strCommands += strCommand + "|";
             }
 
+            for(int i = 1; i < commands.Count; i++)//string[] _command in commands)
+            {
+                string strCommand = commands[i][0];
+                for (int j = 1; j < commands[i].Length; j++)
+                {
+                    strCommand += "-" + commands[i][j];
+                }
+                strCommands += "&" + strCommand;
+            }
             return strCommands;
         }
     }
@@ -175,14 +186,19 @@ namespace ECellDive.Interfaces
         /// Concatenates all the commands from the whole list <see cref="modifications"/>
         /// </summary>
         /// <returns>Returns all the commands in the format:
-        /// Cmd1#Param1#...#ParamN|...|CmdM#Param1#...#ParamL</returns>
+        /// Cmd1-Param1-...-ParamN&...&CmdM-Param1-...-ParamL</returns>
         public string GetAllCommands()
         {
             string strAllCommands = "";
-
-            foreach(Modification _mod in modifications)
+            if (modifications.Count > 0)
             {
-                strAllCommands += _mod.GetCommands() + "|";
+                Debug.Log($"modifications[0]: {modifications[0]}");
+                strAllCommands = modifications[0].GetCommands();
+            }
+
+            for (int i = 0; i < modifications.Count; i++)
+            {
+                strAllCommands += "&" + modifications[i].GetCommands();
             }
 
             return strAllCommands;
