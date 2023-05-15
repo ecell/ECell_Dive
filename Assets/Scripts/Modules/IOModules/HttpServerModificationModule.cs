@@ -23,6 +23,8 @@ namespace ECellDive.Modules
         public TMP_Text refSelectedBaseModel;
         public TMP_InputField refSaveNewFileName;
 
+        public AnimationLoopWrapper animLW;
+
         private string targetFileName;
         private IModifiable targetModifiable;
         private ISaveable targetSaveable;
