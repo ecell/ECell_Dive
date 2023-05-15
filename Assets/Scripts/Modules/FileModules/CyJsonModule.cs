@@ -382,11 +382,15 @@ namespace ECellDive
                 {
                     case "knockout":
                         GameObject edgeGO;
-                        uint edgeID = System.Convert.ToUInt32(opContent[1]);
-                        if (DataID_to_DataGO.TryGetValue(edgeID, out edgeGO))
+                        for (int i = 1; i < opContent.Length; i++)
                         {
-                            edgeGO.GetComponent<EdgeGO>().Knockout();
-                            //BroadcastKoModificationServerRpc(edgeID);
+                            uint edgeID = System.Convert.ToUInt32(opContent[i]);
+                            if (DataID_to_DataGO.TryGetValue(edgeID, out edgeGO))
+                            {
+                                Debug.Log("KnockingOut:" + opContent[i]);
+                                edgeGO.GetComponent<EdgeGO>().Knockout();
+                                //BroadcastKoModificationServerRpc(edgeID);
+                            }
                         }
                         break;
                 }
