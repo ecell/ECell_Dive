@@ -78,6 +78,7 @@ namespace ECellDive.Modules
         {
             targetFileName = _textMeshProUGUI.text;
             StartCoroutine(ImportModFileC());
+            animLW.PlayLoop("HttpServerModificationModule");
         }
 
         /// <summary>
@@ -89,6 +90,9 @@ namespace ECellDive.Modules
             GetModFile(targetFileName);
 
             yield return new WaitUntil(isRequestProcessed);
+            
+            //stop the "Work In Progress" animation of this module
+            animLW.StopLoop();
 
             if (requestData.requestSuccess)
             {
@@ -101,17 +105,28 @@ namespace ECellDive.Modules
 
                 if (targetModifiable != null)
                 {
+                    //Flash of the succesful color.
+                    GetComponentInChildren<ColorFlash>().Flash(1);
+
                     targetModifiable.readingModificationFile = new ModificationFile(targetFileName, requestData.requestJObject);
                     targetModifiable.ApplyFileModifications();
                 }
 
                 else
                 {
+                    //Flash of the fail color.
+                    GetComponentInChildren<ColorFlash>().Flash(0);
+
                     LogSystem.AddMessage(LogMessageTypes.Errors,
                         "No modifiable data module called \"" + modFile.baseModelName + "\" was found. " +
                         "Please, make sure you imported the data before trying to import modifications" +
                         "associated with this data.");
                 }
+            }
+            else
+            {
+                //Flash of the fail color.
+                GetComponentInChildren<ColorFlash>().Flash(0);
             }
         }
 
@@ -160,6 +175,7 @@ namespace ECellDive.Modules
         public void SaveModificationFile()
         {
             StartCoroutine(SaveModificationFileC());
+            animLW.PlayLoop("HttpServerModificationModule");
         }
 
         /// <summary>
@@ -172,13 +188,20 @@ namespace ECellDive.Modules
 
             yield return new WaitUntil(isRequestProcessed);
 
+            //stop the "Work In Progress" animation of this module
+            animLW.StopLoop();
+
             if (requestData.requestSuccess)
             {
+                //Flash of the succesful color.
+                GetComponentInChildren<ColorFlash>().Flash(1);
                 LogSystem.AddMessage(LogMessageTypes.Trace,
                     "File \"" + fileName + "\" has been succesfully saved.");
             }
             else
             {
+                //Flash of the fail color.
+                GetComponentInChildren<ColorFlash>().Flash(0);
                 LogSystem.AddMessage(LogMessageTypes.Errors,
                     "File \"" + fileName + "\" could not be saved.");
             }
@@ -201,6 +224,8 @@ namespace ECellDive.Modules
         /// </summary>
         public void ShowBaseModelsCandidates()
         {
+            animLW.PlayLoop("HttpServerModificationModule");
+
             foreach (RectTransform _child in refBaseModelsScrollList.refContent)
             {
                 if (_child.gameObject.activeSelf)
@@ -216,6 +241,24 @@ namespace ECellDive.Modules
                 modelUIContainer.SetActive(true);
                 refModificationFilesScrollList.UpdateScrollList();
             }
+
+            //stop the "Work In Progress" animation of this module
+            animLW.StopLoop();
+
+            if (GameNetPortal.Instance.saveables.Count > 0)
+            {
+                //Flash of the succesful color.
+                GetComponentInChildren<ColorFlash>().Flash(1);
+            }
+            else
+            {
+                //Flash of the fail color.
+                GetComponentInChildren<ColorFlash>().Flash(0);
+                LogSystem.AddMessage(LogMessageTypes.Errors,
+                    "No base model has been found. Have you imported eligible data?" +
+                    " If yes, have you generated it? (Dive into it at least once)");
+            }
+
         }
 
         /// <summary>
@@ -225,6 +268,7 @@ namespace ECellDive.Modules
         public void ShowModFilesList()
         {
             StartCoroutine(ShowModFilesListC());
+            animLW.PlayLoop("HttpServerModificationModule");
         }
 
         /// <summary>
@@ -237,8 +281,14 @@ namespace ECellDive.Modules
 
             yield return new WaitUntil(isRequestProcessed);
 
+            //stop the "Work In Progress" animation of this module
+            animLW.StopLoop();
+
             if (requestData.requestSuccess)
             {
+                //Flash of the succesful color.
+                GetComponentInChildren<ColorFlash>().Flash(1);
+
                 requestData.requestJObject = JObject.Parse(requestData.requestText);
                 JArray jModelsArray = (JArray)requestData.requestJObject["user_models"];
                 //List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
@@ -260,6 +310,11 @@ namespace ECellDive.Modules
                     modelUIContainer.SetActive(true);
                     refModificationFilesScrollList.UpdateScrollList();
                 }
+            }
+            else
+            {
+                //Flash of the fail color.
+                GetComponentInChildren<ColorFlash>().Flash(0);
             }
         }
     }
