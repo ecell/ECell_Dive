@@ -36,7 +36,7 @@ namespace ECellDive.Modules
         private void GetModFilesList()
         {
             string requestURL = AddPagesToURL(new string[] { "list_user_model" });
-            requestURL = AddQueryToURL(requestURL, "base_model_name", "iJO1366", true);
+            requestURL = AddQueryToURL(requestURL, "base_model_name", refSelectedBaseModel.text, true);
             StartCoroutine(GetRequest(requestURL));
         }
 
@@ -108,7 +108,7 @@ namespace ECellDive.Modules
                     //Flash of the succesful color.
                     GetComponentInChildren<ColorFlash>().Flash(1);
 
-                    targetModifiable.readingModificationFile = new ModificationFile(targetFileName, requestData.requestJObject);
+                    targetModifiable.readingModificationFile = modFile;//new ModificationFile(targetFileName, requestData.requestJObject);
                     targetModifiable.ApplyFileModifications();
                 }
 
@@ -235,10 +235,10 @@ namespace ECellDive.Modules
                 }
             }
 
-            foreach(ISaveable _saveable in GameNetPortal.Instance.saveables)
+            foreach(CyJsonModule _model in CyJsonModulesData.loadedData)
             {
                 GameObject modelUIContainer = refBaseModelsScrollList.AddItem();
-                modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = _saveable.writingModificationFile.baseModelName;
+                modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = _model.nameField.text;
                 modelUIContainer.SetActive(true);
                 refModificationFilesScrollList.UpdateScrollList();
             }
