@@ -104,11 +104,8 @@ namespace ECellDive.Interfaces
         public string GetCommands()
         {
             string strCommands = "";
-            //string strCommand = "";
             if (commands.Count > 0)
             {
-                string strCommand = _command[0];
-
                 strCommands = commands[0][0];
                 for (int j = 1; j < commands[0].Length; j++)
                 {
@@ -116,7 +113,7 @@ namespace ECellDive.Interfaces
                 }
             }
 
-            for(int i = 1; i < commands.Count; i++)//string[] _command in commands)
+            for(int i = 1; i < commands.Count; i++)
             {
                 string strCommand = commands[i][0];
                 for (int j = 1; j < commands[i].Length; j++)

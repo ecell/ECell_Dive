@@ -97,7 +97,6 @@ namespace ECellDive.Modules
             if (requestData.requestSuccess)
             {
                 //Transfer the modifications to the target module.
-                Debug.Log(requestData.requestText);
                 requestData.requestJObject = JObject.Parse(requestData.requestText);
                 ModificationFile modFile = new ModificationFile(targetFileName, requestData.requestJObject);
 
@@ -292,7 +291,6 @@ namespace ECellDive.Modules
 
                 requestData.requestJObject = JObject.Parse(requestData.requestText);
                 JArray jModelsArray = (JArray)requestData.requestJObject["user_models"];
-                //List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
 
                 foreach (RectTransform _child in refModificationFilesScrollList.refContent)
                 {
@@ -301,8 +299,6 @@ namespace ECellDive.Modules
                         Destroy(_child.gameObject);
                     }
                 }
-                Debug.Log(requestData.requestText);
-                Debug.Log(jModelsArray.ToString());
 
                 for (int i = 0; i < jModelsArray.Count; i++)
                 {
