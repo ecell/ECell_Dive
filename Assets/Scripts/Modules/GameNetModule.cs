@@ -457,7 +457,7 @@ namespace ECellDive
                 refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
                 foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
-                    _infoTag.gameObject.GetComponent<InfoDisplayManager>().LookAt();
+                    _infoTag.gameObject.GetComponent<ILookAt>().LookAt();
                 }
             }
             #endregion

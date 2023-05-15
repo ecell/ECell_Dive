@@ -34,20 +34,24 @@ namespace ECellDive
 
             public FbaParametersManager fbaParametersManager;
 
+            public AnimationLoopWrapper animLW;
+
             public UnityAction<bool> OnFbaResultsReceive;
 
             private CyJsonModule LoadedCyJsonPathway;
 
             private void Start()
             {
-                LoadedCyJsonPathway = GameObject.FindGameObjectWithTag("CyJsonModule").GetComponent<CyJsonModule>();
-                if (LoadedCyJsonPathway == null)
+                GameObject loadedCyJsonGO = GameObject.FindGameObjectWithTag("CyJsonModule");
+                if (loadedCyJsonGO == null)
                 {
                     LogSystem.AddMessage(LogMessageTypes.Errors,
                         "There is no active (ie. Dived In) CyJson pathway modules detected.");
+                    GetComponentInChildren<ColorFlash>().Flash(0);//fail flash
                 }
                 else
                 {
+                    LoadedCyJsonPathway = loadedCyJsonGO.GetComponent<CyJsonModule>();
                     fbaAnalysisData.activeModelName = LoadedCyJsonPathway.graphData.name;
 
                     LogSystem.AddMessage(LogMessageTypes.Trace,
@@ -195,6 +199,7 @@ namespace ECellDive
             public void SolveModel(string _modelName, string _knockouts)
             {
                 StartCoroutine(SolveModelC(_modelName, _knockouts));
+                animLW.PlayLoop("HttpServerFbaModule");
             }
 
             /// <summary>
@@ -212,10 +217,16 @@ namespace ECellDive
 
                 yield return new WaitUntil(isRequestProcessed);
 
+                //stop the "Work In Progress" animation of this module
+                animLW.StopLoop();
+
                 OnFbaResultsReceive?.Invoke(requestData.requestSuccess);
 
                 if (requestData.requestSuccess)
                 {
+                    //Flash of the succesful color.
+                    GetComponentInChildren<ColorFlash>().Flash(1);
+
                     requestData.requestJObject = JObject.Parse(requestData.requestText);
                     JArray jFluxesArray = (JArray)requestData.requestJObject["fluxes"];
                     fbaAnalysisData.objectiveValue = requestData.requestJObject["objective_value"].Value<float>();
@@ -241,6 +252,11 @@ namespace ECellDive
                     fbaParametersManager.SetFluxValueControllersBounds(minFlux, maxFlux);
 
                     ShowComputedFluxes();
+                }
+                else
+                {
+                    //Flash of the fail color
+                    GetComponentInChildren<ColorFlash>().Flash(0);
                 }
             }
         }
