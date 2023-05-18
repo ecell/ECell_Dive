@@ -146,8 +146,7 @@ namespace ECellDive
                         float levelClamped = Mathf.Clamp(level,
                                                          fbaParametersManager.fluxLowerBoundSlider.slider.value,
                                                          fbaParametersManager.fluxUpperBoundSlider.slider.value);
-                        float t = levelClamped / (fbaParametersManager.fluxUpperBoundSlider.slider.value - fbaParametersManager.fluxLowerBoundSlider.slider.value);
-                        Debug.Log(t);
+                        float t = Mathf.Abs(levelClamped - fbaParametersManager.fluxLowerBoundSlider.slider.value) /(fbaParametersManager.fluxUpperBoundSlider.slider.value - fbaParametersManager.fluxLowerBoundSlider.slider.value);
                         Color levelColor = Color.Lerp(fbaParametersManager.fluxLowerBoundColorPicker.button.colors.normalColor,
                                                       fbaParametersManager.fluxUpperBoundColorPicker.button.colors.normalColor,
                                                       t);
