@@ -93,21 +93,6 @@ namespace ECellDive
                 m_Renderer.SetPropertyBlock(mpb);
             }
 
-            //[ClientRpc]
-            //private void BroadcastKoModificationClientRpc(uint _edgeId)
-            //{
-            //    if (IsServer) return;
-
-            //    koModifications[_edgeId] = new Modification<bool>(true, OperationTypes.knockout);
-            //}
-
-            //[ServerRpc(RequireOwnership = false)]
-            //private void BroadcastKoModificationServerRpc(uint _edgeId)
-            //{
-            //    koModifications[_edgeId] = new Modification<bool>(true, OperationTypes.knockout);
-            //    BroadcastKoModificationClientRpc(_edgeId);
-            //}
-
             [ServerRpc(RequireOwnership = false)]
             public void ConfirmIsActiveDataStatusServerRpc()
             {
@@ -382,15 +367,11 @@ namespace ECellDive
                 {
                     case "knockout":
                         GameObject edgeGO;
-                        for (int i = 1; i < opContent.Length; i++)
+                        uint edgeID = System.Convert.ToUInt32(opContent[1]);
+                        if (DataID_to_DataGO.TryGetValue(edgeID, out edgeGO))
                         {
-                            uint edgeID = System.Convert.ToUInt32(opContent[i]);
-                            if (DataID_to_DataGO.TryGetValue(edgeID, out edgeGO))
-                            {
-                                Debug.Log("KnockingOut:" + opContent[i]);
-                                edgeGO.GetComponent<EdgeGO>().Knockout();
-                                //BroadcastKoModificationServerRpc(edgeID);
-                            }
+                            Debug.Log("KnockingOut:" + opContent[1]);
+                            edgeGO.GetComponent<EdgeGO>().Knockout();
                         }
                         break;
                 }
