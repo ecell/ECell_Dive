@@ -72,31 +72,6 @@ namespace ECellDive
                     }
                 }
             }
-
-            /// <summary>
-            /// Translates the information about knockedout reactions stored
-            /// as a string usable for a request to the server.
-            /// </summary>
-            /// <returns>The list of all the individual knockout commands.
-            /// It is to be paired with the "command=" kayword for every entry.</returns>
-            public List<string> GetKnockouts()
-            {
-                List<string> knockouts = new List<string>();
-                Dictionary<string, ushort> reactionMatch = new Dictionary<string, ushort>();
-                ushort reactionMatchCount = 0;
-                foreach (IEdge _edgeData in LoadedCyJsonPathway.graphData.edges)
-                {
-                    if (LoadedCyJsonPathway.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut.Value)
-                    {
-                        if (!reactionMatch.TryGetValue(_edgeData.name, out reactionMatchCount))
-                        {
-                            reactionMatch[_edgeData.name] = 1;
-                            knockouts.Add("knockout-" + _edgeData.ID);
-                        }
-                    }
-                }
-                return knockouts;
-            }
             
             /// <summary>
             /// Builds and sends the URI of the request that should activate the
@@ -132,8 +107,22 @@ namespace ECellDive
             /// </summary>
             public void RequestModelSolve()
             {
-                List<string> knockouts = GetKnockouts();
-                SolveModel(fbaAnalysisData.activeModelName, knockouts);
+                animLW.PlayLoop("HttpServerFbaModule");
+                if (LoadedCyJsonPathway != null)
+                {
+                    List<string> knockouts = LoadedCyJsonPathway.GetKnockouts();
+                    SolveModel(fbaAnalysisData.activeModelName, knockouts);
+                }
+                else
+                {
+                    //stop the "Work In Progress" animation of this module
+                    animLW.StopLoop();
+                    //Flash of the fail color
+                    GetComponentInChildren<ColorFlash>().Flash(0);
+                    LogSystem.AddMessage(LogMessageTypes.Errors,
+                    "There is no active (ie. Dived In) CyJson pathway modules detected. " +
+                    "So, no FBA can be performed.");
+                }
             }
 
             public void ShowComputedFluxes()
@@ -198,7 +187,6 @@ namespace ECellDive
             public void SolveModel(string _modelName, List<string> _knockouts)
             {
                 StartCoroutine(SolveModelC(_modelName, _knockouts));
-                animLW.PlayLoop("HttpServerFbaModule");
             }
 
             /// <summary>
