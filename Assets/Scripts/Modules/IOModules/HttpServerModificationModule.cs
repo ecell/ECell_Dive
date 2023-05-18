@@ -150,17 +150,34 @@ namespace ECellDive.Modules
                 fileName
             });
 
-            requestURL = AddQueriesToURL(requestURL,
-                new string[]
+            //requestURL = AddQueriesToURL(requestURL,
+            //    new string[]
+            //    {
+            //        "command",
+            //        "view_name"
+            //    },
+            //    new string[]
+            //    {
+            //        _modFile.GetAllCommands(),
+            //        _modFile.baseModelName
+            //    });
+
+            List<string[]> allModifications = _modFile.GetAllCommands();
+            foreach (string[] _mod in allModifications)
+            {
+                int koCount = _mod.Count();
+                if (koCount > 0)
                 {
-                    "command",
-                    "view_name"
-                },
-                new string[]
-                {
-                    _modFile.GetAllCommands(),
-                    _modFile.baseModelName
-                });
+                    requestURL = AddQueryToURL(requestURL, "command", _mod[0], true);
+
+                    for (int i = 1; i < koCount; i++)
+                    {
+                        requestURL = AddQueryToURL(requestURL, "command", _mod[i]);
+                    }
+                }
+            }
+            
+            requestURL = AddQueryToURL(requestURL, "view_name", _modFile.baseModelName, allModifications.Count == 0);
 
             Debug.Log("Save Request" + requestURL);
 

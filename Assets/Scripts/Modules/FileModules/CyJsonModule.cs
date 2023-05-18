@@ -179,33 +179,26 @@ namespace ECellDive
 
             /// <summary>
             /// Translates the information about knockedout reactions stored
-            /// in <see cref="koModifications"/> as a string usable for a request
-            /// to the server.
+            /// as a string usable for a request to the server.
             /// </summary>
-            /// <returns>A string listing the knockedout reactions.</returns>
-            public string GetKnockoutString()
+            /// <returns>The list of all the individual knockout commands.
+            /// It is to be paired with the "command=" kayword for every entry.</returns>
+            public List<string> GetKnockouts()
             {
-                string knockouts = "knockout";
-
-                //We use a dictionnary for the reaction names to avoid repetition
-                //since edges with different IDs can be part of the same reaction.
-                Dictionary<string, ushort> koMatch = new Dictionary<string, ushort>();
-                ushort koMatchCount = 0;
-
-                EdgeGO edgeGO;
-                foreach (IEdge _edge in graphData.edges)
+                List<string> knockouts = new List<string>();
+                Dictionary<string, ushort> reactionMatch = new Dictionary<string, ushort>();
+                ushort reactionMatchCount = 0;
+                foreach (IEdge _edgeData in graphData.edges)
                 {
-                    edgeGO = DataID_to_DataGO[_edge.ID].GetComponent<EdgeGO>();
-                    if (edgeGO.knockedOut.Value)
+                    if (DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut.Value)
                     {
-                        if (!koMatch.TryGetValue(edgeGO.edgeData.name, out koMatchCount))
+                        if (!reactionMatch.TryGetValue(_edgeData.name, out reactionMatchCount))
                         {
-                            koMatch[edgeGO.edgeData.name] = 1;
-                            knockouts += "-" + edgeGO.edgeData.ID;
+                            reactionMatch[_edgeData.name] = 1;
+                            knockouts.Add("knockout-" + _edgeData.ID);
                         }
                     }
                 }
-
                 return knockouts;
             }
 
@@ -261,32 +254,6 @@ namespace ECellDive
                 }
             }
 #endif
-
-            //private string ScanForKOModifications()
-            //{
-            //    string modification = "";
-            //    Modification<bool> koMod;
-            //    foreach(IEdge edge in graphData.edges)
-            //    {
-            //        if (DataID_to_DataGO[edge.ID].GetComponent<EdgeGO>().knockedOut.Value)
-            //        {
-            //            if (!koModifications.TryGetValue(edge.ID, out koMod))
-            //            {
-            //                koModifications[edge.ID] = new Modification<bool>(true, OperationTypes.knockout);
-            //            }
-            //        }
-
-            //        else
-            //        {
-            //            if (!koModifications.TryGetValue(edge.ID, out koMod))
-            //            {
-            //                koModifications.Remove(edge.ID);
-            //            }
-            //        }
-            //    }
-
-            //    return modification;
-            //}
 
             public void SetIndex(int _index)
             {
@@ -347,10 +314,13 @@ namespace ECellDive
             /// <inheritdoc/>
             public void ApplyFileModifications()
             {
-                string[] operations = readingModificationFile.GetAllCommands().Split('&');
-                foreach(string _op in operations)
+                List<string[]> allModifications = readingModificationFile.GetAllCommands();
+                foreach (string[] _mod in allModifications)
                 {
-                    OperationSwitch(_op);
+                    foreach (string _command in _mod)
+                    {
+                        OperationSwitch(_command);
+                    }
                 }
             }
             /// <inheritdoc/>
@@ -425,7 +395,7 @@ namespace ECellDive
                 string baseModelName = graphData.name;
 
                 //ScanForKOModifications();
-                string KOCommand = GetKnockoutString();
+                List<string> KOCommand = GetKnockouts();
                 Modification modification = new Modification(author,
                     System.DateTime.Now.ToString("yyyyMMddTHHmmssZ"),
                     KOCommand);

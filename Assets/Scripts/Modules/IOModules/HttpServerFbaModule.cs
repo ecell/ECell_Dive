@@ -96,7 +96,7 @@ namespace ECellDive
                         requestURL = AddQueryToURL(requestURL, "command", _knockouts[i]);
                     }
                 }
-                requestURL = AddQueryToURL(requestURL, "view_name", LoadedCyJsonPathway.graphData.name);
+                requestURL = AddQueryToURL(requestURL, "view_name", LoadedCyJsonPathway.graphData.name, koCount == 0);
                 
                 Debug.Log("FBA query: " + requestURL);
                 StartCoroutine(GetRequest(requestURL));
