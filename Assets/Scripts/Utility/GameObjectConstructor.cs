@@ -15,7 +15,7 @@ namespace ECellDive
 
             public void Constructor()
             {
-                Vector3 pos = Positioning.PlaceInFrontOfTargetLocal(Camera.main.transform, 2f, 0.3f);
+                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0f);
                 Instantiate(refPrefab, pos, Quaternion.identity);
             }
         }

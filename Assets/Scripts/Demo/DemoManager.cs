@@ -127,7 +127,7 @@ namespace ECellDive.Tutorials
             //Instantiating relevant data structures to store the information about
             //the layers, nodes and edges.
             CyJsonPathwayLoader.Populate(pathway);
-            CyJsonModulesData.AddData(pathway);
+            //CyJsonModulesData.AddData(pathway);
 
             cyJsonModule.SetNetworkData(pathway);
             cyJsonModule.isReadyForGeneration.Value = true;

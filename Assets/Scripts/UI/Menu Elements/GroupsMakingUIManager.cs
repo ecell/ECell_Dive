@@ -45,7 +45,7 @@ namespace ECellDive.UI
             else
             {
                 refUICanvas.SetActive(true);
-                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
+                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.2f);
                 transform.position = pos;
                 GetComponent<ILookAt>().LookAt();
             }

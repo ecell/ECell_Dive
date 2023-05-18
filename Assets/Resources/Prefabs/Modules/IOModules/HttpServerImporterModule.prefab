@@ -182,7 +182,7 @@ MonoBehaviour:
   showOnEnable: 1
   m_isUI: 0
   m_popupDistance: 0
-  m_popupRelativeHeight: 0
+  m_popupHeightOffset: 0
 --- !u!1 &2037400960942271931
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2149275758754404866}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 5327318578212062619}
@@ -472,7 +472,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.534, y: 0.66, z: 0.015}
-  m_Center: {x: 0, y: 0.22, z: 0}
+  m_Center: {x: 0, y: 0.02, z: 0}
 --- !u!111 &4303859120454411312
 Animation:
   m_ObjectHideFlags: 0
@@ -557,7 +557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2374937295789145028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5327318578212062619}
@@ -938,7 +938,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3184364344469443716}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0.2, y: 0.15, z: 0}
+  m_LocalPosition: {x: 0.2, y: -0.05, z: 0}
   m_LocalScale: {x: 0.125, y: 0.15, z: 0.15}
   m_Children: []
   m_Father: {fileID: 5327318578212062619}
@@ -1167,7 +1167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.7}
+  m_AnchoredPosition: {x: 0, y: 0.5}
   m_SizeDelta: {x: 150, y: 15.65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &41364074561562646
@@ -1292,7 +1292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4537723483355327954}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.2, y: 0.15, z: 0}
+  m_LocalPosition: {x: -0.2, y: -0.05, z: 0}
   m_LocalScale: {x: 0.125, y: 0.15, z: 0.15}
   m_Children: []
   m_Father: {fileID: 5327318578212062619}
@@ -1585,7 +1585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8891935799890122178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children: []
   m_Father: {fileID: 5327318578212062619}
@@ -1997,7 +1997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3597416004072702325, guid: 17ce4510c023c15459e1773d437474af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3597416004072702325, guid: 17ce4510c023c15459e1773d437474af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2169,7 +2169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9118878171053963138, guid: 17ce4510c023c15459e1773d437474af, type: 3}
       propertyPath: defaultPositionOffset.y
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9123466086167569813, guid: 17ce4510c023c15459e1773d437474af, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2250,7 +2250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 491582051540283499, guid: 1c9a88a8e31c6084aba55ac3b627f2b2, type: 3}
       propertyPath: defaultPositionOffset.y
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1844680354164586667, guid: 1c9a88a8e31c6084aba55ac3b627f2b2, type: 3}
       propertyPath: refMasterObject
@@ -2266,7 +2266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5310349719497016988, guid: 1c9a88a8e31c6084aba55ac3b627f2b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5310349719497016988, guid: 1c9a88a8e31c6084aba55ac3b627f2b2, type: 3}
       propertyPath: m_LocalPosition.z

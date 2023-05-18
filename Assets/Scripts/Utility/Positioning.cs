@@ -18,15 +18,15 @@ namespace ECellDive
             /// <param name="_target">The transform from which we make the 
             /// computation.</param>
             /// <param name="_distance">The distance from <paramref name="_target"/>.</param>
-            /// <param name="_relative_height">The height relatively to <paramref name="_target"/>'s,
+            /// <param name="_heightOffset">The offset to add to <paramref name="_target"/>'s
             /// height.</param>
             /// <returns>The desired position in front of the target at a certain 
             /// distance and relative height.</returns>
-            public static Vector3 PlaceInFrontOfTarget(Transform _target, float _distance, float _relative_height)
+            public static Vector3 PlaceInFrontOfTarget(Transform _target, float _distance, float _heightOffset)
             {
                 Vector3 fromTargetPos = _target.position + _distance * _target.forward;
                 return new Vector3(fromTargetPos.x,
-                                   _relative_height * _target.position.y,
+                                   _heightOffset + _target.position.y,
                                    fromTargetPos.z);
             }
 
@@ -36,17 +36,13 @@ namespace ECellDive
             /// <param name="_target">The transform from which we make the 
             /// computation.</param>
             /// <param name="_distance">The distance from <paramref name="_target"/>.</param>
-            /// <param name="_relative_height">The height relatively to <paramref name="_target"/>'s,
+            /// <param name="_heightOffset">The offset to add to <paramref name="_target"/>'s
             /// height.</param>
             /// <returns>The desired position in front of the target at a certain 
             /// distance and relative height.</returns>
-            public static Vector3 PlaceInFrontOfTargetLocal(Transform _target, float _distance, float _relative_height)
+            public static Vector3 PlaceInFrontOfTargetLocal(Transform _target, float _distance, float _heightOffset)
             {
-                Vector3 fromTargetPos = _target.position + _distance * _target.forward;
-                //return new Vector3(fromTargetPos.x,
-                //                   _relative_height * _target.localPosition.y,
-                //                   fromTargetPos.z);
-                return _target.transform.TransformPoint(new Vector3(0, _relative_height * _target.localPosition.y, _distance));
+                return _target.transform.TransformPoint(new Vector3(0, _heightOffset + _target.localPosition.y, _distance));
             }
 
             /// <summary>

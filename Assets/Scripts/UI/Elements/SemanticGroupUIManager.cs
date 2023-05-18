@@ -155,7 +155,7 @@ namespace ECellDive
                 m_content.SetActive(true);
 
                 //Repositioning the scrollListHolder in front of the user.
-                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
+                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.2f);
                 m_scrollListHolder.transform.position = pos;
                 m_scrollListHolder.GetComponent<ILookAt>().LookAt();
             }
@@ -174,7 +174,7 @@ namespace ECellDive
                 m_scrollListHolder.GetComponent<XRGrabInteractable>().enabled = true;
 
                 //Positioning the scrollListHolder in front of the user.
-                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
+                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.2f);
                 m_scrollListHolder.transform.position = pos;
                 m_scrollListHolder.GetComponent<ILookAt>().LookAt();
 
