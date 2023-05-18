@@ -8,6 +8,7 @@ using ECellDive.Interfaces;
 using ECellDive.Multiplayer;
 using ECellDive.UI;
 using ECellDive.Utility;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace ECellDive.Modules
 {
@@ -174,8 +175,8 @@ namespace ECellDive.Modules
         /// </summary>
         public void SaveModificationFile()
         {
-            StartCoroutine(SaveModificationFileC());
             animLW.PlayLoop("HttpServerModificationModule");
+            StartCoroutine(SaveModificationFileC());
         }
 
         /// <summary>
@@ -183,27 +184,40 @@ namespace ECellDive.Modules
         /// </summary>
         private IEnumerator SaveModificationFileC()
         {
-            targetSaveable.CompileModificationFile();
-            string fileName = RequestSaveModel(targetSaveable.writingModificationFile);
-
-            yield return new WaitUntil(isRequestProcessed);
-
-            //stop the "Work In Progress" animation of this module
-            animLW.StopLoop();
-
-            if (requestData.requestSuccess)
+            if(targetSaveable != null)
             {
-                //Flash of the succesful color.
-                GetComponentInChildren<ColorFlash>().Flash(1);
-                LogSystem.AddMessage(LogMessageTypes.Trace,
-                    "File \"" + fileName + "\" has been succesfully saved.");
+                targetSaveable.CompileModificationFile();
+                string fileName = RequestSaveModel(targetSaveable.writingModificationFile);
+
+                yield return new WaitUntil(isRequestProcessed);
+
+                //stop the "Work In Progress" animation of this module
+                animLW.StopLoop();
+
+                if (requestData.requestSuccess)
+                {
+                    //Flash of the succesful color.
+                    GetComponentInChildren<ColorFlash>().Flash(1);
+                    LogSystem.AddMessage(LogMessageTypes.Trace,
+                        "File \"" + fileName + "\" has been succesfully saved.");
+                }
+                else
+                {
+                    //Flash of the fail color.
+                    GetComponentInChildren<ColorFlash>().Flash(0);
+                    LogSystem.AddMessage(LogMessageTypes.Errors,
+                        "File \"" + fileName + "\" could not be saved.");
+                }
             }
             else
             {
+                //stop the "Work In Progress" animation of this module
+                animLW.StopLoop();
                 //Flash of the fail color.
                 GetComponentInChildren<ColorFlash>().Flash(0);
                 LogSystem.AddMessage(LogMessageTypes.Errors,
-                    "File \"" + fileName + "\" could not be saved.");
+                    "You have not selected any target base model for which" +
+                    "to save the modifications");
             }
         }
 
