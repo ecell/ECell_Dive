@@ -8,6 +8,7 @@ using ECellDive.Interfaces;
 using ECellDive.Multiplayer;
 using ECellDive.UI;
 using ECellDive.Utility;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace ECellDive.Modules
 {
@@ -23,6 +24,8 @@ namespace ECellDive.Modules
         public TMP_Text refSelectedBaseModel;
         public TMP_InputField refSaveNewFileName;
 
+        public AnimationLoopWrapper animLW;
+
         private string targetFileName;
         private IModifiable targetModifiable;
         private ISaveable targetSaveable;
@@ -34,6 +37,7 @@ namespace ECellDive.Modules
         private void GetModFilesList()
         {
             string requestURL = AddPagesToURL(new string[] { "list_user_model" });
+            requestURL = AddQueryToURL(requestURL, "base_model_name", refSelectedBaseModel.text, true);
             StartCoroutine(GetRequest(requestURL));
         }
 
@@ -44,7 +48,7 @@ namespace ECellDive.Modules
         /// stored in the server.</param>
         private void GetModFile(string _filelName)
         {
-            string requestURL = AddPagesToURL(new string[] { "get_user_modification", _filelName });
+            string requestURL = AddPagesToURL(new string[] { "open_user_model", _filelName });
             StartCoroutine(GetRequest(requestURL));
         }
 
@@ -75,6 +79,7 @@ namespace ECellDive.Modules
         {
             targetFileName = _textMeshProUGUI.text;
             StartCoroutine(ImportModFileC());
+            animLW.PlayLoop("HttpServerModificationModule");
         }
 
         /// <summary>
@@ -86,11 +91,13 @@ namespace ECellDive.Modules
             GetModFile(targetFileName);
 
             yield return new WaitUntil(isRequestProcessed);
+            
+            //stop the "Work In Progress" animation of this module
+            animLW.StopLoop();
 
             if (requestData.requestSuccess)
             {
                 //Transfer the modifications to the target module.
-                Debug.Log(requestData.requestText);
                 requestData.requestJObject = JObject.Parse(requestData.requestText);
                 ModificationFile modFile = new ModificationFile(targetFileName, requestData.requestJObject);
 
@@ -98,17 +105,28 @@ namespace ECellDive.Modules
 
                 if (targetModifiable != null)
                 {
-                    targetModifiable.readingModificationFile = new ModificationFile(targetFileName, requestData.requestJObject);
+                    //Flash of the succesful color.
+                    GetComponentInChildren<ColorFlash>().Flash(1);
+
+                    targetModifiable.readingModificationFile = modFile;//new ModificationFile(targetFileName, requestData.requestJObject);
                     targetModifiable.ApplyFileModifications();
                 }
 
                 else
                 {
+                    //Flash of the fail color.
+                    GetComponentInChildren<ColorFlash>().Flash(0);
+
                     LogSystem.AddMessage(LogMessageTypes.Errors,
                         "No modifiable data module called \"" + modFile.baseModelName + "\" was found. " +
                         "Please, make sure you imported the data before trying to import modifications" +
                         "associated with this data.");
                 }
+            }
+            else
+            {
+                //Flash of the fail color.
+                GetComponentInChildren<ColorFlash>().Flash(0);
             }
         }
 
@@ -126,28 +144,42 @@ namespace ECellDive.Modules
 
             string requestURL = AddPagesToURL(new string[]
             {
-                "save_model",
-                fileName,
-                _modFile.baseModelName
+                "save2",
+                _modFile.baseModelName,
+                _modFile.GetAuthorOfMod(0),
+                fileName
             });
 
-            requestURL = AddQueriesToURL(requestURL,
-                new string[]
-                {
-                    "author",
-                    "description",
-                    "modification",
-                    "view_name"
-                },
-                new string[]
-                {
-                    _modFile.author,
-                    _modFile.description,
-                    _modFile.modification,
-                    _modFile.baseModelName
-                });
+            //requestURL = AddQueriesToURL(requestURL,
+            //    new string[]
+            //    {
+            //        "command",
+            //        "view_name"
+            //    },
+            //    new string[]
+            //    {
+            //        _modFile.GetAllCommands(),
+            //        _modFile.baseModelName
+            //    });
 
-            Debug.Log(requestURL);
+            List<string[]> allModifications = _modFile.GetAllCommands();
+            foreach (string[] _mod in allModifications)
+            {
+                int koCount = _mod.Count();
+                if (koCount > 0)
+                {
+                    requestURL = AddQueryToURL(requestURL, "command", _mod[0], true);
+
+                    for (int i = 1; i < koCount; i++)
+                    {
+                        requestURL = AddQueryToURL(requestURL, "command", _mod[i]);
+                    }
+                }
+            }
+            
+            requestURL = AddQueryToURL(requestURL, "view_name", _modFile.baseModelName, allModifications.Count == 0);
+
+            Debug.Log("Save Request" + requestURL);
 
             StartCoroutine(GetRequest(requestURL));
 
@@ -160,6 +192,7 @@ namespace ECellDive.Modules
         /// </summary>
         public void SaveModificationFile()
         {
+            animLW.PlayLoop("HttpServerModificationModule");
             StartCoroutine(SaveModificationFileC());
         }
 
@@ -168,20 +201,40 @@ namespace ECellDive.Modules
         /// </summary>
         private IEnumerator SaveModificationFileC()
         {
-            targetSaveable.CompileModificationFile();
-            string fileName = RequestSaveModel(targetSaveable.writingModificationFile);
-
-            yield return new WaitUntil(isRequestProcessed);
-
-            if (requestData.requestSuccess)
+            if(targetSaveable != null)
             {
-                LogSystem.AddMessage(LogMessageTypes.Trace,
-                    "File \"" + fileName + "\" has been succesfully saved.");
+                targetSaveable.CompileModificationFile();
+                string fileName = RequestSaveModel(targetSaveable.writingModificationFile);
+
+                yield return new WaitUntil(isRequestProcessed);
+
+                //stop the "Work In Progress" animation of this module
+                animLW.StopLoop();
+
+                if (requestData.requestSuccess)
+                {
+                    //Flash of the succesful color.
+                    GetComponentInChildren<ColorFlash>().Flash(1);
+                    LogSystem.AddMessage(LogMessageTypes.Trace,
+                        "File \"" + fileName + "\" has been succesfully saved.");
+                }
+                else
+                {
+                    //Flash of the fail color.
+                    GetComponentInChildren<ColorFlash>().Flash(0);
+                    LogSystem.AddMessage(LogMessageTypes.Errors,
+                        "File \"" + fileName + "\" could not be saved.");
+                }
             }
             else
             {
+                //stop the "Work In Progress" animation of this module
+                animLW.StopLoop();
+                //Flash of the fail color.
+                GetComponentInChildren<ColorFlash>().Flash(0);
                 LogSystem.AddMessage(LogMessageTypes.Errors,
-                    "File \"" + fileName + "\" could not be saved.");
+                    "You have not selected any target base model for which" +
+                    "to save the modifications");
             }
         }
 
@@ -202,6 +255,8 @@ namespace ECellDive.Modules
         /// </summary>
         public void ShowBaseModelsCandidates()
         {
+            animLW.PlayLoop("HttpServerModificationModule");
+
             foreach (RectTransform _child in refBaseModelsScrollList.refContent)
             {
                 if (_child.gameObject.activeSelf)
@@ -210,13 +265,31 @@ namespace ECellDive.Modules
                 }
             }
 
-            foreach(ISaveable _saveable in GameNetPortal.Instance.saveables)
+            foreach(CyJsonModule _model in CyJsonModulesData.loadedData)
             {
                 GameObject modelUIContainer = refBaseModelsScrollList.AddItem();
-                modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = _saveable.writingModificationFile.baseModelName;
+                modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = _model.nameField.text;
                 modelUIContainer.SetActive(true);
                 refModificationFilesScrollList.UpdateScrollList();
             }
+
+            //stop the "Work In Progress" animation of this module
+            animLW.StopLoop();
+
+            if (GameNetPortal.Instance.saveables.Count > 0)
+            {
+                //Flash of the succesful color.
+                GetComponentInChildren<ColorFlash>().Flash(1);
+            }
+            else
+            {
+                //Flash of the fail color.
+                GetComponentInChildren<ColorFlash>().Flash(0);
+                LogSystem.AddMessage(LogMessageTypes.Errors,
+                    "No base model has been found. Have you imported eligible data?" +
+                    " If yes, have you generated it? (Dive into it at least once)");
+            }
+
         }
 
         /// <summary>
@@ -226,6 +299,7 @@ namespace ECellDive.Modules
         public void ShowModFilesList()
         {
             StartCoroutine(ShowModFilesListC());
+            animLW.PlayLoop("HttpServerModificationModule");
         }
 
         /// <summary>
@@ -238,11 +312,16 @@ namespace ECellDive.Modules
 
             yield return new WaitUntil(isRequestProcessed);
 
+            //stop the "Work In Progress" animation of this module
+            animLW.StopLoop();
+
             if (requestData.requestSuccess)
             {
+                //Flash of the succesful color.
+                GetComponentInChildren<ColorFlash>().Flash(1);
+
                 requestData.requestJObject = JObject.Parse(requestData.requestText);
-                JArray jModelsArray = (JArray)requestData.requestJObject["user_defined_models"];
-                List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
+                JArray jModelsArray = (JArray)requestData.requestJObject["user_models"];
 
                 foreach (RectTransform _child in refModificationFilesScrollList.refContent)
                 {
@@ -252,13 +331,18 @@ namespace ECellDive.Modules
                     }
                 }
 
-                for (int i = 0; i < modelsList.Count; i++)
+                for (int i = 0; i < jModelsArray.Count; i++)
                 {
                     GameObject modelUIContainer = refModificationFilesScrollList.AddItem();
-                    modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = modelsList[i];
+                    modelUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = jModelsArray.ElementAt(i).Value<string>();
                     modelUIContainer.SetActive(true);
                     refModificationFilesScrollList.UpdateScrollList();
                 }
+            }
+            else
+            {
+                //Flash of the fail color.
+                GetComponentInChildren<ColorFlash>().Flash(0);
             }
         }
     }

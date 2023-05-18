@@ -34,7 +34,7 @@ namespace ECellDive
             public GameObject pathwayRoot;
 
             private bool allNodesSpawned = false;
-            private Dictionary<uint, Modification<bool>> koModifications = new Dictionary<uint, Modification<bool>>();
+            //private Dictionary<uint, Modification<bool>> koModifications = new Dictionary<uint, Modification<bool>>();
 
             public Texture2D mainTex;
 
@@ -91,21 +91,6 @@ namespace ECellDive
             {
                 mpb.SetVector(colorID, _current);
                 m_Renderer.SetPropertyBlock(mpb);
-            }
-
-            [ClientRpc]
-            private void BroadcastKoModificationClientRpc(uint _edgeId)
-            {
-                if (IsServer) return;
-
-                koModifications[_edgeId] = new Modification<bool>(true, OperationTypes.knockout);
-            }
-
-            [ServerRpc(RequireOwnership = false)]
-            private void BroadcastKoModificationServerRpc(uint _edgeId)
-            {
-                koModifications[_edgeId] = new Modification<bool>(true, OperationTypes.knockout);
-                BroadcastKoModificationClientRpc(_edgeId);
             }
 
             [ServerRpc(RequireOwnership = false)]
@@ -194,33 +179,26 @@ namespace ECellDive
 
             /// <summary>
             /// Translates the information about knockedout reactions stored
-            /// in <see cref="koModifications"/> as a string usable for a request
-            /// to the server.
+            /// as a string usable for a request to the server.
             /// </summary>
-            /// <returns>A string listing the knockedout reactions.</returns>
-            public string GetKnockoutString()
+            /// <returns>The list of all the individual knockout commands.
+            /// It is to be paired with the "command=" kayword for every entry.</returns>
+            public List<string> GetKnockouts()
             {
-                string knockouts = "";
-
-                Dictionary<string, ushort> koMatch = new Dictionary<string, ushort>();
-                ushort koMatchCount = 0;
-
-                EdgeGO edgeGO;
-                foreach (uint _koEdgeId in koModifications.Keys)
+                List<string> knockouts = new List<string>();
+                Dictionary<string, ushort> reactionMatch = new Dictionary<string, ushort>();
+                ushort reactionMatchCount = 0;
+                foreach (IEdge _edgeData in graphData.edges)
                 {
-                    edgeGO = DataID_to_DataGO[_koEdgeId].GetComponent<EdgeGO>();
-                    if (!koMatch.TryGetValue(edgeGO.edgeData.name, out koMatchCount))
+                    if (DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut.Value)
                     {
-                        koMatch[edgeGO.edgeData.name] = 1;
-                        knockouts += "knockout_" + edgeGO.edgeData.ID + ",";
+                        if (!reactionMatch.TryGetValue(_edgeData.name, out reactionMatchCount))
+                        {
+                            reactionMatch[_edgeData.name] = 1;
+                            knockouts.Add("knockout-" + _edgeData.ID);
+                        }
                     }
                 }
-
-                if (knockouts.Length > 0)
-                {
-                    knockouts = knockouts.Substring(0, knockouts.Length - 1);
-                }
-
                 return knockouts;
             }
 
@@ -277,50 +255,9 @@ namespace ECellDive
             }
 #endif
 
-            private string ScanForKOModifications()
-            {
-                string modification = "";
-                Modification<bool> koMod;
-                foreach(IEdge edge in graphData.edges)
-                {
-                    if (DataID_to_DataGO[edge.ID].GetComponent<EdgeGO>().knockedOut.Value)
-                    {
-                        if (!koModifications.TryGetValue(edge.ID, out koMod))
-                        {
-                            koModifications[edge.ID] = new Modification<bool>(true, OperationTypes.knockout);
-                        }
-                    }
-
-                    else
-                    {
-                        if (!koModifications.TryGetValue(edge.ID, out koMod))
-                        {
-                            koModifications.Remove(edge.ID);
-                        }
-                    }
-                }
-
-                return modification;
-            }
-
             public void SetIndex(int _index)
             {
                 refIndex = _index;
-            }
-
-            public void StartUpInfo()
-            {
-                writingModificationFile = new ModificationFile(
-                    "",
-                    graphData.name,
-                    "", "");
-
-                SetIndex(CyJsonModulesData.loadedData.Count - 1);
-
-                SetName(CyJsonModulesData.loadedData[refIndex].name);
-
-                InstantiateInfoTags(new string[] {$"nb edges: {CyJsonModulesData.loadedData[refIndex].edges.Length}\n"+
-                                                  $"nb nodes: {CyJsonModulesData.loadedData[refIndex].nodes.Length}"});
             }
 
             #region - IDive Methods -
@@ -377,11 +314,13 @@ namespace ECellDive
             /// <inheritdoc/>
             public void ApplyFileModifications()
             {
-                Debug.Log("Applying modifications");
-                string[] operations = readingModificationFile.modification.Split(',');
-                foreach(string _op in operations)
+                List<string[]> allModifications = readingModificationFile.GetAllCommands();
+                foreach (string[] _mod in allModifications)
                 {
-                    OperationSwitch(_op);
+                    foreach (string _command in _mod)
+                    {
+                        OperationSwitch(_command);
+                    }
                 }
             }
             /// <inheritdoc/>
@@ -392,7 +331,7 @@ namespace ECellDive
             /// <inheritdoc/>
             public void OperationSwitch(string _op)
             {
-                string[] opContent = _op.Split('_');
+                string[] opContent = _op.Split('-');
 
                 switch (opContent[0])
                 {
@@ -401,8 +340,8 @@ namespace ECellDive
                         uint edgeID = System.Convert.ToUInt32(opContent[1]);
                         if (DataID_to_DataGO.TryGetValue(edgeID, out edgeGO))
                         {
+                            Debug.Log("KnockingOut:" + opContent[1]);
                             edgeGO.GetComponent<EdgeGO>().Knockout();
-                            BroadcastKoModificationServerRpc(edgeID);
                         }
                         break;
                 }
@@ -424,12 +363,10 @@ namespace ECellDive
                 //Instantiating relevant data structures to store the information about
                 //the layers, nodes and edges.
                 CyJsonPathwayLoader.Populate(pathway);
-                CyJsonModulesData.AddData(pathway);
+                CyJsonModulesData.AddData(this);
+                SetIndex(CyJsonModulesData.loadedData.Count - 1);
 
                 SetNetworkData(pathway);
-#if !UNITY_EDITOR
-                StartUpInfo();
-#endif
             }
             #endregion
 
@@ -455,13 +392,15 @@ namespace ECellDive
             public void CompileModificationFile()
             {
                 string author = GameNetPortal.Instance.netSessionPlayersDataMap[NetworkManager.Singleton.LocalClientId].playerName;
-                string baseModelPath = graphData.name;
-                string description = "";
+                string baseModelName = graphData.name;
 
-                ScanForKOModifications();
-                string modification = GetKnockoutString();
+                //ScanForKOModifications();
+                List<string> KOCommand = GetKnockouts();
+                Modification modification = new Modification(author,
+                    System.DateTime.Now.ToString("yyyyMMddTHHmmssZ"),
+                    KOCommand);
 
-                writingModificationFile = new ModificationFile(author, baseModelPath, description, modification);
+                writingModificationFile = new ModificationFile(baseModelName, modification);
             }
 
 #endregion

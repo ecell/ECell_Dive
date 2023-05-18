@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using ECellDive.GraphComponents;
 
 namespace ECellDive
 {
@@ -12,15 +10,16 @@ namespace ECellDive
         /// </summary>
         public static class CyJsonModulesData
         {
-            public static CyJsonPathway activeData { get; set; }
-            public static List<CyJsonPathway > loadedData { get; private set; }
+            public static CyJsonModule activeData { get; set; }
 
-            public static void AddData(CyJsonPathway _network)
+            public static List<CyJsonModule> m_loadedData = new List<CyJsonModule>();
+            public static List<CyJsonModule> loadedData {
+                get => m_loadedData;
+                private set => m_loadedData = value;
+            }
+
+            public static void AddData(CyJsonModule _network)
             {
-                if (loadedData == null)
-                {
-                    loadedData = new List<CyJsonPathway >();
-                }
                 loadedData.Add(_network);
             }
         }
