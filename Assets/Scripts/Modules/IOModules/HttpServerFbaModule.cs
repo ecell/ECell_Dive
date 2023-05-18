@@ -147,6 +147,7 @@ namespace ECellDive
                                                          fbaParametersManager.fluxLowerBoundSlider.slider.value,
                                                          fbaParametersManager.fluxUpperBoundSlider.slider.value);
                         float t = levelClamped / (fbaParametersManager.fluxUpperBoundSlider.slider.value - fbaParametersManager.fluxLowerBoundSlider.slider.value);
+                        Debug.Log(t);
                         Color levelColor = Color.Lerp(fbaParametersManager.fluxLowerBoundColorPicker.button.colors.normalColor,
                                                       fbaParametersManager.fluxUpperBoundColorPicker.button.colors.normalColor,
                                                       t);
