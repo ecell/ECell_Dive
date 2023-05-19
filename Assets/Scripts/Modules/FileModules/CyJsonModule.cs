@@ -34,10 +34,6 @@ namespace ECellDive
             public GameObject pathwayRoot;
 
             private bool allNodesSpawned = false;
-            //private Dictionary<uint, Modification<bool>> koModifications = new Dictionary<uint, Modification<bool>>();
-
-            public Texture2D mainTex;
-
 
             #region  - IGraphGONet Members - 
             [SerializeField] private CyJsonPathway m_graphData;
@@ -76,12 +72,6 @@ namespace ECellDive
             public override void OnNetworkSpawn()
             {
                 base.OnNetworkSpawn();
-
-                if (mainTex != null)
-                {
-                    mpb.SetTexture("_MainTex", mainTex);
-                    m_Renderer.SetPropertyBlock(mpb);
-                }
 
                 DataID_to_DataGO = new Dictionary<uint, GameObject>();
                 GameNetPortal.Instance.modifiables.Add(this);
