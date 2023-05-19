@@ -44,6 +44,9 @@ namespace ECellDive
             public NetworkVariable<float> fluxLevelClamped { get => m_fluxLevelClamped; protected set => m_fluxLevelClamped = value; }
             #endregion
 
+            [Header("Customization Parameters")]
+            public bool forceDefaultColor;
+            public bool forceDefaultWidth;
             [Range(0, 1)] public float startWidthFactor = 1f;
             [Range(0, 1)] public float endWidthFactor = 1f;
 
@@ -100,7 +103,14 @@ namespace ECellDive
 
             protected override void ApplyCurrentColorChange(Color _previous, Color _current)
             {
-                mpb.SetVector(colorID, _current);
+                if (forceDefaultColor)
+                {
+                    mpb.SetVector(colorID, Color.white);
+                }
+                else
+                {
+                    mpb.SetVector(colorID, _current);
+                }
                 m_LineRenderer.SetPropertyBlock(mpb);
             }
 
@@ -509,6 +519,7 @@ namespace ECellDive
             /// <inheritdoc/>
             public void SetDefaultWidth(float _start, float _end)
             {
+                //Debug.Log($"Set sw {defaultStartWidth}, ew {endWidthFactor}");
                 defaultStartWidth = _start;
                 defaultEndWidth = _end;
             }
@@ -534,8 +545,16 @@ namespace ECellDive
             /// <inheritdoc/>
             public void SetLineRendererWidth()
             {
-                m_LineRenderer.startWidth = startWidthFactor * Mathf.Max(defaultStartWidth, defaultStartWidth*fluxLevelClamped.Value);
-                m_LineRenderer.endWidth = endWidthFactor * Mathf.Max(defaultEndWidth, defaultEndWidth*fluxLevelClamped.Value);
+                if (forceDefaultWidth)
+                {
+                    m_LineRenderer.startWidth = startWidthFactor * defaultStartWidth;
+                    m_LineRenderer.endWidth = endWidthFactor * defaultEndWidth;
+                }
+                else
+                {
+                    m_LineRenderer.startWidth = startWidthFactor * Mathf.Max(defaultStartWidth, defaultStartWidth*fluxLevelClamped.Value);
+                    m_LineRenderer.endWidth = endWidthFactor * Mathf.Max(defaultEndWidth, defaultEndWidth*fluxLevelClamped.Value);
+                }
             }
 
             /// <inheritdoc/>
@@ -583,12 +602,12 @@ namespace ECellDive
             /// <inheritdoc/>
             public void SetFlux(float _level, float _levelClamped)
             {
-#if UNITY_EDITOR
-                fluxLevel.Value = _level;
-                fluxLevelClamped.Value = _levelClamped;
-#else
+//#if UNITY_EDITOR
+//                fluxLevel.Value = _level;
+//                fluxLevelClamped.Value = _levelClamped;
+//#else
                 SetFluxValuesServerRpc(_level, _levelClamped);
-#endif
+//#endif
             }
             #endregion
         }

@@ -31,6 +31,8 @@ namespace ECellDive
             [System.Serializable]
             public struct EdgeParametersOverride
             {
+                public bool forceDefaultColor;
+                public bool forceDefaultWidth;
                 [Range(0, 1)] public float startWidthFactor;
                 [Range(0, 1)] public float endWidthFactor;
             }
@@ -44,6 +46,8 @@ namespace ECellDive
             private bool allNodesSpawned = false;
             [SerializeField] private EdgeParametersOverride edgeParametersOverride = new EdgeParametersOverride
             {
+                forceDefaultColor = false,
+                forceDefaultWidth = false,
                 startWidthFactor = 1,
                 endWidthFactor = 1,
             };
@@ -111,9 +115,12 @@ namespace ECellDive
                 foreach (IEdge _edge in m_graphData.edges)
                 {
                     edgeGO = DataID_to_DataGO[_edge.ID].GetComponent<EdgeGO>();
+                    edgeGO.forceDefaultColor = edgeParametersOverride.forceDefaultColor;
+                    edgeGO.forceDefaultWidth = edgeParametersOverride.forceDefaultWidth;
                     edgeGO.startWidthFactor = edgeParametersOverride.startWidthFactor;
                     edgeGO.endWidthFactor = edgeParametersOverride.endWidthFactor;
                     edgeGO.ApplyFluxLevelClamped();
+                    edgeGO.SetCurrentColorToDefaultServerRpc();
 
                 }
 
@@ -287,6 +294,16 @@ namespace ECellDive
                 refIndex = _index;
             }
 
+            public void SwitchEdgeForceDefaultColorOverride()
+            {
+                edgeParametersOverride.forceDefaultColor = !edgeParametersOverride.forceDefaultColor;
+            }
+
+            public void SwitchEdgeForceDefaultWidthOverride()
+            {
+                edgeParametersOverride.forceDefaultWidth = !edgeParametersOverride.forceDefaultWidth;
+            }
+            
             public void SetEdgeStartWidthFactorOverride(float _startWidthFactor)
             {
                 edgeParametersOverride.startWidthFactor = _startWidthFactor;

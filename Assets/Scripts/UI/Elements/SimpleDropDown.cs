@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using ECellDive.Interfaces;
-using ECellDive.Utility;
-using static UnityEditor.PlayerSettings;
-using UnityEditorInternal;
 
 namespace ECellDive
 {
