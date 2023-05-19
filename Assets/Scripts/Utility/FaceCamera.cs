@@ -87,7 +87,7 @@ namespace ECellDive
             public void PopUp()
             {
                 Vector3 pos = Positioning.PlaceInFrontOfTarget(popupTarget, m_popupDistance, m_popupHeightOffset);
-                transform.localPosition = pos;
+                transform.position = pos;
                 LookAt();
             }
             #endregion
