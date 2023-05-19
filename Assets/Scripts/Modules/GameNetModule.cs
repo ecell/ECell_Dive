@@ -27,9 +27,14 @@ namespace ECellDive
                                     IMlprData,
                                     IMlprVisibility
         {
-            protected Collider m_Collider;
-            protected Renderer m_Renderer;
-            protected LineRenderer m_LineRenderer;
+            [Tooltip("If null, tries to find one in the children of this gameobject.")]
+            [SerializeField] protected Collider m_Collider;
+
+            [Tooltip("If null, tries to find one in this gameobject.")]
+            [SerializeField] protected Renderer m_Renderer;
+
+            [Tooltip("If null, tries to find one in this gameobject.")]
+            [SerializeField] protected LineRenderer m_LineRenderer;
             protected MaterialPropertyBlock mpb;
             protected int colorID;
 
@@ -204,9 +209,18 @@ namespace ECellDive
                 m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
 
-                m_Collider = GetComponentInChildren<Collider>();
-                m_Renderer = GetComponent<Renderer>();
-                m_LineRenderer = GetComponent<LineRenderer>();
+                if (m_Collider == null)
+                {
+                    m_Collider = GetComponentInChildren<Collider>();
+                }
+                if (m_Renderer == null)
+                {
+                    m_Renderer = GetComponent<Renderer>();
+                }
+                if(m_LineRenderer == null)
+                {
+                    m_LineRenderer = GetComponent<LineRenderer>();
+                }
             }
 
             public override void OnDestroy()
