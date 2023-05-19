@@ -16,9 +16,13 @@ namespace ECellDive.Portal
             set => m_forceHighlight = value;
         }
         #endregion
+
+        public bool hideOnStart;
+
         private bool isHighlighted = false;
         [Range(1, 5)] public float highlightEmissionFactor = 3f;
         public Vector3 baseScale = Vector3.one;
+        public Vector3 basePosition = Vector3.one;
         [Range(1, 2)] public float highlightScaleFactor = 1.25f;
         private ParticleSystem refParticleSystem;
         private ParticleSystem.EmissionModule emissionModule;
@@ -41,6 +45,13 @@ namespace ECellDive.Portal
             emissionModule = refParticleSystem.emission;
 
             refDivableData = GetComponentInParent<IDive>();
+
+            transform.localPosition = basePosition;
+
+            if (hideOnStart)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         private void TryDiveIn(InputAction.CallbackContext _ctx)
