@@ -39,7 +39,7 @@ namespace ECellDive
             public Transform popupTarget { get; private set; }
             #endregion
 
-            private void Start()
+            private void Awake()
             {
                 if (Camera.main != null)
                 {

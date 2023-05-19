@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using ECellDive.Interfaces;
 using ECellDive.Utility;
-
+using static UnityEditor.PlayerSettings;
+using UnityEditorInternal;
 
 namespace ECellDive
 {
@@ -12,7 +13,7 @@ namespace ECellDive
         /// Manages a GUI element behaving like a drop down.
         /// </summary>
         public class SimpleDropDown : MonoBehaviour,
-                                             IDropDown
+                                      IDropDown
         {
             #region - IDropDown Members -
             [SerializeField]
@@ -103,11 +104,7 @@ namespace ECellDive
             public void DisplayContent()
             {
                 m_content.SetActive(true);
-
-                //Repositioning the scrollListHolder in front of the user.
-                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.2f);
-                m_scrollListHolder.transform.position = pos;
-                m_scrollListHolder.GetComponent<ILookAt>().LookAt();
+                m_scrollListHolder.GetComponent<IPopUp>().PopUp();
             }
 
             public void HideContent()
@@ -117,16 +114,12 @@ namespace ECellDive
 
             public void InstantiateContent()
             {
-                m_scrollListHolder = Instantiate(m_scrollListHolderPrefab);
-                m_content = Instantiate(m_scrollListPrefab);
-                m_content.transform.parent = m_scrollListHolder.transform;
+                m_scrollListHolder = Instantiate(m_scrollListHolderPrefab, Vector3.zero, Quaternion.identity);
+                m_scrollListHolder.SetActive(true);
+                m_scrollListHolder.GetComponent<IPopUp>().PopUp();
+                m_content = Instantiate(m_scrollListPrefab, m_scrollListHolder.transform);
                 m_scrollListHolder.GetComponent<XRGrabInteractable>().colliders.Add(m_content.GetComponentInChildren<BoxCollider>());
                 m_scrollListHolder.GetComponent<XRGrabInteractable>().enabled = true;
-
-                //Positioning the scrollListHolder in front of the user.
-                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.2f);
-                m_scrollListHolder.transform.position = pos;
-                m_scrollListHolder.GetComponent<ILookAt>().LookAt();
 
                 m_scrollList = m_content.GetComponentInChildren<OptimizedVertScrollList>();
             }
