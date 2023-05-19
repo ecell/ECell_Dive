@@ -44,8 +44,8 @@ namespace ECellDive
             public NetworkVariable<float> fluxLevelClamped { get => m_fluxLevelClamped; protected set => m_fluxLevelClamped = value; }
             #endregion
 
-            [Range(0, 1)] public float startWidthFactor = 0.25f;
-            [Range(0, 1)] public float endWidthFactor = 0.75f;
+            [Range(0, 1)] public float startWidthFactor = 1f;
+            [Range(0, 1)] public float endWidthFactor = 1f;
 
             private int activationID;
             private ParticleSystem refParticleSystem;
@@ -214,7 +214,6 @@ namespace ECellDive
             [ServerRpc(RequireOwnership = false)]
             private void SetFluxValuesServerRpc(float _fluxValue, float _fluxClampedValue)
             {
-                Debug.Log("SetFlux");
                 fluxLevel.Value = _fluxValue;
                 fluxLevelClamped.Value = _fluxClampedValue;
             }

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 namespace ECellDive
 {
@@ -15,6 +16,8 @@ namespace ECellDive
         {
             public Slider slider;
             public TMP_InputField inputField;
+
+            public UnityEvent<float> OnValueChanged;
 
             /// <summary>
             /// To be called back when clicking on the - button.
@@ -42,6 +45,7 @@ namespace ECellDive
             public void UpdateInputFieldValue()
             {
                 inputField.text = $"{slider.value:F2}";
+                OnValueChanged?.Invoke(slider.value);
             }
 
             /// <summary>
