@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showOnEnable: 1
-  m_isUI: 0
+  m_flip: 0
   m_popupDistance: 0
   m_popupHeightOffset: 0
 --- !u!1 &5354700870281588557
@@ -1135,6 +1135,7 @@ GameObject:
   - component: {fileID: 7288680088940509201}
   - component: {fileID: 9186745550434743612}
   - component: {fileID: 3680908685886802813}
+  - component: {fileID: 933393110099182564}
   - component: {fileID: 4916496559549191361}
   m_Layer: 7
   m_Name: HttpServerFbaModule
@@ -1388,7 +1389,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4916496559549191361}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
-        m_MethodName: ShowNameToPlayer
+        m_MethodName: LookAt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1469,6 +1470,22 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &933393110099182564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9183378004188021928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc6fa794660ef24784ded0358f6755d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showOnEnable: 1
+  m_flip: 1
+  m_popupDistance: 0
+  m_popupHeightOffset: 0
 --- !u!114 &4916496559549191361
 MonoBehaviour:
   m_ObjectHideFlags: 0

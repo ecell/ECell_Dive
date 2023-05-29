@@ -298,6 +298,14 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// Will rotate the module to face the active camera.
+            /// </summary>
+            public void LookAt()
+            {
+                GetComponent<ILookAt>().LookAt();
+            }
+
             #region - IDive Methods -
             /// <inheritdoc/>
             public void DirectDiveIn()

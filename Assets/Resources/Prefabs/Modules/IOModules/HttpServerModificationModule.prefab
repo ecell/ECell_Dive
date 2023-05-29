@@ -926,6 +926,7 @@ GameObject:
   - component: {fileID: 4780056798288890049}
   - component: {fileID: 6344828462924137964}
   - component: {fileID: 1469736210462112685}
+  - component: {fileID: 746639749999204503}
   - component: {fileID: 4121836892299767802}
   m_Layer: 7
   m_Name: HttpServerModificationModule
@@ -1181,7 +1182,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4121836892299767802}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
-        m_MethodName: ShowNameToPlayer
+        m_MethodName: LookAt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1262,6 +1263,22 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &746639749999204503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6341440025480328312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc6fa794660ef24784ded0358f6755d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showOnEnable: 1
+  m_flip: 1
+  m_popupDistance: 0
+  m_popupHeightOffset: 0
 --- !u!114 &4121836892299767802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1638,7 +1655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showOnEnable: 1
-  m_isUI: 0
+  m_flip: 0
   m_popupDistance: 0
   m_popupHeightOffset: 0
 --- !u!1 &9015606261280904474

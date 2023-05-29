@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 8678961018752129885}
   - component: {fileID: 8140541840146617937}
   - component: {fileID: 2579182391955807151}
+  - component: {fileID: 6458336204248001479}
   - component: {fileID: 3646200969631011454}
   - component: {fileID: 3161214916275588596}
   m_Layer: 7
@@ -345,7 +346,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3646200969631011454}
         m_TargetAssemblyTypeName: ECellDive.Modules.GameNetModule, Assembly-CSharp
-        m_MethodName: ShowName
+        m_MethodName: LookAt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -426,6 +427,22 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6458336204248001479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757060780145655368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc6fa794660ef24784ded0358f6755d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showOnEnable: 1
+  m_flip: 1
+  m_popupDistance: 0
+  m_popupHeightOffset: 0
 --- !u!114 &3646200969631011454
 MonoBehaviour:
   m_ObjectHideFlags: 0
