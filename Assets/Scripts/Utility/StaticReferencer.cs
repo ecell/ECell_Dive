@@ -36,6 +36,7 @@ namespace ECellDive.Utility
         [HideInInspector] public GameObject refVirtualKeyboard;
         [HideInInspector] public ColorPicker refColorPicker;
         [HideInInspector] public GroupsMenu refGroupsMenu;
+        [HideInInspector] public GroupsMakingUIManager refGroupsMakingUIManager;
 
         /// <summary>
         /// The list of all gameobjects representing the information tags of 
@@ -92,6 +93,7 @@ namespace ECellDive.Utility
                 Instance.refVirtualKeyboard = guiManager.refVirtualKeyboard;
                 Instance.refColorPicker = guiManager.refColorPicker;
                 Instance.refGroupsMenu = guiManager.refGroupsMenu;
+                Instance.refGroupsMakingUIManager = guiManager.refGroupsMakingUIManager;
 
                 guiManager.Initialize(GetComponent<Player>());
             }

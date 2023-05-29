@@ -22,8 +22,6 @@ namespace ECellDive.PlayerComponents
     /// </summary>
     public class GroupsMakingManager : NetworkBehaviour
     {
-        private GroupsMakingUIManager refUIManager;
-
         public LeftRightData<InputActionReference> selection;
         public LeftRightData<InputActionReference> switchSelectionMode;
 
@@ -151,9 +149,6 @@ namespace ECellDive.PlayerComponents
 
             //Reset group members list
             ResetGroupMemberList();
-
-            //Hide the UI dialogue
-            refUIManager.CloseUI();
         }
 
         /// <summary>
@@ -211,7 +206,7 @@ namespace ECellDive.PlayerComponents
                     highlightable.UnsetHighlight();
                 }
 
-                refUIManager.ManageUIConfirmationCanvas(groupMembers.Count);
+                StaticReferencer.Instance.refGroupsMakingUIManager.ManageUIConfirmationCanvas(groupMembers.Count);
             }
         }
 
@@ -244,15 +239,6 @@ namespace ECellDive.PlayerComponents
             }
 
             groupMembers.Clear();
-        }
-
-        /// <summary>
-        /// Mutator for <see cref="refUIManager"/>.
-        /// </summary>
-        /// <param name="_UImanager">The value for <see cref="refUIManager"/>.</param>
-        public void SetUIManager(GroupsMakingUIManager _UImanager)
-        {
-            refUIManager = _UImanager;
         }
 
         private void SwitchSelectionModeLeft(InputAction.CallbackContext _ctx)
@@ -354,13 +340,10 @@ namespace ECellDive.PlayerComponents
                 highlitables[i].forceHighlight = false;
             }
 
-            refUIManager.NewGroupUiElement(highlitables);
+            StaticReferencer.Instance.refGroupsMakingUIManager.NewGroupUiElement(highlitables);
 
             //Reset group members list
             ResetGroupMemberList();
-
-            //Hide the UI dialogue
-            refUIManager.CloseUI();
         }
     }
 }

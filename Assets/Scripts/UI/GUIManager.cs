@@ -60,7 +60,6 @@ namespace ECellDive
 
                 refGroupsMenu.Initialize();
                 refMultiplayerMenuManager.Initialize();
-                _player.GetComponentInChildren<GroupsMakingManager>().SetUIManager(refGroupsMakingUIManager);
             }
 
             /// <summary>

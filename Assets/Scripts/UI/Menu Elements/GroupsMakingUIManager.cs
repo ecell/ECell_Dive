@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using ECellDive.Interfaces;
-using ECellDive.SceneManagement;
 using ECellDive.Utility;
 
 namespace ECellDive.UI
@@ -13,8 +10,10 @@ namespace ECellDive.UI
         public GameObject refUICanvas;
         public TMP_InputField refGroupNameInputField;
 
-        public void CloseUI()
+        public void Cancel()
         {
+            StaticReferencer.Instance.groupsMakingManager.CancelGroup();
+
             refUICanvas.SetActive(false);
         }
 
@@ -45,13 +44,16 @@ namespace ECellDive.UI
             else
             {
                 refUICanvas.SetActive(true);
-                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.2f);
-                transform.position = pos;
-                GetComponent<ILookAt>().LookAt();
+                GetComponent<IPopUp>().PopUp();
             }
         }
 
-        
+        public void Validate()
+        {
+            StaticReferencer.Instance.groupsMakingManager.ValidateGroup();
+            ManageUIConfirmationCanvas(StaticReferencer.Instance.groupsMakingManager.groupMembers.Count);
+            refUICanvas.SetActive(false);
+        }
     }
 }
 
