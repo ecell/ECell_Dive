@@ -20,7 +20,6 @@ namespace ECellDive.Portal
         public bool hideOnStart;
 
         private bool isHighlighted = false;
-        [Range(1, 5)] public float highlightEmissionFactor = 3f;
         public Vector3 baseScale = Vector3.one;
         public Vector3 basePosition = Vector3.one;
         [Range(1, 2)] public float highlightScaleFactor = 1.25f;
@@ -65,7 +64,6 @@ namespace ECellDive.Portal
             if (gameObject.activeSelf)
             {
                 isHighlighted = true;
-                emissionModule.rateOverTimeMultiplier *= highlightEmissionFactor;
                 StartCoroutine(ScaleUpC());
             }
         }
@@ -104,7 +102,6 @@ namespace ECellDive.Portal
                 isHighlighted=false;
                 if (!forceHighlight)
                 {
-                    emissionModule.rateOverTimeMultiplier /= highlightEmissionFactor;
                     StartCoroutine(ScaleDownC());
                 }
             }
