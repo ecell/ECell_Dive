@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 using ECellDive.Interfaces;
+using ECellDive.Utility;
 
 namespace ECellDive.Portal
 {
@@ -26,6 +27,11 @@ namespace ECellDive.Portal
         private ParticleSystem refParticleSystem;
         private ParticleSystem.EmissionModule emissionModule;
 
+        public Color defaultPortalColor;
+        public Color defaultOutlineColor;
+        [SerializeField] private Renderer[] renderers;
+        private MaterialPropertyBlock mpb;
+        private int colorID;
 
         [SerializeField] private LeftRightData<InputActionReference> m_diveActions;
         public LeftRightData<InputActionReference> diveActions
@@ -53,9 +59,30 @@ namespace ECellDive.Portal
             }
         }
 
+        private void OnEnable()
+        {
+            mpb = new MaterialPropertyBlock();
+            colorID = Shader.PropertyToID("_Color");
+            mpb.SetVector(colorID, defaultPortalColor);
+            renderers[0].SetPropertyBlock(mpb);//portal
+
+            mpb.SetVector(colorID, defaultOutlineColor);
+            renderers[1].SetPropertyBlock(mpb);//outline
+        }
+
         private void TryDiveIn(InputAction.CallbackContext _ctx)
         {
+            StartCoroutine(TryDiveInC());
+        }
+
+        private IEnumerator TryDiveInC()
+        {
             refDivableData.TryDiveIn();
+            AnimationLoopWrapper alw = GetComponent<AnimationLoopWrapper>();
+            alw.PlayLoop("PortalDive");
+            yield return new WaitWhile(() => refDivableData.isDiving);
+            alw.StopLoop();
+
         }
 
         #region - IHighlightable Methods -

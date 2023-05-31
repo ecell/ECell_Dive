@@ -39,6 +39,14 @@ namespace ECellDive
             protected int colorID;
 
             #region - IDive Members -
+
+            private bool m_isDiving = false;
+            public bool isDiving
+            {
+                get => m_isDiving;
+                set => m_isDiving = value;
+            }
+
             private NetworkVariable<int> m_rootSceneId = new NetworkVariable<int>();
             public NetworkVariable<int> rootSceneId
             {
@@ -317,15 +325,14 @@ namespace ECellDive
             /// <inheritdoc/>
             public virtual IEnumerator DirectDiveInC()
             {
-                //TODO: DIVE START ANIMATION
-                yield return null;
-
                 Debug.Log($"DirectDiveInC for netobj: {NetworkBehaviourId}");
                 DiveScenesManager.Instance.SwitchingScenesServerRpc(rootSceneId.Value,
                                                                     targetSceneId.Value,
                                                                     NetworkManager.Singleton.LocalClientId);
-                //TODO: DIVE END ANIMATION
+                //Wait until the client has switched to the target scene
+                yield return new WaitUntil(DiveScenesManager.Instance.SceneSwitchIsFinished);
 
+                isDiving = false;
             }
 
             /// <inheritdoc/>
@@ -337,28 +344,19 @@ namespace ECellDive
             /// <inheritdoc/>
             public virtual IEnumerator GenerativeDiveInC()
             {
-                //TODO: DATA GENERATION START ANIMATION
-
                 Debug.LogError($"Generative dive in {gameObject.name}:{nameField.text} but no" +
                     $"custom behaviour has been defined for that type of module");
                 yield return null;
-                //TODO: DATA GENERATION END ANIMATION
+                isDiving = false;
 
             }
 
             /// <inheritdoc/>
             public void TryDiveIn()
             {
-                StartCoroutine(TryDiveInC());
-            }
-
-            /// <inheritdoc/>
-            public virtual IEnumerator TryDiveInC()
-            {
                 if (isReadyForGeneration.Value)
                 {
-                    //Wait for animation to finish;
-                    yield return null;
+                    isDiving = true;
                     if (isReadyForDive.Value)
                     {
                         DirectDiveIn();
