@@ -72,13 +72,10 @@ namespace ECellDive
             #region - ILookAt Methods -
             public void LookAt()
             {
+                gameObject.transform.LookAt(lookAtTarget);
                 if (flip)
                 {
-                    Positioning.UIFaceTarget(gameObject, lookAtTarget);
-                }
-                else
-                {
-                    gameObject.transform.LookAt(lookAtTarget);
+                    gameObject.transform.Rotate(new Vector3(0, 180, 0));
                 }
             }
             #endregion

@@ -253,6 +253,15 @@ namespace ECellDive
             }
 
             /// <summary>
+            /// Will rotate the module to face the active camera.
+            /// </summary>
+            /// <remarks>Callback set in the editor</remarks>
+            public void LookAt()
+            {
+                GetComponent<ILookAt>().LookAt();
+            }
+
+            /// <summary>
             /// Input call back action on which the floating display
             /// is turned on or off.
             /// </summary>
@@ -296,14 +305,6 @@ namespace ECellDive
                 {
                     Destroy(gameObject);
                 }
-            }
-
-            /// <summary>
-            /// Will rotate the module to face the active camera.
-            /// </summary>
-            public void LookAt()
-            {
-                GetComponent<ILookAt>().LookAt();
             }
 
             #region - IDive Methods -
@@ -476,7 +477,6 @@ namespace ECellDive
             /// <inheritdoc/>
             public void ShowInfoTags()
             {
-                refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
                 foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
                     _infoTag.gameObject.GetComponent<ILookAt>().LookAt();

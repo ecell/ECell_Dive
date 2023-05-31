@@ -155,14 +155,6 @@ namespace ECellDive
                 Positioning.UIFaceTarget(refName.gameObject.transform.parent.gameObject, Camera.main.transform);
             }
 
-            /// <summary>
-            /// Will rotate the module to face the active camera.
-            /// </summary>
-            public void LookAt()
-            {
-                GetComponent<ILookAt>().LookAt();
-            }
-
             #region - IFocus Methods -
             /// <inheritdoc/>
             public void SetFocus()

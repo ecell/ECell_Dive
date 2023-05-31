@@ -472,8 +472,8 @@ MonoBehaviour:
     m_InternalValue: 0
   pathwayRoot: {fileID: 0}
   edgeParametersOverride:
-    forceDefaultColor: 0
-    forceDefaultWidth: 0
+    forceDefaultColor: 1
+    forceDefaultWidth: 1
     startWidthFactor: 1
     endWidthFactor: 1
   m_graphScalingData:
@@ -714,7 +714,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3562999567232715005}
-  - component: {fileID: 3952228618506703166}
   m_Layer: 7
   m_Name: All Info Tags
   m_TagString: Untagged
@@ -738,22 +737,6 @@ Transform:
   m_Father: {fileID: 6440921223657396419}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3952228618506703166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2935444204287786042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dc6fa794660ef24784ded0358f6755d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showOnEnable: 1
-  m_isUI: 1
-  m_popupDistance: 0
-  m_popupHeightOffset: 0
 --- !u!1 &3440654556376484293
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,7 +783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showOnEnable: 1
-  m_isUI: 1
+  m_flip: 1
   m_popupDistance: 0
   m_popupHeightOffset: 0
 --- !u!114 &8381468152428212600
@@ -1866,7 +1849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2634387500277303596, guid: 0f6b0af8c4d167b41ab417bf31283260, type: 3}
       propertyPath: defaultPositionOffset.x
-      value: 1.3
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 2634387500277303596, guid: 0f6b0af8c4d167b41ab417bf31283260, type: 3}
       propertyPath: defaultPositionOffset.y
@@ -2100,6 +2083,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7652270698567823943, guid: 0f6b0af8c4d167b41ab417bf31283260, type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7696683965984097567, guid: 0f6b0af8c4d167b41ab417bf31283260, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2126,7 +2113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7777554735479996379, guid: 0f6b0af8c4d167b41ab417bf31283260, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 7777554735479996379, guid: 0f6b0af8c4d167b41ab417bf31283260, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2460,14 +2447,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
---- !u!4 &3813504474537117794 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 872680225068267353, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
-  m_PrefabInstance: {fileID: 4102823343602171707}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3813504474537117795 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 872680225068267352, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
+  m_PrefabInstance: {fileID: 4102823343602171707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3813504474537117794 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 872680225068267353, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
   m_PrefabInstance: {fileID: 4102823343602171707}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4797448311434977208
@@ -2536,6 +2523,10 @@ PrefabInstance:
     - target: {fileID: 266154893257983208, guid: 9988bccdbc9d42f41b46fa5192b9e770, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653172752334389972, guid: 9988bccdbc9d42f41b46fa5192b9e770, type: 3}
+      propertyPath: m_flip
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5200253547910022500, guid: 9988bccdbc9d42f41b46fa5192b9e770, type: 3}
       propertyPath: hideOnStart
