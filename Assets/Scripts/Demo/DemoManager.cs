@@ -100,6 +100,8 @@ namespace ECellDive.Tutorials
             refLeftSelect.action.Enable();
             //Allow user to grab objects (the UI menu) with the left controller.
             refLeftGrab.action.Enable();
+            //Allow user to open/close the object menu with the left controller.
+            refLeftOpenObjectMenu.action.Enable();
             //Allow user to teleport with right controller
             refRightTeleportation.action.Enable();
 
@@ -112,6 +114,7 @@ namespace ECellDive.Tutorials
             //... but still show the InfoTags of the front trigger.
             StaticReferencer.Instance.refInfoTags[4].SetActive(true);//Left Front Trigger
             StaticReferencer.Instance.refInfoTags[5].SetActive(true);//Left Grab Trigger
+            StaticReferencer.Instance.refInfoTags[1].SetActive(true);//X Button
             StaticReferencer.Instance.refInfoTags[9].SetActive(true);//Right Front Trigger
 
             GenerateDemoGraph();
