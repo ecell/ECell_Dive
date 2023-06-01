@@ -110,7 +110,6 @@ namespace ECellDive
                 ActionBasedController left = StaticReferencer.Instance.riControllersGO.left.GetComponent<ActionBasedController>();
                 ActionBasedController right = StaticReferencer.Instance.riControllersGO.right.GetComponent<ActionBasedController>();
 
-                Debug.Log($"uiPressActions.left.action: {uiPressActions.left.action.triggered}");
                 if (uiPressActionsPressed.left)
                 {
                     left.SendHapticImpulse(0.25f, 0.1f);

@@ -1,13 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 using ECellDive.Interfaces;
 using ECellDive.Utility;
 
 namespace ECellDive.Portal
 {
-    public class PortalManager : MonoBehaviour, IHighlightable
+    public class PortalManager : MonoBehaviour, IHighlightable, IFocus
     {
         #region - Highlightable Members - 
         private bool m_forceHighlight = false;
@@ -39,12 +40,29 @@ namespace ECellDive.Portal
             get => m_diveActions;
             set => m_diveActions = value;
         }
+
+        private bool m_isFocused;
+        public bool isFocused
+        {
+            get => m_isFocused;
+            set => m_isFocused = value;
+        }
+
+        private LeftRightData<bool> diveActionPressed;
+
         private IDive refDivableData;
 
         private void Awake()
         {
+            diveActions.left.action.started += ctx => diveActionPressed.left = true;
+            diveActions.left.action.started += SendHapticImpulse;
             diveActions.left.action.performed += TryDiveIn;
+            diveActions.left.action.canceled += CancelHapticImpulse;
+
+            diveActions.right.action.started += ctx => diveActionPressed.right = true;
+            diveActions.right.action.started += SendHapticImpulse;
             diveActions.right.action.performed += TryDiveIn;
+            diveActions.right.action.canceled += CancelHapticImpulse;
 
             refParticleSystem = GetComponentInChildren<ParticleSystem>();
             emissionModule = refParticleSystem.emission;
@@ -59,6 +77,19 @@ namespace ECellDive.Portal
             }
         }
 
+        private void OnDestroy()
+        {
+            diveActions.left.action.started -= ctx => diveActionPressed.left = true;
+            diveActions.left.action.started -= SendHapticImpulse;
+            diveActions.left.action.performed -= TryDiveIn;
+            diveActions.left.action.canceled -= CancelHapticImpulse;
+
+            diveActions.right.action.started -= ctx => diveActionPressed.right = true;
+            diveActions.right.action.started -= SendHapticImpulse;
+            diveActions.right.action.performed -= TryDiveIn;
+            diveActions.right.action.canceled -= CancelHapticImpulse;
+        }
+
         private void OnEnable()
         {
             mpb = new MaterialPropertyBlock();
@@ -70,31 +101,35 @@ namespace ECellDive.Portal
             renderers[1].SetPropertyBlock(mpb);//outline
         }
 
-        private void TryDiveIn(InputAction.CallbackContext _ctx)
+        /// <summary>
+        /// Sends an "intensity-zero" haptic impulse to the controllers which effectively
+        /// cancels the previous impulse, if any.
+        /// </summary>
+        private void CancelHapticImpulse(InputAction.CallbackContext _ctx)
         {
-            StartCoroutine(TryDiveInC());
-        }
-
-        private IEnumerator TryDiveInC()
-        {
-            refDivableData.TryDiveIn();
-            AnimationLoopWrapper alw = GetComponent<AnimationLoopWrapper>();
-            alw.PlayLoop("PortalDive");
-            yield return new WaitWhile(() => refDivableData.isDiving);
-            alw.StopLoop();
-
-        }
-
-        #region - IHighlightable Methods -
-        public void SetHighlight()
-        {
-            if (gameObject.activeSelf)
+            if (m_isFocused)
             {
-                isHighlighted = true;
-                StartCoroutine(ScaleUpC());
+                ActionBasedController left = StaticReferencer.Instance.riControllersGO.left.GetComponent<ActionBasedController>();
+                ActionBasedController right = StaticReferencer.Instance.riControllersGO.right.GetComponent<ActionBasedController>();
+
+                if (diveActionPressed.left)
+                {
+                    left.SendHapticImpulse(0f, 1f);
+                }
+
+                if (diveActionPressed.right)
+                {
+                    right.SendHapticImpulse(0f, 1f);
+                }
             }
+            diveActionPressed.right = false;
+            diveActionPressed.left = false;
         }
 
+        /// <summary>
+        /// Coroutine-based animation to smooth a scale up of the portal.
+        /// </summary>
+        /// <remarks>Used in SetHighlight.</remarks>
         private IEnumerator ScaleUpC()
         {
             Vector3 targetScale = highlightScaleFactor * baseScale;
@@ -109,6 +144,10 @@ namespace ECellDive.Portal
             }
         }
 
+        /// <summary>
+        /// Coroutine-based animation to smooth a scale down of the portal.
+        /// </summary>
+        /// <remarks>Used in UnsetHighlight.</remarks>
         private IEnumerator ScaleDownC()
         {
             while (!isHighlighted && transform.localScale.x - baseScale.x > 0.001f)
@@ -122,6 +161,57 @@ namespace ECellDive.Portal
             }
         }
 
+        private void SendHapticImpulse(InputAction.CallbackContext _ctx)
+        {
+            if (m_isFocused)
+            {
+                ActionBasedController left = StaticReferencer.Instance.riControllersGO.left.GetComponent<ActionBasedController>();
+                ActionBasedController right = StaticReferencer.Instance.riControllersGO.right.GetComponent<ActionBasedController>();
+
+                if (diveActionPressed.left)
+                {
+                    left.SendHapticImpulse(0.5f, 1f);
+                }
+
+                if (diveActionPressed.right)
+                {
+                    right.SendHapticImpulse(0.5f, 1f);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The callback function to trigger the dive of a user.
+        /// </summary>
+        private void TryDiveIn(InputAction.CallbackContext _ctx)
+        {
+            StartCoroutine(TryDiveInC());
+        }
+
+        /// <summary>
+        /// The coroutine controlling the dive animation and the dive itself.
+        /// </summary>
+        private IEnumerator TryDiveInC()
+        {
+            refDivableData.TryDiveIn();
+            AnimationLoopWrapper alw = GetComponent<AnimationLoopWrapper>();
+            alw.PlayLoop("PortalDive");
+            yield return new WaitWhile(() => refDivableData.isDiving);
+            alw.StopLoop();
+        }
+
+        #region - IHighlightable Methods -
+        ///<inheritdoc/>
+        public void SetHighlight()
+        {
+            if (gameObject.activeSelf)
+            {
+                isHighlighted = true;
+                StartCoroutine(ScaleUpC());
+            }
+        }
+
+        ///<inheritdoc/>
         public void UnsetHighlight()
         {
             if (gameObject.activeSelf)
@@ -133,6 +223,21 @@ namespace ECellDive.Portal
                 }
             }
         }
+        #endregion
+
+        #region - IFocus Methods -
+        ///<inheritdoc/>
+        public void SetFocus()
+        {
+            m_isFocused = true;
+        }
+
+        ///<inheritdoc/>
+        public void UnsetFocus()
+        {
+            m_isFocused = false;
+        }
+
         #endregion
     }
 }
