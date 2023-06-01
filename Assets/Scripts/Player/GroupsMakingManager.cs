@@ -28,6 +28,8 @@ namespace ECellDive.PlayerComponents
         public LeftRightData<GameObject> discreteSelector;
         public LeftRightData<VolumetricSelectorManager> volumetricSelector;
 
+        public LeftRightData<SurgeAndShrinkInfoTag> inputModeTags;
+
         public GroupMakingToolsData grpMkgToolsData;
 
         private LeftRightData<NetworkVariable<bool>> isVolumetric = new LeftRightData<NetworkVariable<bool>>
@@ -95,11 +97,13 @@ namespace ECellDive.PlayerComponents
                 discreteSelector.left.SetActive(false);
                 volumetricSelector.left.gameObject.SetActive(true);
                 volumetricSelector.left.ResetTransform();
+                inputModeTags.left.SurgeAndShrink("Group Selector:\nVolumetric");
             }
             else
             {
                 volumetricSelector.left.gameObject.SetActive(false);
                 discreteSelector.left.SetActive(true);
+                inputModeTags.left.SurgeAndShrink("Group Selector:\nDiscrete");
             }
         }
 
@@ -114,11 +118,13 @@ namespace ECellDive.PlayerComponents
                 discreteSelector.right.SetActive(false);
                 volumetricSelector.right.gameObject.SetActive(true);
                 volumetricSelector.right.ResetTransform();
+                inputModeTags.right.SurgeAndShrink("Group Selector:\nVolumetric");
             }
             else
             {
                 volumetricSelector.right.gameObject.SetActive(false);
                 discreteSelector.right.SetActive(true);
+                inputModeTags.right.SurgeAndShrink("Group Selector:\nDiscrete");
             }
         }
 

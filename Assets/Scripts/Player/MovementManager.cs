@@ -2,6 +2,8 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ECellDive.Utility;
+using ECellDive.Interfaces;
+using ECellDive.UI;
 
 namespace ECellDive.PlayerComponents
 {
@@ -50,6 +52,8 @@ namespace ECellDive.PlayerComponents
         private bool doContinousMove = false;
         private Vector3 continousVelocity = Vector3.zero;
 
+        public SurgeAndShrinkInfoTag inputModeTag;
+
         public override void OnNetworkSpawn()
         {
             movementActionData.movement.action.started += TryMoveStart;
@@ -97,6 +101,8 @@ namespace ECellDive.PlayerComponents
                 continousMovementData.directionHelper.gameObject.SetActive(true);
                 ResetContinousMoveHelper();
                 continousMovementData.directionHelper.SetSphereScale(2 * continousMovementData.deadZone);
+
+                inputModeTag.SurgeAndShrink("Movement Mode:\nContinous");
             }
             else
             {
@@ -106,6 +112,8 @@ namespace ECellDive.PlayerComponents
 
                 //Placing the helper
                 continousMovementData.directionHelper.gameObject.SetActive(false);
+
+                inputModeTag.SurgeAndShrink("Movement Mode:\nTeleportation");
             }
         }
 
