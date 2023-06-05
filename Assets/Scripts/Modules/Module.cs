@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
@@ -233,7 +231,7 @@ namespace ECellDive
             /// <inheritdoc/>
             public void ShowInfoTags()
             {
-                refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
+                //refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
                 foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
                     _infoTag.gameObject.GetComponent<InfoDisplayManager>().LookAt();

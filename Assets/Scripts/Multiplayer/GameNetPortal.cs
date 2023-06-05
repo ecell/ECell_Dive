@@ -221,7 +221,6 @@ namespace ECellDive.Multiplayer
 
             }
             yield return new WaitForSeconds(1f);
-            MultiplayerMenuManager.SetMessage(msgStr);
         }
 
         /// <summary>

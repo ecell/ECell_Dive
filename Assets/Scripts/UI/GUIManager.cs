@@ -22,7 +22,6 @@ namespace ECellDive
             public ModulesMenuManager refModulesMenuManager;
             public GroupsMakingUIManager refGroupsMakingUIManager;
             public GroupsMenu refGroupsMenu;
-            public MultiplayerMenuManager refMultiplayerMenuManager;
 
             private void Awake()
             {
@@ -59,7 +58,6 @@ namespace ECellDive
                 }
 
                 refGroupsMenu.Initialize();
-                refMultiplayerMenuManager.Initialize();
             }
 
             /// <summary>

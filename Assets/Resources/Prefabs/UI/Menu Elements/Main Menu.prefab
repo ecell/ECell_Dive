@@ -440,6 +440,7 @@ GameObject:
   - component: {fileID: 172073786479291077}
   - component: {fileID: 5971155544920193083}
   - component: {fileID: 8739343926518900753}
+  - component: {fileID: 163638205720969510}
   m_Layer: 5
   m_Name: Multiplayer Button
   m_TagString: Untagged
@@ -549,10 +550,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 163638205720969510}
+        m_TargetAssemblyTypeName: ECellDive.Utility.GameObjectConstructor, Assembly-CSharp
+        m_MethodName: Constructor
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -588,6 +589,22 @@ MonoBehaviour:
   hoverExitAudioData:
     play: 0
     clip: {fileID: 0}
+--- !u!114 &163638205720969510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4220824596753285563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0786ab3c56e854a4db377a07cda55a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refPrefab: {fileID: 3227802493946522990, guid: c23e5b5ffa8d3954dbc7c92a53598c28, type: 3}
+  m_popupDistance: 1.5
+  m_popupHeightOffset: 0
+  m_popupTarget: {fileID: 0}
 --- !u!1 &4229928914544385314
 GameObject:
   m_ObjectHideFlags: 0
