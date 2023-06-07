@@ -5219,9 +5219,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffdb48b47440574da655c6fbdf1c359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_diveActions:
-    m_left: {fileID: -6167206992522063489, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    m_right: {fileID: 1131537533043575416, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+  m_Collider: {fileID: 5699959535751789815}
+  m_Renderer: {fileID: 0}
+  m_LineRenderer: {fileID: 4426228637654572101}
   m_currentColor:
     m_InternalValue: {r: 0, g: 0, b: 0, a: 0}
   m_defaultColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -5236,8 +5236,10 @@ MonoBehaviour:
   m_triggerKOActions:
     m_left: {fileID: -9086459537174069806, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
     m_right: {fileID: 6272053831681804322, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  startWidthFactor: 0.3
-  endWidthFactor: 0.3
+  forceDefaultColor: 0
+  forceDefaultWidth: 0
+  startWidthFactor: 1
+  endWidthFactor: 1
 --- !u!114 &4876809418776335857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5299,9 +5301,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showOnEnable: 1
-  m_isUI: 1
+  m_flip: 1
   m_popupDistance: 0
-  m_popupRelativeHeight: 0
+  m_popupHeightOffset: 0
 --- !u!1 &5893815620532804056
 GameObject:
   m_ObjectHideFlags: 0

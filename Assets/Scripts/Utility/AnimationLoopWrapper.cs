@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ECellDive.Utility
 {
+    [RequireComponent(typeof(Animation))]
     public class AnimationLoopWrapper : MonoBehaviour
     {
         public Animation anim;

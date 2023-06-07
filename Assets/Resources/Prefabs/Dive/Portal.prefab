@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 3756413500227347012}
   - component: {fileID: 3994229199559538484}
   - component: {fileID: 5200253547910022500}
+  - component: {fileID: 3801975297389384938}
+  - component: {fileID: 1201409317359893264}
+  - component: {fileID: 3097893845176559346}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -52,9 +55,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showOnEnable: 1
-  m_isUI: 1
+  m_flip: 0
   m_popupDistance: 0
-  m_popupRelativeHeight: 0
+  m_popupHeightOffset: 0
 --- !u!54 &3756413500227347012
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -95,6 +98,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5200253547910022500}
         m_TargetAssemblyTypeName: ECellDive.Portal.PortalManager, Assembly-CSharp
+        m_MethodName: SetFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5200253547910022500}
+        m_TargetAssemblyTypeName: ECellDive.Portal.PortalManager, Assembly-CSharp
         m_MethodName: SetHighlight
         m_Mode: 1
         m_Arguments:
@@ -108,6 +123,18 @@ MonoBehaviour:
   m_LastHoverExited:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 5200253547910022500}
+        m_TargetAssemblyTypeName: ECellDive.Portal.PortalManager, Assembly-CSharp
+        m_MethodName: UnsetFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5200253547910022500}
         m_TargetAssemblyTypeName: ECellDive.Portal.PortalManager, Assembly-CSharp
         m_MethodName: UnsetHighlight
@@ -214,12 +241,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914a1e5142cad3a448906114ee09c0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightEmissionFactor: 3
+  hideOnStart: 0
   baseScale: {x: 1, y: 1.5, z: 1}
+  basePosition: {x: 1, y: 1, z: 1}
   highlightScaleFactor: 1.25
+  defaultPortalColor: {r: 0.9861011, g: 1, b: 0.39308167, a: 1}
+  defaultOutlineColor: {r: 0.895588, g: 1, b: 0.389, a: 0.78431374}
+  renderers:
+  - {fileID: 3721670413403704247}
+  - {fileID: 266154894892270054}
   m_diveActions:
     m_left: {fileID: -6167206992522063489, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
     m_right: {fileID: 1131537533043575416, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+--- !u!111 &3801975297389384938
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266154893257983207}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 45f7bee8b12cacb478216375ca84e490, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &1201409317359893264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266154893257983207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556b39ba55421714baf4e060a648fab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 3801975297389384938}
+--- !u!114 &3097893845176559346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266154893257983207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfe8a37c331ce4cbb6bd4cfc209d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColors:
+  - {r: 0.9888343, g: 1, b: 0.80784315, a: 1}
+  period: 1
+  nbPeriods: 1
+  renderers:
+  - {fileID: 3721670413403704247}
+  - {fileID: 266154894892270054}
+  propertyNames:
+  - _Color
+  - _Color
 --- !u!1 &266154893849150015
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,7 +2995,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.01
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2964,7 +3048,7 @@ ParticleSystem:
     strengthY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.01
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3017,7 +3101,7 @@ ParticleSystem:
     strengthZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.01
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3067,7 +3151,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    separateAxes: 0
+    separateAxes: 1
     frequency: 0.5
     damping: 1
     octaves: 1

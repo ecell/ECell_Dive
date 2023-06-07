@@ -27,13 +27,26 @@ namespace ECellDive
                                     IMlprData,
                                     IMlprVisibility
         {
-            protected Collider m_Collider;
-            protected Renderer m_Renderer;
-            protected LineRenderer m_LineRenderer;
+            [Tooltip("If null, tries to find one in the children of this gameobject.")]
+            [SerializeField] protected Collider m_Collider;
+
+            [Tooltip("If null, tries to find one in this gameobject.")]
+            [SerializeField] protected Renderer m_Renderer;
+
+            [Tooltip("If null, tries to find one in this gameobject.")]
+            [SerializeField] protected LineRenderer m_LineRenderer;
             protected MaterialPropertyBlock mpb;
             protected int colorID;
 
             #region - IDive Members -
+
+            private bool m_isDiving = false;
+            public bool isDiving
+            {
+                get => m_isDiving;
+                set => m_isDiving = value;
+            }
+
             private NetworkVariable<int> m_rootSceneId = new NetworkVariable<int>();
             public NetworkVariable<int> rootSceneId
             {
@@ -204,9 +217,18 @@ namespace ECellDive
                 m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
 
-                m_Collider = GetComponentInChildren<Collider>();
-                m_Renderer = GetComponent<Renderer>();
-                m_LineRenderer = GetComponent<LineRenderer>();
+                if (m_Collider == null)
+                {
+                    m_Collider = GetComponentInChildren<Collider>();
+                }
+                if (m_Renderer == null)
+                {
+                    m_Renderer = GetComponent<Renderer>();
+                }
+                if(m_LineRenderer == null)
+                {
+                    m_LineRenderer = GetComponent<LineRenderer>();
+                }
             }
 
             public override void OnDestroy()
@@ -236,6 +258,15 @@ namespace ECellDive
             protected virtual void ApplyCurrentColorChange(Color _previous, Color _current)
             {
                 ApplyColor(_current);
+            }
+
+            /// <summary>
+            /// Will rotate the module to face the active camera.
+            /// </summary>
+            /// <remarks>Callback set in the editor</remarks>
+            public void LookAt()
+            {
+                GetComponent<ILookAt>().LookAt();
             }
 
             /// <summary>
@@ -294,15 +325,14 @@ namespace ECellDive
             /// <inheritdoc/>
             public virtual IEnumerator DirectDiveInC()
             {
-                //TODO: DIVE START ANIMATION
-                yield return null;
-
                 Debug.Log($"DirectDiveInC for netobj: {NetworkBehaviourId}");
                 DiveScenesManager.Instance.SwitchingScenesServerRpc(rootSceneId.Value,
                                                                     targetSceneId.Value,
                                                                     NetworkManager.Singleton.LocalClientId);
-                //TODO: DIVE END ANIMATION
+                //Wait until the client has switched to the target scene
+                yield return new WaitUntil(DiveScenesManager.Instance.SceneSwitchIsFinished);
 
+                isDiving = false;
             }
 
             /// <inheritdoc/>
@@ -314,28 +344,19 @@ namespace ECellDive
             /// <inheritdoc/>
             public virtual IEnumerator GenerativeDiveInC()
             {
-                //TODO: DATA GENERATION START ANIMATION
-
                 Debug.LogError($"Generative dive in {gameObject.name}:{nameField.text} but no" +
                     $"custom behaviour has been defined for that type of module");
                 yield return null;
-                //TODO: DATA GENERATION END ANIMATION
+                isDiving = false;
 
             }
 
             /// <inheritdoc/>
             public void TryDiveIn()
             {
-                StartCoroutine(TryDiveInC());
-            }
-
-            /// <inheritdoc/>
-            public virtual IEnumerator TryDiveInC()
-            {
                 if (isReadyForGeneration.Value)
                 {
-                    //Wait for animation to finish;
-                    yield return null;
+                    isDiving = true;
                     if (isReadyForDive.Value)
                     {
                         DirectDiveIn();
@@ -454,7 +475,6 @@ namespace ECellDive
             /// <inheritdoc/>
             public void ShowInfoTags()
             {
-                refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
                 foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
                     _infoTag.gameObject.GetComponent<ILookAt>().LookAt();

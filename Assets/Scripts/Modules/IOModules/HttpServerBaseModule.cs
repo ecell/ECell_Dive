@@ -212,24 +212,26 @@ namespace ECellDive
             }
 
             #region - IHighlightable -
-            public override void SetHighlight()
+
+            public override void ApplyColor(Color _color)
             {
-                mpb.SetVector(colorID, highlightColor);
+                mpb.SetVector(colorID, _color);
                 foreach (Renderer _renderer in renderers)
                 {
                     _renderer.SetPropertyBlock(mpb);
                 }
             }
 
+            public override void SetHighlight()
+            {
+                ApplyColor(highlightColor);
+            }
+
             public override void UnsetHighlight()
             {
                 if (!forceHighlight)
                 {
-                    mpb.SetVector(colorID, defaultColor);
-                    foreach (Renderer _renderer in renderers)
-                    {
-                        _renderer.SetPropertyBlock(mpb);
-                    }
+                    ApplyColor(defaultColor);
                 }
             }
             #endregion

@@ -22,13 +22,13 @@ namespace ECellDive.PlayerComponents
     /// </summary>
     public class GroupsMakingManager : NetworkBehaviour
     {
-        private GroupsMakingUIManager refUIManager;
-
         public LeftRightData<InputActionReference> selection;
         public LeftRightData<InputActionReference> switchSelectionMode;
 
         public LeftRightData<GameObject> discreteSelector;
         public LeftRightData<VolumetricSelectorManager> volumetricSelector;
+
+        public LeftRightData<SurgeAndShrinkInfoTag> inputModeTags;
 
         public GroupMakingToolsData grpMkgToolsData;
 
@@ -97,11 +97,13 @@ namespace ECellDive.PlayerComponents
                 discreteSelector.left.SetActive(false);
                 volumetricSelector.left.gameObject.SetActive(true);
                 volumetricSelector.left.ResetTransform();
+                inputModeTags.left.SurgeAndShrink("Group Selector:\nVolumetric");
             }
             else
             {
                 volumetricSelector.left.gameObject.SetActive(false);
                 discreteSelector.left.SetActive(true);
+                inputModeTags.left.SurgeAndShrink("Group Selector:\nDiscrete");
             }
         }
 
@@ -116,11 +118,13 @@ namespace ECellDive.PlayerComponents
                 discreteSelector.right.SetActive(false);
                 volumetricSelector.right.gameObject.SetActive(true);
                 volumetricSelector.right.ResetTransform();
+                inputModeTags.right.SurgeAndShrink("Group Selector:\nVolumetric");
             }
             else
             {
                 volumetricSelector.right.gameObject.SetActive(false);
                 discreteSelector.right.SetActive(true);
+                inputModeTags.right.SurgeAndShrink("Group Selector:\nDiscrete");
             }
         }
 
@@ -151,9 +155,6 @@ namespace ECellDive.PlayerComponents
 
             //Reset group members list
             ResetGroupMemberList();
-
-            //Hide the UI dialogue
-            refUIManager.CloseUI();
         }
 
         /// <summary>
@@ -211,7 +212,7 @@ namespace ECellDive.PlayerComponents
                     highlightable.UnsetHighlight();
                 }
 
-                refUIManager.ManageUIConfirmationCanvas(groupMembers.Count);
+                StaticReferencer.Instance.refGroupsMakingUIManager.ManageUIConfirmationCanvas(groupMembers.Count);
             }
         }
 
@@ -244,15 +245,6 @@ namespace ECellDive.PlayerComponents
             }
 
             groupMembers.Clear();
-        }
-
-        /// <summary>
-        /// Mutator for <see cref="refUIManager"/>.
-        /// </summary>
-        /// <param name="_UImanager">The value for <see cref="refUIManager"/>.</param>
-        public void SetUIManager(GroupsMakingUIManager _UImanager)
-        {
-            refUIManager = _UImanager;
         }
 
         private void SwitchSelectionModeLeft(InputAction.CallbackContext _ctx)
@@ -354,13 +346,10 @@ namespace ECellDive.PlayerComponents
                 highlitables[i].forceHighlight = false;
             }
 
-            refUIManager.NewGroupUiElement(highlitables);
+            StaticReferencer.Instance.refGroupsMakingUIManager.NewGroupUiElement(highlitables);
 
             //Reset group members list
             ResetGroupMemberList();
-
-            //Hide the UI dialogue
-            refUIManager.CloseUI();
         }
     }
 }

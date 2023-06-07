@@ -3,6 +3,9 @@ using UnityEngine;
 using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.Utility;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.InputSystem;
 
 namespace ECellDive
 {
@@ -38,6 +41,24 @@ namespace ECellDive
             /// </summary>
             public List<VirtualKeyBoardData> virtualKeyBoardDatas;
 
+            public LeftRightData<InputActionReference> uiPressActions;
+            private LeftRightData<bool> uiPressActionsPressed;
+
+            private void Awake()
+            {
+                uiPressActionsPressed.right = false;
+                uiPressActionsPressed.left = false;
+
+                uiPressActions.right.action.performed += ctx => uiPressActionsPressed.right = true;
+                uiPressActions.left.action.performed += ctx => uiPressActionsPressed.left = true;
+            }
+
+            private void OnDestroy()
+            {
+                uiPressActions.right.action.performed -= ctx => uiPressActionsPressed.right = true;
+                uiPressActions.left.action.performed -= ctx => uiPressActionsPressed.left = true;
+            }
+
             /// <summary>
             /// Adds the character of the key the VK that was just pressed at the position
             /// of the caret.
@@ -52,6 +73,8 @@ namespace ECellDive
                     string end = refTargetInputField.text.Substring(refTargetInputField.caretPosition);
                     refTargetInputField.text = start + _char.text + end;
                     refTargetInputField.caretPosition = start.Length + _char.text.Length;
+
+                    SendHapticImpulse();
                 }
             }
 
@@ -77,7 +100,28 @@ namespace ECellDive
                     string end = refTargetInputField.text.Substring(refTargetInputField.caretPosition);
                     refTargetInputField.text = start + end;
                     refTargetInputField.caretPosition = start.Length;
+
+                    SendHapticImpulse();
                 }
+            }
+
+            private void SendHapticImpulse()
+            {
+                ActionBasedController left = StaticReferencer.Instance.riControllersGO.left.GetComponent<ActionBasedController>();
+                ActionBasedController right = StaticReferencer.Instance.riControllersGO.right.GetComponent<ActionBasedController>();
+
+                if (uiPressActionsPressed.left)
+                {
+                    left.SendHapticImpulse(0.25f, 0.1f);
+                }
+                
+                if (uiPressActionsPressed.right)
+                {
+                    right.SendHapticImpulse(0.25f, 0.1f);
+                }
+
+                uiPressActionsPressed.right = false;
+                uiPressActionsPressed.left = false;
             }
 
             public void Show()
@@ -95,6 +139,8 @@ namespace ECellDive
                 virtualKeyBoardDatas[activeVKSet].LowerCaseVK.enabled = true;
                 virtualKeyBoardDatas[activeVKSet].UpperCaseVK.enabled = false;
                 virtualKeyBoardDatas[activeVKSet].NumAndSignsVK.enabled = false;
+
+                SendHapticImpulse();
             }
 
             /// <summary>
@@ -106,6 +152,8 @@ namespace ECellDive
                 virtualKeyBoardDatas[activeVKSet].LowerCaseVK.enabled = false;
                 virtualKeyBoardDatas[activeVKSet].UpperCaseVK.enabled = false;
                 virtualKeyBoardDatas[activeVKSet].NumAndSignsVK.enabled = true;
+
+                SendHapticImpulse();
             }
 
             /// <summary>
@@ -117,6 +165,8 @@ namespace ECellDive
                 virtualKeyBoardDatas[activeVKSet].LowerCaseVK.enabled = false;
                 virtualKeyBoardDatas[activeVKSet].UpperCaseVK.enabled = true;
                 virtualKeyBoardDatas[activeVKSet].NumAndSignsVK.enabled = false;
+
+                SendHapticImpulse();
             }
 
             /// <summary>

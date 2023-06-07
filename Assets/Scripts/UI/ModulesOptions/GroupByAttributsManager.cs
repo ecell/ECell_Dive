@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.Modules;
+using ECellDive.Utility;
 
 
 namespace ECellDive
@@ -20,6 +21,10 @@ namespace ECellDive
             public GroupByModule refGroupByModule;
 
             public OptimizedVertScrollList allDataUIContainer;
+
+            public AnimationLoopWrapper animLW;
+            public ColorFlash colorFlash;
+
             private List<IDropDown> dataUIManagers = new List<IDropDown>();
 
             /// <summary>
@@ -72,7 +77,8 @@ namespace ECellDive
             public void ScanForRequiredGroups()
             {
                 int currentDataUI = 0;
-                foreach(SimpleDropDown _ddsm in dataUIManagers)
+                animLW.PlayLoop("GroupByModule");
+                foreach (SimpleDropDown _ddsm in dataUIManagers)
                 {
                     foreach(RectTransform _attributUI in _ddsm.scrollList.refContent)
                     {
@@ -83,6 +89,19 @@ namespace ECellDive
                         }
                     }
                     currentDataUI++;
+                }
+                animLW.StopLoop();
+
+                if (currentDataUI > 0)
+                {
+                    //Flash of the succesful color.
+                    colorFlash.Flash(1);
+                }
+                else
+                {
+                    colorFlash.Flash(0);
+                    LogSystem.AddMessage(LogMessageTypes.Errors, "Group Generation Failed: " +
+                        "No metadata was selected to make the group(s).");
                 }
             }
         }

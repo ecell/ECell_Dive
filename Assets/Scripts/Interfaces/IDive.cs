@@ -11,6 +11,8 @@ namespace ECellDive.Interfaces
     /// </summary>
     public interface IDive
     {
+        bool isDiving { get; }
+
         /// <summary>
         /// A variable synchronized over the multiplayer network to
         /// inform the clients when a module has finished generating
@@ -74,13 +76,5 @@ namespace ECellDive.Interfaces
         /// Asynchronous: it calls the coroutine <see cref="TryDiveInC"/>
         /// </remarks>
         void TryDiveIn();
-
-        /// <summary>
-        /// Coroutine started by <see cref="TryDiveIn()"/>.
-        /// Performs tests to check whether the data of the module is
-        /// accessible and whether a user has already generated the physical
-        /// representation of the data.
-        /// </summary>
-        abstract IEnumerator TryDiveInC();
     }
 }

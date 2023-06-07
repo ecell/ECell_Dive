@@ -28,16 +28,29 @@ namespace ECellDive
                                     IModifiable,
                                     ISaveable
         {
-            public int refIndex { get; private set; }
+            [System.Serializable]
+            public struct EdgeParametersOverride
+            {
+                public bool forceDefaultColor;
+                public bool forceDefaultWidth;
+                [Range(0, 1)] public float startWidthFactor;
+                [Range(0, 1)] public float endWidthFactor;
+            }
+
+            [Header("GraphGONet")]
             public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
+            public int refIndex { get; private set; }
             
             public GameObject pathwayRoot;
 
             private bool allNodesSpawned = false;
-            //private Dictionary<uint, Modification<bool>> koModifications = new Dictionary<uint, Modification<bool>>();
-
-            public Texture2D mainTex;
-
+            [SerializeField] private EdgeParametersOverride edgeParametersOverride = new EdgeParametersOverride
+            {
+                forceDefaultColor = false,
+                forceDefaultWidth = false,
+                startWidthFactor = 1,
+                endWidthFactor = 1,
+            };
 
             #region  - IGraphGONet Members - 
             [SerializeField] private CyJsonPathway m_graphData;
@@ -77,20 +90,41 @@ namespace ECellDive
             {
                 base.OnNetworkSpawn();
 
-                if (mainTex != null)
-                {
-                    mpb.SetTexture("_MainTex", mainTex);
-                    m_Renderer.SetPropertyBlock(mpb);
-                }
-
                 DataID_to_DataGO = new Dictionary<uint, GameObject>();
                 GameNetPortal.Instance.modifiables.Add(this);
                 GameNetPortal.Instance.saveables.Add(this);
             }
+
             protected override void ApplyCurrentColorChange(Color _previous, Color _current)
             {
                 mpb.SetVector(colorID, _current);
                 m_Renderer.SetPropertyBlock(mpb);
+            }
+
+            public void ApplyEdgeWidthFactorOverride()
+            {
+                StartCoroutine(ApplyEdgeWidthFactorOverrideC());
+            }
+
+            public IEnumerator ApplyEdgeWidthFactorOverrideC()
+            {
+                Debug.Log($"ApplyEdgeStartWidthFactorOverrideC: startWidthFactor =" +
+                    $" {edgeParametersOverride.startWidthFactor}, endWidthFactor = " +
+                    $" {edgeParametersOverride.endWidthFactor}", gameObject);
+                EdgeGO edgeGO;
+                foreach (IEdge _edge in m_graphData.edges)
+                {
+                    edgeGO = DataID_to_DataGO[_edge.ID].GetComponent<EdgeGO>();
+                    edgeGO.forceDefaultColor = edgeParametersOverride.forceDefaultColor;
+                    edgeGO.forceDefaultWidth = edgeParametersOverride.forceDefaultWidth;
+                    edgeGO.startWidthFactor = edgeParametersOverride.startWidthFactor;
+                    edgeGO.endWidthFactor = edgeParametersOverride.endWidthFactor;
+                    edgeGO.ApplyFluxLevelClamped();
+                    edgeGO.SetCurrentColorToDefaultServerRpc();
+
+                }
+
+                yield return null;
             }
 
             [ServerRpc(RequireOwnership = false)]
@@ -260,6 +294,26 @@ namespace ECellDive
                 refIndex = _index;
             }
 
+            public void SwitchEdgeForceDefaultColorOverride()
+            {
+                edgeParametersOverride.forceDefaultColor = !edgeParametersOverride.forceDefaultColor;
+            }
+
+            public void SwitchEdgeForceDefaultWidthOverride()
+            {
+                edgeParametersOverride.forceDefaultWidth = !edgeParametersOverride.forceDefaultWidth;
+            }
+            
+            public void SetEdgeStartWidthFactorOverride(float _startWidthFactor)
+            {
+                edgeParametersOverride.startWidthFactor = _startWidthFactor;
+            }
+
+            public void SetEdgeEndWidthFactorOverride(float _endWidthFactor)
+            {
+                edgeParametersOverride.endWidthFactor = _endWidthFactor;
+            }
+
             #region - IDive Methods -
             /// <inheritdoc/>
             public override IEnumerator GenerativeDiveInC()
@@ -374,16 +428,16 @@ namespace ECellDive
 
             public override void NetHide()
             {
-                base.NetHide();
+                //base.NetHide();
 
-                m_nameTextFieldContainer.SetActive(false);
+                //m_nameTextFieldContainer.SetActive(false);
             }
 
             public override void NetShow()
             {
-                base.NetHide();
+                //base.NetHide();
 
-                m_nameTextFieldContainer.SetActive(true);
+                //m_nameTextFieldContainer.SetActive(true);
             }
             #endregion
 

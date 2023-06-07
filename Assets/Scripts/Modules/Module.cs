@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
@@ -20,7 +18,7 @@ namespace ECellDive
         public class Module : MonoBehaviour,
                                 IFocus,
                                 IGroupable,
-                                //IHighlightable,
+                                IColorHighlightable,
                                 IInfoTags
         {
             [Header("Module Info")]
@@ -46,17 +44,16 @@ namespace ECellDive
             #endregion
 
             #region - IHighlightable Members - 
-
             [SerializeField] private Color m_defaultColor;
             public Color defaultColor {
                 get => m_defaultColor;
-                set => SetDefaultColor(value);
+                set => m_defaultColor = value;
             }
 
             [SerializeField] private Color m_highlightColor;
             public Color highlightColor {
                 get => m_highlightColor;
-                set => SetHighlightColor(value);
+                set => m_highlightColor = value;
             }
 
             private bool m_forceHighlight = false;
@@ -170,17 +167,11 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IHighlightable Methods -
+            #region - IColorHighlightable Methods -
             /// <inheritdoc/>
-            public virtual void SetDefaultColor(Color _c)
+            public virtual void ApplyColor(Color _color)
             {
-                m_defaultColor = _c;
-            }
 
-            /// <inheritdoc/>
-            public virtual void SetHighlightColor(Color _c)
-            {
-                m_highlightColor = _c;
             }
 
             /// <inheritdoc/>
@@ -240,7 +231,7 @@ namespace ECellDive
             /// <inheritdoc/>
             public void ShowInfoTags()
             {
-                refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
+                //refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
                 foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
                     _infoTag.gameObject.GetComponent<InfoDisplayManager>().LookAt();
