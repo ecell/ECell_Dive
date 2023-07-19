@@ -9,7 +9,7 @@ namespace ECellDive.Multiplayer
     /// among all replicates on every client.
     /// </summary>
     /// <remarks> This serves the same purpose as the built-in NetworkTransform of Unity
-    /// Netwode for GameObjects except that it makes the update on the client side
+    /// Netcode for GameObjects except that it makes the update on the client side
     /// instead of the server's. This can maybe be replaced by Networktransform but we couldn't
     /// achieved the desired results for now.</remarks>
     public class NetAvatarTransformTracker : NetworkBehaviour

@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using ECellDive.Interfaces;
-using ECellDive.Multiplayer;
 using ECellDive.SceneManagement;
 using ECellDive.UI;
 using ECellDive.Utility;
@@ -18,34 +17,34 @@ namespace ECellDive
         /// Base class holding references and methods used to manipulate
         /// the game object representation of a module.
         /// </summary>
-        /// 
         public class GameNetModule : NetworkBehaviour,
                                     IDive,
                                     IFocus,
                                     IGroupable,
-                                    IHighlightable,
+                                    IColorHighlightableNet,
                                     IInfoTags,
                                     INamed,
                                     IMlprData,
-                                    IMlprDataBroadcast,
-                                    IMlprDataRequest,
                                     IMlprVisibility
         {
-            protected Collider m_Collider;
-            protected Renderer m_Renderer;
-            protected LineRenderer m_LineRenderer;
+            [Tooltip("If null, tries to find one in the children of this gameobject.")]
+            [SerializeField] protected Collider m_Collider;
+
+            [Tooltip("If null, tries to find one in this gameobject.")]
+            [SerializeField] protected Renderer m_Renderer;
+
+            [Tooltip("If null, tries to find one in this gameobject.")]
+            [SerializeField] protected LineRenderer m_LineRenderer;
+            protected MaterialPropertyBlock mpb;
+            protected int colorID;
 
             #region - IDive Members -
-            [SerializeField] private ControllersSymetricAction m_diveActions;
-            public ControllersSymetricAction diveActions
+
+            private bool m_isDiving = false;
+            public bool isDiving
             {
-                get => m_diveActions;
-                set
-                {
-                    m_diveActions = value;
-                    m_diveActions.leftController = value.leftController;
-                    m_diveActions.rightController = value.rightController;
-                }
+                get => m_isDiving;
+                set => m_isDiving = value;
             }
 
             private NetworkVariable<int> m_rootSceneId = new NetworkVariable<int>();
@@ -92,21 +91,7 @@ namespace ECellDive
             }
             #endregion
 
-            #region - IHighlightable Members - 
-
-            [SerializeField] private NetworkVariable<Color> m_defaultColor;
-            public NetworkVariable<Color> defaultColor
-            {
-                get => m_defaultColor;
-                set => defaultColor = value;
-            }
-
-            [SerializeField] private Color m_highlightColor;
-            public Color highlightColor
-            {
-                get => m_highlightColor;
-                set => SetHighlightColor(value);
-            }
+            #region - IColorHighlightableNet Members - 
 
             private bool m_forceHighlight = false;
             public bool forceHighlight
@@ -115,36 +100,49 @@ namespace ECellDive
                 set => m_forceHighlight = value;
             }
 
+            [SerializeField] private NetworkVariable<Color> m_currentColor;
+            public NetworkVariable<Color> currentColor
+            {
+                get => m_currentColor;
+                set => m_currentColor = value;
+            }
+
+            [SerializeField] private Color m_defaultColor;
+            public Color defaultColor
+            {
+                get => m_defaultColor;
+                set => m_defaultColor = value;
+            }
+
+            [SerializeField] private Color m_highlightColor;
+            public Color highlightColor
+            {
+                get => m_highlightColor;
+                set => m_highlightColor = value;
+            }
             #endregion
 
             #region - IInfoTags Members -
             public bool areVisible { get; set; }
 
             [Header("Info Tags Data")]
-            public ControllersSymetricAction m_displayInfoTagsActions;
-            public ControllersSymetricAction displayInfoTagsActions
+            public LeftRightData<InputActionReference> m_displayInfoTagsActions;
+            public LeftRightData<InputActionReference> displayInfoTagsActions
             {
                 get => m_displayInfoTagsActions;
-                set => displayInfoTagsActions = m_displayInfoTagsActions;
+                set => m_displayInfoTagsActions = value;
             }
             public GameObject m_refInfoTagPrefab;
             public GameObject refInfoTagPrefab
             {
                 get => m_refInfoTagPrefab;
-                set => refInfoTagPrefab = m_refInfoTagPrefab;
+                set => m_refInfoTagPrefab = value;
             }
             public GameObject m_refInfoTagsContainer;
             public GameObject refInfoTagsContainer
             {
                 get => m_refInfoTagsContainer;
-                set => refInfoTagsContainer = m_refInfoTagsContainer;
-            }
-
-            public List<GameObject> m_refInfoTags;
-            public List<GameObject> refInfoTags
-            {
-                get => m_refInfoTags;
-                set => refInfoTags = m_refInfoTags;
+                set => m_refInfoTagsContainer = value;
             }
             #endregion
 
@@ -216,34 +214,59 @@ namespace ECellDive
             {
                 areVisible = false;
 
-                diveActions.leftController.action.performed += TryDiveIn;
-                diveActions.rightController.action.performed += TryDiveIn;
+                m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
 
-                m_displayInfoTagsActions.leftController.action.performed += ManageInfoTagsDisplay;
-                m_displayInfoTagsActions.rightController.action.performed += ManageInfoTagsDisplay;
-
-                isActivated.OnValueChanged += ManageActivationStatus;
-
-                //Debug.Log("Starting up " + gameObject.name);
-                m_Collider = GetComponentInChildren<Collider>();
-                m_Renderer = GetComponent<Renderer>();
-                m_LineRenderer = GetComponent<LineRenderer>();
-
-                if (nameTextFieldContainer != null)
+                if (m_Collider == null)
                 {
-                    nameField = nameTextFieldContainer?.GetComponentInChildren<TextMeshProUGUI>();
+                    m_Collider = GetComponentInChildren<Collider>();
+                }
+                if (m_Renderer == null)
+                {
+                    m_Renderer = GetComponent<Renderer>();
+                }
+                if(m_LineRenderer == null)
+                {
+                    m_LineRenderer = GetComponent<LineRenderer>();
                 }
             }
 
             public override void OnDestroy()
             {
-                diveActions.leftController.action.performed -= TryDiveIn;
-                diveActions.rightController.action.performed -= TryDiveIn;
+                m_displayInfoTagsActions.left.action.performed -= ManageInfoTagsDisplay;
+                m_displayInfoTagsActions.right.action.performed -= ManageInfoTagsDisplay;
 
-                m_displayInfoTagsActions.leftController.action.performed -= ManageInfoTagsDisplay;
-                m_displayInfoTagsActions.rightController.action.performed -= ManageInfoTagsDisplay;
-
+                m_currentColor.OnValueChanged -= ApplyCurrentColorChange;
                 isActivated.OnValueChanged -= ManageActivationStatus;
+            }
+
+            public override void OnNetworkSpawn()
+            {
+                mpb = new MaterialPropertyBlock();
+                colorID = Shader.PropertyToID("_Color");
+                m_currentColor.OnValueChanged += ApplyCurrentColorChange;
+                isActivated.OnValueChanged += ManageActivationStatus;
+                SetCurrentColorToDefaultServerRpc();
+
+                if (nameTextFieldContainer != null)
+                {
+                    nameTextFieldContainer.SetActive(true);
+                    nameField = nameTextFieldContainer.GetComponentInChildren<TextMeshProUGUI>();
+                }
+            }
+
+            protected virtual void ApplyCurrentColorChange(Color _previous, Color _current)
+            {
+                ApplyColor(_current);
+            }
+
+            /// <summary>
+            /// Will rotate the module to face the active camera.
+            /// </summary>
+            /// <remarks>Callback set in the editor</remarks>
+            public void LookAt()
+            {
+                GetComponent<ILookAt>().LookAt();
             }
 
             /// <summary>
@@ -267,57 +290,73 @@ namespace ECellDive
                 }
             }
 
+            /// <summary>
+            /// The method to call when we wish the server to destroy a GameNetModule.
+            /// </summary>
             [ServerRpc(RequireOwnership = false)]
-            private void SetDefaultColorServerRpc(Color _color)
+            public void SelfDestroyServerRpc()
             {
-                defaultColor.Value = _color;
+                if (targetSceneId != null)//if a dive scene has been generated for the data module
+                {
+                    if (!DiveScenesManager.Instance.CheckIfDiveSceneHasPlayers(targetSceneId.Value))
+                    {
+                        DiveScenesManager.Instance.DestroyDiveScene(targetSceneId.Value);
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        LogSystem.AddMessage(LogMessageTypes.Errors,
+                            "You are trying to destroy a dive scene while divers are inside.");
+                    }
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
 
             #region - IDive Methods -
-
+            /// <inheritdoc/>
             public void DirectDiveIn()
             {
                 StartCoroutine(DirectDiveInC());
             }
 
+            /// <inheritdoc/>
             public virtual IEnumerator DirectDiveInC()
             {
-                yield return null;
-
                 Debug.Log($"DirectDiveInC for netobj: {NetworkBehaviourId}");
-                GameNetScenesManager.Instance.SwitchingScenesServerRpc(rootSceneId.Value,
-                                                                        targetSceneId.Value,
-                                                                        NetworkManager.Singleton.LocalClientId);
-                
+                DiveScenesManager.Instance.SwitchingScenesServerRpc(rootSceneId.Value,
+                                                                    targetSceneId.Value,
+                                                                    NetworkManager.Singleton.LocalClientId);
+                //Wait until the client has switched to the target scene
+                yield return new WaitUntil(DiveScenesManager.Instance.SceneSwitchIsFinished);
 
-                //GameNetScenesManager.Instance.DebugScene();
+                isDiving = false;
             }
 
+            /// <inheritdoc/>
             public void GenerativeDiveIn()
             {
                 StartCoroutine(GenerativeDiveInC());
             }
 
+            /// <inheritdoc/>
             public virtual IEnumerator GenerativeDiveInC()
             {
                 Debug.LogError($"Generative dive in {gameObject.name}:{nameField.text} but no" +
                     $"custom behaviour has been defined for that type of module");
                 yield return null;
+                isDiving = false;
+
             }
 
-            public void TryDiveIn(InputAction.CallbackContext _ctx)
+            /// <inheritdoc/>
+            public void TryDiveIn()
             {
-                StartCoroutine(TryDiveInC());
-            }
-
-            public virtual IEnumerator TryDiveInC()
-            {
-                if (isFocused && isReadyForGeneration.Value)
+                if (isReadyForGeneration.Value)
                 {
-                    //TODO: DIVE START ANIMATION
-
-                    //Wait for animation to finish;
-                    yield return null;
+                    isDiving = true;
                     if (isReadyForDive.Value)
                     {
                         DirectDiveIn();
@@ -326,71 +365,99 @@ namespace ECellDive
                     {
                         GenerativeDiveIn();
                     }
-
-                    //TODO: DIVE END ANIMATION
                 }
             }
 
             #endregion
 
             #region - IFocus Methods -
+            /// <inheritdoc/>
             public void SetFocus()
             {
                 m_isFocused = true;
             }
-
+            /// <inheritdoc/>
             public void UnsetFocus()
             {
                 m_isFocused = false;
             }
             #endregion
 
-            #region - IHighlightable Methods -
+            #region - IColorHighlightable Methods -
 
-            public virtual void SetDefaultColor(Color _c)
+            public virtual void ApplyColor(Color _color)
             {
-                SetDefaultColorServerRpc(_c);
+                mpb.SetVector(colorID, _color);
+                if (m_Renderer != null)
+                {
+                    m_Renderer.SetPropertyBlock(mpb);
+                }
             }
 
-            public virtual void SetHighlightColor(Color _c)
+            /// <inheritdoc/>
+            [ServerRpc(RequireOwnership = false)]
+            public void SetCurrentColorToDefaultServerRpc()
             {
-                m_highlightColor = _c;
+                m_currentColor.Value = m_defaultColor;
             }
 
+            /// <inheritdoc/>
+            [ServerRpc(RequireOwnership = false)]
+            public virtual void SetCurrentColorToHighlightServerRpc()
+            {
+                m_currentColor.Value = m_highlightColor;
+            }
+
+            /// <inheritdoc/>
             public virtual void SetHighlight()
             {
+                SetCurrentColorToHighlightServerRpc();
             }
 
+            /// <inheritdoc/>
             public virtual void UnsetHighlight()
             {
+                if (!m_forceHighlight)
+                {
+                    SetCurrentColorToDefaultServerRpc();
+                }
             }
             #endregion
 
             #region - IInfoTags Methods -
+            /// <inheritdoc/>
             public void DisplayInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTags)
+                if (refInfoTagsContainer != null)
                 {
-                    _infoTag.SetActive(true);
+                    foreach (Transform _infoTag in refInfoTagsContainer.transform)
+                    {
+                        _infoTag.gameObject.SetActive(true);
+                    }
                 }
             }
 
+            /// <inheritdoc/>
             public void HideInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTags)
+                if (refInfoTagsContainer != null)
                 {
-                    _infoTag.SetActive(false);
+                    foreach (Transform _infoTag in refInfoTagsContainer.transform)
+                    {
+                        _infoTag.gameObject.SetActive(false);
+                    }
                 }
             }
 
+            /// <inheritdoc/>
             public void InstantiateInfoTag(Vector2 _xyPosition, string _content)
             {
                 GameObject infoTag = Instantiate(refInfoTagPrefab, refInfoTagsContainer.transform);
                 infoTag.transform.localPosition = new Vector3(_xyPosition.x, _xyPosition.y, 0f);
                 infoTag.GetComponent<InfoDisplayManager>().SetText(_content);
-                refInfoTags.Add(infoTag);
             }
 
+            /// <inheritdoc/>
             public void InstantiateInfoTags(string[] _content)
             {
                 float angle = 360 / _content.Length;
@@ -405,39 +472,42 @@ namespace ECellDive
                 }
             }
 
+            /// <inheritdoc/>
             public void ShowInfoTags()
             {
-                foreach (GameObject _infoTag in refInfoTags)
+                foreach (Transform _infoTag in refInfoTagsContainer.transform)
                 {
-                    _infoTag.GetComponent<InfoDisplayManager>().LookAt();
+                    _infoTag.gameObject.GetComponent<ILookAt>().LookAt();
                 }
             }
             #endregion
 
             #region - INamed Methods -
-
+            /// <inheritdoc/>
             public virtual void DisplayName()
             {
                 m_nameTextFieldContainer.gameObject.SetActive(true);
-                nameField.gameObject.SetActive(true);
             }
 
+            /// <inheritdoc/>
             public string GetName()
             {
                 return nameField.text;
             }
 
+            /// <inheritdoc/>
             public void HideName()
             {
                 m_nameTextFieldContainer.gameObject.SetActive(false);
-                nameField.gameObject.SetActive(false);
             }
 
+            /// <inheritdoc/>
             public void SetName(string _name)
             {
                 nameField.text = _name;
             }
 
+            /// <inheritdoc/>
             public void ShowName()
             {
                 m_nameTextFieldContainer.GetComponent<ILookAt>().LookAt();
@@ -447,22 +517,10 @@ namespace ECellDive
             #region - IMlprData Methods -
             public virtual void AssembleFragmentedData()
             {
-                //isReadyForGeneration = true;
+
             }
 
-            [ServerRpc(RequireOwnership = false)]
-            public void ConfirmSourceDataReceptionServerRpc()
-            {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
-                        "A Client Confirms reception of all the fragments.");
-                nbClientReadyLoaded.Value++;
-                if (nbClientReadyLoaded.Value == NetworkManager.Singleton.ConnectedClientsIds.Count)
-                {
-                    isReadyForGeneration.Value = true;
-                }
-            }
-
-            private IEnumerator BroadcastData()
+            public IEnumerator BroadcastSourceDataC()
             {
                 yield return new WaitForEndOfFrame();
 
@@ -477,34 +535,10 @@ namespace ECellDive
                 StartCoroutine(BroadcastSourceDataFragsC(fragmentedSourceData));
             }
 
-            public void DirectRecieveSourceData(byte[] _sourceDataName, List<byte[]> _fragmentedSourceData)
-            {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
-                        "The module received its local copy of the fragmented data.");
-                fragmentedSourceData = _fragmentedSourceData;
-                sourceDataName = _sourceDataName;
-                sourceDataNbFrags = _fragmentedSourceData.Count;
-
-                ConfirmSourceDataReceptionServerRpc();
-                AssembleFragmentedData();
-
-                StartCoroutine(BroadcastData());
-            }
-
-            [ServerRpc(RequireOwnership = false)]
-            public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
-            {
-                Debug.LogError("No Generation scheme has been defined for this GameNetModule. " +
-                    "Please, override this method and code how you the data stored in this module" +
-                    " should be represented in the scene.");
-            }
-            #endregion
-
-            #region - IMlprDataExchange Methods -
             [ClientRpc]
             public void BroadcastSourceDataFragClientRpc(byte[] _fragment)
             {
-                //LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                //LogSystem.AddMessage(LogMessageTypes.Debug,
                 //        "Client receives boradcasted source data fragment.");
                 if (IsOwner) return;
 
@@ -519,7 +553,7 @@ namespace ECellDive
             [ClientRpc]
             public void BroadcastSourceDataNameClientRpc(byte[] _name)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Client receives boradcasted source data name.");
                 if (IsOwner) return;
 
@@ -529,7 +563,7 @@ namespace ECellDive
             [ClientRpc]
             public void BroadcastSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Client receives boradcasted source nb frags.");
                 if (IsOwner) return;
 
@@ -539,7 +573,7 @@ namespace ECellDive
             [ServerRpc]
             public void BroadcastSourceDataFragServerRpc(byte[] _fragment)
             {
-                //LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                //LogSystem.AddMessage(LogMessageTypes.Debug,
                 //        "Server Sends 1 fragment.");
                 BroadcastSourceDataFragClientRpc(_fragment);
             }
@@ -547,7 +581,7 @@ namespace ECellDive
             [ServerRpc]
             public void BroadcastSourceDataNameServerRpc(byte[] _name)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Server boradcasts source data name.");
                 BroadcastSourceDataNameClientRpc(_name);
             }
@@ -560,18 +594,106 @@ namespace ECellDive
 
             public IEnumerator BroadcastSourceDataFragsC(List<byte[]> _fragmentedSourceData)
             {
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
-                        "Server starts the coroutine to send fragmented data.");
                 foreach (byte[] _frag in _fragmentedSourceData)
                 {
                     BroadcastSourceDataFragServerRpc(_frag);
-                    yield return new WaitForEndOfFrame();
+                    yield return new WaitForEndOfFrame();//waiting to avoid going over max network payload
+                }
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            public void ConfirmSourceDataReceptionServerRpc()
+            {
+                LogSystem.AddMessage(LogMessageTypes.Debug,
+                        "A Client Confirms reception of all the fragments.");
+                nbClientReadyLoaded.Value++;
+                if (nbClientReadyLoaded.Value == NetworkManager.Singleton.ConnectedClientsIds.Count)
+                {
+                    isReadyForGeneration.Value = true;
+                }
+            }
+
+            public void DirectReceiveSourceData(byte[] _sourceDataName, List<byte[]> _fragmentedSourceData)
+            {
+                LogSystem.AddMessage(LogMessageTypes.Debug,
+                        "The module received its local copy of the fragmented data.");
+                fragmentedSourceData = _fragmentedSourceData;
+                sourceDataName = _sourceDataName;
+                sourceDataNbFrags = _fragmentedSourceData.Count;
+
+                ConfirmSourceDataReceptionServerRpc();
+                AssembleFragmentedData();
+
+                StartCoroutine(BroadcastSourceDataC());
+            }
+
+            [ServerRpc(RequireOwnership = false)]
+            public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
+            {
+                Debug.LogError("No Generation scheme has been defined for this GameNetModule. " +
+                    "Please, override this method and code how you the data stored in this module" +
+                    " should be represented in the scene.");
+            }
+
+            public IEnumerator SendSourceDataC(ulong _targetClientID)
+            {
+                ClientRpcParams clientRpcParams = new ClientRpcParams
+                {
+                    Send = new ClientRpcSendParams
+                    {
+                        TargetClientIds = new ulong[] { _targetClientID },
+                    }
+                };
+
+                SendSourceDataNameClientRpc(sourceDataName, clientRpcParams);
+
+                yield return new WaitForEndOfFrame();
+
+                SendSourceDataNbFragsClientRpc((ushort)sourceDataNbFrags, clientRpcParams);
+
+                yield return new WaitForEndOfFrame();
+
+                StartCoroutine(SendSourceDataFragsC(fragmentedSourceData, clientRpcParams));
+            }
+
+            [ClientRpc]
+            public void SendSourceDataFragClientRpc(byte[] _fragment, ClientRpcParams _clientRpcParams)
+            {
+                fragmentedSourceData.Add(_fragment);
+                if (fragmentedSourceData.Count == sourceDataNbFrags)
+                {
+                    ConfirmSourceDataReceptionServerRpc();
+                    AssembleFragmentedData();
+                }
+            }
+
+            [ClientRpc]
+            public void SendSourceDataNameClientRpc(byte[] _name, ClientRpcParams _clientRpcParams)
+            {
+                LogSystem.AddMessage(LogMessageTypes.Debug,
+                        "Client receives source data name.");
+                sourceDataName = _name;
+            }
+
+            [ClientRpc]
+            public void SendSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags, ClientRpcParams _clientRpcParams)
+            {
+                LogSystem.AddMessage(LogMessageTypes.Debug,
+                        "Client receives source nb frags.");
+                sourceDataNbFrags = _sourceDataNbFrags;
+            }
+
+            public IEnumerator SendSourceDataFragsC(List<byte[]> _fragmentedSourceData, ClientRpcParams _clientRpcParams)
+            {
+                foreach (byte[] _frag in _fragmentedSourceData)
+                {
+                    SendSourceDataFragClientRpc(_frag, _clientRpcParams);
+                    yield return new WaitForEndOfFrame();//waiting to avoid going over max network payload
                 }
             }
             #endregion
 
-            #region - IMlprVisibility -
-
+            #region - IMlprVisibility Methods -
             public virtual void ManageActivationStatus(bool _previous, bool _current)
             {
                 gameObject.SetActive(isActivated.Value);
@@ -584,11 +706,6 @@ namespace ECellDive
                 if (m_Collider != null)
                 {
                     m_Collider.enabled = false;
-                }
-                
-                if (nameField != null)
-                {
-                    nameField.gameObject.SetActive(false);
                 }
 
                 if (m_Renderer != null)
@@ -617,11 +734,6 @@ namespace ECellDive
                 if (m_Collider != null)
                 {
                     m_Collider.enabled = true;
-                }
-
-                if (nameField != null)
-                {
-                    nameField.gameObject.SetActive(true);
                 }
 
                 if (m_Renderer != null)

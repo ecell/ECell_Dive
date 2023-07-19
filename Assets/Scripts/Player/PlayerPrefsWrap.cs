@@ -1,14 +1,12 @@
 using UnityEngine;
 
-/// <summary>
-/// Singleton class which saves/loads local-client settings.
-/// (This is just a wrapper around the PlayerPrefs system,
-/// so that all the calls are in the same place.)
-/// </summary>
-/// 
-
-namespace ECellDive.UserActions
+namespace ECellDive.PlayerComponents
 {
+    /// <summary>
+    /// Singleton class which saves/loads local-client settings.
+    /// (This is just a wrapper around the PlayerPrefs system,
+    /// so that all the calls are in the same place.)
+    /// </summary>
     public static class PlayerPrefsWrap
     {
         //const float k_DefaultMasterVolume = 0.5f;

@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using ECellDive.Interfaces;
 using ECellDive.UI;
-using ECellDive.Utility;
-
 
 namespace ECellDive
 {
@@ -18,22 +14,22 @@ namespace ECellDive
             public InputActionAsset refInputActionAsset;
 
             //controller ID: 0
-            private InputActionMap refGCLHMap;
-            private InputActionMap refGCRHMap;
+            private InputActionMap refRBCLHMap;
+            private InputActionMap refRBCRHMap;
 
             //controller ID: 1
             private InputActionMap refMvtLHMap;
             private InputActionMap refMvtRHMap;
 
             //controller ID: 2
-            private InputActionMap refRBCLHMap;
-            private InputActionMap refRBCRHMap;
+            private InputActionMap refGCLHMap;
+            private InputActionMap refGCRHMap;
 
             public InputActionReference refLeftControlSwitch;
             public InputActionReference refRightControlSwitch;
 
             //default is ray mode on left controller
-            private NetworkVariable<int> leftControllerModeID = new NetworkVariable<int>(2);
+            private NetworkVariable<int> leftControllerModeID = new NetworkVariable<int>(0);
 
             //default is movement mode on right controller
             private NetworkVariable<int> rightControllerModeID = new NetworkVariable<int>(1);
@@ -50,16 +46,19 @@ namespace ECellDive
             private XRRayInteractor[] leftRBCs;
             private XRRayInteractor[] rightRBCs;
 
+            [Header("UI Input Mode Tags")]
+            public LeftRightData<SurgeAndShrinkInfoTag> inputModeTags;
+
             private void Awake()
             {
-                refGCLHMap = refInputActionAsset.FindActionMap("Group_Controls_LH");
-                refGCRHMap = refInputActionAsset.FindActionMap("Group_Controls_RH");
+                refRBCLHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_LH");
+                refRBCRHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_RH");
 
                 refMvtLHMap = refInputActionAsset.FindActionMap("Movement_LH");
                 refMvtRHMap = refInputActionAsset.FindActionMap("Movement_RH");
 
-                refRBCLHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_LH");
-                refRBCRHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_RH");
+                refGCLHMap = refInputActionAsset.FindActionMap("Group_Controls_LH");
+                refGCRHMap = refInputActionAsset.FindActionMap("Group_Controls_RH");
             }
 
             private void Start()
@@ -81,57 +80,70 @@ namespace ECellDive
                     mainPointerInteractors.right
                 };
 
-                leftControllerModeID.OnValueChanged += ApplyLeftControllerModeSwitch;
-                rightControllerModeID.OnValueChanged += ApplyRightControllerModeSwitch;
+                //Subscribe the switch of Interactors and Action Maps
+                //to a change of value for leftControllerModeID
+                leftControllerModeID.OnValueChanged += ApplyLeftControllerInteractorsSwitch;
+                leftControllerModeID.OnValueChanged += ApplyLeftControllerActionMapSwitch;
 
-                ApplyLeftControllerModeSwitch(-1, 2);
-                ApplyRightControllerModeSwitch(-1, 1);
+                //Subscribe the switch of Interactors and Action Maps
+                //to a change of value for rightControllerModeID
+                rightControllerModeID.OnValueChanged += ApplyRightControllerInteractorsSwitch;
+                rightControllerModeID.OnValueChanged += ApplyRightControllerActionMapSwitch;
+
+                //Apply default input mode for the left controller
+                ApplyLeftControllerInteractorsSwitch(-1, 0);
+                ApplyLeftControllerActionMapSwitch(-1, 0);
+
+                //Apply default input mode for the right controller
+                ApplyRightControllerInteractorsSwitch(-1, 1);
+                ApplyRightControllerActionMapSwitch(-1, 1);
             }
 
             public override void OnNetworkDespawn()
             {
+                //Unsubscride to every event.
                 refLeftControlSwitch.action.performed -= LeftControllerModeSwitch;
                 refRightControlSwitch.action.performed -= RightControllerModeSwitch;
 
-                leftControllerModeID.OnValueChanged -= ApplyLeftControllerModeSwitch;
-                rightControllerModeID.OnValueChanged -= ApplyRightControllerModeSwitch;
+                leftControllerModeID.OnValueChanged -= ApplyLeftControllerInteractorsSwitch;
+                leftControllerModeID.OnValueChanged -= ApplyLeftControllerActionMapSwitch;
+
+                rightControllerModeID.OnValueChanged -= ApplyRightControllerInteractorsSwitch;
+                rightControllerModeID.OnValueChanged -= ApplyRightControllerActionMapSwitch;
             }
 
-            private void ApplyLeftControllerModeSwitch(int _previous, int current)
+            private void ApplyLeftControllerInteractorsSwitch(int _previous, int current)
             {
                 switch (leftControllerModeID.Value)
                 {
                     case 0:
-                        refRBCLHMap.Disable();
-                        DisableInteractors(leftRBCs);
+                        DisableInteractor(groupControllersGO.left);
 
-                        refMvtLHMap.Disable();
                         DisableInteractor(mvtControllersGO.left);
 
-                        refGCLHMap.Enable();
-                        EnableInteractor(groupControllersGO.left);
+                        EnableInteractors(leftRBCs);
+
+                        inputModeTags.left.SurgeAndShrink("Ray Inputs");
                         break;
 
                     case 1:
-                        refRBCLHMap.Disable();
                         DisableInteractors(leftRBCs);
 
-                        refGCLHMap.Disable();
                         DisableInteractor(groupControllersGO.left);
 
-                        refMvtLHMap.Enable();
                         EnableInteractor(mvtControllersGO.left);
+
+                        inputModeTags.left.SurgeAndShrink("Movement Inputs");
                         break;
 
                     case 2:
-                        refGCLHMap.Disable();
-                        DisableInteractor(groupControllersGO.left);
+                        DisableInteractors(leftRBCs);
 
-                        refMvtLHMap.Disable();
                         DisableInteractor(mvtControllersGO.left);
 
-                        refRBCLHMap.Enable();
-                        EnableInteractors(leftRBCs);
+                        EnableInteractor(groupControllersGO.left);
+
+                        inputModeTags.left.SurgeAndShrink("Group Inputs");
                         break;
 
                     default:
@@ -142,41 +154,72 @@ namespace ECellDive
                 GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToLeftController(leftControllerModeID.Value);
             }
 
-            private void ApplyRightControllerModeSwitch(int _previous, int current)
+            private void ApplyLeftControllerActionMapSwitch(int _previous, int current)
+            {
+                switch (leftControllerModeID.Value)
+                {
+                    case 0:
+                        refGCLHMap.Disable();
+
+                        refMvtLHMap.Disable();
+
+                        refRBCLHMap.Enable();
+                        break;
+
+                    case 1:
+                        refRBCLHMap.Disable();
+
+                        refGCLHMap.Disable();
+
+                        refMvtLHMap.Enable();
+                        break;
+
+                    case 2:
+                        refRBCLHMap.Disable();
+
+                        refMvtLHMap.Disable();
+
+                        refGCLHMap.Enable();
+                        break;
+
+                    default:
+                        leftControllerModeID.Value = 0;
+                        goto case 0;
+                }
+            }
+
+            private void ApplyRightControllerInteractorsSwitch(int _previous, int current)
             {
                 switch (rightControllerModeID.Value)
                 {
                     case 0:
-                        refRBCRHMap.Disable();
-                        DisableInteractors(rightRBCs);
+                        DisableInteractor(groupControllersGO.right);
 
-                        refMvtRHMap.Disable();
                         DisableInteractor(mvtControllersGO.right);
 
-                        refGCRHMap.Enable();
-                        EnableInteractor(groupControllersGO.right);
+                        EnableInteractors(rightRBCs);
+
+                        inputModeTags.right.SurgeAndShrink("Ray Inputs");
                         break;
 
                     case 1:
-                        refRBCRHMap.Disable();
                         DisableInteractors(rightRBCs);
 
-                        refGCRHMap.Disable();
                         DisableInteractor(groupControllersGO.right);
 
-                        refMvtRHMap.Enable();
                         EnableInteractor(mvtControllersGO.right);
+
+                        inputModeTags.right.SurgeAndShrink("Movement Inputs");
                         break;
 
                     case 2:
-                        refGCRHMap.Disable();
-                        DisableInteractor(groupControllersGO.right);
+                        DisableInteractors(rightRBCs);
 
-                        refMvtRHMap.Disable();
                         DisableInteractor(mvtControllersGO.right);
 
-                        refRBCRHMap.Enable();
-                        EnableInteractors(rightRBCs);
+                        EnableInteractor(groupControllersGO.right);
+
+                        inputModeTags.right.SurgeAndShrink("Group Inputs");
                         break;
 
                     default:
@@ -186,16 +229,50 @@ namespace ECellDive
                 GetComponent<ContextualHelpManager>().BroadcastControlModeSwitchToRightController(rightControllerModeID.Value);
             }
 
-            [ServerRpc]
-            public void BroadcastLeftControllerModeServerRpc()
+            private void ApplyRightControllerActionMapSwitch(int _previous, int current)
             {
-                leftControllerModeID.Value++;
+                switch (rightControllerModeID.Value)
+                {
+                    case 0:
+                        refGCRHMap.Disable();
+
+                        refMvtRHMap.Disable();
+
+                        refRBCRHMap.Enable();
+                        break;
+
+                    case 1:
+                        refRBCRHMap.Disable();
+
+                        refGCRHMap.Disable();
+
+                        refMvtRHMap.Enable();
+                        break;
+
+                    case 2:
+                        refRBCRHMap.Disable();
+
+                        refMvtRHMap.Disable();
+
+                        refGCRHMap.Enable();
+                        break;
+
+                    default:
+                        rightControllerModeID.Value = 0;
+                        goto case 0;
+                }
             }
 
             [ServerRpc]
-            public void BroadcastRightControllerModeServerRpc()
+            public void BroadcastLeftControllerModeServerRpc(int _modeIdx)
             {
-                rightControllerModeID.Value++;
+                leftControllerModeID.Value = _modeIdx;
+            }
+
+            [ServerRpc]
+            public void BroadcastRightControllerModeServerRpc(int _modeIdx)
+            {
+                rightControllerModeID.Value = _modeIdx;
             }
 
             private void DisableInteractors(XRRayInteractor[] _interactors)
@@ -205,11 +282,6 @@ namespace ECellDive
                     interactor.enabled = false;
                 }
             }
-
-            //private void DisableInteractor(XRRayInteractor _interactor)
-            //{
-            //    _interactor.enabled = false;
-            //}
 
             private void DisableInteractor(GameObject _selector)
             {
@@ -224,11 +296,6 @@ namespace ECellDive
                 }
             }
 
-            private void EnableInteractor(XRRayInteractor _interactor)
-            {
-                _interactor.enabled = true;
-            }
-
             private void EnableInteractor(GameObject _selector)
             {
                 _selector.SetActive(true);
@@ -238,7 +305,7 @@ namespace ECellDive
             {
                 if (IsOwner)
                 {
-                    BroadcastLeftControllerModeServerRpc();
+                    BroadcastLeftControllerModeServerRpc(leftControllerModeID.Value + 1);
                 }
             }
 
@@ -246,8 +313,20 @@ namespace ECellDive
             {
                 if (IsOwner)
                 {
-                    BroadcastRightControllerModeServerRpc();
+                    BroadcastRightControllerModeServerRpc(rightControllerModeID.Value + 1);
                 }
+            }
+
+            public void SubscribeActionMapsSwitch()
+            {
+                leftControllerModeID.OnValueChanged += ApplyLeftControllerActionMapSwitch;
+                rightControllerModeID.OnValueChanged += ApplyRightControllerActionMapSwitch;
+            }
+            
+            public void UnsubscribeActionMapsSwitch()
+            {
+                leftControllerModeID.OnValueChanged -= ApplyLeftControllerActionMapSwitch;
+                rightControllerModeID.OnValueChanged -= ApplyRightControllerActionMapSwitch;
             }
         }
     }

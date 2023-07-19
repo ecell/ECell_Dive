@@ -11,11 +11,13 @@ namespace ECellDive
 {
     namespace UI
     {
+        [System.Serializable]
         public struct GroupData
         {
             public string value;
             public Color color;
             public IHighlightable[] members;
+            public uint[] membersIds;
         }
 
         /// <summary>

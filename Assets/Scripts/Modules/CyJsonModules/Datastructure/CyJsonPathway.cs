@@ -1,6 +1,6 @@
 using System.Linq;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
-using Unity.Netcode;
 using UnityEngine;
 using ECellDive.IO;
 using ECellDive.Interfaces;
@@ -12,10 +12,12 @@ namespace ECellDive
         public class CyJsonPathway : IGraph
         {
             public string name { get; protected set; }
-            public JObject graphData { get;}
+            public JObject graphData { get; protected set; }
             public JArray jNodes { get; protected set; }
             public JArray jEdges { get; protected set; }
+
             public INode[] nodes { get; protected set; }
+
             public IEdge[] edges { get; protected set; }
 
             public CyJsonPathway(string _path, string _name)
@@ -30,6 +32,24 @@ namespace ECellDive
                 name = _name;
             }
 
+            /// <inheritdoc/>
+            public void MapInOutEdgesIntoNodes()
+            {
+                Dictionary<uint, uint> nodesMap = new Dictionary<uint, uint>();
+
+                for(uint i = 0; i<nodes.Length; i++)
+                {
+                    nodesMap[nodes[i].ID] = i;
+                }
+
+                foreach(IEdge edge in edges)
+                {
+                    nodes[nodesMap[edge.source]].outgoingEdges.Add(edge.ID);
+                    nodes[nodesMap[edge.target]].incommingEdges.Add(edge.ID);
+                }
+            }
+
+            /// <inheritdoc/>
             public void PopulateNodes()
             {
                 int nbNodes = jNodes.Count();
@@ -49,6 +69,7 @@ namespace ECellDive
                 }
             }
 
+            /// <inheritdoc/>
             public void PopulateEdges()
             {
                 int nbEdges = jEdges.Count();
@@ -64,11 +85,13 @@ namespace ECellDive
                 }
             }
 
+            /// <inheritdoc/>
             public void SetNodes()
             {
                 jNodes = CyJsonParser.GetNodes(graphData);
             }
 
+            /// <inheritdoc/>
             public void SetEdges()
             {
                 jEdges = CyJsonParser.GetEdges(graphData);

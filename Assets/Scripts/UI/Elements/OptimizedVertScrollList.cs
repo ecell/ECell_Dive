@@ -26,6 +26,8 @@ namespace ECellDive
             // Start is called before the first frame update
             void Start()
             {
+                UpdateAllChildrenPositions();
+
                 //Updating content rect transform size in the case
                 //there are already items in it.
                 UpdateContentSize();
@@ -61,24 +63,11 @@ namespace ECellDive
 
             public void OnChildDestruction()
             {
-                DrawAllChildren();
+                UpdateAllChildrenPositions();
                 UpdateContentSize();
                 GetBorderVisibleChildren();
                 UpdateAllChildrenVisibility();
-            }
-
-            public void DrawAllChildren()
-            {
-                float total = 0f;
-                foreach (RectTransform _child in refContent)
-                {
-                    total -= padding.top + 0.5f * _child.rect.height;
-                    _child.anchoredPosition = new Vector2(
-                        0.5f * _child.rect.width + padding.left, total);
-
-                    total -= 0.5f * _child.rect.height - padding.bottom;
-                }
-            }
+            }            
 
             public void GetBorderVisibleChildren()
             {
@@ -110,6 +99,19 @@ namespace ECellDive
                     RectTransform lastChild = refContent.GetChild(refContent.childCount - 1).GetComponent<RectTransform>();
                     refContent.sizeDelta = new Vector2(0,
                                                        Mathf.Abs(lastChild.anchoredPosition.y) + 0.5f * lastChild.rect.height);
+                }
+            }
+
+            public void UpdateAllChildrenPositions()
+            {
+                float total = 0f;
+                foreach (RectTransform _child in refContent)
+                {
+                    total -= padding.top + 0.5f * _child.rect.height;
+                    _child.anchoredPosition = new Vector2(
+                        0.5f * _child.rect.width + padding.left, total);
+
+                    total -= 0.5f * _child.rect.height - padding.bottom;
                 }
             }
 

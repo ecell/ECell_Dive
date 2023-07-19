@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 using ECellDive.Multiplayer;
 using ECellDive.Utility;
@@ -18,6 +19,10 @@ namespace ECellDive
             protected string activeModelName = "";
 
             public GameNetModuleSpawner gameNetModuleSpawner;
+
+            public UnityAction<bool, string> OnDataModuleImport;//added for the tutorials check
+
+            public AnimationLoopWrapper animLW;
 
             private void Start()
             {
@@ -67,6 +72,7 @@ namespace ECellDive
             {
                 activeModelName = _textMeshProUGUI.text;
                 StartCoroutine(ImportModelCyJsC());
+                animLW.PlayLoop("HttpServerImporterModule");
             }
 
             /// <summary>
@@ -80,14 +86,27 @@ namespace ECellDive
 
                 yield return new WaitUntil(isRequestProcessed);
 
+                //stop the "Work In Progress" animation of this module
+                animLW.StopLoop();
+
+                OnDataModuleImport?.Invoke(requestData.requestSuccess, activeModelName);
+
                 if (requestData.requestSuccess)
                 {
+                    //Flash of the succesful color.
+                    GetComponentInChildren<ColorFlash>().Flash(1);
+
                     byte[] modelContent = System.Text.Encoding.UTF8.GetBytes(requestData.requestText);
                     byte[] name = System.Text.Encoding.UTF8.GetBytes(activeModelName);
                     List<byte[]> mCFs = ArrayManipulation.FragmentToList(modelContent, 1024);
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                    LogSystem.AddMessage(LogMessageTypes.Debug,
                         "Just fragmented the Data. Requesting a module spawn to encapsulate it.");
                     gameNetModuleSpawner.RequestModuleSpawnFromData(0, name, mCFs);
+                }
+                else
+                {
+                    //Flash of the fail color
+                    GetComponentInChildren<ColorFlash>().Flash(0);
                 }
             }
 
@@ -98,6 +117,7 @@ namespace ECellDive
             public void ShowModelsList()
             {
                 StartCoroutine(ShowModelsListC());
+                animLW.PlayLoop("HttpServerImporterModule");
             }
 
             /// <summary>
@@ -111,8 +131,14 @@ namespace ECellDive
 
                 yield return new WaitUntil(isRequestProcessed);
 
+                //stop the "Work In Progress" animation of this module
+                animLW.StopLoop();
+
                 if (requestData.requestSuccess)
                 {
+                    //Flash of the succesful color.
+                    GetComponentInChildren<ColorFlash>().Flash(1);
+
                     requestData.requestJObject = JObject.Parse(requestData.requestText);
                     JArray jModelsArray = (JArray)requestData.requestJObject["models"];
                     List<string> modelsList = jModelsArray.Select(c => (string)c).ToList();
@@ -132,6 +158,12 @@ namespace ECellDive
                         modelUIContainer.SetActive(true);
                         refModelsScrollList.UpdateScrollList();
                     }
+                }
+
+                else
+                {
+                    //Flash of the fail color
+                    GetComponentInChildren<ColorFlash>().Flash(0);
                 }
             }
         }

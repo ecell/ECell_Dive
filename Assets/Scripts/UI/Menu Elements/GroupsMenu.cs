@@ -24,7 +24,6 @@ namespace ECellDive
 
             private void Start()
             {
-                StartCoroutine(AddSemanticTermUI("Custom Groups", new List<GroupData>()));
                 if (hideOnStart)
                 {
                     gameObject.SetActive(false);
@@ -118,10 +117,10 @@ namespace ECellDive
             private IEnumerator DistributeColorToMembersC(Color _color, IHighlightable[] _members)
             {
                 ushort batchCounter = 0;
-                foreach (IHighlightable _member in _members)
+                foreach (IColorHighlightable _member in _members)
                 {
-                    _member.SetDefaultColor(_color);
-                    _member.UnsetHighlight();
+                    _member.defaultColor = _color;
+                    _member.ApplyColor(_color);
 
                     batchCounter++;
 
@@ -133,7 +132,17 @@ namespace ECellDive
                 }
                 colorBatchDistributed = true;
             }
+
+            /// <summary>
+            /// Adds the default semantic groups to the list.
+            /// </summary>
+            public void Initialize()
+            {
+                if (gameObject.activeSelf)
+                {
+                    StartCoroutine(AddSemanticTermUI("Custom Groups", new List<GroupData>()));
+                }
+            }
         }
     }
 }
-

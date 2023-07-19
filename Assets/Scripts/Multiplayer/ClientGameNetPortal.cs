@@ -5,7 +5,7 @@ using Unity.Netcode;
 using UnityEngine;
 using ECellDive.UI;
 using ECellDive.Utility;
-
+using ECellDive.Modules;
 
 namespace ECellDive.Multiplayer
 {
@@ -88,27 +88,31 @@ namespace ECellDive.Multiplayer
         /// <summary>
         /// Shuts down the current session and starts a new one as a client.
         /// </summary>
-        IEnumerator Restart()
+        private IEnumerator Restart()
         {
             m_Portal.NetManager.Shutdown();
 
             //We make sure the previous instance of the host is closed
             yield return new WaitWhile(() => m_Portal.NetManager.IsListening);
 
-            //We try hosting at the new address alredy stored in Unity Transport Connection Data.
-            bool startClientResult = m_Portal.NetManager.StartClient();
-            yield return new WaitUntil(() => m_Portal.NetManager.IsClient);
-            Debug.Log($" {startClientResult}, {m_Portal.NetManager.IsClient}, {m_Portal.NetManager.IsConnectedClient}");
+            //We try hosting at the new address already stored in Unity Transport Connection Data.
+            m_Portal.NetManager.StartClient();
+
+            float startTime = Time.time;
+            yield return new WaitUntil(() => m_Portal.NetManager.IsConnectedClient || Time.time-startTime > 1);
+
             string msgStr;
-            if (!m_Portal.NetManager.IsClient) // BROKEN: NEED to CONTACT UNITY
+            if (!m_Portal.NetManager.IsConnectedClient)
             {
                 msgStr = "<color=red>Client couldn't connect to " + m_Portal.settings.IP + ":" + m_Portal.settings.port +
                        ". Falling back to single player on 127.0.0.1:7777</color>";
 
-                LogSystem.Message msg = LogSystem.GenerateMessage(LogSystem.MessageTypes.Errors,
+                LogSystem.AddMessage(LogMessageTypes.Errors,
                     "Client couldn't connect to " + m_Portal.settings.IP + ":" + m_Portal.settings.port +
                     ". Falling back to single player on 127.0.0.1:7777");
-                LogSystem.RecordMessage(msg);
+
+                MultiplayerModule.Instance.OnConnectionFails();
+                yield return new WaitForSeconds(1f);
 
                 m_Portal.SetConnectionSettings(m_Portal.settings.playerName, "127.0.0.1", 7777, m_Portal.settings.password);
                 m_Portal.SetUnityTransport();
@@ -119,7 +123,7 @@ namespace ECellDive.Multiplayer
 
                 //We are in the case where joining to the new address failed.
                 //We wait until the failed client connection has properly shut down.
-                yield return new WaitWhile(() => m_Portal.NetManager.IsClient);
+                yield return new WaitWhile(() => m_Portal.NetManager.IsListening);
 
                 m_Portal.NetManager.StartHost();
             }
@@ -127,13 +131,11 @@ namespace ECellDive.Multiplayer
             {
                 msgStr = "<color=green>Successfully joined at " + m_Portal.settings.IP + ":" + m_Portal.settings.port + "</color>";
 
-                LogSystem.Message msg = LogSystem.GenerateMessage(LogSystem.MessageTypes.Trace,
+                LogSystem.AddMessage(LogMessageTypes.Trace,
                     "Successfully joinet at " + m_Portal.settings.IP + ":" + m_Portal.settings.port);
-                LogSystem.RecordMessage(msg);
-
+                MultiplayerModule.Instance.OnConnectionSuccess();
+                yield return new WaitForSeconds(1f);
             }
-            yield return new WaitForSeconds(1f);
-            MultiplayerMenuManager.SetMessage(msgStr);
         }
 
         /// <summary>
@@ -141,11 +143,7 @@ namespace ECellDive.Multiplayer
         /// </summary>
         public void StartClient()
         {
-            Debug.Log("Building Client payload and connecting.");
             string payload = JsonUtility.ToJson(m_Portal.GetConnectionPayload());
-
-            Debug.Log("Client is connecting with payload:\n" + payload);
-
             byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
 
             m_Portal.NetManager.NetworkConfig.ConnectionData = payloadBytes;
@@ -163,7 +161,10 @@ namespace ECellDive.Multiplayer
             }
             else
             {
-                m_Portal.NetManager.StartClient();
+                if (m_Portal.NetManager.StartClient())
+                {
+                    MultiplayerModule.Instance.OnConnectionSuccess();
+                }
             }
             //SceneLoaderWrapper.Instance.AddOnSceneEventCallback();
 

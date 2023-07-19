@@ -7,277 +7,349 @@ using ECellDive.Interfaces;
 using ECellDive.UI;
 using ECellDive.Utility;
 
-namespace ECellDive
+namespace ECellDive.PlayerComponents
 {
-    namespace UserActions
+    [System.Serializable]
+    public struct GroupMakingToolsData
     {
-        [System.Serializable]
-        public struct GroupMakingActionData
+        public int targetLayer;
+        public float maxDistance;
+    }
+
+    /// <summary>
+    /// The logic to handle custom groups made by the user with
+    /// either the discrete or volumetric selectors.
+    /// </summary>
+    public class GroupsMakingManager : NetworkBehaviour
+    {
+        public LeftRightData<InputActionReference> selection;
+        public LeftRightData<InputActionReference> switchSelectionMode;
+
+        public LeftRightData<GameObject> discreteSelector;
+        public LeftRightData<VolumetricSelectorManager> volumetricSelector;
+
+        public LeftRightData<SurgeAndShrinkInfoTag> inputModeTags;
+
+        public GroupMakingToolsData grpMkgToolsData;
+
+        private LeftRightData<NetworkVariable<bool>> isVolumetric = new LeftRightData<NetworkVariable<bool>>
         {
-            public InputActionReference selection;
-            public InputActionReference switchSelectionMode;
+            left = new NetworkVariable<bool>(false),
+            right = new NetworkVariable<bool>(false)
+        };
+
+        public List<GameObject> groupMembers = new List<GameObject>();
+
+        public override void OnNetworkSpawn()
+        {
+            volumetricSelector.left.gameObject.GetComponent<TriggerBroadcaster>().onTriggerEnter += CheckCollision;
+            volumetricSelector.right.gameObject.GetComponent<TriggerBroadcaster>().onTriggerEnter += CheckCollision;
+
+            selection.left.action.started += TryAddMemberStartLeft;
+            selection.left.action.canceled += TryAddMemberEndLeft;
+            selection.right.action.started += TryAddMemberStartRight;
+            selection.right.action.canceled += TryAddMemberEndRight;
+
+            switchSelectionMode.left.action.performed += SwitchSelectionModeLeft;
+            switchSelectionMode.right.action.performed += SwitchSelectionModeRight;
+
+            isVolumetric.left.OnValueChanged += ApplySwitchSelectionModeLeft;
+            isVolumetric.right.OnValueChanged += ApplySwitchSelectionModeRight;
         }
 
-        [System.Serializable]
-        public struct GroupMakingToolsData
+        public override void OnNetworkDespawn()
         {
-            public GameObject discreteSelector;
-            public VolumetricSelectorManager volumetricSelector;
-            public int targetLayer;
-            public float maxDistance;
+            volumetricSelector.left.gameObject.GetComponent<TriggerBroadcaster>().onTriggerEnter -= CheckCollision;
+            volumetricSelector.right.gameObject.GetComponent<TriggerBroadcaster>().onTriggerEnter -= CheckCollision;
+
+            selection.left.action.started -= TryAddMemberStartLeft;
+            selection.left.action.canceled -= TryAddMemberEndLeft;
+            selection.right.action.started -= TryAddMemberStartRight;
+            selection.right.action.canceled -= TryAddMemberEndRight;
+
+            switchSelectionMode.left.action.performed -= SwitchSelectionModeLeft;
+            switchSelectionMode.right.action.performed -= SwitchSelectionModeRight;
+
+            isVolumetric.left.OnValueChanged -= ApplySwitchSelectionModeLeft;
+            isVolumetric.right.OnValueChanged -= ApplySwitchSelectionModeRight;
+
         }
 
         /// <summary>
-        /// The logic to handle custom groups made by the user with
-        /// either the discrete or volumetric selectors.
+        /// Adds the gameobject <paramref name="_go"/> to the group.
         /// </summary>
-        public class GroupsMakingManager : NetworkBehaviour
+        /// <param name="_go">The gameobject to add.</param>
+        /// <param name="_goGroupInfo">The gameobject's IGroupable component.</param>
+        private void AddMemberToGroup(GameObject _go, IGroupable _goGroupInfo)
         {
-            public GroupsMakingUIManager refUIManager;
-            public GroupsMakingManager refSecondGrpSelector;
+            _goGroupInfo.grpMemberIndex = groupMembers.Count;
+            groupMembers.Add(_go);
+        }
 
-            public GroupMakingActionData grpMkgActionData;
-
-            public GroupMakingToolsData grpMkgToolsData;
-
-            private NetworkVariable<bool> isVolumetric = new NetworkVariable<bool>(false);
-
-            public List<GameObject> groupMembers = new List<GameObject>();
-
-            public override void OnNetworkSpawn()
+        /// <summary>
+        /// The logic to switch between the discrete and volumetric selection
+        /// mode for the left controller.
+        /// </summary>
+        private void ApplySwitchSelectionModeLeft(bool _past, bool _current)
+        {
+            if (isVolumetric.left.Value)
             {
-                grpMkgActionData.selection.action.started += TryAddMemberStart;
-                grpMkgActionData.selection.action.canceled += TryAddMemberEnd;
-                grpMkgActionData.switchSelectionMode.action.performed += SwitchSelectionMode;
+                discreteSelector.left.SetActive(false);
+                volumetricSelector.left.gameObject.SetActive(true);
+                volumetricSelector.left.ResetTransform();
+                inputModeTags.left.SurgeAndShrink("Group Selector:\nVolumetric");
+            }
+            else
+            {
+                volumetricSelector.left.gameObject.SetActive(false);
+                discreteSelector.left.SetActive(true);
+                inputModeTags.left.SurgeAndShrink("Group Selector:\nDiscrete");
+            }
+        }
 
-                isVolumetric.OnValueChanged += ApplySwitchSelectionMode;
+        /// <summary>
+        /// The logic to switch between the discrete and volumetric selection
+        /// mode for the left controller.
+        /// </summary>
+        private void ApplySwitchSelectionModeRight(bool _past, bool _current)
+        {
+            if (isVolumetric.right.Value)
+            {
+                discreteSelector.right.SetActive(false);
+                volumetricSelector.right.gameObject.SetActive(true);
+                volumetricSelector.right.ResetTransform();
+                inputModeTags.right.SurgeAndShrink("Group Selector:\nVolumetric");
+            }
+            else
+            {
+                volumetricSelector.right.gameObject.SetActive(false);
+                discreteSelector.right.SetActive(true);
+                inputModeTags.right.SurgeAndShrink("Group Selector:\nDiscrete");
+            }
+        }
+
+        [ServerRpc]
+        public void BroadcastSelectionModeLeftServerRpc()
+        {
+            isVolumetric.left.Value = !isVolumetric.left.Value;
+        }
+
+        [ServerRpc]
+        public void BroadcastSelectionModeRightServerRpc()
+        {
+            isVolumetric.right.Value = !isVolumetric.right.Value;
+        }
+
+        /// <summary>
+        /// Method to call back when cancelling the creation of a group.
+        /// </summary>
+        public void CancelGroup()
+        {
+            //Reset objects Highlight
+            for (int i = 0; i < groupMembers.Count; i++)
+            {
+                IColorHighlightable highlightable = ToFind.FindComponent<IColorHighlightable>(groupMembers[i]);
+                highlightable.forceHighlight = false;
+                highlightable.UnsetHighlight();
             }
 
-            public override void OnNetworkDespawn()
+            //Reset group members list
+            ResetGroupMemberList();
+        }
+
+        /// <summary>
+        /// Tests if the gameobject <paramref name="_go"/> that collided
+        /// with the selector being used is part of the target layer and
+        /// proceeds if it is.
+        /// </summary>
+        /// <param name="_collider">The collider we want to check.</param>
+        public void CheckCollision(Collider _collider)
+        {
+            if (IsObjectInTargetLayer(_collider.gameObject))
             {
-                grpMkgActionData.selection.action.started -= TryAddMemberStart;
-                grpMkgActionData.selection.action.canceled -= TryAddMemberEnd;
-                grpMkgActionData.switchSelectionMode.action.performed -= SwitchSelectionMode;
-
-                isVolumetric.OnValueChanged -= ApplySwitchSelectionMode;
-
+                ManageGroupMembers(_collider.gameObject);
             }
+        }
 
-            /// <summary>
-            /// Adds the gameobject <paramref name="_go"/> to the group.
-            /// </summary>
-            /// <param name="_go">The gameobject to add.</param>
-            /// <param name="_goGroupInfo">The gameobject's IGroupable component.</param>
-            private void AddMemberToGroup(GameObject _go, IGroupable _goGroupInfo)
+        /// <summary>
+        /// A utility method to check if the gameobject <paramref name="_go"/> is
+        /// part of the <seealso cref="GroupMakingToolsData.targetLayer"/>.
+        /// </summary>
+        /// <param name="_go">The gamobject to be tested.</param>
+        /// <returns>True if it is in the target layer; false otherwise.</returns>
+        private bool IsObjectInTargetLayer(GameObject _go)
+        {
+            XRGrabInteractable interactable = ToFind.FindComponent<XRGrabInteractable>(_go);
+            if (interactable != null)
             {
-                _goGroupInfo.grpMemberIndex = groupMembers.Count;
-                groupMembers.Add(_go);
+                int targetLayerMask = 1 << grpMkgToolsData.targetLayer;
+                return (interactable.interactionLayerMask & targetLayerMask) > 0;
             }
+            return false;
+        }
 
-            /// <summary>
-            /// The logic to switch between the discrete and volumetric selection
-            /// mode for the left controller.
-            /// </summary>
-            private void ApplySwitchSelectionMode(bool _past, bool _current)
+        /// <summary>
+        /// The logic to add or remove the gameobject <paramref name="_go"/> from the
+        /// group. It is added if it's not in the group and removed it is already in it.
+        /// </summary>
+        /// <param name="_go">The gameobject to add or remove.</param>
+        private void ManageGroupMembers(GameObject _go)
+        {
+            IGroupable groupable = ToFind.FindComponent<IGroupable>(_go);
+            if (groupable != null)
             {
-                if (isVolumetric.Value)
+                IColorHighlightable highlightable = ToFind.FindComponent<IColorHighlightable>(_go);
+                if (groupable.grpMemberIndex == -1)
                 {
-                    grpMkgToolsData.discreteSelector.SetActive(false);
-                    grpMkgToolsData.volumetricSelector.gameObject.SetActive(true);
-                    grpMkgToolsData.volumetricSelector.ResetTransform();
+                    AddMemberToGroup(_go, groupable);
+                    highlightable.forceHighlight = true;
+                    highlightable.SetHighlight();
                 }
                 else
                 {
-                    grpMkgToolsData.volumetricSelector.gameObject.SetActive(false);
-                    grpMkgToolsData.discreteSelector.SetActive(true);
-                }
-            }
-
-            [ServerRpc]
-            public void BroadcastSelectionModeServerRpc()
-            {
-                isVolumetric.Value = !isVolumetric.Value;
-            }
-
-            /// <summary>
-            /// Method to call back when cancelling the creation of a group.
-            /// </summary>
-            public void CancelGroup()
-            {
-                //Reset objects Highlight
-                for (int i = 0; i < groupMembers.Count; i++)
-                {
-                    IHighlightable highlitable = ToFind.FindComponent<IHighlightable>(groupMembers[i]);
-                    highlitable.forceHighlight = false;
-                    highlitable.UnsetHighlight();
+                    RemoveMemberFromGroup(_go, groupable);
+                    highlightable.forceHighlight = false;
+                    highlightable.UnsetHighlight();
                 }
 
-                //Reset group members list
-                ResetGroupMemberList();
-
-                //Hide the UI dialogue
-                refUIManager.CloseUI();
+                StaticReferencer.Instance.refGroupsMakingUIManager.ManageUIConfirmationCanvas(groupMembers.Count);
             }
+        }
 
-            /// <summary>
-            /// Tests if the gameobject <paramref name="_go"/> that collided
-            /// with the selector being used is part of the target layer and
-            /// proceeds if it is.
-            /// </summary>
-            /// <param name="_go">The gameobject that collided with the discrete
-            /// or volumetric selector.</param>
-            public void CheckCollision(GameObject _go)
+        /// <summary>
+        /// The logic to remove the gameobject <paramref name="_go"/> from the
+        /// group.
+        /// </summary>
+        /// <param name="_go">The gameobject to remove.</param>
+        /// <param name="_goGroupInfo">The gameobject's IGroupable component.</param>
+        private void RemoveMemberFromGroup(GameObject _go, IGroupable _goGroupInfo)
+        {
+            groupMembers.RemoveAt(_goGroupInfo.grpMemberIndex);
+            for (int i = _goGroupInfo.grpMemberIndex; i < groupMembers.Count; i++)
             {
-                if (IsObjectInTargetLayer(_go))
-                {
-                    ManageGroupMembers(_go);
-                }
+                IGroupable _groupable = ToFind.FindComponent<IGroupable>(groupMembers[i]);
+                _groupable.grpMemberIndex--;
             }
+            _goGroupInfo.grpMemberIndex = -1;
+        }
 
-            /// <summary>
-            /// A utility method to check if the gameobject <paramref name="_go"/> is
-            /// part of the <seealso cref="GroupMakingToolsData.targetLayer"/>.
-            /// </summary>
-            /// <param name="_go">The gamobject to be tested.</param>
-            /// <returns>True if it is in the target layer; false otherwise.</returns>
-            private bool IsObjectInTargetLayer(GameObject _go)
-            {
-                XRGrabInteractable interactable = ToFind.FindComponent<XRGrabInteractable>(_go);
-                if (interactable != null)
-                {
-                    int targetLayerMask = 1 << grpMkgToolsData.targetLayer;
-                    return (interactable.interactionLayerMask & targetLayerMask) > 0;
-                }
-                return false;
-            }
-
-            /// <summary>
-            /// The logic to add or remove the gameobject <paramref name="_go"/> from the
-            /// group. It is added if it's not in the group and removed it is already in it.
-            /// </summary>
-            /// <param name="_go">The gameobject to add or remove.</param>
-            private void ManageGroupMembers(GameObject _go)
+        /// <summary>
+        /// Resets the group data.
+        /// </summary>
+        private void ResetGroupMemberList()
+        {
+            foreach(GameObject _go in groupMembers)
             {
                 IGroupable groupable = ToFind.FindComponent<IGroupable>(_go);
-                if (groupable != null)
-                {
-                    IHighlightable highlightable = ToFind.FindComponent<IHighlightable>(_go);
-                    if (groupable.grpMemberIndex == -1)
-                    {
-                        AddMemberToGroup(_go, groupable);
-                        highlightable.forceHighlight = true;
-                        highlightable.SetHighlight();
-                    }
-                    else
-                    {
-                        RemoveMemberFromGroup(_go, groupable);
-                        highlightable.forceHighlight = false;
-                        highlightable.UnsetHighlight();
-                    }
-
-                    refUIManager.ManageUIConfirmationCanvas(groupMembers.Count);
-                }
+                groupable.grpMemberIndex = -1;
             }
 
-            /// <summary>
-            /// The logic to remove the gameobject <paramref name="_go"/> from the
-            /// group.
-            /// </summary>
-            /// <param name="_go">The gameobject to remove.</param>
-            /// <param name="_goGroupInfo">The gameobject's IGroupable component.</param>
-            private void RemoveMemberFromGroup(GameObject _go, IGroupable _goGroupInfo)
+            groupMembers.Clear();
+        }
+
+        private void SwitchSelectionModeLeft(InputAction.CallbackContext _ctx)
+        {
+            if (IsOwner)
             {
-                groupMembers.RemoveAt(_goGroupInfo.grpMemberIndex);
-                for (int i = _goGroupInfo.grpMemberIndex; i < groupMembers.Count; i++)
-                {
-                    IGroupable _groupable = ToFind.FindComponent<IGroupable>(groupMembers[i]);
-                    _groupable.grpMemberIndex--;
-                }
-                _goGroupInfo.grpMemberIndex = -1;
+                BroadcastSelectionModeLeftServerRpc();
             }
+        }
 
-            /// <summary>
-            /// Resets the group data.
-            /// </summary>
-            private void ResetGroupMemberList()
+        private void SwitchSelectionModeRight(InputAction.CallbackContext _ctx)
+        {
+            if (IsOwner)
             {
-                foreach(GameObject _go in groupMembers)
-                {
-                    IGroupable groupable = ToFind.FindComponent<IGroupable>(_go);
-                    groupable.grpMemberIndex = -1;
-                }
-
-                groupMembers.Clear();
+                BroadcastSelectionModeRightServerRpc();
             }
-            
-            private void SwitchSelectionMode(InputAction.CallbackContext _ctx)
+        }
+
+        /// <summary>
+        /// The logic to deactivate the current selector when the
+        /// selection button is released for the left controller.
+        /// </summary>
+        private void TryAddMemberEndLeft(InputAction.CallbackContext _ctx)
+        {
+            if (isVolumetric.left.Value)
             {
-                if (IsOwner)
-                {
-                BroadcastSelectionModeServerRpc();
-                }
+                volumetricSelector.left.ManageActive(false);
             }
+        }
 
-            /// <summary>
-            /// The logic to deactivate the current selector when the
-            /// selection button is released.
-            /// </summary>
-            private void TryAddMemberEnd(InputAction.CallbackContext _ctx)
+        /// <summary>
+        /// The logic to deactivate the current selector when the
+        /// selection button is released for the right controller.
+        /// </summary>
+        private void TryAddMemberEndRight(InputAction.CallbackContext _ctx)
+        {
+            if (isVolumetric.right.Value)
             {
-                if (isVolumetric.Value)
-                {
-                    grpMkgToolsData.volumetricSelector.ManageActive(false);
-                }
+                volumetricSelector.right.ManageActive(false);
             }
+        }
 
-            /// <summary>
-            /// The logic to activate the current selector when the selection
-            /// button has just started being pressed.
-            /// </summary>
-            private void TryAddMemberStart(InputAction.CallbackContext _ctx)
+        /// <summary>
+        /// The logic to activate the current selector when the selection
+        /// button has just started being pressed for the left controller.
+        /// </summary>
+        private void TryAddMemberStartLeft(InputAction.CallbackContext _ctx)
+        {
+            if (isVolumetric.left.Value)
             {
-                if (isVolumetric.Value)
-                {
-                    grpMkgToolsData.volumetricSelector.ManageActive(true);
-                }
-
-                else
-                {
-                    RaycastHit hitInfo;
-                    if (Physics.Raycast(grpMkgToolsData.discreteSelector.transform.position,
-                                        grpMkgToolsData.discreteSelector.transform.forward,
-                                        out hitInfo, grpMkgToolsData.maxDistance))
-                    {
-                        CheckCollision(hitInfo.collider.gameObject);
-                    }
-                }
+                volumetricSelector.left.ManageActive(true);
             }
 
-            /// <summary>
-            /// The method to callback when validating the creation of the group.
-            /// </summary>
-            public void ValidateGroup()
+            else
             {
-                List<GameObject> allGroupMembers = groupMembers;
-                allGroupMembers.AddRange(refSecondGrpSelector.groupMembers);
-
-                //Get Highlightables and reset force highlight
-                IHighlightable[] highlitables = new IHighlightable[allGroupMembers.Count];
-                for (int i = 0; i < allGroupMembers.Count; i++)
+                RaycastHit hitInfo;
+                if (Physics.Raycast(discreteSelector.left.transform.position,
+                                    discreteSelector.left.transform.forward,
+                                    out hitInfo, grpMkgToolsData.maxDistance))
                 {
-                    highlitables[i] = ToFind.FindComponent<IHighlightable>(allGroupMembers[i]);
-                    highlitables[i].forceHighlight = false;
+                    CheckCollision(hitInfo.collider);
                 }
-
-                refUIManager.NewGroupUiElement(highlitables);
-
-                //Reset group members list
-                ResetGroupMemberList();
-
-                //Hide the UI dialogue
-                refUIManager.CloseUI();
             }
+        }
+
+        /// <summary>
+        /// The logic to activate the current selector when the selection
+        /// button has just started being pressed for the right controller.
+        /// </summary>
+        private void TryAddMemberStartRight(InputAction.CallbackContext _ctx)
+        {
+            if (isVolumetric.right.Value)
+            {
+                volumetricSelector.right.ManageActive(true);
+            }
+
+            else
+            {
+                RaycastHit hitInfo;
+                if (Physics.Raycast(discreteSelector.right.transform.position,
+                                    discreteSelector.right.transform.forward,
+                                    out hitInfo, grpMkgToolsData.maxDistance))
+                {
+                    CheckCollision(hitInfo.collider);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The method to callback when validating the creation of the group.
+        /// </summary>
+        public void ValidateGroup()
+        {
+            //Get Highlightables and reset force highlight
+            IColorHighlightable[] highlitables = new IColorHighlightable[groupMembers.Count];
+            for (int i = 0; i < groupMembers.Count; i++)
+            {
+                highlitables[i] = ToFind.FindComponent<IColorHighlightable>(groupMembers[i]);
+                highlitables[i].forceHighlight = false;
+            }
+
+            StaticReferencer.Instance.refGroupsMakingUIManager.NewGroupUiElement(highlitables);
+
+            //Reset group members list
+            ResetGroupMemberList();
         }
     }
 }
-

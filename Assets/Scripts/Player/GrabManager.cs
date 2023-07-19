@@ -5,236 +5,190 @@ using UnityEngine.XR.Interaction.Toolkit;
 using ECellDive.Interfaces;
 using ECellDive.Utility;
 
-namespace ECellDive
+namespace ECellDive.PlayerComponents
 {
-    namespace UserActions
+    public class GrabManager : MonoBehaviour, IRemoteGrab
     {
-        [System.Serializable]
-        public struct GrabActionData
+        #region - IRemoteGrab Members - 
+        private LeftRightData<bool> m_isGrabed;
+        public LeftRightData<bool> isGrabed
         {
-            public InputActionReference select;
-            public InputActionReference attractRepulse;
+            get => m_isGrabed;
         }
 
-        public class GrabManager : MonoBehaviour, IRemoteGrab
+        [SerializeField] private LeftRightData<InputActionReference> m_manageDistance;
+        public LeftRightData<InputActionReference> manageDistance
         {
-            #region - Interface Fields - 
+            get => m_manageDistance;
+        }
 
-            public XRRayInteractor currentRemoteInteractor { get; set; }
-            public bool remoteGrabEnabled { get; set; }
+        public XRRayInteractor currentRemoteInteractor { get; set; }
 
-            public bool isGrabed { get; set; }
+        public GameObject refCurrentController { get; set; }
 
-            private IGrab.XRControllerID m_controllerID = IGrab.XRControllerID.Unassigned;
-            public IGrab.XRControllerID controllerID
-            {
-                get => m_controllerID;
-                set => m_controllerID = value;
-            }
-            public GameObject refCurrentController { get; set; }
+        [SerializeField] private UnityEvent m_OnPostGrabMovementUpdate;
+        public UnityEvent OnPostGrabMovementUpdate
+        {
+            get => m_OnPostGrabMovementUpdate;
+            set => m_OnPostGrabMovementUpdate = value;
+        }
+        #endregion
 
-            public UnityEvent OnPostGrabMovementUpdate
-            {
-                get => m_OnPostGrabMovementUpdate;
-                set => m_OnPostGrabMovementUpdate = value;
-            }
-            #endregion
+        #region - GrabManager Fields - 
+        [Header("Attraction/Repulsion Parameters")]
+        [Range(2f, 50f)] public float objectMaxDistance = 25f;
+        [Range(0f, 2f)] public float objectMinDistance = 1f;
+        public AnimationCurve attractionSpeedCurve;
+        public AnimationCurve repulsionSpeedCurve;
+        
+        private XRBaseInteractable refInteractable;
+        private bool isReady;
+        private float objDistance = 0f;
+        private Vector3 refVelocity = Vector3.zero;
+        #endregion
 
-            #region - GrabManager Fields - 
+        private void Awake()
+        {
+            manageDistance.left.action.performed += ManageDistanceLeft;
+            manageDistance.right.action.performed += ManageDistanceRight;
+        }
 
-            public GrabActionData leftGrabActionData;
-            public GrabActionData rightGrabActionData;
+        private void OnDestroy()
+        {
+            manageDistance.left.action.performed -= ManageDistanceLeft;
+            manageDistance.right.action.performed -= ManageDistanceRight;
+        }
 
-            [Header("Attraction/Repulsion Parameters")]
-            [Range(2f, 50f)] public float objectMaxDistance = 25f;
-            [Range(0f, 2f)] public float objectMinDistance = 1f;
-            public AnimationCurve attractionSpeedCurve;
-            public AnimationCurve repulsionSpeedCurve;
+        private void Start()
+        {
+            refInteractable = GetComponent<XRBaseInteractable>();
+        }
 
-            [Header("Additional Processes")]
-            [SerializeField] private UnityEvent m_OnPostGrabMovementUpdate;
-
-            private float objDistance = 0f;
-
-            private Vector3 refVelocity = Vector3.zero;
-            #endregion
-
-            private void Awake()
-            {
-                leftGrabActionData.select.action.started += e => SetControllerID(IGrab.XRControllerID.Left);
-                rightGrabActionData.select.action.started += e => SetControllerID(IGrab.XRControllerID.Right);
-
-                leftGrabActionData.attractRepulse.action.performed += AttractionRepulsionLeft;
-                rightGrabActionData.attractRepulse.action.performed += AttractionRepulsionRight;
-            }
-
-            private void OnDestroy()
-            {
-                leftGrabActionData.select.action.started -= e => SetControllerID(IGrab.XRControllerID.Left);
-                rightGrabActionData.select.action.started -= e => SetControllerID(IGrab.XRControllerID.Right);
-
-                leftGrabActionData.attractRepulse.action.performed -= AttractionRepulsionLeft;
-                rightGrabActionData.attractRepulse.action.performed -= AttractionRepulsionRight;
-            }
-
-            private void Update()
-            {
-                if (isGrabed)
-                {
-                    if (remoteGrabEnabled)
-                    {
-                        OnRemoteGrab();
-                    }
-
-                    m_OnPostGrabMovementUpdate.Invoke();
-                }
-            }
-
-            private void AttractionRepulsionLeft(InputAction.CallbackContext _ctx)
-            {
-                if (remoteGrabEnabled && m_controllerID == IGrab.XRControllerID.Left)
-                {
-                    Vector2 _das = _ctx.ReadValue<Vector2>();
-                    if (!IsInDeadZone(_das.y))
-                    {
-                        ManageDistance(_das.y);
-                    }
-                }
-            }
-
-            private void AttractionRepulsionRight(InputAction.CallbackContext _ctx)
-            {
-                if (remoteGrabEnabled && m_controllerID == IGrab.XRControllerID.Right)
-                {
-                    Vector2 _das = _ctx.ReadValue<Vector2>();
-                    if (!IsInDeadZone(_das.y))
-                    {
-                        ManageDistance(_das.y);
-                    }
-                }
-            }
-
-            /// <summary>
-            /// Logic to translate the object when grabed from a distance.
-            /// </summary>
-            void FollowBeamTranslation()
-            {                
-                Vector3 target = objDistance * refCurrentController.transform.forward +
-                                 refCurrentController.transform.position;
-
-                transform.position = Vector3.SmoothDamp(transform.position,
-                                                        target,
-                                                        ref refVelocity,
-                                                        0.3f);
-            }
-
-            /// <summary>
-            /// A hard coded method returning true if Abs(<paramref name="_value"/>)
-            /// lower than <paramref name="_threshold"/>. Returns false otherwise.
-            /// </summary>
-            /// <remarks>Used to clamp Joystick input data since I couldn't
-            /// make the built-in deadzone work as intended.</remarks>
-            private bool IsInDeadZone(float _value, float _threshold = 0.5f)
-            {
-                return Mathf.Abs(_value) < _threshold;
-            }
-
-            /// <summary>
-            /// Moves the selector forward or backward.
-            /// </summary>
-            /// <param name="_mvtFactor">If greater than 0 then forward movement;
-            /// If lower than 0 then backward movement.</param>
-            private void ManageDistance(float _mvtFactor)
-            {
-                float speed;
-                if (_mvtFactor > 0)
-                {
-                    speed = repulsionSpeedCurve.Evaluate(objDistance / objectMaxDistance);
-                }
-                else
-                {
-                    speed = attractionSpeedCurve.Evaluate(objDistance / objectMaxDistance);
-                }
-                Vector3 target = transform.position +
-                                 _mvtFactor * speed * (
-                                 transform.position - refCurrentController.transform.position);
-
-                objDistance = Vector3.Distance(target, refCurrentController.transform.position);
-                if (objDistance < objectMinDistance || objDistance > objectMaxDistance)
-                {
-                    target = transform.position;
-                }
-                transform.localPosition = Vector3.SmoothDamp(
-                                            transform.localPosition,
-                                            target,
-                                            ref refVelocity,
-                                            0.1f);
-            }
-
-            /// <summary>
-            /// Logic to determine which controller (left or right) has grabbed an object.
-            /// </summary>
-            public void HandleInteractorsSorting()
-            {
-                isGrabed = true;
-                SortControllers();
-
-                if (currentRemoteInteractor.isActiveAndEnabled)
-                {
-                    remoteGrabEnabled = true;
-                    refCurrentController = currentRemoteInteractor.gameObject;
-                }
-
-                objDistance = Vector3.Distance(transform.position,
-                                               refCurrentController.transform.position);
-
-            }
-
-            public void OnRemoteGrab()
+        private void Update()
+        {
+            if (isReady)
             {
                 FollowBeamTranslation();
+                m_OnPostGrabMovementUpdate.Invoke();
             }
+        }
 
-            public void OnRemoteRelease()
+        private void ManageDistanceLeft(InputAction.CallbackContext _ctx)
+        {
+            if (m_isGrabed.left)
             {
-                remoteGrabEnabled = false;
-            }
-
-            public void ResetLogic()
-            {
-                isGrabed = false;
-                OnRemoteRelease();
-            }
-
-            /// <summary>
-            /// Assigns a value to the field "controllerID"
-            /// </summary>
-            /// <param name="_controllerID">Left or Right</param>
-            public void SetControllerID(IGrab.XRControllerID _controllerID)
-            {
-                if (!isGrabed)
+                Vector2 _das = _ctx.ReadValue<Vector2>();
+                if (!IsInDeadZone(_das.y))
                 {
-                    controllerID = _controllerID;
-                }
-            }
-
-            /// <summary>
-            /// Assigns the current interactors to consider based on
-            /// the value of the controllerID.
-            /// </summary>
-            private void SortControllers()
-            {
-                switch (controllerID)
-                {
-                    case IGrab.XRControllerID.Left:
-                        currentRemoteInteractor = StaticReferencer.Instance.remoteGrabInteractors.left;
-                        break;
-
-                    case IGrab.XRControllerID.Right:
-                        currentRemoteInteractor = StaticReferencer.Instance.remoteGrabInteractors.right;
-                        break;
+                    ManageDistance(_das.y);
                 }
             }
         }
+
+        private void ManageDistanceRight(InputAction.CallbackContext _ctx)
+        {
+            if (m_isGrabed.right)
+            {
+                Vector2 _das = _ctx.ReadValue<Vector2>();
+                if (!IsInDeadZone(_das.y))
+                {
+                    ManageDistance(_das.y);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Logic to translate the object when grabed from a distance.
+        /// </summary>
+        void FollowBeamTranslation()
+        {
+            Vector3 target = objDistance * refCurrentController.transform.forward +
+                                refCurrentController.transform.position;
+
+            transform.position = Vector3.SmoothDamp(transform.position,
+                                                    target,
+                                                    ref refVelocity,
+                                                    0.3f);
+        }
+
+        /// <summary>
+        /// A hard coded method returning true if Abs(<paramref name="_value"/>)
+        /// lower than <paramref name="_threshold"/>. Returns false otherwise.
+        /// </summary>
+        /// <remarks>Used to clamp Joystick input data since I couldn't
+        /// make the built-in deadzone work as intended.</remarks>
+        private bool IsInDeadZone(float _value, float _threshold = 0.5f)
+        {
+            return Mathf.Abs(_value) < _threshold;
+        }
+
+        /// <summary>
+        /// Moves the selector forward or backward.
+        /// </summary>
+        /// <param name="_mvtFactor">If greater than 0 then forward movement;
+        /// If lower than 0 then backward movement.</param>
+        private void ManageDistance(float _mvtFactor)
+        {
+            float speed;
+            if (_mvtFactor > 0)
+            {
+                speed = repulsionSpeedCurve.Evaluate(objDistance / objectMaxDistance);
+            }
+            else
+            {
+                speed = attractionSpeedCurve.Evaluate(objDistance / objectMaxDistance);
+            }
+            Vector3 target = transform.position +
+                                _mvtFactor * speed * (
+                                transform.position - refCurrentController.transform.position);
+
+            objDistance = Vector3.Distance(target, refCurrentController.transform.position);
+            if (objDistance < objectMinDistance || objDistance > objectMaxDistance)
+            {
+                target = transform.position;
+            }
+            transform.localPosition = Vector3.SmoothDamp(
+                                        transform.localPosition,
+                                        target,
+                                        ref refVelocity,
+                                        0.1f);
+        }
+
+        #region - IRemoteGrab Methods -
+        /// <inheritdoc/>
+        public bool IsGrabed()
+        {
+            return m_isGrabed.left || m_isGrabed.right;
+        }
+
+        /// <inheritdoc/>
+        public void OnGrab()
+        {
+            refCurrentController = refInteractable.selectingInteractor.gameObject;
+            objDistance = Vector3.Distance(transform.position,
+                                            refCurrentController.transform.position);
+
+            if (refInteractable.selectingInteractor == StaticReferencer.Instance.remoteGrabInteractors.left)
+            {
+                m_isGrabed.left = true;
+            }
+
+            if (refInteractable.selectingInteractor == StaticReferencer.Instance.remoteGrabInteractors.right)
+            {
+                m_isGrabed.right = true;
+            }
+
+            isReady = true;
+        }
+
+        /// <inheritdoc/>
+        public void OnReleaseGrab()
+        {
+            isReady = false;
+            m_isGrabed.left = false;
+            m_isGrabed.right = false;
+        }
+
+        #endregion
     }
 }

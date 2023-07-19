@@ -179,9 +179,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showOnEnable: 1
-  m_isUI: 1
+  m_flip: 1
   m_popupDistance: 0
-  m_popupRelativeHeight: 0
+  m_popupHeightOffset: 0
 --- !u!1 &2590335338323876174
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +434,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 5669114412949076117}
-        m_TargetAssemblyTypeName: ECellDive.Modules.NodeGO, Assembly-CSharp
+        m_TargetAssemblyTypeName: ECellDive.Modules.GameNetModule, Assembly-CSharp
         m_MethodName: SetHighlight
         m_Mode: 1
         m_Arguments:
@@ -485,7 +485,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 5669114412949076117}
-        m_TargetAssemblyTypeName: ECellDive.Modules.NodeGO, Assembly-CSharp
+        m_TargetAssemblyTypeName: ECellDive.Modules.GameNetModule, Assembly-CSharp
         m_MethodName: UnsetHighlight
         m_Mode: 1
         m_Arguments:
@@ -602,18 +602,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95835afa3af12564c8b3fc86ed5d846f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_diveActions:
-    leftController: {fileID: -6167206992522063489, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    rightController: {fileID: 1131537533043575416, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  m_defaultColor:
-    m_InternalValue: {r: 1, g: 1, b: 1, a: 0}
+  m_Collider: {fileID: 0}
+  m_Renderer: {fileID: 0}
+  m_LineRenderer: {fileID: 0}
+  m_currentColor:
+    m_InternalValue: {r: 0, g: 0, b: 0, a: 0}
+  m_defaultColor: {r: 1, g: 1, b: 1, a: 0}
   m_highlightColor: {r: 0, g: 0.8980392, b: 0.8962264, a: 1}
   m_displayInfoTagsActions:
-    leftController: {fileID: -2874468441403497665, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    rightController: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_left: {fileID: -2874468441403497665, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
+    m_right: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   m_refInfoTagPrefab: {fileID: 2640417455543900250}
   m_refInfoTagsContainer: {fileID: 7005578674291729463}
-  m_refInfoTags: []
   m_nameTextFieldContainer: {fileID: 2535286134125105603}
 --- !u!114 &7746608187068630219
 MonoBehaviour:

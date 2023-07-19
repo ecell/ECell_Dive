@@ -49,7 +49,7 @@ namespace ECellDive
             public void OpenColorPicker()
             {
                 picker.transform.parent.gameObject.SetActive(true);
-                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.8f);
+                Vector3 pos = Positioning.PlaceInFrontOfTarget(Camera.main.transform, 1.5f, 0.2f);
                 picker.transform.parent.transform.position = pos;
                 picker.transform.parent.gameObject.GetComponent<ILookAt>().LookAt();
                 InformColorPickerOfTarget();
