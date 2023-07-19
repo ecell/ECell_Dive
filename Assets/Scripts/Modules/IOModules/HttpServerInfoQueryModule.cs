@@ -29,7 +29,7 @@ namespace ECellDive.Modules
             {
                 LogSystem.AddMessage(LogMessageTypes.Errors,
                     "[HttpServerInfoQueryModule] There is no active metabolic pathway (CyJson) module detected.");
-                GetComponentInChildren<ColorFlash>().Flash(0);//fail flash
+                colorFlash.Flash(0);//fail flash
             }
             else
             {
@@ -62,8 +62,8 @@ namespace ECellDive.Modules
 
         public void QueryReactionInfo()
         {
-            //TODO: Start Playing animation
             StartCoroutine(QueryReactionInfoC());
+            animLW.PlayLoop("HttpServerInfoQueryModule");
         }
 
         private IEnumerator QueryReactionInfoC()
@@ -72,18 +72,33 @@ namespace ECellDive.Modules
 
             yield return new WaitUntil(isRequestProcessed);
 
+            //stop the "Work In Progress" animation of this module
+            animLW.StopLoop();
+
             if (requestData.requestSuccess)
             {
+
                 requestData.requestJObject = JObject.Parse(requestData.requestText);
                 string reactionString = requestData.requestJObject["reaction_information"]["REACTION"].Value<string>();
 
-                EdgeGO edge = LoadedCyJsonPathway.DataID_to_DataGO[Convert.ToUInt16(refReactionID.text)].GetComponent<EdgeGO>();
-                edge.InstantiateInfoTag(new Vector2(0.15f, 0.15f), reactionString);
+                if (string.IsNullOrEmpty(reactionString))
+                {
+                    colorFlash.Flash(0);//fail flash
+                    LogSystem.AddMessage(LogMessageTypes.Errors,
+                                         $"[HttpServerInfoQueryModule] Request succeeded but target information is unavailable : " +
+                                             requestData.requestJObject["detail"].Value<string>());
+                }
+                else
+                {
+                    colorFlash.Flash(1);//success flash
+                    EdgeGO edge = LoadedCyJsonPathway.DataID_to_DataGO[Convert.ToUInt16(refReactionID.text)].GetComponent<EdgeGO>();
+                    edge.InstantiateInfoTag(new Vector2(0.15f, 0.15f), reactionString);
+                }
             }
             else
             {
                 //Flash of the fail color
-                GetComponentInChildren<ColorFlash>().Flash(0);
+                colorFlash.Flash(0);
                 LogSystem.AddMessage(LogMessageTypes.Errors,
                                        $"[HttpServerInfoQueryModule] Request failed with error: {requestData.requestText}");
             }
