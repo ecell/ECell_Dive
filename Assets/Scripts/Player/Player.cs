@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.Multiplayer;
 using ECellDive.Utility;
-using UnityEditor.PackageManager;
 
 namespace ECellDive.PlayerComponents
 {
@@ -47,7 +45,7 @@ namespace ECellDive.PlayerComponents
 
             //We detach the UI from the player to avoid it being destroyed
             //with the player network object.
-            StaticReferencer.Instance.refAllGuiMenusContainer.transform.parent = null;
+            //StaticReferencer.Instance.refAllGuiMenusContainer.transform.parent = null;
 
             NetworkManager.Singleton.OnClientConnectedCallback -= ExchangeNames;
 

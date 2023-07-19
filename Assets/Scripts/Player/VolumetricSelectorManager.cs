@@ -12,16 +12,9 @@ namespace ECellDive.PlayerComponents
     /// are sent to the <seealso cref="GroupsMakingManager"/>
     /// </summary>
     public class VolumetricSelectorManager : NetworkBehaviour,
-                                                IHighlightable
+                                                IColorHighlightable
     {
         #region - IHighlightable Members - 
-
-        [SerializeField] private NetworkVariable<Color> m_currentColor;
-        public NetworkVariable<Color> currentColor
-        {
-            get => m_currentColor;
-            set => m_currentColor = value;
-        }
 
         [SerializeField] private Color m_defaultColor;
         public Color defaultColor
@@ -91,12 +84,11 @@ namespace ECellDive.PlayerComponents
             refRenderer = GetComponentInChildren<Renderer>();
             mpb = new MaterialPropertyBlock();
             colorID = Shader.PropertyToID("_Color");
-            
-            SetDefaultServerRpc();
+            mpb.SetVector(colorID, defaultColor);
+            refRenderer.SetPropertyBlock(mpb);
 
             distanceAndScaleAction.action.performed += DistanceAndScale;
 
-            currentColor.OnValueChanged += ApplyCurrentColorChange;
             position.OnValueChanged += ApplyPositionToTransform;
             scale.OnValueChanged += ApplyScaleToTransform;
         }
@@ -105,15 +97,8 @@ namespace ECellDive.PlayerComponents
         {
             distanceAndScaleAction.action.performed -= DistanceAndScale;
 
-            currentColor.OnValueChanged -= ApplyCurrentColorChange;
             position.OnValueChanged -= ApplyPositionToTransform;
             scale.OnValueChanged -= ApplyScaleToTransform;
-        }
-
-        private void ApplyCurrentColorChange(Color _previous, Color _current)
-        {
-            mpb.SetVector(colorID, _current);
-            refRenderer.SetPropertyBlock(mpb);
         }
 
         private void ApplyPositionToTransform(Vector3 _past, Vector3 _current)
@@ -181,11 +166,11 @@ namespace ECellDive.PlayerComponents
             isActive.Value = _active;
             if (_active)
             {
-                SetHighlightServerRpc();
+                SetHighlight();
             }
             else
             {
-                UnsetHighlightServerRpc();
+                UnsetHighlight();
             }
         }
 
@@ -256,41 +241,26 @@ namespace ECellDive.PlayerComponents
             transform.localScale = defaultScale;
         }
 
-        #region - IHighlightable -
+        #region - IColorHighlightable -
 
-        /// <inheritdoc/>
-        [ServerRpc(RequireOwnership = false)]
-        public void SetDefaultServerRpc()
+        public void ApplyColor(Color _color)
         {
-            m_currentColor.Value = m_defaultColor;
+            mpb.SetVector(colorID, _color);
+            refRenderer.SetPropertyBlock(mpb);
         }
 
         /// <inheritdoc/>
-        public void SetDefaultColor(Color _c)
+        public virtual void SetHighlight()
         {
-            m_defaultColor = _c;
+            ApplyColor(highlightColor);
         }
 
         /// <inheritdoc/>
-        [ServerRpc(RequireOwnership = false)]
-        public virtual void SetHighlightServerRpc()
-        {
-            m_currentColor.Value = m_highlightColor;
-        }
-
-        /// <inheritdoc/>
-        public void SetHighlightColor(Color _c)
-        {
-            m_highlightColor = _c;
-        }
-
-        /// <inheritdoc/>
-        [ServerRpc(RequireOwnership = false)]
-        public virtual void UnsetHighlightServerRpc()
+        public virtual void UnsetHighlight()
         {
             if (!forceHighlight)
             {
-                m_currentColor.Value = m_defaultColor;
+                ApplyColor(defaultColor);
             }
         }
         #endregion

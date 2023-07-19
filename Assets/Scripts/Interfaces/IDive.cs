@@ -11,11 +11,7 @@ namespace ECellDive.Interfaces
     /// </summary>
     public interface IDive
     {
-        /// <summary>
-        /// The reference to the input actions the user can perform
-        /// to dive.
-        /// </summary>
-        LeftRightData<InputActionReference> diveActions { get; set; }
+        bool isDiving { get; }
 
         /// <summary>
         /// A variable synchronized over the multiplayer network to
@@ -76,18 +72,9 @@ namespace ECellDive.Interfaces
         /// The public interface to call when a user wants to dive into a 
         /// module.
         /// </summary>
-        /// <param name="_ctx">Input action callback</param>
         /// <remarks>
         /// Asynchronous: it calls the coroutine <see cref="TryDiveInC"/>
         /// </remarks>
-        void TryDiveIn(InputAction.CallbackContext _ctx);
-
-        /// <summary>
-        /// Coroutine started by <see cref="TryDiveIn(InputAction.CallbackContext)"/>.
-        /// Performs tests to check whether the data of the module is
-        /// accessible and whether a user has already generated the physical
-        /// representation of the data.
-        /// </summary>
-        abstract IEnumerator TryDiveInC();
+        void TryDiveIn();
     }
 }

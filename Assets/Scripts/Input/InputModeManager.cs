@@ -46,6 +46,9 @@ namespace ECellDive
             private XRRayInteractor[] leftRBCs;
             private XRRayInteractor[] rightRBCs;
 
+            [Header("UI Input Mode Tags")]
+            public LeftRightData<SurgeAndShrinkInfoTag> inputModeTags;
+
             private void Awake()
             {
                 refRBCLHMap = refInputActionAsset.FindActionMap("Ray_Based_Controls_LH");
@@ -119,6 +122,8 @@ namespace ECellDive
                         DisableInteractor(mvtControllersGO.left);
 
                         EnableInteractors(leftRBCs);
+
+                        inputModeTags.left.SurgeAndShrink("Ray Inputs");
                         break;
 
                     case 1:
@@ -127,6 +132,8 @@ namespace ECellDive
                         DisableInteractor(groupControllersGO.left);
 
                         EnableInteractor(mvtControllersGO.left);
+
+                        inputModeTags.left.SurgeAndShrink("Movement Inputs");
                         break;
 
                     case 2:
@@ -135,6 +142,8 @@ namespace ECellDive
                         DisableInteractor(mvtControllersGO.left);
 
                         EnableInteractor(groupControllersGO.left);
+
+                        inputModeTags.left.SurgeAndShrink("Group Inputs");
                         break;
 
                     default:
@@ -189,6 +198,8 @@ namespace ECellDive
                         DisableInteractor(mvtControllersGO.right);
 
                         EnableInteractors(rightRBCs);
+
+                        inputModeTags.right.SurgeAndShrink("Ray Inputs");
                         break;
 
                     case 1:
@@ -197,6 +208,8 @@ namespace ECellDive
                         DisableInteractor(groupControllersGO.right);
 
                         EnableInteractor(mvtControllersGO.right);
+
+                        inputModeTags.right.SurgeAndShrink("Movement Inputs");
                         break;
 
                     case 2:
@@ -205,6 +218,8 @@ namespace ECellDive
                         DisableInteractor(mvtControllersGO.right);
 
                         EnableInteractor(groupControllersGO.right);
+
+                        inputModeTags.right.SurgeAndShrink("Group Inputs");
                         break;
 
                     default:

@@ -26,6 +26,8 @@ namespace ECellDive
             // Start is called before the first frame update
             void Start()
             {
+                UpdateAllChildrenPositions();
+
                 //Updating content rect transform size in the case
                 //there are already items in it.
                 UpdateContentSize();

@@ -53,7 +53,7 @@ namespace ECellDive.Multiplayer
                         "Server Received a request for spawn.");
 
             GameObject player = NetworkManager.Singleton.ConnectedClients[_expeditorClientID].PlayerObject.gameObject;
-            Vector3 pos = Positioning.PlaceInFrontOfTarget(player.GetComponentInChildren<Camera>().transform, 2f, 0.8f);
+            Vector3 pos = Positioning.PlaceInFrontOfTarget(player.GetComponentInChildren<Camera>().transform, 2f, 0f);
 
             GameObject module = DiveScenesManager.Instance.SpawnModuleInScene(
                 GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene,

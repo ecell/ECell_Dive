@@ -51,6 +51,9 @@ namespace ECellDive
                 //Organize edges and nodes information
                 _cyJsonPathway.PopulateNodes();
                 _cyJsonPathway.PopulateEdges();
+
+                //Maps the node-edge continuity
+                _cyJsonPathway.MapInOutEdgesIntoNodes();
             }
         }
     }

@@ -60,17 +60,64 @@ namespace ECellDive
             int grpMemberIndex { get; set; }
         }
 
+        public interface IHighlightable
+        {
+            /// <summary>
+            /// A boolean to inform whether the object should stay in an
+            /// highlighted state even when it should go back to default.
+            /// </summary>
+            bool forceHighlight { get; set; }
+
+            /// <summary>
+            /// The function to call when the object should enter highlighted
+            /// state.
+            /// </summary>
+            abstract void SetHighlight();
+
+            /// <summary>
+            /// The function to call when the object should exit the highlighted
+            /// state.
+            /// Checks for <see cref="forceHighlight"/>.
+            /// If false, applies <see cref="defaultColor"/> to <see cref="currentColor"/>.
+            /// If true, nothing happens.
+            /// </summary>
+            abstract void UnsetHighlight();
+        }
+
         /// <summary>
         /// An interface to change switch between two colors when a gameobject
         /// needs to be highlighted.
         /// </summary>
-        public interface IHighlightable
+        public interface IColorHighlightable : IHighlightable
         {
-            NetworkVariable<Color> currentColor { get; }
-            Color defaultColor { get; }
-            Color highlightColor { get; }
+            /// <summary>
+            /// The color the object should be when non highlighted.
+            /// </summary>
+            Color defaultColor { get; set; }
 
-            bool forceHighlight { get; set; }
+            /// <summary>
+            /// The color the object should be when highlighted.
+            /// </summary>
+            Color highlightColor { get; set; }
+
+            /// <summary>
+            /// The function to call when we wish to apply a color to the material
+            /// of the gameobject.
+            /// </summary>
+            abstract void ApplyColor(Color _color);
+        }
+
+        /// <summary>
+        /// An interface to change switch between two colors when a NetworkObject
+        /// needs to be highlighted.
+        /// </summary>
+        public interface IColorHighlightableNet : IColorHighlightable
+        {
+            /// <summary>
+            /// The current color of the object synchronized over the 
+            /// network.
+            /// </summary>
+            NetworkVariable<Color> currentColor { get; }
 
             /// <summary>
             /// Contacts the server to applies <see cref="defaultColor"/>
@@ -80,13 +127,7 @@ namespace ECellDive
             /// "NetworkVariable{T}"/>, the value will be synchronized to all
             /// clients.</remarks>
             [ServerRpc(RequireOwnership = false)]
-            void SetDefaultServerRpc();
-
-            /// <summary>
-            /// Sets the value of <see cref="defaultColor"/> to <paramref name="_c"/>.
-            /// </summary>
-            /// <param name="_c">The new value for <see cref="defaultColor"/></param>
-            void SetDefaultColor(Color _c);
+            void SetCurrentColorToDefaultServerRpc();
 
             /// <summary>
             /// Contacts the server to applies <see cref="highlightColor"/>
@@ -96,24 +137,7 @@ namespace ECellDive
             /// "NetworkVariable{T}"/>, the value will be synchronized to all
             /// clients.</remarks>
             [ServerRpc(RequireOwnership = false)]
-            abstract void SetHighlightServerRpc();
-
-            /// <summary>
-            /// Sets the value of <see cref="highlightColor"/> to <paramref name="_c"/>.
-            /// </summary>
-            /// <param name="_c">The new value for <see cref="highlightColor"/></param>
-            void SetHighlightColor(Color _c);
-
-            /// <summary>
-            /// Checks for <see cref="forceHighlight"/>.
-            /// If false, applies <see cref="defaultColor"/> to <see cref="currentColor"/>.
-            /// If true, nothing happens.
-            /// </summary>
-            /// <remarks>Since <see cref="currentColor"/> is a <see cref=
-            /// "NetworkVariable{T}"/>, the value will be synchronized to all
-            /// clients.</remarks>
-            [ServerRpc(RequireOwnership = false)]
-            abstract void UnsetHighlightServerRpc();
+            abstract void SetCurrentColorToHighlightServerRpc();
         }
 
         /// <summary>
@@ -225,6 +249,18 @@ namespace ECellDive
             /// A clamped flux value to control the visualization of the flux.
             /// </summary>
             NetworkVariable<float> fluxLevelClamped { get; }
+
+            /// <summary>
+            /// The logic to apply the effects associated to the value of
+            /// <see cref="fluxLevel"/>.
+            /// </summary>
+            void ApplyFluxLevel();
+
+            /// <summary>
+            /// The logic to apply the effects associated to the value of
+            /// <see cref="fluxLevelClamped"/>.
+            /// </summary>
+            void ApplyFluxLevelClamped();
 
             /// <summary>
             /// A mutator for values of <see cref="fluxLevel"/> and 

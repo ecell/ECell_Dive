@@ -50,7 +50,7 @@ namespace ECellDive
                     "This is a Errors Message");
 
                 DrawMessageLists();
-                //gameObject.SetActive(false);
+                gameObject.SetActive(false);
             }
 
             /// <summary>

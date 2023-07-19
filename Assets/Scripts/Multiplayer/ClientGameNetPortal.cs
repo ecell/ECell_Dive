@@ -5,7 +5,7 @@ using Unity.Netcode;
 using UnityEngine;
 using ECellDive.UI;
 using ECellDive.Utility;
-
+using ECellDive.Modules;
 
 namespace ECellDive.Multiplayer
 {
@@ -111,6 +111,9 @@ namespace ECellDive.Multiplayer
                     "Client couldn't connect to " + m_Portal.settings.IP + ":" + m_Portal.settings.port +
                     ". Falling back to single player on 127.0.0.1:7777");
 
+                MultiplayerModule.Instance.OnConnectionFails();
+                yield return new WaitForSeconds(1f);
+
                 m_Portal.SetConnectionSettings(m_Portal.settings.playerName, "127.0.0.1", 7777, m_Portal.settings.password);
                 m_Portal.SetUnityTransport();
 
@@ -130,10 +133,9 @@ namespace ECellDive.Multiplayer
 
                 LogSystem.AddMessage(LogMessageTypes.Trace,
                     "Successfully joinet at " + m_Portal.settings.IP + ":" + m_Portal.settings.port);
+                MultiplayerModule.Instance.OnConnectionSuccess();
+                yield return new WaitForSeconds(1f);
             }
-
-            yield return new WaitForSeconds(1f);
-            MultiplayerMenuManager.SetMessage(msgStr);
         }
 
         /// <summary>
@@ -159,7 +161,10 @@ namespace ECellDive.Multiplayer
             }
             else
             {
-                m_Portal.NetManager.StartClient();
+                if (m_Portal.NetManager.StartClient())
+                {
+                    MultiplayerModule.Instance.OnConnectionSuccess();
+                }
             }
             //SceneLoaderWrapper.Instance.AddOnSceneEventCallback();
 

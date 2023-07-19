@@ -88,7 +88,7 @@ namespace ECellDive
         /// Camera.</remarks>
         public interface ILookAt
         {
-            bool isUI { get; }
+            bool flip { get; }
             Transform lookAtTarget { get; }
 
             void LookAt();
@@ -106,12 +106,9 @@ namespace ECellDive
             float popupDistance { get; }
 
             /// <summary>
-            /// The height relative to <see cref="popupTarget"/> the gameobject
-            /// should appear at.
+            /// The offset to add to <paramref name="popupTarget"/>'s height.</param>
             /// </summary>
-            /// <remarks>A value of 1 means to appear at the same height as <see
-            /// cref="popupTarget"/>.</remarks>
-            float popupRelativeHeight { get; }
+            float popupHeightOffset { get; }
 
             /// <summary>
             /// The gameobject used as reference for the positioning of the

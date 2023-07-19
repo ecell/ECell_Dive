@@ -19,7 +19,7 @@ namespace ECellDive
             [Header("UI")]
             public GroupByAttributsManager refAttributsManager;
 
-            private Renderer refRenderer;
+            [SerializeField] private Renderer[] renderers;
             private MaterialPropertyBlock mpb;
             private int colorID;
 
@@ -44,11 +44,14 @@ namespace ECellDive
 
             private void OnEnable()
             {
-                refRenderer = GetComponentInChildren<Renderer>();
+                Debug.Log("OnEnable", gameObject);
                 mpb = new MaterialPropertyBlock();
                 colorID = Shader.PropertyToID("_Color");
                 mpb.SetVector(colorID, defaultColor);
-                refRenderer.SetPropertyBlock(mpb);
+                foreach (Renderer _renderer in renderers)
+                {
+                    _renderer.SetPropertyBlock(mpb);
+                }
             }
 
             /// <summary>
@@ -120,18 +123,26 @@ namespace ECellDive
             }
 
             #region - IHighlightable -
+
+            public override void ApplyColor(Color _color)
+            {
+                mpb.SetVector(colorID, _color);
+                foreach (Renderer _renderer in renderers)
+                {
+                    _renderer.SetPropertyBlock(mpb);
+                }
+            }
+
             public override void SetHighlight()
             {
-                mpb.SetVector(colorID, highlightColor);
-                refRenderer.SetPropertyBlock(mpb);
+                ApplyColor(highlightColor);
             }
 
             public override void UnsetHighlight()
             {
                 if (!forceHighlight)
                 {
-                    mpb.SetVector(colorID, defaultColor);
-                    refRenderer.SetPropertyBlock(mpb);
+                    ApplyColor(defaultColor);
                 }
             }
             #endregion
