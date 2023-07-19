@@ -145,6 +145,7 @@ namespace ECellDive
                     LogSystem.AddMessage(LogMessageTypes.Debug,
                                                    "Sending Request: " + uri);
                     // Request and wait for the desired page.
+                    webRequest.timeout = 10;
                     yield return webRequest.SendWebRequest();
 
                     string[] pages = uri.Split('/');
