@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class CyJsonModule
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -80,26 +80,22 @@ CyJson modules.</p>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
-    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
-    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
-    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
-    <div class="level5"><span class="xref">Unity.Netcode.NetworkBehaviour</span></div>
-    <div class="level6"><a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a></div>
-    <div class="level7"><span class="xref">CyJsonModule</span></div>
+    <div class="level1"><a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a></div>
+    <div class="level2"><span class="xref">CyJsonModule</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="ECellDive.Interfaces.IDive.html">IDive</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
+    <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a></div>
+    <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a></div>
-    <div><a class="xref" href="ECellDive.Interfaces.IMlprDataBroadcast.html">IMlprDataBroadcast</a></div>
-    <div><a class="xref" href="ECellDive.Interfaces.IMlprDataRequest.html">IMlprDataRequest</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html">IMlprVisibility</a></div>
+    <div><a class="xref" href="ECellDive.Interfaces.IGraphGONet.html">IGraphGONet</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IGraphGO.html">IGraphGO</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IModifiable.html">IModifiable</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.ISaveable.html">ISaveable</a></div>
@@ -116,7 +112,13 @@ CyJson modules.</p>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_LineRenderer">GameNetModule.m_LineRenderer</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_diveActions">GameNetModule.diveActions</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_mpb">GameNetModule.mpb</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_colorID">GameNetModule.colorID</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isDiving">GameNetModule.isDiving</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_rootSceneId">GameNetModule.rootSceneId</a>
@@ -134,13 +136,16 @@ CyJson modules.</p>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_grpMemberIndex">GameNetModule.grpMemberIndex</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_forceHighlight">GameNetModule.forceHighlight</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_currentColor">GameNetModule.currentColor</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_defaultColor">GameNetModule.defaultColor</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_highlightColor">GameNetModule.highlightColor</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_forceHighlight">GameNetModule.forceHighlight</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_areVisible">GameNetModule.areVisible</a>
@@ -162,12 +167,6 @@ CyJson modules.</p>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_refInfoTagsContainer">GameNetModule.refInfoTagsContainer</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_refInfoTags">GameNetModule.m_refInfoTags</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_refInfoTags">GameNetModule.refInfoTags</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_nameTextFieldContainer">GameNetModule.m_nameTextFieldContainer</a>
@@ -203,6 +202,12 @@ CyJson modules.</p>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_OnDestroy">GameNetModule.OnDestroy()</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_LookAt">GameNetModule.LookAt()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SelfDestroyServerRpc">GameNetModule.SelfDestroyServerRpc()</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectDiveIn">GameNetModule.DirectDiveIn()</a>
     </div>
     <div>
@@ -212,10 +217,7 @@ CyJson modules.</p>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_GenerativeDiveIn">GameNetModule.GenerativeDiveIn()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_TryDiveIn_UnityEngine_InputSystem_InputAction_CallbackContext_">GameNetModule.TryDiveIn(InputAction.CallbackContext)</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_TryDiveInC">GameNetModule.TryDiveInC()</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_TryDiveIn">GameNetModule.TryDiveIn()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetFocus">GameNetModule.SetFocus()</a>
@@ -224,10 +226,19 @@ CyJson modules.</p>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_UnsetFocus">GameNetModule.UnsetFocus()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetDefaultColor_UnityEngine_Color_">GameNetModule.SetDefaultColor(Color)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ApplyColor_Color_">GameNetModule.ApplyColor(Color)</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetHighlightColor_UnityEngine_Color_">GameNetModule.SetHighlightColor(Color)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetCurrentColorToDefaultServerRpc">GameNetModule.SetCurrentColorToDefaultServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetCurrentColorToHighlightServerRpc">GameNetModule.SetCurrentColorToHighlightServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetHighlight">GameNetModule.SetHighlight()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_UnsetHighlight">GameNetModule.UnsetHighlight()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DisplayInfoTags">GameNetModule.DisplayInfoTags()</a>
@@ -236,7 +247,7 @@ CyJson modules.</p>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_HideInfoTags">GameNetModule.HideInfoTags()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_InstantiateInfoTag_UnityEngine_Vector2_System_String_">GameNetModule.InstantiateInfoTag(Vector2, String)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_InstantiateInfoTag_Vector2_System_String_">GameNetModule.InstantiateInfoTag(Vector2, String)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_InstantiateInfoTags_System_String___">GameNetModule.InstantiateInfoTags(String[])</a>
@@ -260,10 +271,7 @@ CyJson modules.</p>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ShowName">GameNetModule.ShowName()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ConfirmSourceDataReceptionServerRpc">GameNetModule.ConfirmSourceDataReceptionServerRpc()</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectRecieveSourceData_System_Byte___System_Collections_Generic_List_System_Byte____">GameNetModule.DirectRecieveSourceData(Byte[], List&lt;Byte[]&gt;)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataC">GameNetModule.BroadcastSourceDataC()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragClientRpc_System_Byte___">GameNetModule.BroadcastSourceDataFragClientRpc(Byte[])</a>
@@ -284,469 +292,52 @@ CyJson modules.</p>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsServerRpc_System_UInt16_">GameNetModule.BroadcastSourceDataNbFragsServerRpc(UInt16)</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____">GameNetModule.BroadcastSourceDataFragsC(List&lt;Byte[]&gt;)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragsC_List_System_Byte____">GameNetModule.BroadcastSourceDataFragsC(List&lt;Byte[]&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ConfirmSourceDataReceptionServerRpc">GameNetModule.ConfirmSourceDataReceptionServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectReceiveSourceData_System_Byte___List_System_Byte____">GameNetModule.DirectReceiveSourceData(Byte[], List&lt;Byte[]&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataC_System_UInt64_">GameNetModule.SendSourceDataC(UInt64)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataFragClientRpc_System_Byte___ClientRpcParams_">GameNetModule.SendSourceDataFragClientRpc(Byte[], ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataNameClientRpc_System_Byte___ClientRpcParams_">GameNetModule.SendSourceDataNameClientRpc(Byte[], ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataNbFragsClientRpc_System_UInt16_ClientRpcParams_">GameNetModule.SendSourceDataNbFragsClientRpc(UInt16, ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataFragsC_List_System_Byte____ClientRpcParams_">GameNetModule.SendSourceDataFragsC(List&lt;Byte[]&gt;, ClientRpcParams)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ManageActivationStatus_System_Boolean_System_Boolean_">GameNetModule.ManageActivationStatus(Boolean, Boolean)</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHide">GameNetModule.NetHide()</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHideClientRpc_ClientRpcParams_">GameNetModule.NetHideClientRpc(ClientRpcParams)</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHideClientRpc_Unity_Netcode_ClientRpcParams_">GameNetModule.NetHideClientRpc(ClientRpcParams)</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShow">GameNetModule.NetShow()</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShowClientRpc_Unity_Netcode_ClientRpcParams_">GameNetModule.NetShowClientRpc(ClientRpcParams)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShowClientRpc_ClientRpcParams_">GameNetModule.NetShowClientRpc(ClientRpcParams)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_RequestSetActiveServerRpc_System_Boolean_">GameNetModule.RequestSetActiveServerRpc(Boolean)</a>
     </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__rpc_exec_stage</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendServerRpc(System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendServerRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendClientRpc(System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendClientRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkBehaviour(System.UInt16)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkDespawn()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnGainedOwnership()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnLostOwnership()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkObjectParentChanged(Unity.Netcode.NetworkObject)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkObject(System.UInt64)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkManager</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsLocalPlayer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwner</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsServer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsClient</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsHost</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwnedByServer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsSpawned</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObject</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.HasNetworkObject</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObjectId</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkBehaviourId</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OwnerClientId</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.Invoke(System.String, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.InvokeRepeating(System.String, System.Single, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine_Auto(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(UnityEngine.Coroutine)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopAllCoroutines()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.print(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.useGUILayout</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.runInEditMode</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.enabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.isActiveAndEnabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent(System.Type, UnityEngine.Component)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type, System.Collections.Generic.List&lt;UnityEngine.Component&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.CompareTag(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.transform</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.gameObject</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.tag</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetInstanceID()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.ToString()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.name</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.hideFlags</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Modules.html">ECellDive.Modules</a></h6>
-  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="ECellDive_Modules_CyJsonModule_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CyJsonModule : GameNetModule, IDive, IFocus, IGroupable, IHighlightable, IInfoTags, INamed, IMlprData, IMlprDataBroadcast, IMlprDataRequest, IMlprVisibility, IGraphGO, IModifiable, ISaveable</code></pre>
+    <pre><code class="lang-csharp hljs">public class CyJsonModule : GameNetModule, IDive, IFocus, IGroupable, IColorHighlightableNet, IColorHighlightable, IHighlightable, IInfoTags, INamed, IMlprData, IMlprVisibility, IGraphGONet, IGraphGO, IModifiable, ISaveable</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_cyJsonPathwaySettings.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.cyJsonPathwaySettings%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L40">View Source</a>
-  </span>
-  <h4 id="ECellDive_Modules_CyJsonModule_cyJsonPathwaySettings" data-uid="ECellDive.Modules.CyJsonModule.cyJsonPathwaySettings">cyJsonPathwaySettings</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CyJsonPathwaySettingsData cyJsonPathwaySettings</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Modules.CyJsonPathwaySettingsData.html">CyJsonPathwaySettingsData</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_DataID_to_DataGO.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.DataID_to_DataGO%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L41">View Source</a>
-  </span>
-  <h4 id="ECellDive_Modules_CyJsonModule_DataID_to_DataGO" data-uid="ECellDive.Modules.CyJsonModule.DataID_to_DataGO">DataID_to_DataGO</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Dictionary&lt;uint, GameObject&gt; DataID_to_DataGO</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.UInt32</span>, <span class="xref">UnityEngine.GameObject</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_nbActiveDataSet.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.nbActiveDataSet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L39">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_CyJsonModule_nbActiveDataSet" data-uid="ECellDive.Modules.CyJsonModule.nbActiveDataSet">nbActiveDataSet</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -764,20 +355,89 @@ CyJson modules.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ECellDive_Modules_CyJsonModule_pathwayRoot" data-uid="ECellDive.Modules.CyJsonModule.pathwayRoot">pathwayRoot</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject pathwayRoot</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_graphData.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.graphData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L52">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_DataID_to_DataGO_" data-uid="ECellDive.Modules.CyJsonModule.DataID_to_DataGO*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_DataID_to_DataGO" data-uid="ECellDive.Modules.CyJsonModule.DataID_to_DataGO">DataID_to_DataGO</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;uint, GameObject&gt; DataID_to_DataGO { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.UInt32</span>, <span class="xref">GameObject</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_graphBatchSpawning_" data-uid="ECellDive.Modules.CyJsonModule.graphBatchSpawning*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_graphBatchSpawning" data-uid="ECellDive.Modules.CyJsonModule.graphBatchSpawning">graphBatchSpawning</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GraphBatchSpawning graphBatchSpawning { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ECellDive.Interfaces.GraphBatchSpawning.html">GraphBatchSpawning</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_graphData_" data-uid="ECellDive.Modules.CyJsonModule.graphData*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_graphData" data-uid="ECellDive.Modules.CyJsonModule.graphData">graphData</h4>
   <div class="markdown level1 summary"></div>
@@ -801,13 +461,8 @@ CyJson modules.</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_graphPrefabsComponents.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.graphPrefabsComponents%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L55">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_graphPrefabsComponents_" data-uid="ECellDive.Modules.CyJsonModule.graphPrefabsComponents*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_graphPrefabsComponents" data-uid="ECellDive.Modules.CyJsonModule.graphPrefabsComponents">graphPrefabsComponents</h4>
   <div class="markdown level1 summary"></div>
@@ -826,18 +481,38 @@ CyJson modules.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">UnityEngine.GameObject</span>&gt;</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">GameObject</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_readingModificationFile.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.readingModificationFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L63">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_graphScalingData_" data-uid="ECellDive.Modules.CyJsonModule.graphScalingData*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_graphScalingData" data-uid="ECellDive.Modules.CyJsonModule.graphScalingData">graphScalingData</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GraphScalingData graphScalingData { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ECellDive.Interfaces.GraphScalingData.html">GraphScalingData</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_readingModificationFile_" data-uid="ECellDive.Modules.CyJsonModule.readingModificationFile*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_readingModificationFile" data-uid="ECellDive.Modules.CyJsonModule.readingModificationFile">readingModificationFile</h4>
   <div class="markdown level1 summary"></div>
@@ -861,13 +536,8 @@ CyJson modules.</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_refIndex.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.refIndex%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L38">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_refIndex_" data-uid="ECellDive.Modules.CyJsonModule.refIndex*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_refIndex" data-uid="ECellDive.Modules.CyJsonModule.refIndex">refIndex</h4>
   <div class="markdown level1 summary"></div>
@@ -891,13 +561,8 @@ CyJson modules.</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_writingModificationFile.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.writingModificationFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L67">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_writingModificationFile_" data-uid="ECellDive.Modules.CyJsonModule.writingModificationFile*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_writingModificationFile" data-uid="ECellDive.Modules.CyJsonModule.writingModificationFile">writingModificationFile</h4>
   <div class="markdown level1 summary"></div>
@@ -923,13 +588,77 @@ CyJson modules.</p>
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_ApplyFileModifications.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.ApplyFileModifications%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L317">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_ApplyCurrentColorChange_" data-uid="ECellDive.Modules.CyJsonModule.ApplyCurrentColorChange*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_ApplyCurrentColorChange_Color_Color_" data-uid="ECellDive.Modules.CyJsonModule.ApplyCurrentColorChange(Color,Color)">ApplyCurrentColorChange(Color, Color)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ApplyCurrentColorChange(Color _previous, Color _current)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">_previous</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">_current</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ApplyCurrentColorChange_Color_Color_">GameNetModule.ApplyCurrentColorChange(Color, Color)</a></div>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_ApplyEdgeWidthFactorOverride_" data-uid="ECellDive.Modules.CyJsonModule.ApplyEdgeWidthFactorOverride*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_ApplyEdgeWidthFactorOverride" data-uid="ECellDive.Modules.CyJsonModule.ApplyEdgeWidthFactorOverride">ApplyEdgeWidthFactorOverride()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyEdgeWidthFactorOverride()</code></pre>
+  </div>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_ApplyEdgeWidthFactorOverrideC_" data-uid="ECellDive.Modules.CyJsonModule.ApplyEdgeWidthFactorOverrideC*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_ApplyEdgeWidthFactorOverrideC" data-uid="ECellDive.Modules.CyJsonModule.ApplyEdgeWidthFactorOverrideC">ApplyEdgeWidthFactorOverrideC()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator ApplyEdgeWidthFactorOverrideC()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_ApplyFileModifications_" data-uid="ECellDive.Modules.CyJsonModule.ApplyFileModifications*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_ApplyFileModifications" data-uid="ECellDive.Modules.CyJsonModule.ApplyFileModifications">ApplyFileModifications()</h4>
   <div class="markdown level1 summary"></div>
@@ -938,13 +667,8 @@ CyJson modules.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ApplyFileModifications()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_AssembleFragmentedData.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.AssembleFragmentedData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L352">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_AssembleFragmentedData_" data-uid="ECellDive.Modules.CyJsonModule.AssembleFragmentedData*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_AssembleFragmentedData" data-uid="ECellDive.Modules.CyJsonModule.AssembleFragmentedData">AssembleFragmentedData()</h4>
   <div class="markdown level1 summary"></div>
@@ -955,13 +679,8 @@ CyJson modules.</p>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_AssembleFragmentedData">GameNetModule.AssembleFragmentedData()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_CheckName_System_String_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.CheckName(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L327">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_CheckName_" data-uid="ECellDive.Modules.CyJsonModule.CheckName*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_CheckName_System_String_" data-uid="ECellDive.Modules.CyJsonModule.CheckName(System.String)">CheckName(String)</h4>
   <div class="markdown level1 summary"></div>
@@ -998,56 +717,43 @@ CyJson modules.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Returns True if <code data-dev-comment-type="paramref" class="paramref">_name</code> matches a name
+defined in the class implementing <a class="xref" href="ECellDive.Interfaces.IModifiable.html">IModifiable</a>.
+Returns false otherwise.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_CompileModificationFile.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.CompileModificationFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L375">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_CompileModificationFile_" data-uid="ECellDive.Modules.CyJsonModule.CompileModificationFile*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_CompileModificationFile" data-uid="ECellDive.Modules.CyJsonModule.CompileModificationFile">CompileModificationFile()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Builds <a class="xref" href="ECellDive.Interfaces.ISaveable.html#ECellDive_Interfaces_ISaveable_writingModificationFile">writingModificationFile</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void CompileModificationFile()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_ConfirmIsActiveDataStatusServerRpc.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.ConfirmIsActiveDataStatusServerRpc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L101">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_ConfirmIsActiveDataStatusServerRpc_" data-uid="ECellDive.Modules.CyJsonModule.ConfirmIsActiveDataStatusServerRpc*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_ConfirmIsActiveDataStatusServerRpc" data-uid="ECellDive.Modules.CyJsonModule.ConfirmIsActiveDataStatusServerRpc">ConfirmIsActiveDataStatusServerRpc()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ServerRpc(RequireOwnership = false)]
-public void ConfirmIsActiveDataStatusServerRpc()</code></pre>
+    <pre><code class="lang-csharp hljs">public void ConfirmIsActiveDataStatusServerRpc()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_EdgeSpawnClientRpc_Unity_Netcode_NetworkObjectReference_System_Int32_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.EdgeSpawnClientRpc(Unity.Netcode.NetworkObjectReference%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L128">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_EdgeSpawnClientRpc_" data-uid="ECellDive.Modules.CyJsonModule.EdgeSpawnClientRpc*"></a>
-  <h4 id="ECellDive_Modules_CyJsonModule_EdgeSpawnClientRpc_Unity_Netcode_NetworkObjectReference_System_Int32_" data-uid="ECellDive.Modules.CyJsonModule.EdgeSpawnClientRpc(Unity.Netcode.NetworkObjectReference,System.Int32)">EdgeSpawnClientRpc(NetworkObjectReference, Int32)</h4>
+  <h4 id="ECellDive_Modules_CyJsonModule_EdgeSpawnClientRpc_NetworkObjectReference_System_Int32_" data-uid="ECellDive.Modules.CyJsonModule.EdgeSpawnClientRpc(NetworkObjectReference,System.Int32)">EdgeSpawnClientRpc(NetworkObjectReference, Int32)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ClientRpc]
-public void EdgeSpawnClientRpc(NetworkObjectReference _edgeNetObj, int _edgeIdx)</code></pre>
+    <pre><code class="lang-csharp hljs">public void EdgeSpawnClientRpc(NetworkObjectReference _edgeNetObj, int _edgeIdx)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1060,7 +766,7 @@ public void EdgeSpawnClientRpc(NetworkObjectReference _edgeNetObj, int _edgeIdx)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkObjectReference</span></td>
+        <td><span class="xref">NetworkObjectReference</span></td>
         <td><span class="parametername">_edgeNetObj</span></td>
         <td></td>
       </tr>
@@ -1071,16 +777,14 @@ public void EdgeSpawnClientRpc(NetworkObjectReference _edgeNetObj, int _edgeIdx)
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_GenerativeDiveInC.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.GenerativeDiveInC%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L255">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_GenerativeDiveInC_" data-uid="ECellDive.Modules.CyJsonModule.GenerativeDiveInC*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_GenerativeDiveInC" data-uid="ECellDive.Modules.CyJsonModule.GenerativeDiveInC">GenerativeDiveInC()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Coroutine started by <a class="xref" href="ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_GenerativeDiveIn">GenerativeDiveIn()</a>.
+Generates the content of the module before transfering the diver
+to the dive scene.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1096,30 +800,24 @@ public void EdgeSpawnClientRpc(NetworkObjectReference _edgeNetObj, int _edgeIdx)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td><span class="xref">IEnumerator</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_GenerativeDiveInC">GameNetModule.GenerativeDiveInC()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_GetKnockoutString.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.GetKnockoutString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L147">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_CyJsonModule_GetKnockoutString_" data-uid="ECellDive.Modules.CyJsonModule.GetKnockoutString*"></a>
-  <h4 id="ECellDive_Modules_CyJsonModule_GetKnockoutString" data-uid="ECellDive.Modules.CyJsonModule.GetKnockoutString">GetKnockoutString()</h4>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_GetKnockouts_" data-uid="ECellDive.Modules.CyJsonModule.GetKnockouts*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_GetKnockouts" data-uid="ECellDive.Modules.CyJsonModule.GetKnockouts">GetKnockouts()</h4>
   <div class="markdown level1 summary"><p>Translates the information about knockedout reactions stored
-in <span class="xref">ECellDive.Modules.CyJsonModule.koModifications</span> as a string usable for a request
-to the server.</p>
+as a string usable for a request to the server.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string GetKnockoutString()</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; GetKnockouts()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1131,27 +829,46 @@ to the server.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><p>A string listing the knockedout reactions.</p>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><p>The list of all the individual knockout commands.
+It is to be paired with the &quot;command=&quot; kayword for every entry.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_NodeSpawnClientRpc_Unity_Netcode_NetworkObjectReference_System_Int32_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.NodeSpawnClientRpc(Unity.Netcode.NetworkObjectReference%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L195">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_CyJsonModule_NodeSpawnClientRpc_" data-uid="ECellDive.Modules.CyJsonModule.NodeSpawnClientRpc*"></a>
-  <h4 id="ECellDive_Modules_CyJsonModule_NodeSpawnClientRpc_Unity_Netcode_NetworkObjectReference_System_Int32_" data-uid="ECellDive.Modules.CyJsonModule.NodeSpawnClientRpc(Unity.Netcode.NetworkObjectReference,System.Int32)">NodeSpawnClientRpc(NetworkObjectReference, Int32)</h4>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_NetHide_" data-uid="ECellDive.Modules.CyJsonModule.NetHide*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_NetHide" data-uid="ECellDive.Modules.CyJsonModule.NetHide">NetHide()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ClientRpc]
-public void NodeSpawnClientRpc(NetworkObjectReference _nodeNetObj, int _nodeIdx)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void NetHide()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHide">GameNetModule.NetHide()</a></div>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_NetShow_" data-uid="ECellDive.Modules.CyJsonModule.NetShow*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_NetShow" data-uid="ECellDive.Modules.CyJsonModule.NetShow">NetShow()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void NetShow()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShow">GameNetModule.NetShow()</a></div>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_NodeSpawnClientRpc_" data-uid="ECellDive.Modules.CyJsonModule.NodeSpawnClientRpc*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_NodeSpawnClientRpc_NetworkObjectReference_System_Int32_" data-uid="ECellDive.Modules.CyJsonModule.NodeSpawnClientRpc(NetworkObjectReference,System.Int32)">NodeSpawnClientRpc(NetworkObjectReference, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NodeSpawnClientRpc(NetworkObjectReference _nodeNetObj, int _nodeIdx)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1164,7 +881,7 @@ public void NodeSpawnClientRpc(NetworkObjectReference _nodeNetObj, int _nodeIdx)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkObjectReference</span></td>
+        <td><span class="xref">NetworkObjectReference</span></td>
         <td><span class="parametername">_nodeNetObj</span></td>
         <td></td>
       </tr>
@@ -1175,13 +892,8 @@ public void NodeSpawnClientRpc(NetworkObjectReference _nodeNetObj, int _nodeIdx)
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_OnNetworkSpawn.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.OnNetworkSpawn%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L79">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_OnNetworkSpawn_" data-uid="ECellDive.Modules.CyJsonModule.OnNetworkSpawn*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_OnNetworkSpawn" data-uid="ECellDive.Modules.CyJsonModule.OnNetworkSpawn">OnNetworkSpawn()</h4>
   <div class="markdown level1 summary"></div>
@@ -1191,17 +903,13 @@ public void NodeSpawnClientRpc(NetworkObjectReference _nodeNetObj, int _nodeIdx)
     <pre><code class="lang-csharp hljs">public override void OnNetworkSpawn()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkSpawn()</span></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_OperationSwitch_System_String_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.OperationSwitch(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L332">View Source</a>
-  </span>
+  <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_OnNetworkSpawn">GameNetModule.OnNetworkSpawn()</a></div>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_OperationSwitch_" data-uid="ECellDive.Modules.CyJsonModule.OperationSwitch*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_OperationSwitch_System_String_" data-uid="ECellDive.Modules.CyJsonModule.OperationSwitch(System.String)">OperationSwitch(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The pointing funtion used to control where to apply modifications.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1224,21 +932,17 @@ public void NodeSpawnClientRpc(NetworkObjectReference _nodeNetObj, int _nodeIdx)
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_RequestGraphGenerationServerRpc_System_UInt64_System_Int32_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.RequestGraphGenerationServerRpc(System.UInt64%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L278">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_RequestGraphGenerationServerRpc_" data-uid="ECellDive.Modules.CyJsonModule.RequestGraphGenerationServerRpc*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_RequestGraphGenerationServerRpc_System_UInt64_System_Int32_" data-uid="ECellDive.Modules.CyJsonModule.RequestGraphGenerationServerRpc(System.UInt64,System.Int32)">RequestGraphGenerationServerRpc(UInt64, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Executes the logic on the server side that is needed to
+spawn all the nodes and edges of the graph.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ServerRpc]
-public void RequestGraphGenerationServerRpc(ulong _expeditorClientId, int _rootSceneId)</code></pre>
+    <pre><code class="lang-csharp hljs">public void RequestGraphGenerationServerRpc(ulong _expeditorClientId, int _rootSceneId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1253,30 +957,29 @@ public void RequestGraphGenerationServerRpc(ulong _expeditorClientId, int _rootS
       <tr>
         <td><span class="xref">System.UInt64</span></td>
         <td><span class="parametername">_expeditorClientId</span></td>
-        <td></td>
+        <td><p>The ID of the client
+that made the request.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">_rootSceneId</span></td>
-        <td></td>
+        <td><p>The ID of the dive scene
+where the graph should be generated (i.e. where the
+nodes and edges will be spawned.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_RequestSourceDataGenerationServerRpc_System_UInt64_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.RequestSourceDataGenerationServerRpc(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L264">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_RequestSourceDataGenerationServerRpc_" data-uid="ECellDive.Modules.CyJsonModule.RequestSourceDataGenerationServerRpc*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_RequestSourceDataGenerationServerRpc_System_UInt64_" data-uid="ECellDive.Modules.CyJsonModule.RequestSourceDataGenerationServerRpc(System.UInt64)">RequestSourceDataGenerationServerRpc(UInt64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ServerRpc(RequireOwnership = false)]
-public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1297,30 +1000,62 @@ public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClient
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_RequestSourceDataGenerationServerRpc_System_UInt64_">GameNetModule.RequestSourceDataGenerationServerRpc(UInt64)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_SetHighlight.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.SetHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L300">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_CyJsonModule_SetHighlight_" data-uid="ECellDive.Modules.CyJsonModule.SetHighlight*"></a>
-  <h4 id="ECellDive_Modules_CyJsonModule_SetHighlight" data-uid="ECellDive.Modules.CyJsonModule.SetHighlight">SetHighlight()</h4>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_SetEdgeEndWidthFactorOverride_" data-uid="ECellDive.Modules.CyJsonModule.SetEdgeEndWidthFactorOverride*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_SetEdgeEndWidthFactorOverride_System_Single_" data-uid="ECellDive.Modules.CyJsonModule.SetEdgeEndWidthFactorOverride(System.Single)">SetEdgeEndWidthFactorOverride(Single)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void SetHighlight()</code></pre>
+    <pre><code class="lang-csharp hljs">public void SetEdgeEndWidthFactorOverride(float _endWidthFactor)</code></pre>
   </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetHighlight">GameNetModule.SetHighlight()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_SetIndex_System_Int32_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.SetIndex(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L233">View Source</a>
-  </span>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">_endWidthFactor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_SetEdgeStartWidthFactorOverride_" data-uid="ECellDive.Modules.CyJsonModule.SetEdgeStartWidthFactorOverride*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_SetEdgeStartWidthFactorOverride_System_Single_" data-uid="ECellDive.Modules.CyJsonModule.SetEdgeStartWidthFactorOverride(System.Single)">SetEdgeStartWidthFactorOverride(Single)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetEdgeStartWidthFactorOverride(float _startWidthFactor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">_startWidthFactor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_SetIndex_" data-uid="ECellDive.Modules.CyJsonModule.SetIndex*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_SetIndex_System_Int32_" data-uid="ECellDive.Modules.CyJsonModule.SetIndex(System.Int32)">SetIndex(Int32)</h4>
   <div class="markdown level1 summary"></div>
@@ -1346,16 +1081,12 @@ public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClient
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_SetNetworkData_ECellDive_Interfaces_IGraph_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.SetNetworkData(ECellDive.Interfaces.IGraph)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L293">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_CyJsonModule_SetNetworkData_" data-uid="ECellDive.Modules.CyJsonModule.SetNetworkData*"></a>
   <h4 id="ECellDive_Modules_CyJsonModule_SetNetworkData_ECellDive_Interfaces_IGraph_" data-uid="ECellDive.Modules.CyJsonModule.SetNetworkData(ECellDive.Interfaces.IGraph)">SetNetworkData(IGraph)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the value for <a class="xref" href="ECellDive.Interfaces.IGraphGO.html#ECellDive_Interfaces_IGraphGO_graphData">graphData</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1378,38 +1109,26 @@ public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClient
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_StartUpInfo.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.StartUpInfo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L238">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_CyJsonModule_StartUpInfo_" data-uid="ECellDive.Modules.CyJsonModule.StartUpInfo*"></a>
-  <h4 id="ECellDive_Modules_CyJsonModule_StartUpInfo" data-uid="ECellDive.Modules.CyJsonModule.StartUpInfo">StartUpInfo()</h4>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_SwitchEdgeForceDefaultColorOverride_" data-uid="ECellDive.Modules.CyJsonModule.SwitchEdgeForceDefaultColorOverride*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_SwitchEdgeForceDefaultColorOverride" data-uid="ECellDive.Modules.CyJsonModule.SwitchEdgeForceDefaultColorOverride">SwitchEdgeForceDefaultColorOverride()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void StartUpInfo()</code></pre>
+    <pre><code class="lang-csharp hljs">public void SwitchEdgeForceDefaultColorOverride()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule_UnsetHighlight.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule.UnsetHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L306">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_CyJsonModule_UnsetHighlight_" data-uid="ECellDive.Modules.CyJsonModule.UnsetHighlight*"></a>
-  <h4 id="ECellDive_Modules_CyJsonModule_UnsetHighlight" data-uid="ECellDive.Modules.CyJsonModule.UnsetHighlight">UnsetHighlight()</h4>
+  
+  
+  <a id="ECellDive_Modules_CyJsonModule_SwitchEdgeForceDefaultWidthOverride_" data-uid="ECellDive.Modules.CyJsonModule.SwitchEdgeForceDefaultWidthOverride*"></a>
+  <h4 id="ECellDive_Modules_CyJsonModule_SwitchEdgeForceDefaultWidthOverride" data-uid="ECellDive.Modules.CyJsonModule.SwitchEdgeForceDefaultWidthOverride">SwitchEdgeForceDefaultWidthOverride()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void UnsetHighlight()</code></pre>
+    <pre><code class="lang-csharp hljs">public void SwitchEdgeForceDefaultWidthOverride()</code></pre>
   </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_UnsetHighlight">GameNetModule.UnsetHighlight()</a></div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="ECellDive.Interfaces.IDive.html">IDive</a>
@@ -1419,6 +1138,12 @@ public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClient
   </div>
   <div>
       <a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a>
+  </div>
+  <div>
+      <a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a>
+  </div>
+  <div>
+      <a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a>
   </div>
   <div>
       <a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a>
@@ -1433,13 +1158,10 @@ public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClient
       <a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a>
   </div>
   <div>
-      <a class="xref" href="ECellDive.Interfaces.IMlprDataBroadcast.html">IMlprDataBroadcast</a>
-  </div>
-  <div>
-      <a class="xref" href="ECellDive.Interfaces.IMlprDataRequest.html">IMlprDataRequest</a>
-  </div>
-  <div>
       <a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html">IMlprVisibility</a>
+  </div>
+  <div>
+      <a class="xref" href="ECellDive.Interfaces.IGraphGONet.html">IGraphGONet</a>
   </div>
   <div>
       <a class="xref" href="ECellDive.Interfaces.IGraphGO.html">IGraphGO</a>
@@ -1457,12 +1179,6 @@ public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClient
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonModule.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonModule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/FileModules/CyJsonModule.cs/#L33" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

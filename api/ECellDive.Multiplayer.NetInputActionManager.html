@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class NetInputActionManager
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -73,398 +73,20 @@
   
   <h1 id="ECellDive_Multiplayer_NetInputActionManager" data-uid="ECellDive.Multiplayer.NetInputActionManager" class="text-break">Class NetInputActionManager
   </h1>
-  <div class="markdown level0 summary"><p>Use this class to automatically enable or disable all the inputs of type <span class="xref">UnityEngine.InputSystem.InputAction</span>
-in a list of assets of type <span class="xref">UnityEngine.InputSystem.InputActionAsset</span>.</p>
+  <div class="markdown level0 summary"><p>Use this class to automatically enable or disable all the inputs of type <see cref="!:InputAction"></see>
+in a list of assets of type <see cref="!:InputActionAsset"></see>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
-    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
-    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
-    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
-    <div class="level5"><span class="xref">Unity.Netcode.NetworkBehaviour</span></div>
-    <div class="level6"><span class="xref">NetInputActionManager</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__rpc_exec_stage</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendServerRpc(System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendServerRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendClientRpc(System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendClientRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkBehaviour(System.UInt16)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnGainedOwnership()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnLostOwnership()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkObjectParentChanged(Unity.Netcode.NetworkObject)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkObject(System.UInt64)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnDestroy()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkManager</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsLocalPlayer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwner</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsServer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsClient</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsHost</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwnedByServer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsSpawned</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObject</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.HasNetworkObject</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObjectId</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkBehaviourId</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OwnerClientId</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.Invoke(System.String, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.InvokeRepeating(System.String, System.Single, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine_Auto(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(UnityEngine.Coroutine)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopAllCoroutines()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.print(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.useGUILayout</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.runInEditMode</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.enabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.isActiveAndEnabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent(System.Type, UnityEngine.Component)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type, System.Collections.Generic.List&lt;UnityEngine.Component&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.CompareTag(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.transform</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.gameObject</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.tag</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetInstanceID()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.ToString()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.name</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.hideFlags</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
+    <div class="level1"><span class="xref">NetInputActionManager</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Multiplayer.html">ECellDive.Multiplayer</a></h6>
-  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="ECellDive_Multiplayer_NetInputActionManager_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[HelpURL(&quot;https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@1.0/api/UnityEngine.XR.Interaction.Toolkit.Inputs.InputActionManager.html&quot;)]
-public class NetInputActionManager : NetworkBehaviour</code></pre>
+    <pre><code class="lang-csharp hljs">public class NetInputActionManager : NetworkBehaviour</code></pre>
   </div>
   <h5 id="ECellDive_Multiplayer_NetInputActionManager_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Actions are initially disabled, meaning they do not listen/react to input yet. This class
@@ -472,13 +94,8 @@ is used to mass enable actions so that they actively listen for input and run ca
 </div>
   <h3 id="properties">Properties
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager_actionAssets.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager.actionAssets%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L28">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Multiplayer_NetInputActionManager_actionAssets_" data-uid="ECellDive.Multiplayer.NetInputActionManager.actionAssets*"></a>
   <h4 id="ECellDive_Multiplayer_NetInputActionManager_actionAssets" data-uid="ECellDive.Multiplayer.NetInputActionManager.actionAssets">actionAssets</h4>
   <div class="markdown level1 summary"><p>Input action assets to affect when inputs are enabled or disabled.</p>
@@ -498,20 +115,15 @@ is used to mass enable actions so that they actively listen for input and run ca
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">UnityEngine.InputSystem.InputActionAsset</span>&gt;</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">InputActionAsset</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager_DisableInput.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager.DisableInput%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L102">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Multiplayer_NetInputActionManager_DisableInput_" data-uid="ECellDive.Multiplayer.NetInputActionManager.DisableInput*"></a>
   <h4 id="ECellDive_Multiplayer_NetInputActionManager_DisableInput" data-uid="ECellDive.Multiplayer.NetInputActionManager.DisableInput">DisableInput()</h4>
   <div class="markdown level1 summary"><p>Disable all actions referenced by this component.</p>
@@ -532,13 +144,8 @@ action map assets (see <a class="xref" href="ECellDive.Multiplayer.NetInputActio
   <div class="seealso">
       <div><a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html#ECellDive_Multiplayer_NetInputActionManager_EnableInput">EnableInput()</a></div>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager_EnableInput.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager.EnableInput%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L77">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Multiplayer_NetInputActionManager_EnableInput_" data-uid="ECellDive.Multiplayer.NetInputActionManager.EnableInput*"></a>
   <h4 id="ECellDive_Multiplayer_NetInputActionManager_EnableInput" data-uid="ECellDive.Multiplayer.NetInputActionManager.EnableInput">EnableInput()</h4>
   <div class="markdown level1 summary"><p>Enable all actions referenced by this component.</p>
@@ -559,45 +166,27 @@ action map assets (see <a class="xref" href="ECellDive.Multiplayer.NetInputActio
   <div class="seealso">
       <div><a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html#ECellDive_Multiplayer_NetInputActionManager_DisableInput">DisableInput()</a></div>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager_OnNetworkDespawn.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager.OnNetworkDespawn%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L58">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Multiplayer_NetInputActionManager_OnNetworkDespawn_" data-uid="ECellDive.Multiplayer.NetInputActionManager.OnNetworkDespawn*"></a>
   <h4 id="ECellDive_Multiplayer_NetInputActionManager_OnNetworkDespawn" data-uid="ECellDive.Multiplayer.NetInputActionManager.OnNetworkDespawn">OnNetworkDespawn()</h4>
-  <div class="markdown level1 summary"><p>See <span class="xref">UnityEngine.MonoBehaviour</span>.</p>
+  <div class="markdown level1 summary"><p>See <see cref="!:MonoBehaviour"></see>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnNetworkDespawn()</code></pre>
   </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkDespawn()</span></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager_OnNetworkSpawn.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager.OnNetworkSpawn%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L42">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Multiplayer_NetInputActionManager_OnNetworkSpawn_" data-uid="ECellDive.Multiplayer.NetInputActionManager.OnNetworkSpawn*"></a>
   <h4 id="ECellDive_Multiplayer_NetInputActionManager_OnNetworkSpawn" data-uid="ECellDive.Multiplayer.NetInputActionManager.OnNetworkSpawn">OnNetworkSpawn()</h4>
-  <div class="markdown level1 summary"><p>See <span class="xref">UnityEngine.MonoBehaviour</span>.</p>
+  <div class="markdown level1 summary"><p>See <see cref="!:MonoBehaviour"></see>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnNetworkSpawn()</code></pre>
-  </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkSpawn()</span></div>
-  <h3 id="seealso">See Also</h3>
-  <div class="seealso">
-      <div><span class="xref">UnityEngine.InputSystem.InputAction</span></div>
   </div>
 </article>
           </div>
@@ -606,12 +195,6 @@ action map assets (see <a class="xref" href="ECellDive.Multiplayer.NetInputActio
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L19" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

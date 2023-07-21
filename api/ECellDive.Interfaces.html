@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace ECellDive.Interfaces
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -81,63 +81,85 @@
       <section></section>
     <h3 id="structs">Structs
   </h3>
-      <h4><a class="xref" href="ECellDive.Interfaces.ControllersSymetricAction.html">ControllersSymetricAction</a></h4>
-      <section></section>
+      <h4><a class="xref" href="ECellDive.Interfaces.GraphBatchSpawning.html">GraphBatchSpawning</a></h4>
+      <section><p>The struct encapsulating the parameters relevant to
+controlling the batched instantiation of the nodes and
+the edges of the graph.</p>
+</section>
+      <h4><a class="xref" href="ECellDive.Interfaces.GraphScalingData.html">GraphScalingData</a></h4>
+      <section><p>The struct encapsulating the parameters relevant to
+controlling the scale of the graph.</p>
+</section>
       <h4><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData&lt;T&gt;</a></h4>
       <section></section>
       <h4><a class="xref" href="ECellDive.Interfaces.LeftRightDataPointer-2.html">LeftRightDataPointer&lt;T, U&gt;</a></h4>
       <section></section>
-      <h4><a class="xref" href="ECellDive.Interfaces.Modification-1.html">Modification&lt;T&gt;</a></h4>
-      <section></section>
+      <h4><a class="xref" href="ECellDive.Interfaces.Modification.html">Modification</a></h4>
+      <section><p>The struct to store information about a command that can be
+part of a modification (<a class="xref" href="ECellDive.Interfaces.Modification.html">Modification</a>) in a
+modification file (<a class="xref" href="ECellDive.Interfaces.ModificationFile.html">ModificationFile</a>).</p>
+</section>
       <h4><a class="xref" href="ECellDive.Interfaces.ModificationFile.html">ModificationFile</a></h4>
       <section><p>Struct to store information about a modification file.</p>
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
-      <h4><a class="xref" href="ECellDive.Interfaces.IDirectGrab.html">IDirectGrab</a></h4>
-      <section><p>Interface to define the behaviour of a direct contact grab.</p>
+      <h4><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></h4>
+      <section><p>An interface to change switch between two colors when a gameobject
+needs to be highlighted.</p>
+</section>
+      <h4><a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a></h4>
+      <section><p>An interface to change switch between two colors when a NetworkObject
+needs to be highlighted.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.IDive.html">IDive</a></h4>
-      <section></section>
+      <section><p>The interface to describe the required elements to implement a module
+that a user can dive in.</p>
+</section>
       <h4><a class="xref" href="ECellDive.Interfaces.IDropDown.html">IDropDown</a></h4>
       <section><p>Describes the requirements to implement a simple drop down.</p>
-</section>
-      <h4><a class="xref" href="ECellDive.Interfaces.IDualGrab.html">IDualGrab</a></h4>
-      <section><p>Interface to define the behaviour of an agent implementing
-both direct and remote grab.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.IEdge.html">IEdge</a></h4>
       <section><p>The interface for the data structure encoding an edge in a graph.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.IEdgeGO.html">IEdgeGO</a></h4>
-      <section><p>The interface encoding the required properties to use
-the an edge (<a class="xref" href="ECellDive.Interfaces.IEdge.html">IEdge</a>) of a graph
-(<a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a>) in a GameObject.</p>
+      <section><p>The interface defining the required logic to manipulate
+the information stored in a <a class="xref" href="ECellDive.Interfaces.IEdge.html">IEdge</a> of a
+<a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a>.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></h4>
       <section><p>An interface to encode knowledge about whether a gameobject
 is pointed at by a ray interactor.</p>
-</section>
-      <h4><a class="xref" href="ECellDive.Interfaces.IGrab.html">IGrab</a></h4>
-      <section><p>Base interaface for the Grab event.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a></h4>
       <section><p>The interface for the data structure encoding a graph
 made of nodes connected by edges.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.IGraphGO.html">IGraphGO</a></h4>
-      <section><p>The interface encoding the required properties to use
-the a graph (<a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a>) in a GameObject.</p>
+      <section><p>The interface defining the required logic to manipulate
+the information stored in a <a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a>.</p>
+</section>
+      <h4><a class="xref" href="ECellDive.Interfaces.IGraphGONet.html">IGraphGONet</a></h4>
+      <section><p>The interface defining the logic to manipulate a graph
+synchronized over the network between the host and the
+clients</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></h4>
-      <section></section>
-      <h4><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></h4>
-      <section><p>An interface to change switch between two colors when a gameobject
-needs to be highlighted.</p>
+      <section><p>An interface to for any objects that may be grouped
+manually. It is mainly used as a &quot;marker&quot; for different
+FindComponent methods. So, if we create a new Monobehaviour
+or NetworkBehaviour and we expect to be able to use the
+manual grouping features, this interface needs to be implemented.</p>
 </section>
+      <h4><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></h4>
+      <section></section>
       <h4><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></h4>
       <section><p>The interface describing the requirements to implement a handle for a
 group of information tags attached to a gameobject.</p>
+</section>
+      <h4><a class="xref" href="ECellDive.Interfaces.IInteractibility.html">IInteractibility</a></h4>
+      <section><p>An interface to allow control of the &quot;interactibility&quot; of
+UI elements.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.IKnockable.html">IKnockable</a></h4>
       <section><p>An interface to encode knowledge about a chemical reaction being
@@ -146,31 +168,24 @@ knockedout.</p>
       <h4><a class="xref" href="ECellDive.Interfaces.ILeftRightData-1.html">ILeftRightData&lt;T&gt;</a></h4>
       <section></section>
       <h4><a class="xref" href="ECellDive.Interfaces.ILookAt.html">ILookAt</a></h4>
-      <section><p>Defines the the interface for an object to LookAt (Z-Axis) a target.
+      <section><p>Defines the interface for an object to LookAt (Z-Axis) a target.
 This allows us to wrap or build more complex LookAt behaviour than
-the built-in <span class="xref">UnityEngine.Transform.LookAt(UnityEngine.Transform,UnityEngine.Vector3)</span>.</p>
+the built-in <see cref="!:Transform.LookAt"></see>.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a></h4>
       <section><p>The interface with the base members and methods to associate shareable data
 to a module in a multiplayer context.</p>
 </section>
-      <h4><a class="xref" href="ECellDive.Interfaces.IMlprDataBroadcast.html">IMlprDataBroadcast</a></h4>
-      <section><p>Interface for a module data owner to distribute the associated data
-to every connected client through the server in a multiplayer context.
-The implementation will probably require <a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a>.</p>
-</section>
-      <h4><a class="xref" href="ECellDive.Interfaces.IMlprDataRequest.html">IMlprDataRequest</a></h4>
-      <section><p>Interface for a client to request to the server the data
-associated with a data module in a multiplayer context.
-The implementation will probably require <a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a>.</p>
-</section>
       <h4><a class="xref" href="ECellDive.Interfaces.IMlprModuleSpawn.html">IMlprModuleSpawn</a></h4>
-      <section></section>
+      <section><p>The interface defining the logic used for the intermediate object
+that will help requesting the server to spawn a root module (e.g.
+<a class="xref" href="ECellDive.Modules.CyJsonModule.html">CyJsonModule</a>).</p>
+</section>
       <h4><a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html">IMlprVisibility</a></h4>
       <section><p>The interface used to manipulate the visibility status of a
-network object. We cannot use Netcode's API for that (<span class="xref">Unity.Netcode.NetworkObject.NetworkHide(System.UInt64)</span> and <span class="xref">Unity.Netcode.NetworkObject.NetworkShow(System.UInt64)</span>) because the Server
+network object. We cannot use Netcode's API for that (<see cref="!:NetworkObject.NetworkHide(ulong)"></see> and <see cref="!:NetworkObject.NetworkShow(ulong)"></see>) because the Server
 cannot be affected by it. It is an understandable behaviour
-as it seems that this API  simply deletes the replicated
+as it seems that this API simply deletes the replicated
 version of a NetworkObject for a target client.
 However, we also want to the host to not see some NetworkObject.
 Namely, the content of a scene that the host may not have dived
@@ -194,34 +209,32 @@ by the content of modification files.</p>
 reaction.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></h4>
-      <section></section>
+      <section><p>Interface for <see cref="!:GameObject"></see> in the scene that may
+display a name.</p>
+</section>
       <h4><a class="xref" href="ECellDive.Interfaces.INode.html">INode</a></h4>
       <section><p>The interface for the data structure encoding a node in a graph.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.INodeGO.html">INodeGO</a></h4>
-      <section><p>The interface encoding the required properties to use
-the an edge (<a class="xref" href="ECellDive.Interfaces.INode.html">INode</a>) of a graph
-(<a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a>) in a GameObject.</p>
+      <section><p>The interface defining the required logic to manipulate
+the information stored in a <a class="xref" href="ECellDive.Interfaces.INode.html">INode</a> of a
+<a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a>.</p>
 </section>
-      <h4><a class="xref" href="ECellDive.Interfaces.IPing.html">IPing</a></h4>
-      <section></section>
       <h4><a class="xref" href="ECellDive.Interfaces.IPopUp.html">IPopUp</a></h4>
       <section><p>An interface to have the gameobject appear in front of the user's camera.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.IRemoteGrab.html">IRemoteGrab</a></h4>
-      <section><p>Interface to define the behaviour of a remote contact grab.</p>
+      <section><p>Interface to define the behaviour of a remote grab.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.ISaveable.html">ISaveable</a></h4>
       <section><p>An interface to allow the modfied data of the class to be saved.</p>
 </section>
       <h4><a class="xref" href="ECellDive.Interfaces.ISessionPlayerData.html">ISessionPlayerData</a></h4>
       <section></section>
-    <h3 id="enums">Enums
-  </h3>
-      <h4><a class="xref" href="ECellDive.Interfaces.IGrab.XRControllerID.html">IGrab.XRControllerID</a></h4>
-      <section></section>
-      <h4><a class="xref" href="ECellDive.Interfaces.OperationTypes.html">OperationTypes</a></h4>
-      <section></section>
+      <h4><a class="xref" href="ECellDive.Interfaces.ITutorialStep.html">ITutorialStep</a></h4>
+      <section><p>The interface used to declare the logic characterizing a
+step of a tutorial.</p>
+</section>
 </article>
           </div>
           

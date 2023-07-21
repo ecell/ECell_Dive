@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class EdgeGO
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -78,25 +78,20 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
-    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
-    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
-    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
-    <div class="level5"><span class="xref">Unity.Netcode.NetworkBehaviour</span></div>
-    <div class="level6"><a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a></div>
-    <div class="level7"><span class="xref">EdgeGO</span></div>
+    <div class="level1"><a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a></div>
+    <div class="level2"><span class="xref">EdgeGO</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="ECellDive.Interfaces.IDive.html">IDive</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
+    <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a></div>
+    <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a></div>
-    <div><a class="xref" href="ECellDive.Interfaces.IMlprDataBroadcast.html">IMlprDataBroadcast</a></div>
-    <div><a class="xref" href="ECellDive.Interfaces.IMlprDataRequest.html">IMlprDataRequest</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html">IMlprVisibility</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IEdgeGO.html">IEdgeGO</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IModulateFlux.html">IModulateFlux</a></div>
@@ -114,7 +109,13 @@
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_LineRenderer">GameNetModule.m_LineRenderer</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_diveActions">GameNetModule.diveActions</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_mpb">GameNetModule.mpb</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_colorID">GameNetModule.colorID</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isDiving">GameNetModule.isDiving</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_rootSceneId">GameNetModule.rootSceneId</a>
@@ -132,13 +133,16 @@
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_grpMemberIndex">GameNetModule.grpMemberIndex</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_forceHighlight">GameNetModule.forceHighlight</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_currentColor">GameNetModule.currentColor</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_defaultColor">GameNetModule.defaultColor</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_highlightColor">GameNetModule.highlightColor</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_forceHighlight">GameNetModule.forceHighlight</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_areVisible">GameNetModule.areVisible</a>
@@ -160,12 +164,6 @@
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_refInfoTagsContainer">GameNetModule.refInfoTagsContainer</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_refInfoTags">GameNetModule.m_refInfoTags</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_refInfoTags">GameNetModule.refInfoTags</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_nameTextFieldContainer">GameNetModule.m_nameTextFieldContainer</a>
@@ -195,6 +193,12 @@
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isActivated">GameNetModule.isActivated</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_LookAt">GameNetModule.LookAt()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SelfDestroyServerRpc">GameNetModule.SelfDestroyServerRpc()</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectDiveIn">GameNetModule.DirectDiveIn()</a>
     </div>
     <div>
@@ -207,10 +211,7 @@
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_GenerativeDiveInC">GameNetModule.GenerativeDiveInC()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_TryDiveIn_UnityEngine_InputSystem_InputAction_CallbackContext_">GameNetModule.TryDiveIn(InputAction.CallbackContext)</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_TryDiveInC">GameNetModule.TryDiveInC()</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_TryDiveIn">GameNetModule.TryDiveIn()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetFocus">GameNetModule.SetFocus()</a>
@@ -219,7 +220,10 @@
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_UnsetFocus">GameNetModule.UnsetFocus()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetDefaultColor_UnityEngine_Color_">GameNetModule.SetDefaultColor(Color)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetCurrentColorToDefaultServerRpc">GameNetModule.SetCurrentColorToDefaultServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetCurrentColorToHighlightServerRpc">GameNetModule.SetCurrentColorToHighlightServerRpc()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DisplayInfoTags">GameNetModule.DisplayInfoTags()</a>
@@ -228,7 +232,7 @@
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_HideInfoTags">GameNetModule.HideInfoTags()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_InstantiateInfoTag_UnityEngine_Vector2_System_String_">GameNetModule.InstantiateInfoTag(Vector2, String)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_InstantiateInfoTag_Vector2_System_String_">GameNetModule.InstantiateInfoTag(Vector2, String)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_InstantiateInfoTags_System_String___">GameNetModule.InstantiateInfoTags(String[])</a>
@@ -255,13 +259,7 @@
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_AssembleFragmentedData">GameNetModule.AssembleFragmentedData()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ConfirmSourceDataReceptionServerRpc">GameNetModule.ConfirmSourceDataReceptionServerRpc()</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectRecieveSourceData_System_Byte___System_Collections_Generic_List_System_Byte____">GameNetModule.DirectRecieveSourceData(Byte[], List&lt;Byte[]&gt;)</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_RequestSourceDataGenerationServerRpc_System_UInt64_">GameNetModule.RequestSourceDataGenerationServerRpc(UInt64)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataC">GameNetModule.BroadcastSourceDataC()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragClientRpc_System_Byte___">GameNetModule.BroadcastSourceDataFragClientRpc(Byte[])</a>
@@ -282,7 +280,31 @@
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsServerRpc_System_UInt16_">GameNetModule.BroadcastSourceDataNbFragsServerRpc(UInt16)</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____">GameNetModule.BroadcastSourceDataFragsC(List&lt;Byte[]&gt;)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragsC_List_System_Byte____">GameNetModule.BroadcastSourceDataFragsC(List&lt;Byte[]&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ConfirmSourceDataReceptionServerRpc">GameNetModule.ConfirmSourceDataReceptionServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectReceiveSourceData_System_Byte___List_System_Byte____">GameNetModule.DirectReceiveSourceData(Byte[], List&lt;Byte[]&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_RequestSourceDataGenerationServerRpc_System_UInt64_">GameNetModule.RequestSourceDataGenerationServerRpc(UInt64)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataC_System_UInt64_">GameNetModule.SendSourceDataC(UInt64)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataFragClientRpc_System_Byte___ClientRpcParams_">GameNetModule.SendSourceDataFragClientRpc(Byte[], ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataNameClientRpc_System_Byte___ClientRpcParams_">GameNetModule.SendSourceDataNameClientRpc(Byte[], ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataNbFragsClientRpc_System_UInt16_ClientRpcParams_">GameNetModule.SendSourceDataNbFragsClientRpc(UInt16, ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataFragsC_List_System_Byte____ClientRpcParams_">GameNetModule.SendSourceDataFragsC(List&lt;Byte[]&gt;, ClientRpcParams)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ManageActivationStatus_System_Boolean_System_Boolean_">GameNetModule.ManageActivationStatus(Boolean, Boolean)</a>
@@ -291,406 +313,34 @@
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHide">GameNetModule.NetHide()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHideClientRpc_Unity_Netcode_ClientRpcParams_">GameNetModule.NetHideClientRpc(ClientRpcParams)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHideClientRpc_ClientRpcParams_">GameNetModule.NetHideClientRpc(ClientRpcParams)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShow">GameNetModule.NetShow()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShowClientRpc_Unity_Netcode_ClientRpcParams_">GameNetModule.NetShowClientRpc(ClientRpcParams)</a>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShowClientRpc_ClientRpcParams_">GameNetModule.NetShowClientRpc(ClientRpcParams)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_RequestSetActiveServerRpc_System_Boolean_">GameNetModule.RequestSetActiveServerRpc(Boolean)</a>
     </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__rpc_exec_stage</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendServerRpc(System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendServerRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendClientRpc(System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendClientRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkBehaviour(System.UInt16)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnGainedOwnership()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnLostOwnership()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkObjectParentChanged(Unity.Netcode.NetworkObject)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkObject(System.UInt64)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkManager</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsLocalPlayer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwner</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsServer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsClient</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsHost</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwnedByServer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsSpawned</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObject</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.HasNetworkObject</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObjectId</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkBehaviourId</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OwnerClientId</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.Invoke(System.String, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.InvokeRepeating(System.String, System.Single, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine_Auto(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(UnityEngine.Coroutine)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopAllCoroutines()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.print(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.useGUILayout</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.runInEditMode</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.enabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.isActiveAndEnabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent(System.Type, UnityEngine.Component)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type, System.Collections.Generic.List&lt;UnityEngine.Component&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.CompareTag(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.transform</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.gameObject</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.tag</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetInstanceID()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.ToString()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.name</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.hideFlags</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Modules.html">ECellDive.Modules</a></h6>
-  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="ECellDive_Modules_EdgeGO_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class EdgeGO : GameNetModule, IDive, IFocus, IGroupable, IHighlightable, IInfoTags, INamed, IMlprData, IMlprDataBroadcast, IMlprDataRequest, IMlprVisibility, IEdgeGO, IModulateFlux, IKnockable</code></pre>
+    <pre><code class="lang-csharp hljs">public class EdgeGO : GameNetModule, IDive, IFocus, IGroupable, IColorHighlightableNet, IColorHighlightable, IHighlightable, IInfoTags, INamed, IMlprData, IMlprVisibility, IEdgeGO, IModulateFlux, IKnockable</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_endWidthFactor.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.endWidthFactor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L51">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_EdgeGO_endWidthFactor" data-uid="ECellDive.Modules.EdgeGO.endWidthFactor">endWidthFactor</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Range(0F, 1F)]
-public float endWidthFactor</code></pre>
+    <pre><code class="lang-csharp hljs">public float endWidthFactor</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -707,20 +357,62 @@ public float endWidthFactor</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_startWidthFactor.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.startWidthFactor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L50">View Source</a>
-  </span>
+  
+  
+  <h4 id="ECellDive_Modules_EdgeGO_forceDefaultColor" data-uid="ECellDive.Modules.EdgeGO.forceDefaultColor">forceDefaultColor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool forceDefaultColor</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ECellDive_Modules_EdgeGO_forceDefaultWidth" data-uid="ECellDive.Modules.EdgeGO.forceDefaultWidth">forceDefaultWidth</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool forceDefaultWidth</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <h4 id="ECellDive_Modules_EdgeGO_startWidthFactor" data-uid="ECellDive.Modules.EdgeGO.startWidthFactor">startWidthFactor</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Range(0F, 1F)]
-public float startWidthFactor</code></pre>
+    <pre><code class="lang-csharp hljs">public float startWidthFactor</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -739,13 +431,8 @@ public float startWidthFactor</code></pre>
   </table>
   <h3 id="properties">Properties
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_defaultEndWidth.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.defaultEndWidth%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L21">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_defaultEndWidth_" data-uid="ECellDive.Modules.EdgeGO.defaultEndWidth*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_defaultEndWidth" data-uid="ECellDive.Modules.EdgeGO.defaultEndWidth">defaultEndWidth</h4>
   <div class="markdown level1 summary"></div>
@@ -769,13 +456,8 @@ public float startWidthFactor</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_defaultStartWidth.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.defaultStartWidth%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L20">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_defaultStartWidth_" data-uid="ECellDive.Modules.EdgeGO.defaultStartWidth*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_defaultStartWidth" data-uid="ECellDive.Modules.EdgeGO.defaultStartWidth">defaultStartWidth</h4>
   <div class="markdown level1 summary"></div>
@@ -799,13 +481,8 @@ public float startWidthFactor</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_edgeData.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.edgeData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L18">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_edgeData_" data-uid="ECellDive.Modules.EdgeGO.edgeData*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_edgeData" data-uid="ECellDive.Modules.EdgeGO.edgeData">edgeData</h4>
   <div class="markdown level1 summary"></div>
@@ -829,13 +506,8 @@ public float startWidthFactor</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_fluxLevel.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.fluxLevel%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L44">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_fluxLevel_" data-uid="ECellDive.Modules.EdgeGO.fluxLevel*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_fluxLevel" data-uid="ECellDive.Modules.EdgeGO.fluxLevel">fluxLevel</h4>
   <div class="markdown level1 summary"></div>
@@ -854,18 +526,13 @@ public float startWidthFactor</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Single</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Single</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_fluxLevelClamped.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.fluxLevelClamped%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L47">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_fluxLevelClamped_" data-uid="ECellDive.Modules.EdgeGO.fluxLevelClamped*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_fluxLevelClamped" data-uid="ECellDive.Modules.EdgeGO.fluxLevelClamped">fluxLevelClamped</h4>
   <div class="markdown level1 summary"></div>
@@ -884,18 +551,13 @@ public float startWidthFactor</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Single</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Single</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_informationString.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.informationString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L19">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_informationString_" data-uid="ECellDive.Modules.EdgeGO.informationString*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_informationString" data-uid="ECellDive.Modules.EdgeGO.informationString">informationString</h4>
   <div class="markdown level1 summary"></div>
@@ -919,13 +581,8 @@ public float startWidthFactor</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_knockedOut.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.knockedOut%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L41">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_knockedOut_" data-uid="ECellDive.Modules.EdgeGO.knockedOut*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_knockedOut" data-uid="ECellDive.Modules.EdgeGO.knockedOut">knockedOut</h4>
   <div class="markdown level1 summary"></div>
@@ -944,18 +601,13 @@ public float startWidthFactor</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_refBoxColliderHolder.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.refBoxColliderHolder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L25">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_refBoxColliderHolder_" data-uid="ECellDive.Modules.EdgeGO.refBoxColliderHolder*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_refBoxColliderHolder" data-uid="ECellDive.Modules.EdgeGO.refBoxColliderHolder">refBoxColliderHolder</h4>
   <div class="markdown level1 summary"></div>
@@ -974,55 +626,20 @@ public float startWidthFactor</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_refLineRenderer.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.refLineRenderer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L22">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_EdgeGO_refLineRenderer_" data-uid="ECellDive.Modules.EdgeGO.refLineRenderer*"></a>
-  <h4 id="ECellDive_Modules_EdgeGO_refLineRenderer" data-uid="ECellDive.Modules.EdgeGO.refLineRenderer">refLineRenderer</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LineRenderer refLineRenderer { get; protected set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">UnityEngine.LineRenderer</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_triggerKOActions.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.triggerKOActions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L34">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_triggerKOActions_" data-uid="ECellDive.Modules.EdgeGO.triggerKOActions*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_triggerKOActions" data-uid="ECellDive.Modules.EdgeGO.triggerKOActions">triggerKOActions</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ControllersSymetricAction triggerKOActions { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;InputActionReference&gt; triggerKOActions { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1034,35 +651,114 @@ public float startWidthFactor</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.ControllersSymetricAction.html">ControllersSymetricAction</a></td>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_Activate.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.Activate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L467">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_Activate_" data-uid="ECellDive.Modules.EdgeGO.Activate*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_Activate" data-uid="ECellDive.Modules.EdgeGO.Activate">Activate()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The logic to implement when the gameobject transitions from
+<a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=true to <a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=false.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Activate()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_Awake.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.Awake%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L60">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_EdgeGO_ApplyColor_" data-uid="ECellDive.Modules.EdgeGO.ApplyColor*"></a>
+  <h4 id="ECellDive_Modules_EdgeGO_ApplyColor_Color_" data-uid="ECellDive.Modules.EdgeGO.ApplyColor(Color)">ApplyColor(Color)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ApplyColor(Color _color)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">_color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ApplyColor_Color_">GameNetModule.ApplyColor(Color)</a></div>
+  
+  
+  <a id="ECellDive_Modules_EdgeGO_ApplyCurrentColorChange_" data-uid="ECellDive.Modules.EdgeGO.ApplyCurrentColorChange*"></a>
+  <h4 id="ECellDive_Modules_EdgeGO_ApplyCurrentColorChange_Color_Color_" data-uid="ECellDive.Modules.EdgeGO.ApplyCurrentColorChange(Color,Color)">ApplyCurrentColorChange(Color, Color)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ApplyCurrentColorChange(Color _previous, Color _current)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">_previous</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">_current</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ApplyCurrentColorChange_Color_Color_">GameNetModule.ApplyCurrentColorChange(Color, Color)</a></div>
+  
+  
+  <a id="ECellDive_Modules_EdgeGO_ApplyFluxLevel_" data-uid="ECellDive.Modules.EdgeGO.ApplyFluxLevel*"></a>
+  <h4 id="ECellDive_Modules_EdgeGO_ApplyFluxLevel" data-uid="ECellDive.Modules.EdgeGO.ApplyFluxLevel">ApplyFluxLevel()</h4>
+  <div class="markdown level1 summary"><p>The logic to apply the effects associated to the value of
+<a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevel">fluxLevel</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyFluxLevel()</code></pre>
+  </div>
+  
+  
+  <a id="ECellDive_Modules_EdgeGO_ApplyFluxLevelClamped_" data-uid="ECellDive.Modules.EdgeGO.ApplyFluxLevelClamped*"></a>
+  <h4 id="ECellDive_Modules_EdgeGO_ApplyFluxLevelClamped" data-uid="ECellDive.Modules.EdgeGO.ApplyFluxLevelClamped">ApplyFluxLevelClamped()</h4>
+  <div class="markdown level1 summary"><p>The logic to apply the effects associated to the value of
+<a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyFluxLevelClamped()</code></pre>
+  </div>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_Awake_" data-uid="ECellDive.Modules.EdgeGO.Awake*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_Awake" data-uid="ECellDive.Modules.EdgeGO.Awake">Awake()</h4>
   <div class="markdown level1 summary"></div>
@@ -1073,13 +769,8 @@ public float startWidthFactor</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_Awake">GameNetModule.Awake()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_Initialize_ECellDive_Modules_CyJsonModule_ECellDive_Interfaces_IEdge_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.Initialize(ECellDive.Modules.CyJsonModule%2CECellDive.Interfaces.IEdge)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L134">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_Initialize_" data-uid="ECellDive.Modules.EdgeGO.Initialize*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_Initialize_ECellDive_Modules_CyJsonModule_ECellDive_Interfaces_IEdge_" data-uid="ECellDive.Modules.EdgeGO.Initialize(ECellDive.Modules.CyJsonModule,ECellDive.Interfaces.IEdge)">Initialize(CyJsonModule, IEdge)</h4>
   <div class="markdown level1 summary"></div>
@@ -1110,30 +801,22 @@ public float startWidthFactor</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_Knockout.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.Knockout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L473">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_Knockout_" data-uid="ECellDive.Modules.EdgeGO.Knockout*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_Knockout" data-uid="ECellDive.Modules.EdgeGO.Knockout">Knockout()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The logic to implement when the gameobject transitions from
+<a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=false to <a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=true.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Knockout()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_ManageKnockout_UnityEngine_InputSystem_InputAction_CallbackContext_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.ManageKnockout(UnityEngine.InputSystem.InputAction.CallbackContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L169">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_ManageKnockout_" data-uid="ECellDive.Modules.EdgeGO.ManageKnockout*"></a>
-  <h4 id="ECellDive_Modules_EdgeGO_ManageKnockout_UnityEngine_InputSystem_InputAction_CallbackContext_" data-uid="ECellDive.Modules.EdgeGO.ManageKnockout(UnityEngine.InputSystem.InputAction.CallbackContext)">ManageKnockout(InputAction.CallbackContext)</h4>
+  <h4 id="ECellDive_Modules_EdgeGO_ManageKnockout_InputAction_CallbackContext_" data-uid="ECellDive.Modules.EdgeGO.ManageKnockout(InputAction.CallbackContext)">ManageKnockout(InputAction.CallbackContext)</h4>
   <div class="markdown level1 summary"><p>The public interface to call back on Unity Events to knockout
 or activate a reaction represented by the edge.</p>
 </div>
@@ -1153,23 +836,18 @@ or activate a reaction represented by the edge.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.InputSystem.InputAction.CallbackContext</span></td>
+        <td><span class="xref">InputAction.CallbackContext</span></td>
         <td><span class="parametername">_ctx</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="ECellDive_Modules_EdgeGO_ManageKnockout_UnityEngine_InputSystem_InputAction_CallbackContext__remarks">Remarks</h5>
+  <h5 id="ECellDive_Modules_EdgeGO_ManageKnockout_InputAction_CallbackContext__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Typically called back when the user presses a button
 while pointing at the edge.</p>
 </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_OnDestroy.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.OnDestroy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L78">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_OnDestroy_" data-uid="ECellDive.Modules.EdgeGO.OnDestroy*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_OnDestroy" data-uid="ECellDive.Modules.EdgeGO.OnDestroy">OnDestroy()</h4>
   <div class="markdown level1 summary"></div>
@@ -1180,13 +858,8 @@ while pointing at the edge.</p>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_OnDestroy">GameNetModule.OnDestroy()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_OnNetworkDespawn.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.OnNetworkDespawn%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L93">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_OnNetworkDespawn_" data-uid="ECellDive.Modules.EdgeGO.OnNetworkDespawn*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_OnNetworkDespawn" data-uid="ECellDive.Modules.EdgeGO.OnNetworkDespawn">OnNetworkDespawn()</h4>
   <div class="markdown level1 summary"></div>
@@ -1195,15 +868,8 @@ while pointing at the edge.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnNetworkDespawn()</code></pre>
   </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkDespawn()</span></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_OnNetworkSpawn.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.OnNetworkSpawn%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L84">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_OnNetworkSpawn_" data-uid="ECellDive.Modules.EdgeGO.OnNetworkSpawn*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_OnNetworkSpawn" data-uid="ECellDive.Modules.EdgeGO.OnNetworkSpawn">OnNetworkSpawn()</h4>
   <div class="markdown level1 summary"></div>
@@ -1213,17 +879,25 @@ while pointing at the edge.</p>
     <pre><code class="lang-csharp hljs">public override void OnNetworkSpawn()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkSpawn()</span></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SetCollider_UnityEngine_Transform_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SetCollider(UnityEngine.Transform%2CUnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L442">View Source</a>
-  </span>
+  <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_OnNetworkSpawn">GameNetModule.OnNetworkSpawn()</a></div>
+  
+  
+  <a id="ECellDive_Modules_EdgeGO_ReverseOrientation_" data-uid="ECellDive.Modules.EdgeGO.ReverseOrientation*"></a>
+  <h4 id="ECellDive_Modules_EdgeGO_ReverseOrientation" data-uid="ECellDive.Modules.EdgeGO.ReverseOrientation">ReverseOrientation()</h4>
+  <div class="markdown level1 summary"><p>The logic to graphically reverse the orientation of the edge GO.
+The current start point becomes the end and the end becomes the start point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReverseOrientation()</code></pre>
+  </div>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SetCollider_" data-uid="ECellDive.Modules.EdgeGO.SetCollider*"></a>
-  <h4 id="ECellDive_Modules_EdgeGO_SetCollider_UnityEngine_Transform_UnityEngine_Transform_" data-uid="ECellDive.Modules.EdgeGO.SetCollider(UnityEngine.Transform,UnityEngine.Transform)">SetCollider(Transform, Transform)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="ECellDive_Modules_EdgeGO_SetCollider_Transform_Transform_" data-uid="ECellDive.Modules.EdgeGO.SetCollider(Transform,Transform)">SetCollider(Transform, Transform)</h4>
+  <div class="markdown level1 summary"><p>Adapts the position and rotation of the <a class="xref" href="ECellDive.Interfaces.IEdgeGO.html#ECellDive_Interfaces_IEdgeGO_refBoxColliderHolder">refBoxColliderHolder</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1240,27 +914,28 @@ while pointing at the edge.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="xref">Transform</span></td>
         <td><span class="parametername">_start</span></td>
-        <td></td>
+        <td><p>The transform of the node in the graph from
+where the edge is starting.</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="xref">Transform</span></td>
         <td><span class="parametername">_end</span></td>
-        <td></td>
+        <td><p>The transform of the node in the graph to
+where the edge is heading.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SetDefaultWidth_System_Single_System_Single_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SetDefaultWidth(System.Single%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L430">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SetDefaultWidth_" data-uid="ECellDive.Modules.EdgeGO.SetDefaultWidth*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SetDefaultWidth_System_Single_System_Single_" data-uid="ECellDive.Modules.EdgeGO.SetDefaultWidth(System.Single,System.Single)">SetDefaultWidth(Single, Single)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the values of <a class="xref" href="ECellDive.Interfaces.IEdgeGO.html#ECellDive_Interfaces_IEdgeGO_defaultStartWidth">defaultStartWidth</a> and
+<a class="xref" href="ECellDive.Interfaces.IEdgeGO.html#ECellDive_Interfaces_IEdgeGO_defaultEndWidth">defaultEndWidth</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1279,25 +954,23 @@ while pointing at the edge.</p>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">_start</span></td>
-        <td></td>
+        <td><p>The value for <a class="xref" href="ECellDive.Interfaces.IEdgeGO.html#ECellDive_Interfaces_IEdgeGO_defaultStartWidth">defaultStartWidth</a></p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">_end</span></td>
-        <td></td>
+        <td><p>The value for <a class="xref" href="ECellDive.Interfaces.IEdgeGO.html#ECellDive_Interfaces_IEdgeGO_defaultEndWidth">defaultEndWidth</a></p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SetEdgeData_ECellDive_Interfaces_IEdge_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SetEdgeData(ECellDive.Interfaces.IEdge)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L436">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SetEdgeData_" data-uid="ECellDive.Modules.EdgeGO.SetEdgeData*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SetEdgeData_ECellDive_Interfaces_IEdge_" data-uid="ECellDive.Modules.EdgeGO.SetEdgeData(ECellDive.Interfaces.IEdge)">SetEdgeData(IEdge)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Set the value for <a class="xref" href="ECellDive.Interfaces.IEdgeGO.html#ECellDive_Interfaces_IEdgeGO_edgeData">edgeData</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1316,20 +989,18 @@ while pointing at the edge.</p>
       <tr>
         <td><a class="xref" href="ECellDive.Interfaces.IEdge.html">IEdge</a></td>
         <td><span class="parametername">_IEdge</span></td>
-        <td></td>
+        <td><p>The value to pass on to <a class="xref" href="ECellDive.Interfaces.IEdgeGO.html#ECellDive_Interfaces_IEdgeGO_edgeData">edgeData</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SetFlux_System_Single_System_Single_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SetFlux(System.Single%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L479">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SetFlux_" data-uid="ECellDive.Modules.EdgeGO.SetFlux*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SetFlux_System_Single_System_Single_" data-uid="ECellDive.Modules.EdgeGO.SetFlux(System.Single,System.Single)">SetFlux(Single, Single)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A mutator for values of <a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevel">fluxLevel</a> and
+<a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1348,22 +1019,19 @@ while pointing at the edge.</p>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">_level</span></td>
-        <td></td>
+        <td><p>The value to pass on to <a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevel">fluxLevel</a>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">_levelClamped</span></td>
-        <td></td>
+        <td><p>The value to pass on to <a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SetHighlight.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SetHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L494">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SetHighlight_" data-uid="ECellDive.Modules.EdgeGO.SetHighlight*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SetHighlight" data-uid="ECellDive.Modules.EdgeGO.SetHighlight">SetHighlight()</h4>
   <div class="markdown level1 summary"></div>
@@ -1374,50 +1042,12 @@ while pointing at the edge.</p>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetHighlight">GameNetModule.SetHighlight()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SetHighlightColor_UnityEngine_Color_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SetHighlightColor(UnityEngine.Color)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L487">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_EdgeGO_SetHighlightColor_" data-uid="ECellDive.Modules.EdgeGO.SetHighlightColor*"></a>
-  <h4 id="ECellDive_Modules_EdgeGO_SetHighlightColor_UnityEngine_Color_" data-uid="ECellDive.Modules.EdgeGO.SetHighlightColor(UnityEngine.Color)">SetHighlightColor(Color)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void SetHighlightColor(Color _c)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">UnityEngine.Color</span></td>
-        <td><span class="parametername">_c</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetHighlightColor_UnityEngine_Color_">GameNetModule.SetHighlightColor(Color)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SetLineRendererPosition_UnityEngine_Transform_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SetLineRendererPosition(UnityEngine.Transform%2CUnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L459">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SetLineRendererPosition_" data-uid="ECellDive.Modules.EdgeGO.SetLineRendererPosition*"></a>
-  <h4 id="ECellDive_Modules_EdgeGO_SetLineRendererPosition_UnityEngine_Transform_UnityEngine_Transform_" data-uid="ECellDive.Modules.EdgeGO.SetLineRendererPosition(UnityEngine.Transform,UnityEngine.Transform)">SetLineRendererPosition(Transform, Transform)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="ECellDive_Modules_EdgeGO_SetLineRendererPosition_Transform_Transform_" data-uid="ECellDive.Modules.EdgeGO.SetLineRendererPosition(Transform,Transform)">SetLineRendererPosition(Transform, Transform)</h4>
+  <div class="markdown level1 summary"><p>Sets the start and end positions of the <see cref="!:refLineRenderer"></see>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1434,39 +1064,65 @@ while pointing at the edge.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="xref">Transform</span></td>
         <td><span class="parametername">_start</span></td>
-        <td></td>
+        <td><p>The transform of the node in the graph from
+where the edge is starting.</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="xref">Transform</span></td>
         <td><span class="parametername">_end</span></td>
-        <td></td>
+        <td><p>The transform of the node in the graph to
+where the edge is heading.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SetLineRendererWidth.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SetLineRendererWidth%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L452">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SetLineRendererWidth_" data-uid="ECellDive.Modules.EdgeGO.SetLineRendererWidth*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SetLineRendererWidth" data-uid="ECellDive.Modules.EdgeGO.SetLineRendererWidth">SetLineRendererWidth()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the start and end width of the <see cref="!:refLineRenderer"></see>
+to the values stored in <a class="xref" href="ECellDive.Interfaces.IEdgeGO.html#ECellDive_Interfaces_IEdgeGO_defaultStartWidth">defaultStartWidth</a> and
+<a class="xref" href="ECellDive.Interfaces.IEdgeGO.html#ECellDive_Interfaces_IEdgeGO_defaultEndWidth">defaultEndWidth</a> respectively.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetLineRendererWidth()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SpreadActivationDownward.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SpreadActivationDownward%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L208">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_EdgeGO_SetRefMasterPathway_" data-uid="ECellDive.Modules.EdgeGO.SetRefMasterPathway*"></a>
+  <h4 id="ECellDive_Modules_EdgeGO_SetRefMasterPathway_ECellDive_Interfaces_IGraphGO_" data-uid="ECellDive.Modules.EdgeGO.SetRefMasterPathway(ECellDive.Interfaces.IGraphGO)">SetRefMasterPathway(IGraphGO)</h4>
+  <div class="markdown level1 summary"><p>Sets the value for <span class="xref">ECellDive.Modules.EdgeGO.refMasterPathway</span>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetRefMasterPathway(IGraphGO _masterPathway)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ECellDive.Interfaces.IGraphGO.html">IGraphGO</a></td>
+        <td><span class="parametername">_masterPathway</span></td>
+        <td><p>The value for <span class="xref">ECellDive.Modules.EdgeGO.refMasterPathway</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SpreadActivationDownward_" data-uid="ECellDive.Modules.EdgeGO.SpreadActivationDownward*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SpreadActivationDownward" data-uid="ECellDive.Modules.EdgeGO.SpreadActivationDownward">SpreadActivationDownward()</h4>
   <div class="markdown level1 summary"><p>Spreads the activation state to every contiguous downstream edge that are part of the same reaction.</p>
@@ -1476,13 +1132,8 @@ while pointing at the edge.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SpreadActivationDownward()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SpreadActivationUpward.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SpreadActivationUpward%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L236">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SpreadActivationUpward_" data-uid="ECellDive.Modules.EdgeGO.SpreadActivationUpward*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SpreadActivationUpward" data-uid="ECellDive.Modules.EdgeGO.SpreadActivationUpward">SpreadActivationUpward()</h4>
   <div class="markdown level1 summary"><p>Spreads the activation state to every contiguous upstream edge that are part of the same reaction.</p>
@@ -1492,13 +1143,8 @@ while pointing at the edge.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SpreadActivationUpward()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SpreadHighlightDownward.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SpreadHighlightDownward%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L320">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SpreadHighlightDownward_" data-uid="ECellDive.Modules.EdgeGO.SpreadHighlightDownward*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SpreadHighlightDownward" data-uid="ECellDive.Modules.EdgeGO.SpreadHighlightDownward">SpreadHighlightDownward()</h4>
   <div class="markdown level1 summary"><p>Spreads the highlighted state to every contiguous downstream edge that are part of the same reaction.</p>
@@ -1508,13 +1154,8 @@ while pointing at the edge.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SpreadHighlightDownward()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SpreadHighlightUpward.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SpreadHighlightUpward%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L348">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SpreadHighlightUpward_" data-uid="ECellDive.Modules.EdgeGO.SpreadHighlightUpward*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SpreadHighlightUpward" data-uid="ECellDive.Modules.EdgeGO.SpreadHighlightUpward">SpreadHighlightUpward()</h4>
   <div class="markdown level1 summary"><p>Spreads the highlighted state to every contiguous upstream edge that are part of the same reaction.</p>
@@ -1524,13 +1165,8 @@ while pointing at the edge.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SpreadHighlightUpward()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SpreadKODownward.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SpreadKODownward%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L264">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SpreadKODownward_" data-uid="ECellDive.Modules.EdgeGO.SpreadKODownward*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SpreadKODownward" data-uid="ECellDive.Modules.EdgeGO.SpreadKODownward">SpreadKODownward()</h4>
   <div class="markdown level1 summary"><p>Spreads the Knockout state to every contiguous downstream edge that are part of the same reaction.</p>
@@ -1540,13 +1176,8 @@ while pointing at the edge.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SpreadKODownward()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SpreadKOUpward.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SpreadKOUpward%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L292">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SpreadKOUpward_" data-uid="ECellDive.Modules.EdgeGO.SpreadKOUpward*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SpreadKOUpward" data-uid="ECellDive.Modules.EdgeGO.SpreadKOUpward">SpreadKOUpward()</h4>
   <div class="markdown level1 summary"><p>Spreads the Knockout state to every contiguous upstream edge that are part of the same reaction.</p>
@@ -1556,13 +1187,8 @@ while pointing at the edge.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SpreadKOUpward()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SpreadUnsetHighlightDownward.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SpreadUnsetHighlightDownward%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L376">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SpreadUnsetHighlightDownward_" data-uid="ECellDive.Modules.EdgeGO.SpreadUnsetHighlightDownward*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SpreadUnsetHighlightDownward" data-uid="ECellDive.Modules.EdgeGO.SpreadUnsetHighlightDownward">SpreadUnsetHighlightDownward()</h4>
   <div class="markdown level1 summary"><p>Spreads the unhighlighted state to every contiguous upstream edge that are part of the same reaction.</p>
@@ -1572,13 +1198,8 @@ while pointing at the edge.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SpreadUnsetHighlightDownward()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_SpreadUnsetHighlightUpward.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.SpreadUnsetHighlightUpward%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L404">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_SpreadUnsetHighlightUpward_" data-uid="ECellDive.Modules.EdgeGO.SpreadUnsetHighlightUpward*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_SpreadUnsetHighlightUpward" data-uid="ECellDive.Modules.EdgeGO.SpreadUnsetHighlightUpward">SpreadUnsetHighlightUpward()</h4>
   <div class="markdown level1 summary"><p>Spreads the unhighlighted state to every contiguous downstream edge that are part of the same reaction.</p>
@@ -1588,13 +1209,8 @@ while pointing at the edge.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SpreadUnsetHighlightUpward()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO_UnsetHighlight.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO.UnsetHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L500">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_EdgeGO_UnsetHighlight_" data-uid="ECellDive.Modules.EdgeGO.UnsetHighlight*"></a>
   <h4 id="ECellDive_Modules_EdgeGO_UnsetHighlight" data-uid="ECellDive.Modules.EdgeGO.UnsetHighlight">UnsetHighlight()</h4>
   <div class="markdown level1 summary"></div>
@@ -1616,6 +1232,12 @@ while pointing at the edge.</p>
       <a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a>
   </div>
   <div>
+      <a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a>
+  </div>
+  <div>
+      <a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a>
+  </div>
+  <div>
       <a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a>
   </div>
   <div>
@@ -1626,12 +1248,6 @@ while pointing at the edge.</p>
   </div>
   <div>
       <a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a>
-  </div>
-  <div>
-      <a class="xref" href="ECellDive.Interfaces.IMlprDataBroadcast.html">IMlprDataBroadcast</a>
-  </div>
-  <div>
-      <a class="xref" href="ECellDive.Interfaces.IMlprDataRequest.html">IMlprDataRequest</a>
   </div>
   <div>
       <a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html">IMlprVisibility</a>
@@ -1652,12 +1268,6 @@ while pointing at the edge.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_EdgeGO.md&amp;value=---%0Auid%3A%20ECellDive.Modules.EdgeGO%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/GOsBehaviours/EdgeGO.cs/#L14" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

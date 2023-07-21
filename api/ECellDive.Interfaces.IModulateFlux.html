@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface IModulateFlux
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -93,7 +93,7 @@ reaction.</p>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Interfaces.html">ECellDive.Interfaces</a></h6>
-  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="ECellDive_Interfaces_IModulateFlux_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IModulateFlux : IKnockable</code></pre>
@@ -104,16 +104,11 @@ undergo a Flux Balance Analysis.</p>
 </div>
   <h3 id="properties">Properties
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IModulateFlux_fluxLevel.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IModulateFlux.fluxLevel%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L118">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Interfaces_IModulateFlux_fluxLevel_" data-uid="ECellDive.Interfaces.IModulateFlux.fluxLevel*"></a>
   <h4 id="ECellDive_Interfaces_IModulateFlux_fluxLevel" data-uid="ECellDive.Interfaces.IModulateFlux.fluxLevel">fluxLevel</h4>
-  <div class="markdown level1 summary"><p>The real flux value</p>
+  <div class="markdown level1 summary"><p>The real flux value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -130,21 +125,16 @@ undergo a Flux Balance Analysis.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Single</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Single</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IModulateFlux_fluxLevelClamped.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IModulateFlux.fluxLevelClamped%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L123">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Interfaces_IModulateFlux_fluxLevelClamped_" data-uid="ECellDive.Interfaces.IModulateFlux.fluxLevelClamped*"></a>
   <h4 id="ECellDive_Interfaces_IModulateFlux_fluxLevelClamped" data-uid="ECellDive.Interfaces.IModulateFlux.fluxLevelClamped">fluxLevelClamped</h4>
-  <div class="markdown level1 summary"><p>A clamped flux value to control the visualization of the flux</p>
+  <div class="markdown level1 summary"><p>A clamped flux value to control the visualization of the flux.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -161,23 +151,44 @@ undergo a Flux Balance Analysis.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Single</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Single</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IModulateFlux_SetFlux_System_Single_System_Single_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IModulateFlux.SetFlux(System.Single%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L124">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Interfaces_IModulateFlux_ApplyFluxLevel_" data-uid="ECellDive.Interfaces.IModulateFlux.ApplyFluxLevel*"></a>
+  <h4 id="ECellDive_Interfaces_IModulateFlux_ApplyFluxLevel" data-uid="ECellDive.Interfaces.IModulateFlux.ApplyFluxLevel">ApplyFluxLevel()</h4>
+  <div class="markdown level1 summary"><p>The logic to apply the effects associated to the value of
+<a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevel">fluxLevel</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ApplyFluxLevel()</code></pre>
+  </div>
+  
+  
+  <a id="ECellDive_Interfaces_IModulateFlux_ApplyFluxLevelClamped_" data-uid="ECellDive.Interfaces.IModulateFlux.ApplyFluxLevelClamped*"></a>
+  <h4 id="ECellDive_Interfaces_IModulateFlux_ApplyFluxLevelClamped" data-uid="ECellDive.Interfaces.IModulateFlux.ApplyFluxLevelClamped">ApplyFluxLevelClamped()</h4>
+  <div class="markdown level1 summary"><p>The logic to apply the effects associated to the value of
+<a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ApplyFluxLevelClamped()</code></pre>
+  </div>
+  
+  
   <a id="ECellDive_Interfaces_IModulateFlux_SetFlux_" data-uid="ECellDive.Interfaces.IModulateFlux.SetFlux*"></a>
   <h4 id="ECellDive_Interfaces_IModulateFlux_SetFlux_System_Single_System_Single_" data-uid="ECellDive.Interfaces.IModulateFlux.SetFlux(System.Single,System.Single)">SetFlux(Single, Single)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A mutator for values of <a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevel">fluxLevel</a> and
+<a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -196,12 +207,14 @@ undergo a Flux Balance Analysis.</p>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">_level</span></td>
-        <td></td>
+        <td><p>The value to pass on to <a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevel">fluxLevel</a>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">_levelClamped</span></td>
-        <td></td>
+        <td><p>The value to pass on to <a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -212,12 +225,6 @@ undergo a Flux Balance Analysis.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IModulateFlux.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IModulateFlux%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L113" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

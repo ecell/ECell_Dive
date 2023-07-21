@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class HttpServerModificationModule
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -80,18 +80,16 @@ a server.</p>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
-    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
-    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
-    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
-    <div class="level5"><a class="xref" href="ECellDive.Modules.Module.html">Module</a></div>
-    <div class="level6"><a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html">HttpServerBaseModule</a></div>
-    <div class="level7"><span class="xref">HttpServerModificationModule</span></div>
+    <div class="level1"><a class="xref" href="ECellDive.Modules.Module.html">Module</a></div>
+    <div class="level2"><a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html">HttpServerBaseModule</a></div>
+    <div class="level3"><span class="xref">HttpServerModificationModule</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
+    <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
+    <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
   </div>
   <div class="inheritedMembers">
@@ -125,6 +123,9 @@ a server.</p>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_UpdatePort">HttpServerBaseModule.UpdatePort()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_ApplyColor_Color_">HttpServerBaseModule.ApplyColor(Color)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_SetHighlight">HttpServerBaseModule.SetHighlight()</a>
@@ -184,6 +185,9 @@ a server.</p>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_OnDestroy">Module.OnDestroy()</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SelfDestroy">Module.SelfDestroy()</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetName_System_String_">Module.SetName(String)</a>
     </div>
     <div>
@@ -196,19 +200,13 @@ a server.</p>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_UnsetFocus">Module.UnsetFocus()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetDefaultColor_UnityEngine_Color_">Module.SetDefaultColor(Color)</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetHighlightColor_UnityEngine_Color_">Module.SetHighlightColor(Color)</a>
-    </div>
-    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_DisplayInfoTags">Module.DisplayInfoTags()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_HideInfoTags">Module.HideInfoTags()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_InstantiateInfoTag_UnityEngine_Vector2_System_String_">Module.InstantiateInfoTag(Vector2, String)</a>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_InstantiateInfoTag_Vector2_System_String_">Module.InstantiateInfoTag(Vector2, String)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_InstantiateInfoTags_System_String___">Module.InstantiateInfoTags(String[])</a>
@@ -216,319 +214,41 @@ a server.</p>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ShowInfoTags">Module.ShowInfoTags()</a>
     </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.Invoke(System.String, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.InvokeRepeating(System.String, System.Single, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine_Auto(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(UnityEngine.Coroutine)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopAllCoroutines()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.print(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.useGUILayout</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.runInEditMode</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.enabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.isActiveAndEnabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent(System.Type, UnityEngine.Component)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type, System.Collections.Generic.List&lt;UnityEngine.Component&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.CompareTag(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.transform</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.gameObject</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.tag</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetInstanceID()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.ToString()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.name</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.hideFlags</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Modules.html">ECellDive.Modules</a></h6>
-  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="ECellDive_Modules_HttpServerModificationModule_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class HttpServerModificationModule : HttpServerBaseModule, IFocus, IGroupable, IInfoTags</code></pre>
+    <pre><code class="lang-csharp hljs">public class HttpServerModificationModule : HttpServerBaseModule, IFocus, IGroupable, IColorHighlightable, IHighlightable, IInfoTags</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerModificationModule_refBaseModelsScrollList.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerModificationModule.refBaseModelsScrollList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerModificationModule.cs/#L21">View Source</a>
-  </span>
+  
+  
+  <h4 id="ECellDive_Modules_HttpServerModificationModule_animLW" data-uid="ECellDive.Modules.HttpServerModificationModule.animLW">animLW</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AnimationLoopWrapper animLW</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ECellDive.Utility.AnimationLoopWrapper.html">AnimationLoopWrapper</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <h4 id="ECellDive_Modules_HttpServerModificationModule_refBaseModelsScrollList" data-uid="ECellDive.Modules.HttpServerModificationModule.refBaseModelsScrollList">refBaseModelsScrollList</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -546,18 +266,13 @@ a server.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html">OptimizedVertScrollList</a></td>
+        <td><span class="xref">OptimizedVertScrollList</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerModificationModule_refModificationFilesScrollList.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerModificationModule.refModificationFilesScrollList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerModificationModule.cs/#L20">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_HttpServerModificationModule_refModificationFilesScrollList" data-uid="ECellDive.Modules.HttpServerModificationModule.refModificationFilesScrollList">refModificationFilesScrollList</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -575,18 +290,13 @@ a server.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html">OptimizedVertScrollList</a></td>
+        <td><span class="xref">OptimizedVertScrollList</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerModificationModule_refSaveNewFileName.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerModificationModule.refSaveNewFileName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerModificationModule.cs/#L24">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_HttpServerModificationModule_refSaveNewFileName" data-uid="ECellDive.Modules.HttpServerModificationModule.refSaveNewFileName">refSaveNewFileName</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -604,18 +314,13 @@ a server.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TMPro.TMP_InputField</span></td>
+        <td><span class="xref">TMP_InputField</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerModificationModule_refSelectedBaseModel.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerModificationModule.refSelectedBaseModel%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerModificationModule.cs/#L23">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_HttpServerModificationModule_refSelectedBaseModel" data-uid="ECellDive.Modules.HttpServerModificationModule.refSelectedBaseModel">refSelectedBaseModel</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -633,22 +338,17 @@ a server.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TMPro.TMP_Text</span></td>
+        <td><span class="xref">TMP_Text</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerModificationModule_ImportModFile_TMPro_TextMeshProUGUI_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerModificationModule.ImportModFile(TMPro.TextMeshProUGUI)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerModificationModule.cs/#L74">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_HttpServerModificationModule_ImportModFile_" data-uid="ECellDive.Modules.HttpServerModificationModule.ImportModFile*"></a>
-  <h4 id="ECellDive_Modules_HttpServerModificationModule_ImportModFile_TMPro_TextMeshProUGUI_" data-uid="ECellDive.Modules.HttpServerModificationModule.ImportModFile(TMPro.TextMeshProUGUI)">ImportModFile(TextMeshProUGUI)</h4>
+  <h4 id="ECellDive_Modules_HttpServerModificationModule_ImportModFile_TextMeshProUGUI_" data-uid="ECellDive.Modules.HttpServerModificationModule.ImportModFile(TextMeshProUGUI)">ImportModFile(TextMeshProUGUI)</h4>
   <div class="markdown level1 summary"><p>The public interface to ask the server for the modification
 file.</p>
 </div>
@@ -668,7 +368,7 @@ file.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TMPro.TextMeshProUGUI</span></td>
+        <td><span class="xref">TextMeshProUGUI</span></td>
         <td><span class="parametername">_textMeshProUGUI</span></td>
         <td><p>The UI Text Mesh Pro of the
 button dedicated to importing the modification files. This
@@ -677,13 +377,8 @@ button must be displaying the name of the file.</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerModificationModule_SaveModificationFile.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerModificationModule.SaveModificationFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerModificationModule.cs/#L161">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_HttpServerModificationModule_SaveModificationFile_" data-uid="ECellDive.Modules.HttpServerModificationModule.SaveModificationFile*"></a>
   <h4 id="ECellDive_Modules_HttpServerModificationModule_SaveModificationFile" data-uid="ECellDive.Modules.HttpServerModificationModule.SaveModificationFile">SaveModificationFile()</h4>
   <div class="markdown level1 summary"><p>The public interface to save the modiication file associated to a
@@ -694,17 +389,12 @@ base model.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SaveModificationFile()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerModificationModule_SetTargetSaveable_UnityEngine_GameObject_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerModificationModule.SetTargetSaveable(UnityEngine.GameObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerModificationModule.cs/#L193">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_HttpServerModificationModule_SetTargetSaveable_" data-uid="ECellDive.Modules.HttpServerModificationModule.SetTargetSaveable*"></a>
-  <h4 id="ECellDive_Modules_HttpServerModificationModule_SetTargetSaveable_UnityEngine_GameObject_" data-uid="ECellDive.Modules.HttpServerModificationModule.SetTargetSaveable(UnityEngine.GameObject)">SetTargetSaveable(GameObject)</h4>
+  <h4 id="ECellDive_Modules_HttpServerModificationModule_SetTargetSaveable_GameObject_" data-uid="ECellDive.Modules.HttpServerModificationModule.SetTargetSaveable(GameObject)">SetTargetSaveable(GameObject)</h4>
   <div class="markdown level1 summary"><p>Sets the <span class="xref">ECellDive.Modules.HttpServerModificationModule.targetSaveable</span> to the object that is of the same index in
-<a class="xref" href="ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_saveables">saveables</a> than the <code data-dev-comment-type="paramref" class="paramref">_container</code>
+<see cref="!:GameNetPortal.saveables"></see> than the <code data-dev-comment-type="paramref" class="paramref">_container</code>
 sibling index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -723,19 +413,14 @@ sibling index.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td><span class="parametername">_container</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerModificationModule_ShowBaseModelsCandidates.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerModificationModule.ShowBaseModelsCandidates%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerModificationModule.cs/#L203">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_HttpServerModificationModule_ShowBaseModelsCandidates_" data-uid="ECellDive.Modules.HttpServerModificationModule.ShowBaseModelsCandidates*"></a>
   <h4 id="ECellDive_Modules_HttpServerModificationModule_ShowBaseModelsCandidates" data-uid="ECellDive.Modules.HttpServerModificationModule.ShowBaseModelsCandidates">ShowBaseModelsCandidates()</h4>
   <div class="markdown level1 summary"><p>The public interface to show the list of base models that are currently open
@@ -746,13 +431,8 @@ on the server.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ShowBaseModelsCandidates()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerModificationModule_ShowModFilesList.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerModificationModule.ShowModFilesList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerModificationModule.cs/#L226">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_HttpServerModificationModule_ShowModFilesList_" data-uid="ECellDive.Modules.HttpServerModificationModule.ShowModFilesList*"></a>
   <h4 id="ECellDive_Modules_HttpServerModificationModule_ShowModFilesList" data-uid="ECellDive.Modules.HttpServerModificationModule.ShowModFilesList">ShowModFilesList()</h4>
   <div class="markdown level1 summary"><p>The public interface to ask the server for the list of
@@ -771,6 +451,12 @@ the available modification files.</p>
       <a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a>
   </div>
   <div>
+      <a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a>
+  </div>
+  <div>
+      <a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a>
+  </div>
+  <div>
       <a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a>
   </div>
 </article>
@@ -780,12 +466,6 @@ the available modification files.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerModificationModule.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerModificationModule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerModificationModule.cs/#L18" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

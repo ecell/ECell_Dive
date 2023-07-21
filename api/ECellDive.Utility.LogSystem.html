@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class LogSystem
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -85,10 +85,16 @@ in the log.</p>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
     </div>
     <div>
       <span class="xref">System.Object.GetHashCode()</span>
@@ -99,15 +105,9 @@ in the log.</p>
     <div>
       <span class="xref">System.Object.MemberwiseClone()</span>
     </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Utility.html">ECellDive.Utility</a></h6>
-  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="ECellDive_Utility_LogSystem_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static class LogSystem</code></pre>
@@ -117,19 +117,14 @@ in the log.</p>
 </div>
   <h3 id="fields">Fields
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_LogSystem_recordedMessages.md&amp;value=---%0Auid%3A%20ECellDive.Utility.LogSystem.recordedMessages%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LogSystem.cs/#L30">View Source</a>
-  </span>
-  <h4 id="ECellDive_Utility_LogSystem_recordedMessages" data-uid="ECellDive.Utility.LogSystem.recordedMessages">recordedMessages</h4>
+  
+  
+  <h4 id="ECellDive_Utility_LogSystem_debugMessages" data-uid="ECellDive.Utility.LogSystem.debugMessages">debugMessages</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static List&lt;LogSystem.Message&gt; recordedMessages</code></pre>
+    <pre><code class="lang-csharp hljs">public static List&lt;LogMessage&gt; debugMessages</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -141,18 +136,61 @@ in the log.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="ECellDive.Utility.LogSystem.Message.html">LogSystem.Message</a>&gt;</td>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="ECellDive.Utility.LogMessage.html">LogMessage</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_LogSystem_refLogManager.md&amp;value=---%0Auid%3A%20ECellDive.Utility.LogSystem.refLogManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LogSystem.cs/#L18">View Source</a>
-  </span>
+  
+  
+  <h4 id="ECellDive_Utility_LogSystem_errorMessages" data-uid="ECellDive.Utility.LogSystem.errorMessages">errorMessages</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;LogMessage&gt; errorMessages</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="ECellDive.Utility.LogMessage.html">LogMessage</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ECellDive_Utility_LogSystem_pingMessages" data-uid="ECellDive.Utility.LogSystem.pingMessages">pingMessages</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;LogMessage&gt; pingMessages</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="ECellDive.Utility.LogMessage.html">LogMessage</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <h4 id="ECellDive_Utility_LogSystem_refLogManager" data-uid="ECellDive.Utility.LogSystem.refLogManager">refLogManager</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -170,27 +208,47 @@ in the log.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.UI.LogManager.html">LogManager</a></td>
+        <td><span class="xref">LogManager</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ECellDive_Utility_LogSystem_traceMessages" data-uid="ECellDive.Utility.LogSystem.traceMessages">traceMessages</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;LogMessage&gt; traceMessages</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="ECellDive.Utility.LogMessage.html">LogMessage</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_LogSystem_GenerateMessage_ECellDive_Utility_LogSystem_MessageTypes_System_String_.md&amp;value=---%0Auid%3A%20ECellDive.Utility.LogSystem.GenerateMessage(ECellDive.Utility.LogSystem.MessageTypes%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LogSystem.cs/#L54">View Source</a>
-  </span>
-  <a id="ECellDive_Utility_LogSystem_GenerateMessage_" data-uid="ECellDive.Utility.LogSystem.GenerateMessage*"></a>
-  <h4 id="ECellDive_Utility_LogSystem_GenerateMessage_ECellDive_Utility_LogSystem_MessageTypes_System_String_" data-uid="ECellDive.Utility.LogSystem.GenerateMessage(ECellDive.Utility.LogSystem.MessageTypes,System.String)">GenerateMessage(LogSystem.MessageTypes, String)</h4>
-  <div class="markdown level1 summary"></div>
+  
+  
+  <a id="ECellDive_Utility_LogSystem_AddMessage_" data-uid="ECellDive.Utility.LogSystem.AddMessage*"></a>
+  <h4 id="ECellDive_Utility_LogSystem_AddMessage_ECellDive_Utility_LogMessageTypes_System_String_" data-uid="ECellDive.Utility.LogSystem.AddMessage(ECellDive.Utility.LogMessageTypes,System.String)">AddMessage(LogMessageTypes, String)</h4>
+  <div class="markdown level1 summary"><p>Public interface to add a message to the log.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static LogSystem.Message GenerateMessage(LogSystem.MessageTypes _type, string _content)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void AddMessage(LogMessageTypes _type, string _content)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -203,61 +261,13 @@ in the log.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Utility.LogSystem.MessageTypes.html">LogSystem.MessageTypes</a></td>
+        <td><a class="xref" href="ECellDive.Utility.LogMessageTypes.html">LogMessageTypes</a></td>
         <td><span class="parametername">_type</span></td>
         <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">_content</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Utility.LogSystem.Message.html">LogSystem.Message</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_LogSystem_RecordMessage_ECellDive_Utility_LogSystem_Message_.md&amp;value=---%0Auid%3A%20ECellDive.Utility.LogSystem.RecordMessage(ECellDive.Utility.LogSystem.Message)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LogSystem.cs/#L77">View Source</a>
-  </span>
-  <a id="ECellDive_Utility_LogSystem_RecordMessage_" data-uid="ECellDive.Utility.LogSystem.RecordMessage*"></a>
-  <h4 id="ECellDive_Utility_LogSystem_RecordMessage_ECellDive_Utility_LogSystem_Message_" data-uid="ECellDive.Utility.LogSystem.RecordMessage(ECellDive.Utility.LogSystem.Message)">RecordMessage(LogSystem.Message)</h4>
-  <div class="markdown level1 summary"><p>Add a message info to the list of messages</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void RecordMessage(LogSystem.Message _msg)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Utility.LogSystem.Message.html">LogSystem.Message</a></td>
-        <td><span class="parametername">_msg</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -269,12 +279,6 @@ in the log.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_LogSystem.md&amp;value=---%0Auid%3A%20ECellDive.Utility.LogSystem%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LogSystem.cs/#L16" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

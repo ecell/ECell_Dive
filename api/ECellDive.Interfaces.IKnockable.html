@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface IKnockable
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -78,7 +78,7 @@ knockedout.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Interfaces.html">ECellDive.Interfaces</a></h6>
-  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="ECellDive_Interfaces_IKnockable_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IKnockable</code></pre>
@@ -88,16 +88,13 @@ knockedout.</p>
 </div>
   <h3 id="properties">Properties
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IKnockable_knockedOut.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IKnockable.knockedOut%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L102">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Interfaces_IKnockable_knockedOut_" data-uid="ECellDive.Interfaces.IKnockable.knockedOut*"></a>
   <h4 id="ECellDive_Interfaces_IKnockable_knockedOut" data-uid="ECellDive.Interfaces.IKnockable.knockedOut">knockedOut</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A boolean used to inform whether the gameobject is considered
+knocked out.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -113,25 +110,22 @@ knockedout.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IKnockable_triggerKOActions.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IKnockable.triggerKOActions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L101">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Interfaces_IKnockable_triggerKOActions_" data-uid="ECellDive.Interfaces.IKnockable.triggerKOActions*"></a>
   <h4 id="ECellDive_Interfaces_IKnockable_triggerKOActions" data-uid="ECellDive.Interfaces.IKnockable.triggerKOActions">triggerKOActions</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The references to the input actions on the left and right controller
+used to trigger the knockout status.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ControllersSymetricAction triggerKOActions { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">LeftRightData&lt;InputActionReference&gt; triggerKOActions { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -143,38 +137,32 @@ knockedout.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.ControllersSymetricAction.html">ControllersSymetricAction</a></td>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IKnockable_Activate.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IKnockable.Activate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L103">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Interfaces_IKnockable_Activate_" data-uid="ECellDive.Interfaces.IKnockable.Activate*"></a>
   <h4 id="ECellDive_Interfaces_IKnockable_Activate" data-uid="ECellDive.Interfaces.IKnockable.Activate">Activate()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The logic to implement when the gameobject transitions from
+<a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=true to <a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=false.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">void Activate()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IKnockable_Knockout.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IKnockable.Knockout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L104">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Interfaces_IKnockable_Knockout_" data-uid="ECellDive.Interfaces.IKnockable.Knockout*"></a>
   <h4 id="ECellDive_Interfaces_IKnockable_Knockout" data-uid="ECellDive.Interfaces.IKnockable.Knockout">Knockout()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The logic to implement when the gameobject transitions from
+<a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=false to <a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=true.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -187,12 +175,6 @@ knockedout.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IKnockable.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IKnockable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L99" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

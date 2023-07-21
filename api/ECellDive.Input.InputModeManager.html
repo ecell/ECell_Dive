@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class InputModeManager
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -78,403 +78,18 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
-    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
-    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
-    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
-    <div class="level5"><span class="xref">Unity.Netcode.NetworkBehaviour</span></div>
-    <div class="level6"><span class="xref">InputModeManager</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__rpc_exec_stage</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendServerRpc(System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendServerRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendClientRpc(System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendClientRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkBehaviour(System.UInt16)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkSpawn()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnGainedOwnership()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnLostOwnership()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkObjectParentChanged(Unity.Netcode.NetworkObject)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkObject(System.UInt64)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnDestroy()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkManager</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsLocalPlayer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwner</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsServer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsClient</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsHost</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwnedByServer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsSpawned</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObject</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.HasNetworkObject</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObjectId</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkBehaviourId</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OwnerClientId</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.Invoke(System.String, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.InvokeRepeating(System.String, System.Single, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine_Auto(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(UnityEngine.Coroutine)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopAllCoroutines()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.print(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.useGUILayout</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.runInEditMode</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.enabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.isActiveAndEnabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent(System.Type, UnityEngine.Component)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type, System.Collections.Generic.List&lt;UnityEngine.Component&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.CompareTag(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.transform</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.gameObject</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.tag</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetInstanceID()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.ToString()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.name</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.hideFlags</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
+    <div class="level1"><span class="xref">InputModeManager</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Input.html">ECellDive.Input</a></h6>
-  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="ECellDive_Input_InputModeManager_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class InputModeManager : NetworkBehaviour</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager_groupControllersGO.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager.groupControllersGO%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L48">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Input_InputModeManager_groupControllersGO" data-uid="ECellDive.Input.InputModeManager.groupControllersGO">groupControllersGO</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -492,18 +107,37 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">UnityEngine.GameObject</span>&gt;</td>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">GameObject</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager_mainPointerInteractors.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager.mainPointerInteractors%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L44">View Source</a>
-  </span>
+  
+  
+  <h4 id="ECellDive_Input_InputModeManager_inputModeTags" data-uid="ECellDive.Input.InputModeManager.inputModeTags">inputModeTags</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;SurgeAndShrinkInfoTag&gt; inputModeTags</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">SurgeAndShrinkInfoTag</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <h4 id="ECellDive_Input_InputModeManager_mainPointerInteractors" data-uid="ECellDive.Input.InputModeManager.mainPointerInteractors">mainPointerInteractors</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -521,25 +155,19 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">UnityEngine.XR.Interaction.Toolkit.XRRayInteractor</span>&gt;</td>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager_mvtControllersGO.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager.mvtControllersGO%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L47">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Input_InputModeManager_mvtControllersGO" data-uid="ECellDive.Input.InputModeManager.mvtControllersGO">mvtControllersGO</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Header(&quot;Controllers GO References&quot;)]
-public LeftRightData&lt;GameObject&gt; mvtControllersGO</code></pre>
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;GameObject&gt; mvtControllersGO</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -551,18 +179,13 @@ public LeftRightData&lt;GameObject&gt; mvtControllersGO</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">UnityEngine.GameObject</span>&gt;</td>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">GameObject</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager_refInputActionAsset.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager.refInputActionAsset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L18">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Input_InputModeManager_refInputActionAsset" data-uid="ECellDive.Input.InputModeManager.refInputActionAsset">refInputActionAsset</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -580,18 +203,13 @@ public LeftRightData&lt;GameObject&gt; mvtControllersGO</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.InputSystem.InputActionAsset</span></td>
+        <td><span class="xref">InputActionAsset</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager_refLeftControlSwitch.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager.refLeftControlSwitch%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L32">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Input_InputModeManager_refLeftControlSwitch" data-uid="ECellDive.Input.InputModeManager.refLeftControlSwitch">refLeftControlSwitch</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -609,18 +227,13 @@ public LeftRightData&lt;GameObject&gt; mvtControllersGO</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.InputSystem.InputActionReference</span></td>
+        <td><span class="xref">InputActionReference</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager_refRightControlSwitch.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager.refRightControlSwitch%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L33">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Input_InputModeManager_refRightControlSwitch" data-uid="ECellDive.Input.InputModeManager.refRightControlSwitch">refRightControlSwitch</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -638,25 +251,19 @@ public LeftRightData&lt;GameObject&gt; mvtControllersGO</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.InputSystem.InputActionReference</span></td>
+        <td><span class="xref">InputActionReference</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager_remoteGrabInteractors.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager.remoteGrabInteractors%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L42">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Input_InputModeManager_remoteGrabInteractors" data-uid="ECellDive.Input.InputModeManager.remoteGrabInteractors">remoteGrabInteractors</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Header(&quot;Ray Based Controls XRRayInteractors&quot;)]
-public LeftRightData&lt;XRRayInteractor&gt; remoteGrabInteractors</code></pre>
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;XRRayInteractor&gt; remoteGrabInteractors</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -668,18 +275,13 @@ public LeftRightData&lt;XRRayInteractor&gt; remoteGrabInteractors</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">UnityEngine.XR.Interaction.Toolkit.XRRayInteractor</span>&gt;</td>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager_remoteInteractionInteractors.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager.remoteInteractionInteractors%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L43">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Input_InputModeManager_remoteInteractionInteractors" data-uid="ECellDive.Input.InputModeManager.remoteInteractionInteractors">remoteInteractionInteractors</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -697,52 +299,69 @@ public LeftRightData&lt;XRRayInteractor&gt; remoteGrabInteractors</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">UnityEngine.XR.Interaction.Toolkit.XRRayInteractor</span>&gt;</td>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager_BroadcastLeftControllerModeServerRpc.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager.BroadcastLeftControllerModeServerRpc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L189">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Input_InputModeManager_BroadcastLeftControllerModeServerRpc_" data-uid="ECellDive.Input.InputModeManager.BroadcastLeftControllerModeServerRpc*"></a>
-  <h4 id="ECellDive_Input_InputModeManager_BroadcastLeftControllerModeServerRpc" data-uid="ECellDive.Input.InputModeManager.BroadcastLeftControllerModeServerRpc">BroadcastLeftControllerModeServerRpc()</h4>
+  <h4 id="ECellDive_Input_InputModeManager_BroadcastLeftControllerModeServerRpc_System_Int32_" data-uid="ECellDive.Input.InputModeManager.BroadcastLeftControllerModeServerRpc(System.Int32)">BroadcastLeftControllerModeServerRpc(Int32)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ServerRpc]
-public void BroadcastLeftControllerModeServerRpc()</code></pre>
+    <pre><code class="lang-csharp hljs">public void BroadcastLeftControllerModeServerRpc(int _modeIdx)</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager_BroadcastRightControllerModeServerRpc.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager.BroadcastRightControllerModeServerRpc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L195">View Source</a>
-  </span>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">_modeIdx</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Input_InputModeManager_BroadcastRightControllerModeServerRpc_" data-uid="ECellDive.Input.InputModeManager.BroadcastRightControllerModeServerRpc*"></a>
-  <h4 id="ECellDive_Input_InputModeManager_BroadcastRightControllerModeServerRpc" data-uid="ECellDive.Input.InputModeManager.BroadcastRightControllerModeServerRpc">BroadcastRightControllerModeServerRpc()</h4>
+  <h4 id="ECellDive_Input_InputModeManager_BroadcastRightControllerModeServerRpc_System_Int32_" data-uid="ECellDive.Input.InputModeManager.BroadcastRightControllerModeServerRpc(System.Int32)">BroadcastRightControllerModeServerRpc(Int32)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ServerRpc]
-public void BroadcastRightControllerModeServerRpc()</code></pre>
+    <pre><code class="lang-csharp hljs">public void BroadcastRightControllerModeServerRpc(int _modeIdx)</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager_OnNetworkDespawn.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager.OnNetworkDespawn%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L91">View Source</a>
-  </span>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">_modeIdx</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Input_InputModeManager_OnNetworkDespawn_" data-uid="ECellDive.Input.InputModeManager.OnNetworkDespawn*"></a>
   <h4 id="ECellDive_Input_InputModeManager_OnNetworkDespawn" data-uid="ECellDive.Input.InputModeManager.OnNetworkDespawn">OnNetworkDespawn()</h4>
   <div class="markdown level1 summary"></div>
@@ -751,8 +370,26 @@ public void BroadcastRightControllerModeServerRpc()</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnNetworkDespawn()</code></pre>
   </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkDespawn()</span></div>
+  
+  
+  <a id="ECellDive_Input_InputModeManager_SubscribeActionMapsSwitch_" data-uid="ECellDive.Input.InputModeManager.SubscribeActionMapsSwitch*"></a>
+  <h4 id="ECellDive_Input_InputModeManager_SubscribeActionMapsSwitch" data-uid="ECellDive.Input.InputModeManager.SubscribeActionMapsSwitch">SubscribeActionMapsSwitch()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SubscribeActionMapsSwitch()</code></pre>
+  </div>
+  
+  
+  <a id="ECellDive_Input_InputModeManager_UnsubscribeActionMapsSwitch_" data-uid="ECellDive.Input.InputModeManager.UnsubscribeActionMapsSwitch*"></a>
+  <h4 id="ECellDive_Input_InputModeManager_UnsubscribeActionMapsSwitch" data-uid="ECellDive.Input.InputModeManager.UnsubscribeActionMapsSwitch">UnsubscribeActionMapsSwitch()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnsubscribeActionMapsSwitch()</code></pre>
+  </div>
 </article>
           </div>
           
@@ -760,12 +397,6 @@ public void BroadcastRightControllerModeServerRpc()</code></pre>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L16" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

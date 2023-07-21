@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Struct ModificationFile
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -91,34 +91,31 @@
       <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
     </div>
     <div>
-      <span class="xref">System.Object.GetType()</span>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
     </div>
     <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+      <span class="xref">System.Object.GetType()</span>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Interfaces.html">ECellDive.Interfaces</a></h6>
-  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="ECellDive_Interfaces_ModificationFile_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public struct ModificationFile</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_ModificationFile__ctor_ECellDive_Interfaces_ModificationFile_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.ModificationFile.%23ctor(ECellDive.Interfaces.ModificationFile)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IData.cs/#L48">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Interfaces_ModificationFile__ctor_" data-uid="ECellDive.Interfaces.ModificationFile.#ctor*"></a>
-  <h4 id="ECellDive_Interfaces_ModificationFile__ctor_ECellDive_Interfaces_ModificationFile_" data-uid="ECellDive.Interfaces.ModificationFile.#ctor(ECellDive.Interfaces.ModificationFile)">ModificationFile(ModificationFile)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="ECellDive_Interfaces_ModificationFile__ctor_System_String_ECellDive_Interfaces_Modification_" data-uid="ECellDive.Interfaces.ModificationFile.#ctor(System.String,ECellDive.Interfaces.Modification)">ModificationFile(String, Modification)</h4>
+  <div class="markdown level1 summary"><p>Constructor usefull when building a modification file from within
+ECellDive before, probably, saving it as a Json file.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ModificationFile(ModificationFile _modFile)</code></pre>
+    <pre><code class="lang-csharp hljs">public ModificationFile(string _baseModelName, Modification _modification)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -131,22 +128,25 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.ModificationFile.html">ModificationFile</a></td>
-        <td><span class="parametername">_modFile</span></td>
-        <td></td>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">_baseModelName</span></td>
+        <td><p>The value for <a class="xref" href="ECellDive.Interfaces.ModificationFile.html#ECellDive_Interfaces_ModificationFile_baseModelName">baseModelName</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ECellDive.Interfaces.Modification.html">Modification</a></td>
+        <td><span class="parametername">_modification</span></td>
+        <td><p>The modification of the file to be saved.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_ModificationFile__ctor_System_String_Newtonsoft_Json_Linq_JObject_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.ModificationFile.%23ctor(System.String%2CNewtonsoft.Json.Linq.JObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IData.cs/#L38">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Interfaces_ModificationFile__ctor_" data-uid="ECellDive.Interfaces.ModificationFile.#ctor*"></a>
-  <h4 id="ECellDive_Interfaces_ModificationFile__ctor_System_String_Newtonsoft_Json_Linq_JObject_" data-uid="ECellDive.Interfaces.ModificationFile.#ctor(System.String,Newtonsoft.Json.Linq.JObject)">ModificationFile(String, JObject)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="ECellDive_Interfaces_ModificationFile__ctor_System_String_JObject_" data-uid="ECellDive.Interfaces.ModificationFile.#ctor(System.String,JObject)">ModificationFile(String, JObject)</h4>
+  <div class="markdown level1 summary"><p>Constructor usefull when reading a Modification file (Json format).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -165,102 +165,26 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">_name</span></td>
-        <td></td>
+        <td><p>The name of the file</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">Newtonsoft.Json.Linq.JObject</span></td>
+        <td><span class="xref">JObject</span></td>
         <td><span class="parametername">_jFileContent</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_ModificationFile__ctor_System_String_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.ModificationFile.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IData.cs/#L57">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_ModificationFile__ctor_" data-uid="ECellDive.Interfaces.ModificationFile.#ctor*"></a>
-  <h4 id="ECellDive_Interfaces_ModificationFile__ctor_System_String_System_String_System_String_System_String_" data-uid="ECellDive.Interfaces.ModificationFile.#ctor(System.String,System.String,System.String,System.String)">ModificationFile(String, String, String, String)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ModificationFile(string _author, string _baseModelName, string _description, string _modification)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">_author</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">_baseModelName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">_description</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">_modification</span></td>
-        <td></td>
+        <td><p>The JObject build after parsing the
+modification file.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h3 id="fields">Fields
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_ModificationFile_author.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.ModificationFile.author%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IData.cs/#L22">View Source</a>
-  </span>
-  <h4 id="ECellDive_Interfaces_ModificationFile_author" data-uid="ECellDive.Interfaces.ModificationFile.author">author</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string author</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_ModificationFile_baseModelName.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.ModificationFile.baseModelName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IData.cs/#L24">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Interfaces_ModificationFile_baseModelName" data-uid="ECellDive.Interfaces.ModificationFile.baseModelName">baseModelName</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The name of the model file this modification file is
+applied to.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -281,49 +205,15 @@
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_ModificationFile_description.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.ModificationFile.description%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IData.cs/#L26">View Source</a>
-  </span>
-  <h4 id="ECellDive_Interfaces_ModificationFile_description" data-uid="ECellDive.Interfaces.ModificationFile.description">description</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string description</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_ModificationFile_modification.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.ModificationFile.modification%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IData.cs/#L31">View Source</a>
-  </span>
-  <h4 id="ECellDive_Interfaces_ModificationFile_modification" data-uid="ECellDive.Interfaces.ModificationFile.modification">modification</h4>
-  <div class="markdown level1 summary"><p>The string describing all the modifications.</p>
+  
+  
+  <h4 id="ECellDive_Interfaces_ModificationFile_modifications" data-uid="ECellDive.Interfaces.ModificationFile.modifications">modifications</h4>
+  <div class="markdown level1 summary"><p>The list of all modifications stored in the file.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string modification</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;Modification&gt; modifications</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -335,18 +225,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="ECellDive.Interfaces.Modification.html">Modification</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_ModificationFile_name.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.ModificationFile.name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IData.cs/#L36">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Interfaces_ModificationFile_name" data-uid="ECellDive.Interfaces.ModificationFile.name">name</h4>
   <div class="markdown level1 summary"><p>Name of the file without extension.</p>
 </div>
@@ -370,6 +255,80 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="ECellDive_Interfaces_ModificationFile_GetAllCommands_" data-uid="ECellDive.Interfaces.ModificationFile.GetAllCommands*"></a>
+  <h4 id="ECellDive_Interfaces_ModificationFile_GetAllCommands" data-uid="ECellDive.Interfaces.ModificationFile.GetAllCommands">GetAllCommands()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;string[]&gt; GetAllCommands()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.String</span>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ECellDive_Interfaces_ModificationFile_GetAuthorOfMod_" data-uid="ECellDive.Interfaces.ModificationFile.GetAuthorOfMod*"></a>
+  <h4 id="ECellDive_Interfaces_ModificationFile_GetAuthorOfMod_System_Int32_" data-uid="ECellDive.Interfaces.ModificationFile.GetAuthorOfMod(System.Int32)">GetAuthorOfMod(Int32)</h4>
+  <div class="markdown level1 summary"><p>Gets the author of the modification at index <code data-dev-comment-type="paramref" class="paramref">_modIndex</code> in
+<a class="xref" href="ECellDive.Interfaces.ModificationFile.html#ECellDive_Interfaces_ModificationFile_modifications">modifications</a> if it exists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetAuthorOfMod(int _modIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">_modIndex</span></td>
+        <td><p>The index of the modification in <a class="xref" href="ECellDive.Interfaces.ModificationFile.html#ECellDive_Interfaces_ModificationFile_modifications">modifications</a>
+for which we want to get the author.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Returns the author if it exists. Otherwise, returns an empty string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -377,12 +336,6 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_ModificationFile.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.ModificationFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IData.cs/#L20" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

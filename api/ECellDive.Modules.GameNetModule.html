@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class GameNetModule
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -80,420 +80,58 @@ the game object representation of a module.</p>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
-    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
-    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
-    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
-    <div class="level5"><span class="xref">Unity.Netcode.NetworkBehaviour</span></div>
-    <div class="level6"><span class="xref">GameNetModule</span></div>
-      <div class="level7"><a class="xref" href="ECellDive.Modules.CyJsonModule.html">CyJsonModule</a></div>
-      <div class="level7"><a class="xref" href="ECellDive.Modules.CyJsonPathwayGO.html">CyJsonPathwayGO</a></div>
-      <div class="level7"><a class="xref" href="ECellDive.Modules.EdgeGO.html">EdgeGO</a></div>
-      <div class="level7"><a class="xref" href="ECellDive.Modules.NodeGO.html">NodeGO</a></div>
+    <div class="level1"><span class="xref">GameNetModule</span></div>
+      <div class="level2"><a class="xref" href="ECellDive.Modules.CyJsonModule.html">CyJsonModule</a></div>
+      <div class="level2"><a class="xref" href="ECellDive.Modules.EdgeGO.html">EdgeGO</a></div>
+      <div class="level2"><a class="xref" href="ECellDive.Modules.NodeGO.html">NodeGO</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="ECellDive.Interfaces.IDive.html">IDive</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
+    <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a></div>
+    <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a></div>
-    <div><a class="xref" href="ECellDive.Interfaces.IMlprDataBroadcast.html">IMlprDataBroadcast</a></div>
-    <div><a class="xref" href="ECellDive.Interfaces.IMlprDataRequest.html">IMlprDataRequest</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html">IMlprVisibility</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__rpc_exec_stage</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendServerRpc(System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendServerRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ServerRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__beginSendClientRpc(System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.__endSendClientRpc(Unity.Netcode.FastBufferWriter, System.UInt32, Unity.Netcode.ClientRpcParams, Unity.Netcode.RpcDelivery)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkBehaviour(System.UInt16)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkSpawn()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkDespawn()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnGainedOwnership()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnLostOwnership()</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OnNetworkObjectParentChanged(Unity.Netcode.NetworkObject)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.GetNetworkObject(System.UInt64)</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkManager</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsLocalPlayer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwner</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsServer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsClient</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsHost</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsOwnedByServer</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.IsSpawned</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObject</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.HasNetworkObject</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkObjectId</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.NetworkBehaviourId</span>
-    </div>
-    <div>
-      <span class="xref">Unity.Netcode.NetworkBehaviour.OwnerClientId</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.Invoke(System.String, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.InvokeRepeating(System.String, System.Single, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine_Auto(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(UnityEngine.Coroutine)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopAllCoroutines()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.print(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.useGUILayout</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.runInEditMode</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.enabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.isActiveAndEnabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent(System.Type, UnityEngine.Component)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type, System.Collections.Generic.List&lt;UnityEngine.Component&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.CompareTag(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.transform</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.gameObject</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.tag</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetInstanceID()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.ToString()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.name</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.hideFlags</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Modules.html">ECellDive.Modules</a></h6>
-  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="ECellDive_Modules_GameNetModule_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GameNetModule : NetworkBehaviour, IDive, IFocus, IGroupable, IHighlightable, IInfoTags, INamed, IMlprData, IMlprDataBroadcast, IMlprDataRequest, IMlprVisibility</code></pre>
+    <pre><code class="lang-csharp hljs">public class GameNetModule : NetworkBehaviour, IDive, IFocus, IGroupable, IColorHighlightableNet, IColorHighlightable, IHighlightable, IInfoTags, INamed, IMlprData, IMlprVisibility</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_m_Collider.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.m_Collider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L34">View Source</a>
-  </span>
+  
+  
+  <h4 id="ECellDive_Modules_GameNetModule_colorID" data-uid="ECellDive.Modules.GameNetModule.colorID">colorID</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int colorID</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <h4 id="ECellDive_Modules_GameNetModule_m_Collider" data-uid="ECellDive.Modules.GameNetModule.m_Collider">m_Collider</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -511,25 +149,19 @@ the game object representation of a module.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.Collider</span></td>
+        <td><span class="xref">Collider</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_m_displayInfoTagsActions.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.m_displayInfoTagsActions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L124">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_GameNetModule_m_displayInfoTagsActions" data-uid="ECellDive.Modules.GameNetModule.m_displayInfoTagsActions">m_displayInfoTagsActions</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Header(&quot;Info Tags Data&quot;)]
-public ControllersSymetricAction m_displayInfoTagsActions</code></pre>
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;InputActionReference&gt; m_displayInfoTagsActions</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -541,18 +173,13 @@ public ControllersSymetricAction m_displayInfoTagsActions</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.ControllersSymetricAction.html">ControllersSymetricAction</a></td>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_m_LineRenderer.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.m_LineRenderer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L36">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_GameNetModule_m_LineRenderer" data-uid="ECellDive.Modules.GameNetModule.m_LineRenderer">m_LineRenderer</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -570,25 +197,19 @@ public ControllersSymetricAction m_displayInfoTagsActions</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.LineRenderer</span></td>
+        <td><span class="xref">LineRenderer</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_m_nameTextFieldContainer.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.m_nameTextFieldContainer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L152">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_GameNetModule_m_nameTextFieldContainer" data-uid="ECellDive.Modules.GameNetModule.m_nameTextFieldContainer">m_nameTextFieldContainer</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SerializeField]
-protected GameObject m_nameTextFieldContainer</code></pre>
+    <pre><code class="lang-csharp hljs">protected GameObject m_nameTextFieldContainer</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -600,18 +221,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_m_refInfoTagPrefab.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.m_refInfoTagPrefab%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L130">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_GameNetModule_m_refInfoTagPrefab" data-uid="ECellDive.Modules.GameNetModule.m_refInfoTagPrefab">m_refInfoTagPrefab</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -629,47 +245,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_m_refInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.m_refInfoTags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L143">View Source</a>
-  </span>
-  <h4 id="ECellDive_Modules_GameNetModule_m_refInfoTags" data-uid="ECellDive.Modules.GameNetModule.m_refInfoTags">m_refInfoTags</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;GameObject&gt; m_refInfoTags</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">UnityEngine.GameObject</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_m_refInfoTagsContainer.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.m_refInfoTagsContainer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L136">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_GameNetModule_m_refInfoTagsContainer" data-uid="ECellDive.Modules.GameNetModule.m_refInfoTagsContainer">m_refInfoTagsContainer</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -687,18 +269,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_m_Renderer.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.m_Renderer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L35">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_GameNetModule_m_Renderer" data-uid="ECellDive.Modules.GameNetModule.m_Renderer">m_Renderer</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -716,20 +293,39 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.Renderer</span></td>
+        <td><span class="xref">Renderer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ECellDive_Modules_GameNetModule_mpb" data-uid="ECellDive.Modules.GameNetModule.mpb">mpb</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected MaterialPropertyBlock mpb</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">MaterialPropertyBlock</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_areVisible.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.areVisible%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L121">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_areVisible_" data-uid="ECellDive.Modules.GameNetModule.areVisible*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_areVisible" data-uid="ECellDive.Modules.GameNetModule.areVisible">areVisible</h4>
   <div class="markdown level1 summary"></div>
@@ -753,20 +349,40 @@ protected GameObject m_nameTextFieldContainer</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_defaultColor.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.defaultColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L98">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_currentColor_" data-uid="ECellDive.Modules.GameNetModule.currentColor*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_currentColor" data-uid="ECellDive.Modules.GameNetModule.currentColor">currentColor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NetworkVariable&lt;Color&gt; currentColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">Color</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_defaultColor_" data-uid="ECellDive.Modules.GameNetModule.defaultColor*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_defaultColor" data-uid="ECellDive.Modules.GameNetModule.defaultColor">defaultColor</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NetworkVariable&lt;Color&gt; defaultColor { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Color defaultColor { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -778,25 +394,20 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">UnityEngine.Color</span>&gt;</td>
+        <td><span class="xref">Color</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_displayInfoTagsActions.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.displayInfoTagsActions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L125">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_displayInfoTagsActions_" data-uid="ECellDive.Modules.GameNetModule.displayInfoTagsActions*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_displayInfoTagsActions" data-uid="ECellDive.Modules.GameNetModule.displayInfoTagsActions">displayInfoTagsActions</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ControllersSymetricAction displayInfoTagsActions { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;InputActionReference&gt; displayInfoTagsActions { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -808,48 +419,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.ControllersSymetricAction.html">ControllersSymetricAction</a></td>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_diveActions.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.diveActions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L40">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_GameNetModule_diveActions_" data-uid="ECellDive.Modules.GameNetModule.diveActions*"></a>
-  <h4 id="ECellDive_Modules_GameNetModule_diveActions" data-uid="ECellDive.Modules.GameNetModule.diveActions">diveActions</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ControllersSymetricAction diveActions { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.ControllersSymetricAction.html">ControllersSymetricAction</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_forceHighlight.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.forceHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L112">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_forceHighlight_" data-uid="ECellDive.Modules.GameNetModule.forceHighlight*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_forceHighlight" data-uid="ECellDive.Modules.GameNetModule.forceHighlight">forceHighlight</h4>
   <div class="markdown level1 summary"></div>
@@ -873,13 +449,8 @@ protected GameObject m_nameTextFieldContainer</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_fragmentedSourceData.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.fragmentedSourceData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L169">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_fragmentedSourceData_" data-uid="ECellDive.Modules.GameNetModule.fragmentedSourceData*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_fragmentedSourceData" data-uid="ECellDive.Modules.GameNetModule.fragmentedSourceData">fragmentedSourceData</h4>
   <div class="markdown level1 summary"></div>
@@ -898,18 +469,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_grpMemberIndex.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.grpMemberIndex%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L88">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_grpMemberIndex_" data-uid="ECellDive.Modules.GameNetModule.grpMemberIndex*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_grpMemberIndex" data-uid="ECellDive.Modules.GameNetModule.grpMemberIndex">grpMemberIndex</h4>
   <div class="markdown level1 summary"></div>
@@ -933,13 +499,8 @@ protected GameObject m_nameTextFieldContainer</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_highlightColor.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.highlightColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L105">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_highlightColor_" data-uid="ECellDive.Modules.GameNetModule.highlightColor*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_highlightColor" data-uid="ECellDive.Modules.GameNetModule.highlightColor">highlightColor</h4>
   <div class="markdown level1 summary"></div>
@@ -958,18 +519,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.Color</span></td>
+        <td><span class="xref">Color</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_isActivated.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.isActivated%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L208">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_isActivated_" data-uid="ECellDive.Modules.GameNetModule.isActivated*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_isActivated" data-uid="ECellDive.Modules.GameNetModule.isActivated">isActivated</h4>
   <div class="markdown level1 summary"></div>
@@ -988,18 +544,38 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_isFocused.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.isFocused%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L78">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_isDiving_" data-uid="ECellDive.Modules.GameNetModule.isDiving*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_isDiving" data-uid="ECellDive.Modules.GameNetModule.isDiving">isDiving</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool isDiving { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_isFocused_" data-uid="ECellDive.Modules.GameNetModule.isFocused*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_isFocused" data-uid="ECellDive.Modules.GameNetModule.isFocused">isFocused</h4>
   <div class="markdown level1 summary"></div>
@@ -1023,13 +599,8 @@ protected GameObject m_nameTextFieldContainer</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_isReadyForDive.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.isReadyForDive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L68">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_isReadyForDive_" data-uid="ECellDive.Modules.GameNetModule.isReadyForDive*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_isReadyForDive" data-uid="ECellDive.Modules.GameNetModule.isReadyForDive">isReadyForDive</h4>
   <div class="markdown level1 summary"></div>
@@ -1048,18 +619,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_isReadyForGeneration.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.isReadyForGeneration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L198">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_isReadyForGeneration_" data-uid="ECellDive.Modules.GameNetModule.isReadyForGeneration*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_isReadyForGeneration" data-uid="ECellDive.Modules.GameNetModule.isReadyForGeneration">isReadyForGeneration</h4>
   <div class="markdown level1 summary"></div>
@@ -1078,18 +644,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_nameField.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.nameField%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L159">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_nameField_" data-uid="ECellDive.Modules.GameNetModule.nameField*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_nameField" data-uid="ECellDive.Modules.GameNetModule.nameField">nameField</h4>
   <div class="markdown level1 summary"></div>
@@ -1108,18 +669,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TMPro.TextMeshProUGUI</span></td>
+        <td><span class="xref">TextMeshProUGUI</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_nameTextFieldContainer.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.nameTextFieldContainer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L153">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_nameTextFieldContainer_" data-uid="ECellDive.Modules.GameNetModule.nameTextFieldContainer*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_nameTextFieldContainer" data-uid="ECellDive.Modules.GameNetModule.nameTextFieldContainer">nameTextFieldContainer</h4>
   <div class="markdown level1 summary"></div>
@@ -1138,18 +694,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_nbClientReadyLoaded.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.nbClientReadyLoaded%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L190">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_nbClientReadyLoaded_" data-uid="ECellDive.Modules.GameNetModule.nbClientReadyLoaded*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_nbClientReadyLoaded" data-uid="ECellDive.Modules.GameNetModule.nbClientReadyLoaded">nbClientReadyLoaded</h4>
   <div class="markdown level1 summary"></div>
@@ -1168,18 +719,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_refInfoTagPrefab.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.refInfoTagPrefab%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L131">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_refInfoTagPrefab_" data-uid="ECellDive.Modules.GameNetModule.refInfoTagPrefab*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_refInfoTagPrefab" data-uid="ECellDive.Modules.GameNetModule.refInfoTagPrefab">refInfoTagPrefab</h4>
   <div class="markdown level1 summary"></div>
@@ -1198,48 +744,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_refInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.refInfoTags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L144">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_GameNetModule_refInfoTags_" data-uid="ECellDive.Modules.GameNetModule.refInfoTags*"></a>
-  <h4 id="ECellDive_Modules_GameNetModule_refInfoTags" data-uid="ECellDive.Modules.GameNetModule.refInfoTags">refInfoTags</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;GameObject&gt; refInfoTags { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">UnityEngine.GameObject</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_refInfoTagsContainer.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.refInfoTagsContainer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L137">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_refInfoTagsContainer_" data-uid="ECellDive.Modules.GameNetModule.refInfoTagsContainer*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_refInfoTagsContainer" data-uid="ECellDive.Modules.GameNetModule.refInfoTagsContainer">refInfoTagsContainer</h4>
   <div class="markdown level1 summary"></div>
@@ -1258,18 +769,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_rootSceneId.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.rootSceneId%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L52">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_rootSceneId_" data-uid="ECellDive.Modules.GameNetModule.rootSceneId*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_rootSceneId" data-uid="ECellDive.Modules.GameNetModule.rootSceneId">rootSceneId</h4>
   <div class="markdown level1 summary"></div>
@@ -1288,18 +794,13 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_sourceDataName.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.sourceDataName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L175">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_sourceDataName_" data-uid="ECellDive.Modules.GameNetModule.sourceDataName*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_sourceDataName" data-uid="ECellDive.Modules.GameNetModule.sourceDataName">sourceDataName</h4>
   <div class="markdown level1 summary"></div>
@@ -1323,13 +824,8 @@ protected GameObject m_nameTextFieldContainer</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_sourceDataNbFrags.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.sourceDataNbFrags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L182">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_sourceDataNbFrags_" data-uid="ECellDive.Modules.GameNetModule.sourceDataNbFrags*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_sourceDataNbFrags" data-uid="ECellDive.Modules.GameNetModule.sourceDataNbFrags">sourceDataNbFrags</h4>
   <div class="markdown level1 summary"></div>
@@ -1353,13 +849,8 @@ protected GameObject m_nameTextFieldContainer</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_targetSceneId.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.targetSceneId%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L60">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_targetSceneId_" data-uid="ECellDive.Modules.GameNetModule.targetSceneId*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_targetSceneId" data-uid="ECellDive.Modules.GameNetModule.targetSceneId">targetSceneId</h4>
   <div class="markdown level1 summary"></div>
@@ -1378,20 +869,74 @@ protected GameObject m_nameTextFieldContainer</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.NetworkVariable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="xref">NetworkVariable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_AssembleFragmentedData.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.AssembleFragmentedData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L448">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_ApplyColor_" data-uid="ECellDive.Modules.GameNetModule.ApplyColor*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_ApplyColor_Color_" data-uid="ECellDive.Modules.GameNetModule.ApplyColor(Color)">ApplyColor(Color)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ApplyColor(Color _color)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">_color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_ApplyCurrentColorChange_" data-uid="ECellDive.Modules.GameNetModule.ApplyCurrentColorChange*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_ApplyCurrentColorChange_Color_Color_" data-uid="ECellDive.Modules.GameNetModule.ApplyCurrentColorChange(Color,Color)">ApplyCurrentColorChange(Color, Color)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ApplyCurrentColorChange(Color _previous, Color _current)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">_previous</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">_current</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_AssembleFragmentedData_" data-uid="ECellDive.Modules.GameNetModule.AssembleFragmentedData*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_AssembleFragmentedData" data-uid="ECellDive.Modules.GameNetModule.AssembleFragmentedData">AssembleFragmentedData()</h4>
   <div class="markdown level1 summary"></div>
@@ -1400,13 +945,8 @@ protected GameObject m_nameTextFieldContainer</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual void AssembleFragmentedData()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_Awake.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.Awake%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L215">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_Awake_" data-uid="ECellDive.Modules.GameNetModule.Awake*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_Awake" data-uid="ECellDive.Modules.GameNetModule.Awake">Awake()</h4>
   <div class="markdown level1 summary"></div>
@@ -1415,21 +955,40 @@ protected GameObject m_nameTextFieldContainer</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected virtual void Awake()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_BroadcastSourceDataFragClientRpc_System_Byte___.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.BroadcastSourceDataFragClientRpc(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L504">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_BroadcastSourceDataC_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataC*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataC" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataC">BroadcastSourceDataC()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator BroadcastSourceDataC()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_BroadcastSourceDataFragClientRpc_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataFragClientRpc*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataFragClientRpc_System_Byte___" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataFragClientRpc(System.Byte[])">BroadcastSourceDataFragClientRpc(Byte[])</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ClientRpc]
-public void BroadcastSourceDataFragClientRpc(byte[] _fragment)</code></pre>
+    <pre><code class="lang-csharp hljs">public void BroadcastSourceDataFragClientRpc(byte[] _fragment)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1448,15 +1007,10 @@ public void BroadcastSourceDataFragClientRpc(byte[] _fragment)</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.BroadcastSourceDataFragsC(System.Collections.Generic.List%7BSystem.Byte%5B%5D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L561">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_BroadcastSourceDataFragsC_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataFragsC*"></a>
-  <h4 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataFragsC(System.Collections.Generic.List{System.Byte[]})">BroadcastSourceDataFragsC(List&lt;Byte[]&gt;)</h4>
+  <h4 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataFragsC_List_System_Byte____" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataFragsC(List{System.Byte[]})">BroadcastSourceDataFragsC(List&lt;Byte[]&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1474,7 +1028,7 @@ public void BroadcastSourceDataFragClientRpc(byte[] _fragment)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
         <td><span class="parametername">_fragmentedSourceData</span></td>
         <td></td>
       </tr>
@@ -1490,26 +1044,20 @@ public void BroadcastSourceDataFragClientRpc(byte[] _fragment)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td><span class="xref">IEnumerator</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_BroadcastSourceDataFragServerRpc_System_Byte___.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.BroadcastSourceDataFragServerRpc(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L539">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_BroadcastSourceDataFragServerRpc_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataFragServerRpc*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataFragServerRpc_System_Byte___" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataFragServerRpc(System.Byte[])">BroadcastSourceDataFragServerRpc(Byte[])</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ServerRpc]
-public void BroadcastSourceDataFragServerRpc(byte[] _fragment)</code></pre>
+    <pre><code class="lang-csharp hljs">public void BroadcastSourceDataFragServerRpc(byte[] _fragment)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1528,21 +1076,15 @@ public void BroadcastSourceDataFragServerRpc(byte[] _fragment)</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_BroadcastSourceDataNameClientRpc_System_Byte___.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.BroadcastSourceDataNameClientRpc(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L519">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNameClientRpc_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNameClientRpc*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNameClientRpc_System_Byte___" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNameClientRpc(System.Byte[])">BroadcastSourceDataNameClientRpc(Byte[])</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ClientRpc]
-public void BroadcastSourceDataNameClientRpc(byte[] _name)</code></pre>
+    <pre><code class="lang-csharp hljs">public void BroadcastSourceDataNameClientRpc(byte[] _name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1561,21 +1103,15 @@ public void BroadcastSourceDataNameClientRpc(byte[] _name)</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_BroadcastSourceDataNameServerRpc_System_Byte___.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.BroadcastSourceDataNameServerRpc(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L547">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNameServerRpc_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNameServerRpc*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNameServerRpc_System_Byte___" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNameServerRpc(System.Byte[])">BroadcastSourceDataNameServerRpc(Byte[])</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ServerRpc]
-public void BroadcastSourceDataNameServerRpc(byte[] _name)</code></pre>
+    <pre><code class="lang-csharp hljs">public void BroadcastSourceDataNameServerRpc(byte[] _name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1594,21 +1130,15 @@ public void BroadcastSourceDataNameServerRpc(byte[] _name)</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsClientRpc_System_UInt16_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.BroadcastSourceDataNbFragsClientRpc(System.UInt16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L529">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsClientRpc_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNbFragsClientRpc*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsClientRpc_System_UInt16_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNbFragsClientRpc(System.UInt16)">BroadcastSourceDataNbFragsClientRpc(UInt16)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ClientRpc]
-public void BroadcastSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags)</code></pre>
+    <pre><code class="lang-csharp hljs">public void BroadcastSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1627,21 +1157,15 @@ public void BroadcastSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags)</code
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsServerRpc_System_UInt16_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.BroadcastSourceDataNbFragsServerRpc(System.UInt16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L555">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsServerRpc_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNbFragsServerRpc*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsServerRpc_System_UInt16_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNbFragsServerRpc(System.UInt16)">BroadcastSourceDataNbFragsServerRpc(UInt16)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ServerRpc]
-public void BroadcastSourceDataNbFragsServerRpc(ushort _sourceDataNbFrags)</code></pre>
+    <pre><code class="lang-csharp hljs">public void BroadcastSourceDataNbFragsServerRpc(ushort _sourceDataNbFrags)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1660,47 +1184,41 @@ public void BroadcastSourceDataNbFragsServerRpc(ushort _sourceDataNbFrags)</code
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_ConfirmSourceDataReceptionServerRpc.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.ConfirmSourceDataReceptionServerRpc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L453">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_ConfirmSourceDataReceptionServerRpc_" data-uid="ECellDive.Modules.GameNetModule.ConfirmSourceDataReceptionServerRpc*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_ConfirmSourceDataReceptionServerRpc" data-uid="ECellDive.Modules.GameNetModule.ConfirmSourceDataReceptionServerRpc">ConfirmSourceDataReceptionServerRpc()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ServerRpc(RequireOwnership = false)]
-public void ConfirmSourceDataReceptionServerRpc()</code></pre>
+    <pre><code class="lang-csharp hljs">public void ConfirmSourceDataReceptionServerRpc()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_DirectDiveIn.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.DirectDiveIn%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L278">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_DirectDiveIn_" data-uid="ECellDive.Modules.GameNetModule.DirectDiveIn*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_DirectDiveIn" data-uid="ECellDive.Modules.GameNetModule.DirectDiveIn">DirectDiveIn()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The public interface to call when a user is trying to dive into
+a module that another user has already generated: all the
+physical objects representing the data has ALREADY been instantiated
+in the scene and the NetworkObjects have ALREADY been replicated
+across the multiplayer network.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void DirectDiveIn()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_DirectDiveInC.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.DirectDiveInC%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L283">View Source</a>
-  </span>
+  <h5 id="ECellDive_Modules_GameNetModule_DirectDiveIn_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Asynchronous: it calls the coroutine <a class="xref" href="ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_DirectDiveInC">DirectDiveInC()</a></p>
+</div>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_DirectDiveInC_" data-uid="ECellDive.Modules.GameNetModule.DirectDiveInC*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_DirectDiveInC" data-uid="ECellDive.Modules.GameNetModule.DirectDiveInC">DirectDiveInC()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Coroutine started by <a class="xref" href="ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_DirectDiveIn">DirectDiveIn()</a>.
+Transfers the user to the dive scene associated to the module.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1716,25 +1234,20 @@ public void ConfirmSourceDataReceptionServerRpc()</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td><span class="xref">IEnumerator</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_DirectRecieveSourceData_System_Byte___System_Collections_Generic_List_System_Byte____.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.DirectRecieveSourceData(System.Byte%5B%5D%2CSystem.Collections.Generic.List%7BSystem.Byte%5B%5D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L480">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_GameNetModule_DirectRecieveSourceData_" data-uid="ECellDive.Modules.GameNetModule.DirectRecieveSourceData*"></a>
-  <h4 id="ECellDive_Modules_GameNetModule_DirectRecieveSourceData_System_Byte___System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Modules.GameNetModule.DirectRecieveSourceData(System.Byte[],System.Collections.Generic.List{System.Byte[]})">DirectRecieveSourceData(Byte[], List&lt;Byte[]&gt;)</h4>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_DirectReceiveSourceData_" data-uid="ECellDive.Modules.GameNetModule.DirectReceiveSourceData*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_DirectReceiveSourceData_System_Byte___List_System_Byte____" data-uid="ECellDive.Modules.GameNetModule.DirectReceiveSourceData(System.Byte[],List{System.Byte[]})">DirectReceiveSourceData(Byte[], List&lt;Byte[]&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void DirectRecieveSourceData(byte[] _sourceDataName, List&lt;byte[]&gt; _fragmentedSourceData)</code></pre>
+    <pre><code class="lang-csharp hljs">public void DirectReceiveSourceData(byte[] _sourceDataName, List&lt;byte[]&gt; _fragmentedSourceData)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1752,67 +1265,60 @@ public void ConfirmSourceDataReceptionServerRpc()</code></pre>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
         <td><span class="parametername">_fragmentedSourceData</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_DisplayInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.DisplayInfoTags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L370">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_DisplayInfoTags_" data-uid="ECellDive.Modules.GameNetModule.DisplayInfoTags*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_DisplayInfoTags" data-uid="ECellDive.Modules.GameNetModule.DisplayInfoTags">DisplayInfoTags()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Make the InfoTags visible in the scene</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void DisplayInfoTags()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_DisplayName.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.DisplayName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L419">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_DisplayName_" data-uid="ECellDive.Modules.GameNetModule.DisplayName*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_DisplayName" data-uid="ECellDive.Modules.GameNetModule.DisplayName">DisplayName()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Makes the name field visible (using GameObject.SetActive and the like)</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual void DisplayName()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_GenerativeDiveIn.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.GenerativeDiveIn%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L296">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_GenerativeDiveIn_" data-uid="ECellDive.Modules.GameNetModule.GenerativeDiveIn*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_GenerativeDiveIn" data-uid="ECellDive.Modules.GameNetModule.GenerativeDiveIn">GenerativeDiveIn()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The public interface to call when a user is trying to dive into
+a module that has NOT been generated yet: all the physical objects
+representing the data has NOT been instantiated yet in the
+scene and the NetworkObjects have NOT been replicated yet
+across the multiplayer network.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void GenerativeDiveIn()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_GenerativeDiveInC.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.GenerativeDiveInC%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L301">View Source</a>
-  </span>
+  <h5 id="ECellDive_Modules_GameNetModule_GenerativeDiveIn_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Asynchronous: it calls the coroutine <a class="xref" href="ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_GenerativeDiveInC">GenerativeDiveInC()</a></p>
+</div>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_GenerativeDiveInC_" data-uid="ECellDive.Modules.GameNetModule.GenerativeDiveInC*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_GenerativeDiveInC" data-uid="ECellDive.Modules.GameNetModule.GenerativeDiveInC">GenerativeDiveInC()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Coroutine started by <a class="xref" href="ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_GenerativeDiveIn">GenerativeDiveIn()</a>.
+Generates the content of the module before transfering the diver
+to the dive scene.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1828,21 +1334,17 @@ public void ConfirmSourceDataReceptionServerRpc()</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td><span class="xref">IEnumerator</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_GetName.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.GetName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L425">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_GetName_" data-uid="ECellDive.Modules.GameNetModule.GetName*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_GetName" data-uid="ECellDive.Modules.GameNetModule.GetName">GetName()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the value stored in <a class="xref" href="ECellDive.Interfaces.INamed.html#ECellDive_Interfaces_INamed_nameField">nameField</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1859,50 +1361,39 @@ public void ConfirmSourceDataReceptionServerRpc()</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>The text value of <a class="xref" href="ECellDive.Interfaces.INamed.html#ECellDive_Interfaces_INamed_nameField">nameField</a></p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_HideInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.HideInfoTags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L378">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_HideInfoTags_" data-uid="ECellDive.Modules.GameNetModule.HideInfoTags*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_HideInfoTags" data-uid="ECellDive.Modules.GameNetModule.HideInfoTags">HideInfoTags()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Make the InfoTags invisible in the scene</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void HideInfoTags()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_HideName.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.HideName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L430">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_HideName_" data-uid="ECellDive.Modules.GameNetModule.HideName*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_HideName" data-uid="ECellDive.Modules.GameNetModule.HideName">HideName()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Makes the name field invisible.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void HideName()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_InstantiateInfoTag_UnityEngine_Vector2_System_String_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.InstantiateInfoTag(UnityEngine.Vector2%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L386">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_InstantiateInfoTag_" data-uid="ECellDive.Modules.GameNetModule.InstantiateInfoTag*"></a>
-  <h4 id="ECellDive_Modules_GameNetModule_InstantiateInfoTag_UnityEngine_Vector2_System_String_" data-uid="ECellDive.Modules.GameNetModule.InstantiateInfoTag(UnityEngine.Vector2,System.String)">InstantiateInfoTag(Vector2, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="ECellDive_Modules_GameNetModule_InstantiateInfoTag_Vector2_System_String_" data-uid="ECellDive.Modules.GameNetModule.InstantiateInfoTag(Vector2,System.String)">InstantiateInfoTag(Vector2, String)</h4>
+  <div class="markdown level1 summary"><p>Instantiate one info tag gameobject.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1919,27 +1410,27 @@ public void ConfirmSourceDataReceptionServerRpc()</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.Vector2</span></td>
+        <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">_xyPosition</span></td>
-        <td></td>
+        <td><p>The X and Y positions.
+The Z position will be set to 0.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">_content</span></td>
-        <td></td>
+        <td><p>The info to display.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_InstantiateInfoTags_System_String___.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.InstantiateInfoTags(System.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L394">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_InstantiateInfoTags_" data-uid="ECellDive.Modules.GameNetModule.InstantiateInfoTags*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_InstantiateInfoTags_System_String___" data-uid="ECellDive.Modules.GameNetModule.InstantiateInfoTags(System.String[])">InstantiateInfoTags(String[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Instantiates all info tags of a module based on the
+info stored in <code data-dev-comment-type="paramref" class="paramref">_content</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1958,17 +1449,28 @@ public void ConfirmSourceDataReceptionServerRpc()</code></pre>
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">_content</span></td>
-        <td></td>
+        <td><p>The array storing the information
+to display within text fields of the tags.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_ManageActivationStatus_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.ManageActivationStatus(System.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L575">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_LookAt_" data-uid="ECellDive.Modules.GameNetModule.LookAt*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_LookAt" data-uid="ECellDive.Modules.GameNetModule.LookAt">LookAt()</h4>
+  <div class="markdown level1 summary"><p>Will rotate the module to face the active camera.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LookAt()</code></pre>
+  </div>
+  <h5 id="ECellDive_Modules_GameNetModule_LookAt_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Callback set in the editor</p>
+</div>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_ManageActivationStatus_" data-uid="ECellDive.Modules.GameNetModule.ManageActivationStatus*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_ManageActivationStatus_System_Boolean_System_Boolean_" data-uid="ECellDive.Modules.GameNetModule.ManageActivationStatus(System.Boolean,System.Boolean)">ManageActivationStatus(Boolean, Boolean)</h4>
   <div class="markdown level1 summary"></div>
@@ -1999,13 +1501,8 @@ public void ConfirmSourceDataReceptionServerRpc()</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_NetHide.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.NetHide%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L580">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_NetHide_" data-uid="ECellDive.Modules.GameNetModule.NetHide*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_NetHide" data-uid="ECellDive.Modules.GameNetModule.NetHide">NetHide()</h4>
   <div class="markdown level1 summary"></div>
@@ -2014,21 +1511,15 @@ public void ConfirmSourceDataReceptionServerRpc()</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual void NetHide()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_NetHideClientRpc_Unity_Netcode_ClientRpcParams_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.NetHideClientRpc(Unity.Netcode.ClientRpcParams)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L607">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_NetHideClientRpc_" data-uid="ECellDive.Modules.GameNetModule.NetHideClientRpc*"></a>
-  <h4 id="ECellDive_Modules_GameNetModule_NetHideClientRpc_Unity_Netcode_ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.NetHideClientRpc(Unity.Netcode.ClientRpcParams)">NetHideClientRpc(ClientRpcParams)</h4>
+  <h4 id="ECellDive_Modules_GameNetModule_NetHideClientRpc_ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.NetHideClientRpc(ClientRpcParams)">NetHideClientRpc(ClientRpcParams)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ClientRpc]
-public virtual void NetHideClientRpc(ClientRpcParams _clientRpcParams)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void NetHideClientRpc(ClientRpcParams _clientRpcParams)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2041,19 +1532,14 @@ public virtual void NetHideClientRpc(ClientRpcParams _clientRpcParams)</code></p
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.ClientRpcParams</span></td>
+        <td><span class="xref">ClientRpcParams</span></td>
         <td><span class="parametername">_clientRpcParams</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_NetShow.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.NetShow%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L613">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_NetShow_" data-uid="ECellDive.Modules.GameNetModule.NetShow*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_NetShow" data-uid="ECellDive.Modules.GameNetModule.NetShow">NetShow()</h4>
   <div class="markdown level1 summary"></div>
@@ -2062,21 +1548,15 @@ public virtual void NetHideClientRpc(ClientRpcParams _clientRpcParams)</code></p
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual void NetShow()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_NetShowClientRpc_Unity_Netcode_ClientRpcParams_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.NetShowClientRpc(Unity.Netcode.ClientRpcParams)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L640">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_NetShowClientRpc_" data-uid="ECellDive.Modules.GameNetModule.NetShowClientRpc*"></a>
-  <h4 id="ECellDive_Modules_GameNetModule_NetShowClientRpc_Unity_Netcode_ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.NetShowClientRpc(Unity.Netcode.ClientRpcParams)">NetShowClientRpc(ClientRpcParams)</h4>
+  <h4 id="ECellDive_Modules_GameNetModule_NetShowClientRpc_ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.NetShowClientRpc(ClientRpcParams)">NetShowClientRpc(ClientRpcParams)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ClientRpc]
-public virtual void NetShowClientRpc(ClientRpcParams _clientRpcParams)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void NetShowClientRpc(ClientRpcParams _clientRpcParams)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2089,19 +1569,14 @@ public virtual void NetShowClientRpc(ClientRpcParams _clientRpcParams)</code></p
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Unity.Netcode.ClientRpcParams</span></td>
+        <td><span class="xref">ClientRpcParams</span></td>
         <td><span class="parametername">_clientRpcParams</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_OnDestroy.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.OnDestroy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L238">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_OnDestroy_" data-uid="ECellDive.Modules.GameNetModule.OnDestroy*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_OnDestroy" data-uid="ECellDive.Modules.GameNetModule.OnDestroy">OnDestroy()</h4>
   <div class="markdown level1 summary"></div>
@@ -2110,23 +1585,25 @@ public virtual void NetShowClientRpc(ClientRpcParams _clientRpcParams)</code></p
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnDestroy()</code></pre>
   </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Unity.Netcode.NetworkBehaviour.OnDestroy()</span></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_RequestSetActiveServerRpc_System_Boolean_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.RequestSetActiveServerRpc(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L646">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_OnNetworkSpawn_" data-uid="ECellDive.Modules.GameNetModule.OnNetworkSpawn*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_OnNetworkSpawn" data-uid="ECellDive.Modules.GameNetModule.OnNetworkSpawn">OnNetworkSpawn()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnNetworkSpawn()</code></pre>
+  </div>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_RequestSetActiveServerRpc_" data-uid="ECellDive.Modules.GameNetModule.RequestSetActiveServerRpc*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_RequestSetActiveServerRpc_System_Boolean_" data-uid="ECellDive.Modules.GameNetModule.RequestSetActiveServerRpc(System.Boolean)">RequestSetActiveServerRpc(Boolean)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ServerRpc(RequireOwnership = false)]
-public void RequestSetActiveServerRpc(bool _active)</code></pre>
+    <pre><code class="lang-csharp hljs">public void RequestSetActiveServerRpc(bool _active)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2145,21 +1622,15 @@ public void RequestSetActiveServerRpc(bool _active)</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_RequestSourceDataGenerationServerRpc_System_UInt64_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.RequestSourceDataGenerationServerRpc(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L494">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_RequestSourceDataGenerationServerRpc_" data-uid="ECellDive.Modules.GameNetModule.RequestSourceDataGenerationServerRpc*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_RequestSourceDataGenerationServerRpc_System_UInt64_" data-uid="ECellDive.Modules.GameNetModule.RequestSourceDataGenerationServerRpc(System.UInt64)">RequestSourceDataGenerationServerRpc(UInt64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ServerRpc(RequireOwnership = false)]
-public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2178,20 +1649,26 @@ public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientI
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_SetDefaultColor_UnityEngine_Color_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.SetDefaultColor(UnityEngine.Color)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L350">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_GameNetModule_SetDefaultColor_" data-uid="ECellDive.Modules.GameNetModule.SetDefaultColor*"></a>
-  <h4 id="ECellDive_Modules_GameNetModule_SetDefaultColor_UnityEngine_Color_" data-uid="ECellDive.Modules.GameNetModule.SetDefaultColor(UnityEngine.Color)">SetDefaultColor(Color)</h4>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_SelfDestroyServerRpc_" data-uid="ECellDive.Modules.GameNetModule.SelfDestroyServerRpc*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_SelfDestroyServerRpc" data-uid="ECellDive.Modules.GameNetModule.SelfDestroyServerRpc">SelfDestroyServerRpc()</h4>
+  <div class="markdown level1 summary"><p>The method to call when we wish the server to destroy a GameNetModule.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SelfDestroyServerRpc()</code></pre>
+  </div>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_SendSourceDataC_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataC*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_SendSourceDataC_System_UInt64_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataC(System.UInt64)">SendSourceDataC(UInt64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void SetDefaultColor(Color _c)</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerator SendSourceDataC(ulong _targetClientID)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2204,84 +1681,234 @@ public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientI
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.Color</span></td>
-        <td><span class="parametername">_c</span></td>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">_targetClientID</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_SetFocus.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.SetFocus%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L337">View Source</a>
-  </span>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_SendSourceDataFragClientRpc_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataFragClientRpc*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_SendSourceDataFragClientRpc_System_Byte___ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataFragClientRpc(System.Byte[],ClientRpcParams)">SendSourceDataFragClientRpc(Byte[], ClientRpcParams)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SendSourceDataFragClientRpc(byte[] _fragment, ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">_fragment</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ClientRpcParams</span></td>
+        <td><span class="parametername">_clientRpcParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_SendSourceDataFragsC_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataFragsC*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_SendSourceDataFragsC_List_System_Byte____ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataFragsC(List{System.Byte[]},ClientRpcParams)">SendSourceDataFragsC(List&lt;Byte[]&gt;, ClientRpcParams)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator SendSourceDataFragsC(List&lt;byte[]&gt; _fragmentedSourceData, ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td><span class="parametername">_fragmentedSourceData</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ClientRpcParams</span></td>
+        <td><span class="parametername">_clientRpcParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_SendSourceDataNameClientRpc_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataNameClientRpc*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_SendSourceDataNameClientRpc_System_Byte___ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataNameClientRpc(System.Byte[],ClientRpcParams)">SendSourceDataNameClientRpc(Byte[], ClientRpcParams)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SendSourceDataNameClientRpc(byte[] _name, ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">_name</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ClientRpcParams</span></td>
+        <td><span class="parametername">_clientRpcParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_SendSourceDataNbFragsClientRpc_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataNbFragsClientRpc*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_SendSourceDataNbFragsClientRpc_System_UInt16_ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataNbFragsClientRpc(System.UInt16,ClientRpcParams)">SendSourceDataNbFragsClientRpc(UInt16, ClientRpcParams)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SendSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags, ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt16</span></td>
+        <td><span class="parametername">_sourceDataNbFrags</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ClientRpcParams</span></td>
+        <td><span class="parametername">_clientRpcParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_SetCurrentColorToDefaultServerRpc_" data-uid="ECellDive.Modules.GameNetModule.SetCurrentColorToDefaultServerRpc*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_SetCurrentColorToDefaultServerRpc" data-uid="ECellDive.Modules.GameNetModule.SetCurrentColorToDefaultServerRpc">SetCurrentColorToDefaultServerRpc()</h4>
+  <div class="markdown level1 summary"><p>Contacts the server to applies <see cref="!:defaultColor"></see>
+to <a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html#ECellDive_Interfaces_IColorHighlightableNet_currentColor">currentColor</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCurrentColorToDefaultServerRpc()</code></pre>
+  </div>
+  <h5 id="ECellDive_Modules_GameNetModule_SetCurrentColorToDefaultServerRpc_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Since <a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html#ECellDive_Interfaces_IColorHighlightableNet_currentColor">currentColor</a> is a <see cref="!:NetworkVariable&lt;T>"></see>, the value will be synchronized to all
+clients.</p>
+</div>
+  
+  
+  <a id="ECellDive_Modules_GameNetModule_SetCurrentColorToHighlightServerRpc_" data-uid="ECellDive.Modules.GameNetModule.SetCurrentColorToHighlightServerRpc*"></a>
+  <h4 id="ECellDive_Modules_GameNetModule_SetCurrentColorToHighlightServerRpc" data-uid="ECellDive.Modules.GameNetModule.SetCurrentColorToHighlightServerRpc">SetCurrentColorToHighlightServerRpc()</h4>
+  <div class="markdown level1 summary"><p>Contacts the server to applies <see cref="!:highlightColor"></see>
+to <a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html#ECellDive_Interfaces_IColorHighlightableNet_currentColor">currentColor</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void SetCurrentColorToHighlightServerRpc()</code></pre>
+  </div>
+  <h5 id="ECellDive_Modules_GameNetModule_SetCurrentColorToHighlightServerRpc_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Since <a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html#ECellDive_Interfaces_IColorHighlightableNet_currentColor">currentColor</a> is a <see cref="!:NetworkVariable&lt;T>"></see>, the value will be synchronized to all
+clients.</p>
+</div>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_SetFocus_" data-uid="ECellDive.Modules.GameNetModule.SetFocus*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_SetFocus" data-uid="ECellDive.Modules.GameNetModule.SetFocus">SetFocus()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A mutator to set the value of <a class="xref" href="ECellDive.Interfaces.IFocus.html#ECellDive_Interfaces_IFocus_isFocused">isFocused</a> to true.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetFocus()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_SetHighlight.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.SetHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L360">View Source</a>
-  </span>
+  <h5 id="ECellDive_Modules_GameNetModule_SetFocus_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>It is mainly used as a subscriber to<see cref="!:UnityEngine.XR.     Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(     UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)"></see></p>
+</div>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_SetHighlight_" data-uid="ECellDive.Modules.GameNetModule.SetHighlight*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_SetHighlight" data-uid="ECellDive.Modules.GameNetModule.SetHighlight">SetHighlight()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The function to call when the object should enter highlighted
+state.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual void SetHighlight()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_SetHighlightColor_UnityEngine_Color_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.SetHighlightColor(UnityEngine.Color)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L355">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_GameNetModule_SetHighlightColor_" data-uid="ECellDive.Modules.GameNetModule.SetHighlightColor*"></a>
-  <h4 id="ECellDive_Modules_GameNetModule_SetHighlightColor_UnityEngine_Color_" data-uid="ECellDive.Modules.GameNetModule.SetHighlightColor(UnityEngine.Color)">SetHighlightColor(Color)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void SetHighlightColor(Color _c)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">UnityEngine.Color</span></td>
-        <td><span class="parametername">_c</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_SetName_System_String_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.SetName(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L436">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_SetName_" data-uid="ECellDive.Modules.GameNetModule.SetName*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_SetName_System_String_" data-uid="ECellDive.Modules.GameNetModule.SetName(System.String)">SetName(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the value to display through <a class="xref" href="ECellDive.Interfaces.INamed.html#ECellDive_Interfaces_INamed_nameField">nameField</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -2300,127 +1927,72 @@ public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientI
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">_name</span></td>
-        <td></td>
+        <td><p>The name to display</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_ShowInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.ShowInfoTags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L408">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_ShowInfoTags_" data-uid="ECellDive.Modules.GameNetModule.ShowInfoTags*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_ShowInfoTags" data-uid="ECellDive.Modules.GameNetModule.ShowInfoTags">ShowInfoTags()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Make the InfoTags face in the direction of the player</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ShowInfoTags()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_ShowName.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.ShowName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L441">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_ShowName_" data-uid="ECellDive.Modules.GameNetModule.ShowName*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_ShowName" data-uid="ECellDive.Modules.GameNetModule.ShowName">ShowName()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Make the name readable from the POV of the camera</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ShowName()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_TryDiveIn_UnityEngine_InputSystem_InputAction_CallbackContext_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.TryDiveIn(UnityEngine.InputSystem.InputAction.CallbackContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L308">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_TryDiveIn_" data-uid="ECellDive.Modules.GameNetModule.TryDiveIn*"></a>
-  <h4 id="ECellDive_Modules_GameNetModule_TryDiveIn_UnityEngine_InputSystem_InputAction_CallbackContext_" data-uid="ECellDive.Modules.GameNetModule.TryDiveIn(UnityEngine.InputSystem.InputAction.CallbackContext)">TryDiveIn(InputAction.CallbackContext)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="ECellDive_Modules_GameNetModule_TryDiveIn" data-uid="ECellDive.Modules.GameNetModule.TryDiveIn">TryDiveIn()</h4>
+  <div class="markdown level1 summary"><p>The public interface to call when a user wants to dive into a
+module.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void TryDiveIn(InputAction.CallbackContext _ctx)</code></pre>
+    <pre><code class="lang-csharp hljs">public void TryDiveIn()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">UnityEngine.InputSystem.InputAction.CallbackContext</span></td>
-        <td><span class="parametername">_ctx</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_TryDiveInC.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.TryDiveInC%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L313">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_GameNetModule_TryDiveInC_" data-uid="ECellDive.Modules.GameNetModule.TryDiveInC*"></a>
-  <h4 id="ECellDive_Modules_GameNetModule_TryDiveInC" data-uid="ECellDive.Modules.GameNetModule.TryDiveInC">TryDiveInC()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual IEnumerator TryDiveInC()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.IEnumerator</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_UnsetFocus.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.UnsetFocus%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L342">View Source</a>
-  </span>
+  <h5 id="ECellDive_Modules_GameNetModule_TryDiveIn_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Asynchronous: it calls the coroutine <see cref="!:TryDiveInC"></see></p>
+</div>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_UnsetFocus_" data-uid="ECellDive.Modules.GameNetModule.UnsetFocus*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_UnsetFocus" data-uid="ECellDive.Modules.GameNetModule.UnsetFocus">UnsetFocus()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A mutator to set the value of <a class="xref" href="ECellDive.Interfaces.IFocus.html#ECellDive_Interfaces_IFocus_isFocused">isFocused</a> to false.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void UnsetFocus()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule_UnsetHighlight.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule.UnsetHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L364">View Source</a>
-  </span>
+  <h5 id="ECellDive_Modules_GameNetModule_UnsetFocus_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>It is mainly used as a subscriber to<see cref="!:UnityEngine.XR.     Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(     UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)"></see></p>
+</div>
+  
+  
   <a id="ECellDive_Modules_GameNetModule_UnsetHighlight_" data-uid="ECellDive.Modules.GameNetModule.UnsetHighlight*"></a>
   <h4 id="ECellDive_Modules_GameNetModule_UnsetHighlight" data-uid="ECellDive.Modules.GameNetModule.UnsetHighlight">UnsetHighlight()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The function to call when the object should exit the highlighted
+state.
+Checks for <a class="xref" href="ECellDive.Interfaces.IHighlightable.html#ECellDive_Interfaces_IHighlightable_forceHighlight">forceHighlight</a>.
+If false, applies <see cref="!:defaultColor"></see> to <see cref="!:currentColor"></see>.
+If true, nothing happens.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -2437,6 +2009,12 @@ public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientI
       <a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a>
   </div>
   <div>
+      <a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a>
+  </div>
+  <div>
+      <a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a>
+  </div>
+  <div>
       <a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a>
   </div>
   <div>
@@ -2449,12 +2027,6 @@ public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientI
       <a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a>
   </div>
   <div>
-      <a class="xref" href="ECellDive.Interfaces.IMlprDataBroadcast.html">IMlprDataBroadcast</a>
-  </div>
-  <div>
-      <a class="xref" href="ECellDive.Interfaces.IMlprDataRequest.html">IMlprDataRequest</a>
-  </div>
-  <div>
       <a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html">IMlprVisibility</a>
   </div>
 </article>
@@ -2464,12 +2036,6 @@ public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientI
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_GameNetModule.md&amp;value=---%0Auid%3A%20ECellDive.Modules.GameNetModule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/GameNetModule.cs/#L22" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

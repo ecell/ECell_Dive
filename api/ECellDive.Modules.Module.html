@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Module
    ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -80,342 +80,35 @@ the game object representation of a module.</p>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
-    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
-    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
-    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
-    <div class="level5"><span class="xref">Module</span></div>
-      <div class="level6"><a class="xref" href="ECellDive.Modules.GroupByModule.html">GroupByModule</a></div>
-      <div class="level6"><a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html">HttpServerBaseModule</a></div>
+    <div class="level1"><span class="xref">Module</span></div>
+      <div class="level2"><a class="xref" href="ECellDive.Modules.GroupByModule.html">GroupByModule</a></div>
+      <div class="level2"><a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html">HttpServerBaseModule</a></div>
+      <div class="level2"><a class="xref" href="ECellDive.Modules.MultiplayerModule.html">MultiplayerModule</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
+    <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
+    <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
     <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.Invoke(System.String, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.InvokeRepeating(System.String, System.Single, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine_Auto(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.Collections.IEnumerator)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(UnityEngine.Coroutine)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.StopAllCoroutines()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.print(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.useGUILayout</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.MonoBehaviour.runInEditMode</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.enabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Behaviour.isActiveAndEnabled</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent(System.Type, UnityEngine.Component)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.TryGetComponent&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponent(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents(System.Type, System.Collections.Generic.List&lt;UnityEngine.Component&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.CompareTag(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.SendMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, UnityEngine.SendMessageOptions)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.transform</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.gameObject</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Component.tag</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetInstanceID()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;(System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.ToString()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.name</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.hideFlags</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Modules.html">ECellDive.Modules</a></h6>
-  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="ECellDive_Modules_Module_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Module : MonoBehaviour, IFocus, IGroupable, IInfoTags</code></pre>
+    <pre><code class="lang-csharp hljs">public class Module : MonoBehaviour, IFocus, IGroupable, IColorHighlightable, IHighlightable, IInfoTags</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_m_displayInfoTagsActions.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.m_displayInfoTagsActions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L75">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_Module_m_displayInfoTagsActions" data-uid="ECellDive.Modules.Module.m_displayInfoTagsActions">m_displayInfoTagsActions</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Header(&quot;Info Tags Data&quot;)]
-public ControllersSymetricAction m_displayInfoTagsActions</code></pre>
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;InputActionReference&gt; m_displayInfoTagsActions</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -427,18 +120,13 @@ public ControllersSymetricAction m_displayInfoTagsActions</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.ControllersSymetricAction.html">ControllersSymetricAction</a></td>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_m_refInfoTagPrefab.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.m_refInfoTagPrefab%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L81">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_Module_m_refInfoTagPrefab" data-uid="ECellDive.Modules.Module.m_refInfoTagPrefab">m_refInfoTagPrefab</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -456,18 +144,13 @@ public ControllersSymetricAction m_displayInfoTagsActions</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_m_refInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.m_refInfoTags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L94">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_Module_m_refInfoTags" data-uid="ECellDive.Modules.Module.m_refInfoTags">m_refInfoTags</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -485,18 +168,13 @@ public ControllersSymetricAction m_displayInfoTagsActions</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">UnityEngine.GameObject</span>&gt;</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">GameObject</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_m_refInfoTagsContainer.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.m_refInfoTagsContainer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L87">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_Module_m_refInfoTagsContainer" data-uid="ECellDive.Modules.Module.m_refInfoTagsContainer">m_refInfoTagsContainer</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -514,25 +192,19 @@ public ControllersSymetricAction m_displayInfoTagsActions</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_refName.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.refName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L27">View Source</a>
-  </span>
+  
+  
   <h4 id="ECellDive_Modules_Module_refName" data-uid="ECellDive.Modules.Module.refName">refName</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Header(&quot;Module Info&quot;)]
-public TextMeshProUGUI refName</code></pre>
+    <pre><code class="lang-csharp hljs">public TextMeshProUGUI refName</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -544,20 +216,15 @@ public TextMeshProUGUI refName</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TMPro.TextMeshProUGUI</span></td>
+        <td><span class="xref">TextMeshProUGUI</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_areVisible.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.areVisible%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L72">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_areVisible_" data-uid="ECellDive.Modules.Module.areVisible*"></a>
   <h4 id="ECellDive_Modules_Module_areVisible" data-uid="ECellDive.Modules.Module.areVisible">areVisible</h4>
   <div class="markdown level1 summary"></div>
@@ -581,13 +248,8 @@ public TextMeshProUGUI refName</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_defaultColor.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.defaultColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L51">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_defaultColor_" data-uid="ECellDive.Modules.Module.defaultColor*"></a>
   <h4 id="ECellDive_Modules_Module_defaultColor" data-uid="ECellDive.Modules.Module.defaultColor">defaultColor</h4>
   <div class="markdown level1 summary"></div>
@@ -606,25 +268,20 @@ public TextMeshProUGUI refName</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.Color</span></td>
+        <td><span class="xref">Color</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_displayInfoTagsActions.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.displayInfoTagsActions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L76">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_displayInfoTagsActions_" data-uid="ECellDive.Modules.Module.displayInfoTagsActions*"></a>
   <h4 id="ECellDive_Modules_Module_displayInfoTagsActions" data-uid="ECellDive.Modules.Module.displayInfoTagsActions">displayInfoTagsActions</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ControllersSymetricAction displayInfoTagsActions { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;InputActionReference&gt; displayInfoTagsActions { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -636,18 +293,13 @@ public TextMeshProUGUI refName</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.ControllersSymetricAction.html">ControllersSymetricAction</a></td>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_forceHighlight.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.forceHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L63">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_forceHighlight_" data-uid="ECellDive.Modules.Module.forceHighlight*"></a>
   <h4 id="ECellDive_Modules_Module_forceHighlight" data-uid="ECellDive.Modules.Module.forceHighlight">forceHighlight</h4>
   <div class="markdown level1 summary"></div>
@@ -671,13 +323,8 @@ public TextMeshProUGUI refName</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_grpMemberIndex.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.grpMemberIndex%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L41">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_grpMemberIndex_" data-uid="ECellDive.Modules.Module.grpMemberIndex*"></a>
   <h4 id="ECellDive_Modules_Module_grpMemberIndex" data-uid="ECellDive.Modules.Module.grpMemberIndex">grpMemberIndex</h4>
   <div class="markdown level1 summary"></div>
@@ -701,13 +348,8 @@ public TextMeshProUGUI refName</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_highlightColor.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.highlightColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L57">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_highlightColor_" data-uid="ECellDive.Modules.Module.highlightColor*"></a>
   <h4 id="ECellDive_Modules_Module_highlightColor" data-uid="ECellDive.Modules.Module.highlightColor">highlightColor</h4>
   <div class="markdown level1 summary"></div>
@@ -726,18 +368,13 @@ public TextMeshProUGUI refName</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.Color</span></td>
+        <td><span class="xref">Color</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_isFocused.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.isFocused%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L31">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_isFocused_" data-uid="ECellDive.Modules.Module.isFocused*"></a>
   <h4 id="ECellDive_Modules_Module_isFocused" data-uid="ECellDive.Modules.Module.isFocused">isFocused</h4>
   <div class="markdown level1 summary"></div>
@@ -761,13 +398,8 @@ public TextMeshProUGUI refName</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_refInfoTagPrefab.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.refInfoTagPrefab%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L82">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_refInfoTagPrefab_" data-uid="ECellDive.Modules.Module.refInfoTagPrefab*"></a>
   <h4 id="ECellDive_Modules_Module_refInfoTagPrefab" data-uid="ECellDive.Modules.Module.refInfoTagPrefab">refInfoTagPrefab</h4>
   <div class="markdown level1 summary"></div>
@@ -786,18 +418,13 @@ public TextMeshProUGUI refName</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_refInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.refInfoTags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L95">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_refInfoTags_" data-uid="ECellDive.Modules.Module.refInfoTags*"></a>
   <h4 id="ECellDive_Modules_Module_refInfoTags" data-uid="ECellDive.Modules.Module.refInfoTags">refInfoTags</h4>
   <div class="markdown level1 summary"></div>
@@ -816,18 +443,13 @@ public TextMeshProUGUI refName</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">UnityEngine.GameObject</span>&gt;</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">GameObject</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_refInfoTagsContainer.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.refInfoTagsContainer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L88">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_refInfoTagsContainer_" data-uid="ECellDive.Modules.Module.refInfoTagsContainer*"></a>
   <h4 id="ECellDive_Modules_Module_refInfoTagsContainer" data-uid="ECellDive.Modules.Module.refInfoTagsContainer">refInfoTagsContainer</h4>
   <div class="markdown level1 summary"></div>
@@ -846,20 +468,44 @@ public TextMeshProUGUI refName</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="xref">GameObject</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_Awake.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.Awake%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L102">View Source</a>
-  </span>
+  
+  
+  <a id="ECellDive_Modules_Module_ApplyColor_" data-uid="ECellDive.Modules.Module.ApplyColor*"></a>
+  <h4 id="ECellDive_Modules_Module_ApplyColor_Color_" data-uid="ECellDive.Modules.Module.ApplyColor(Color)">ApplyColor(Color)</h4>
+  <div class="markdown level1 summary"><p>The function to call when we wish to apply a color to the material
+of the gameobject.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ApplyColor(Color _color)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">_color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="ECellDive_Modules_Module_Awake_" data-uid="ECellDive.Modules.Module.Awake*"></a>
   <h4 id="ECellDive_Modules_Module_Awake" data-uid="ECellDive.Modules.Module.Awake">Awake()</h4>
   <div class="markdown level1 summary"></div>
@@ -868,46 +514,34 @@ public TextMeshProUGUI refName</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected virtual void Awake()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_DisplayInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.DisplayInfoTags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L191">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_DisplayInfoTags_" data-uid="ECellDive.Modules.Module.DisplayInfoTags*"></a>
   <h4 id="ECellDive_Modules_Module_DisplayInfoTags" data-uid="ECellDive.Modules.Module.DisplayInfoTags">DisplayInfoTags()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Make the InfoTags visible in the scene</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void DisplayInfoTags()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_HideInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.HideInfoTags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L199">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_HideInfoTags_" data-uid="ECellDive.Modules.Module.HideInfoTags*"></a>
   <h4 id="ECellDive_Modules_Module_HideInfoTags" data-uid="ECellDive.Modules.Module.HideInfoTags">HideInfoTags()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Make the InfoTags invisible in the scene</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void HideInfoTags()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_InstantiateInfoTag_UnityEngine_Vector2_System_String_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.InstantiateInfoTag(UnityEngine.Vector2%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L207">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_InstantiateInfoTag_" data-uid="ECellDive.Modules.Module.InstantiateInfoTag*"></a>
-  <h4 id="ECellDive_Modules_Module_InstantiateInfoTag_UnityEngine_Vector2_System_String_" data-uid="ECellDive.Modules.Module.InstantiateInfoTag(UnityEngine.Vector2,System.String)">InstantiateInfoTag(Vector2, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="ECellDive_Modules_Module_InstantiateInfoTag_Vector2_System_String_" data-uid="ECellDive.Modules.Module.InstantiateInfoTag(Vector2,System.String)">InstantiateInfoTag(Vector2, String)</h4>
+  <div class="markdown level1 summary"><p>Instantiate one info tag gameobject.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -924,27 +558,27 @@ public TextMeshProUGUI refName</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.Vector2</span></td>
+        <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">_xyPosition</span></td>
-        <td></td>
+        <td><p>The X and Y positions.
+The Z position will be set to 0.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">_content</span></td>
-        <td></td>
+        <td><p>The info to display.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_InstantiateInfoTags_System_String___.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.InstantiateInfoTags(System.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L215">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_InstantiateInfoTags_" data-uid="ECellDive.Modules.Module.InstantiateInfoTags*"></a>
   <h4 id="ECellDive_Modules_Module_InstantiateInfoTags_System_String___" data-uid="ECellDive.Modules.Module.InstantiateInfoTags(System.String[])">InstantiateInfoTags(String[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Instantiates all info tags of a module based on the
+info stored in <code data-dev-comment-type="paramref" class="paramref">_content</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -963,17 +597,14 @@ public TextMeshProUGUI refName</code></pre>
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">_content</span></td>
-        <td></td>
+        <td><p>The array storing the information
+to display within text fields of the tags.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_OnDestroy.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.OnDestroy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L113">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_OnDestroy_" data-uid="ECellDive.Modules.Module.OnDestroy*"></a>
   <h4 id="ECellDive_Modules_Module_OnDestroy" data-uid="ECellDive.Modules.Module.OnDestroy">OnDestroy()</h4>
   <div class="markdown level1 summary"></div>
@@ -982,107 +613,45 @@ public TextMeshProUGUI refName</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual void OnDestroy()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_SetDefaultColor_UnityEngine_Color_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.SetDefaultColor(UnityEngine.Color)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L171">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_Module_SetDefaultColor_" data-uid="ECellDive.Modules.Module.SetDefaultColor*"></a>
-  <h4 id="ECellDive_Modules_Module_SetDefaultColor_UnityEngine_Color_" data-uid="ECellDive.Modules.Module.SetDefaultColor(UnityEngine.Color)">SetDefaultColor(Color)</h4>
-  <div class="markdown level1 summary"></div>
+  
+  
+  <a id="ECellDive_Modules_Module_SelfDestroy_" data-uid="ECellDive.Modules.Module.SelfDestroy*"></a>
+  <h4 id="ECellDive_Modules_Module_SelfDestroy" data-uid="ECellDive.Modules.Module.SelfDestroy">SelfDestroy()</h4>
+  <div class="markdown level1 summary"><p>The method to call when we wish to destroy a GameNetModule.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void SetDefaultColor(Color _c)</code></pre>
+    <pre><code class="lang-csharp hljs">public void SelfDestroy()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">UnityEngine.Color</span></td>
-        <td><span class="parametername">_c</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_SetFocus.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.SetFocus%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L158">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_SetFocus_" data-uid="ECellDive.Modules.Module.SetFocus*"></a>
   <h4 id="ECellDive_Modules_Module_SetFocus" data-uid="ECellDive.Modules.Module.SetFocus">SetFocus()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A mutator to set the value of <a class="xref" href="ECellDive.Interfaces.IFocus.html#ECellDive_Interfaces_IFocus_isFocused">isFocused</a> to true.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetFocus()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_SetHighlight.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.SetHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L181">View Source</a>
-  </span>
+  <h5 id="ECellDive_Modules_Module_SetFocus_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>It is mainly used as a subscriber to<see cref="!:UnityEngine.XR.     Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(     UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)"></see></p>
+</div>
+  
+  
   <a id="ECellDive_Modules_Module_SetHighlight_" data-uid="ECellDive.Modules.Module.SetHighlight*"></a>
   <h4 id="ECellDive_Modules_Module_SetHighlight" data-uid="ECellDive.Modules.Module.SetHighlight">SetHighlight()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The function to call when the object should enter highlighted
+state.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual void SetHighlight()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_SetHighlightColor_UnityEngine_Color_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.SetHighlightColor(UnityEngine.Color)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L176">View Source</a>
-  </span>
-  <a id="ECellDive_Modules_Module_SetHighlightColor_" data-uid="ECellDive.Modules.Module.SetHighlightColor*"></a>
-  <h4 id="ECellDive_Modules_Module_SetHighlightColor_UnityEngine_Color_" data-uid="ECellDive.Modules.Module.SetHighlightColor(UnityEngine.Color)">SetHighlightColor(Color)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void SetHighlightColor(Color _c)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">UnityEngine.Color</span></td>
-        <td><span class="parametername">_c</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_SetName_System_String_.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.SetName(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L143">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_SetName_" data-uid="ECellDive.Modules.Module.SetName*"></a>
   <h4 id="ECellDive_Modules_Module_SetName_System_String_" data-uid="ECellDive.Modules.Module.SetName(System.String)">SetName(String)</h4>
   <div class="markdown level1 summary"></div>
@@ -1108,28 +677,19 @@ public TextMeshProUGUI refName</code></pre>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_ShowInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.ShowInfoTags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L229">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_ShowInfoTags_" data-uid="ECellDive.Modules.Module.ShowInfoTags*"></a>
   <h4 id="ECellDive_Modules_Module_ShowInfoTags" data-uid="ECellDive.Modules.Module.ShowInfoTags">ShowInfoTags()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Make the InfoTags face in the direction of the player</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ShowInfoTags()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_ShowNameToPlayer.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.ShowNameToPlayer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L152">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_ShowNameToPlayer_" data-uid="ECellDive.Modules.Module.ShowNameToPlayer*"></a>
   <h4 id="ECellDive_Modules_Module_ShowNameToPlayer" data-uid="ECellDive.Modules.Module.ShowNameToPlayer">ShowNameToPlayer()</h4>
   <div class="markdown level1 summary"><p>Makes sure the name of the module's name faces the
@@ -1140,31 +700,30 @@ Player's POV and is therefore readable.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ShowNameToPlayer()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_UnsetFocus.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.UnsetFocus%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L163">View Source</a>
-  </span>
+  
+  
   <a id="ECellDive_Modules_Module_UnsetFocus_" data-uid="ECellDive.Modules.Module.UnsetFocus*"></a>
   <h4 id="ECellDive_Modules_Module_UnsetFocus" data-uid="ECellDive.Modules.Module.UnsetFocus">UnsetFocus()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A mutator to set the value of <a class="xref" href="ECellDive.Interfaces.IFocus.html#ECellDive_Interfaces_IFocus_isFocused">isFocused</a> to false.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void UnsetFocus()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module_UnsetHighlight.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module.UnsetHighlight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L185">View Source</a>
-  </span>
+  <h5 id="ECellDive_Modules_Module_UnsetFocus_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>It is mainly used as a subscriber to<see cref="!:UnityEngine.XR.     Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(     UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)"></see></p>
+</div>
+  
+  
   <a id="ECellDive_Modules_Module_UnsetHighlight_" data-uid="ECellDive.Modules.Module.UnsetHighlight*"></a>
   <h4 id="ECellDive_Modules_Module_UnsetHighlight" data-uid="ECellDive.Modules.Module.UnsetHighlight">UnsetHighlight()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The function to call when the object should exit the highlighted
+state.
+Checks for <a class="xref" href="ECellDive.Interfaces.IHighlightable.html#ECellDive_Interfaces_IHighlightable_forceHighlight">forceHighlight</a>.
+If false, applies <see cref="!:defaultColor"></see> to <see cref="!:currentColor"></see>.
+If true, nothing happens.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1178,6 +737,12 @@ Player's POV and is therefore readable.</p>
       <a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a>
   </div>
   <div>
+      <a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a>
+  </div>
+  <div>
+      <a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a>
+  </div>
+  <div>
       <a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a>
   </div>
 </article>
@@ -1187,12 +752,6 @@ Player's POV and is therefore readable.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L20" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
