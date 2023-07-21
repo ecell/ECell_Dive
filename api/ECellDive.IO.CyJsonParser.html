@@ -1,0 +1,554 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CyJsonParser
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CyJsonParser
+   ">
+    <meta name="generator" content="docfx 2.59.3.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ECellDive.IO.CyJsonParser">
+  
+  
+  <h1 id="ECellDive_IO_CyJsonParser" data-uid="ECellDive.IO.CyJsonParser" class="text-break">Class CyJsonParser
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">CyJsonParser</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.IO.html">ECellDive.IO</a></h6>
+  <h6><strong>Assembly</strong>: Assembly-CSharp.dll</h6>
+  <h5 id="ECellDive_IO_CyJsonParser_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class CyJsonParser</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_IO_CyJsonParser_GetEdges_Newtonsoft_Json_Linq_JObject_.md&amp;value=---%0Auid%3A%20ECellDive.IO.CyJsonParser.GetEdges(Newtonsoft.Json.Linq.JObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L32">View Source</a>
+  </span>
+  <a id="ECellDive_IO_CyJsonParser_GetEdges_" data-uid="ECellDive.IO.CyJsonParser.GetEdges*"></a>
+  <h4 id="ECellDive_IO_CyJsonParser_GetEdges_Newtonsoft_Json_Linq_JObject_" data-uid="ECellDive.IO.CyJsonParser.GetEdges(Newtonsoft.Json.Linq.JObject)">GetEdges(JObject)</h4>
+  <div class="markdown level1 summary"><p>Extract all the edges as a JArray from the JObject representation
+of the Cytoscape Json file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static JArray GetEdges(JObject _networkData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JObject</span></td>
+        <td><span class="parametername">_networkData</span></td>
+        <td><p>The JObject representation of the Cytoscape Json file</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JArray</span></td>
+        <td><p>The edges of a Cytoscape network as a JArray</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_IO_CyJsonParser_GetNodes_Newtonsoft_Json_Linq_JObject_.md&amp;value=---%0Auid%3A%20ECellDive.IO.CyJsonParser.GetNodes(Newtonsoft.Json.Linq.JObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L21">View Source</a>
+  </span>
+  <a id="ECellDive_IO_CyJsonParser_GetNodes_" data-uid="ECellDive.IO.CyJsonParser.GetNodes*"></a>
+  <h4 id="ECellDive_IO_CyJsonParser_GetNodes_Newtonsoft_Json_Linq_JObject_" data-uid="ECellDive.IO.CyJsonParser.GetNodes(Newtonsoft.Json.Linq.JObject)">GetNodes(JObject)</h4>
+  <div class="markdown level1 summary"><p>Extract all the nodes as a JArray from the JObject representation
+of the Cytoscape Json file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static JArray GetNodes(JObject _networkData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JObject</span></td>
+        <td><span class="parametername">_networkData</span></td>
+        <td><p>The JObject representation of a Json file</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JArray</span></td>
+        <td><p>The nodes of the Cytoscape network as a JArray</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_IO_CyJsonParser_GroupDataByKey_Newtonsoft_Json_Linq_JArray_System_String_.md&amp;value=---%0Auid%3A%20ECellDive.IO.CyJsonParser.GroupDataByKey(Newtonsoft.Json.Linq.JArray%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L74">View Source</a>
+  </span>
+  <a id="ECellDive_IO_CyJsonParser_GroupDataByKey_" data-uid="ECellDive.IO.CyJsonParser.GroupDataByKey*"></a>
+  <h4 id="ECellDive_IO_CyJsonParser_GroupDataByKey_Newtonsoft_Json_Linq_JArray_System_String_" data-uid="ECellDive.IO.CyJsonParser.GroupDataByKey(Newtonsoft.Json.Linq.JArray,System.String)">GroupDataByKey(JArray, String)</h4>
+  <div class="markdown level1 summary"><p>Extract and group the the json nodes according to a key</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;IGrouping&lt;string, JToken&gt;&gt; GroupDataByKey(JArray _data, string _key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JArray</span></td>
+        <td><span class="parametername">_data</span></td>
+        <td><p>A JArray containing json nodes.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">_key</span></td>
+        <td><p>The key to use in the &quot;group by&quot; procedure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Linq.IGrouping</span>&lt;<span class="xref">System.String</span>, <span class="xref">Newtonsoft.Json.Linq.JToken</span>&gt;&gt;</td>
+        <td><p>An IEnumerable of the nodes information. All the nodes are grouped
+per their value of the key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_IO_CyJsonParser_LookForID_Newtonsoft_Json_Linq_JToken_.md&amp;value=---%0Auid%3A%20ECellDive.IO.CyJsonParser.LookForID(Newtonsoft.Json.Linq.JToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L90">View Source</a>
+  </span>
+  <a id="ECellDive_IO_CyJsonParser_LookForID_" data-uid="ECellDive.IO.CyJsonParser.LookForID*"></a>
+  <h4 id="ECellDive_IO_CyJsonParser_LookForID_Newtonsoft_Json_Linq_JToken_" data-uid="ECellDive.IO.CyJsonParser.LookForID(Newtonsoft.Json.Linq.JToken)">LookForID(JToken)</h4>
+  <div class="markdown level1 summary"><p>Looks for either a &quot;SUID&quot; or &quot;id&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int LookForID(JToken _jToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JToken</span></td>
+        <td><span class="parametername">_jToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_IO_CyJsonParser_LookForLabel_Newtonsoft_Json_Linq_JToken_.md&amp;value=---%0Auid%3A%20ECellDive.IO.CyJsonParser.LookForLabel(Newtonsoft.Json.Linq.JToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L113">View Source</a>
+  </span>
+  <a id="ECellDive_IO_CyJsonParser_LookForLabel_" data-uid="ECellDive.IO.CyJsonParser.LookForLabel*"></a>
+  <h4 id="ECellDive_IO_CyJsonParser_LookForLabel_Newtonsoft_Json_Linq_JToken_" data-uid="ECellDive.IO.CyJsonParser.LookForLabel(Newtonsoft.Json.Linq.JToken)">LookForLabel(JToken)</h4>
+  <div class="markdown level1 summary"><p>Looks for a &quot;label&quot; field in a &quot;data&quot; field in a _JToken.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string LookForLabel(JToken _jToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JToken</span></td>
+        <td><span class="parametername">_jToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_IO_CyJsonParser_LookForName_Newtonsoft_Json_Linq_JToken_.md&amp;value=---%0Auid%3A%20ECellDive.IO.CyJsonParser.LookForName(Newtonsoft.Json.Linq.JToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L130">View Source</a>
+  </span>
+  <a id="ECellDive_IO_CyJsonParser_LookForName_" data-uid="ECellDive.IO.CyJsonParser.LookForName*"></a>
+  <h4 id="ECellDive_IO_CyJsonParser_LookForName_Newtonsoft_Json_Linq_JToken_" data-uid="ECellDive.IO.CyJsonParser.LookForName(Newtonsoft.Json.Linq.JToken)">LookForName(JToken)</h4>
+  <div class="markdown level1 summary"><p>Looks for a &quot;name&quot; field in a &quot;data&quot; field in a _JToken.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string LookForName(JToken _jToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JToken</span></td>
+        <td><span class="parametername">_jToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_IO_CyJsonParser_LookForNodePosition_Newtonsoft_Json_Linq_JToken_.md&amp;value=---%0Auid%3A%20ECellDive.IO.CyJsonParser.LookForNodePosition(Newtonsoft.Json.Linq.JToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L144">View Source</a>
+  </span>
+  <a id="ECellDive_IO_CyJsonParser_LookForNodePosition_" data-uid="ECellDive.IO.CyJsonParser.LookForNodePosition*"></a>
+  <h4 id="ECellDive_IO_CyJsonParser_LookForNodePosition_Newtonsoft_Json_Linq_JToken_" data-uid="ECellDive.IO.CyJsonParser.LookForNodePosition(Newtonsoft.Json.Linq.JToken)">LookForNodePosition(JToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector3 LookForNodePosition(JToken _node)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JToken</span></td>
+        <td><span class="parametername">_node</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_IO_CyJsonParser_LookForNodeType_Newtonsoft_Json_Linq_JToken_.md&amp;value=---%0Auid%3A%20ECellDive.IO.CyJsonParser.LookForNodeType(Newtonsoft.Json.Linq.JToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L156">View Source</a>
+  </span>
+  <a id="ECellDive_IO_CyJsonParser_LookForNodeType_" data-uid="ECellDive.IO.CyJsonParser.LookForNodeType*"></a>
+  <h4 id="ECellDive_IO_CyJsonParser_LookForNodeType_Newtonsoft_Json_Linq_JToken_" data-uid="ECellDive.IO.CyJsonParser.LookForNodeType(Newtonsoft.Json.Linq.JToken)">LookForNodeType(JToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool LookForNodeType(JToken _node)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JToken</span></td>
+        <td><span class="parametername">_node</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_IO_CyJsonParser.md&amp;value=---%0Auid%3A%20ECellDive.IO.CyJsonParser%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

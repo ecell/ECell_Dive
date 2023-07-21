@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Modification Handler </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Modification Handler ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h2 id="modification-handler">Modification Handler</h2>
+
+<p>Requires a connection to <a href="https://github.com/ecell/answer_talker">answer_talker</a>.</p>
+<img src="../../../resources/images/modules/modif_handler.jpg" alt="Remote Importer" style="height: 300px;">
+<p>This module is used to import and save modification files associated to a model loaded in one of the dive scene. One must input the IP address of the server to query available files but also to save new files (even if the buttons for these two actions are in different panels).</p>
+<h3 id="panel-parameters">Panel <em>Parameters</em></h3>
+<img src="../../../resources/images/modules/1x/modif_handler_panel.png" alt="UI point" style="height: 300px;">
+<ol>
+<li>Input Field <em>Data Server IP</em>. The IP address at which <em>answer_talker</em> is hosted. Default value is 127.0.0.1 but this only works during development if <em>answer_talker</em> is hosted on the same machine as the one we are developping ECellDive on.</li>
+<li>Input Field <em>Data Server Port</em>. The Port at which <em>answer_talker</em> is listening. Default value is 8000. This is also the default value when launching <em>answer_talker</em> so, unless you specified a port at that time, you can leave the field empty in ECellDive.</li>
+<li>Button <em>Query Base Model</em>. Will scan for all the base models loaded in ECellDive and activate the panel <em>Loaded Base Models</em> for the user to chose one.</li>
+<li>Button <em>Query Available Modification Files</em>. Will try to contact <em>answer_talker</em> at the address and port given to request the list of modification files currently available. This is fast. If the query is successful, the module will flash <span style="color:green"><em>green</em></span>; the list of availalbe files will be displayed in the popup panel <em>Modification Files</em>. If the query fails, the module will flash <span style="color:red"><em>red</em></span>. In that case, you can check the error message in the <a href="/articles/UserManual/UIMenus/log_menu.html">log</a>.</li>
+<li>Input Field <em>File Name</em>. The name of the modification file when saved on the server. If you don't input anything, the name of the file will be set by default to <em>NameOfBaseModel_yyyyMMddTHHmmssZ</em>.</li>
+<li>Button <em>Save</em>. Interactable only if a base model was selected.  Will try to contact <em>answer_talker</em> at the address and port given to save a modification file. This is fast. If the query is successful, the module will flash <span style="color:green"><em>green</em></span>; the newly created file will be accessible on <em>answer_talker</em>. You can check that by re-querying the available files by clicking on button 4. If the query fails, the module will flash <span style="color:red"><em>red</em></span>. In that case, you can check the error message in the <a href="/articles/UserManual/UIMenus/log_menu.html">log</a>. <strong>Saving a modification file is closely related to the development of the format of modification file on the side of answer_talker. The content of the saved modification file is therefore subject to a lot of changes.</strong></li>
+</ol>
+<h3 id="panel-loaded-base-models">Panel <em>Loaded Base Models</em>.</h3>
+<img src="../../../resources/images/modules/modif_handler_loadedmodel.jpg" alt="UI point" style="height: 300px;">
+<p>Displays the models loaded in the dive scenes for which we can save the current modifications as compared to when it was loaded.</p>
+<ul>
+<li>Button <em>NameOfTheModel</em>. There should be one button by model loaded in ECellDive (indescriminately of the Dive Scenes). Clicking on the button registers the target base model.</li>
+</ul>
+<h3 id="panel-modification-files">Panel <em>Modification Files</em></h3>
+<img src="../../../resources/images/modules/modif_handler_modfile.jpg" alt="UI point" style="height: 300px;">
+<p>Displays the list of modification files available in <em>answer_talker</em> if the request was successful.</p>
+<ul>
+<li>Button <em>NameOfModificationFile</em>. There should be one button by modification file saved on the server. Upon clicking the button, the modification file is imported and immediately applied to the corresponding model if it is loaded in a dive scene.</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Modules/modification_handler_module.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
