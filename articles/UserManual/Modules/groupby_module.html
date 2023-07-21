@@ -8,7 +8,7 @@
     <title>GroupBy </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="GroupBy ">
-    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -69,16 +69,17 @@
             <article class="content wrap" id="_content" data-uid="">
 <h2 id="groupby">GroupBy</h2>
 
+<img src="../../../resources/images/modules/group_mod.jpg" alt="FBA" style="height: 300px;">
 <p>This is the module used to automatically make coloured groups according to metadata of the elements loaded in the scene.</p>
-<ul>
-<li>Panel <em>Grouping Attributes</em>:
-<ul>
-<li>Scroll List. If the module detected elements it can try to group according to their metadata, then the names of the elements will be displayed in this list. For example, if a user loaded a CyJson pathway then the <em>nodes</em> and <em>edges</em> will appear.</li>
+<h3 id="panel-grouping-attributes">Panel <em>Grouping Attributes</em>:</h3>
+<img src="../../../resources/images/modules/1x/group_mod_panel.png" alt="FBA" style="height: 300px;">
+<img src="../../../resources/images/modules/1x/group_metadata_choice.png" alt="FBA" style="height: 300px;">
+<ol>
+<li>&quot;Groupable&quot; elements Scroll List. If the module detected elements it can try to group according to their metadata, then the names of the elements will be displayed in this list. For example, on the left image, the GroupBy module was added to an empty space so the list is empty; on the right image, a CyJson pathway is loaded in the dive scene then the <em>nodes</em> and <em>edges</em> will appear.</li>
 <li>Button in the Scroll List. Upon clicking on the button corresponding to an element that can undergo automatic grouping, a new scroll list will be displayed showing the metadata that can used to make the groups. If several metadata are selected then every group types will be generated individually and accessible through the <em>Groups UI Menu</em>. No set operation (such as INTERSECTION or UNION) are performed on the groups.</li>
-<li>Button <em>Process Grouping</em>. Make groups according to every metadata selected for every elements detected. Usually very fast but the time actually depends on the number of groups to generate and the number of elements loaded in the dive scene.</li>
-</ul>
-</li>
-</ul>
+<li>Button <em>Process Grouping</em>. Make groups according to every metadata selected (see item 4) for every elements detected. Usually very fast but the time actually depends on the number of groups to generate and the number of elements loaded in the dive scene.</li>
+<li>Metadata Scroll List. When clicking on one of the elements on 2. a popup window will appear to let the user decide with which metadata he wants to create groups. On the right image, we opened the possible metadata for the edges of the pathway; the user is pointing at <em>subsystems</em></li>
+</ol>
 </article>
           </div>
           
