@@ -5,7 +5,7 @@ This is a set of controls to define custom groups of elements in the Dive Scenes
 Adds elements one-by-one to the group being built. Point at the element with the ray and press the *Front Trigger*. The element is added to the group if it is not already in the group. Otherwise, the element is removed.
 
 <img src="../../../resources/images/schematics/Quest2_controller_switch_input_ray.png" alt="Group Ray Inputs" style="height: 300px;"/>
-
+<br/><br/>
 <img src="../../../resources/images/controls/left_ray_group.jpg" alt="Left Ray Group" style="height: 300px;"/>
 <img src="../../../resources/images/controls/right_ray_group.jpg" alt="Right Ray Group" style="height: 300px;"/>
 

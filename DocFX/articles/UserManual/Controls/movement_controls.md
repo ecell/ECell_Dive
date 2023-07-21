@@ -5,7 +5,7 @@ There are two alternative movement modes:
 Represented by a green ray and a green sphere at the end of the ray. The position of the sphere indicates the teleportation target. The user can teleport by pressing the *Front Trigger*. The teleportation distance can be changed using the *Joystick*.
 
 <img src="../../../resources/images/schematics/Quest2_controller_mvt_teleportation.png" alt="Teleport Inputs" style="height: 300px;"/>
-
+<br/><br/>
 <img src="../../../resources/images/controls/left_mvt_teleportation.jpg" alt="Left teleport" style="height: 300px;"/>
 <img src="../../../resources/images/controls/right_mvt_teleportation.jpg" alt="Right teleport" style="height: 300px;"/>
 
