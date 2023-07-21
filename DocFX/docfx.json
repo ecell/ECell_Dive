@@ -3,11 +3,15 @@
     {
       "src": [
         {
-          "files": ["Assembly-CSharp.csproj"],
-          "src": "../",
-          "exclude": ["**/obj/**", "**/bin/**"]
+            "src": "../",
+            "files": [
+                "Assets/**/*.cs"
+            ],
+            "exclude": [
+                "Assets/Plugins/**"
+            ]
         }
-      ],
+    ],
       "dest": "api",
       "filter": "filterConfig.yml",
       "disableGitFeatures": false,
