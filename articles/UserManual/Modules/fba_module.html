@@ -8,7 +8,7 @@
     <title>Flux Balance Analysis (FBA) </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Flux Balance Analysis (FBA) ">
-    <meta name="generator" content="docfx 2.59.4.0">
+    <meta name="generator" content="docfx 2.59.3.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -70,24 +70,25 @@
 <h2 id="flux-balance-analysis-fba">Flux Balance Analysis (FBA)</h2>
 
 <p>Requires a connection to <a href="https://github.com/ecell/answer_talker">answer_talker</a>.</p>
-<img src="../../../resources/images/modules/fba.jpg" alt="FBA" style="height: 300px;">
 <p>This is the module to request a flux balance analysis for the model currently imported.</p>
-<h3 id="the-server-parameters-pannel">The <em>Server Parameters</em> pannel:</h3>
-<img src="../../../resources/images/modules/1x/fba_panel_1.png" alt="FBA Parameters" style="height: 300px;">
-<ol>
+<ul>
+<li>The <em>Server Parameters</em> pannel:
+<ul>
 <li>Input Field <em>Data Server IP</em>. The IP address at which <em>answer_talker</em> is hosted. Default value is 127.0.0.1 but this only works during development if <em>answer_talker</em> is hosted on the same machine as the one we are developping ECellDive on.</li>
 <li>Input Field <em>Data Server Port</em>. The Port at which <em>answer_talker</em> is listening. Default value is 8000. This is also the default value when launching <em>answer_talker</em> so, unless you specified a port at that time, you can leave the field empty in ECellDive.</li>
-<li>Button <em>Run FBA</em>. Will try to perform the FBA calculations while taking into account the reactions that may have been knocked out in the loaded model. It typically takes a few seconds before being able to see the result of the FBA. During this time, the module will be animated. If the query is successful, the module will flash <span style="color:green"><em>green</em></span>; the size of the edges of the metabolic network will be updated. If the query fails, the module will flash <span style="color:red"><em>red</em></span>. In that case, you can check the error message in the <a href="/articles/UserManual/UIMenus/log_menu.html">log</a>.</li>
-</ol>
-<h3 id="the-fba-visuals-parameters-pannel">The <em>FBA Visuals Parameters</em> pannel:</h3>
-<img src="../../../resources/images/modules/1x/fba_panel_2.png" alt="FBA Parameters" style="height: 300px;">
-<ol>
+<li>Button <em>Run FBA</em>. Will try to perform the FBA calculations while taking into account the reactions that may have been knocked out in the loaded model. It typically takes a few seconds before being able to see the result of the FBA. If nothing happens check the Log Menu to see if an error was not raised.</li>
+</ul>
+</li>
+<li>The <em>FBA Visuals Parameters</em> pannel:
+<ul>
 <li>Slider <em>Lower Bound</em>. The global value used to clamp the small flux values. If a reaction's flux value is lower than the lower bound, then the lower bound value will be used when updating the visuals of the reaction edge. This makes every reaction visually identical when their flux value is lower than the lower bound.</li>
 <li>Color Button <em>Lower Bound</em>. The button used to set the color corresponding to the lower bound for the color gradient going from the lower bound to the upper bound.</li>
 <li>Slider <em>Upper Bound</em>. The global value used to clamp the big flux values. If a reaction's flux value is greater than the upper bound, then the upper bound value will be used when updating the visuals of the reaction edge. This makes every reaction visually identical when their flux value is greater than the upper bound.</li>
 <li>Color Button <em>Lower Bound</em>. The button used to set the color corresponding to the lower bound for the color gradient going from the lower bound to the upper bound.</li>
 <li>Button <em>Update Visuals</em>. Updates the visuals of every reaction edge according to the setting that were just defined. This is local, there is no connection to <em>answer_talker</em> involved so the update should be fast.</li>
-</ol>
+</ul>
+</li>
+</ul>
 </article>
           </div>
           
