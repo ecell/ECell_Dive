@@ -3,9 +3,13 @@
     {
       "src": [
         {
-          "files": ["Assembly-CSharp.csproj"],
           "src": "../",
-          "exclude": ["**/obj/**", "**/bin/**"]
+          "files": [
+            "Assets/**/*.cs"
+          ],
+          "exclude": [
+            "Assets/Plugins/**"
+          ]
         }
       ],
       "dest": "api",
@@ -44,11 +48,9 @@
 
     "overwrite": [
       {
+        "src": "../",
         "files": [
-          "apidoc/**.md"
-        ],
-        "exclude": [
-          "obj/**"
+            "Assets/Scripts/**/*.md"
         ]
       }
     ],
