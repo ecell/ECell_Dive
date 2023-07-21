@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 using HSVPicker;
 using ECellDive.Interfaces;
 using ECellDive.PlayerComponents;
-using ECellDive.UserActions;
 using ECellDive.Utility;
 
 namespace ECellDive
@@ -23,7 +22,6 @@ namespace ECellDive
             public ModulesMenuManager refModulesMenuManager;
             public GroupsMakingUIManager refGroupsMakingUIManager;
             public GroupsMenu refGroupsMenu;
-            public MultiplayerMenuManager refMultiplayerMenuManager;
 
             private void Awake()
             {
@@ -47,16 +45,19 @@ namespace ECellDive
             /// </remarks>
             public void Initialize(Player _player)
             {
-                gameObject.transform.parent = _player.gameObject.transform;
-                foreach (Transform graphicsHolders in gameObject.transform)
+                Transform graphicsHolder;
+                while (gameObject.transform.childCount > 0)
                 {
-                    graphicsHolders.GetComponent<FaceCamera>().SetTargets(
+                    graphicsHolder = gameObject.transform.GetChild(0);
+                    //Changing the parent of the UI Menus depending on their pinStatus
+                    graphicsHolder.SetParent(StaticReferencer.Instance.refInternalObjectContainer.transform);
+
+                    //Making sure they are looking at the camera from the start.
+                    graphicsHolder.GetComponent<FaceCamera>().SetTargets(
                         _player.gameObject.GetComponentInChildren<Camera>().transform);
                 }
 
                 refGroupsMenu.Initialize();
-                refMultiplayerMenuManager.Initialize();
-                _player.GetComponentInChildren<GroupsMakingManager>().SetUIManager(refGroupsMakingUIManager);
             }
 
             /// <summary>

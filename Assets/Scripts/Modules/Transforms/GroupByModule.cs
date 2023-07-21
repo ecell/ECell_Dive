@@ -4,7 +4,6 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using ECellDive.Interfaces;
 using ECellDive.IO;
-using ECellDive.SceneManagement;
 using ECellDive.UI;
 using ECellDive.Utility;
 
@@ -20,7 +19,7 @@ namespace ECellDive
             [Header("UI")]
             public GroupByAttributsManager refAttributsManager;
 
-            private Renderer refRenderer;
+            [SerializeField] private Renderer[] renderers;
             private MaterialPropertyBlock mpb;
             private int colorID;
 
@@ -38,18 +37,21 @@ namespace ECellDive
                 }
                 else
                 {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                    LogSystem.AddMessage(LogMessageTypes.Errors,
                         "The GroupBy Module could not find any data to link to.");
                 }
             }
 
             private void OnEnable()
             {
-                refRenderer = GetComponentInChildren<Renderer>();
+                Debug.Log("OnEnable", gameObject);
                 mpb = new MaterialPropertyBlock();
                 colorID = Shader.PropertyToID("_Color");
                 mpb.SetVector(colorID, defaultColor);
-                refRenderer.SetPropertyBlock(mpb);
+                foreach (Renderer _renderer in renderers)
+                {
+                    _renderer.SetPropertyBlock(mpb);
+                }
             }
 
             /// <summary>
@@ -82,12 +84,12 @@ namespace ECellDive
                 IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(data[_dataID], _attribute);
                 if (groups == null)
                 {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                    LogSystem.AddMessage(LogMessageTypes.Errors,
                         "Failed to group data by " + _attribute);
                 }
                 else
                 {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
+                    LogSystem.AddMessage(LogMessageTypes.Trace,
                         "Succesfully groupe data by " + _attribute+ $". {groups.Count()} were found.");
 
                     List<GroupData> groupsData = new List<GroupData>();
@@ -121,18 +123,26 @@ namespace ECellDive
             }
 
             #region - IHighlightable -
+
+            public override void ApplyColor(Color _color)
+            {
+                mpb.SetVector(colorID, _color);
+                foreach (Renderer _renderer in renderers)
+                {
+                    _renderer.SetPropertyBlock(mpb);
+                }
+            }
+
             public override void SetHighlight()
             {
-                mpb.SetVector(colorID, highlightColor);
-                refRenderer.SetPropertyBlock(mpb);
+                ApplyColor(highlightColor);
             }
 
             public override void UnsetHighlight()
             {
                 if (!forceHighlight)
                 {
-                    mpb.SetVector(colorID, defaultColor);
-                    refRenderer.SetPropertyBlock(mpb);
+                    ApplyColor(defaultColor);
                 }
             }
             #endregion

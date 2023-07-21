@@ -22,6 +22,13 @@ namespace ECellDive
             public bool hideOnStart = true;
             private bool colorBatchDistributed = false;
 
+            private void Start()
+            {
+                if (hideOnStart)
+                {
+                    gameObject.SetActive(false);
+                }
+            }
 
             /// <summary>
             /// Adds a <see cref="GroupUIManager"/> object at the end of the 
@@ -110,10 +117,10 @@ namespace ECellDive
             private IEnumerator DistributeColorToMembersC(Color _color, IHighlightable[] _members)
             {
                 ushort batchCounter = 0;
-                foreach (IHighlightable _member in _members)
+                foreach (IColorHighlightable _member in _members)
                 {
-                    _member.SetDefaultColor(_color);
-                    _member.UnsetHighlightServerRpc();
+                    _member.defaultColor = _color;
+                    _member.ApplyColor(_color);
 
                     batchCounter++;
 
@@ -131,13 +138,11 @@ namespace ECellDive
             /// </summary>
             public void Initialize()
             {
-                StartCoroutine(AddSemanticTermUI("Custom Groups", new List<GroupData>()));
-                if (hideOnStart)
+                if (gameObject.activeSelf)
                 {
-                    gameObject.SetActive(false);
+                    StartCoroutine(AddSemanticTermUI("Custom Groups", new List<GroupData>()));
                 }
             }
         }
     }
 }
-

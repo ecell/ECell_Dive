@@ -16,7 +16,7 @@ namespace ECellDive
         {
             [Header("General References")]
             public OptimizedVertScrollList refMessageScrollList;
-            //public GameObject refMessageItemPrefab;
+            public RectTransform refHiddenMessageStorage;
             public TextMeshProUGUI refMessageSpace;
 
             [Header("Mutators")]
@@ -24,47 +24,33 @@ namespace ECellDive
             
             [Tooltip(
                 "Must be in the same order as " +
-                "LogSystem.MessageTypes")]
+                "LogSystem.LogMessageTypes")]
             public Toggle[] toggleIndividuals;
             public Color[] messageTypeColors;
 
-            private bool[] messagesActivity;
-
-            private List<GameObject> messages;
+            
 
             // Start is called before the first frame update
             void Start()
             {
                 LogSystem.refLogManager = this;
 
-                messagesActivity = new bool[toggleIndividuals.Length];
-                for(int i = 0; i < toggleIndividuals.Length; i++)
-                {
-                    messagesActivity[i] = true;
-                }
+                LogSystem.traceMessages = new List<LogMessage>();
+                LogSystem.pingMessages = new List<LogMessage>();
+                LogSystem.debugMessages = new List<LogMessage>();
+                LogSystem.errorMessages = new List<LogMessage>();
 
-                messages = new List<GameObject>();
-                if (LogSystem.recordedMessages != null)//initialize with the pre-filled messages
-                {
-                    foreach (LogSystem.Message _msg in LogSystem.recordedMessages)
-                    {
-                        RecordMessage(_msg);
-                    }
-                }
+                LogSystem.AddMessage(LogMessageTypes.Trace,
+                    "This is a Trace Message");
+                LogSystem.AddMessage(LogMessageTypes.Ping,
+                    "This is a Ping Message");
+                LogSystem.AddMessage(LogMessageTypes.Debug,
+                    "This is a Debug Message");
+                LogSystem.AddMessage(LogMessageTypes.Errors,
+                    "This is a Errors Message");
 
+                DrawMessageLists();
                 gameObject.SetActive(false);
-            }
-
-            /// <summary>
-            /// Public interface to add a message to the log.
-            /// </summary>
-            public void AddMessage(LogSystem.MessageTypes _type, string _content)
-            {
-                //Debug.Log(_content);
-                LogSystem.Message msg = LogSystem.GenerateMessage(_type, _content);
-                LogSystem.RecordMessage(msg);
-                RecordMessage(msg);
-                DrawMessageList();
             }
 
             /// <summary>
@@ -82,73 +68,105 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// Set the visibility of each message teaser depending on the global
-            /// visibility of its associated type (see <seealso cref="LogSystem.MessageTypes"/>)
+            /// The public interface to callback when we wish to only update the 
+            /// drawing of one message list
             /// </summary>
-            public void DrawMessageList()
+            /// <param name="_toggleIdx">The index of the toggle that is used to 
+            /// control the visibility of an inidividual message list. 0 is for the
+            /// trace toggle, 1 for the ping toggle, 2 for the debug toggle and
+            /// 3 for the errors toggle.</param>
+            public void DrawMessageList(int _toggleIdx)
             {
-                for (int i = 0; i < LogSystem.recordedMessages.Count; i++)
+                switch (_toggleIdx)
                 {
-                    switch (messagesActivity[(int)LogSystem.recordedMessages[i].type])
-                    {
-                        case true:
-                            messages[i].SetActive(true);
-                            break;
+                    case 0:
+                        DrawMessageList(toggleIndividuals[0].isOn, LogSystem.traceMessages);
+                        break;
+                    case 1:
+                        DrawMessageList(toggleIndividuals[1].isOn, LogSystem.pingMessages);
+                        break;
+                    case 2:
+                        DrawMessageList(toggleIndividuals[2].isOn, LogSystem.debugMessages);
+                        break;
+                    case 3:
+                        DrawMessageList(toggleIndividuals[3].isOn, LogSystem.errorMessages);
+                        break;
+                }
+                refMessageScrollList.UpdateAllChildrenPositions();
+                refMessageScrollList.UpdateScrollList();
+            }
 
-                        case false:
-                            messages[i].SetActive(false);
-                            break;
+            /// <summary>
+            /// The private implementation of the operations necessary to draw an individual
+            /// message list.
+            /// </summary>
+            /// <param name="_visibility">Whether the list should be drawn.</param>
+            /// <param name="_msgList">The list to draw or hide.</param>
+            private void DrawMessageList(bool _visibility, List<LogMessage> _msgList)
+            {
+                if (_visibility)
+                {
+                    foreach (LogMessage _msg in _msgList)
+                    {
+                        _msg.refUI.SetParent(refMessageScrollList.refContent.transform);
+                        _msg.refUI.SetSiblingIndex(_msg.id);
+                    }
+                }
+                else
+                {
+                    foreach (LogMessage _msg in _msgList)
+                    {
+                        _msg.refUI.SetParent(refHiddenMessageStorage.transform);
                     }
                 }
             }
 
             /// <summary>
+            /// Updates the drawing status of every list. 
+            /// </summary>
+            public void DrawMessageLists()
+            {
+                DrawMessageList(toggleIndividuals[0].isOn, LogSystem.traceMessages);
+                DrawMessageList(toggleIndividuals[1].isOn, LogSystem.pingMessages);
+                DrawMessageList(toggleIndividuals[2].isOn, LogSystem.debugMessages);
+                DrawMessageList(toggleIndividuals[3].isOn, LogSystem.errorMessages);
+
+                refMessageScrollList.UpdateAllChildrenPositions();
+                refMessageScrollList.UpdateScrollList();
+            }
+
+            /// <summary>
             /// Forces to switch the visibility of every message of every type
-            /// (see <seealso cref="LogSystem.MessageTypes"/>).
+            /// (see <seealso cref="LogSystem.LogMessageTypes"/>).
             /// </summary>
             /// <remarks>
             /// Called back when interacting with a UI element
             /// </remarks>
             public void ForceAllMessagesActivity()
             {
-                for (int i = 0; i < toggleIndividuals.Length; i++)
-                {
-                    messagesActivity[i] = toggleAll.isOn;
-                }
-
                 foreach (Toggle _msgTypeToggle in toggleIndividuals)
                 {
                     _msgTypeToggle.isOn = toggleAll.isOn;
                 }
-                DrawMessageList();
+
+                DrawMessageLists();
             }
 
             /// <summary>
             /// Instantiate the new GUI element that will tease the content of the message.
             /// </summary>
-            private void RecordMessage(LogSystem.Message _msg)
+            public RectTransform GenerateMessageUI(string _content, LogMessageTypes _type)
             {
                 GameObject newMsg = refMessageScrollList.AddItem();
                 newMsg.SetActive(true);
                 TextMeshProUGUI msgTMP = newMsg.GetComponentInChildren<TextMeshProUGUI>();
                 if (msgTMP != null)
                 {
-                    msgTMP.text = _msg.content;
-                    msgTMP.color = messageTypeColors[(int)_msg.type];
+                    msgTMP.text = _content;
+                    msgTMP.color = messageTypeColors[(int)_type];
                 }
-                messages.Add(newMsg);
 
-                refMessageScrollList.UpdateScrollList();
-            }
-
-            /// <summary>
-            /// Switches the visibility of every message of a specific message type
-            /// (see <seealso cref="LogSystem.MessageTypes"/>).
-            /// </summary>
-            public void UpdateMessageActivity(int _typeIndex)
-            {
-                messagesActivity[_typeIndex] = toggleIndividuals[_typeIndex].isOn;
-                DrawMessageList();
+                return newMsg.GetComponent<RectTransform>();
             }
         }
     }

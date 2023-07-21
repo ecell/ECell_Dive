@@ -297,9 +297,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showOnEnable: 1
-  m_isUI: 1
-  m_popupDistance: 0
-  m_popupRelativeHeight: 0
+  m_flip: 1
+  m_popupDistance: 1.25
+  m_popupHeightOffset: -0.325
 --- !u!114 &3172622395804676243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,14 +780,14 @@ PrefabInstance:
     - target: {fileID: 4562939959562653811, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3172622395804676243}
     - target: {fileID: 4562939959562653811, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CancelGroup
+      value: Cancel
       objectReference: {fileID: 0}
     - target: {fileID: 4562939959562653811, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ECellDive.UserActions.GroupsMakingManager, Assembly-CSharp
+      value: ECellDive.UI.GroupsMakingUIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5047229576637858988, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_Name
@@ -1013,14 +1013,14 @@ PrefabInstance:
     - target: {fileID: 4562939959562653811, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3172622395804676243}
     - target: {fileID: 4562939959562653811, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ValidateGroup
+      value: Validate
       objectReference: {fileID: 0}
     - target: {fileID: 4562939959562653811, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ECellDive.UserActions.GroupsMakingManager, Assembly-CSharp
+      value: ECellDive.UI.GroupsMakingUIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5047229576637858988, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
       propertyPath: m_Name

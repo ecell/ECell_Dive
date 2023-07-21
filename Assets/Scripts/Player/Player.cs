@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using TMPro;
@@ -40,18 +39,24 @@ namespace ECellDive.PlayerComponents
             protected set => m_isActivated = value;
         }
         #endregion
+        public override void OnNetworkDespawn()
+        {
+            base.OnNetworkDespawn();
+
+            //We detach the UI from the player to avoid it being destroyed
+            //with the player network object.
+            //StaticReferencer.Instance.refAllGuiMenusContainer.transform.parent = null;
+
+            NetworkManager.Singleton.OnClientConnectedCallback -= ExchangeNames;
+
+        }
 
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
 
             nameField = m_nameTextFieldContainer.GetComponentInChildren<TextMeshProUGUI>();
-            string _nameStr = GameNetPortal.Instance.settings.playerName;
-            byte[] _nameB = System.Text.Encoding.UTF8.GetBytes(_nameStr);
-
-            NetworkManager.Singleton.OnClientConnectedCallback += clientID => ExchangeNamesServerRpc(_nameB, clientID);
-
-            //GetComponent<NetworkObject>().DestroyWithScene = true;
+            NetworkManager.Singleton.OnClientConnectedCallback += ExchangeNames;
         }
 
         [ClientRpc]
@@ -67,12 +72,20 @@ namespace ECellDive.PlayerComponents
             playerGO.GetComponent<Player>().SetName(System.Text.Encoding.UTF8.GetString(_name));
         }
 
+        private void ExchangeNames(ulong _clientId)
+        {
+            string _nameStr = GameNetPortal.Instance.settings.playerName;
+            byte[] _nameB = System.Text.Encoding.UTF8.GetBytes(_nameStr);
+            ExchangeNamesServerRpc(_nameB, _clientId);
+        }
+
         [ServerRpc(RequireOwnership = false)]
         private void ExchangeNamesServerRpc(byte[] _nameB, ulong _expeditorClientId)
         {
+            //Send the name info to the replicated copies on the other clients
             ReceiveNameClientRpc(_nameB);
 
-            ClientRpcParams expiditorClientRpcParams = new ClientRpcParams
+            ClientRpcParams expeditorClientRpcParams = new ClientRpcParams
             {
                 Send = new ClientRpcSendParams
                 {
@@ -80,6 +93,8 @@ namespace ECellDive.PlayerComponents
                 }
             };
 
+            //Send the name of the already connected clients to the newly
+            //connecting client
             string name;
             NetworkObjectReference netObjRef;
             foreach (ulong _clientId in NetworkManager.Singleton.ConnectedClientsIds)
@@ -88,7 +103,7 @@ namespace ECellDive.PlayerComponents
                 netObjRef = NetworkManager.Singleton.ConnectedClients[_clientId].PlayerObject;
                 
 
-                ReceiveNameClientRpc(netObjRef, System.Text.Encoding.UTF8.GetBytes(name), expiditorClientRpcParams);
+                ReceiveNameClientRpc(netObjRef, System.Text.Encoding.UTF8.GetBytes(name), expeditorClientRpcParams);
             }
         }
 
@@ -133,7 +148,7 @@ namespace ECellDive.PlayerComponents
         public virtual void NetHide()
         {
             Debug.Log($"{NetworkManager.Singleton.LocalClientId} devient invisible");
-            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+            LogSystem.AddMessage(LogMessageTypes.Debug,
                 $"{NetworkManager.Singleton.LocalClientId} devient invisible");
             nameField.gameObject.SetActive(false);
             head.SetActive(false);
@@ -149,7 +164,7 @@ namespace ECellDive.PlayerComponents
         public virtual void NetShow()
         {
             Debug.Log($"{NetworkManager.Singleton.LocalClientId} devient visible");
-            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug, 
+            LogSystem.AddMessage(LogMessageTypes.Debug, 
                 $"{NetworkManager.Singleton.LocalClientId} devient visible");
 
             nameField.gameObject.SetActive(true);

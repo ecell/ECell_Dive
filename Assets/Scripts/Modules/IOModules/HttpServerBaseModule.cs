@@ -52,17 +52,19 @@ namespace ECellDive
                 requestSuccess = true
             };
 
-            private Renderer refRenderer;
+            [SerializeField] private Renderer[] renderers;
             private MaterialPropertyBlock mpb;
             private int colorID;
 
             private void OnEnable()
             {
-                refRenderer = GetComponentInChildren<Renderer>();
                 mpb = new MaterialPropertyBlock();
                 colorID = Shader.PropertyToID("_Color");
                 mpb.SetVector(colorID, defaultColor);
-                refRenderer.SetPropertyBlock(mpb);
+                foreach (Renderer _renderer in renderers)
+                {
+                    _renderer.SetPropertyBlock(mpb);
+                }
             }
 
             /// <summary>
@@ -140,9 +142,10 @@ namespace ECellDive
                 requestData.requestSuccess = false;
                 using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
                 {
-                    LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug,
+                    LogSystem.AddMessage(LogMessageTypes.Debug,
                                                    "Sending Request: " + uri);
                     // Request and wait for the desired page.
+                    webRequest.timeout = 10;
                     yield return webRequest.SendWebRequest();
 
                     string[] pages = uri.Split('/');
@@ -151,23 +154,23 @@ namespace ECellDive
                     switch (webRequest.result)
                     {
                         case UnityWebRequest.Result.ConnectionError:
-                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                            LogSystem.AddMessage(LogMessageTypes.Errors,
                                                                pages[page] + ": Connection Error: " + webRequest.error);
                             break;
 
                         case UnityWebRequest.Result.DataProcessingError:
                             //Debug.LogError(pages[page] + ": Error: " + webRequest.error);
-                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                            LogSystem.AddMessage(LogMessageTypes.Errors,
                                                                pages[page] + ": Error: " + webRequest.error);
                             break;
                         case UnityWebRequest.Result.ProtocolError:
                             //Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
-                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                            LogSystem.AddMessage(LogMessageTypes.Errors,
                                                                pages[page] + ": HTTP Error: " + webRequest.error);
                             break;
                         case UnityWebRequest.Result.Success:
                             //Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                            LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
+                            LogSystem.AddMessage(LogMessageTypes.Trace,
                                                                pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                             requestData.requestText = webRequest.downloadHandler.text;
                             requestData.requestSuccess = true;
@@ -210,18 +213,26 @@ namespace ECellDive
             }
 
             #region - IHighlightable -
+
+            public override void ApplyColor(Color _color)
+            {
+                mpb.SetVector(colorID, _color);
+                foreach (Renderer _renderer in renderers)
+                {
+                    _renderer.SetPropertyBlock(mpb);
+                }
+            }
+
             public override void SetHighlight()
             {
-                mpb.SetVector(colorID, highlightColor);
-                refRenderer.SetPropertyBlock(mpb);
+                ApplyColor(highlightColor);
             }
 
             public override void UnsetHighlight()
             {
                 if (!forceHighlight)
                 {
-                    mpb.SetVector(colorID, defaultColor);
-                    refRenderer.SetPropertyBlock(mpb);
+                    ApplyColor(defaultColor);
                 }
             }
             #endregion

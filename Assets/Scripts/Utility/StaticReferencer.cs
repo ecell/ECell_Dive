@@ -6,7 +6,7 @@ using HSVPicker;
 using ECellDive.Interfaces;
 using ECellDive.Input;
 using ECellDive.UI;
-using ECellDive.UserActions;
+using ECellDive.PlayerComponents;
 
 
 namespace ECellDive.Utility
@@ -24,10 +24,19 @@ namespace ECellDive.Utility
         public static StaticReferencer Instance;
 
         [Header("UI Elements")]
-        [HideInInspector] public GameObject refAllGuiMenusContainer;
+        /// <summary>
+        /// The anchor for the modules and GUI that will be pinned to the player
+        /// </summary>
+        public GameObject refInternalObjectContainer;
+
+        /// <summary>
+        /// The anchor for the modules and GUI that will be unpinned from the player
+        /// </summary>
+        [HideInInspector] public GameObject refExternalObjectContainer;
         [HideInInspector] public GameObject refVirtualKeyboard;
         [HideInInspector] public ColorPicker refColorPicker;
         [HideInInspector] public GroupsMenu refGroupsMenu;
+        [HideInInspector] public GroupsMakingUIManager refGroupsMakingUIManager;
 
         /// <summary>
         /// The list of all gameobjects representing the information tags of 
@@ -78,14 +87,15 @@ namespace ECellDive.Utility
             if (IsLocalPlayer)
             {
                 Instance = this;
-                GUIManager guiManager = FindObjectOfType<GUIManager>();
-                refAllGuiMenusContainer = guiManager.gameObject;
+                refExternalObjectContainer = GameObject.FindGameObjectWithTag("ExternalObjectContainer");
 
+                GUIManager guiManager = refExternalObjectContainer.GetComponent<GUIManager>();
                 Instance.refVirtualKeyboard = guiManager.refVirtualKeyboard;
                 Instance.refColorPicker = guiManager.refColorPicker;
                 Instance.refGroupsMenu = guiManager.refGroupsMenu;
+                Instance.refGroupsMakingUIManager = guiManager.refGroupsMakingUIManager;
 
-                guiManager.Initialize(GetComponent<PlayerComponents.Player>());
+                guiManager.Initialize(GetComponent<Player>());
             }
         }
     }

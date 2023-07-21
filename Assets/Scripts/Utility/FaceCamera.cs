@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 using ECellDive.Interfaces;
 
@@ -16,11 +13,11 @@ namespace ECellDive
             public bool showOnEnable = true;
 
             #region - ILookAt Members -
-            [SerializeField] private bool m_isUI = false;
-            public bool isUI
+            [SerializeField] private bool m_flip = false;
+            public bool flip
             {
-                get => m_isUI;
-                private set => m_isUI = value;
+                get => m_flip;
+                private set => m_flip = value;
             }
             public Transform lookAtTarget { get; private set; }
             #endregion
@@ -33,16 +30,16 @@ namespace ECellDive
                 private set => m_popupDistance = value;
             }
 
-            [SerializeField] private float m_popupRelativeHeight;
-            public float popupRelativeHeight
+            [SerializeField] private float m_popupHeightOffset;
+            public float popupHeightOffset
             {
-                get => m_popupRelativeHeight;
-                private set => m_popupRelativeHeight = value;
+                get => m_popupHeightOffset;
+                private set => m_popupHeightOffset = value;
             }
             public Transform popupTarget { get; private set; }
             #endregion
 
-            private void Start()
+            private void Awake()
             {
                 if (Camera.main != null)
                 {
@@ -75,13 +72,10 @@ namespace ECellDive
             #region - ILookAt Methods -
             public void LookAt()
             {
-                if (isUI)
+                gameObject.transform.LookAt(lookAtTarget);
+                if (flip)
                 {
-                    Positioning.UIFaceTarget(gameObject, lookAtTarget);
-                }
-                else
-                {
-                    gameObject.transform.LookAt(lookAtTarget);
+                    gameObject.transform.Rotate(new Vector3(0, 180, 0));
                 }
             }
             #endregion
@@ -89,7 +83,7 @@ namespace ECellDive
             #region - IPopUp Methods -
             public void PopUp()
             {
-                Vector3 pos = Positioning.PlaceInFrontOfTargetLocal(popupTarget, m_popupDistance, m_popupRelativeHeight);
+                Vector3 pos = Positioning.PlaceInFrontOfTarget(popupTarget, m_popupDistance, m_popupHeightOffset);
                 transform.position = pos;
                 LookAt();
             }
@@ -97,4 +91,3 @@ namespace ECellDive
         }
     }
 }
-

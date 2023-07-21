@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using TMPro;
@@ -25,11 +23,11 @@ namespace ECellDive
             public bool hideOnStart = false;
 
             #region - ILookAt Members-
-            [SerializeField] private bool m_isUI = false;
-            public bool isUI
+            [SerializeField] private bool m_flip = false;
+            public bool flip
             {
-                get => m_isUI;
-                private set => m_isUI = value;
+                get => m_flip;
+                private set => m_flip = value;
             }
             public Transform lookAtTarget{ get; protected set; }
             #endregion
@@ -140,4 +138,3 @@ namespace ECellDive
         }
     }
 }
-

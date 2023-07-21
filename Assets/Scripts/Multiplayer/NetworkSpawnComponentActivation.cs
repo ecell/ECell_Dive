@@ -4,7 +4,6 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.Netcode;
 using ECellDive.Interfaces;
-using ECellDive.UserActions;
 using ECellDive.Utility;
 
 
@@ -30,8 +29,6 @@ namespace ECellDive.Multiplayer
         public LeftRightData<ActionBasedController> actionBasedControllers;
 
         public List<GameObject> actionInfoTags;
-
-        public GameObject UIRoot;
 
         public GameObject XRLocomotionSystemHolder;
         public GameObject XRTeleportationproviderHolder;
@@ -70,7 +67,6 @@ namespace ECellDive.Multiplayer
                     _goIT.SetActive(false);
                 }
 
-                UIRoot.SetActive(false);
                 XRLocomotionSystemHolder.SetActive(false);
                 XRTeleportationproviderHolder.SetActive(false);
                 staticReferencer.enabled = false;

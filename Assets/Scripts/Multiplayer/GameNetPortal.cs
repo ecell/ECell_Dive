@@ -5,9 +5,8 @@ using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using ECellDive.Interfaces;
-using ECellDive.Modules;
 using ECellDive.UI;
-using ECellDive.UserActions;
+using ECellDive.PlayerComponents;
 using ECellDive.Utility;
 
 namespace ECellDive.Multiplayer
@@ -200,7 +199,7 @@ namespace ECellDive.Multiplayer
                 msgStr = "<color=red>Host couldn't be started: bind and listening to " + m_settings.IP + ":" +
                      m_settings.port + " failed.\n" + "Falling back to 127.0.0.1:7777</color>";
 
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Errors,
+                LogSystem.AddMessage(LogMessageTypes.Errors,
                     "Host couldn't be started: bind and listening to " + m_settings.IP + ":" +
                      m_settings.port + " failed.\n" + "Falling back to 127.0.0.1:7777");
 
@@ -217,12 +216,11 @@ namespace ECellDive.Multiplayer
             {
                 msgStr = "<color=green>Successfully hosting at " + m_settings.IP + ":" + m_settings.port+ "</color>";
                 
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Trace,
+                LogSystem.AddMessage(LogMessageTypes.Trace,
                     "Successfully hosting at " + m_settings.IP + ":" + m_settings.port);
 
             }
             yield return new WaitForSeconds(1f);
-            MultiplayerMenuManager.SetMessage(msgStr);
         }
 
         /// <summary>
@@ -281,7 +279,7 @@ namespace ECellDive.Multiplayer
                 Debug.Log($"Setting up transport connection to {unityTransport.ConnectionData.Address}:" +
                 $"{unityTransport.ConnectionData.Port} and server listen address is {unityTransport.ConnectionData.ServerListenAddress}");
 
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug, $"Setting up transport connection to {unityTransport.ConnectionData.Address}:" +
+                LogSystem.AddMessage(LogMessageTypes.Debug, $"Setting up transport connection to {unityTransport.ConnectionData.Address}:" +
                 $"{unityTransport.ConnectionData.Port} and server listen address is {unityTransport.ConnectionData.ServerListenAddress}");
             }
         }
@@ -311,7 +309,7 @@ namespace ECellDive.Multiplayer
                 byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
                 NetManager.NetworkConfig.ConnectionData = payloadBytes;
 
-                LogSystem.refLogManager.AddMessage(LogSystem.MessageTypes.Debug, 
+                LogSystem.AddMessage(LogMessageTypes.Debug, 
                     $"Network: a session was already running so we are shutting it down before re-launching");
                 SetUnityTransport(true);
                 StartCoroutine(Restart());

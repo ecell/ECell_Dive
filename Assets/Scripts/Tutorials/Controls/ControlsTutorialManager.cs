@@ -34,6 +34,9 @@ namespace ECellDive.Tutorials
         //default is movement mode on right controller
         private int rightControllerModeID = 0;
 
+        private bool previousStateEOC;
+        private bool previousStateIOC;
+
         public void AddLeftGroupControlAction(InputActionReference _gcAction)
         {
             if (leftControllerModeID == 2)
@@ -130,7 +133,10 @@ namespace ECellDive.Tutorials
             base.Initialize();
 
             //Disable the General GUI
-            StaticReferencer.Instance.refAllGuiMenusContainer.SetActive(false);
+            previousStateEOC = StaticReferencer.Instance.refExternalObjectContainer.activeSelf;
+            previousStateIOC = StaticReferencer.Instance.refExternalObjectContainer.activeSelf;
+            StaticReferencer.Instance.refExternalObjectContainer.SetActive(false);
+            StaticReferencer.Instance.refInternalObjectContainer.SetActive(false);
 
             //Disable the RayBased Action Map
             refInputActionAsset.FindActionMap("Ray_Based_Controls_LH").Disable();
@@ -243,6 +249,10 @@ namespace ECellDive.Tutorials
             {
                 _tag.SetActive(true);
             }
+
+            //Revert the active state of the UI and modules that may have been imported.
+            StaticReferencer.Instance.refExternalObjectContainer.SetActive(previousStateEOC);
+            StaticReferencer.Instance.refInternalObjectContainer.SetActive(previousStateIOC);
         }
 
         private void RightControllerActionMapSwitch(InputAction.CallbackContext _ctx)
