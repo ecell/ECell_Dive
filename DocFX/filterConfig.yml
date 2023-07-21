@@ -1,7 +1,7 @@
 apiRules:
-- include:
-    uidRegex: ^ECellDive
+- exclude:
+    uidRegex: ^ECellDive\.Tutorials$
     type: Namespace
 - exclude:
-    uidRegex: ^ECellDive\.Tutorials
-    type: Namespace
+    uidRegex: ^ECellDive\.Interfaces.ITutorial*
+    type: Interface
