@@ -58,6 +58,14 @@ namespace ECellDive
             /// part of.
             /// </summary>
             int grpMemberIndex { get; set; }
+
+            /// <summary>
+            /// The actual gameobject that should be grouped.
+            /// </summary>
+            /// <remarks>This is very practicle to dissociate the gameobject
+            /// that has the collider used to detect grouping requests from the
+            /// reference of the gameobject that should actually be grouped.</remarks>
+            GameObject delegateTarget { get; }
         }
 
         public interface IHighlightable
