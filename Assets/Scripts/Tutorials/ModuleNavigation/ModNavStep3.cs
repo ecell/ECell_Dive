@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using ECellDive.Interfaces;
 using ECellDive.Modules;
 using ECellDive.Utility;
-
+using ECellDive.Portal;
 
 namespace ECellDive.Tutorials
 {
@@ -27,7 +27,7 @@ namespace ECellDive.Tutorials
 
         private void CheckDive(RaycastHit _hit)
         {
-            GameNetModule gnm;
+            PortalManager gnm;
             if (_hit.transform.TryGetComponent(out gnm))
             {
                 hasStartedDiving = true;
@@ -41,8 +41,7 @@ namespace ECellDive.Tutorials
                 StaticReferencer.Instance.riControllersGO.left.transform.position,
                 StaticReferencer.Instance.riControllersGO.left.transform.forward,
                 out hit,
-                30,
-                LayerMask.GetMask(new string[] { "Remote Grab Raycast" })))
+                30))
             {
                 CheckDive(hit);
             }
@@ -55,8 +54,7 @@ namespace ECellDive.Tutorials
                 StaticReferencer.Instance.riControllersGO.right.transform.position,
                 StaticReferencer.Instance.riControllersGO.right.transform.forward,
                 out hit,
-                30,
-                LayerMask.GetMask(new string[] { "Remote Grab Raycast" })))
+                30))
             {
                 CheckDive(hit);
             }
