@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showOnEnable: 0
-  m_isUI: 1
+  m_flip: 0
   m_popupDistance: 0
   m_popupHeightOffset: 0
 --- !u!114 &2908275380721447332
@@ -1056,6 +1056,7 @@ MonoBehaviour:
     defaultPosition: {x: 0, y: 0, z: 0.2}
     deadZone: {x: 0.1, y: 0.1, z: 0.1}
     speed: 2
+  inputModeTag: {fileID: 0}
 --- !u!1 &5081819280637628440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3349,6 +3350,7 @@ MonoBehaviour:
   refVirtualKeyboard: {fileID: 0}
   refColorPicker: {fileID: 0}
   refGroupsMenu: {fileID: 0}
+  refGroupsMakingUIManager: {fileID: 0}
   refInfoTags:
   - {fileID: 3316641495130682250}
   - {fileID: 8228238842994776659}
@@ -4184,6 +4186,7 @@ MonoBehaviour:
     defaultPosition: {x: 0, y: 0, z: 0}
     deadZone: {x: 0.1, y: 0.1, z: 0.1}
     speed: 2
+  inputModeTag: {fileID: 0}
 --- !u!1 &5081819282262264121
 GameObject:
   m_ObjectHideFlags: 0
@@ -5112,6 +5115,9 @@ MonoBehaviour:
   groupControllersGO:
     m_left: {fileID: 5081819280540731714}
     m_right: {fileID: 5081819281744983518}
+  inputModeTags:
+    m_left: {fileID: 0}
+    m_right: {fileID: 0}
 --- !u!114 &8584925348892557699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5150,6 +5156,9 @@ MonoBehaviour:
   volumetricSelector:
     m_left: {fileID: 5081819280488052970}
     m_right: {fileID: 5081819281293296478}
+  inputModeTags:
+    m_left: {fileID: 0}
+    m_right: {fileID: 0}
   grpMkgToolsData:
     targetLayer: 8
     maxDistance: 30
