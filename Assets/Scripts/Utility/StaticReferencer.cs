@@ -19,6 +19,7 @@ namespace ECellDive.Utility
     /// </summary>
     /// <remarks>WARNING: This class is enabled only for the local player. Do not use this class
     /// to access elements that should be synchronized across the network.</remarks>
+    [RequireComponent(typeof(Player))]
     public class StaticReferencer : NetworkBehaviour
     {
         public static StaticReferencer Instance;
@@ -81,7 +82,7 @@ namespace ECellDive.Utility
         public InputModeManager inputModeManager;
         public GroupsMakingManager groupsMakingManager;
 
-        // Start is called before the first frame update
+        // This OnNetworkSpawn is called when the player is spawned on the network
         public override void OnNetworkSpawn()
         {
             if (IsLocalPlayer)
@@ -96,6 +97,22 @@ namespace ECellDive.Utility
                 Instance.refGroupsMakingUIManager = guiManager.refGroupsMakingUIManager;
 
                 guiManager.Initialize(GetComponent<Player>());
+            }
+        }
+
+        // This OnNetworkDespawn is called when the player is despawned from the network
+        public override void OnNetworkDespawn()
+        {
+            if (IsLocalPlayer)
+            {
+                //We clean the internal object container from any object or UI that
+                //may be pinned to the player. This avoids destroying them when the
+                //player is despawned.
+                ushort childCount = (ushort)refInternalObjectContainer.transform.childCount;
+                for (ushort i = 0; i < childCount; i++)
+                {
+                    refInternalObjectContainer.transform.GetChild(0).SetParent(refExternalObjectContainer.transform);
+                }
             }
         }
     }

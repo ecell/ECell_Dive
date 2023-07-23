@@ -42,13 +42,7 @@ namespace ECellDive.PlayerComponents
         public override void OnNetworkDespawn()
         {
             base.OnNetworkDespawn();
-
-            //We detach the UI from the player to avoid it being destroyed
-            //with the player network object.
-            //StaticReferencer.Instance.refAllGuiMenusContainer.transform.parent = null;
-
             NetworkManager.Singleton.OnClientConnectedCallback -= ExchangeNames;
-
         }
 
         public override void OnNetworkSpawn()
@@ -147,9 +141,9 @@ namespace ECellDive.PlayerComponents
 
         public virtual void NetHide()
         {
-            Debug.Log($"{NetworkManager.Singleton.LocalClientId} devient invisible");
+            Debug.Log($"{NetworkManager.Singleton.LocalClientId} becomes invisible");
             LogSystem.AddMessage(LogMessageTypes.Debug,
-                $"{NetworkManager.Singleton.LocalClientId} devient invisible");
+                $"{NetworkManager.Singleton.LocalClientId} becomes invisible");
             nameField.gameObject.SetActive(false);
             head.SetActive(false);
             rootControllers.SetActive(false);
@@ -163,9 +157,9 @@ namespace ECellDive.PlayerComponents
 
         public virtual void NetShow()
         {
-            Debug.Log($"{NetworkManager.Singleton.LocalClientId} devient visible");
+            Debug.Log($"{NetworkManager.Singleton.LocalClientId} becomes visible");
             LogSystem.AddMessage(LogMessageTypes.Debug, 
-                $"{NetworkManager.Singleton.LocalClientId} devient visible");
+                $"{NetworkManager.Singleton.LocalClientId} becomes visible");
 
             nameField.gameObject.SetActive(true);
 
