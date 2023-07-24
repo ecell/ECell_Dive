@@ -90,6 +90,37 @@ manual grouping features, this interface needs to be implemented.</p>
   </h3>
   
   
+  <a id="ECellDive_Interfaces_IGroupable_delegateTarget_" data-uid="ECellDive.Interfaces.IGroupable.delegateTarget*"></a>
+  <h4 id="ECellDive_Interfaces_IGroupable_delegateTarget" data-uid="ECellDive.Interfaces.IGroupable.delegateTarget">delegateTarget</h4>
+  <div class="markdown level1 summary"><p>The actual gameobject that should be grouped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">GameObject delegateTarget { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ECellDive_Interfaces_IGroupable_delegateTarget_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This is very practicle to dissociate the gameobject
+that has the collider used to detect grouping requests from the
+reference of the gameobject that should actually be grouped.</p>
+</div>
+  
+  
   <a id="ECellDive_Interfaces_IGroupable_grpMemberIndex_" data-uid="ECellDive.Interfaces.IGroupable.grpMemberIndex*"></a>
   <h4 id="ECellDive_Interfaces_IGroupable_grpMemberIndex" data-uid="ECellDive.Interfaces.IGroupable.grpMemberIndex">grpMemberIndex</h4>
   <div class="markdown level1 summary"><p>The index of the gameobject in the last group he was made
