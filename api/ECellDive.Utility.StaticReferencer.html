@@ -1,23 +1,22 @@
 ﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
-  
+
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class StaticReferencer
-   </title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class StaticReferencer
-   ">
-    <meta name="generator" content="docfx 2.59.4.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class StaticReferencer
+ </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class StaticReferencer
+ ">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
     
     
     
@@ -25,7 +24,7 @@
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -35,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../index.html">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
@@ -49,7 +48,7 @@
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -59,7 +58,7 @@
         </div>
       </header>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
           <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
           <div class="sidetoggle collapse" id="sidetoggle">
@@ -69,10 +68,11 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="ECellDive.Utility.StaticReferencer">
-  
-  
+
+
+
   <h1 id="ECellDive_Utility_StaticReferencer" data-uid="ECellDive.Utility.StaticReferencer" class="text-break">Class StaticReferencer
-  </h1>
+</h1>
   <div class="markdown level0 summary"><p>Singleton class referencing elements (GameObjects, Components,...) of the player
 that are needed by gameobjects outside it. Typically, an instanced module needs
 access to the controller's interactors to correctly compute the movements when grabed.
@@ -81,11 +81,11 @@ This class therefore exposes all the interactors to the ouside.</p>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">StaticReferencer</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Utility.html">ECellDive.Utility</a></h6>
-  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Utility.html">Utility</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
   <h5 id="ECellDive_Utility_StaticReferencer_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class StaticReferencer : NetworkBehaviour</code></pre>
@@ -95,114 +95,23 @@ This class therefore exposes all the interactors to the ouside.</p>
 to access elements that should be synchronized across the network.</p>
 </div>
   <h3 id="fields">Fields
-  </h3>
-  
-  
-  <h4 id="ECellDive_Utility_StaticReferencer_groupControllersGO" data-uid="ECellDive.Utility.StaticReferencer.groupControllersGO">groupControllersGO</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LeftRightData&lt;GameObject&gt; groupControllersGO</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">GameObject</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="ECellDive_Utility_StaticReferencer_groupsInteractors" data-uid="ECellDive.Utility.StaticReferencer.groupsInteractors">groupsInteractors</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LeftRightData&lt;XRRayInteractor&gt; groupsInteractors</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="ECellDive_Utility_StaticReferencer_groupsMakingManager" data-uid="ECellDive.Utility.StaticReferencer.groupsMakingManager">groupsMakingManager</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GroupsMakingManager groupsMakingManager</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.PlayerComponents.GroupsMakingManager.html">GroupsMakingManager</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="ECellDive_Utility_StaticReferencer_inputModeManager" data-uid="ECellDive.Utility.StaticReferencer.inputModeManager">inputModeManager</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InputModeManager inputModeManager</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">InputModeManager</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_Instance.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.Instance%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L25">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_Instance" data-uid="ECellDive.Utility.StaticReferencer.Instance">Instance</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static StaticReferencer Instance</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -216,41 +125,22 @@ to access elements that should be synchronized across the network.</p>
       </tr>
     </tbody>
   </table>
-  
-  
-  <h4 id="ECellDive_Utility_StaticReferencer_mainPointerInteractors" data-uid="ECellDive.Utility.StaticReferencer.mainPointerInteractors">mainPointerInteractors</h4>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_groupControllersGO.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.groupControllersGO%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L75">View Source</a>
+  </span>
+  <h4 id="ECellDive_Utility_StaticReferencer_groupControllersGO" data-uid="ECellDive.Utility.StaticReferencer.groupControllersGO">groupControllersGO</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LeftRightData&lt;XRRayInteractor&gt; mainPointerInteractors</code></pre>
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;GameObject&gt; groupControllersGO</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="ECellDive_Utility_StaticReferencer_mvtControllersGO" data-uid="ECellDive.Utility.StaticReferencer.mvtControllersGO">mvtControllersGO</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LeftRightData&lt;GameObject&gt; mvtControllersGO</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -264,17 +154,167 @@ to access elements that should be synchronized across the network.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_groupsInteractors.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.groupsInteractors%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L65">View Source</a>
+  </span>
+  <h4 id="ECellDive_Utility_StaticReferencer_groupsInteractors" data-uid="ECellDive.Utility.StaticReferencer.groupsInteractors">groupsInteractors</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;XRRayInteractor&gt; groupsInteractors</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_groupsMakingManager.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.groupsMakingManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L83">View Source</a>
+  </span>
+  <h4 id="ECellDive_Utility_StaticReferencer_groupsMakingManager" data-uid="ECellDive.Utility.StaticReferencer.groupsMakingManager">groupsMakingManager</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GroupsMakingManager groupsMakingManager</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ECellDive.PlayerComponents.GroupsMakingManager.html">GroupsMakingManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_inputModeManager.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.inputModeManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L82">View Source</a>
+  </span>
+  <h4 id="ECellDive_Utility_StaticReferencer_inputModeManager" data-uid="ECellDive.Utility.StaticReferencer.inputModeManager">inputModeManager</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InputModeManager inputModeManager</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_mainPointerInteractors.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.mainPointerInteractors%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L68">View Source</a>
+  </span>
+  <h4 id="ECellDive_Utility_StaticReferencer_mainPointerInteractors" data-uid="ECellDive.Utility.StaticReferencer.mainPointerInteractors">mainPointerInteractors</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;XRRayInteractor&gt; mainPointerInteractors</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_mvtControllersGO.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.mvtControllersGO%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L74">View Source</a>
+  </span>
+  <h4 id="ECellDive_Utility_StaticReferencer_mvtControllersGO" data-uid="ECellDive.Utility.StaticReferencer.mvtControllersGO">mvtControllersGO</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;GameObject&gt; mvtControllersGO</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">GameObject</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_refColorPicker.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.refColorPicker%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L38">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_refColorPicker" data-uid="ECellDive.Utility.StaticReferencer.refColorPicker">refColorPicker</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ColorPicker refColorPicker</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -288,18 +328,23 @@ to access elements that should be synchronized across the network.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_refExternalObjectContainer.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.refExternalObjectContainer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L36">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_refExternalObjectContainer" data-uid="ECellDive.Utility.StaticReferencer.refExternalObjectContainer">refExternalObjectContainer</h4>
   <div class="markdown level1 summary"><p>The anchor for the modules and GUI that will be unpinned from the player</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public GameObject refExternalObjectContainer</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -313,17 +358,22 @@ to access elements that should be synchronized across the network.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_refGroupsMakingUIManager.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.refGroupsMakingUIManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L40">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_refGroupsMakingUIManager" data-uid="ECellDive.Utility.StaticReferencer.refGroupsMakingUIManager">refGroupsMakingUIManager</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public GroupsMakingUIManager refGroupsMakingUIManager</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -332,22 +382,27 @@ to access elements that should be synchronized across the network.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">GroupsMakingUIManager</span></td>
+        <td><a class="xref" href="ECellDive.UI.GroupsMakingUIManager.html">GroupsMakingUIManager</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_refGroupsMenu.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.refGroupsMenu%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L39">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_refGroupsMenu" data-uid="ECellDive.Utility.StaticReferencer.refGroupsMenu">refGroupsMenu</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public GroupsMenu refGroupsMenu</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -356,13 +411,18 @@ to access elements that should be synchronized across the network.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">GroupsMenu</span></td>
+        <td><a class="xref" href="ECellDive.UI.GroupsMenu.html">GroupsMenu</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_refInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.refInfoTags%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L62">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_refInfoTags" data-uid="ECellDive.Utility.StaticReferencer.refInfoTags">refInfoTags</h4>
   <div class="markdown level1 summary"><p>The list of all gameobjects representing the information tags of
 the controllers' buttons. This is mainly used when an external code
@@ -370,12 +430,12 @@ wants to forcefully deactivate/activate them (very relevant when
 designing tutorials).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public List&lt;GameObject&gt; refInfoTags</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -384,38 +444,41 @@ designing tutorials).</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">List</span>&lt;<span class="xref">GameObject</span>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 id="ECellDive_Utility_StaticReferencer_refInfoTags_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>In the order of the list we find:</p>
-<ul>
-<li>0: Oculus Button IT</li>
-<li>1: X Button IT</li>
-<li>2: Y Button IT</li>
-<li>3: Left Joystick IT</li>
-<li>4: Left Trigger Front IT</li>
-<li>5: Left Trigger Grip IT</li>
-<li>6: A Button IT</li>
-<li>7: B Button IT</li>
-<li>8: Right Joystik IT</li>
-<li>9: Right Trigger Front IT</li>
-<li>10: Right Trigger Grip IT</li>
-</ul>
+  <div class="markdown level1 remarks"><p>In the order of the list we find:
+- 0: Oculus Button IT
+- 1: X Button IT
+- 2: Y Button IT
+- 3: Left Joystick IT
+- 4: Left Trigger Front IT
+- 5: Left Trigger Grip IT
+- 6: A Button IT
+- 7: B Button IT
+- 8: Right Joystik IT
+- 9: Right Trigger Front IT
+- 10: Right Trigger Grip IT</p>
 </div>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_refInternalObjectContainer.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.refInternalObjectContainer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L31">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_refInternalObjectContainer" data-uid="ECellDive.Utility.StaticReferencer.refInternalObjectContainer">refInternalObjectContainer</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public GameObject refInternalObjectContainer</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -429,17 +492,22 @@ designing tutorials).</p>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_refVirtualKeyboard.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.refVirtualKeyboard%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L37">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_refVirtualKeyboard" data-uid="ECellDive.Utility.StaticReferencer.refVirtualKeyboard">refVirtualKeyboard</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public GameObject refVirtualKeyboard</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -453,17 +521,22 @@ designing tutorials).</p>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_remoteGrabInteractors.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.remoteGrabInteractors%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L66">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_remoteGrabInteractors" data-uid="ECellDive.Utility.StaticReferencer.remoteGrabInteractors">remoteGrabInteractors</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LeftRightData&lt;XRRayInteractor&gt; remoteGrabInteractors</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -477,17 +550,22 @@ designing tutorials).</p>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_remoteInteractionABC.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.remoteInteractionABC%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L71">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_remoteInteractionABC" data-uid="ECellDive.Utility.StaticReferencer.remoteInteractionABC">remoteInteractionABC</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LeftRightData&lt;ActionBasedController&gt; remoteInteractionABC</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -501,17 +579,22 @@ designing tutorials).</p>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_remoteInteractionInteractors.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.remoteInteractionInteractors%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L67">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_remoteInteractionInteractors" data-uid="ECellDive.Utility.StaticReferencer.remoteInteractionInteractors">remoteInteractionInteractors</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LeftRightData&lt;XRRayInteractor&gt; remoteInteractionInteractors</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -525,17 +608,22 @@ designing tutorials).</p>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_riControllersGO.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.riControllersGO%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L76">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_riControllersGO" data-uid="ECellDive.Utility.StaticReferencer.riControllersGO">riControllersGO</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LeftRightData&lt;GameObject&gt; riControllersGO</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -549,17 +637,22 @@ designing tutorials).</p>
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_volumetricSelectorManagers.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.volumetricSelectorManagers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L79">View Source</a>
+  </span>
   <h4 id="ECellDive_Utility_StaticReferencer_volumetricSelectorManagers" data-uid="ECellDive.Utility.StaticReferencer.volumetricSelectorManagers">volumetricSelectorManagers</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LeftRightData&lt;VolumetricSelectorManager&gt; volumetricSelectorManagers</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -574,34 +667,51 @@ designing tutorials).</p>
     </tbody>
   </table>
   <h3 id="methods">Methods
-  </h3>
-  
-  
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_OnNetworkDespawn.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.OnNetworkDespawn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L104">View Source</a>
+  </span>
   <a id="ECellDive_Utility_StaticReferencer_OnNetworkDespawn_" data-uid="ECellDive.Utility.StaticReferencer.OnNetworkDespawn*"></a>
   <h4 id="ECellDive_Utility_StaticReferencer_OnNetworkDespawn" data-uid="ECellDive.Utility.StaticReferencer.OnNetworkDespawn">OnNetworkDespawn()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnNetworkDespawn()</code></pre>
   </div>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer_OnNetworkSpawn.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer.OnNetworkSpawn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L86">View Source</a>
+  </span>
   <a id="ECellDive_Utility_StaticReferencer_OnNetworkSpawn_" data-uid="ECellDive.Utility.StaticReferencer.OnNetworkSpawn*"></a>
   <h4 id="ECellDive_Utility_StaticReferencer_OnNetworkSpawn" data-uid="ECellDive.Utility.StaticReferencer.OnNetworkSpawn">OnNetworkSpawn()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnNetworkSpawn()</code></pre>
   </div>
+
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_StaticReferencer.md&amp;value=---%0Auid%3A%20ECellDive.Utility.StaticReferencer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/StaticReferencer.cs/#L22" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
@@ -612,7 +722,7 @@ designing tutorials).</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -620,14 +730,14 @@ designing tutorials).</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            
-            <span>Generated by <strong>DocFX</strong></span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>
     </div>
-    
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../styles/docfx.js"></script>
     <script type="text/javascript" src="../styles/main.js"></script>
   </body>

@@ -1,23 +1,22 @@
 ﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
-  
+
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IGroupable
-   </title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IGroupable
-   ">
-    <meta name="generator" content="docfx 2.59.4.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Interface IGroupable
+ </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Interface IGroupable
+ ">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
     
     
     
@@ -25,7 +24,7 @@
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -35,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../index.html">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
@@ -49,7 +48,7 @@
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -59,7 +58,7 @@
         </div>
       </header>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
           <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
           <div class="sidetoggle collapse" id="sidetoggle">
@@ -69,10 +68,11 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="ECellDive.Interfaces.IGroupable">
-  
-  
+
+
+
   <h1 id="ECellDive_Interfaces_IGroupable" data-uid="ECellDive.Interfaces.IGroupable" class="text-break">Interface IGroupable
-  </h1>
+</h1>
   <div class="markdown level0 summary"><p>An interface to for any objects that may be grouped
 manually. It is mainly used as a &quot;marker&quot; for different
 FindComponent methods. So, if we create a new Monobehaviour
@@ -80,27 +80,32 @@ or NetworkBehaviour and we expect to be able to use the
 manual grouping features, this interface needs to be implemented.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.Interfaces.html">ECellDive.Interfaces</a></h6>
-  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Interfaces.html">Interfaces</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
   <h5 id="ECellDive_Interfaces_IGroupable_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IGroupable</code></pre>
   </div>
   <h3 id="properties">Properties
-  </h3>
-  
-  
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IGroupable_delegateTarget.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IGroupable.delegateTarget%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L68">View Source</a>
+  </span>
   <a id="ECellDive_Interfaces_IGroupable_delegateTarget_" data-uid="ECellDive.Interfaces.IGroupable.delegateTarget*"></a>
   <h4 id="ECellDive_Interfaces_IGroupable_delegateTarget" data-uid="ECellDive.Interfaces.IGroupable.delegateTarget">delegateTarget</h4>
   <div class="markdown level1 summary"><p>The actual gameobject that should be grouped.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">GameObject delegateTarget { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -119,20 +124,25 @@ manual grouping features, this interface needs to be implemented.</p>
 that has the collider used to detect grouping requests from the
 reference of the gameobject that should actually be grouped.</p>
 </div>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IGroupable_grpMemberIndex.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IGroupable.grpMemberIndex%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L60">View Source</a>
+  </span>
   <a id="ECellDive_Interfaces_IGroupable_grpMemberIndex_" data-uid="ECellDive.Interfaces.IGroupable.grpMemberIndex*"></a>
   <h4 id="ECellDive_Interfaces_IGroupable_grpMemberIndex" data-uid="ECellDive.Interfaces.IGroupable.grpMemberIndex">grpMemberIndex</h4>
   <div class="markdown level1 summary"><p>The index of the gameobject in the last group he was made
 part of.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">int grpMemberIndex { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -141,18 +151,25 @@ part of.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IGroupable.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IGroupable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L54" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
@@ -163,7 +180,7 @@ part of.</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -171,14 +188,14 @@ part of.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            
-            <span>Generated by <strong>DocFX</strong></span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>
     </div>
-    
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../styles/docfx.js"></script>
     <script type="text/javascript" src="../styles/main.js"></script>
   </body>
