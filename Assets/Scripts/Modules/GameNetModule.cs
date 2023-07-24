@@ -89,6 +89,13 @@ namespace ECellDive
                 get => m_grpMemberIndex;
                 set => m_grpMemberIndex = value;
             }
+
+            [SerializeField] private GameObject m_delegateTarget = null;
+            public GameObject delegateTarget
+            {
+                get => m_delegateTarget;
+                private set => m_delegateTarget = value;
+            }
             #endregion
 
             #region - IColorHighlightableNet Members - 
@@ -252,6 +259,13 @@ namespace ECellDive
                 {
                     nameTextFieldContainer.SetActive(true);
                     nameField = nameTextFieldContainer.GetComponentInChildren<TextMeshProUGUI>();
+                }
+
+                //If the target has not been set in the editor to a specific gameobject,
+                //we set it to this game object by default.
+                if (delegateTarget == null)
+                {
+                    delegateTarget = gameObject;
                 }
             }
 

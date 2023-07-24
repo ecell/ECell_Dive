@@ -284,6 +284,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 238767312609805975, guid: 7eddbd484b3093949a8a0b311faa75a6, type: 3}
   m_PrefabInstance: {fileID: 860342028}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &860342030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2991400471240366036, guid: 7eddbd484b3093949a8a0b311faa75a6, type: 3}
+  m_PrefabInstance: {fileID: 860342028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &949993373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -383,6 +388,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5087851561843044441, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
+      propertyPath: goToPin
+      value: 
+      objectReference: {fileID: 860342030}
     - target: {fileID: 6325728008717661887, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
       propertyPath: m_Interactable
       value: 0
@@ -574,8 +583,8 @@ MonoBehaviour:
   skip: 0
   m_goal: Learn how to import data from a server
   m_task: Add the data module of iJO1366 to the scene.
-  m_details: 'Open the menu of the data importer. Input the IP adress of the Answer_Talker
-    server. If you did not specify a port when launching Answer_Talker, you can leave
+  m_details: 'Open the menu of the data importer. Input the IP adress of the Kosmogora
+    server. If you did not specify a port when launching Kosmogora, you can leave
     that input field blank. Then, click on the corresponding button to query the
     available models and select iJO1366 on the second panel.
 
@@ -659,14 +668,16 @@ MonoBehaviour:
   m_goal: Learn how to dive into a module
   m_task: Dive and explore the network
   m_details: 'Point at the data module iJO1366 you just imported with the <color=orange>Ray-Based
-    Controls</color> and hold the primary button of the controller.
+    Controls</color> and tap the primary button of the controller to open the associated
+    menus. Then, point at the yellow portal and hold the primary button until the
+    controller stops vibrating.
 
-    <color=#FF3030>Warning:
-    The loading of the next dive scene will take a few seconds and framerate will
-    drop significantly.</color>
+    <color=#FF3030>Warning: The loading of the next
+    dive scene will take a few seconds and framerate will drop significantly.</color>
 
-    Then, move around and explore the network. Click
-    the <b>Next</b> button when you are ready.'
+    Then,
+    move around and explore the network. Click the <b>Next</b> button when you are
+    ready.'
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -755,7 +766,7 @@ MonoBehaviour:
     to add the module in the scene.
 
     Open its menus and group the nodes and/or
-    the edges according to one of their respective metadata. Onlye <b>ONE</b> metadata
+    the edges according to one of their respective metadata. Only <b>ONE</b> metadata
     can be selected for each object. We recommand grouping edges and nodes according
     to <b>Subsystems</b> and <b>Compartments</b> respectively. Once you have selected
     your metadata of interest, click on <b>Process Grouping</b>.'
@@ -916,7 +927,7 @@ MonoBehaviour:
   m_goal: Learn how to request a Flux Balance Analysis (2/2).
   m_task: Request the FBA from the server.
   m_details: 'Open the menu of the FBA module and input the IP. As a reminder, you
-    do not need to set the Port unless you changed the value when you launched Answer_Talker.
+    do not need to set the Port unless you changed the value when you launched Kosmogora.
 
     Once
     you entered the information, click on the buton <b>Run FBA</b> to request the
@@ -1073,11 +1084,10 @@ MonoBehaviour:
     how to use the modules available in ECellDive through an example.
 
     <color=#FF3030>Make
-    sure to have Answer_Talker running on the same local area network than the one
-    your VR Headset is connected to.</color>
+    sure to have Kosmogora running on the same local area network than the one your
+    VR Headset is connected to.</color>
 
-    Press <b>Start</b> when you are
-    ready.'
+    Press <b>Start</b> when you are ready.'
   initializationInstructions:
     m_PersistentCalls:
       m_Calls: []

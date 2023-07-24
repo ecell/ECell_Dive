@@ -33,11 +33,14 @@ namespace ECellDive.Tutorials
             //importer, the CyJson data module, the graph, etc...
             foreach (GameObject go in tutorialGarbage)
             {
-                foreach (Transform child in go.transform)
+                if (go != null)//the user might have destroyed it before quitting the tutorial.
                 {
-                    Destroy(child.gameObject);
+                    foreach (Transform child in go.transform)
+                    {
+                        Destroy(child.gameObject);
+                    }
+                    Destroy(go);
                 }
-                Destroy(go);
             }
 
             refAssetScenesManager.UnloadScene(2);
@@ -47,7 +50,7 @@ namespace ECellDive.Tutorials
         {
             base.Initialize();
 
-            guiManager = GameObject.FindGameObjectWithTag("AllUIAnchor").GetComponent<GUIManager>();
+            guiManager = GameObject.FindGameObjectWithTag("ExternalObjectContainer").GetComponent<GUIManager>();
 
             //Hide the main menu.
             guiManager.refMainMenu.SetActive(!guiManager.refMainMenu.activeSelf);

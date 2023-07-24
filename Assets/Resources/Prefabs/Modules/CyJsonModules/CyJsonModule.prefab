@@ -170,7 +170,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 3646200969631011454}
-        m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
+        m_TargetAssemblyTypeName: ECellDive.Modules.GameNetModule, Assembly-CSharp
         m_MethodName: SetFocus
         m_Mode: 1
         m_Arguments:
@@ -179,7 +179,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 3646200969631011454}
         m_TargetAssemblyTypeName: ECellDive.Modules.GameNetModule, Assembly-CSharp
@@ -191,13 +191,13 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
   m_LastHoverExited:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3646200969631011454}
-        m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
+        m_TargetAssemblyTypeName: ECellDive.Modules.GameNetModule, Assembly-CSharp
         m_MethodName: UnsetFocus
         m_Mode: 1
         m_Arguments:
@@ -2284,6 +2284,38 @@ PrefabInstance:
     - target: {fileID: 872680226728945186, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333337416255999642, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
+      propertyPath: m_ThrowOnDetach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333337416255999642, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
+      propertyPath: m_TrackPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333337416255999642, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
+      propertyPath: m_TrackRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333337416255999642, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
+      propertyPath: m_Colliders.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333337416255999642, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333337416255999642, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
+      propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333337416255999642, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333337416255999642, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2008476259509320440, guid: b0516a8b5fdc4b14d9ebd85965bc6eaa, type: 3}
       propertyPath: end
