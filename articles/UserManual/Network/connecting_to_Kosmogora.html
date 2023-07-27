@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Groups </title>
+      <title>Connecting to Kosmogora </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Groups ">
+      <meta name="title" content="Connecting to Kosmogora ">
     
       <link rel="shortcut icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
@@ -66,21 +66,14 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h2 id="groups">Groups</h2>
+<h1 id="connecting-to-kosmogora">Connecting to Kosmogora</h1>
 
-<p>This is a set of controls to define custom groups of elements in the Dive Scenes which will be recognizable by color and accessible in the <a href="/articles/UserManual/UIMenus/groups_menu.html">Groups Menu</a>. There are two alternative selectors to build custom groups which can be switched by pressing either the <em>Primary Button</em> of the respective controller.</p>
-<h3 id="ray-selector">Ray selector</h3>
-<p>Adds elements one-by-one to the group being built. Point at the element with the ray and press the <em>Front Trigger</em>. The element is added to the group if it is not already in the group. Otherwise, the element is removed.</p>
-<img src="../../../resources/images/schematics/controllers/Quest2_controller_switch_input_ray.png" alt="Group Ray Inputs" style="height: 300px;">
-<br><br>
-<img src="../../../resources/images/controls/left_ray_group.jpg" alt="Left Ray Group" style="height: 300px;">
-<img src="../../../resources/images/controls/right_ray_group.jpg" alt="Right Ray Group" style="height: 300px;">
-<h3 id="volumetric-selector">Volumetric Selector</h3>
-<p>Uses a sphere as the selector. Any elements that collides with the sphere while the <em>Front Trigger</em> is pressed are added from the group if they are not already in it. Otherwise, the element is removed. Scale and position of the sphere can be controlled using the <em>Joystick</em>.</p>
-<img src="../../../resources/images/schematics/controllers/Quest2_controller_switch_input_volumetric.png" alt="Group Ray Inputs" style="height: 300px;">
-<img src="../../../resources/images/controls/left_volumetric_group.jpg" alt="Left Volumetric Group" style="height: 300px;">
-<img src="../../../resources/images/controls/right_volumetric_group.jpg" alt="Right Volumetric Group" style="height: 300px;">
-<p><strong>KNOWN LIMITATION: It is not possible to modify the content of a group (remove od add elements) once it has been validated; you can only remove the whole group from the group menu.</strong></p>
+<p><a href="https://github.com/ecell/kosmogora">Kosmogora</a> is the data manager system that we use in this project to centralize data from biological databases as well as simulation work.</p>
+<p>Access to <a href="https://github.com/ecell/kosmogora">Kosmogora</a> is mandatory to use the main features of ECellDive. The basic idea is that the computer (server) running an instance of <a href="https://github.com/ecell/kosmogora">Kosmogora</a> must be on the same Local Area Network (LAN) as the user in ECellDive (the headset is also connected to the LAN). A possible setup is the following:</p>
+<img src="../../../resources/images/schematics/network/base.jpg" alt="User-Kosmogora Base" style="height: 200px;">
+<p>Here, a user is connected to the network with IP(v4) address 192.168.14.28; and the server machine is connected with IP(v4) address 192.168.0.33 with the instance of Kosmogora accessible through port 8000.</p>
+<img src="../../../resources/images/schematics/network/Kosmogora_request.jpg" alt="User-Kosmogora Request" style="height: 200px;">
+<p>Therefore, when a user needs to make a request to <a href="https://github.com/ecell/kosmogora">Kosmogora</a> in order to, for example, <a href="../Modules/remote_importer_module.html">import data</a>, he must input the correct address (192.168.0.33) and port (8000) in the <a href="../Modules/remote_importer_module.html#panel-server-parameters">corresponding fields</a></p>
 </article>
           </div>
 
@@ -89,7 +82,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Controls/group_controls.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Network/connecting_to_Kosmogora.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
