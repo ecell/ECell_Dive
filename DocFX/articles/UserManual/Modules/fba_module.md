@@ -1,5 +1,5 @@
 ## Flux Balance Analysis (FBA)
-Requires a connection to [Kosmogora](https://github.com/ecell/Kosmogora).
+Requires a [connection to Kosmogora](../Network/connecting_to_Kosmogora.md).
 
 <img src="../../../resources/images/modules/fba.jpg" alt="FBA" style="height: 300px;"/>
 

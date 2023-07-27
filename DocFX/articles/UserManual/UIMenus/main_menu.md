@@ -4,7 +4,7 @@
 
 The main menu gives access to the other menu of the application.
 
-<img src="../../../resources/images/schematics/Quest2_controller_MainMenu.png" alt="Schematic open main menu" style="height: 300px;"/>
+<img src="../../../resources/images/schematics/controllers/Quest2_controller_MainMenu.png" alt="Schematic open main menu" style="height: 300px;"/>
 
 You can open the main menu by pressing the *start button* on the left controller. Please, take a look at the [controls](../Controls/ray_based_interaction_controls.md) for more information about the user inputs. 
 

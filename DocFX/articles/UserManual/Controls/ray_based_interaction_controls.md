@@ -1,7 +1,7 @@
 ## Ray-based Interaction
 This is the main control set built to interact with UI, grab & move objects, display the modules' parameters, knockout reactions, etc... Point at an element with the ray and press different buttons for different action on those elements.
 
-<img src="../../../resources/images/schematics/Quest2_controller_interaction_ray.png" alt="Interaction Inputs" style="height: 300px;"/>
+<img src="../../../resources/images/schematics/controllers/Quest2_controller_interaction_ray.png" alt="Interaction Inputs" style="height: 300px;"/>
 <br/><br/>
 <img src="../../../resources/images/controls/left_ray_interaction.jpg" alt="Left Ray Interaction" style="height: 300px;"/>
 <img src="../../../resources/images/controls/right_ray_interaction.jpg" alt="Right Ray Interaction" style="height: 300px;"/>
