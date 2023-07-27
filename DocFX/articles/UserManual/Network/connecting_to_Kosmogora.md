@@ -1,5 +1,5 @@
 # Connecting to Kosmogora
-[Kosmogora](https://github.com/ecell/kosmogora) is the data manager system that we use in this project to centralize data from biological databases as well as simulation work.
+[Kosmogora](https://github.com/ecell/kosmogora) is the data manager system that we use in this project to import data, request calculations and save modification files.
 
 Access to [Kosmogora](https://github.com/ecell/kosmogora) is mandatory to use the main features of ECellDive. The basic idea is that the computer (server) running an instance of [Kosmogora](https://github.com/ecell/kosmogora) must be on the same Local Area Network (LAN) as the user in ECellDive (the headset is also connected to the LAN). A possible setup is the following:
 
