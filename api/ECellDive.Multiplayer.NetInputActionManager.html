@@ -1,259 +1,320 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Class NetInputActionManager
  </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class NetInputActionManager
  ">
-    
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
-      <link rel="stylesheet" href="../styles/docfx.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-    
-    
-    
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
-  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
 
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
-              </a>
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
             </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
-                </div>
-              </form>
-            </div>
-          </div>
-        </nav>
-
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
           </div>
         </div>
-      </header>
-      <div role="main" class="container body-content hide-when-search">
+      </nav>
+    </header>
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
           </div>
         </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="ECellDive.Multiplayer.NetInputActionManager">
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.Multiplayer.NetInputActionManager">
 
 
 
-  <h1 id="ECellDive_Multiplayer_NetInputActionManager" data-uid="ECellDive.Multiplayer.NetInputActionManager" class="text-break">Class NetInputActionManager
-</h1>
-  <div class="markdown level0 summary"><p>Use this class to automatically enable or disable all the inputs of type <see cref="!:InputAction"></see>
+  <h1 id="ECellDive_Multiplayer_NetInputActionManager" data-uid="ECellDive.Multiplayer.NetInputActionManager" class="text-break">
+    Class NetInputActionManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Multiplayer.html">Multiplayer</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Use this class to automatically enable or disable all the inputs of type <see cref="!:InputAction"></see>
 in a list of assets of type <see cref="!:InputActionAsset"></see>.</p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">NetInputActionManager</span></div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Multiplayer.html">Multiplayer</a></h6>
-  <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="ECellDive_Multiplayer_NetInputActionManager_syntax">Syntax</h5>
+  <div class="markdown conceptual"></div>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class NetInputActionManager : NetworkBehaviour</code></pre>
   </div>
-  <h5 id="ECellDive_Multiplayer_NetInputActionManager_remarks"><strong>Remarks</strong></h5>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">NetInputActionManager</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+  <h2 id="ECellDive_Multiplayer_NetInputActionManager_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>Actions are initially disabled, meaning they do not listen/react to input yet. This class
 is used to mass enable actions so that they actively listen for input and run callbacks.</p>
 </div>
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager_actionAssets.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager.actionAssets%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L28">View Source</a>
-  </span>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
   <a id="ECellDive_Multiplayer_NetInputActionManager_actionAssets_" data-uid="ECellDive.Multiplayer.NetInputActionManager.actionAssets*"></a>
-  <h4 id="ECellDive_Multiplayer_NetInputActionManager_actionAssets" data-uid="ECellDive.Multiplayer.NetInputActionManager.actionAssets">actionAssets</h4>
+
+  <h3 id="ECellDive_Multiplayer_NetInputActionManager_actionAssets" data-uid="ECellDive.Multiplayer.NetInputActionManager.actionAssets">
+  actionAssets
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Input action assets to affect when inputs are enabled or disabled.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public List&lt;InputActionAsset&gt; actionAssets { get; set; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">InputActionAsset</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager_DisableInput.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager.DisableInput%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L102">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">InputActionAsset</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
   <a id="ECellDive_Multiplayer_NetInputActionManager_DisableInput_" data-uid="ECellDive.Multiplayer.NetInputActionManager.DisableInput*"></a>
-  <h4 id="ECellDive_Multiplayer_NetInputActionManager_DisableInput" data-uid="ECellDive.Multiplayer.NetInputActionManager.DisableInput">DisableInput()</h4>
+
+  <h3 id="ECellDive_Multiplayer_NetInputActionManager_DisableInput" data-uid="ECellDive.Multiplayer.NetInputActionManager.DisableInput">
+  DisableInput()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Disable all actions referenced by this component.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void DisableInput()</code></pre>
   </div>
-  <h5 id="ECellDive_Multiplayer_NetInputActionManager_DisableInput_remarks">Remarks</h5>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Multiplayer_NetInputActionManager_DisableInput_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>This function will automatically be called when this <a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html">NetInputActionManager</a> component is disabled.
 However, this method can be called to disable input manually, such as after enabling it with <a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html#ECellDive_Multiplayer_NetInputActionManager_EnableInput">EnableInput()</a>.
 <br>
 Note that disabling inputs will only disable the action maps contained within the referenced
 action map assets (see <a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html#ECellDive_Multiplayer_NetInputActionManager_actionAssets">actionAssets</a>).</p>
 </div>
-  <h5 id="ECellDive_Multiplayer_NetInputActionManager_DisableInput_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html#ECellDive_Multiplayer_NetInputActionManager_EnableInput">EnableInput()</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager_EnableInput.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager.EnableInput%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L77">View Source</a>
-  </span>
+
+
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html#ECellDive_Multiplayer_NetInputActionManager_EnableInput">EnableInput()</a></div>
+    </dd>
+  </dl>
+
+
   <a id="ECellDive_Multiplayer_NetInputActionManager_EnableInput_" data-uid="ECellDive.Multiplayer.NetInputActionManager.EnableInput*"></a>
-  <h4 id="ECellDive_Multiplayer_NetInputActionManager_EnableInput" data-uid="ECellDive.Multiplayer.NetInputActionManager.EnableInput">EnableInput()</h4>
+
+  <h3 id="ECellDive_Multiplayer_NetInputActionManager_EnableInput" data-uid="ECellDive.Multiplayer.NetInputActionManager.EnableInput">
+  EnableInput()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Enable all actions referenced by this component.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void EnableInput()</code></pre>
   </div>
-  <h5 id="ECellDive_Multiplayer_NetInputActionManager_EnableInput_remarks">Remarks</h5>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Multiplayer_NetInputActionManager_EnableInput_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>This function will automatically be called when this <a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html">NetInputActionManager</a> component is enabled.
 However, this method can be called to enable input manually, such as after disabling it with <a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html#ECellDive_Multiplayer_NetInputActionManager_DisableInput">DisableInput()</a>.
 <br>
 Note that enabling inputs will only enable the action maps contained within the referenced
 action map assets (see <a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html#ECellDive_Multiplayer_NetInputActionManager_actionAssets">actionAssets</a>).</p>
 </div>
-  <h5 id="ECellDive_Multiplayer_NetInputActionManager_EnableInput_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html#ECellDive_Multiplayer_NetInputActionManager_DisableInput">DisableInput()</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager_OnNetworkDespawn.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager.OnNetworkDespawn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L58">View Source</a>
-  </span>
+
+
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Multiplayer.NetInputActionManager.html#ECellDive_Multiplayer_NetInputActionManager_DisableInput">DisableInput()</a></div>
+    </dd>
+  </dl>
+
+
   <a id="ECellDive_Multiplayer_NetInputActionManager_OnNetworkDespawn_" data-uid="ECellDive.Multiplayer.NetInputActionManager.OnNetworkDespawn*"></a>
-  <h4 id="ECellDive_Multiplayer_NetInputActionManager_OnNetworkDespawn" data-uid="ECellDive.Multiplayer.NetInputActionManager.OnNetworkDespawn">OnNetworkDespawn()</h4>
+
+  <h3 id="ECellDive_Multiplayer_NetInputActionManager_OnNetworkDespawn" data-uid="ECellDive.Multiplayer.NetInputActionManager.OnNetworkDespawn">
+  OnNetworkDespawn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>See <see cref="!:MonoBehaviour"></see>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnNetworkDespawn()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager_OnNetworkSpawn.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager.OnNetworkSpawn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L42">View Source</a>
-  </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_Multiplayer_NetInputActionManager_OnNetworkSpawn_" data-uid="ECellDive.Multiplayer.NetInputActionManager.OnNetworkSpawn*"></a>
-  <h4 id="ECellDive_Multiplayer_NetInputActionManager_OnNetworkSpawn" data-uid="ECellDive.Multiplayer.NetInputActionManager.OnNetworkSpawn">OnNetworkSpawn()</h4>
+
+  <h3 id="ECellDive_Multiplayer_NetInputActionManager_OnNetworkSpawn" data-uid="ECellDive.Multiplayer.NetInputActionManager.OnNetworkSpawn">
+  OnNetworkSpawn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>See <see cref="!:MonoBehaviour"></see>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnNetworkSpawn()</code></pre>
   </div>
 
-</article>
-          </div>
 
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_NetInputActionManager.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.NetInputActionManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L19" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
-                <div></div>
-              </nav>
-            </div>
-          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/NetInputActionManager.cs/#L19" class="edit-link">Edit this page</a>
         </div>
+
+        
       </div>
 
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      
-      <span>Generated by <strong>DocFX</strong></span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

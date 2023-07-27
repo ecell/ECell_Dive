@@ -1,389 +1,381 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Class GameNetModuleSpawner
  </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class GameNetModuleSpawner
  ">
-    
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
-      <link rel="stylesheet" href="../styles/docfx.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-    
-    
-    
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_GameNetModuleSpawner.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.GameNetModuleSpawner%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
-  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
 
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
-              </a>
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
             </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
-                </div>
-              </form>
-            </div>
-          </div>
-        </nav>
-
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
           </div>
         </div>
-      </header>
-      <div role="main" class="container body-content hide-when-search">
+      </nav>
+    </header>
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
           </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner">
-
-
-
-  <h1 id="ECellDive_Multiplayer_GameNetModuleSpawner" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner" class="text-break">Class GameNetModuleSpawner
-</h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">GameNetModuleSpawner</span></div>
-  </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="ECellDive.Interfaces.IMlprModuleSpawn.html">IMlprModuleSpawn</a></div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Multiplayer.html">Multiplayer</a></h6>
-  <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="ECellDive_Multiplayer_GameNetModuleSpawner_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GameNetModuleSpawner : NetworkBehaviour, IMlprModuleSpawn</code></pre>
-  </div>
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_GameNetModuleSpawner_fragmentedSourceData.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.GameNetModuleSpawner.fragmentedSourceData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L15">View Source</a>
-  </span>
-  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_fragmentedSourceData_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.fragmentedSourceData*"></a>
-  <h4 id="ECellDive_Multiplayer_GameNetModuleSpawner_fragmentedSourceData" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.fragmentedSourceData">fragmentedSourceData</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;byte[]&gt; fragmentedSourceData { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_GameNetModuleSpawner_sourceDataName.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.GameNetModuleSpawner.sourceDataName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L16">View Source</a>
-  </span>
-  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_sourceDataName_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.sourceDataName*"></a>
-  <h4 id="ECellDive_Multiplayer_GameNetModuleSpawner_sourceDataName" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.sourceDataName">sourceDataName</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public byte[] sourceDataName { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_GameNetModuleSpawner_GiveDataToModule_ECellDive_Modules_GameNetModule_.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.GameNetModuleSpawner.GiveDataToModule(ECellDive.Modules.GameNetModule)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L20">View Source</a>
-  </span>
-  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveDataToModule_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveDataToModule*"></a>
-  <h4 id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveDataToModule_ECellDive_Modules_GameNetModule_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveDataToModule(ECellDive.Modules.GameNetModule)">GiveDataToModule(GameNetModule)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void GiveDataToModule(GameNetModule _gameNetModule)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a></td>
-        <td><span class="parametername">_gameNetModule</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_GameNetModuleSpawner_GiveNetworkObjectReferenceClientRpc_NetworkObjectReference_ClientRpcParams_.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.GameNetModuleSpawner.GiveNetworkObjectReferenceClientRpc(NetworkObjectReference%2CClientRpcParams)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L27">View Source</a>
-  </span>
-  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveNetworkObjectReferenceClientRpc_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveNetworkObjectReferenceClientRpc*"></a>
-  <h4 id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveNetworkObjectReferenceClientRpc_NetworkObjectReference_ClientRpcParams_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveNetworkObjectReferenceClientRpc(NetworkObjectReference,ClientRpcParams)">GiveNetworkObjectReferenceClientRpc(NetworkObjectReference, ClientRpcParams)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void GiveNetworkObjectReferenceClientRpc(NetworkObjectReference _networkObjectReference, ClientRpcParams _clientRpcParams)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">NetworkObjectReference</span></td>
-        <td><span class="parametername">_networkObjectReference</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">ClientRpcParams</span></td>
-        <td><span class="parametername">_clientRpcParams</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_GameNetModuleSpawner_GiveOwnership_GameObject_System_UInt64_.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.GameNetModuleSpawner.GiveOwnership(GameObject%2CSystem.UInt64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L37">View Source</a>
-  </span>
-  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveOwnership_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveOwnership*"></a>
-  <h4 id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveOwnership_GameObject_System_UInt64_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveOwnership(GameObject,System.UInt64)">GiveOwnership(GameObject, ulong)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void GiveOwnership(GameObject _of, ulong _newOwnerClientID)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">GameObject</span></td>
-        <td><span class="parametername">_of</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
-        <td><span class="parametername">_newOwnerClientID</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_GameNetModuleSpawner_RequestModuleSpawnFromData_System_Int32_System_Byte___System_Collections_Generic_List_System_Byte____.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.GameNetModuleSpawner.RequestModuleSpawnFromData(System.Int32%2CSystem.Byte%5B%5D%2CSystem.Collections.Generic.List%7BSystem.Byte%5B%5D%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L42">View Source</a>
-  </span>
-  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_RequestModuleSpawnFromData_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.RequestModuleSpawnFromData*"></a>
-  <h4 id="ECellDive_Multiplayer_GameNetModuleSpawner_RequestModuleSpawnFromData_System_Int32_System_Byte___System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.RequestModuleSpawnFromData(System.Int32,System.Byte[],System.Collections.Generic.List{System.Byte[]})">RequestModuleSpawnFromData(int, byte[], List&lt;byte[]&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void RequestModuleSpawnFromData(int _moduleTypeID, byte[] _dataName, List&lt;byte[]&gt; _fragmentedData)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_moduleTypeID</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><span class="parametername">_dataName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</td>
-        <td><span class="parametername">_fragmentedData</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_GameNetModuleSpawner_RequestModuleSpawnServerRpc_System_Int32_System_UInt64_.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.GameNetModuleSpawner.RequestModuleSpawnServerRpc(System.Int32%2CSystem.UInt64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L49">View Source</a>
-  </span>
-  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_RequestModuleSpawnServerRpc_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.RequestModuleSpawnServerRpc*"></a>
-  <h4 id="ECellDive_Multiplayer_GameNetModuleSpawner_RequestModuleSpawnServerRpc_System_Int32_System_UInt64_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.RequestModuleSpawnServerRpc(System.Int32,System.UInt64)">RequestModuleSpawnServerRpc(int, ulong)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void RequestModuleSpawnServerRpc(int _moduleTypeID, ulong _expeditorClientID)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_moduleTypeID</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
-        <td><span class="parametername">_expeditorClientID</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="ECellDive.Interfaces.IMlprModuleSpawn.html">IMlprModuleSpawn</a>
-  </div>
-
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_GameNetModuleSpawner.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.GameNetModuleSpawner%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L11" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
-                <div></div>
-              </nav>
-            </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
           </div>
         </div>
       </div>
 
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      
-      <span>Generated by <strong>DocFX</strong></span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.Multiplayer.GameNetModuleSpawner">
+
+
+
+  <h1 id="ECellDive_Multiplayer_GameNetModuleSpawner" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner" class="text-break">
+    Class GameNetModuleSpawner
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Multiplayer.html">Multiplayer</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GameNetModuleSpawner : NetworkBehaviour, IMlprModuleSpawn</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">GameNetModuleSpawner</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="ECellDive.Interfaces.IMlprModuleSpawn.html">IMlprModuleSpawn</a></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_fragmentedSourceData_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.fragmentedSourceData*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetModuleSpawner_fragmentedSourceData" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.fragmentedSourceData">
+  fragmentedSourceData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;byte[]&gt; fragmentedSourceData { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_sourceDataName_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.sourceDataName*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetModuleSpawner_sourceDataName" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.sourceDataName">
+  sourceDataName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] sourceDataName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveDataToModule_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveDataToModule*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveDataToModule_ECellDive_Modules_GameNetModule_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveDataToModule(ECellDive.Modules.GameNetModule)">
+  GiveDataToModule(GameNetModule)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GiveDataToModule(GameNetModule _gameNetModule)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_gameNetModule</code> <a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveNetworkObjectReferenceClientRpc_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveNetworkObjectReferenceClientRpc*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveNetworkObjectReferenceClientRpc_NetworkObjectReference_ClientRpcParams_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveNetworkObjectReferenceClientRpc(NetworkObjectReference,ClientRpcParams)">
+  GiveNetworkObjectReferenceClientRpc(NetworkObjectReference, ClientRpcParams)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GiveNetworkObjectReferenceClientRpc(NetworkObjectReference _networkObjectReference, ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_networkObjectReference</code> <span class="xref">NetworkObjectReference</span></dt>
+    <dd></dd>
+    <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveOwnership_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveOwnership*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetModuleSpawner_GiveOwnership_GameObject_System_UInt64_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.GiveOwnership(GameObject,System.UInt64)">
+  GiveOwnership(GameObject, ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GiveOwnership(GameObject _of, ulong _newOwnerClientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_of</code> <span class="xref">GameObject</span></dt>
+    <dd></dd>
+    <dt><code>_newOwnerClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_RequestModuleSpawnFromData_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.RequestModuleSpawnFromData*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetModuleSpawner_RequestModuleSpawnFromData_System_Int32_System_Byte___System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.RequestModuleSpawnFromData(System.Int32,System.Byte[],System.Collections.Generic.List{System.Byte[]})">
+  RequestModuleSpawnFromData(int, byte[], List&lt;byte[]&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RequestModuleSpawnFromData(int _moduleTypeID, byte[] _dataName, List&lt;byte[]&gt; _fragmentedData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_moduleTypeID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>_dataName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>_fragmentedData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetModuleSpawner_RequestModuleSpawnServerRpc_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.RequestModuleSpawnServerRpc*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetModuleSpawner_RequestModuleSpawnServerRpc_System_Int32_System_UInt64_" data-uid="ECellDive.Multiplayer.GameNetModuleSpawner.RequestModuleSpawnServerRpc(System.Int32,System.UInt64)">
+  RequestModuleSpawnServerRpc(int, ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RequestModuleSpawnServerRpc(int _moduleTypeID, ulong _expeditorClientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_moduleTypeID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>_expeditorClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetModuleSpawner.cs/#L11" class="edit-link">Edit this page</a>
+        </div>
+
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

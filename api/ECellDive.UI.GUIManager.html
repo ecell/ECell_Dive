@@ -1,380 +1,398 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Class GUIManager
  </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class GUIManager
  ">
-    
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
-      <link rel="stylesheet" href="../styles/docfx.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-    
-    
-    
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_GUIManager.md&amp;value=---%0Auid%3A%20ECellDive.UI.GUIManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
-  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
 
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
-              </a>
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
             </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
-                </div>
-              </form>
-            </div>
-          </div>
-        </nav>
-
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
           </div>
         </div>
-      </header>
-      <div role="main" class="container body-content hide-when-search">
+      </nav>
+    </header>
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
           </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="ECellDive.UI.GUIManager">
-
-
-
-  <h1 id="ECellDive_UI_GUIManager" data-uid="ECellDive.UI.GUIManager" class="text-break">Class GUIManager
-</h1>
-  <div class="markdown level0 summary"><p>Logic to switch On and Off the main menu.</p>
-</div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">GUIManager</span></div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.UI.html">UI</a></h6>
-  <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="ECellDive_UI_GUIManager_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GUIManager : MonoBehaviour</code></pre>
-  </div>
-  <h3 id="fields">Fields
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_GUIManager_refColorPicker.md&amp;value=---%0Auid%3A%20ECellDive.UI.GUIManager.refColorPicker%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L21">View Source</a>
-  </span>
-  <h4 id="ECellDive_UI_GUIManager_refColorPicker" data-uid="ECellDive.UI.GUIManager.refColorPicker">refColorPicker</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ColorPicker refColorPicker</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ColorPicker</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_GUIManager_refGroupsMakingUIManager.md&amp;value=---%0Auid%3A%20ECellDive.UI.GUIManager.refGroupsMakingUIManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L23">View Source</a>
-  </span>
-  <h4 id="ECellDive_UI_GUIManager_refGroupsMakingUIManager" data-uid="ECellDive.UI.GUIManager.refGroupsMakingUIManager">refGroupsMakingUIManager</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GroupsMakingUIManager refGroupsMakingUIManager</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.UI.GroupsMakingUIManager.html">GroupsMakingUIManager</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_GUIManager_refGroupsMenu.md&amp;value=---%0Auid%3A%20ECellDive.UI.GUIManager.refGroupsMenu%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L24">View Source</a>
-  </span>
-  <h4 id="ECellDive_UI_GUIManager_refGroupsMenu" data-uid="ECellDive.UI.GUIManager.refGroupsMenu">refGroupsMenu</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GroupsMenu refGroupsMenu</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.UI.GroupsMenu.html">GroupsMenu</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_GUIManager_refMainMenu.md&amp;value=---%0Auid%3A%20ECellDive.UI.GUIManager.refMainMenu%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L19">View Source</a>
-  </span>
-  <h4 id="ECellDive_UI_GUIManager_refMainMenu" data-uid="ECellDive.UI.GUIManager.refMainMenu">refMainMenu</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GameObject refMainMenu</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">GameObject</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_GUIManager_refMenuOpen.md&amp;value=---%0Auid%3A%20ECellDive.UI.GUIManager.refMenuOpen%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L17">View Source</a>
-  </span>
-  <h4 id="ECellDive_UI_GUIManager_refMenuOpen" data-uid="ECellDive.UI.GUIManager.refMenuOpen">refMenuOpen</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InputActionReference refMenuOpen</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">InputActionReference</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_GUIManager_refModulesMenuManager.md&amp;value=---%0Auid%3A%20ECellDive.UI.GUIManager.refModulesMenuManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L22">View Source</a>
-  </span>
-  <h4 id="ECellDive_UI_GUIManager_refModulesMenuManager" data-uid="ECellDive.UI.GUIManager.refModulesMenuManager">refModulesMenuManager</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ModulesMenuManager refModulesMenuManager</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.UI.ModulesMenuManager.html">ModulesMenuManager</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_GUIManager_refVirtualKeyboard.md&amp;value=---%0Auid%3A%20ECellDive.UI.GUIManager.refVirtualKeyboard%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L20">View Source</a>
-  </span>
-  <h4 id="ECellDive_UI_GUIManager_refVirtualKeyboard" data-uid="ECellDive.UI.GUIManager.refVirtualKeyboard">refVirtualKeyboard</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GameObject refVirtualKeyboard</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">GameObject</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_GUIManager_Initialize_ECellDive_PlayerComponents_Player_.md&amp;value=---%0Auid%3A%20ECellDive.UI.GUIManager.Initialize(ECellDive.PlayerComponents.Player)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L46">View Source</a>
-  </span>
-  <a id="ECellDive_UI_GUIManager_Initialize_" data-uid="ECellDive.UI.GUIManager.Initialize*"></a>
-  <h4 id="ECellDive_UI_GUIManager_Initialize_ECellDive_PlayerComponents_Player_" data-uid="ECellDive.UI.GUIManager.Initialize(ECellDive.PlayerComponents.Player)">Initialize(Player)</h4>
-  <div class="markdown level1 summary"><p>Initializes some values of actions associated to some GUI after
-the <code class="paramref">_player</code> (local client) has been spawned.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Initialize(Player _player)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.PlayerComponents.Player.html">Player</a></td>
-        <td><span class="parametername">_player</span></td>
-        <td><p>The reference to the player class of
-the local client spawned in the scene.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="ECellDive_UI_GUIManager_Initialize_ECellDive_PlayerComponents_Player__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Called once in <see cref="!:Unity.Netcode.NetworkBehaviour.OnNetworkSpawn"></see>
-of the local client (see code of <a class="xref" href="ECellDive.PlayerComponents.Player.html">Player</a>).</p>
-</div>
-
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_GUIManager.md&amp;value=---%0Auid%3A%20ECellDive.UI.GUIManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L15" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
-                <div></div>
-              </nav>
-            </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
           </div>
         </div>
       </div>
 
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      
-      <span>Generated by <strong>DocFX</strong></span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.UI.GUIManager">
+
+
+
+  <h1 id="ECellDive_UI_GUIManager" data-uid="ECellDive.UI.GUIManager" class="text-break">
+    Class GUIManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.UI.html">UI</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Logic to switch On and Off the main menu.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GUIManager : MonoBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">GUIManager</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="ECellDive_UI_GUIManager_refColorPicker" data-uid="ECellDive.UI.GUIManager.refColorPicker">
+  refColorPicker
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColorPicker refColorPicker</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ColorPicker</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_GUIManager_refGroupsMakingUIManager" data-uid="ECellDive.UI.GUIManager.refGroupsMakingUIManager">
+  refGroupsMakingUIManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GroupsMakingUIManager refGroupsMakingUIManager</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.UI.GroupsMakingUIManager.html">GroupsMakingUIManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_GUIManager_refGroupsMenu" data-uid="ECellDive.UI.GUIManager.refGroupsMenu">
+  refGroupsMenu
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GroupsMenu refGroupsMenu</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.UI.GroupsMenu.html">GroupsMenu</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_GUIManager_refMainMenu" data-uid="ECellDive.UI.GUIManager.refMainMenu">
+  refMainMenu
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject refMainMenu</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_GUIManager_refMenuOpen" data-uid="ECellDive.UI.GUIManager.refMenuOpen">
+  refMenuOpen
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InputActionReference refMenuOpen</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">InputActionReference</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_GUIManager_refModulesMenuManager" data-uid="ECellDive.UI.GUIManager.refModulesMenuManager">
+  refModulesMenuManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ModulesMenuManager refModulesMenuManager</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.UI.ModulesMenuManager.html">ModulesMenuManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_GUIManager_refVirtualKeyboard" data-uid="ECellDive.UI.GUIManager.refVirtualKeyboard">
+  refVirtualKeyboard
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject refVirtualKeyboard</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ECellDive_UI_GUIManager_Initialize_" data-uid="ECellDive.UI.GUIManager.Initialize*"></a>
+
+  <h3 id="ECellDive_UI_GUIManager_Initialize_ECellDive_PlayerComponents_Player_" data-uid="ECellDive.UI.GUIManager.Initialize(ECellDive.PlayerComponents.Player)">
+  Initialize(Player)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes some values of actions associated to some GUI after
+the <code class="paramref">_player</code> (local client) has been spawned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize(Player _player)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_player</code> <a class="xref" href="ECellDive.PlayerComponents.Player.html">Player</a></dt>
+    <dd><p>The reference to the player class of
+the local client spawned in the scene.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_UI_GUIManager_Initialize_ECellDive_PlayerComponents_Player__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Called once in <see cref="!:Unity.Netcode.NetworkBehaviour.OnNetworkSpawn"></see>
+of the local client (see code of <a class="xref" href="ECellDive.PlayerComponents.Player.html">Player</a>).</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/GUIManager.cs/#L15" class="edit-link">Edit this page</a>
+        </div>
+
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

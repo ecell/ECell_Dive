@@ -1,135 +1,163 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Class DiveScenesManager
  </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class DiveScenesManager
  ">
-    
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
-      <link rel="stylesheet" href="../styles/docfx.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-    
-    
-    
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
-  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
 
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
-              </a>
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
             </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
-                </div>
-              </form>
-            </div>
-          </div>
-        </nav>
-
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
           </div>
         </div>
-      </header>
-      <div role="main" class="container body-content hide-when-search">
+      </nav>
+    </header>
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
           </div>
         </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="ECellDive.SceneManagement.DiveScenesManager">
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.SceneManagement.DiveScenesManager">
 
 
 
-  <h1 id="ECellDive_SceneManagement_DiveScenesManager" data-uid="ECellDive.SceneManagement.DiveScenesManager" class="text-break">Class DiveScenesManager
-</h1>
-  <div class="markdown level0 summary"><p>Implements the logic for the scene transitions when a player is diving
+  <h1 id="ECellDive_SceneManagement_DiveScenesManager" data-uid="ECellDive.SceneManagement.DiveScenesManager" class="text-break">
+    Class DiveScenesManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.SceneManagement.html">SceneManagement</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Implements the logic for the scene transitions when a player is diving
 or resurfacing.</p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">DiveScenesManager</span></div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.SceneManagement.html">SceneManagement</a></h6>
-  <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="ECellDive_SceneManagement_DiveScenesManager_syntax">Syntax</h5>
+  <div class="markdown conceptual"></div>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class DiveScenesManager : NetworkBehaviour</code></pre>
   </div>
-  <h5 id="ECellDive_SceneManagement_DiveScenesManager_remarks"><strong>Remarks</strong></h5>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">DiveScenesManager</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+  <h2 id="ECellDive_SceneManagement_DiveScenesManager_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>Synchronized with multiplayer.</p>
 </div>
-  <h3 id="fields">Fields
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_divingAnimationData.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.divingAnimationData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L130">View Source</a>
-  </span>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_divingAnimationData" data-uid="ECellDive.SceneManagement.DiveScenesManager.divingAnimationData">divingAnimationData</h4>
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_divingAnimationData" data-uid="ECellDive.SceneManagement.DiveScenesManager.divingAnimationData">
+  divingAnimationData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public DivingAnimationData divingAnimationData</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.SceneManagement.DivingAnimationData.html">DivingAnimationData</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_modulePrefabs.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.modulePrefabs%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L129">View Source</a>
-  </span>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_modulePrefabs" data-uid="ECellDive.SceneManagement.DiveScenesManager.modulePrefabs">modulePrefabs</h4>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.SceneManagement.DivingAnimationData.html">DivingAnimationData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_modulePrefabs" data-uid="ECellDive.SceneManagement.DiveScenesManager.modulePrefabs">
+  modulePrefabs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>A list of prefabs that may be instantiated by the user at runtime.
 Every prefab MUST have a <a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a> and <see cref="!:NetworkObject"></see>
 component. We advise to use this list for root data modules (e.g. CyJsonModule) only.
@@ -137,622 +165,561 @@ component. We advise to use this list for root data modules (e.g. CyJsonModule) 
 should be referenced in the script detailing the said data generation process.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public GameObject[] modulePrefabs</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">GameObject</span>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_scenesBank.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.scenesBank%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L132">View Source</a>
-  </span>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_scenesBank" data-uid="ECellDive.SceneManagement.DiveScenesManager.scenesBank">scenesBank</h4>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_scenesBank" data-uid="ECellDive.SceneManagement.DiveScenesManager.scenesBank">
+  scenesBank
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static List&lt;SceneData&gt; scenesBank</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.SceneManagement.SceneData.html">SceneData</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_Instance.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.Instance%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L120">View Source</a>
-  </span>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.SceneManagement.SceneData.html">SceneData</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_Instance_" data-uid="ECellDive.SceneManagement.DiveScenesManager.Instance*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_Instance" data-uid="ECellDive.SceneManagement.DiveScenesManager.Instance">Instance</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_Instance" data-uid="ECellDive.SceneManagement.DiveScenesManager.Instance">
+  Instance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DiveScenesManager Instance { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html">DiveScenesManager</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_AddNewDiveScene_System_Int32_.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.AddNewDiveScene(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L197">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html">DiveScenesManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_AddNewDiveScene_" data-uid="ECellDive.SceneManagement.DiveScenesManager.AddNewDiveScene*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_AddNewDiveScene_System_Int32_" data-uid="ECellDive.SceneManagement.DiveScenesManager.AddNewDiveScene(System.Int32)">AddNewDiveScene(int)</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_AddNewDiveScene_System_Int32_" data-uid="ECellDive.SceneManagement.DiveScenesManager.AddNewDiveScene(System.Int32)">
+  AddNewDiveScene(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Called to instantiate a new scene upon diving in a module</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int AddNewDiveScene(int _parentSceneId)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_parentSceneId</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_CheckIfDiveSceneHasPlayers_System_Int32_.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.CheckIfDiveSceneHasPlayers(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L166">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_parentSceneId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_CheckIfDiveSceneHasPlayers_" data-uid="ECellDive.SceneManagement.DiveScenesManager.CheckIfDiveSceneHasPlayers*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_CheckIfDiveSceneHasPlayers_System_Int32_" data-uid="ECellDive.SceneManagement.DiveScenesManager.CheckIfDiveSceneHasPlayers(System.Int32)">CheckIfDiveSceneHasPlayers(int)</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_CheckIfDiveSceneHasPlayers_System_Int32_" data-uid="ECellDive.SceneManagement.DiveScenesManager.CheckIfDiveSceneHasPlayers(System.Int32)">
+  CheckIfDiveSceneHasPlayers(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Checks whether a dive scenes has at least one player in.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool CheckIfDiveSceneHasPlayers(int _sceneId)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_sceneId</span></td>
-        <td><p>The index of the scene in the <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_scenesBank">scenesBank</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p>Returns true if the scene contains at least a diver. False, otherwise.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_ClearPlayerFromSessionServerRpc_System_UInt64_.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.ClearPlayerFromSessionServerRpc(System.UInt64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L151">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sceneId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index of the scene in the <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_scenesBank">scenesBank</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Returns true if the scene contains at least a diver. False, otherwise.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_ClearPlayerFromSessionServerRpc_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ClearPlayerFromSessionServerRpc*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_ClearPlayerFromSessionServerRpc_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ClearPlayerFromSessionServerRpc(System.UInt64)">ClearPlayerFromSessionServerRpc(ulong)</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_ClearPlayerFromSessionServerRpc_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ClearPlayerFromSessionServerRpc(System.UInt64)">
+  ClearPlayerFromSessionServerRpc(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ClearPlayerFromSessionServerRpc(ulong _clientIdToClear)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
-        <td><span class="parametername">_clientIdToClear</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_DebugScene.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.DebugScene%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L212">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_clientIdToClear</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_DebugScene_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DebugScene*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_DebugScene" data-uid="ECellDive.SceneManagement.DiveScenesManager.DebugScene">DebugScene()</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_DebugScene" data-uid="ECellDive.SceneManagement.DiveScenesManager.DebugScene">
+  DebugScene()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L212"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Outputs the content of the <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_scenesBank">scenesBank</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void DebugScene()</code></pre>
   </div>
-  <h5 id="ECellDive_SceneManagement_DiveScenesManager_DebugScene_remarks">Remarks</h5>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_SceneManagement_DiveScenesManager_DebugScene_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Used for Debug purposes.</p>
 </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_DestroyDiveScene_System_Int32_.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.DestroyDiveScene(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L175">View Source</a>
-  </span>
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_DestroyDiveScene_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DestroyDiveScene*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_DestroyDiveScene_System_Int32_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DestroyDiveScene(System.Int32)">DestroyDiveScene(int)</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_DestroyDiveScene_System_Int32_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DestroyDiveScene(System.Int32)">
+  DestroyDiveScene(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Removes the scene at index <code class="paramref">_sceneId</code> from the <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_scenesBank">scenesBank</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void DestroyDiveScene(int _sceneId)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_sceneId</span></td>
-        <td><p>The index of the scene to remove from the <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_scenesBank">scenesBank</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_DiverGetsInServerRpc_System_Int32_System_UInt64_.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.DiverGetsInServerRpc(System.Int32%2CSystem.UInt64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L180">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sceneId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index of the scene to remove from the <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_scenesBank">scenesBank</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_DiverGetsInServerRpc_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DiverGetsInServerRpc*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_DiverGetsInServerRpc_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DiverGetsInServerRpc(System.Int32,System.UInt64)">DiverGetsInServerRpc(int, ulong)</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_DiverGetsInServerRpc_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DiverGetsInServerRpc(System.Int32,System.UInt64)">
+  DiverGetsInServerRpc(int, ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L180"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void DiverGetsInServerRpc(int _sceneId, ulong _diverClientId)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_sceneId</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
-        <td><span class="parametername">_diverClientId</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_DiverGetsOutServerRpc_System_Int32_System_UInt64_.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.DiverGetsOutServerRpc(System.Int32%2CSystem.UInt64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L187">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sceneId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>_diverClientId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_DiverGetsOutServerRpc_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DiverGetsOutServerRpc*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_DiverGetsOutServerRpc_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DiverGetsOutServerRpc(System.Int32,System.UInt64)">DiverGetsOutServerRpc(int, ulong)</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_DiverGetsOutServerRpc_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DiverGetsOutServerRpc(System.Int32,System.UInt64)">
+  DiverGetsOutServerRpc(int, ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void DiverGetsOutServerRpc(int _sceneId, ulong _diverClientId)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_sceneId</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
-        <td><span class="parametername">_diverClientId</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_OnNetworkSpawn.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.OnNetworkSpawn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L137">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sceneId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>_diverClientId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_OnNetworkSpawn_" data-uid="ECellDive.SceneManagement.DiveScenesManager.OnNetworkSpawn*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_OnNetworkSpawn" data-uid="ECellDive.SceneManagement.DiveScenesManager.OnNetworkSpawn">OnNetworkSpawn()</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_OnNetworkSpawn" data-uid="ECellDive.SceneManagement.DiveScenesManager.OnNetworkSpawn">
+  OnNetworkSpawn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnNetworkSpawn()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_ResurfaceServerRpc_System_UInt64_.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.ResurfaceServerRpc(System.UInt64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L433">View Source</a>
-  </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_ResurfaceServerRpc_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ResurfaceServerRpc*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_ResurfaceServerRpc_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ResurfaceServerRpc(System.UInt64)">ResurfaceServerRpc(ulong)</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_ResurfaceServerRpc_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ResurfaceServerRpc(System.UInt64)">
+  ResurfaceServerRpc(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L433"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>The server call to resurface a diver.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ResurfaceServerRpc(ulong _surfacingDiverId)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
-        <td><span class="parametername">_surfacingDiverId</span></td>
-        <td><p>The clientID of the diver asking to resurface
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_surfacingDiverId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The clientID of the diver asking to resurface
 from his current dive scene.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_SceneSwitchIsFinished.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.SceneSwitchIsFinished%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L459">View Source</a>
-  </span>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_SceneSwitchIsFinished_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SceneSwitchIsFinished*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_SceneSwitchIsFinished" data-uid="ECellDive.SceneManagement.DiveScenesManager.SceneSwitchIsFinished">SceneSwitchIsFinished()</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_SceneSwitchIsFinished" data-uid="ECellDive.SceneManagement.DiveScenesManager.SceneSwitchIsFinished">
+  SceneSwitchIsFinished()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L459"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool SceneSwitchIsFinished()</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_SpawnModuleInScene_System_Int32_GameObject_Vector3_.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.SpawnModuleInScene(System.Int32%2CGameObject%2CVector3)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L382">View Source</a>
-  </span>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_SpawnModuleInScene_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SpawnModuleInScene*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_SpawnModuleInScene_System_Int32_GameObject_Vector3_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SpawnModuleInScene(System.Int32,GameObject,Vector3)">SpawnModuleInScene(int, GameObject, Vector3)</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_SpawnModuleInScene_System_Int32_GameObject_Vector3_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SpawnModuleInScene(System.Int32,GameObject,Vector3)">
+  SpawnModuleInScene(int, GameObject, Vector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L382"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public GameObject SpawnModuleInScene(int _sceneId, GameObject _prefab, Vector3 _position)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_sceneId</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">GameObject</span></td>
-        <td><span class="parametername">_prefab</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Vector3</span></td>
-        <td><span class="parametername">_position</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">GameObject</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_SpawnModuleInScene_System_Int32_System_Int32_Vector3_.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.SpawnModuleInScene(System.Int32%2CSystem.Int32%2CVector3)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L405">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sceneId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>_prefab</code> <span class="xref">GameObject</span></dt>
+    <dd></dd>
+    <dt><code>_position</code> <span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_SpawnModuleInScene_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SpawnModuleInScene*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_SpawnModuleInScene_System_Int32_System_Int32_Vector3_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SpawnModuleInScene(System.Int32,System.Int32,Vector3)">SpawnModuleInScene(int, int, Vector3)</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_SpawnModuleInScene_System_Int32_System_Int32_Vector3_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SpawnModuleInScene(System.Int32,System.Int32,Vector3)">
+  SpawnModuleInScene(int, int, Vector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L405"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public GameObject SpawnModuleInScene(int _sceneId, int _prefabIdx, Vector3 _position)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_sceneId</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_prefabIdx</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Vector3</span></td>
-        <td><span class="parametername">_position</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">GameObject</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager_SwitchingScenesServerRpc_System_Int32_System_Int32_System_UInt64_.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager.SwitchingScenesServerRpc(System.Int32%2CSystem.Int32%2CSystem.UInt64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L418">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sceneId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>_prefabIdx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>_position</code> <span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_SwitchingScenesServerRpc_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SwitchingScenesServerRpc*"></a>
-  <h4 id="ECellDive_SceneManagement_DiveScenesManager_SwitchingScenesServerRpc_System_Int32_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SwitchingScenesServerRpc(System.Int32,System.Int32,System.UInt64)">SwitchingScenesServerRpc(int, int, ulong)</h4>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_SwitchingScenesServerRpc_System_Int32_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SwitchingScenesServerRpc(System.Int32,System.Int32,System.UInt64)">
+  SwitchingScenesServerRpc(int, int, ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L418"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SwitchingScenesServerRpc(int _from, int _to, ulong _clientId)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_from</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">_to</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
-        <td><span class="parametername">_clientId</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_from</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>_to</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>_clientId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
-          </div>
 
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L118" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
-                <div></div>
-              </nav>
-            </div>
-          </div>
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L118" class="edit-link">Edit this page</a>
         </div>
+
+        
       </div>
 
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      
-      <span>Generated by <strong>DocFX</strong></span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

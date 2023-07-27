@@ -1,469 +1,553 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Class GroupsMakingManager
  </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class GroupsMakingManager
  ">
-    
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
-      <link rel="stylesheet" href="../styles/docfx.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-    
-    
-    
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
-  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
 
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
-              </a>
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
             </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
-                </div>
-              </form>
-            </div>
-          </div>
-        </nav>
-
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
           </div>
         </div>
-      </header>
-      <div role="main" class="container body-content hide-when-search">
+      </nav>
+    </header>
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
           </div>
         </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="ECellDive.PlayerComponents.GroupsMakingManager">
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.PlayerComponents.GroupsMakingManager">
 
 
 
-  <h1 id="ECellDive_PlayerComponents_GroupsMakingManager" data-uid="ECellDive.PlayerComponents.GroupsMakingManager" class="text-break">Class GroupsMakingManager
-</h1>
-  <div class="markdown level0 summary"><p>The logic to handle custom groups made by the user with
+  <h1 id="ECellDive_PlayerComponents_GroupsMakingManager" data-uid="ECellDive.PlayerComponents.GroupsMakingManager" class="text-break">
+    Class GroupsMakingManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.PlayerComponents.html">PlayerComponents</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>The logic to handle custom groups made by the user with
 either the discrete or volumetric selectors.</p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">GroupsMakingManager</span></div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.PlayerComponents.html">PlayerComponents</a></h6>
-  <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="ECellDive_PlayerComponents_GroupsMakingManager_syntax">Syntax</h5>
+  <div class="markdown conceptual"></div>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class GroupsMakingManager : NetworkBehaviour</code></pre>
   </div>
-  <h3 id="fields">Fields
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_discreteSelector.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.discreteSelector%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L28">View Source</a>
-  </span>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_discreteSelector" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.discreteSelector">discreteSelector</h4>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">GroupsMakingManager</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_discreteSelector" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.discreteSelector">
+  discreteSelector
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LeftRightData&lt;GameObject&gt; discreteSelector</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">GameObject</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_groupMembers.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.groupMembers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L41">View Source</a>
-  </span>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_groupMembers" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.groupMembers">groupMembers</h4>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_groupMembers" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.groupMembers">
+  groupMembers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public List&lt;GameObject&gt; groupMembers</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_grpMkgToolsData.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.grpMkgToolsData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L33">View Source</a>
-  </span>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_grpMkgToolsData" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.grpMkgToolsData">grpMkgToolsData</h4>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_grpMkgToolsData" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.grpMkgToolsData">
+  grpMkgToolsData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public GroupMakingToolsData grpMkgToolsData</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.PlayerComponents.GroupMakingToolsData.html">GroupMakingToolsData</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_inputModeTags.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.inputModeTags%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L31">View Source</a>
-  </span>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_inputModeTags" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.inputModeTags">inputModeTags</h4>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.PlayerComponents.GroupMakingToolsData.html">GroupMakingToolsData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_inputModeTags" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.inputModeTags">
+  inputModeTags
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LeftRightData&lt;SurgeAndShrinkInfoTag&gt; inputModeTags</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<a class="xref" href="ECellDive.UI.SurgeAndShrinkInfoTag.html">SurgeAndShrinkInfoTag</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_selection.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.selection%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L25">View Source</a>
-  </span>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_selection" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.selection">selection</h4>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<a class="xref" href="ECellDive.UI.SurgeAndShrinkInfoTag.html">SurgeAndShrinkInfoTag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_selection" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.selection">
+  selection
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LeftRightData&lt;InputActionReference&gt; selection</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_switchSelectionMode.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.switchSelectionMode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L26">View Source</a>
-  </span>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_switchSelectionMode" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.switchSelectionMode">switchSelectionMode</h4>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_switchSelectionMode" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.switchSelectionMode">
+  switchSelectionMode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LeftRightData&lt;InputActionReference&gt; switchSelectionMode</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_volumetricSelector.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.volumetricSelector%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L29">View Source</a>
-  </span>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_volumetricSelector" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.volumetricSelector">volumetricSelector</h4>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_volumetricSelector" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.volumetricSelector">
+  volumetricSelector
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LeftRightData&lt;VolumetricSelectorManager&gt; volumetricSelector</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<a class="xref" href="ECellDive.PlayerComponents.VolumetricSelectorManager.html">VolumetricSelectorManager</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_BroadcastSelectionModeLeftServerRpc.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.BroadcastSelectionModeLeftServerRpc%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L131">View Source</a>
-  </span>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<a class="xref" href="ECellDive.PlayerComponents.VolumetricSelectorManager.html">VolumetricSelectorManager</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
   <a id="ECellDive_PlayerComponents_GroupsMakingManager_BroadcastSelectionModeLeftServerRpc_" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.BroadcastSelectionModeLeftServerRpc*"></a>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_BroadcastSelectionModeLeftServerRpc" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.BroadcastSelectionModeLeftServerRpc">BroadcastSelectionModeLeftServerRpc()</h4>
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_BroadcastSelectionModeLeftServerRpc" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.BroadcastSelectionModeLeftServerRpc">
+  BroadcastSelectionModeLeftServerRpc()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void BroadcastSelectionModeLeftServerRpc()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_BroadcastSelectionModeRightServerRpc.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.BroadcastSelectionModeRightServerRpc%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L137">View Source</a>
-  </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_PlayerComponents_GroupsMakingManager_BroadcastSelectionModeRightServerRpc_" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.BroadcastSelectionModeRightServerRpc*"></a>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_BroadcastSelectionModeRightServerRpc" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.BroadcastSelectionModeRightServerRpc">BroadcastSelectionModeRightServerRpc()</h4>
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_BroadcastSelectionModeRightServerRpc" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.BroadcastSelectionModeRightServerRpc">
+  BroadcastSelectionModeRightServerRpc()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void BroadcastSelectionModeRightServerRpc()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_CancelGroup.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.CancelGroup%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L146">View Source</a>
-  </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_PlayerComponents_GroupsMakingManager_CancelGroup_" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.CancelGroup*"></a>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_CancelGroup" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.CancelGroup">CancelGroup()</h4>
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_CancelGroup" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.CancelGroup">
+  CancelGroup()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Method to call back when cancelling the creation of a group.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void CancelGroup()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_CheckCollision_Collider_.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.CheckCollision(Collider)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L166">View Source</a>
-  </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_PlayerComponents_GroupsMakingManager_CheckCollision_" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.CheckCollision*"></a>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_CheckCollision_Collider_" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.CheckCollision(Collider)">CheckCollision(Collider)</h4>
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_CheckCollision_Collider_" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.CheckCollision(Collider)">
+  CheckCollision(Collider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Tests if the gameobject <code class="paramref">_go</code> that collided
 with the selector being used is part of the target layer and
 proceeds if it is.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void CheckCollision(Collider _collider)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Collider</span></td>
-        <td><span class="parametername">_collider</span></td>
-        <td><p>The collider we want to check.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_OnNetworkDespawn.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.OnNetworkDespawn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L60">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_collider</code> <span class="xref">Collider</span></dt>
+    <dd><p>The collider we want to check.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_PlayerComponents_GroupsMakingManager_OnNetworkDespawn_" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.OnNetworkDespawn*"></a>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_OnNetworkDespawn" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.OnNetworkDespawn">OnNetworkDespawn()</h4>
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_OnNetworkDespawn" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.OnNetworkDespawn">
+  OnNetworkDespawn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnNetworkDespawn()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_OnNetworkSpawn.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.OnNetworkSpawn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L43">View Source</a>
-  </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_PlayerComponents_GroupsMakingManager_OnNetworkSpawn_" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.OnNetworkSpawn*"></a>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_OnNetworkSpawn" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.OnNetworkSpawn">OnNetworkSpawn()</h4>
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_OnNetworkSpawn" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.OnNetworkSpawn">
+  OnNetworkSpawn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override void OnNetworkSpawn()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager_ValidateGroup.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager.ValidateGroup%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L339">View Source</a>
-  </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_PlayerComponents_GroupsMakingManager_ValidateGroup_" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.ValidateGroup*"></a>
-  <h4 id="ECellDive_PlayerComponents_GroupsMakingManager_ValidateGroup" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.ValidateGroup">ValidateGroup()</h4>
+
+  <h3 id="ECellDive_PlayerComponents_GroupsMakingManager_ValidateGroup" data-uid="ECellDive.PlayerComponents.GroupsMakingManager.ValidateGroup">
+  ValidateGroup()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L339"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>The method to callback when validating the creation of the group.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ValidateGroup()</code></pre>
   </div>
 
-</article>
-          </div>
 
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GroupsMakingManager.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GroupsMakingManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L23" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
-                <div></div>
-              </nav>
-            </div>
-          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GroupsMakingManager.cs/#L23" class="edit-link">Edit this page</a>
         </div>
+
+        
       </div>
 
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      
-      <span>Generated by <strong>DocFX</strong></span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

@@ -1,861 +1,840 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Interface IMlprData
  </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IMlprData
  ">
-    
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
-      <link rel="stylesheet" href="../styles/docfx.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-    
-    
-    
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
-  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
 
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
-              </a>
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
             </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
-                </div>
-              </form>
-            </div>
-          </div>
-        </nav>
-
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
           </div>
         </div>
-      </header>
-      <div role="main" class="container body-content hide-when-search">
+      </nav>
+    </header>
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
           </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="ECellDive.Interfaces.IMlprData">
-
-
-
-  <h1 id="ECellDive_Interfaces_IMlprData" data-uid="ECellDive.Interfaces.IMlprData" class="text-break">Interface IMlprData
-</h1>
-  <div class="markdown level0 summary"><p>The interface with the base members and methods to associate shareable data
-to a module in a multiplayer context.</p>
-</div>
-  <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Interfaces.html">Interfaces</a></h6>
-  <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="ECellDive_Interfaces_IMlprData_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IMlprData</code></pre>
-  </div>
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_fragmentedSourceData.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.fragmentedSourceData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L42">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_fragmentedSourceData_" data-uid="ECellDive.Interfaces.IMlprData.fragmentedSourceData*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_fragmentedSourceData" data-uid="ECellDive.Interfaces.IMlprData.fragmentedSourceData">fragmentedSourceData</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">List&lt;byte[]&gt; fragmentedSourceData { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_isReadyForGeneration.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.isReadyForGeneration%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L50">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_isReadyForGeneration_" data-uid="ECellDive.Interfaces.IMlprData.isReadyForGeneration*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_isReadyForGeneration" data-uid="ECellDive.Interfaces.IMlprData.isReadyForGeneration">isReadyForGeneration</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">NetworkVariable&lt;bool&gt; isReadyForGeneration { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_nbClientReadyLoaded.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.nbClientReadyLoaded%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L48">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_nbClientReadyLoaded_" data-uid="ECellDive.Interfaces.IMlprData.nbClientReadyLoaded*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_nbClientReadyLoaded" data-uid="ECellDive.Interfaces.IMlprData.nbClientReadyLoaded">nbClientReadyLoaded</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">NetworkVariable&lt;int&gt; nbClientReadyLoaded { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_sourceDataName.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.sourceDataName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L44">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_sourceDataName_" data-uid="ECellDive.Interfaces.IMlprData.sourceDataName*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_sourceDataName" data-uid="ECellDive.Interfaces.IMlprData.sourceDataName">sourceDataName</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">byte[] sourceDataName { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_sourceDataNbFrags.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.sourceDataNbFrags%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L46">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_sourceDataNbFrags_" data-uid="ECellDive.Interfaces.IMlprData.sourceDataNbFrags*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_sourceDataNbFrags" data-uid="ECellDive.Interfaces.IMlprData.sourceDataNbFrags">sourceDataNbFrags</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int sourceDataNbFrags { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_AssembleFragmentedData.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.AssembleFragmentedData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L52">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_AssembleFragmentedData_" data-uid="ECellDive.Interfaces.IMlprData.AssembleFragmentedData*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_AssembleFragmentedData" data-uid="ECellDive.Interfaces.IMlprData.AssembleFragmentedData">AssembleFragmentedData()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void AssembleFragmentedData()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_BroadcastSourceDataC.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.BroadcastSourceDataC%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L54">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataC_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataC*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataC" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataC">BroadcastSourceDataC()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerator BroadcastSourceDataC()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragClientRpc_System_Byte___.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragClientRpc(System.Byte%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L56">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragClientRpc*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragClientRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragClientRpc(System.Byte[])">BroadcastSourceDataFragClientRpc(byte[])</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void BroadcastSourceDataFragClientRpc(byte[] _fragment)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><span class="parametername">_fragment</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragServerRpc_System_Byte___.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragServerRpc(System.Byte%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L65">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragServerRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragServerRpc*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragServerRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragServerRpc(System.Byte[])">BroadcastSourceDataFragServerRpc(byte[])</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void BroadcastSourceDataFragServerRpc(byte[] _fragment)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><span class="parametername">_fragment</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragsC(System.Collections.Generic.List%7BSystem.Byte%5B%5D%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L74">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragsC_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragsC*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragsC(System.Collections.Generic.List{System.Byte[]})">BroadcastSourceDataFragsC(List&lt;byte[]&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerator BroadcastSourceDataFragsC(List&lt;byte[]&gt; _fragmentedSourceData)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</td>
-        <td><span class="parametername">_fragmentedSourceData</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameClientRpc_System_Byte___.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameClientRpc(System.Byte%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L59">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameClientRpc*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameClientRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameClientRpc(System.Byte[])">BroadcastSourceDataNameClientRpc(byte[])</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void BroadcastSourceDataNameClientRpc(byte[] _name)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><span class="parametername">_name</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameServerRpc_System_Byte___.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameServerRpc(System.Byte%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L68">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameServerRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameServerRpc*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameServerRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameServerRpc(System.Byte[])">BroadcastSourceDataNameServerRpc(byte[])</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void BroadcastSourceDataNameServerRpc(byte[] _name)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><span class="parametername">_name</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsClientRpc_System_UInt16_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsClientRpc(System.UInt16)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L62">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsClientRpc*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsClientRpc_System_UInt16_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsClientRpc(System.UInt16)">BroadcastSourceDataNbFragsClientRpc(ushort)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void BroadcastSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></td>
-        <td><span class="parametername">_sourceDataNbFrags</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsServerRpc_System_UInt16_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsServerRpc(System.UInt16)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L71">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsServerRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsServerRpc*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsServerRpc_System_UInt16_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsServerRpc(System.UInt16)">BroadcastSourceDataNbFragsServerRpc(ushort)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void BroadcastSourceDataNbFragsServerRpc(ushort _sourceDataNbFrags)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></td>
-        <td><span class="parametername">_sourceDataNbFrags</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_ConfirmSourceDataReceptionServerRpc.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.ConfirmSourceDataReceptionServerRpc%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L76">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_ConfirmSourceDataReceptionServerRpc_" data-uid="ECellDive.Interfaces.IMlprData.ConfirmSourceDataReceptionServerRpc*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_ConfirmSourceDataReceptionServerRpc" data-uid="ECellDive.Interfaces.IMlprData.ConfirmSourceDataReceptionServerRpc">ConfirmSourceDataReceptionServerRpc()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void ConfirmSourceDataReceptionServerRpc()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_DirectReceiveSourceData_System_Byte___System_Collections_Generic_List_System_Byte____.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.DirectReceiveSourceData(System.Byte%5B%5D%2CSystem.Collections.Generic.List%7BSystem.Byte%5B%5D%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L79">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_DirectReceiveSourceData_" data-uid="ECellDive.Interfaces.IMlprData.DirectReceiveSourceData*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_DirectReceiveSourceData_System_Byte___System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Interfaces.IMlprData.DirectReceiveSourceData(System.Byte[],System.Collections.Generic.List{System.Byte[]})">DirectReceiveSourceData(byte[], List&lt;byte[]&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void DirectReceiveSourceData(byte[] _sourceDataName, List&lt;byte[]&gt; _sourceData)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><span class="parametername">_sourceDataName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</td>
-        <td><span class="parametername">_sourceData</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_RequestSourceDataGenerationServerRpc_System_UInt64_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.RequestSourceDataGenerationServerRpc(System.UInt64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L81">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_RequestSourceDataGenerationServerRpc_" data-uid="ECellDive.Interfaces.IMlprData.RequestSourceDataGenerationServerRpc*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_RequestSourceDataGenerationServerRpc_System_UInt64_" data-uid="ECellDive.Interfaces.IMlprData.RequestSourceDataGenerationServerRpc(System.UInt64)">RequestSourceDataGenerationServerRpc(ulong)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
-        <td><span class="parametername">_expeditorClientID</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_SendSourceDataC_System_UInt64_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.SendSourceDataC(System.UInt64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L84">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_SendSourceDataC_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataC*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_SendSourceDataC_System_UInt64_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataC(System.UInt64)">SendSourceDataC(ulong)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerator SendSourceDataC(ulong _targetClientID)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
-        <td><span class="parametername">_targetClientID</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_SendSourceDataFragClientRpc_System_Byte___ClientRpcParams_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.SendSourceDataFragClientRpc(System.Byte%5B%5D%2CClientRpcParams)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L86">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_SendSourceDataFragClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataFragClientRpc*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_SendSourceDataFragClientRpc_System_Byte___ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataFragClientRpc(System.Byte[],ClientRpcParams)">SendSourceDataFragClientRpc(byte[], ClientRpcParams)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void SendSourceDataFragClientRpc(byte[] _fragment, ClientRpcParams _clientRpcParams)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><span class="parametername">_fragment</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">ClientRpcParams</span></td>
-        <td><span class="parametername">_clientRpcParams</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_SendSourceDataFragsC_System_Collections_Generic_List_System_Byte____ClientRpcParams_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.SendSourceDataFragsC(System.Collections.Generic.List%7BSystem.Byte%5B%5D%7D%2CClientRpcParams)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L95">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_SendSourceDataFragsC_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataFragsC*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_SendSourceDataFragsC_System_Collections_Generic_List_System_Byte____ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataFragsC(System.Collections.Generic.List{System.Byte[]},ClientRpcParams)">SendSourceDataFragsC(List&lt;byte[]&gt;, ClientRpcParams)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerator SendSourceDataFragsC(List&lt;byte[]&gt; _fragmentedSourceData, ClientRpcParams _clientRpcParams)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</td>
-        <td><span class="parametername">_fragmentedSourceData</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">ClientRpcParams</span></td>
-        <td><span class="parametername">_clientRpcParams</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_SendSourceDataNameClientRpc_System_Byte___ClientRpcParams_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.SendSourceDataNameClientRpc(System.Byte%5B%5D%2CClientRpcParams)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L89">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_SendSourceDataNameClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataNameClientRpc*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_SendSourceDataNameClientRpc_System_Byte___ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataNameClientRpc(System.Byte[],ClientRpcParams)">SendSourceDataNameClientRpc(byte[], ClientRpcParams)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void SendSourceDataNameClientRpc(byte[] _name, ClientRpcParams _clientRpcParams)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><span class="parametername">_name</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">ClientRpcParams</span></td>
-        <td><span class="parametername">_clientRpcParams</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData_SendSourceDataNbFragsClientRpc_System_UInt16_ClientRpcParams_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData.SendSourceDataNbFragsClientRpc(System.UInt16%2CClientRpcParams)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L92">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IMlprData_SendSourceDataNbFragsClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataNbFragsClientRpc*"></a>
-  <h4 id="ECellDive_Interfaces_IMlprData_SendSourceDataNbFragsClientRpc_System_UInt16_ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataNbFragsClientRpc(System.UInt16,ClientRpcParams)">SendSourceDataNbFragsClientRpc(ushort, ClientRpcParams)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void SendSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags, ClientRpcParams _clientRpcParams)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></td>
-        <td><span class="parametername">_sourceDataNbFrags</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">ClientRpcParams</span></td>
-        <td><span class="parametername">_clientRpcParams</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L40" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
-                <div></div>
-              </nav>
-            </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
           </div>
         </div>
       </div>
 
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      
-      <span>Generated by <strong>DocFX</strong></span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.Interfaces.IMlprData">
+
+
+
+  <h1 id="ECellDive_Interfaces_IMlprData" data-uid="ECellDive.Interfaces.IMlprData" class="text-break">
+    Interface IMlprData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Interfaces.html">Interfaces</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>The interface with the base members and methods to associate shareable data
+to a module in a multiplayer context.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IMlprData</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="ECellDive_Interfaces_IMlprData_fragmentedSourceData_" data-uid="ECellDive.Interfaces.IMlprData.fragmentedSourceData*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_fragmentedSourceData" data-uid="ECellDive.Interfaces.IMlprData.fragmentedSourceData">
+  fragmentedSourceData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">List&lt;byte[]&gt; fragmentedSourceData { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_isReadyForGeneration_" data-uid="ECellDive.Interfaces.IMlprData.isReadyForGeneration*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_isReadyForGeneration" data-uid="ECellDive.Interfaces.IMlprData.isReadyForGeneration">
+  isReadyForGeneration
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">NetworkVariable&lt;bool&gt; isReadyForGeneration { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_nbClientReadyLoaded_" data-uid="ECellDive.Interfaces.IMlprData.nbClientReadyLoaded*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_nbClientReadyLoaded" data-uid="ECellDive.Interfaces.IMlprData.nbClientReadyLoaded">
+  nbClientReadyLoaded
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">NetworkVariable&lt;int&gt; nbClientReadyLoaded { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_sourceDataName_" data-uid="ECellDive.Interfaces.IMlprData.sourceDataName*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_sourceDataName" data-uid="ECellDive.Interfaces.IMlprData.sourceDataName">
+  sourceDataName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">byte[] sourceDataName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_sourceDataNbFrags_" data-uid="ECellDive.Interfaces.IMlprData.sourceDataNbFrags*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_sourceDataNbFrags" data-uid="ECellDive.Interfaces.IMlprData.sourceDataNbFrags">
+  sourceDataNbFrags
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int sourceDataNbFrags { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ECellDive_Interfaces_IMlprData_AssembleFragmentedData_" data-uid="ECellDive.Interfaces.IMlprData.AssembleFragmentedData*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_AssembleFragmentedData" data-uid="ECellDive.Interfaces.IMlprData.AssembleFragmentedData">
+  AssembleFragmentedData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void AssembleFragmentedData()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataC_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataC*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataC" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataC">
+  BroadcastSourceDataC()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator BroadcastSourceDataC()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragClientRpc*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragClientRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragClientRpc(System.Byte[])">
+  BroadcastSourceDataFragClientRpc(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void BroadcastSourceDataFragClientRpc(byte[] _fragment)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_fragment</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragServerRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragServerRpc*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragServerRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragServerRpc(System.Byte[])">
+  BroadcastSourceDataFragServerRpc(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void BroadcastSourceDataFragServerRpc(byte[] _fragment)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_fragment</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragsC_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragsC*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragsC(System.Collections.Generic.List{System.Byte[]})">
+  BroadcastSourceDataFragsC(List&lt;byte[]&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator BroadcastSourceDataFragsC(List&lt;byte[]&gt; _fragmentedSourceData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_fragmentedSourceData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameClientRpc*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameClientRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameClientRpc(System.Byte[])">
+  BroadcastSourceDataNameClientRpc(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void BroadcastSourceDataNameClientRpc(byte[] _name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameServerRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameServerRpc*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameServerRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameServerRpc(System.Byte[])">
+  BroadcastSourceDataNameServerRpc(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void BroadcastSourceDataNameServerRpc(byte[] _name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsClientRpc*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsClientRpc_System_UInt16_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsClientRpc(System.UInt16)">
+  BroadcastSourceDataNbFragsClientRpc(ushort)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void BroadcastSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sourceDataNbFrags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsServerRpc_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsServerRpc*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsServerRpc_System_UInt16_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsServerRpc(System.UInt16)">
+  BroadcastSourceDataNbFragsServerRpc(ushort)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void BroadcastSourceDataNbFragsServerRpc(ushort _sourceDataNbFrags)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sourceDataNbFrags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_ConfirmSourceDataReceptionServerRpc_" data-uid="ECellDive.Interfaces.IMlprData.ConfirmSourceDataReceptionServerRpc*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_ConfirmSourceDataReceptionServerRpc" data-uid="ECellDive.Interfaces.IMlprData.ConfirmSourceDataReceptionServerRpc">
+  ConfirmSourceDataReceptionServerRpc()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ConfirmSourceDataReceptionServerRpc()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_DirectReceiveSourceData_" data-uid="ECellDive.Interfaces.IMlprData.DirectReceiveSourceData*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_DirectReceiveSourceData_System_Byte___System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Interfaces.IMlprData.DirectReceiveSourceData(System.Byte[],System.Collections.Generic.List{System.Byte[]})">
+  DirectReceiveSourceData(byte[], List&lt;byte[]&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void DirectReceiveSourceData(byte[] _sourceDataName, List&lt;byte[]&gt; _sourceData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sourceDataName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>_sourceData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_RequestSourceDataGenerationServerRpc_" data-uid="ECellDive.Interfaces.IMlprData.RequestSourceDataGenerationServerRpc*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_RequestSourceDataGenerationServerRpc_System_UInt64_" data-uid="ECellDive.Interfaces.IMlprData.RequestSourceDataGenerationServerRpc(System.UInt64)">
+  RequestSourceDataGenerationServerRpc(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_expeditorClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_SendSourceDataC_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataC*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_SendSourceDataC_System_UInt64_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataC(System.UInt64)">
+  SendSourceDataC(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator SendSourceDataC(ulong _targetClientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_targetClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_SendSourceDataFragClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataFragClientRpc*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_SendSourceDataFragClientRpc_System_Byte___ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataFragClientRpc(System.Byte[],ClientRpcParams)">
+  SendSourceDataFragClientRpc(byte[], ClientRpcParams)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SendSourceDataFragClientRpc(byte[] _fragment, ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_fragment</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_SendSourceDataFragsC_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataFragsC*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_SendSourceDataFragsC_System_Collections_Generic_List_System_Byte____ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataFragsC(System.Collections.Generic.List{System.Byte[]},ClientRpcParams)">
+  SendSourceDataFragsC(List&lt;byte[]&gt;, ClientRpcParams)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator SendSourceDataFragsC(List&lt;byte[]&gt; _fragmentedSourceData, ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_fragmentedSourceData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd></dd>
+    <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_SendSourceDataNameClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataNameClientRpc*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_SendSourceDataNameClientRpc_System_Byte___ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataNameClientRpc(System.Byte[],ClientRpcParams)">
+  SendSourceDataNameClientRpc(byte[], ClientRpcParams)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SendSourceDataNameClientRpc(byte[] _name, ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IMlprData_SendSourceDataNbFragsClientRpc_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataNbFragsClientRpc*"></a>
+
+  <h3 id="ECellDive_Interfaces_IMlprData_SendSourceDataNbFragsClientRpc_System_UInt16_ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataNbFragsClientRpc(System.UInt16,ClientRpcParams)">
+  SendSourceDataNbFragsClientRpc(ushort, ClientRpcParams)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SendSourceDataNbFragsClientRpc(ushort _sourceDataNbFrags, ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sourceDataNbFrags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+    <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L40" class="edit-link">Edit this page</a>
+        </div>
+
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

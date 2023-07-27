@@ -1,227 +1,258 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Interface IDive
  </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IDive
  ">
-    
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
-      <link rel="stylesheet" href="../styles/docfx.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-    
-    
-    
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IDive.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IDive%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
-  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
 
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
-              </a>
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
             </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
-                </div>
-              </form>
-            </div>
-          </div>
-        </nav>
-
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
           </div>
         </div>
-      </header>
-      <div role="main" class="container body-content hide-when-search">
+      </nav>
+    </header>
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
           </div>
         </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="ECellDive.Interfaces.IDive">
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.Interfaces.IDive">
 
 
 
-  <h1 id="ECellDive_Interfaces_IDive" data-uid="ECellDive.Interfaces.IDive" class="text-break">Interface IDive
-</h1>
-  <div class="markdown level0 summary"><p>The interface to describe the required elements to implement a module
+  <h1 id="ECellDive_Interfaces_IDive" data-uid="ECellDive.Interfaces.IDive" class="text-break">
+    Interface IDive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Interfaces.html">Interfaces</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>The interface to describe the required elements to implement a module
 that a user can dive in.</p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Interfaces.html">Interfaces</a></h6>
-  <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="ECellDive_Interfaces_IDive_syntax">Syntax</h5>
+  <div class="markdown conceptual"></div>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IDive</code></pre>
   </div>
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IDive_isDiving.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IDive.isDiving%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L14">View Source</a>
-  </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
   <a id="ECellDive_Interfaces_IDive_isDiving_" data-uid="ECellDive.Interfaces.IDive.isDiving*"></a>
-  <h4 id="ECellDive_Interfaces_IDive_isDiving" data-uid="ECellDive.Interfaces.IDive.isDiving">isDiving</h4>
+
+  <h3 id="ECellDive_Interfaces_IDive_isDiving" data-uid="ECellDive.Interfaces.IDive.isDiving">
+  isDiving
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">bool isDiving { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IDive_isReadyForDive.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IDive.isReadyForDive%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L21">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="ECellDive_Interfaces_IDive_isReadyForDive_" data-uid="ECellDive.Interfaces.IDive.isReadyForDive*"></a>
-  <h4 id="ECellDive_Interfaces_IDive_isReadyForDive" data-uid="ECellDive.Interfaces.IDive.isReadyForDive">isReadyForDive</h4>
+
+  <h3 id="ECellDive_Interfaces_IDive_isReadyForDive" data-uid="ECellDive.Interfaces.IDive.isReadyForDive">
+  isReadyForDive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>A variable synchronized over the multiplayer network to
 inform the clients when a module has finished generating
 its content and is therefore ready to accept divers.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">NetworkVariable&lt;bool&gt; isReadyForDive { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IDive_rootSceneId.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IDive.rootSceneId%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L26">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="ECellDive_Interfaces_IDive_rootSceneId_" data-uid="ECellDive.Interfaces.IDive.rootSceneId*"></a>
-  <h4 id="ECellDive_Interfaces_IDive_rootSceneId" data-uid="ECellDive.Interfaces.IDive.rootSceneId">rootSceneId</h4>
+
+  <h3 id="ECellDive_Interfaces_IDive_rootSceneId" data-uid="ECellDive.Interfaces.IDive.rootSceneId">
+  rootSceneId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>The id of the dive scene where the module was added.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">NetworkVariable&lt;int&gt; rootSceneId { get; set; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IDive_targetSceneId.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IDive.targetSceneId%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L32">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="ECellDive_Interfaces_IDive_targetSceneId_" data-uid="ECellDive.Interfaces.IDive.targetSceneId*"></a>
-  <h4 id="ECellDive_Interfaces_IDive_targetSceneId" data-uid="ECellDive.Interfaces.IDive.targetSceneId">targetSceneId</h4>
+
+  <h3 id="ECellDive_Interfaces_IDive_targetSceneId" data-uid="ECellDive.Interfaces.IDive.targetSceneId">
+  targetSceneId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>The id of the dive scene the module will transfer
 the divers to.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">NetworkVariable&lt;int&gt; targetSceneId { get; set; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IDive_DirectDiveIn.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IDive.DirectDiveIn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L44">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
   <a id="ECellDive_Interfaces_IDive_DirectDiveIn_" data-uid="ECellDive.Interfaces.IDive.DirectDiveIn*"></a>
-  <h4 id="ECellDive_Interfaces_IDive_DirectDiveIn" data-uid="ECellDive.Interfaces.IDive.DirectDiveIn">DirectDiveIn()</h4>
+
+  <h3 id="ECellDive_Interfaces_IDive_DirectDiveIn" data-uid="ECellDive.Interfaces.IDive.DirectDiveIn">
+  DirectDiveIn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>The public interface to call when a user is trying to dive into
 a module that another user has already generated: all the
 physical objects representing the data has ALREADY been instantiated
@@ -229,54 +260,66 @@ in the scene and the NetworkObjects have ALREADY been replicated
 across the multiplayer network.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">void DirectDiveIn()</code></pre>
   </div>
-  <h5 id="ECellDive_Interfaces_IDive_DirectDiveIn_remarks">Remarks</h5>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Interfaces_IDive_DirectDiveIn_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Asynchronous: it calls the coroutine <a class="xref" href="ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_DirectDiveInC">DirectDiveInC()</a></p>
 </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IDive_DirectDiveInC.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IDive.DirectDiveInC%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L50">View Source</a>
-  </span>
+
+
+
+
   <a id="ECellDive_Interfaces_IDive_DirectDiveInC_" data-uid="ECellDive.Interfaces.IDive.DirectDiveInC*"></a>
-  <h4 id="ECellDive_Interfaces_IDive_DirectDiveInC" data-uid="ECellDive.Interfaces.IDive.DirectDiveInC">DirectDiveInC()</h4>
+
+  <h3 id="ECellDive_Interfaces_IDive_DirectDiveInC" data-uid="ECellDive.Interfaces.IDive.DirectDiveInC">
+  DirectDiveInC()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Coroutine started by <a class="xref" href="ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_DirectDiveIn">DirectDiveIn()</a>.
 Transfers the user to the dive scene associated to the module.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">IEnumerator DirectDiveInC()</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IDive_GenerativeDiveIn.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IDive.GenerativeDiveIn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L62">View Source</a>
-  </span>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_Interfaces_IDive_GenerativeDiveIn_" data-uid="ECellDive.Interfaces.IDive.GenerativeDiveIn*"></a>
-  <h4 id="ECellDive_Interfaces_IDive_GenerativeDiveIn" data-uid="ECellDive.Interfaces.IDive.GenerativeDiveIn">GenerativeDiveIn()</h4>
+
+  <h3 id="ECellDive_Interfaces_IDive_GenerativeDiveIn" data-uid="ECellDive.Interfaces.IDive.GenerativeDiveIn">
+  GenerativeDiveIn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>The public interface to call when a user is trying to dive into
 a module that has NOT been generated yet: all the physical objects
 representing the data has NOT been instantiated yet in the
@@ -284,107 +327,113 @@ scene and the NetworkObjects have NOT been replicated yet
 across the multiplayer network.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">void GenerativeDiveIn()</code></pre>
   </div>
-  <h5 id="ECellDive_Interfaces_IDive_GenerativeDiveIn_remarks">Remarks</h5>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Interfaces_IDive_GenerativeDiveIn_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Asynchronous: it calls the coroutine <a class="xref" href="ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_GenerativeDiveInC">GenerativeDiveInC()</a></p>
 </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IDive_GenerativeDiveInC.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IDive.GenerativeDiveInC%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L69">View Source</a>
-  </span>
+
+
+
+
   <a id="ECellDive_Interfaces_IDive_GenerativeDiveInC_" data-uid="ECellDive.Interfaces.IDive.GenerativeDiveInC*"></a>
-  <h4 id="ECellDive_Interfaces_IDive_GenerativeDiveInC" data-uid="ECellDive.Interfaces.IDive.GenerativeDiveInC">GenerativeDiveInC()</h4>
+
+  <h3 id="ECellDive_Interfaces_IDive_GenerativeDiveInC" data-uid="ECellDive.Interfaces.IDive.GenerativeDiveInC">
+  GenerativeDiveInC()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Coroutine started by <a class="xref" href="ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_GenerativeDiveIn">GenerativeDiveIn()</a>.
 Generates the content of the module before transfering the diver
 to the dive scene.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">IEnumerator GenerativeDiveInC()</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IDive_TryDiveIn.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IDive.TryDiveIn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L78">View Source</a>
-  </span>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_Interfaces_IDive_TryDiveIn_" data-uid="ECellDive.Interfaces.IDive.TryDiveIn*"></a>
-  <h4 id="ECellDive_Interfaces_IDive_TryDiveIn" data-uid="ECellDive.Interfaces.IDive.TryDiveIn">TryDiveIn()</h4>
+
+  <h3 id="ECellDive_Interfaces_IDive_TryDiveIn" data-uid="ECellDive.Interfaces.IDive.TryDiveIn">
+  TryDiveIn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>The public interface to call when a user wants to dive into a
 module.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">void TryDiveIn()</code></pre>
   </div>
-  <h5 id="ECellDive_Interfaces_IDive_TryDiveIn_remarks">Remarks</h5>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Interfaces_IDive_TryDiveIn_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Asynchronous: it calls the coroutine <see cref="!:TryDiveInC"></see></p>
 </div>
 
-</article>
-          </div>
 
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IDive.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IDive%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L12" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
-                <div></div>
-              </nav>
-            </div>
-          </div>
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IDive.cs/#L12" class="edit-link">Edit this page</a>
         </div>
+
+        
       </div>
 
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      
-      <span>Generated by <strong>DocFX</strong></span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

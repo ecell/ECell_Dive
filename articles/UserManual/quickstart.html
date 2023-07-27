@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Quick Start </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Quick Start ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/quickstart.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../../public/main.js'
+    import { init } from './../../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="quick-start">Quick Start</h1>
+
+<p>For demonstration purposes, ECellDive is shipped with a copy of a metabolic network <a href="https://escher.github.io/#/app?map=iJO1366.Central%20metabolism&amp;tool=Builder&amp;model=iJO1366">iJO1366</a> accessible via the tutorials menu. All credits for the <a href="https://escher.github.io/#/">Escher</a> &amp; <a href="https://sbrg.github.io/escher-fba/#/">Escher-FBA platform</a> go to the authors of the following papers:</p>
+<blockquote>
+<p>EG Rowe, BO Palsson, ZA King (2018) <em>Escher-FBA: a web application for interactive flux balance analysis.</em> BMC Sys Bio 12:84 <a href="https://doi.org/10.1186/s12918-018-0607-5">doi.org/10.1186/s12918-018-0607-5</a></p>
+</blockquote>
+<blockquote>
+<p>Zachary A. King, Andreas Dräger, Ali Ebrahim, Nikolaus Sonnenschein, Nathan E. Lewis, and Bernhard O. Palsson (2015) <em>Escher: A web application for building, sharing, and embedding data-rich visualizations of biological pathways</em>, PLOS Computational Biology 11(8): e1004321. <a href="https://doi.org/10.1371/journal.pcbi.1004321">doi.org/10.1371/journal.pcbi.1004321</a></p>
+</blockquote>
+<h2 id="pre-computed-ijo1366">Pre-computed iJO1366</h2>
+<p>We have pre-computed the <a href="Modules/fba_module.html">Flux Balance Analysis (FBA)</a> and <a href="Modules/groupby_module.html">generated groups</a> to identify the subsystems of IJO1366. The goal of this version is to provide a possible final state of some the operations available in ECellDive without needing <a href="Network/connecting_to_Kosmogora.html">to connect to Kosmogora</a> nor master the full controls of ECellDive. It is really designed for a quick overview.</p>
+<details>
+  <summary>IJO1366 Panoramic View</summary>
+<img src="../../resources/images/tutorials/ijo1366/tu_ijo1366_fba_grp_panview.gif" alt="iJO1366 FBA+GRP Panview" style="height: 300px;">
+</details>
+<h2 id="inputs">Inputs</h2>
+<p>In this demonstration, the left controller is restricted to <a href="Controls/ray_based_interaction_controls.html#ray-based-interaction">ray-based interactions</a> with the UI or the objects. And, the right conroller is restricted to the <a href="Controls/movement_controls.html#teleportation">teleportation</a> for the movements.</p>
+<h2 id="open-objects-information">Open objects information</h2>
+<p>You can open the information panel associated to the edges (reactions) and nodes (metabolites) by pointing at them with the left controller and pressing the primary button.</p>
+<h3 id="grab-ui-panels">Grab UI panels</h3>
+<p>Should the UI panels be in your way, you can <a href="Controls/ray_based_interaction_controls.html#grab-elements">grab them and move them</a> around with the left controller and move them around.</p>
+<details>
+  <summary>Example</summary>
+  
+<img src="../../resources/images/tutorials/ijo1366/tu_ijo1366_show_EdgeNameMenu.gif" alt="iJO1366 show Edge Name" style="height: 300px;">
+</details>
+<h2 id="visualize-the-fba">Visualize the FBA</h2>
+<p>On the main UI panel of the tutorial, with the left controller, you can <a href="Controls/ray_based_interaction_controls.html#ui-press">click</a> on the <em>FBA</em> Button; then on the <em>Show FBA on Network</em> button.</p>
+<p>The edges will change sizes according to the fluxes values predicted by the FBA. Pointing at edges with the left controller will generate particles proportionally to the fluxes. Finally, the flux numerical value is visible on the <a href="#open-objects-information">information panel</a>.</p>
+<details>
+  <summary>Example</summary>
+  
+<img src="../../resources/images/tutorials/ijo1366/tu_ijo1366_show_FBA.gif" alt="iJO1366 show FBA" style="height: 300px;">
+</details>
+<h2 id="visualize-biological-subsystems">Visualize Biological Subsystems</h2>
+<p>The model <a href="https://escher.github.io/#/app?map=iJO1366.Central%20metabolism&amp;tool=Builder&amp;model=iJO1366">iJO1366</a> comes with embeded metadata that we used to automaically group the reactions and metabolites according to systemic data. On the main UI panel of the tutorial, with the left controller, you can <a href="Controls/ray_based_interaction_controls.html#ui-press">click</a> on the <em>Groups</em> Button; then on the <em>Show Groups on Network</em> button. The UI panel will help you match the colors with the elements in the 3D space.</p>
+<details>
+  <summary>Example</summary>
+  
+<img src="../../resources/images/tutorials/ijo1366/tu_ijo1366_show_groups.gif" alt="iJO1366 show GRP" style="height: 300px;">
+</details>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/quickstart.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

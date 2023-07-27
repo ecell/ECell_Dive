@@ -1,384 +1,426 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Interface IInfoTags
  </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IInfoTags
  ">
-    
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
-      <link rel="stylesheet" href="../styles/docfx.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-    
-    
-    
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IInfoTags%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
-  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
 
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
-              </a>
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
             </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
-                </div>
-              </form>
-            </div>
-          </div>
-        </nav>
-
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
           </div>
         </div>
-      </header>
-      <div role="main" class="container body-content hide-when-search">
+      </nav>
+    </header>
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
           </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="ECellDive.Interfaces.IInfoTags">
-
-
-
-  <h1 id="ECellDive_Interfaces_IInfoTags" data-uid="ECellDive.Interfaces.IInfoTags" class="text-break">Interface IInfoTags
-</h1>
-  <div class="markdown level0 summary"><p>The interface describing the requirements to implement a handle for a
-group of information tags attached to a gameobject.</p>
-</div>
-  <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Interfaces.html">Interfaces</a></h6>
-  <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="ECellDive_Interfaces_IInfoTags_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IInfoTags</code></pre>
-  </div>
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IInfoTags_areVisible.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IInfoTags.areVisible%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L160">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IInfoTags_areVisible_" data-uid="ECellDive.Interfaces.IInfoTags.areVisible*"></a>
-  <h4 id="ECellDive_Interfaces_IInfoTags_areVisible" data-uid="ECellDive.Interfaces.IInfoTags.areVisible">areVisible</h4>
-  <div class="markdown level1 summary"><p>A boolean to inform whether the infotags are currently visible (i.e. displayed).</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool areVisible { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IInfoTags_displayInfoTagsActions.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IInfoTags.displayInfoTagsActions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L166">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IInfoTags_displayInfoTagsActions_" data-uid="ECellDive.Interfaces.IInfoTags.displayInfoTagsActions*"></a>
-  <h4 id="ECellDive_Interfaces_IInfoTags_displayInfoTagsActions" data-uid="ECellDive.Interfaces.IInfoTags.displayInfoTagsActions">displayInfoTagsActions</h4>
-  <div class="markdown level1 summary"><p>The references to the input actions on the left and right controller
-used to trigger the info tags visibility.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">LeftRightData&lt;InputActionReference&gt; displayInfoTagsActions { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IInfoTags_refInfoTagPrefab.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IInfoTags.refInfoTagPrefab%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L171">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IInfoTags_refInfoTagPrefab_" data-uid="ECellDive.Interfaces.IInfoTags.refInfoTagPrefab*"></a>
-  <h4 id="ECellDive_Interfaces_IInfoTags_refInfoTagPrefab" data-uid="ECellDive.Interfaces.IInfoTags.refInfoTagPrefab">refInfoTagPrefab</h4>
-  <div class="markdown level1 summary"><p>The prefab used to instantiate more infotags programatically.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">GameObject refInfoTagPrefab { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">GameObject</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IInfoTags_refInfoTagsContainer.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IInfoTags.refInfoTagsContainer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L177">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IInfoTags_refInfoTagsContainer_" data-uid="ECellDive.Interfaces.IInfoTags.refInfoTagsContainer*"></a>
-  <h4 id="ECellDive_Interfaces_IInfoTags_refInfoTagsContainer" data-uid="ECellDive.Interfaces.IInfoTags.refInfoTagsContainer">refInfoTagsContainer</h4>
-  <div class="markdown level1 summary"><p>The reference to the parent gameobject each info tag will
-be made a child upon instantiation.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">GameObject refInfoTagsContainer { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">GameObject</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IInfoTags_DisplayInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IInfoTags.DisplayInfoTags%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L182">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IInfoTags_DisplayInfoTags_" data-uid="ECellDive.Interfaces.IInfoTags.DisplayInfoTags*"></a>
-  <h4 id="ECellDive_Interfaces_IInfoTags_DisplayInfoTags" data-uid="ECellDive.Interfaces.IInfoTags.DisplayInfoTags">DisplayInfoTags()</h4>
-  <div class="markdown level1 summary"><p>Make the InfoTags visible in the scene</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void DisplayInfoTags()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IInfoTags_HideInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IInfoTags.HideInfoTags%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L187">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IInfoTags_HideInfoTags_" data-uid="ECellDive.Interfaces.IInfoTags.HideInfoTags*"></a>
-  <h4 id="ECellDive_Interfaces_IInfoTags_HideInfoTags" data-uid="ECellDive.Interfaces.IInfoTags.HideInfoTags">HideInfoTags()</h4>
-  <div class="markdown level1 summary"><p>Make the InfoTags invisible in the scene</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void HideInfoTags()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IInfoTags_InstantiateInfoTag_Vector2_System_String_.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IInfoTags.InstantiateInfoTag(Vector2%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L195">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IInfoTags_InstantiateInfoTag_" data-uid="ECellDive.Interfaces.IInfoTags.InstantiateInfoTag*"></a>
-  <h4 id="ECellDive_Interfaces_IInfoTags_InstantiateInfoTag_Vector2_System_String_" data-uid="ECellDive.Interfaces.IInfoTags.InstantiateInfoTag(Vector2,System.String)">InstantiateInfoTag(Vector2, string)</h4>
-  <div class="markdown level1 summary"><p>Instantiate one info tag gameobject.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void InstantiateInfoTag(Vector2 _xyPosition, string _content)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Vector2</span></td>
-        <td><span class="parametername">_xyPosition</span></td>
-        <td><p>The X and Y positions.
-The Z position will be set to 0.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">_content</span></td>
-        <td><p>The info to display.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IInfoTags_InstantiateInfoTags_System_String___.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IInfoTags.InstantiateInfoTags(System.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L203">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IInfoTags_InstantiateInfoTags_" data-uid="ECellDive.Interfaces.IInfoTags.InstantiateInfoTags*"></a>
-  <h4 id="ECellDive_Interfaces_IInfoTags_InstantiateInfoTags_System_String___" data-uid="ECellDive.Interfaces.IInfoTags.InstantiateInfoTags(System.String[])">InstantiateInfoTags(string[])</h4>
-  <div class="markdown level1 summary"><p>Instantiates all info tags of a module based on the
-info stored in <code class="paramref">_content</code>.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void InstantiateInfoTags(string[] _content)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
-        <td><span class="parametername">_content</span></td>
-        <td><p>The array storing the information
-to display within text fields of the tags.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IInfoTags_ShowInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IInfoTags.ShowInfoTags%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L208">View Source</a>
-  </span>
-  <a id="ECellDive_Interfaces_IInfoTags_ShowInfoTags_" data-uid="ECellDive.Interfaces.IInfoTags.ShowInfoTags*"></a>
-  <h4 id="ECellDive_Interfaces_IInfoTags_ShowInfoTags" data-uid="ECellDive.Interfaces.IInfoTags.ShowInfoTags">ShowInfoTags()</h4>
-  <div class="markdown level1 summary"><p>Make the InfoTags face in the direction of the player</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void ShowInfoTags()</code></pre>
-  </div>
-
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IInfoTags.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IInfoTags%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L155" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
-                <div></div>
-              </nav>
-            </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
           </div>
         </div>
       </div>
 
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      
-      <span>Generated by <strong>DocFX</strong></span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.Interfaces.IInfoTags">
+
+
+
+  <h1 id="ECellDive_Interfaces_IInfoTags" data-uid="ECellDive.Interfaces.IInfoTags" class="text-break">
+    Interface IInfoTags
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Interfaces.html">Interfaces</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>The interface describing the requirements to implement a handle for a
+group of information tags attached to a gameobject.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IInfoTags</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="ECellDive_Interfaces_IInfoTags_areVisible_" data-uid="ECellDive.Interfaces.IInfoTags.areVisible*"></a>
+
+  <h3 id="ECellDive_Interfaces_IInfoTags_areVisible" data-uid="ECellDive.Interfaces.IInfoTags.areVisible">
+  areVisible
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A boolean to inform whether the infotags are currently visible (i.e. displayed).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool areVisible { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IInfoTags_displayInfoTagsActions_" data-uid="ECellDive.Interfaces.IInfoTags.displayInfoTagsActions*"></a>
+
+  <h3 id="ECellDive_Interfaces_IInfoTags_displayInfoTagsActions" data-uid="ECellDive.Interfaces.IInfoTags.displayInfoTagsActions">
+  displayInfoTagsActions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The references to the input actions on the left and right controller
+used to trigger the info tags visibility.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">LeftRightData&lt;InputActionReference&gt; displayInfoTagsActions { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IInfoTags_refInfoTagPrefab_" data-uid="ECellDive.Interfaces.IInfoTags.refInfoTagPrefab*"></a>
+
+  <h3 id="ECellDive_Interfaces_IInfoTags_refInfoTagPrefab" data-uid="ECellDive.Interfaces.IInfoTags.refInfoTagPrefab">
+  refInfoTagPrefab
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The prefab used to instantiate more infotags programatically.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">GameObject refInfoTagPrefab { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IInfoTags_refInfoTagsContainer_" data-uid="ECellDive.Interfaces.IInfoTags.refInfoTagsContainer*"></a>
+
+  <h3 id="ECellDive_Interfaces_IInfoTags_refInfoTagsContainer" data-uid="ECellDive.Interfaces.IInfoTags.refInfoTagsContainer">
+  refInfoTagsContainer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The reference to the parent gameobject each info tag will
+be made a child upon instantiation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">GameObject refInfoTagsContainer { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ECellDive_Interfaces_IInfoTags_DisplayInfoTags_" data-uid="ECellDive.Interfaces.IInfoTags.DisplayInfoTags*"></a>
+
+  <h3 id="ECellDive_Interfaces_IInfoTags_DisplayInfoTags" data-uid="ECellDive.Interfaces.IInfoTags.DisplayInfoTags">
+  DisplayInfoTags()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Make the InfoTags visible in the scene</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void DisplayInfoTags()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IInfoTags_HideInfoTags_" data-uid="ECellDive.Interfaces.IInfoTags.HideInfoTags*"></a>
+
+  <h3 id="ECellDive_Interfaces_IInfoTags_HideInfoTags" data-uid="ECellDive.Interfaces.IInfoTags.HideInfoTags">
+  HideInfoTags()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Make the InfoTags invisible in the scene</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void HideInfoTags()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IInfoTags_InstantiateInfoTag_" data-uid="ECellDive.Interfaces.IInfoTags.InstantiateInfoTag*"></a>
+
+  <h3 id="ECellDive_Interfaces_IInfoTags_InstantiateInfoTag_Vector2_System_String_" data-uid="ECellDive.Interfaces.IInfoTags.InstantiateInfoTag(Vector2,System.String)">
+  InstantiateInfoTag(Vector2, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L195"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Instantiate one info tag gameobject.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void InstantiateInfoTag(Vector2 _xyPosition, string _content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_xyPosition</code> <span class="xref">Vector2</span></dt>
+    <dd><p>The X and Y positions.
+The Z position will be set to 0.</p>
+</dd>
+    <dt><code>_content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The info to display.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IInfoTags_InstantiateInfoTags_" data-uid="ECellDive.Interfaces.IInfoTags.InstantiateInfoTags*"></a>
+
+  <h3 id="ECellDive_Interfaces_IInfoTags_InstantiateInfoTags_System_String___" data-uid="ECellDive.Interfaces.IInfoTags.InstantiateInfoTags(System.String[])">
+  InstantiateInfoTags(string[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Instantiates all info tags of a module based on the
+info stored in <code class="paramref">_content</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void InstantiateInfoTags(string[] _content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd><p>The array storing the information
+to display within text fields of the tags.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Interfaces_IInfoTags_ShowInfoTags_" data-uid="ECellDive.Interfaces.IInfoTags.ShowInfoTags*"></a>
+
+  <h3 id="ECellDive_Interfaces_IInfoTags_ShowInfoTags" data-uid="ECellDive.Interfaces.IInfoTags.ShowInfoTags">
+  ShowInfoTags()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L208"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Make the InfoTags face in the direction of the player</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ShowInfoTags()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L155" class="edit-link">Edit this page</a>
+        </div>
+
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
