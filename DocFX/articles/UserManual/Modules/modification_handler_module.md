@@ -1,5 +1,5 @@
 ## Modification Handler
-Requires a connection to [Kosmogora](https://github.com/ecell/Kosmogora).
+Requires a [connection to Kosmogora](../Network/connecting_to_Kosmogora.md).
 
 <img src="../../../resources/images/modules/modif_handler.jpg" alt="Remote Importer" style="height: 300px;"/>
 
