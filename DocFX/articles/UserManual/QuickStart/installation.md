@@ -1,6 +1,0 @@
-## ECellDive
-ECellDive runs on Meta Oculus VR devices. I was developped and tested on Meta Quest 2. ECellDive was sufficiently optimized to not require to be connected to a computer (through Link cable or Air Link). There will be a framedrop for a few seconds when generating the metabolic pathways to visualize, but visualization itself runs without any issues once it is loaded.
-The application executable (*.apk file*) can be downloaded from the [release page](https://github.com/ecell/ECell_Dive/releases) and installed on any Quest 2 heasdset thanks to [SideQuest](https://sidequestvr.com/).
-
-## Kosmogora
-To work properly, ECellDive should [be connected to Kosmogora](../Network/connecting_to_Kosmogora.md). It is a server to which the user can connect in ECellDive to import data, request calculations and save modification files. To properly communicate, the computer running *Kosmogora* and the Meta Quest 2 headset **must be on the same local network**; preferably the same router but a VPN might also work. When both are runing (see [Kosmogora](https://github.com/ecell/Kosmogora) page for details on how to launch the server), you can access the server from ECellDive with different [modules](../Modules/modules.md) in-app.
