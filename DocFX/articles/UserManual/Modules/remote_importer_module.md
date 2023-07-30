@@ -1,5 +1,5 @@
 ## Remote Importer
-Requires a connection to [Kosmogora](https://github.com/ecell/Kosmogora).
+Requires a connection to [Kosmogora](https://github.com/ecell/kosmogora).
 
 <img src="../../../resources/images/modules/remote_importer.jpg" alt="UI point" style="height: 300px;"/>
 
