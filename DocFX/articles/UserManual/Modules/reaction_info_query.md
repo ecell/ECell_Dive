@@ -1,5 +1,5 @@
 ## Reaction Info Query
-Requires a connection to [Kosmogora](https://github.com/ecell/Kosmogora).
+Requires a connection to [Kosmogora](https://github.com/ecell/kosmogora).
 
 <img src="../../../resources/images/modules/reaction_info_query.jpg" alt="Reaction Info Query" style="height: 300px;"/>
 
