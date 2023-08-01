@@ -3,6 +3,7 @@ using UnityEngine;
 using ECellDive.SceneManagement;
 using ECellDive.UI;
 using System.Collections;
+using ECellDive.Utility;
 
 namespace ECellDive.Tutorials
 {
@@ -50,7 +51,7 @@ namespace ECellDive.Tutorials
         {
             base.Initialize();
 
-            guiManager = GameObject.FindGameObjectWithTag("ExternalObjectContainer").GetComponent<GUIManager>();
+            guiManager = StaticReferencer.Instance.refExternalObjectContainer.GetComponent<GUIManager>();
 
             //Hide the main menu.
             guiManager.refMainMenu.SetActive(!guiManager.refMainMenu.activeSelf);

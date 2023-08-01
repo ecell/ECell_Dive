@@ -34,8 +34,8 @@ namespace ECellDive.Tutorials
         //default is movement mode on right controller
         private int rightControllerModeID = 0;
 
-        private bool previousStateEOC;
-        private bool previousStateIOC;
+        private List<bool> previousStatesEOC;
+        private List<bool> previousStatesIOC;
 
         public void AddLeftGroupControlAction(InputActionReference _gcAction)
         {
@@ -132,11 +132,21 @@ namespace ECellDive.Tutorials
         {
             base.Initialize();
 
+
             //Disable the General GUI
-            previousStateEOC = StaticReferencer.Instance.refExternalObjectContainer.activeSelf;
-            previousStateIOC = StaticReferencer.Instance.refExternalObjectContainer.activeSelf;
-            StaticReferencer.Instance.refExternalObjectContainer.SetActive(false);
-            StaticReferencer.Instance.refInternalObjectContainer.SetActive(false);
+            previousStatesEOC = new List<bool>(StaticReferencer.Instance.refExternalObjectContainer.transform.childCount);
+            foreach (Transform _guiHolder in StaticReferencer.Instance.refExternalObjectContainer.transform)
+            {
+                previousStatesEOC.Add(_guiHolder.gameObject.activeSelf);
+                _guiHolder.gameObject.SetActive(false);
+            }
+
+            previousStatesIOC = new List<bool>(StaticReferencer.Instance.refInternalObjectContainer.transform.childCount);
+            foreach (Transform _guiHolder in StaticReferencer.Instance.refInternalObjectContainer.transform)
+            {
+                previousStatesIOC.Add(_guiHolder.gameObject.activeSelf);
+                _guiHolder.gameObject.SetActive(false);
+            }
 
             //Disable the RayBased Action Map
             refInputActionAsset.FindActionMap("Ray_Based_Controls_LH").Disable();
@@ -253,8 +263,19 @@ namespace ECellDive.Tutorials
             }
 
             //Revert the active state of the UI and modules that may have been imported.
-            StaticReferencer.Instance.refExternalObjectContainer.SetActive(previousStateEOC);
-            StaticReferencer.Instance.refInternalObjectContainer.SetActive(previousStateIOC);
+            ushort _i = 0;
+            foreach (Transform _guiHolder in StaticReferencer.Instance.refExternalObjectContainer.transform)
+            {
+                _guiHolder.gameObject.SetActive(previousStatesEOC[_i]);
+                _i++;
+            }
+
+            _i = 0;
+            foreach (Transform _guiHolder in StaticReferencer.Instance.refInternalObjectContainer.transform)
+            {
+                _guiHolder.gameObject.SetActive(previousStatesIOC[_i]);
+                _i++;
+            }
         }
 
         private void RightControllerActionMapSwitch(InputAction.CallbackContext _ctx)
