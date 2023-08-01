@@ -218,6 +218,8 @@ namespace ECellDive.Tutorials
 
         public override void Quit()
         {
+            base.Quit();
+
             //Destroying the group that may have been started if the
             //user reached the group making step.
             StaticReferencer.Instance.groupsMakingManager.CancelGroup();
