@@ -66,7 +66,7 @@ Once you have downloaded the archive (a few dozen Mo), unzip it (see [Windows](h
 </details>
 
 ### Download Unity
-> ![Warning]
+> ![WARNING]
 > Currently, the project works with Unity 2023.3.27f1. We recommend to not open the project with a more recent version of Unity if it is not your goal to upgrade the whole project. That is because packages dependencies will be updated along in Unity 2021.X or 2022.X and this may break the project.
 
 #### Download Unity Hub

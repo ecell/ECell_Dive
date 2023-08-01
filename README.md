@@ -25,10 +25,11 @@ ECellDive is a VR application for systems biology. It is part of a research proj
 - [Kosmogora v1.1.0](https://github.com/ecell/kosmogora) (if developping features involving data management and/or visualization)
 
 #### No action required (included in the project's [packages manifest](https://github.com/ecell/ECell_Dive/blob/main/Packages/manifest.json))
-- [Oculus XR plugin 1.11.2](https://docs.unity3d.com/Packages/com.unity.xr.oculus@1.11/manual/index.html) Unity's plugin to develop for Meta Oculus Quests devices. This project is not using OpenXR as its development started just before Oculus devices support by OpenXR. Upgrade is planned, however.
+- [Universal Render Pipeline (URP)](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@10.8/manual/). Unity's "artist-friendly" render pipeline for optimized graphics on a broad range of platforms. 
+- [Oculus XR plugin 1.11.2](https://docs.unity3d.com/Packages/com.unity.xr.oculus@1.11/manual/index.html). Unity's plugin to develop for Meta Oculus Quests devices. This project is not using OpenXR as its development started just before Oculus devices support by OpenXR. Upgrade is planned, however.
 - [Netcode for GameObjects 1.0.0-pre.9](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@1.0/manual/index.html). Unity's solution for multiplayer games.
 - [XR Interaction Toolkit 1.0.0-pre](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@1.0/manual/index.html). Unity's solution for interaction systems in VR and AR.
-- [ParrelSync](https://github.com/VeriorPies/ParrelSync) (for multiplayer networking tests and debug)
+- [ParrelSync](https://github.com/VeriorPies/ParrelSync). For multiplayer networking tests and debug.
 
 ### Hardware
 - This project is developed with gaming laptops (MSI Raider GE76 and Alienware R4, both with a laptop version of a RTX3070).
