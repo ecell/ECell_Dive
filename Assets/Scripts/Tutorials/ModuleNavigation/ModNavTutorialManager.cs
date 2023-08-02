@@ -3,6 +3,7 @@ using UnityEngine;
 using ECellDive.SceneManagement;
 using ECellDive.UI;
 using System.Collections;
+using ECellDive.Utility;
 
 namespace ECellDive.Tutorials
 {
@@ -33,11 +34,14 @@ namespace ECellDive.Tutorials
             //importer, the CyJson data module, the graph, etc...
             foreach (GameObject go in tutorialGarbage)
             {
-                foreach (Transform child in go.transform)
+                if (go != null)//the user might have destroyed it before quitting the tutorial.
                 {
-                    Destroy(child.gameObject);
+                    foreach (Transform child in go.transform)
+                    {
+                        Destroy(child.gameObject);
+                    }
+                    Destroy(go);
                 }
-                Destroy(go);
             }
 
             refAssetScenesManager.UnloadScene(2);
@@ -47,7 +51,7 @@ namespace ECellDive.Tutorials
         {
             base.Initialize();
 
-            guiManager = GameObject.FindGameObjectWithTag("AllUIAnchor").GetComponent<GUIManager>();
+            guiManager = StaticReferencer.Instance.refExternalObjectContainer.GetComponent<GUIManager>();
 
             //Hide the main menu.
             guiManager.refMainMenu.SetActive(!guiManager.refMainMenu.activeSelf);
@@ -63,6 +67,8 @@ namespace ECellDive.Tutorials
 
         public override void Quit()
         {
+            base.Quit();
+
             //We make sure to reactivate interactibility of every buttons
             //of the UI menus that we deactivated at the begining of the
             //tutorial. Since the user can quit the tutorial anytime, we do so

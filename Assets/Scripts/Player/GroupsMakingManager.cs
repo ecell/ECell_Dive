@@ -83,7 +83,7 @@ namespace ECellDive.PlayerComponents
         private void AddMemberToGroup(GameObject _go, IGroupable _goGroupInfo)
         {
             _goGroupInfo.grpMemberIndex = groupMembers.Count;
-            groupMembers.Add(_go);
+            groupMembers.Add(_goGroupInfo.delegateTarget);
         }
 
         /// <summary>

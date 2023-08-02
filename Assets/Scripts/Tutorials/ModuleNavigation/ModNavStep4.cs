@@ -25,10 +25,6 @@ namespace ECellDive.Tutorials
             base.Conclude();
 
             targetButton.onClick.RemoveListener(OnSelect);
-
-            //We block the usage of the button to import a FBA module
-            //since the user already added one.
-            guiManager.refModulesMenuManager.SwitchSingleInteractibility(2);
         }
 
         public override void Initialize()
@@ -36,12 +32,12 @@ namespace ECellDive.Tutorials
             base.Initialize();
 
             guiManager = GameObject.
-                              FindGameObjectWithTag("AllUIAnchor").
+                              FindGameObjectWithTag("ExternalObjectContainer").
                               GetComponent<GUIManager>();
 
             //The user can interact with the button to add a FBA module to the scene.
-            guiManager.refModulesMenuManager.SwitchSingleInteractibility(2);
-            targetButton = guiManager.refModulesMenuManager.targetGroup[2].GetComponent<Button>();
+            guiManager.refModulesMenuManager.SwitchSingleInteractibility(3);
+            targetButton = guiManager.refModulesMenuManager.targetGroup[3].GetComponent<Button>();
             targetButton.onClick.AddListener(OnSelect);
         }
 

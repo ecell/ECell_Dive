@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 4033654702875989242}
   - component: {fileID: 564618117938852510}
   - component: {fileID: 6963685935720465553}
+  - component: {fileID: 5087851561843044441}
   m_Layer: 5
   m_Name: Tutorial Panel
   m_TagString: Untagged
@@ -224,7 +225,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5449335395460479459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +300,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483170236101783845}
   m_CullTransparentMesh: 1
+--- !u!114 &5087851561843044441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483170236101783845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b725be306fe60042ba0944e044468ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pinStatus: 0
+  goToPin: {fileID: 0}
+  pinnedButton: {fileID: 8723381918790655592}
+  unpinnedButton: {fileID: 8803452945184066328}
 --- !u!1 &1145136690083379058
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +347,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1050374278868023364}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -862,6 +879,7 @@ RectTransform:
   m_Children:
   - {fileID: 7924061405109210615}
   - {fileID: 4620085711306135849}
+  - {fileID: 3665265272013921065}
   - {fileID: 8590722141904752081}
   m_Father: {fileID: 2137447024224771406}
   m_RootOrder: 0
@@ -1059,12 +1077,12 @@ GameObject:
   - component: {fileID: 6245236918140180675}
   - component: {fileID: 5948664761550181928}
   m_Layer: 5
-  m_Name: Pin
+  m_Name: Pinned
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4620085711306135849
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1105,7 +1123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.22071905, g: 0.8773585, b: 0.22667754, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1161,18 +1179,150 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 6245236918140180675}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ECellDive.UI.CylindricMenuPart, Assembly-CSharp
-        m_MethodName: ManagePinning
-        m_Mode: 1
+      - m_Target: {fileID: 5087851561843044441}
+        m_TargetAssemblyTypeName: ECellDive.Utility.PinSystem, Assembly-CSharp
+        m_MethodName: PinTo
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 40be8598b84041740857dea79e9570ec, type: 2}
+          m_ObjectArgumentAssemblyTypeName: ECellDive.Utility.PinData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &8803452945184066328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3665265272013921065}
+  - component: {fileID: 7705177949451600907}
+  - component: {fileID: 3397101940658898601}
+  - component: {fileID: 9106650729693535565}
+  m_Layer: 5
+  m_Name: Unpinned
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3665265272013921065
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8803452945184066328}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1050374278868023364}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0.0375, y: 0}
+  m_SizeDelta: {x: 0.075, y: 0.075}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7705177949451600907
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8803452945184066328}
+  m_CullTransparentMesh: 1
+--- !u!114 &3397101940658898601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8803452945184066328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8980392, g: 0, b: 0.17718652, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 94b80d49f71815f45916817e23d23b13, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 5
+--- !u!114 &9106650729693535565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8803452945184066328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.48235294}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 0.48235294}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 0.48235294}
+    m_DisabledColor: {r: 0.3137255, g: 0.3137255, b: 0.3137255, a: 0.48235294}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 3397101940658898601}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5087851561843044441}
+        m_TargetAssemblyTypeName: ECellDive.Utility.PinSystem, Assembly-CSharp
+        m_MethodName: PinTo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: dd4b50c6b155f0c4e92602f083e2bb61, type: 2}
+          m_ObjectArgumentAssemblyTypeName: ECellDive.Utility.PinData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1552,14 +1702,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
---- !u!1 &1679204126489944202 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5047229576637858988, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
-  m_PrefabInstance: {fileID: 5856623243424031782}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6097028646295676468 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 421676519455212050, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
+  m_PrefabInstance: {fileID: 5856623243424031782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1679204126489944202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5047229576637858988, guid: 6a1f3c1f8b85c7c47b5ac37a7acd9ec3, type: 3}
   m_PrefabInstance: {fileID: 5856623243424031782}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7316974568573835735

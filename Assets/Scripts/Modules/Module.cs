@@ -41,6 +41,13 @@ namespace ECellDive
                 get => m_grpMemberIndex;
                 set => m_grpMemberIndex = value;
             }
+
+            [SerializeField] private GameObject m_delegateTarget;
+            public GameObject delegateTarget
+            {
+                get => m_delegateTarget;
+                private set => m_delegateTarget = value;
+            }
             #endregion
 
             #region - IHighlightable Members - 
@@ -99,6 +106,13 @@ namespace ECellDive
             protected virtual void Awake()
             {
                 areVisible = false;
+
+                //If the target has not been set in the editor to a specific gameobject,
+                //we set it to this game object by default. 
+                if (m_delegateTarget == null)
+                {
+                    m_delegateTarget = gameObject;
+                }
 
                 m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
                 m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;

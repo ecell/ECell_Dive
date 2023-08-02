@@ -35,7 +35,7 @@ namespace ECellDive.Tutorials
             base.Initialize();
 
             guiManager = GameObject.
-                              FindGameObjectWithTag("AllUIAnchor").
+                              FindGameObjectWithTag("ExternalObjectContainer").
                               GetComponent<GUIManager>();
 
             //The user can interact with the button leading to the Module Menu

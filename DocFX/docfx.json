@@ -3,14 +3,20 @@
     {
       "src": [
         {
-          "files": ["Assembly-CSharp.csproj"],
-          "src": "../",
-          "exclude": ["**/obj/**", "**/bin/**"]
+            "src": "../",
+            "files": [
+                "Assets/**/*.cs"
+            ],
+            "exclude": [
+                "Assets/Plugins/**"
+            ]
         }
-      ],
+    ],
       "dest": "api",
+      "filter": "filterConfig.yml",
       "disableGitFeatures": false,
-      "disableDefaultFilter": false
+      "disableDefaultFilter": false,
+      "allowCompilationErrors": true
     }
   ],
   "build": {
@@ -34,18 +40,19 @@
       {
         "files": [
           "favicon.ico",
-          "logo.svg"
+          "logo.svg",
+          "resources/images/**/**.png",
+          "resources/images/**/**.jpg",
+          "resources/images/**/**.gif"
         ]
       }
     ],
 
     "overwrite": [
       {
+        "src": "../",
         "files": [
-          "apidoc/**.md"
-        ],
-        "exclude": [
-          "obj/**"
+            "Assets/Scripts/**/*.md"
         ]
       }
     ],
@@ -53,7 +60,8 @@
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
-      "default"
+      "default",
+      "modern"
     ],
     "postProcessors": [],
     "markdownEngineName": "markdig",

@@ -26,10 +26,6 @@ namespace ECellDive.Tutorials
 
             targetButton.onClick.RemoveListener(OnSelect);
 
-            //We block the usage of the button to import a group by module
-            //since the user already added one.
-            guiManager.refModulesMenuManager.SwitchSingleInteractibility(3);
-
             //The user can interact with the button to open the group menu.
             guiManager.refMainMenu.GetComponent<MainMenuManager>().SwitchSingleInteractibility(1);
 
@@ -44,11 +40,11 @@ namespace ECellDive.Tutorials
         {
             base.Initialize();
 
-            guiManager = GameObject.FindGameObjectWithTag("AllUIAnchor").GetComponent<GUIManager>();
+            guiManager = GameObject.FindGameObjectWithTag("ExternalObjectContainer").GetComponent<GUIManager>();
 
             //The user can interact with the button to add a Group By module to the scene.
-            guiManager.refModulesMenuManager.SwitchSingleInteractibility(3);
-            targetButton = guiManager.refModulesMenuManager.targetGroup[3].GetComponent<Button>();
+            guiManager.refModulesMenuManager.SwitchSingleInteractibility(4);
+            targetButton = guiManager.refModulesMenuManager.targetGroup[4].GetComponent<Button>();
             targetButton.onClick.AddListener(OnSelect);
         }
 
