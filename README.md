@@ -22,7 +22,7 @@ ECellDive is a VR application for systems biology. It is part of a research proj
 #### Manual installation required
 - [Unity Hub](https://unity.com/download)
 - [Unity 2020.3.27f1](https://unity.com/releases/editor/archive)
-- [Kosmogora v1.1.0](https://github.com/ecell/kosmogora) (if developping features involving data management and/or visualization)
+- [Kosmogora v1.1.1](https://github.com/ecell/kosmogora) (if developping features involving data management and/or visualization)
 
 #### No action required (included in the project's [packages manifest](https://github.com/ecell/ECell_Dive/blob/main/Packages/manifest.json))
 - [Universal Render Pipeline (URP)](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@10.8/manual/). Unity's "artist-friendly" render pipeline for optimized graphics on a broad range of platforms. 
