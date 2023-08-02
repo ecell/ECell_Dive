@@ -73,25 +73,50 @@
 
         <article data-uid="">
 
-<img src="https://img.shields.io/badge/version-alpha 0.11.x-blue.svg?style=flat-square" alt="version alpha 0.11.x"> 
+<img src="https://img.shields.io/badge/version-alpha 0.11.x-blue.svg?style=flat-square" alt="version alpha 0.11.x">
 <img src="https://img.shields.io/badge/unity-2020.3-green.svg?style=flat-square" alt="unity 2020.3">
-<img src="https://img.shields.io/badge/Virtual Reality-Meta Quest 2-green.svg?style=flat-square" alt="unity 2020.3">
 <img src="resources/images/ecellDive_white_1280-990.png" width="640" height="495">
 <h1 id="context">Context</h1>
 <p>ECellDive is a VR application for systems biology. It is part of a research project exploring how biologists will be working tomorrow in the context of metaverses. Our first target is to provide an integrated workspace for visualization, simulation and modelling of biological systems in real-time between colleagues. In the meantime, it will be the space of experimentations regarding exploration of data in a virtual reality environment. As such, this project is under active development and subject to a lot of changes: features may come and go depending on their actual usefullness.</p>
-<h1 id="installation">Installation</h1>
+<h1 id="requirements">Requirements</h1>
 <h2 id="app">App</h2>
-<p>ECellDive runs on Meta Oculus VR devices. I was developped and tested on Meta Quest 2. ECellDive was sufficiently optimized to not require to be connected to a computer (through Link cable or Air Link). There will be a framedrop for a few seconds when generating the metabolic pathways to visualize, but visualization itself runs without any issues once it is loaded.
-The application executable (<em>.apk file</em>) can be downloaded from the <a href="https://github.com/ecell/ECell_Dive/releases">release page</a> and installed on any Quest 2 heasdset thanks to <a href="https://sidequestvr.com/">SideQuest</a>.</p>
-<h2 id="project">Project</h2>
-<p>Cloning the project through the https uri has been tested but we suggest cloning the repo by dowloading the zip archive instead. using zip archives have benn proven more stable for Unity projects on Git compared to the former.</p>
-<p><strong>Dependencies</strong></p>
+<h3 id="software">Software</h3>
 <ul>
-<li>Unity 2020.3.27f1</li>
-<li>Oculus XR plugin 1.11.2 (this project is not using OpenXR as its development started just before Oculus devices support by OpenXR. Upgrade is planned, however)</li>
-<li>Netcode for GameObjects 1.0.0-pre.9</li>
-<li>XR Interaction Toolkit 1.0.0-pre.5</li>
+<li><a href="https://sidequestvr.com/">SideQuest</a> to install the app.</li>
+<li><a href="https://github.com/ecell/kosmogora">Kosmogora v1.1.0</a>. With the exception of the tutorial/demo with a  [pre-computed] example (./articles/UserManual/quickstart.md#pre-computed-ijo1366), everything requires a running instance of <a href="https://github.com/ecell/kosmogora">Kosmogora</a>.</li>
 </ul>
+<h3 id="hardware">Hardware</h3>
+<ul>
+<li>Meta Quest VR devices. Only tested on Quest 2. ECellDive was sufficiently optimized to not require to be connected to a high-end computer (through Link cable or Air Link). There will be a framedrop for a few seconds when generating the metabolic pathways to visualize, but visualization itself runs without any issues once it is loaded.</li>
+<li>A separate computer to run <a href="https://github.com/ecell/kosmogora">Kosmogora</a>.</li>
+</ul>
+<h2 id="project-for-developers">Project (for developers)</h2>
+<h3 id="software-1">Software</h3>
+<h4 id="manual-installation-required">Manual installation required</h4>
+<ul>
+<li><a href="https://unity.com/download">Unity Hub</a></li>
+<li><a href="https://unity.com/releases/editor/archive">Unity 2020.3.27f1</a></li>
+<li><a href="https://github.com/ecell/kosmogora">Kosmogora v1.1.0</a> (if developping features involving data management and/or visualization)</li>
+</ul>
+<h4 id="no-action-required-included-in-the-projects-packages-manifest">No action required (included in the project's <a href="https://github.com/ecell/ECell_Dive/blob/main/Packages/manifest.json">packages manifest</a>)</h4>
+<ul>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@10.8/manual/">Universal Render Pipeline (URP)</a>. Unity's &quot;artist-friendly&quot; render pipeline for optimized graphics on a broad range of platforms.</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.xr.oculus@1.11/manual/index.html">Oculus XR plugin 1.11.2</a>. Unity's plugin to develop for Meta Oculus Quests devices. This project is not using OpenXR as its development started just before Oculus devices support by OpenXR. Upgrade is planned, however.</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@1.0/manual/index.html">Netcode for GameObjects 1.0.0-pre.9</a>. Unity's solution for multiplayer games.</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@1.0/manual/index.html">XR Interaction Toolkit 1.0.0-pre</a>. Unity's solution for interaction systems in VR and AR.</li>
+<li><a href="https://github.com/VeriorPies/ParrelSync">ParrelSync</a>. For multiplayer networking tests and debug.</li>
+</ul>
+<h3 id="hardware-1">Hardware</h3>
+<ul>
+<li>This project is developed with gaming laptops (MSI Raider GE76 and Alienware R4, both with a laptop version of a RTX3070).</li>
+<li>Meta Quest VR devices. Only used Quest 2.</li>
+</ul>
+<h1 id="installation">Installation</h1>
+<p>Please, check the <a href="articles/UserManual/installation.html">Installation page</a> for more details</p>
+<h2 id="app-1">App</h2>
+<p>The application executable (<em>.apk file</em>) can be downloaded from the <a href="https://github.com/ecell/ECell_Dive/releases">release page</a> and installed on any Quest 2 heasdset thanks to <a href="https://sidequestvr.com/">SideQuest</a>.</p>
+<h2 id="project">Project</h2>
+<p>Cloning the project through the https uri has been tested but we suggest cloning the repo by dowloading the zip archive instead. Using zip archives has been proven more stable for Unity projects on Git compared to the former.</p>
 <h1 id="documentation">Documentation</h1>
 <p>Documentation about <a href="https://ecell.github.io/ECell_Dive/articles/UserManual/QuickStart/quickstart.html">ECellDive's in-app features</a> as well as the documentation for the source code <a href="https://ecell.github.io/ECell_Dive/api/index.html">API</a>.</p>
 </article>

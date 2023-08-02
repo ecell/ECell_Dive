@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Tutorial on the workflow with modules </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Tutorial on the workflow with modules ">
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Tutorials/modules_workflow.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../../../public/main.js'
+    import { init } from './../../../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="tutorial-on-the-workflow-with-modules">Tutorial on the workflow with modules</h1>
+
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Please, make sure that you can <a href="../Network/connecting_to_Kosmogora.html">connect to Kosmogora</a></p>
+</div>
+<p>The purpose of this tutorial is to learn how to manipulate some of the <a href="../Modules/modules.html">modules</a> in <em>ECellDive</em> as well as the communication workflow between <em>ECellDive</em> and <a href="https://github.com/ecell/kosmogora">Kosmogora</a>. In this tutorial, we will learn how to manually reach the same state as <a href="../quickstart.html#pre-computed-ijo1366">the demo where everything is pre-computed</a>.</p>
+<h2 id="duration">Duration</h2>
+<p>it usually takes around <strong>40 minutes</strong> to complete this tutorial (it all depends how long you wish to freely explore the model before moving to another step). Novices that had not tried VR before <em>ECellDive</em> were not any slower than experts if they had taken the <a href="controls.html">tutorial on controls</a> beforehand. Therefore, we recommend everybody to start with <a href="controls.html">tutorial on controls</a>.</p>
+<h2 id="launch-the-tutorial">Launch the Tutorial</h2>
+<p>This tutorial is accessible through the general <a href="../UIMenus/tutorials_menu.html">tutorial menu</a>. The steps to find it are:</p>
+<ol>
+<li>Open the <a href="../UIMenus/main_menu.html">main menu</a></li>
+<li>Click on the button <em>Tutorials</em></li>
+<li>Click on the button <em>Modules</em></li>
+</ol>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/modules/launch.gif" alt="Launch">
+</details>
+<h2 id="step-1">Step 1</h2>
+<h3 id="goal">Goal</h3>
+<p>Learn how to add a <a href="../Modules/modules.html">module</a>.</p>
+<h3 id="task">Task</h3>
+<p>Open the <a href="../UIMenus/modules_menu.html">Modules Menu</a> and add a <a href="../Modules/remote_importer_module.html">Data Importer</a>.</p>
+<h3 id="details">Details</h3>
+<p>On the left controller, press the button that says <a href="../UIMenus/main_menu.html">Open Main Menu</a> From here, click on the button <em>Modules</em> to open the corresponding sub-menu. In this submenu, you will find the modules that will help you interact with data. For now, click on the <em>Data Importer</em> button to add that module to the scene.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You will automatically advance to the next step of the tutorial once you add the module.</p>
+</div>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/modules/step1.gif" alt="modules_step1">
+</details>
+<h2 id="step-2">Step 2</h2>
+<h3 id="goal-1">Goal</h3>
+<p>Learn how to import data from a server.</p>
+<h3 id="task-1">Task</h3>
+<p>Add the data module of iJO1366 to the scene.</p>
+<h3 id="details-1">Details</h3>
+<p>Open the menu of the data importer. Input the IP adress of the <a href="https://github.com/ecell/kosmogora">Kosmogora</a> server. If you did not specify a <em>Port</em> when launching <a href="https://github.com/ecell/kosmogora">Kosmogora</a>, you can leave that input field blank. Then, click on the corresponding button to query the available models and select iJO1366 on the second panel.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You will automatically advance to the next step of the tutorial once you add iJO1366 to the scene.</p>
+</div>
+<details>
+  <summary>Example</summary>
+<p>In the case of this example, the instance of <a href="https://github.com/ecell/kosmogora">Kosmogora</a> was launched with the following command line: <code>uvicorn --host 192.168.0.174 --port 8421 app:app</code>. So, in <em>ECellDive</em> we use <code>192.168.0.174</code> as the IP and <code>8421</code> as the port where needed.</p>
+<img src="../../../resources/images/tutorials/modules/step2.gif" alt="modules_step2">
+</details>
+<h2 id="step-3">Step 3</h2>
+<h3 id="goal-2">Goal</h3>
+<p>Learn how to dive into a module.</p>
+<h3 id="task-2">Task</h3>
+<p>Dive and explore the network.</p>
+<h3 id="details-2">Details</h3>
+<p>Point at the data module iJO1366 you just imported with the <span style="color:orange">Ray-Based Controls</span> and press the primary button. This will open the information menu of this module as well as the portal associated with this data module. To dive in the module, point at the portal with the <span style="color:orange">Ray-Based Controls</span> and hold the primary button.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>The loading of the next dive scene will take a about seconds and framerate will drop significantly</p>
+</div>
+<p>Click the button <em>Next</em> on the tutorial panel when you are ready to move on to the next step.</p>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/modules/step3.gif" alt="modules_step3">
+</details>
+<h2 id="step-4">Step 4</h2>
+<h3 id="goal-3">Goal</h3>
+<p>Learn how to request a Flux Balance Analysis (1/2).</p>
+<h3 id="task-3">Task</h3>
+<p>Add a <a href="../Modules/fba_module.html">FBA module</a> to the dive scene via <a href="../UIMenus/modules_menu.html">Modules Menu</a>.</p>
+<h3 id="details-3">Details</h3>
+<p>Do not hesitate to <a href="../Controls/movement_controls.html">move around</a> and explore the network.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You can click on the <span style="color:red">red pin icon</span> of the tutorial panel to pin the panel to your position. This way, the panel will follow you when you move. The panel is successfully pinned to you when the <span style="color:green">pin icon is green</span>.</p>
+</div>
+<p>Go back to the <a href="../UIMenus/modules_menu.html">Modules Menu</a> that you previously used to add a Data Importer to the scene.
+This time, click on the button <em>FBA</em> to add a <a href="../Modules/fba_module.html">FBA module</a>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You will automatically advance to the next step of the tutorial once you add the FBA module to the scene.</p>
+</div>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/modules/step4.gif" alt="modules_step4">
+</details>
+<h2 id="step-5">Step 5</h2>
+<h3 id="goal-4">Goal</h3>
+<p>Learn how to request a Flux Balance Analysis (2/2).</p>
+<h3 id="task-4">Task</h3>
+<p>Request the FBA from the server.</p>
+<h3 id="details-4">Details</h3>
+<p>Open the menu of the <a href="../Modules/fba_module.html">FBA module</a>. Input the <a href="../Network/connecting_to_Kosmogora.html">IP adress of the Kosmogora</a> server. If you did not specify a <em>Port</em> when launching <a href="../Network/connecting_to_Kosmogora.html">Kosmogora</a>, you can leave that input field blank. Once you entered the information, click on the buton <em>Run FBA</em> to request the simulation from the server.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>It will take a few seconds. The duration depends on the quality of the network you are on.</p>
+</div>
+<p>The result of the FBA will be clearly visible as the edges's widths are scaled according to the value of the fluxes.</p>
+<details>
+  <summary>Example</summary>
+<p>In the case of this example, the instance of <a href="https://github.com/ecell/kosmogora">Kosmogora</a> was launched with the following command line: <code>uvicorn --host 192.168.0.174 --port 8421 app:app</code>. So, in <em>ECellDive</em> we use <code>192.168.0.174</code> as the IP and <code>8421</code> as the port where needed.</p>
+<img src="../../../resources/images/tutorials/modules/step5.gif" alt="modules_step5">
+</details>
+<p>You can use the options to clamp the values or set a color gradient.</p>
+<details>
+  <summary>Example</summary>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>You can see some strange green pixels in this gif. This is due to the <a href="https://blog.bahraniapps.com/category/gifcam/">recording system</a>, they are not present in <em>ECellDive</em>.</p>
+</div>
+<img src="../../../resources/images/tutorials/modules/step5_bonus1.gif" alt="modules_step5_b1">
+</details>
+<p>You can also KNOCKOUT reactions by pointing at the edges with the <span style="color:orange">Ray-Based Controls</span> and pressing the front trigger. Then, click on <em>Run FBA</em> again to update the simulation. When a reaction is knockedout, the texture of the arrow will change (gradients of gray with wholes).</p>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/modules/step5_bonus2.gif" alt="modules_step5_b2">
+</details>
+<h2 id="step-6">Step 6</h2>
+<h3 id="goal-5">Goal</h3>
+<p>Learn how to make groups.</p>
+<h3 id="task-5">Task</h3>
+<p>Add a <a href="../Modules/groupby_module.html">GroupBy module</a> and make groups.</p>
+<h3 id="details-5">Details</h3>
+<p>Go to the <a href="../UIMenus/modules_menu.html">Modules Menu</a> and click on the button <em>Group By Operator</em> to add the module in the scene.
+Open its menus (point + primary button) and group the nodes and/or the edges according to one of their respective metadata.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Only ONE metadata can be selected for each object.</p>
+</div>
+<p>We recommand grouping edges and nodes according to <em>Subsystems</em> and <em>Compartments</em> respectively. Once you have selected your metadata of interest, click on <em>Process Grouping</em>. Check the <a href="../UIMenus/groups_menu.html">Groups Menu</a> if you want o change the default color of the generated groups.</p>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/modules/step6.gif" alt="modules_step6">
+</details>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Tutorials/modules_workflow.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

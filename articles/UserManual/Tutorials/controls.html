@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Tutorial on Control </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Tutorial on Control ">
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Tutorials/controls.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../../../public/main.js'
+    import { init } from './../../../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="tutorial-on-control">Tutorial on Control</h1>
+
+<p>The purpose of this tutorial is for users to get accustomed with the various inputs and their effects in ECellDive. Details about individual controls are also available on a <a href="../Controls/controls.html">dedicated page</a>.</p>
+<h2 id="duration">Duration</h2>
+<p>Novices that have never tried VR before have taken up to <strong>40 minutes</strong> to complete this tutorial. On the other hand, users that already have experience took under <strong>15 minutes</strong>.</p>
+<h2 id="launch-the-tutorial">Launch the Tutorial</h2>
+<p>This tutorial is accessible through the general <a href="../UIMenus/tutorials_menu.html">tutorial menu</a>. The steps to find it are:</p>
+<ol>
+<li>Open the <a href="../UIMenus/main_menu.html">main menu</a></li>
+<li>Click on the button <em>Tutorials</em></li>
+<li>Click on the button <em>Controls</em></li>
+</ol>
+<details>
+  <summary>Launch</summary>
+<img src="../../../resources/images/tutorials/controls/launch.gif" alt="Launch">
+</details>
+<h2 id="step-1">Step 1</h2>
+<h3 id="goal">Goal</h3>
+<p>Learn the basics of ray-based controls</p>
+<h3 id="task">Task</h3>
+<p>Point at the cube visible above the UI panel and press the <a href="../Controls/ray_based_interaction_controls.html">front trigger</a> button 5 times.</p>
+<h3 id="details">Details</h3>
+<p>The current paradigm about controls in VR heavily emphasizes &quot;rays&quot;. They are used to point at particular objects with which a user wishes to interact. Once an object is pointed at, it is common to press different button of the controllers to achieve different effects.</p>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/controls/step1.gif" alt="controls_step1">
+</details>
+<h2 id="step-2">Step 2</h2>
+<h3 id="goal-1">Goal</h3>
+<p>Learn how to open the menu of a module.</p>
+<h3 id="task-1">Task</h3>
+<p>Point at the module's 3D model on the left and press the <a href="../Controls/ray_based_interaction_controls.html">primary button</a> of the controller.</p>
+<h3 id="details-1">Details</h3>
+<p>On the left controller, the primary button is the <strong>X Button</strong>. On the right controller, it is the <strong>A Button</strong>.
+In ECellDive, 3D objects usually represent data or a transform on data. They are called <a href="../Modules/modules.html">modules</a>. Every module has at least one menu attached to it to display its basic information. In most cases, the menus are more complex and let the user perform some tasks like importing a file or requesting a simulation.</p>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/controls/step2.gif" alt="controls_step2">
+</details>
+<h2 id="step-3">Step 3</h2>
+<h3 id="goal-2">Goal</h3>
+<p>Learn how to Grab &amp; Move an object.</p>
+<h3 id="task-2">Task</h3>
+<p>Grab the module and move it 5 times to the <span style="color:green"><em>green</em></span> areas around you.</p>
+<h3 id="details-2">Details</h3>
+<p>To grab the module, point at it with a controller and <strong>hold down</strong> its <a href="../Controls/ray_based_interaction_controls.html#grab-elements">grip trigger</a>. With the object grabbed, <strong>push or pull</strong> the joystick of that same controller to control the distance of the object.</p>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/controls/step3.gif" alt="controls_step3">
+</details>
+<h2 id="step-4">Step 4</h2>
+<h3 id="goal-3">Goal</h3>
+<p>Learn how to Grab &amp; Move a UI menu.</p>
+<h3 id="task-3">Task</h3>
+<p>Point at the white horizontal bar of a UI menu and grab it.</p>
+<h3 id="details-3">Details</h3>
+<p>You can grab a UI (User Interface) menu using the same <a href="../Controls/ray_based_interaction_controls.html#grab-elements">grip trigger</a> as for grabing a module. Similarly, you can also manage its distance using the joystick.</p>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/controls/step4.gif" alt="controls_step4">
+</details>
+<h2 id="step-5">Step 5</h2>
+<h3 id="goal-4">Goal</h3>
+<p>Learn about the different controls input modes.</p>
+<h3 id="task-4">Task</h3>
+<p>Press the <a href="../Controls/controls">secondary button</a> of a controller to switch controls input modes.</p>
+<h3 id="details-4">Details</h3>
+<p>On the left controller, the secondary button is the <strong>Y Button</strong>. On the right controller, it is the <strong>B Button</strong>.
+In ECellDive, we separated different classes of controls for clarity and consistency. There are 3 types of controls: the <a href="../Controls/ray_based_interaction_controls.html">Ray-Based Controls</a> (<span style="color:orange"><em>orange ray</em></span>, the one you used until now), the <a href="../Controls/movement_controls.html">Movement Controls</a>  (<span style="color:green"><em>green ray and sphere</em></span>) and the <a href="../Controls/group_controls.html">Groups Controls</a>  (white ray).  Repeatedly pressing the secondary button of a controller will cycle through the controls input modes.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Warning: Always go back to <strong>Ray-Based Controls</strong> to interact with UI.</p>
+</div>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/controls/step5.gif" alt="controls_step5">
+</details>
+<h2 id="step-6">Step 6</h2>
+<h3 id="goal-5">Goal</h3>
+<p>Learn how to move by <a href="../Controls/movement_controls.html#teleportation">teleporting</a>.</p>
+<h3 id="task-5">Task</h3>
+<p>Switch to <a href="../Controls/movement_controls.html">Movement Controls</a> and press the front trigger to teleport at least once.</p>
+<h3 id="details-5">Details</h3>
+<p>Use the <strong>secondary button</strong> of a controller to switch to the movement input controls on that controller. The movement input control is the <span style="color:green"><em>green ray and sphere</em></span>. The sphere represents the teleportation target. You can use the Joystick to adjust the teleportation distance.</p>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/controls/step6.gif" alt="controls_step6">
+</details>
+<h2 id="step-7">Step 7</h2>
+<h3 id="goal-6">Goal</h3>
+<p>Learn how to move continously.</p>
+<h3 id="task-6">Task</h3>
+<p>Switch movement mode and try <a href="../Controls/movement_controls.html#continous-movements">moving continuously</a>.</p>
+<h3 id="details-6">Details</h3>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Continuous movement can cause motion sickness. Everybody has different sensitivity to motion sickness: be careful and try to learn your limit. You can skip this step if you wish by directly pressing <strong>Next</strong>.</p>
+</div>
+<p>With the movement controls enabled on one controller, you can switch the movement mode from <a href="../Controls/movement_controls.html#teleportation">teleportation</a> to <a href="../Controls/movement_controls.html#continous-movements">continuous</a> by pressing the <strong>primary button</strong> of that controller (X and A on left and right controllers repsectively). The continous movement mode is represented by a transparent sphere with three axes (<span style="color:red">X</span>, <span style="color:green">Y</span>, <span style="color:blue">Z</span>). To activate continuous movement, press the <strong>front trigger</strong> and move your hand in the desired direction.</p>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/controls/step7.gif" alt="controls_step7">
+</details>
+<h2 id="step-8">Step 8</h2>
+<h3 id="goal-7">Goal</h3>
+<p>Learn how to make groups for visualization with the Ray Selector.</p>
+<h3 id="task-7">Task</h3>
+<p><a href="../Controls/group_controls.html">Make a group</a> with module A and C.</p>
+<h3 id="details-7">Details</h3>
+<p>With the <a href="../Controls/group_controls.html#ray-selector">Ray Selector</a> enabled (white Ray), point at the modules A and C and select them successively by pressing the front trigger.</p>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/controls/step8.gif" alt="controls_step8">
+</details>
+<h2 id="step-9">Step 9</h2>
+<h3 id="goal-8">Goal</h3>
+<p>Learn how to make groups for visualization with the Volumetric Selector</p>
+<h3 id="task-8">Task</h3>
+<p><a href="../Controls/group_controls.html">Make a group</a> with module A, B and C</p>
+<h3 id="details-8">Details</h3>
+<p>With the group controls enabled on a controller, you can switch from the <a href="../Controls/group_controls.html#ray-selector">Ray Selector</a> to the <a href="../Controls/group_controls.html#volumetric-selector">Volumetric Selector</a> by pressing the primary button of that controller (X or A on the left or right controller respectively).
+You can activate the Volumetric Selector by holding down the front trigger (<span style="color:green">sphere becomes green</span>). Once activated, every module that collides with the sphere is added to the group. You can control the <strong>distance and scale</strong> of the sphere with the Joystick.</p>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/controls/step9.gif" alt="controls_step9">
+</details>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Tutorials/controls.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -74,6 +74,19 @@
         <article data-uid="">
 <h1 id="quick-start">Quick Start</h1>
 
+<div class="NOTE">
+<h5>Note</h5>
+<p>Kosmogora <strong>NOT</strong> required</p>
+</div>
+<h2 id="launch-ecelldive">Launch ECellDive</h2>
+<p>After <a href="installation.html">installing ECellDive on your Quest</a> you can access <em>ECellDive</em> under the app menu for unknown sources.
+In you quest, open the app menu, then click on the search bar to make the category drop down appear next to it. Finally, open the drop down and select <em>Unknown Sources</em>.</p>
+<details>
+  <summary>Exemple</summary>
+<img src="../../resources/images/tutorials/find_ecelldive_in_quest.gif" alt="find ECellDivew" style="height: 600px;">
+</details>
+<h2 id="start-demo">Start Demo</h2>
+<h3 id="credits">Credits</h3>
 <p>For demonstration purposes, ECellDive is shipped with a copy of a metabolic network <a href="https://escher.github.io/#/app?map=iJO1366.Central%20metabolism&amp;tool=Builder&amp;model=iJO1366">iJO1366</a> accessible via the tutorials menu. All credits for the <a href="https://escher.github.io/#/">Escher</a> &amp; <a href="https://sbrg.github.io/escher-fba/#/">Escher-FBA platform</a> go to the authors of the following papers:</p>
 <blockquote>
 <p>EG Rowe, BO Palsson, ZA King (2018) <em>Escher-FBA: a web application for interactive flux balance analysis.</em> BMC Sys Bio 12:84 <a href="https://doi.org/10.1186/s12918-018-0607-5">doi.org/10.1186/s12918-018-0607-5</a></p>
@@ -81,24 +94,24 @@
 <blockquote>
 <p>Zachary A. King, Andreas Dräger, Ali Ebrahim, Nikolaus Sonnenschein, Nathan E. Lewis, and Bernhard O. Palsson (2015) <em>Escher: A web application for building, sharing, and embedding data-rich visualizations of biological pathways</em>, PLOS Computational Biology 11(8): e1004321. <a href="https://doi.org/10.1371/journal.pcbi.1004321">doi.org/10.1371/journal.pcbi.1004321</a></p>
 </blockquote>
-<h2 id="pre-computed-ijo1366">Pre-computed iJO1366</h2>
+<h3 id="pre-computed-ijo1366">Pre-computed iJO1366</h3>
 <p>We have pre-computed the <a href="Modules/fba_module.html">Flux Balance Analysis (FBA)</a> and <a href="Modules/groupby_module.html">generated groups</a> to identify the subsystems of IJO1366. The goal of this version is to provide a possible final state of some the operations available in ECellDive without needing <a href="Network/connecting_to_Kosmogora.html">to connect to Kosmogora</a> nor master the full controls of ECellDive. It is really designed for a quick overview.</p>
 <details>
   <summary>IJO1366 Panoramic View</summary>
 <img src="../../resources/images/tutorials/ijo1366/tu_ijo1366_fba_grp_panview.gif" alt="iJO1366 FBA+GRP Panview" style="height: 300px;">
 </details>
-<h2 id="inputs">Inputs</h2>
+<h3 id="inputs">Inputs</h3>
 <p>In this demonstration, the left controller is restricted to <a href="Controls/ray_based_interaction_controls.html#ray-based-interaction">ray-based interactions</a> with the UI or the objects. And, the right conroller is restricted to the <a href="Controls/movement_controls.html#teleportation">teleportation</a> for the movements.</p>
-<h2 id="open-objects-information">Open objects information</h2>
+<h3 id="open-objects-information">Open objects information</h3>
 <p>You can open the information panel associated to the edges (reactions) and nodes (metabolites) by pointing at them with the left controller and pressing the primary button.</p>
-<h3 id="grab-ui-panels">Grab UI panels</h3>
+<h4 id="grab-ui-panels">Grab UI panels</h4>
 <p>Should the UI panels be in your way, you can <a href="Controls/ray_based_interaction_controls.html#grab-elements">grab them and move them</a> around with the left controller and move them around.</p>
 <details>
   <summary>Example</summary>
   
 <img src="../../resources/images/tutorials/ijo1366/tu_ijo1366_show_EdgeNameMenu.gif" alt="iJO1366 show Edge Name" style="height: 300px;">
 </details>
-<h2 id="visualize-the-fba">Visualize the FBA</h2>
+<h3 id="visualize-the-fba">Visualize the FBA</h3>
 <p>On the main UI panel of the tutorial, with the left controller, you can <a href="Controls/ray_based_interaction_controls.html#ui-press">click</a> on the <em>FBA</em> Button; then on the <em>Show FBA on Network</em> button.</p>
 <p>The edges will change sizes according to the fluxes values predicted by the FBA. Pointing at edges with the left controller will generate particles proportionally to the fluxes. Finally, the flux numerical value is visible on the <a href="#open-objects-information">information panel</a>.</p>
 <details>
@@ -106,7 +119,7 @@
   
 <img src="../../resources/images/tutorials/ijo1366/tu_ijo1366_show_FBA.gif" alt="iJO1366 show FBA" style="height: 300px;">
 </details>
-<h2 id="visualize-biological-subsystems">Visualize Biological Subsystems</h2>
+<h3 id="visualize-biological-subsystems">Visualize Biological Subsystems</h3>
 <p>The model <a href="https://escher.github.io/#/app?map=iJO1366.Central%20metabolism&amp;tool=Builder&amp;model=iJO1366">iJO1366</a> comes with embeded metadata that we used to automaically group the reactions and metabolites according to systemic data. On the main UI panel of the tutorial, with the left controller, you can <a href="Controls/ray_based_interaction_controls.html#ui-press">click</a> on the <em>Groups</em> Button; then on the <em>Show Groups on Network</em> button. The UI panel will help you match the colors with the elements in the 3D space.</p>
 <details>
   <summary>Example</summary>
