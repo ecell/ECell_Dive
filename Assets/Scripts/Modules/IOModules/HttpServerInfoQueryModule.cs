@@ -52,7 +52,7 @@ namespace ECellDive.Modules
 
         private void BuildReactionInfoQuery()
         {
-            string requestURL = AddPagesToURL(new string[] { "reaction_information2", LoadedCyJsonPathway.GetName(), refReactionID.text});
+            string requestURL = AddPagesToURL(new string[] { "reaction_information", LoadedCyJsonPathway.GetName(), refReactionID.text});
             requestURL = AddQueriesToURL(requestURL,
                 new string[] { "db_src", "view_name" },
                 new string[] { refTargetDatabase.text, LoadedCyJsonPathway.GetName() });
