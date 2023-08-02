@@ -3,6 +3,7 @@ using UnityEngine;
 using ECellDive.SceneManagement;
 using ECellDive.UI;
 using System.Collections;
+using ECellDive.Utility;
 
 namespace ECellDive.Tutorials
 {
@@ -50,7 +51,7 @@ namespace ECellDive.Tutorials
         {
             base.Initialize();
 
-            guiManager = GameObject.FindGameObjectWithTag("ExternalObjectContainer").GetComponent<GUIManager>();
+            guiManager = StaticReferencer.Instance.refExternalObjectContainer.GetComponent<GUIManager>();
 
             //Hide the main menu.
             guiManager.refMainMenu.SetActive(!guiManager.refMainMenu.activeSelf);
@@ -66,6 +67,8 @@ namespace ECellDive.Tutorials
 
         public override void Quit()
         {
+            base.Quit();
+
             //We make sure to reactivate interactibility of every buttons
             //of the UI menus that we deactivated at the begining of the
             //tutorial. Since the user can quit the tutorial anytime, we do so

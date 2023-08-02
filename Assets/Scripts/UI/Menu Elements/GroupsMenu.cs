@@ -90,7 +90,7 @@ namespace ECellDive
                 //Creating the scroll list menu that will contain the objects
                 //controlled by the drop down.
                 ddComponent.InstantiateContent();
-                ddComponent.scrollListHolder.transform.SetParent(refAllUIContainer.transform, false);
+                ddComponent.scrollListHolder.transform.SetParent(refAllUIContainer.transform);
                 allDropDowns.Add(ddComponent);
 
                 foreach (GroupData _groupData in _groupsData)
