@@ -143,7 +143,7 @@ namespace ECellDive.Modules
 
             string requestURL = AddPagesToURL(new string[]
             {
-                "save2",
+                "save",
                 _modFile.baseModelName,
                 _modFile.GetAuthorOfMod(0),
                 fileName

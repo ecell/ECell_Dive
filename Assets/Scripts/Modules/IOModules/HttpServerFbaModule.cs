@@ -84,7 +84,7 @@ namespace ECellDive
             /// the <see cref="GetKnockoutString"/></param>
             public void GetModelSolution(string _modelName, List<string> _knockouts)
             {                
-                string requestURL = AddPagesToURL(new string[] { "solve2", _modelName });
+                string requestURL = AddPagesToURL(new string[] { "solve", _modelName });
                 
                 int koCount = _knockouts.Count();
                 if (koCount > 0)
