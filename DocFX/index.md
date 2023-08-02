@@ -11,7 +11,7 @@ ECellDive is a VR application for systems biology. It is part of a research proj
 ## App
 ### Software
 - [SideQuest](https://sidequestvr.com/) to install the app.
-- [Kosmogora v1.1.0](https://github.com/ecell/kosmogora). With the exception of the tutorial/demo with a  [pre-computed] example (./articles/UserManual/quickstart.md#pre-computed-ijo1366), everything requires a running instance of [Kosmogora](https://github.com/ecell/kosmogora).
+- [Kosmogora v1.1.1](https://github.com/ecell/kosmogora). With the exception of the tutorial/demo with a  [pre-computed] example (./articles/UserManual/quickstart.md#pre-computed-ijo1366), everything requires a running instance of [Kosmogora](https://github.com/ecell/kosmogora).
 
 ### Hardware
 - Meta Quest VR devices. Only tested on Quest 2. ECellDive was sufficiently optimized to not require to be connected to a high-end computer (through Link cable or Air Link). There will be a framedrop for a few seconds when generating the metabolic pathways to visualize, but visualization itself runs without any issues once it is loaded.
