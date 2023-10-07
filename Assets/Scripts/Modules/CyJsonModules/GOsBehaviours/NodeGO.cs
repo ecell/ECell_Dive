@@ -1,8 +1,9 @@
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using TMPro;
 using ECellDive.UI;
 using ECellDive.Interfaces;
-using TMPro;
 
 namespace ECellDive
 {
@@ -56,6 +57,15 @@ namespace ECellDive
                 m_nameTextFieldContainer.transform.localPosition = 1.5f*Vector3.up;
             }
 
+            #region - IDive Methods -
+            /// <inheritdoc/>
+            public override IEnumerator GenerativeDiveInC()
+            {
+                Debug.LogError("GenerativeDiveInC not implemented for NodeGO");
+                yield return null;
+            }
+            #endregion
+
             #region - INodeGO Methods -
             public void SetNodeData(INode _INode)
             {
@@ -101,7 +111,16 @@ namespace ECellDive
             }
             #endregion
 
+            #region - IMlprDataExchange Methods -
+            /// <inheritdoc/>
+            public override void AssembleFragmentedData()
+            {
+                Debug.LogError("AssembleFragmentedData not implemented for NodeGO");
+            }
+            #endregion
+
             #region - MlprVisibility Methods -
+            /// <inheritdoc/>
             public override void NetShow()
             {
                 m_Collider.enabled = true;

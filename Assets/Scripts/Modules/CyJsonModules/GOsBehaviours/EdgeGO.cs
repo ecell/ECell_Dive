@@ -1,9 +1,10 @@
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 using ECellDive.UI;
 using ECellDive.Interfaces;
-using TMPro;
 
 namespace ECellDive
 {
@@ -505,6 +506,15 @@ namespace ECellDive
             }
             #endregion
 
+            #region - IDive Methods -
+            /// <inheritdoc/>
+            public override IEnumerator GenerativeDiveInC()
+            {
+                Debug.LogError("GenerativeDiveInC not implemented for EdgeGO");
+                yield return null;
+            }
+            #endregion
+
             #region - IEdgeGO Methods- 
             /// <inheritdoc/>
             public void ReverseOrientation()
@@ -565,6 +575,14 @@ namespace ECellDive
             }
             #endregion
 
+            #region - IMlprDataExchange Methods -
+            /// <inheritdoc/>
+            public override void AssembleFragmentedData()
+            {
+                Debug.LogError("AssembleFragmentedData not implemented for EdgeGO");
+            }
+            #endregion
+
             #region - IModulateFlux Methods- 
 
             /// <inheritdoc/>
@@ -602,12 +620,7 @@ namespace ECellDive
             /// <inheritdoc/>
             public void SetFlux(float _level, float _levelClamped)
             {
-//#if UNITY_EDITOR
-//                fluxLevel.Value = _level;
-//                fluxLevelClamped.Value = _levelClamped;
-//#else
                 SetFluxValuesServerRpc(_level, _levelClamped);
-//#endif
             }
             #endregion
         }

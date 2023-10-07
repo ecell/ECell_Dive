@@ -17,7 +17,7 @@ namespace ECellDive
         /// Base class holding references and methods used to manipulate
         /// the game object representation of a module.
         /// </summary>
-        public class GameNetModule : NetworkBehaviour,
+        public abstract class GameNetModule : NetworkBehaviour,
                                     IDive,
                                     IFocus,
                                     IGroupable,
@@ -337,9 +337,8 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
-            public virtual IEnumerator DirectDiveInC()
+            public IEnumerator DirectDiveInC()
             {
-                Debug.Log($"DirectDiveInC for netobj: {NetworkBehaviourId}");
                 DiveScenesManager.Instance.SwitchingScenesServerRpc(rootSceneId.Value,
                                                                     targetSceneId.Value,
                                                                     NetworkManager.Singleton.LocalClientId);
@@ -356,14 +355,7 @@ namespace ECellDive
             }
 
             /// <inheritdoc/>
-            public virtual IEnumerator GenerativeDiveInC()
-            {
-                Debug.LogError($"Generative dive in {gameObject.name}:{nameField.text} but no" +
-                    $"custom behaviour has been defined for that type of module");
-                yield return null;
-                isDiving = false;
-
-            }
+            public abstract IEnumerator GenerativeDiveInC();
 
             /// <inheritdoc/>
             public void TryDiveIn()
@@ -529,10 +521,7 @@ namespace ECellDive
             #endregion
 
             #region - IMlprData Methods -
-            public virtual void AssembleFragmentedData()
-            {
-
-            }
+            public abstract void AssembleFragmentedData();
 
             public IEnumerator BroadcastSourceDataC()
             {
@@ -644,9 +633,7 @@ namespace ECellDive
             [ServerRpc(RequireOwnership = false)]
             public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
             {
-                Debug.LogError("No Generation scheme has been defined for this GameNetModule. " +
-                    "Please, override this method and code how you the data stored in this module" +
-                    " should be represented in the scene.");
+                Debug.LogError("This method should be overriden in the child class.");
             }
 
             public IEnumerator SendSourceDataC(ulong _targetClientID)
@@ -743,8 +730,6 @@ namespace ECellDive
             
             public virtual void NetShow()
             {
-                //Debug.Log("Trying to Show");
-
                 if (m_Collider != null)
                 {
                     m_Collider.enabled = true;
@@ -752,13 +737,11 @@ namespace ECellDive
 
                 if (m_Renderer != null)
                 {
-                    //Debug.Log("Showing m_Renderer");
                     m_Renderer.enabled = true;
                 }
 
                 if (m_LineRenderer != null)
                 {
-                    //Debug.Log("Showing m_LineRenderer");
                     m_LineRenderer.enabled = true;
                 }
             }

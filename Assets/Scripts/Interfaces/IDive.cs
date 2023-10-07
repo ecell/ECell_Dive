@@ -47,7 +47,7 @@ namespace ECellDive.Interfaces
         /// Coroutine started by <see cref="DirectDiveIn"/>.
         /// Transfers the user to the dive scene associated to the module.
         /// </summary>
-        abstract IEnumerator DirectDiveInC();
+        IEnumerator DirectDiveInC();
 
         /// <summary>
         /// The public interface to call when a user is trying to dive into

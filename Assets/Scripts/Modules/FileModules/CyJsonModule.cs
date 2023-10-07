@@ -165,6 +165,7 @@ namespace ECellDive
             }
 
 #if UNITY_EDITOR
+
             /// <summary>
             /// USED ONLY FOR DEVELOPMENT: generates the structure of the graph outside
             /// of runtime. Use <see cref="EdgesBatchSpawn(int)"/> instead if you want to
@@ -247,8 +248,6 @@ namespace ECellDive
                 {
                     for (int j = i; j < Mathf.Min(i + m_graphBatchSpawning.nodesBatchSize, graphData.nodes.Length); j++)
                     {
-                        //ModulesData.AddModule(nodeMD);
-
                         GameObject nodeGO = DiveScenesManager.Instance.SpawnModuleInScene(_sceneId, graphPrefabsComponents[1], Vector3.zero);
                         nodeGO.transform.parent = pathwayRoot.transform;
                         NodeSpawnClientRpc(nodeGO, j);
@@ -262,9 +261,7 @@ namespace ECellDive
             [ClientRpc]
             public void NodeSpawnClientRpc(NetworkObjectReference _nodeNetObj, int _nodeIdx)
             {
-                //Debug.Log($"graphData.nodes[_nodeIdx]: {graphData.nodes[_nodeIdx]}");
                 GameObject nodeGO = _nodeNetObj;
-                //Debug.Log($"_nodeNetObj: {nodeGO}, DataID_to_DataGO:{DataID_to_DataGO}, graphData: {graphData}");
                 
                 nodeGO.GetComponent<NodeGO>().Initialize(m_graphScalingData, graphData.nodes[_nodeIdx]);
                 DataID_to_DataGO[graphData.nodes[_nodeIdx].ID] = nodeGO;
@@ -272,6 +269,7 @@ namespace ECellDive
             }
 
 #if UNITY_EDITOR
+
             /// <summary>
             /// USED ONLY FOR DEVELOPMENT: generates the structure of the graph outside
             /// of runtime. Use <see cref="NodesBatchSpawn(int)"/> instead if you want to
@@ -323,18 +321,6 @@ namespace ECellDive
                 yield return new WaitUntil(()=>isReadyForDive.Value);
 
                 DirectDiveIn();
-            }
-
-            /// <inheritdoc/>
-            [ServerRpc(RequireOwnership = false)]
-            public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
-            {
-                int rootSceneId = GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene;
-                
-                targetSceneId.Value = DiveScenesManager.Instance.AddNewDiveScene(rootSceneId);
-                LogSystem.AddMessage(LogMessageTypes.Debug,
-                    $"targetSceneId of the new module is: {targetSceneId}");
-                RequestGraphGenerationServerRpc(_expeditorClientID, targetSceneId.Value);
             }
             #endregion
 
@@ -422,22 +408,17 @@ namespace ECellDive
 
                 SetNetworkData(pathway);
             }
-            #endregion
 
-            #region - IMlprVisibility Methods -
-
-            public override void NetHide()
+            /// <inheritdoc/>
+            [ServerRpc(RequireOwnership = false)]
+            public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
             {
-                //base.NetHide();
+                int rootSceneId = GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene;
 
-                //m_nameTextFieldContainer.SetActive(false);
-            }
-
-            public override void NetShow()
-            {
-                //base.NetHide();
-
-                //m_nameTextFieldContainer.SetActive(true);
+                targetSceneId.Value = DiveScenesManager.Instance.AddNewDiveScene(rootSceneId);
+                LogSystem.AddMessage(LogMessageTypes.Debug,
+                    $"targetSceneId of the new module is: {targetSceneId}");
+                RequestGraphGenerationServerRpc(_expeditorClientID, targetSceneId.Value);
             }
             #endregion
 

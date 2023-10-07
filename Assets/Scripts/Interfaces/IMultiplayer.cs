@@ -49,7 +49,7 @@ namespace ECellDive.Interfaces
 
         NetworkVariable<bool> isReadyForGeneration { get; }
 
-        void AssembleFragmentedData();
+        abstract void AssembleFragmentedData();
 
         IEnumerator BroadcastSourceDataC();
 
@@ -78,8 +78,22 @@ namespace ECellDive.Interfaces
 
         void DirectReceiveSourceData(byte[] _sourceDataName, List<byte[]> _sourceData);
 
+        /// <summary>
+        /// Requests the server to generate the data associated to the module.
+        /// This MUST be implemented by any divable module to in order for the data
+        /// generation to be broadcasted to the other clients.
+        /// </summary>
+        /// <param name="_expeditorClientID">
+        /// The ID of the client that is requesting the generation.
+        /// </param>
+        /// <remarks>
+        /// RPCs cannot be marked as abstract so we can only define the method as virtual.
+        /// Unfortunately, this means that we cannot force the implementation of this method
+        /// and that developpers will have to remember to implement it in their modules if it
+        /// is divable.
+        /// </remarks>
         [ServerRpc(RequireOwnership = false)]
-        abstract void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID);
+        void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID);
 
         IEnumerator SendSourceDataC(ulong _targetClientID);
 
