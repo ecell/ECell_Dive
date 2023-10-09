@@ -86,7 +86,7 @@ You can grab a UI (User Interface) menu using the same [grip trigger](../Control
 Learn about the different controls input modes.
 
 ### Task
-Press the [secondary button](../Controls/controls) of a controller to switch controls input modes.
+Press the [secondary button](../Controls/controls.md) of a controller to switch controls input modes.
 
 ### Details
 On the left controller, the secondary button is the **Y Button**. On the right controller, it is the **B Button**.
