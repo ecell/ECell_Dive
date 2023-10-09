@@ -21,7 +21,7 @@ namespace ECellDive
         }
 
         /// <summary>
-        /// Manages the GUI element exposing a Group data (name, color & activation)
+        /// Manages the GUI element exposing a Group data (name, color &amp; activation)
         /// in the scene to the user.
         /// </summary>
         public class GroupUIManager : MonoBehaviour

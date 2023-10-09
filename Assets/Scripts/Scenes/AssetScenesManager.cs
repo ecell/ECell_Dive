@@ -25,29 +25,28 @@ namespace ECellDive.SceneManagement
         }
 
         /// <summary>
-        ///  Calls<see cref="SceneManager.LoadScene(string)"/>  to loads the
-        ///  scene at index <paramref name="_sceneIdx"/> in <see cref="Scene"/>.
+        ///  Calls UnityEngine.SceneManagement.SceneManager.LoadScene(string)  to loads the
+        ///  scene at index <paramref name="_sceneIdx"/> in  UnityEngine.SceneManagement.Scene.
         /// </summary>
         /// <param name="_sceneIdx">The index of the scene we wish to load as ordered in
-        /// <see cref="scenes"/></param>
+        /// <see cref="scenePaths"/></param>
         public void LoadScene(int _sceneIdx)
         {
             if (IsServer && NetworkManager.Singleton.ConnectedClientsIds.Count == 1)
             {
-                //SceneManager.LoadScene(scenes[_sceneIdx].name);
                 SceneEventProgressStatus status = NetworkManager.SceneManager.LoadScene(
                                                         scenePaths[_sceneIdx], LoadSceneMode.Additive);
             }
         }
 
         /// <summary>
-        /// Subscribed to <see cref="NetworkManager.SceneManager.OnSceneEvent"/>.
+        /// Subscribed to Unity.Netcode.NetworkManager.SceneManager.OnSceneEvent.
         /// Used to control instructions based on the nature of the event.
         /// </summary>
         /// <param name="_sceneEvent">The class containing information about the scene.</param>
         /// <remarks>
         /// Copied and adapted from documentation (2022-08-15):
-        /// https://docs-multiplayer.unity3d.com/netcode/current/basics/scenemanagement/using-networkscenemanager#unloading-a-scene
+        /// <href=https://docs-multiplayer.unity3d.com/netcode/current/basics/scenemanagement/using-networkscenemanager#unloading-a-scene/>
         /// </remarks>
         private void OnSceneEvent(SceneEvent _sceneEvent)
         {

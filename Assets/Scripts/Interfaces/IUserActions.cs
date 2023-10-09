@@ -35,7 +35,7 @@ namespace ECellDive.Interfaces
         GameObject refCurrentController { get; set; }
 
         /// <summary>
-        /// A reference to the <see cref="XRRayInteractor"/> that was used
+        /// A reference to the XRRayInteractor that was used
         /// as an intermediary to grab the gameobject.
         /// </summary>
         XRRayInteractor currentRemoteInteractor { get; set; }

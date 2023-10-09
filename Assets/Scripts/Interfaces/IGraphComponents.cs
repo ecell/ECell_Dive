@@ -247,10 +247,8 @@ namespace ECellDive
         [System.Serializable]
         public struct GraphScalingData
         {
-            //[Min(0)] public float interLayersDistance;
-
             /// <summary>
-            /// Modulates the values of <see cref="Transform.position"/> for
+            /// Modulates the values of Transform.position for
             /// every node of the graph.
             /// </summary>
             /// <remarks>
@@ -260,7 +258,7 @@ namespace ECellDive
             [Min(1)] public float positionScaleFactor;
 
             /// <summary>
-            /// Modulates the values of <see cref="Transform.localScale"/> for
+            /// Modulates the values of Transform.localScale for
             /// every node and edge of the graph.
             /// </summary>
             /// <remarks>
