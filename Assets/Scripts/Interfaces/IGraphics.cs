@@ -5,17 +5,17 @@ using TMPro;
 namespace ECellDive.Interfaces
 {
     /// <summary>
-    /// Interface for <see cref="GameObject"/> in the scene that may
+    /// Interface for gameobject in the scene that may
     /// display a name.
     /// </summary>
     public interface INamed
     {
         /// <summary>
-        /// The <see cref="GameObject"/> that contains the <see cref="nameField"/>.
+        /// The gameobject that contains the <see cref="nameField"/>.
         /// </summary>
         /// <remarks>
         /// Usefull when we wish to display/hide the name by manipulating the
-        /// <see cref="GameObject"/> activity instead of disabling/enabling
+        /// gameobject activity instead of disabling/enabling
         /// the <see cref="nameField"/>.
         /// </remarks>
         GameObject nameTextFieldContainer { get; }

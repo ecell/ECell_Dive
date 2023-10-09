@@ -136,8 +136,7 @@ namespace ECellDive
             }
 
             /// <summary>
-            /// Forces to switch the visibility of every message of every type
-            /// (see <seealso cref="LogSystem.LogMessageTypes"/>).
+            /// Forces to switch the visibility of every message of every type.
             /// </summary>
             /// <remarks>
             /// Called back when interacting with a UI element

@@ -363,11 +363,13 @@ namespace ECellDive
                     }
                 }
             }
+
             /// <inheritdoc/>
             public bool CheckName(string _name)
             {
                 return _name == graphData.name;
             }
+
             /// <inheritdoc/>
             public void OperationSwitch(string _op)
             {

@@ -239,7 +239,7 @@ namespace ECellDive.Modules
 
         /// <summary>
         /// Sets the <see cref="targetSaveable"/> to the object that is of the same index in
-        /// <see cref="GameNetPortal.saveables"/> than the <paramref name="_container"/>
+        /// <see cref="ECellDive.Multiplayer.GameNetPortal.saveables"/> than the <paramref name="_container"/>
         /// sibling index.
         /// </summary>
         public void SetTargetSaveable(GameObject _container)

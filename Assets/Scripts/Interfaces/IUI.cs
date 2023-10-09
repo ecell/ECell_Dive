@@ -82,7 +82,7 @@ namespace ECellDive
         /// <summary>
         /// Defines the interface for an object to LookAt (Z-Axis) a target.
         /// This allows us to wrap or build more complex LookAt behaviour than
-        /// the built-in <see cref="Transform.LookAt"/>.
+        /// the built-in Transform.LookAt.
         /// </summary>
         /// <remarks>Particularly used for UI elements to be visible from an active
         /// Camera.</remarks>
@@ -106,7 +106,7 @@ namespace ECellDive
             float popupDistance { get; }
 
             /// <summary>
-            /// The offset to add to <paramref name="popupTarget"/>'s height.</param>
+            /// The offset to add to <paramref name="popupTarget"/>'s height.
             /// </summary>
             float popupHeightOffset { get; }
 
@@ -126,31 +126,31 @@ namespace ECellDive
         public interface IInteractibility
         {
             /// <summary>
-            /// An array of references to <see cref="Selectable"/> component.
+            /// An array of references to UnityEngine.UI.Selectable component.
             /// </summary>
             Selectable[] targetGroup { get; }
 
             /// <summary>
             /// Forces the value <paramref name="_interactibility"/> upon 
-            /// <see cref="Selectable.interactable"/> for every member of
+            /// UnityEngine.UI.Selectable.interactable for every member of
             /// <see cref="targetGroup"/>.
             /// </summary>
             /// <param name="_interactibility">The value to apply to 
-            /// <see cref="Selectable.interactable"/>.</param>
+            /// UnityEngine.UI.Selectable.interactable.</param>
             void ForceGroupInteractibility(bool _interactibility);
 
             /// <summary>
-            /// Switches the value of <see cref="Selectable.interactable"/> to
+            /// Switches the value of UnityEngine.UI.Selectable.interactable to
             /// its opposite for each member of the <see cref="targetGroup"/>.
             /// </summary>
             void SwitchGroupInteractibility();
 
             /// <summary>
-            /// Switches the value of <see cref="Selectable.interactable"/> to
+            /// Switches the value of UnityEngine.UI.Selectable.interactable to
             /// its opposite for the member with index <paramref name="targetIdx"/>
             /// in <see cref="targetGroup"/>.
             /// </summary>
-            /// <param name="targetIdx">Index of a <see cref="Selectable"/> in <see
+            /// <param name="targetIdx">Index of a UnityEngine.UI.Selectable in <see
             /// cref="targetGroup"/></param>
             void SwitchSingleInteractibility(int targetIdx);
         }

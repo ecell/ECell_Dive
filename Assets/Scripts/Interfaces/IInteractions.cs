@@ -27,9 +27,9 @@ namespace ECellDive
             /// A mutator to set the value of <see cref="isFocused"/> to true.
             /// </summary>
             /// <remarks>
-            /// It is mainly used as a subscriber to<see cref="UnityEngine.XR.
+            /// It is mainly used as a subscriber to "UnityEngine.XR.
             /// Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(
-            /// UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)"/>
+            /// UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)"
             /// </remarks>
             void SetFocus();
 
@@ -37,9 +37,9 @@ namespace ECellDive
             /// A mutator to set the value of <see cref="isFocused"/> to false.
             /// </summary>
             /// <remarks>
-            /// It is mainly used as a subscriber to<see cref="UnityEngine.XR.
+            /// It is mainly used as a subscriber to "UnityEngine.XR.
             /// Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(
-            /// UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)"/>
+            /// UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)"
             /// </remarks>
             void UnsetFocus();
         }
@@ -85,9 +85,6 @@ namespace ECellDive
             /// <summary>
             /// The function to call when the object should exit the highlighted
             /// state.
-            /// Checks for <see cref="forceHighlight"/>.
-            /// If false, applies <see cref="defaultColor"/> to <see cref="currentColor"/>.
-            /// If true, nothing happens.
             /// </summary>
             abstract void UnsetHighlight();
         }
@@ -128,22 +125,20 @@ namespace ECellDive
             NetworkVariable<Color> currentColor { get; }
 
             /// <summary>
-            /// Contacts the server to applies <see cref="defaultColor"/>
+            /// Contacts the server to applies <see cref="IColorHighlightable.defaultColor"/>
             /// to <see cref="currentColor"/>.
             /// </summary>
-            /// <remarks>Since <see cref="currentColor"/> is a <see cref=
-            /// "NetworkVariable{T}"/>, the value will be synchronized to all
-            /// clients.</remarks>
+            /// <remarks>Since <see cref="currentColor"/> is a NetworkVariable,
+            /// the value will be synchronized to all clients.</remarks>
             [ServerRpc(RequireOwnership = false)]
             void SetCurrentColorToDefaultServerRpc();
 
             /// <summary>
-            /// Contacts the server to applies <see cref="highlightColor"/>
+            /// Contacts the server to applies <see cref="IColorHighlightable.highlightColor"/>
             /// to <see cref="currentColor"/>.
             /// </summary>
-            /// <remarks>Since <see cref="currentColor"/> is a <see cref=
-            /// "NetworkVariable{T}"/>, the value will be synchronized to all
-            /// clients.</remarks>
+            /// <remarks>Since <see cref="currentColor"/> is a NetworkVariable,
+            /// the value will be synchronized to all clients.</remarks>
             [ServerRpc(RequireOwnership = false)]
             abstract void SetCurrentColorToHighlightServerRpc();
         }
