@@ -72,9 +72,6 @@ namespace ECellDive.Interfaces
         /// The public interface to call when a user wants to dive into a 
         /// module.
         /// </summary>
-        /// <remarks>
-        /// Asynchronous: it calls the coroutine <see cref="TryDiveInC"/>
-        /// </remarks>
         void TryDiveIn();
     }
 }

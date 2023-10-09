@@ -94,12 +94,12 @@ namespace ECellDive
             JObject graphData { get;}
 
             /// <summary>
-            /// The <see cref="JArray"/> representing the nodes in <see cref="graphData"/>.
+            /// The JArray (from Newtonsoft Json Linq) representing the nodes in <see cref="graphData"/>.
             /// </summary>
             JArray jNodes { get; }
 
             /// <summary>
-            /// The <see cref="JArray"/> representing the edges in <see cref="graphData"/>.
+            /// The JArray (from Newtonsoft Json Linq) representing the edges in <see cref="graphData"/>.
             /// </summary>
             JArray jEdges { get;}
 
@@ -222,19 +222,21 @@ namespace ECellDive
             void SetCollider(Transform _start, Transform _end);
 
             /// <summary>
-            /// Sets the start and end width of the <see cref="refLineRenderer"/> 
+            /// Sets the start and end width of the line renderer
             /// to the values stored in <see cref="defaultStartWidth"/> and
             /// <see cref="defaultEndWidth"/> respectively.
             /// </summary>
+            /// <remarks>A line renderer should be made accessible somehow.</remarks>
             void SetLineRendererWidth();
 
             /// <summary>
-            /// Sets the start and end positions of the <see cref="refLineRenderer"/>.
+            /// Sets the start and end positions of the line renderer.
             /// </summary>
             /// <param name="_start">The transform of the node in the graph from
             /// where the edge is starting.</param>
             /// <param name="_end">The transform of the node in the graph to
             /// where the edge is heading.</param>
+            /// <remarks>A line renderer should be made accessible somehow.</remarks>
             void SetLineRendererPosition(Transform _start, Transform _end);
         }
 
