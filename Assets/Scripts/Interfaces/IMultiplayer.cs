@@ -111,10 +111,11 @@ namespace ECellDive.Interfaces
 
     /// <summary>
     /// The interface used to manipulate the visibility status of a 
-    /// network object. We cannot use Netcode's API for that (see
-    /// NetworkObject.NetworkHide(ulong) and NetworkObject.NetworkShow(ulong))
-    /// because the Server cannot be affected by it. It is an understandable
-    /// behaviour as it seems that this API simply deletes the replicated 
+    /// network object. We cannot use Netcode's API for that (<see
+    /// cref="NetworkObject.NetworkHide(ulong)"/> and <see cref=
+    /// "NetworkObject.NetworkShow(ulong)"/>) because the Server
+    /// cannot be affected by it. It is an understandable behaviour 
+    /// as it seems that this API simply deletes the replicated 
     /// version of a NetworkObject for a target client.
     /// However, we also want to the host to not see some NetworkObject.
     /// Namely, the content of a scene that the host may not have dived
@@ -157,7 +158,7 @@ namespace ECellDive.Interfaces
         /// to call.
         /// </summary>
         /// <param name="_clientRpcParams">Params to target a specific
-        /// client.</param>
+        /// client.<seealso cref="ClientRpcParams"/></param>
         [ClientRpc]
         abstract void NetHideClientRpc(ClientRpcParams _clientRpcParams);
 
@@ -175,7 +176,7 @@ namespace ECellDive.Interfaces
         /// to call.
         /// </summary>
         /// <param name="_clientRpcParams">Params to target a specific
-        /// client.</param>
+        /// client.<seealso cref="ClientRpcParams"/></param>
         [ClientRpc]
         abstract void NetShowClientRpc(ClientRpcParams _clientRpcParams);
 

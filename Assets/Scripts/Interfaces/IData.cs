@@ -6,6 +6,31 @@ using UnityEngine;
 
 namespace ECellDive.Interfaces
 {
+    /// <summary>
+    /// Enumeration of the modifications we can expect to find in
+    /// a modification file.
+    /// </summary>
+    //public enum CommandTypes
+    //{
+    //    bound,
+    //    knockout,
+    //}
+
+    /// <summary>
+    /// The struct to store information about a command that can be
+    /// part of a modification (<see cref="Modification"/>) in a
+    /// modification file (<see cref="ModificationFile"/>).
+    /// </summary>
+    //public struct Command<T>
+    //{
+    //    T value;
+
+    //    /// <summary>
+    //    /// Type of the operation associated with the modification.
+    //    /// </summary>
+    //    public CommandTypes opType;
+    //}
+
     public struct Modification
     {
         /// <summary>
@@ -57,7 +82,7 @@ namespace ECellDive.Interfaces
         /// <param name="_date">The value for <see cref="author"/></param>
         /// <param name="_commands">All the commands associated with the
         /// modification in the format:
-        /// Cmd1-Param1-...-ParamN &amp; ... &amp; CmdM-Param1-...-ParamL.</param>
+        /// Cmd1-Param1-...-ParamN&...&CmdM-Param1-...-ParamL.</param>
         public Modification(string _author, string _date, List<string> _commands)
         {
             author = _author;
@@ -73,8 +98,8 @@ namespace ECellDive.Interfaces
         /// <summary>
         /// Gets the string version of all the commands stored in <see cref="commands"/>.
         /// </summary>
-        /// <returns>
-        /// Returns all the commands in the format: Cmd1-Param1-...-ParamN &amp; ... &amp; CmdM-Param1-...-ParamL
+        /// <returns>Returns all the commands in the format:
+        /// Cmd1-Param1-...-ParamN&...&CmdM-Param1-...-ParamL
         /// </returns>
         public string[] GetCommands()
         {
@@ -149,7 +174,7 @@ namespace ECellDive.Interfaces
         /// Concatenates all the commands from the whole list <see cref="modifications"/>
         /// </summary>
         /// <returns>Returns all the commands in the format:
-        /// Cmd1-Param1-...-ParamN &amp; ... &amp; CmdM-Param1-...-ParamL</returns>
+        /// Cmd1-Param1-...-ParamN&...&CmdM-Param1-...-ParamL</returns>
         public List<string[]> GetAllCommands()
         {
             List<string[]> allCommands = new List<string[]>();
@@ -177,6 +202,25 @@ namespace ECellDive.Interfaces
             }
             return author;
         }
+
+        /// <summary>
+        /// Gets the commands of the modification at index <paramref name="_modIndex"/> in
+        /// <see cref="modifications"/> if it exists.
+        /// </summary>
+        /// <param name="_modIndex">The index of the modification in <see cref="modifications"/>
+        /// for which we want to get the commands in string format.</param>
+        /// <returns>Returns the commands in the format:
+        /// Cmd1#Param1#...#ParamN|...|CmdM#Param1#...#ParamL if it exists.
+        /// Otherwise, returns an empty string.</returns>
+        //public string GetCommandsOfMod(int _modIndex)
+        //{
+        //    string commands = "";
+        //    if (_modIndex < modifications.Count)
+        //    {
+        //        commands = modifications[_modIndex].GetCommands();
+        //    }
+        //    return commands;
+        //}
     }
 
     /// <summary>
@@ -203,8 +247,8 @@ namespace ECellDive.Interfaces
         /// </summary>
         /// <param name="_operation">
         /// The string describing the operation. Elements of the 
-        /// string must be seprated by underscores. The first element must be the name
-        /// of the operation.
+        /// string miust be seprated by underscores. The first element must be the name
+        /// of the operation. See <see cref="CommandTypes"/> for the elligible names.
         /// </param>
         void OperationSwitch(string _operation);
     }

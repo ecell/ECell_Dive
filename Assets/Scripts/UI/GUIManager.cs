@@ -40,7 +40,7 @@ namespace ECellDive
             /// <param name="_player">The reference to the player class of
             /// the local client spawned in the scene.</param>
             /// <remarks>
-            /// Called once in Unity.Netcode.NetworkBehaviour.OnNetworkSpawn
+            /// Called once in <see cref="Unity.Netcode.NetworkBehaviour.OnNetworkSpawn"/>
             /// of the local client (see code of <see cref="PlayerComponents.Player"/>).
             /// </remarks>
             public void Initialize(Player _player)
