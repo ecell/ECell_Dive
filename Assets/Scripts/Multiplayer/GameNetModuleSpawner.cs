@@ -12,11 +12,15 @@ namespace ECellDive.Multiplayer
                                         IMlprModuleSpawn
     {
         #region - IMlprModuleSpawn Members -
+        /// <inheritdoc/>
         public List<byte[]> fragmentedSourceData { get; private set; }
+
+        /// <inheritdoc/>
         public byte[] sourceDataName { get ; private set; }
         #endregion
 
         #region - IMlprModuleSpawn Methods -
+        /// <inheritdoc/>
         public void GiveDataToModule(GameNetModule _gameNetModule)
         {
             LogSystem.AddMessage(LogMessageTypes.Debug,
@@ -24,6 +28,7 @@ namespace ECellDive.Multiplayer
             _gameNetModule.DirectReceiveSourceData(sourceDataName, fragmentedSourceData);
         }
 
+        /// <inheritdoc/>
         [ClientRpc]
         public void GiveNetworkObjectReferenceClientRpc(NetworkObjectReference _networkObjectReference,
                                                         ClientRpcParams _clientRpcParams)
@@ -34,11 +39,13 @@ namespace ECellDive.Multiplayer
             GiveDataToModule(networkGameObject.GetComponent<GameNetModule>());
         }
 
+        /// <inheritdoc/>
         public void GiveOwnership(GameObject _of, ulong _newOwnerClientID)
         {
             _of.GetComponent<NetworkObject>().ChangeOwnership(_newOwnerClientID);
         }
 
+        /// <inheritdoc/>
         public void RequestModuleSpawnFromData(int _moduleTypeID, byte[] _dataName, List<byte[]> _fragmentedData)
         {
             fragmentedSourceData = _fragmentedData;
@@ -46,6 +53,7 @@ namespace ECellDive.Multiplayer
             RequestModuleSpawnServerRpc(_moduleTypeID, NetworkManager.Singleton.LocalClientId);
         }
 
+        /// <inheritdoc/>
         [ServerRpc(RequireOwnership = false)]
         public void RequestModuleSpawnServerRpc(int _moduleTypeID, ulong _expeditorClientID)
         {

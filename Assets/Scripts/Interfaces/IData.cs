@@ -187,8 +187,14 @@ namespace ECellDive.Interfaces
     /// and processed by a <see cref="HttpServerModificationModule"/></remarks>
     public interface IModifiable
     {
+        /// <summary>
+        /// The struct to store the information about the object being modified.
+        /// </summary>
         ModificationFile readingModificationFile { get; set; } 
 
+        /// <summary>
+        /// Applies all modifications stored in <see cref="readingModificationFile"/> to the loaded module.
+        /// </summary>
         void ApplyFileModifications();
 
         /// <returns>

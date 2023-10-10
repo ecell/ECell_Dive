@@ -11,6 +11,9 @@ namespace ECellDive.Interfaces
     /// </summary>
     public interface IDive
     {
+        /// <summary>
+        /// Boolean to indicate that a player is currently diving in the module.
+        /// </summary>
         bool isDiving { get; }
 
         /// <summary>

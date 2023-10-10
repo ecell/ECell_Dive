@@ -21,6 +21,10 @@ namespace ECellDive
             /// Position in the 3D space of the node
             /// </summary>
             Vector3 position { get; set; }
+
+            /// <summary>
+            /// The name of the node.
+            /// </summary>
             string name { get; set; }
 
             /// <summary>
@@ -75,8 +79,15 @@ namespace ECellDive
             /// edge is heading.
             /// </summary>
             uint target { get; set; }
+
+            /// <summary>
+            /// The name of the edge.
+            /// </summary>
             string name { get; set; }
 
+            /// <summary>
+            /// The name of the reaction associated with the edge.
+            /// </summary>
             string reaction_name { get; set; }
         }
 
@@ -86,6 +97,9 @@ namespace ECellDive
         /// </summary>
         public interface IGraph
         {
+            /// <summary>
+            /// The name of the graph.
+            /// </summary>
             string name { get; }
 
             /// <summary>
@@ -150,6 +164,9 @@ namespace ECellDive
         /// </summary>
         public interface INodeGO
         {
+            /// <summary>
+            /// The data structure encoding the node.
+            /// </summary>
             INode nodeData { get; }
 
             /// <summary>
@@ -158,6 +175,12 @@ namespace ECellDive
             /// </summary>
             string informationString { get; }
 
+            /// <summary>
+            /// Sets the value for <see cref="nodeData"/>.
+            /// </summary>
+            /// <param name="_INode">
+            /// The value to pass on to <see cref="nodeData"/>.
+            /// </param>
             void SetNodeData(INode _INode);
         }
 
@@ -168,6 +191,9 @@ namespace ECellDive
         /// </summary>
         public interface IEdgeGO
         {
+            /// <summary>
+            /// The data structure encoding the edge.
+            /// </summary>
             IEdge edgeData { get; }
 
             /// <summary>
@@ -274,6 +300,9 @@ namespace ECellDive
         /// </summary>
         public interface IGraphGO
         {
+            /// <summary>
+            /// The data structure encoding the graph.
+            /// </summary>
             IGraph graphData { get; }
 
             /// <summary>
@@ -350,6 +379,10 @@ namespace ECellDive
         /// </summary>
         public interface IGraphGONet : IGraphGO
         {
+            /// <summary>
+            /// The struct encapsulating the parameters relevant to
+            /// the batch instantiation of the nodes and edges of the graph.
+            /// </summary>
             GraphBatchSpawning graphBatchSpawning { get; }
         }
     }
