@@ -29,9 +29,7 @@ namespace ECellDive.Multiplayer
     {
         public string playerId;
         public string psw;
-        //public int clientScene = -1;
         public string playerName;
-        //public bool isDebug;
     }
 
     [Serializable]

@@ -3,6 +3,8 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
+using ECellDive.Utility.Data;
+
 namespace ECellDive.Interfaces
 {
     /// <summary>

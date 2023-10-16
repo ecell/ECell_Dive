@@ -8,6 +8,7 @@ using ECellDive.Interfaces;
 using ECellDive.SceneManagement;
 using ECellDive.UI;
 using ECellDive.Utility;
+using ECellDive.Utility.Data;
 
 namespace ECellDive
 {

@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using ECellDive.Interfaces;
 using ECellDive.Modules;
-using ECellDive.Utility;
 using ECellDive.Portal;
+using ECellDive.Utility;
+using ECellDive.Utility.Data;
 
 namespace ECellDive.Tutorials
 {

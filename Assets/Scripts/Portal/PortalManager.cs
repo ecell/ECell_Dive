@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 using ECellDive.Interfaces;
 using ECellDive.Utility;
+using ECellDive.Utility.Data;
 
 namespace ECellDive.Portal
 {

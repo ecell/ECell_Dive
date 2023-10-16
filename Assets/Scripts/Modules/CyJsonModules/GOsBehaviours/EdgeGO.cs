@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using ECellDive.UI;
 using ECellDive.Interfaces;
+using ECellDive.Utility.Data;
 
 namespace ECellDive
 {

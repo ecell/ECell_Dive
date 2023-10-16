@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using ECellDive.Interfaces;
 using ECellDive.Utility;
+using ECellDive.Utility.Data;
 
 namespace ECellDive.Tutorials
 {

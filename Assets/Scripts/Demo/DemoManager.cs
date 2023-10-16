@@ -13,6 +13,7 @@ using ECellDive.Modules;
 using ECellDive.PlayerComponents;
 using ECellDive.SceneManagement;
 using ECellDive.Utility;
+using ECellDive.Utility.Data;
 
 namespace ECellDive.Tutorials
 {
