@@ -142,10 +142,10 @@ namespace ECellDive
 				set => m_grpMemberIndex = value;
 			}
 
-            /// <summary>
-            /// The field for the property <see cref="delegateTarget"/>.
-            /// </summary>
-            [SerializeField] private GameObject m_delegateTarget = null;
+			/// <summary>
+			/// The field for the property <see cref="delegateTarget"/>.
+			/// </summary>
+			[SerializeField] private GameObject m_delegateTarget = null;
 
 			///<inheritdoc/>
 			public GameObject delegateTarget

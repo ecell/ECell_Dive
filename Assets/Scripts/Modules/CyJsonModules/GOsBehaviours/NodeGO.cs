@@ -8,20 +8,39 @@ using ECellDive.Utility.Data.Graph;
 
 namespace ECellDive.Modules
 {
+	/// <summary>
+	/// The class to manage the behaviour of a node game object.
+	/// </summary>
+	/// <remarks>
+	/// It is synchronized over the multiplayer network.
+	/// </remarks>
 	public class NodeGO : GameNetModule,
 							INodeGO
 	{
 		#region - INodeGO Members -
+		/// <inheritdoc/>
 		public INode nodeData { get; protected set; }
+
+		/// <inheritdoc/>
 		public string informationString { get; protected set; }
 		#endregion
 
+		/// <inheritdoc/>
 		protected override void ApplyCurrentColorChange(Color _previous, Color _current)
 		{
 			mpb.SetVector(colorID, _current);
 			m_Renderer.SetPropertyBlock(mpb);
 		}
 
+		/// <summary>
+		/// Uses the <see cref="NodeGO"/> to instantiate a node game object.
+		/// </summary>
+		/// <param name="_pathwaySettings">
+		/// Context data about the pathway to adapt the scale of the node.
+		/// </param>
+		/// <param name="_node">
+		/// The node data to instantiate the node game object.
+		/// </param>
 		public void Initialize(GraphScalingData _pathwaySettings, in INode _node)
 		{
 #if UNITY_EDITOR
@@ -66,6 +85,7 @@ namespace ECellDive.Modules
 		#endregion
 
 		#region - INodeGO Methods -
+		/// <inheritdoc/>
 		public void SetNodeData(INode _INode)
 		{
 			nodeData = _INode;
@@ -77,6 +97,7 @@ namespace ECellDive.Modules
 		#endregion
 
 		#region - IHighlightable Methods -
+		/// <inheritdoc/>
 		[ServerRpc(RequireOwnership = false)]
 		public override void SetCurrentColorToHighlightServerRpc()
 		{
@@ -84,6 +105,7 @@ namespace ECellDive.Modules
 			m_Renderer.enabled = true;
 		}
 
+		/// <inheritdoc/>
 		public override void UnsetHighlight()
 		{
 			if (!forceHighlight)

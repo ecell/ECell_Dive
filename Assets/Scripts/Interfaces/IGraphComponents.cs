@@ -10,6 +10,10 @@ namespace ECellDive.Interfaces
 	/// <summary>
 	/// The interface for the data structure encoding a node in a graph.
 	/// </summary>
+	/// <remarks>
+	/// This interface is probably overdefined with cyjson graphs in mind.
+	/// For example, the <see cref="isVirtual"/> field might be too specific.
+	/// </remarks>
 	public interface INode
 	{
 		/// <summary>
@@ -61,6 +65,10 @@ namespace ECellDive.Interfaces
 	/// <summary>
 	/// The interface for the data structure encoding an edge in a graph.
 	/// </summary>
+	/// <remarks>
+	/// This interface is probably overdefined with cyjson graphs in mind.
+	/// For example, the <see cref="reaction_name"/> field is too specific.
+	/// </remarks>
 	public interface IEdge
 	{
 		/// <summary>
@@ -88,6 +96,10 @@ namespace ECellDive.Interfaces
 		/// <summary>
 		/// The name of the reaction associated with the edge.
 		/// </summary>
+		/// <remarks>
+		/// This is a field that is specific to the Cytoscape Json format.
+		/// This should be moved to a more specific data structure.
+		/// </remarks>
 		string reaction_name { get; set; }
 	}
 
