@@ -6,20 +6,14 @@ using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.Utility;
 using ECellDive.Utility.Data;
+using ECellDive.Utility.Data.UI;
 
 namespace ECellDive.UI
-{
+{	
 	/// <summary>
-	/// A struct to encapsulate the virtual keyboards sub-layouts
+	/// Simple virtual keyboard manager for QUERTY layout, with 
+	/// symbols, numbers and capital letters.
 	/// </summary>
-	[System.Serializable]
-	public struct VirtualKeyBoardData
-	{
-		public Canvas LowerCaseVK;
-		public Canvas UpperCaseVK;
-		public Canvas NumAndSignsVK;
-	}
-		
 	public class VirtualKeyboardManager : MonoBehaviour
 	{
 		/// <summary>
@@ -39,7 +33,20 @@ namespace ECellDive.UI
 		/// </summary>
 		public List<VirtualKeyBoardData> virtualKeyBoardDatas;
 
+		/// <summary>
+		/// The press key actions associated with the left or right controllers.
+		/// </summary>
 		public LeftRightData<InputActionReference> uiPressActions;
+
+		/// <summary>
+		/// Booleans to keep track whether the left or right press
+		/// actions were performed.
+		/// </summary>
+		/// <remarks>
+		/// Somehow, the Input System API to retrieve this exact
+		/// information did not seem to work, so we implemented
+		/// our own.
+		/// </remarks>
 		private LeftRightData<bool> uiPressActionsPressed;
 
 		private void Awake()
@@ -76,12 +83,25 @@ namespace ECellDive.UI
 			}
 		}
 
+		/// <summary>
+		/// Hides the virtual keyboard by deactivating the game object.
+		/// </summary>
 		public void Hide()
 		{
 			UnsetTargetInputField();
 			gameObject.SetActive(false);
 		}
 
+		/// <summary>
+		/// A utility check to see if an input field (<paramref name="_targetInputField"/>)
+		/// is already the target of the virtual keyboard.
+		/// </summary>
+		/// <param name="_targetInputField">
+		/// The input field to check.
+		/// </param>
+		/// <returns>
+		/// True if <paramref name="_targetInputField"/> is equal to <see cref="refTargetInputField"/>, false otherwise.
+		/// </returns>
 		public bool IsAlreadySelected(TMP_InputField _targetInputField)
 		{
 			return _targetInputField == refTargetInputField;
@@ -103,6 +123,9 @@ namespace ECellDive.UI
 			}
 		}
 
+		/// <summary>
+		/// Send a haptic impulse to the left or right controllers.
+		/// </summary>
 		private void SendHapticImpulse()
 		{
 			ActionBasedController left = StaticReferencer.Instance.riControllersGO.left.GetComponent<ActionBasedController>();
@@ -122,6 +145,10 @@ namespace ECellDive.UI
 			uiPressActionsPressed.left = false;
 		}
 
+		/// <summary>
+		/// Displays the virtual keyboard by activating the game object and
+		/// poping it up in front of the user.
+		/// </summary>
 		public void Show()
 		{
 			gameObject.SetActive(true);
