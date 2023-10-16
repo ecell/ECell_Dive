@@ -9,6 +9,7 @@ using ECellDive.GraphComponents;
 using ECellDive.Multiplayer;
 using ECellDive.SceneManagement;
 using ECellDive.Utility;
+using ECellDive.Utility.Data.Graph;
 
 #if UNITY_EDITOR
 using UnityEditor;

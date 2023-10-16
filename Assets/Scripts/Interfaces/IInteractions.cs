@@ -69,6 +69,9 @@ namespace ECellDive
 			GameObject delegateTarget { get; }
 		}
 
+		/// <summary>
+		/// An interface to implement highlighting of a gameobject.
+		/// </summary>
 		public interface IHighlightable
 		{
 			/// <summary>
