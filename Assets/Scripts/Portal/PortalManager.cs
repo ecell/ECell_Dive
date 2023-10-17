@@ -10,10 +10,21 @@ using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.Portal
 {
+	/// <summary>
+	/// The logic behind the portals used to dive between dive scenes.
+	/// </summary>
+	/// <remarks>
+	/// This code assumes a specific shader is used for the portal.
+	/// </remarks>
 	public class PortalManager : MonoBehaviour, IHighlightable, IFocus
 	{
 		#region - Highlightable Members - 
+		/// <summary>
+		/// The field for the <see cref="forceHighlight"/> property.
+		/// </summary>
 		private bool m_forceHighlight = false;
+
+		/// <inheritdoc/>
 		public bool forceHighlight
 		{
 			get => m_forceHighlight;
@@ -21,37 +32,98 @@ namespace ECellDive.Portal
 		}
 		#endregion
 
+		#region - IFocus Members -
+		/// <summary>
+		/// The field for the <see cref="isFocused"/> property.
+		/// </summary>
+		private bool m_isFocused;
+
+		/// <inheritdoc/>
+		public bool isFocused
+		{
+			get => m_isFocused;
+			set => m_isFocused = value;
+		}
+		#endregion
+
+		/// <summary>
+		/// A boolean to control whether the portal should be hidden on 
+		/// first spawned.
+		/// </summary>
 		public bool hideOnStart;
 
+		/// <summary>
+		/// A boolean to inform whether the portal is currently highlighted.
+		/// </summary>
 		private bool isHighlighted = false;
-		public Vector3 baseScale = Vector3.one;
-		public Vector3 basePosition = Vector3.one;
-		[Range(1, 2)] public float highlightScaleFactor = 1.25f;
-		private ParticleSystem refParticleSystem;
-		private ParticleSystem.EmissionModule emissionModule;
 
+		/// <summary>
+		/// A vector 3 to store the base scale of the portal.
+		/// </summary>
+		public Vector3 baseScale = Vector3.one;
+
+		/// <summary>
+		/// A vector 3 to store the base position of the portal.
+		/// </summary>
+		public Vector3 basePosition = Vector3.one;
+
+		/// <summary>
+		/// A multiplier to scale the portal up when highlighted.
+		/// </summary>
+		[Range(1, 2)] public float highlightScaleFactor = 1.25f;
+
+		/// <summary>
+		/// The default color of the portal.
+		/// </summary>
 		public Color defaultPortalColor;
+
+		/// <summary>
+		/// The default color of the portal's outline.
+		/// </summary>
+		/// <remarks>
+		/// Usefull only as long as the a specific shader is used for the portal.
+		/// </remarks>
 		public Color defaultOutlineColor;
+
+		/// <summary>
+		/// The list of renderers to be altered when the portal is highlighted.
+		/// </summary>
 		[SerializeField] private Renderer[] renderers;
+
+		/// <summary>
+		/// The material property block used to access the shader properties
+		/// and alter the portal's color.
+		/// </summary>
 		private MaterialPropertyBlock mpb;
+
+		/// <summary>
+		/// The ID of the color property in the shader.
+		/// </summary>
 		private int colorID;
 
+		/// <summary>
+		/// The field for the <see cref="diveActions"/> property.
+		/// </summary>
 		[SerializeField] private LeftRightData<InputActionReference> m_diveActions;
+
+		/// <summary>
+		/// The reference to the left and right dive actions.
+		/// </summary>
 		public LeftRightData<InputActionReference> diveActions
 		{
 			get => m_diveActions;
 			set => m_diveActions = value;
 		}
 
-		private bool m_isFocused;
-		public bool isFocused
-		{
-			get => m_isFocused;
-			set => m_isFocused = value;
-		}
-
+		/// <summary>
+		/// Booleans to know whether the dive action is pressed on the left and right
+		/// controllers
+		/// </summary>
 		private LeftRightData<bool> diveActionPressed;
 
+		/// <summary>
+		/// The reference to the IDive interface of the module this portal is attached to.
+		/// </summary>
 		private IDive refDivableData;
 
 		private void Awake()
@@ -65,9 +137,6 @@ namespace ECellDive.Portal
 			diveActions.right.action.started += SendHapticImpulse;
 			diveActions.right.action.performed += TryDiveIn;
 			diveActions.right.action.canceled += CancelHapticImpulse;
-
-			refParticleSystem = GetComponentInChildren<ParticleSystem>();
-			emissionModule = refParticleSystem.emission;
 
 			refDivableData = GetComponentInParent<IDive>();
 
@@ -163,6 +232,15 @@ namespace ECellDive.Portal
 			}
 		}
 
+		/// <summary>
+		/// Sends a haptic impulse to the controllers left or right controller.
+		/// Called back when the left or right dive action is pressed.
+		/// </summary>
+		/// <param name="_ctx">
+		/// The context of the input action at the time of the callback.
+		/// It is necessary to satisfy the constraint on the signature of the callback
+		/// but we are not using it.
+		/// </param>
 		private void SendHapticImpulse(InputAction.CallbackContext _ctx)
 		{
 			if (m_isFocused)
