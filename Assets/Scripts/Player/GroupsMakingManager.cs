@@ -7,6 +7,7 @@ using ECellDive.Interfaces;
 using ECellDive.UI;
 using ECellDive.Utility;
 using ECellDive.Utility.Data;
+using ECellDive.Utility.Data.UI;
 using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.PlayerComponents
@@ -338,7 +339,10 @@ namespace ECellDive.PlayerComponents
 		/// <summary>
 		/// The method to callback when validating the creation of the group.
 		/// </summary>
-		public void ValidateGroup()
+		/// <param name="_groupName">
+		/// The name of the group to be created.
+		/// </param>
+		public void ValidateGroup(string _groupName)
 		{
 			//Get Highlightables and reset force highlight
 			IColorHighlightable[] highlitables = new IColorHighlightable[groupMembers.Count];
@@ -348,10 +352,16 @@ namespace ECellDive.PlayerComponents
 				highlitables[i].forceHighlight = false;
 			}
 
-			StaticReferencer.Instance.refGroupsMakingUIManager.NewGroupUiElement(highlitables);
+            StaticReferencer.Instance.refGroupsMenu.AddGroupUI(new GroupData
+            {
+                value = _groupName,
+                color = Random.ColorHSV(),
+                members = highlitables
+            },
+                0);
 
-			//Reset group members list
-			ResetGroupMemberList();
+            //Reset group members list
+            ResetGroupMemberList();
 		}
 	}
 }

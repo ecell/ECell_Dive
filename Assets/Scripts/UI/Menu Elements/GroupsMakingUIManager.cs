@@ -17,19 +17,6 @@ namespace ECellDive.UI
 			refUICanvas.SetActive(false);
 		}
 
-		public void NewGroupUiElement(IHighlightable[] _highlitables)
-		{
-			//Create a groupUI component
-			StaticReferencer.Instance.refGroupsMenu.AddGroupUI(new GroupData
-			{
-				value = refGroupNameInputField.text,
-				color = Random.ColorHSV(),
-				members = _highlitables
-			},
-				0);
-		}
-
-
 		/// <summary>
 		/// Manages the visibility of the gameobject <see cref="refUICanvas"/>
 		/// containing the canvas of the UI used to validate or cancel the
@@ -50,7 +37,7 @@ namespace ECellDive.UI
 
 		public void Validate()
 		{
-			StaticReferencer.Instance.groupsMakingManager.ValidateGroup();
+			StaticReferencer.Instance.groupsMakingManager.ValidateGroup(refGroupNameInputField.text);
 			ManageUIConfirmationCanvas(StaticReferencer.Instance.groupsMakingManager.groupMembers.Count);
 			refUICanvas.SetActive(false);
 		}
