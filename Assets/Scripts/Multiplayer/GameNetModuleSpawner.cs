@@ -8,6 +8,11 @@ using ECellDive.Utility;
 
 namespace ECellDive.Multiplayer
 {
+    /// <summary>
+    /// An intermediate class that handles spawning the gameobjects corresponding
+    /// to imported modules in the scene. It makes sure to give ownership of the
+    /// spawned object to the client who initially made the request.
+    /// </summary>
     public class GameNetModuleSpawner : NetworkBehaviour,
                                         IMlprModuleSpawn
     {
