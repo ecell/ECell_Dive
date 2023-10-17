@@ -6,6 +6,7 @@ using ECellDive.Interfaces;
 using ECellDive.IO;
 using ECellDive.UI;
 using ECellDive.Utility;
+using ECellDive.Utility.Data.UI;
 using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.Modules

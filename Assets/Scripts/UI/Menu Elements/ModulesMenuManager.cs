@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ECellDive.Interfaces;
@@ -11,12 +10,18 @@ namespace ECellDive.UI
     public class ModulesMenuManager : MonoBehaviour,
                                     IInteractibility
     {
+        #region - IInteractibility Members -
+        /// <summary>
+        /// The field for the <see cref="targetGroup"/> property.
+        /// </summary>
         [SerializeField] private Selectable[] m_targetGroup;
+
         ///<inheritdoc/>
         public Selectable[] targetGroup
         {
             get => m_targetGroup;
         }
+        #endregion
 
         #region - IInteractibility Methods -
         /// <inheritdoc/>

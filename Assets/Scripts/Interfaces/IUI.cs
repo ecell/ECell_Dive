@@ -88,9 +88,20 @@ namespace ECellDive
         /// Camera.</remarks>
         public interface ILookAt
         {
+            /// <summary>
+            /// A boolean to know whether the gameobject should be flipped after it has
+            /// looked at its target. It basically means looking at the opposite direction.
+            /// </summary>
             bool flip { get; }
+
+            /// <summary>
+            /// The target to look at.
+            /// </summary>
             Transform lookAtTarget { get; }
 
+            /// <summary>
+            /// The method to call to make the gameobject look at its target.
+            /// </summary>
             void LookAt();
         }
 

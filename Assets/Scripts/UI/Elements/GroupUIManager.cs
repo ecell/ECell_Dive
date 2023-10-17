@@ -2,32 +2,45 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
-using ECellDive.Interfaces;
+using ECellDive.Utility.Data.UI;
 using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.UI
 {
-	[System.Serializable]
-	public struct GroupData
-	{
-		public string value;
-		public Color color;
-		public IHighlightable[] members;
-		public uint[] membersIds;
-	}
-
 	/// <summary>
 	/// Manages the GUI element exposing a Group data (name, color &amp; activation)
 	/// in the scene to the user.
 	/// </summary>
 	public class GroupUIManager : MonoBehaviour
 	{
+		/// <summary>
+		/// The reference to the toggle that allows the user to activate or deactivate
+		/// the visualization of the group. When deactivated, the members of the group
+		/// are displayed with the default color.
+		/// </summary>
 		public Toggle refToggle;
+
+		/// <summary>
+		/// The reference to the text mesh element to display the value representative
+		/// of the group.
+		/// </summary>
 		public TMP_Text refValueText;
+
+		/// <summary>
+		/// The reference to the button that allows the user to change the color of the
+		/// group.
+		/// </summary>
 		public Button refButtonColorPicker;
 
+		/// <summary>
+		/// The event to be invoked when the user wants to destroy the group.
+		/// </summary>
 		public UnityEvent OnDestroy;
 
+		/// <summary>
+		/// The struct to hold the data of the group represented by the GUI this script
+		/// is attached to.
+		/// </summary>
 		private GroupData groupData;
 
 		/// <summary>
@@ -87,7 +100,7 @@ namespace ECellDive.UI
 		}
 
 		/// <summary>
-		/// Sets the data about the group represented by the GUI this script is attached to.
+		/// Sets the data of the group represented by the GUI this script is attached to.
 		/// </summary>
 		public void SetData(GroupData _data)
 		{

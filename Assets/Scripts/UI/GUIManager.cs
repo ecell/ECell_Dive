@@ -9,17 +9,44 @@ using ECellDive.Utility.PlayerComponents;
 namespace ECellDive.UI
 {
 	/// <summary>
-	/// Logic to switch On and Off the main menu.
+	/// Manages the initialization of the GUI and the logic to open/close
+	/// the Main Menu.
 	/// </summary>
 	public class GUIManager : MonoBehaviour
 	{
+		/// <summary>
+		/// The reference to the action to open/close the Main Menu.
+		/// </summary>
 		public InputActionReference refMenuOpen;
-			
+		
+		/// <summary>
+		/// Reference to the gameobject encapsulating the Main Menu.
+		/// </summary>
 		public GameObject refMainMenu;
+
+		/// <summary>
+		/// Reference to the gameobject encapsulating the Virtual Keyboard.
+		/// </summary>
 		public GameObject refVirtualKeyboard;
+
+		/// <summary>
+		/// Reference to the component defining the Color Picker.
+		/// </summary>
 		public ColorPicker refColorPicker;
+
+		/// <summary>
+		/// Reference to the component defining the Modules Menu Manager.
+		/// </summary>
 		public ModulesMenuManager refModulesMenuManager;
+
+		/// <summary>
+		/// Reference to the component defining the Groups Making UI Manager.
+		/// </summary>
 		public GroupsMakingUIManager refGroupsMakingUIManager;
+
+		/// <summary>
+		/// Reference to the component defining the Groups Menu.
+		/// </summary>
 		public GroupsMenu refGroupsMenu;
 
 		private void Awake()
