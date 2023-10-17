@@ -7,6 +7,7 @@ using ECellDive.Interfaces;
 using ECellDive.UI;
 using ECellDive.Utility;
 using ECellDive.Utility.Data;
+using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.PlayerComponents
 {

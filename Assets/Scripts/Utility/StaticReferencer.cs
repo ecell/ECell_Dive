@@ -8,7 +8,7 @@ using ECellDive.PlayerComponents;
 using ECellDive.UI;
 using ECellDive.Utility.Data;
 
-namespace ECellDive.Utility
+namespace ECellDive.Utility.PlayerComponents
 {
 	/// <summary>
 	/// Singleton class referencing elements (GameObjects, Components,...) of the player

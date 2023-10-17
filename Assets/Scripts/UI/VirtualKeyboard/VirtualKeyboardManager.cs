@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 using ECellDive.Interfaces;
-using ECellDive.Utility;
 using ECellDive.Utility.Data;
 using ECellDive.Utility.Data.UI;
+using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.UI
 {	

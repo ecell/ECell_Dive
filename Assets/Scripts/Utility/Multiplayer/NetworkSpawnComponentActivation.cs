@@ -4,6 +4,7 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.Netcode;
 using ECellDive.Utility.Data;
+using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.Utility.Multiplayer
 {
@@ -78,47 +79,47 @@ namespace ECellDive.Utility.Multiplayer
 		/// </remarks>
 		public TrackedPoseDriver trackedPoseDriver;
 
-        /// <summary>
-        /// Reference to the left and right gameobjects encapsulating the models
-        /// to use for the left and right controllers of local clients.
-        /// </summary>
-        /// <remarks>
-        /// DEACTIVATED on spawn if NOT IsLocalPlayer.
-        /// </remarks>
-        public LeftRightData<GameObject> imgrLocalClient;
+		/// <summary>
+		/// Reference to the left and right gameobjects encapsulating the models
+		/// to use for the left and right controllers of local clients.
+		/// </summary>
+		/// <remarks>
+		/// DEACTIVATED on spawn if NOT IsLocalPlayer.
+		/// </remarks>
+		public LeftRightData<GameObject> imgrLocalClient;
 
-        /// <summary>
-        /// Reference to the left and right components controlling the basic action
-        /// callbacks when buttons are pressed or controllers are moved.
-        /// </summary>
-        /// <remarks>
-        /// DEACTIVATED on spawn if NOT IsLocalPlayer.
-        /// </remarks>
-        public LeftRightData<ActionBasedController> actionBasedControllers;
+		/// <summary>
+		/// Reference to the left and right components controlling the basic action
+		/// callbacks when buttons are pressed or controllers are moved.
+		/// </summary>
+		/// <remarks>
+		/// DEACTIVATED on spawn if NOT IsLocalPlayer.
+		/// </remarks>
+		public LeftRightData<ActionBasedController> actionBasedControllers;
 
 		/// <summary>
 		/// The list of gameobjects encapsulating the action info tags (the labels
 		/// that inform the user of the action associated with each button).
 		/// </summary>
 		/// <remarks>
-        /// DEACTIVATED on spawn if NOT IsLocalPlayer.
-        /// </remarks> 
+		/// DEACTIVATED on spawn if NOT IsLocalPlayer.
+		/// </remarks> 
 		public List<GameObject> actionInfoTags;
 
 		/// <summary>
 		/// Reference to the gameobject encapsulating the XRLocomotionSystem.
 		/// </summary>
 		/// <remarks>
-        /// DEACTIVATED on spawn if NOT IsLocalPlayer.
-        /// </remarks> 
+		/// DEACTIVATED on spawn if NOT IsLocalPlayer.
+		/// </remarks> 
 		public GameObject XRLocomotionSystemHolder;
 
 		/// <summary>
 		/// Reference to the gameobject encapsulating the XRTeleportationProvider.
 		/// </summary>
 		/// <remarks>
-        /// DEACTIVATED on spawn if NOT IsLocalPlayer.
-        /// </remarks> 
+		/// DEACTIVATED on spawn if NOT IsLocalPlayer.
+		/// </remarks> 
 		public GameObject XRTeleportationproviderHolder;
 
 		/// <summary>
@@ -126,8 +127,8 @@ namespace ECellDive.Utility.Multiplayer
 		/// in the scene.
 		/// </summary>
 		/// <remarks>
-        /// DEACTIVATED on spawn if NOT IsLocalPlayer.
-        /// </remarks> 
+		/// DEACTIVATED on spawn if NOT IsLocalPlayer.
+		/// </remarks> 
 		public StaticReferencer staticReferencer;
 
 		public override void OnNetworkSpawn()
