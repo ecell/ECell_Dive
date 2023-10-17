@@ -7,107 +7,11 @@ using ECellDive.Modules;
 using ECellDive.Multiplayer;
 using ECellDive.PlayerComponents;
 using ECellDive.Utility;
+using ECellDive.Utility.Data.Dive;
 using ECellDive.Utility.Data.Multiplayer;
 
 namespace ECellDive.SceneManagement
 {
-	[System.Serializable]
-	public struct DivingAnimationData
-	{
-		[Tooltip("The gameobject with the diving animator")]
-		public Animator refAnimator;
-
-		[Tooltip("The minimum time we wait for the dive.")]
-		[Min(1f)] public float duration;
-	}
-
-	public struct SceneData
-	{
-		public int sceneID;
-		public int parentSceneID;
-
-		/// <summary>
-		/// List of NetworkManager Client Ids that are present in the scene
-		/// </summary>
-		public List<ulong> inDivers;
-
-		/// <summary>
-		/// List of NetworkManager Client Ids that are NOT present in the scene
-		/// </summary>
-		public List<ulong> outDivers;
-
-		/// <summary>
-		/// List of Network Object. Some of them are potential seeds for child scenes.
-		/// </summary>
-		public List<GameNetModule> loadedModules;
-
-		public SceneData(int _sceneID, int _parentSceneID)
-		{
-			sceneID = _sceneID;
-			parentSceneID = _parentSceneID;
-			inDivers = new List<ulong>();
-			outDivers = new List<ulong>();
-			loadedModules = new List<GameNetModule>();
-		}
-
-		public void AddOutDiver(ulong _diverClientId)
-		{
-			outDivers.Add(_diverClientId);
-		}
-
-		public void AddModule(GameNetModule _gameNetModule)
-		{
-			loadedModules.Add(_gameNetModule);
-		}
-
-		public void DiverGetsIn(ulong _diverClientId)
-		{
-			outDivers.Remove(_diverClientId);
-			inDivers.Add(_diverClientId);
-		}
-
-			public void DiverGetsOut(ulong _diverClientId)
-		{
-			inDivers.Remove(_diverClientId);
-			outDivers.Add(_diverClientId);
-		}            
-
-		/// <summary>
-		/// For Debug.
-		/// </summary>
-		public override string ToString()
-		{
-			string inDiversStr = "";
-			foreach(ulong id in inDivers)
-			{
-				inDiversStr += id.ToString()+" ";
-			}
-			inDiversStr += "\n";
-
-			string outDiversStr = "";
-			foreach(ulong id in outDivers)
-			{
-				outDiversStr += id.ToString()+" ";
-			}
-			outDiversStr += "\n";
-
-			string loadedModulesStr = "";
-			foreach (GameNetModule _gameNetMod in loadedModules)
-			{
-				loadedModulesStr += _gameNetMod.name.ToString() + " ";
-			}
-			loadedModulesStr += "\n";
-
-			string final = $"Scene Id: {sceneID}\n" +
-							$"Parent Scene Id: {parentSceneID}\n" +
-							$"In Divers: " + inDiversStr +
-							$"Out Divers: " + outDiversStr +
-							$"Loaded modules: " + loadedModulesStr;
-
-			return final;
-		}
-	}
-
 	/// <summary>
 	/// Implements the logic for the scene transitions when a player is diving
 	/// or resurfacing.
@@ -127,11 +31,27 @@ namespace ECellDive.SceneManagement
 		/// should be referenced in the script detailing the said data generation process.
 		/// </summary>
 		public GameObject[] modulePrefabs;
+
+		/// <summary>
+		/// Data to control the dive animation.
+		/// </summary>
 		public DivingAnimationData divingAnimationData;
 
+		/// <summary>
+		/// The list of dive scenes.
+		/// </summary>
 		public static List<SceneData> scenesBank = new List<SceneData>();
 
+		/// <summary>
+		/// A boolean to indicate that a scene has finished hiding thanks to
+		/// <see cref="HideScene(int, ulong)"/>.
+		/// </summary>
 		private bool currentSceneisHidden = false;
+
+		/// <summary>
+		/// A boolean to indicate that a scene has finished showing thanks to
+		/// <see cref="ShowScene(int, ulong)"/>.
+		/// </summary>
 		private bool targetSceneIsVisible = false;
 
 		public override void OnNetworkSpawn()
@@ -148,6 +68,13 @@ namespace ECellDive.SceneManagement
 			}
 		}
 
+		/// <summary>
+		/// Remove the reference to the diver with id <paramref name="_clientIdToClear"/>
+		/// from every scene in the <see cref="scenesBank"/> (in and out divers' lists).
+		/// </summary>
+		/// <param name="_clientIdToClear">
+		/// The ID of the client to remove from every scene.
+		/// </param>
 		[ServerRpc(RequireOwnership = false)]
 		public void ClearPlayerFromSessionServerRpc(ulong _clientIdToClear)
 		{
@@ -177,6 +104,15 @@ namespace ECellDive.SceneManagement
 			scenesBank.RemoveAt(_sceneId);
 		}
 
+		/// <summary>
+		/// A client notifies the server that it is entering a scene.
+		/// </summary>
+		/// <param name="_sceneId">
+		/// The scene id of the scene the diver is entering.
+		/// </param>
+		/// <param name="_diverClientId">
+		/// The client id of the diver entering the scene.
+		/// </param>
 		[ServerRpc]
 		public void DiverGetsInServerRpc(int _sceneId, ulong _diverClientId)
 		{
@@ -184,6 +120,15 @@ namespace ECellDive.SceneManagement
 			scenesBank[_sceneId].DiverGetsIn(_diverClientId);
 		}
 
+		/// <summary>
+		/// A client notifies the server that it is leaving a scene.
+		/// </summary>
+		/// <param name="_sceneId">
+		/// The scene id of the scene the diver is leaving.
+		/// </param>
+		/// <param name="_diverClientId">
+		/// The client id of the diver leaving the scene.
+		/// </param>
 		[ServerRpc]
 		public void DiverGetsOutServerRpc(int _sceneId, ulong _diverClientId)
 		{
@@ -226,7 +171,6 @@ namespace ECellDive.SceneManagement
 		/// <param name="_sceneID">Index of the scene in <see cref="scenesBank"/></param>
 		/// <param name="_outDiverClientId">Client Id of the diver leaving the scene
 		/// with id <paramref name="_sceneID"/>.</param>
-		//[ServerRpc(RequireOwnership = false)]
 		private IEnumerator HideScene(int _sceneID, ulong _outDiverClientId)
 		{
 			Debug.Log($"Original scene information:");
@@ -299,7 +243,6 @@ namespace ECellDive.SceneManagement
 		/// <param name="_sceneID">Index of the scene in <see cref="scenesBank"/></param>
 		/// <param name="_newInDiverClientId">Client Id of the diver entering the scene
 		/// with id <paramref name="_sceneID"/>.</param>
-		//[ServerRpc(RequireOwnership = false)]
 		private IEnumerator ShowScene(int _sceneID, ulong _newInDiverClientId)
 		{
 			yield return new WaitUntil(() => currentSceneisHidden);
@@ -415,6 +358,19 @@ namespace ECellDive.SceneManagement
 			return go;
 		}
 
+		/// <summary>
+		/// The server notification that the diver with id <paramref name="_clientId"/>
+		/// is going from scene ID <paramref name="_from"/> to scene ID <paramref name="_to"/>.
+		/// </summary>
+		/// <param name="_from">
+		/// The ID of the scene the diver is leaving.
+		/// </param>
+		/// <param name="_to">
+		/// The ID of the scene the diver is entering.
+		/// </param>
+		/// <param name="_clientId">
+		/// The client ID of the diver switching scenes.
+		/// </param>
 		[ServerRpc(RequireOwnership = false)]
 		public void SwitchingScenesServerRpc(int _from, int _to, ulong _clientId)
 		{
@@ -456,6 +412,12 @@ namespace ECellDive.SceneManagement
 			}
 		}
 
+		/// <summary>
+		/// Checks if the scene switch is finished (the target scene is visible).
+		/// </summary>
+		/// <returns>
+		/// Returns True is <see cref="targetSceneIsVisible"/> is true. False, otherwise.
+		/// </returns>
 		public bool SceneSwitchIsFinished()
 		{
 			if (targetSceneIsVisible)
@@ -466,6 +428,18 @@ namespace ECellDive.SceneManagement
 			return false;
 		}
 
+		/// <summary>
+		/// A coroutine waiting until the target scene is visible for the client
+		/// from the perspective of the server before broadcasting the scene
+		/// switch information to the other clients.
+		/// </summary>
+		/// <param name="_to">
+		/// The ID of the scene the diver is entering.
+		/// </param>
+		/// <param name="_clientId">
+		/// The ID of the client switching scenes.
+		/// </param>
+		/// <returns></returns>
 		private IEnumerator UpdatePlayerDataC(int _to, ulong _clientId)
 		{
 			yield return new WaitUntil(() => targetSceneIsVisible);
@@ -484,6 +458,13 @@ namespace ECellDive.SceneManagement
 			});
 		}
 
+		/// <summary>
+		/// Sets <see cref="targetSceneIsVisible"/> to true for the clients
+		/// identified in <paramref name="_clientRpcParams"/>.
+		/// </summary>
+		/// <param name="_clientRpcParams">
+		/// The client RPC parameters to target specific clients.
+		/// </param>
 		[ClientRpc]
 		private void UpdatePlayerDataClientRPC(ClientRpcParams _clientRpcParams)
 		{

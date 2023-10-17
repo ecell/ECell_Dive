@@ -10,9 +10,14 @@ namespace ECellDive.SceneManagement
 	/// </summary>
 	/// <remarks>
 	/// While diving is implemented at the level of a module, resurfacing
-	/// is at the level of the scene.</remarks>
+	/// is at the level of the scene.
+	/// </remarks>
 	public class ResurfaceManager : MonoBehaviour
 	{
+		/// <summary>
+		/// The reference to the left and right input actions that will trigger
+		/// the resurface.
+		/// </summary>
 		public LeftRightData<InputActionReference> resurfaceAction;
 
 		private void Awake()
@@ -43,20 +48,34 @@ namespace ECellDive.SceneManagement
 		/// Buffer logic to callback <see cref="Resurface"/> when the
 		/// input on the left controller is triggered.
 		/// </summary>
-		/// <remarks>Same as <see cref="ResurfaceRight(InputAction.CallbackContext)"/>
-		/// but for the left controller.</remarks>
+		/// <param name="_ctx">
+		/// The context of the input action at the time of the callback.
+		/// It is necessary to satisfy the constraint on the signature of the callback
+		/// but we are not using it.
+		/// </param>
+		/// <remarks>
+		/// Same as <see cref="ResurfaceRight(InputAction.CallbackContext)"/>
+		/// but for the left controller.
+		/// </remarks>
 		private void ResurfaceLeft(InputAction.CallbackContext _ctx)
 		{
 			Resurface();
 		}
 
-		/// <summary>
-		/// Buffer logic to callback <see cref="Resurface"/> when the
-		/// input on the left controller is triggered.
-		/// </summary>
-		/// <remarks>Same as <see cref="ResurfaceLeft(InputAction.CallbackContext)"/>
-		/// but for the right controller.</remarks>
-		private void ResurfaceRight(InputAction.CallbackContext _ctx)
+        /// <summary>
+        /// Buffer logic to callback <see cref="Resurface"/> when the
+        /// input on the left controller is triggered.
+        /// </summary>
+        /// <param name="_ctx">
+        /// The context of the input action at the time of the callback.
+        /// It is necessary to satisfy the constraint on the signature of the callback
+        /// but we are not using it.
+        /// </param>
+        /// <remarks>
+        /// Same as <see cref="ResurfaceLeft(InputAction.CallbackContext)"/>
+        /// but for the right controller.
+        /// </remarks>
+        private void ResurfaceRight(InputAction.CallbackContext _ctx)
 		{
 			Resurface();
 		}

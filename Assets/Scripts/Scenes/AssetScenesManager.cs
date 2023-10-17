@@ -13,8 +13,15 @@ namespace ECellDive.SceneManagement
 	/// </summary>
 	public class AssetScenesManager : NetworkBehaviour
 	{
+		/// <summary>
+		/// The array of scenes names that might be loaded
+		/// </summary>
 		public string[] scenePaths;
 
+		/// <summary>
+		/// The dictionary identifying the loaded scenes by their name in <see cref="scenePaths"/>.
+		/// This is used to unload the scenes.
+		/// </summary>
 		private Dictionary<string, Scene> loadedScenes = new Dictionary<string, Scene>();
 
 		public override void OnNetworkSpawn()
@@ -88,6 +95,13 @@ namespace ECellDive.SceneManagement
 			}
 		}
 
+		/// <summary>
+		/// Unloads the scene which name is at index <paramref name="_sceneIdx"/> in
+		/// <see cref="scenePaths"/>.
+		/// </summary>
+		/// <param name="_sceneIdx">
+		/// The index of the scene we wish to unload as ordered in <see cref="scenePaths"/>.
+		/// </param>
 		public void UnloadScene(int _sceneIdx)
 		{
 			if (IsServer && NetworkManager.Singleton.ConnectedClientsIds.Count == 1)
