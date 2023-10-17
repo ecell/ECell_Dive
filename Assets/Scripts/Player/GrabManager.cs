@@ -8,26 +8,47 @@ using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.PlayerComponents
 {
+	/// <summary>
+	/// The logic behind the remote grab feature.
+	/// </summary>
+	[RequireComponent(typeof(XRBaseInteractable))]
 	public class GrabManager : MonoBehaviour, IRemoteGrab
 	{
 		#region - IRemoteGrab Members - 
+		/// <summary>
+		/// The field of the <see cref="isGrabed"/> property.
+		/// </summary>
 		private LeftRightData<bool> m_isGrabed;
+
+		/// <inheritdoc/>
 		public LeftRightData<bool> isGrabed
 		{
 			get => m_isGrabed;
 		}
 
+		/// <summary>
+		/// The field of the <see cref="manageDistance"/> property.
+		/// </summary>
 		[SerializeField] private LeftRightData<InputActionReference> m_manageDistance;
+
+		/// <inheritdoc/>
 		public LeftRightData<InputActionReference> manageDistance
 		{
 			get => m_manageDistance;
 		}
 
+		/// <inheritdoc/>
 		public XRRayInteractor currentRemoteInteractor { get; set; }
 
+		/// <inheritdoc/>
 		public GameObject refCurrentController { get; set; }
 
+		/// <summary>
+		/// The field of the <see cref="OnPostGrabMovementUpdate"/> property.
+		/// </summary>
 		[SerializeField] private UnityEvent m_OnPostGrabMovementUpdate;
+
+		/// <inheritdoc/>
 		public UnityEvent OnPostGrabMovementUpdate
 		{
 			get => m_OnPostGrabMovementUpdate;
@@ -35,18 +56,54 @@ namespace ECellDive.PlayerComponents
 		}
 		#endregion
 
-		#region - GrabManager Fields - 
+		/// <summary>
+		/// The maximum distance an object can be moved away from the controller.
+		/// </summary>
 		[Header("Attraction/Repulsion Parameters")]
 		[Range(2f, 50f)] public float objectMaxDistance = 25f;
+
+		/// <summary>
+		/// The minimum distance an object can be moved away from the controller.
+		/// </summary>
 		[Range(0f, 2f)] public float objectMinDistance = 1f;
+
+		/// <summary>
+		/// The curve controlling the speed of attraction.
+		/// The value of the curve is evaluated at the linerar interpolation
+		/// of the current distance between the minimum and maximum distances.
+		/// </summary>
 		public AnimationCurve attractionSpeedCurve;
+
+		/// <summary>
+		/// The curve controlling the speed of repulsion.
+		/// The value of the curve is evaluated at the linerar interpolation
+		/// of the current distance between the minimum and maximum distances.
+		/// </summary>
 		public AnimationCurve repulsionSpeedCurve;
-		
+
+		/// <summary>
+		/// Reference to the XRBaseInteractable of this gameobject.
+		/// </summary>
+		/// <remarks>
+		/// It is automatically set in the Start() method.
+		/// </remarks>
 		private XRBaseInteractable refInteractable;
+
+		/// <summary>
+		/// A boolean to inform whether grabing is in progress.
+		/// </summary>
 		private bool isReady;
+
+		/// <summary>
+		/// The distance between the object and the controller.
+		/// </summary>
 		private float objDistance = 0f;
+
+		/// <summary>
+		/// Reference to the velocity of the movement of the object used for
+		/// a smooth damp movement.
+		/// </summary>
 		private Vector3 refVelocity = Vector3.zero;
-		#endregion
 
 		private void Awake()
 		{
@@ -74,7 +131,16 @@ namespace ECellDive.PlayerComponents
 			}
 		}
 
-		private void ManageDistanceLeft(InputAction.CallbackContext _ctx)
+        /// <summary>
+        /// Manages the distance between the object and the left controller.
+        /// Calledback when the action <see cref="manageDistance"/>.left is performed.
+        /// </summary>
+        /// <param name="_ctx">
+        /// The input context at the time of the callback.
+        /// It is necessary to statisfy the constraint on the callback signature.
+        /// Used to retrieve a Vector2.
+        /// </param>
+        private void ManageDistanceLeft(InputAction.CallbackContext _ctx)
 		{
 			if (m_isGrabed.left)
 			{
@@ -86,7 +152,16 @@ namespace ECellDive.PlayerComponents
 			}
 		}
 
-		private void ManageDistanceRight(InputAction.CallbackContext _ctx)
+        /// <summary>
+        /// Manages the distance between the object and the right controller.
+        /// Calledback when the action <see cref="manageDistance"/>.right is performed.
+        /// </summary>
+        /// <param name="_ctx">
+        /// The input context at the time of the callback.
+        /// It is necessary to statisfy the constraint on the callback signature.
+        /// Used to retrieve a Vector2.
+        /// </param>
+        private void ManageDistanceRight(InputAction.CallbackContext _ctx)
 		{
 			if (m_isGrabed.right)
 			{

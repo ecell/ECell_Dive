@@ -7,23 +7,39 @@ using ECellDive.Utility;
 
 namespace ECellDive.PlayerComponents
 {
+	/// <summary>
+	/// The logic behind the player gameobject.
+	/// </summary>
 	public class Player : NetworkBehaviour,
 						  INamed,
 						  IMlprVisibility
 	{
+		/// <summary>
+		/// The gameobject encapsulating the head of the player.
+		/// </summary>
 		[Header("Visibility objects")]
 		public GameObject head;
+
+		/// <summary>
+		/// The gameobject encapsulating the controllers of the player.
+		/// </summary>
 		public GameObject rootControllers;
 
 		#region - INamed Members -
+		/// <summary>
+		/// The field of the <see cref="nameTextFieldContainer"/> property.
+		/// </summary>
 		[Header("Name")]
 		[SerializeField] private GameObject m_nameTextFieldContainer;
+		
+		/// <inheritdoc/>
 		public GameObject nameTextFieldContainer
 		{
 			get => m_nameTextFieldContainer;
 			private set => m_nameTextFieldContainer = value;
 		}
 
+		/// <inheritdoc/>
 		public TextMeshProUGUI nameField
 		{
 			get;
@@ -32,13 +48,19 @@ namespace ECellDive.PlayerComponents
 		#endregion
 
 		#region - IMlrpVisibility Members -
+		/// <summary>
+		/// The field of the <see cref="isActivated"/> property.
+		/// </summary>
 		private NetworkVariable<bool> m_isActivated = new NetworkVariable<bool>(true);
+
+		/// <inheritdoc/>
 		public NetworkVariable<bool> isActivated
 		{
 			get => m_isActivated;
 			protected set => m_isActivated = value;
 		}
 		#endregion
+
 		public override void OnNetworkDespawn()
 		{
 			base.OnNetworkDespawn();
@@ -54,13 +76,17 @@ namespace ECellDive.PlayerComponents
 			NetworkManager.Singleton.OnClientConnectedCallback += HandleNameTargetCamera;
 		}
 
-		[ClientRpc]
-		private void HandleNameTargetCameraClientRpc()
-		{
-			Debug.Log($"Local player camera={NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<Camera>()}");
-			Debug.Log($"Replicated Copy ILookAt={m_nameTextFieldContainer.GetComponent<ILookAt>()}");
-		}
-
+		/// <summary>
+		/// Instructs replicated players <paramref name="_playerObj"/> to have its
+		/// name canvas face the camera of the local player.
+		/// </summary>
+		/// <param name="_playerObj">
+		/// Network reference (to be converted to GameObject) of the player which
+		/// we want to have its name canvas face the camera of the local player.
+		/// </param>
+		/// <param name="_clientRpcParams">
+		/// The client RPC params that allows to reach specific clients.
+		/// </param>
 		[ClientRpc]
 		private void HandleNameTargetCameraClientRpc(NetworkObjectReference _playerObj, ClientRpcParams _clientRpcParams)
 		{
@@ -68,15 +94,22 @@ namespace ECellDive.PlayerComponents
 			GameObject playerGO = _playerObj;
 			Debug.Log($"Replicated Copy ILookAt={playerGO.GetComponentInChildren<ILookAt>()}", playerGO);
 			playerGO.GetComponentInChildren<FaceCamera>().SetTargets(NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.GetComponentInChildren<Camera>().transform);
+		}
 
-        }
-
+		/// <summary>
+		/// Sends various orders between the clients to have each the name of replicated
+		/// player copy of each local client face the camera of the local player.
+		/// Called back when a new client connects to the server.
+		/// </summary>
+		/// <param name="_expeditorClientId">
+		/// The id of the client that just connected to the server.
+		/// </param>
 		private void HandleNameTargetCamera(ulong _expeditorClientId)
 		{
 			if (IsServer)
 			{
 				ClientRpcParams clientRpcParams;
-                ulong[] expeditorClientId = new ulong[1] { _expeditorClientId };
+				ulong[] expeditorClientId = new ulong[1] { _expeditorClientId };
 				ulong[] otherClientId = new ulong[NetworkManager.Singleton.ConnectedClientsIds.Count - 1];
 				
 				NetworkObjectReference netObjRef;
@@ -94,34 +127,55 @@ namespace ECellDive.PlayerComponents
 								TargetClientIds = expeditorClientId
 							}
 						};
-                        netObjRef = NetworkManager.Singleton.ConnectedClients[_clientId].PlayerObject;
+						netObjRef = NetworkManager.Singleton.ConnectedClients[_clientId].PlayerObject;
 						HandleNameTargetCameraClientRpc(netObjRef, clientRpcParams);
 
-                        otherClientId[i] = _clientId;
+						otherClientId[i] = _clientId;
 						i++;
-                    }
+					}
 				}
 
 				//Send the order to the replicated copy of the expeditor client in the already connected
 				//clients environment to face the camera of the local player (other client)
-                clientRpcParams = new ClientRpcParams
-                {
-                    Send = new ClientRpcSendParams
-                    {
-                        TargetClientIds = otherClientId
-                    }
-                };
-                netObjRef = NetworkManager.Singleton.ConnectedClients[_expeditorClientId].PlayerObject;
-                HandleNameTargetCameraClientRpc(netObjRef, clientRpcParams);
-            }
+				clientRpcParams = new ClientRpcParams
+				{
+					Send = new ClientRpcSendParams
+					{
+						TargetClientIds = otherClientId
+					}
+				};
+				netObjRef = NetworkManager.Singleton.ConnectedClients[_expeditorClientId].PlayerObject;
+				HandleNameTargetCameraClientRpc(netObjRef, clientRpcParams);
+			}
 		}
 
+		/// <summary>
+		/// Assigns a name that has transited in the network to the name field
+		/// of this player object.
+		/// </summary>
+		/// <param name="_name">
+		/// The new name of the player.
+		/// </param>
 		[ClientRpc]
 		private void ReceiveNameClientRpc(byte[] _name)
 		{
 			SetName(System.Text.Encoding.UTF8.GetString(_name));
 		}
 
+		/// <summary>
+		/// Assigns a name to a replicated copy of a player object in target
+		/// clients session.
+		/// </summary>
+		/// <param name="_playerObj">
+		/// The reference to the replicated copy of the player object which we 
+		/// want to assign a name to.
+		/// </param>
+		/// <param name="_name">
+		/// The name to assign to the replicated copy of the player object.
+		/// </param>
+		/// <param name="_clientRpcParams">
+		/// The client RPC params that allows to reach specific clients.
+		/// </param>
 		[ClientRpc]
 		private void ReceiveNameClientRpc(NetworkObjectReference _playerObj, byte[] _name, ClientRpcParams _clientRpcParams)
 		{
@@ -129,6 +183,14 @@ namespace ECellDive.PlayerComponents
 			playerGO.GetComponent<Player>().SetName(System.Text.Encoding.UTF8.GetString(_name));
 		}
 
+		/// <summary>
+		/// Send the name of the local player for distribution to the
+		/// other clients.
+		/// Called back when a new client connects to the server.
+		/// </summary>
+		/// <param name="_clientId">
+		/// The id of the client that just connected to the server.
+		/// </param>
 		private void ExchangeNames(ulong _clientId)
 		{
 			string _nameStr = GameNetPortal.Instance.settings.playerName;
@@ -136,6 +198,16 @@ namespace ECellDive.PlayerComponents
 			ExchangeNamesServerRpc(_nameB, _clientId);
 		}
 
+		/// <summary>
+		/// Notifies the server that a client wants to exchange names with
+		/// other clients.
+		/// </summary>
+		/// <param name="_nameB">
+		/// The name of the client that expedited the request
+		/// </param>
+		/// <param name="_expeditorClientId">
+		/// The id of the client that expedited the request.
+		/// </param>
 		[ServerRpc(RequireOwnership = false)]
 		private void ExchangeNamesServerRpc(byte[] _nameB, ulong _expeditorClientId)
 		{
@@ -197,11 +269,13 @@ namespace ECellDive.PlayerComponents
 		#endregion
 
 		#region - IMlrpVisibility Methods -
+		/// <inheritdoc/>
 		public virtual void ManageActivationStatus(bool _previous, bool _current)
 		{
 			gameObject.SetActive(isActivated.Value);
 		}
 
+		/// <inheritdoc/>
 		public virtual void NetHide()
 		{
 			Debug.Log($"{NetworkManager.Singleton.LocalClientId} becomes invisible");
@@ -212,12 +286,14 @@ namespace ECellDive.PlayerComponents
 			rootControllers.SetActive(false);
 		}
 
+		/// <inheritdoc/>
 		[ClientRpc]
 		public virtual void NetHideClientRpc(ClientRpcParams _clientRpcParams)
 		{
 			NetHide();
 		}
 
+		/// <inheritdoc/>
 		public virtual void NetShow()
 		{
 			Debug.Log($"{NetworkManager.Singleton.LocalClientId} becomes visible");
@@ -231,12 +307,14 @@ namespace ECellDive.PlayerComponents
 			rootControllers.SetActive(true);
 		}
 
+		/// <inheritdoc/>
 		[ClientRpc]
 		public virtual void NetShowClientRpc(ClientRpcParams _clientRpcParams)
 		{
 			NetShow();
 		}
 
+		/// <inheritdoc/>
 		[ServerRpc(RequireOwnership = false)]
 		public void RequestSetActiveServerRpc(bool _active)
 		{

@@ -23,7 +23,7 @@ namespace ECellDive
 			}
 
 			/// <summary>
-			/// Gets the value of <see cref="ECellDive.Utility.StaticReferencer.refVirtualKeyboard"/>
+			/// Gets the value of <see cref="ECellDive.Utility.PlayerComponents.StaticReferencer.refVirtualKeyboard"/>
 			/// and sets the value of <see cref="refVKManager"/> from it.
 			/// </summary>
 			public void GetSetVKManager()
