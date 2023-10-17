@@ -1,60 +1,77 @@
 using UnityEngine;
-using ECellDive.Utility;
 using ECellDive.Interfaces;
 
-namespace ECellDive
+namespace ECellDive.Utility
 {
-    namespace Utility
-    {
+	/// <summary>
+	/// Spawns a prefab at a given distance in front of the camera.
+	/// </summary>
+	public class GameObjectConstructor : MonoBehaviour, IPopUp
+	{
+		/// <summary>
+		/// The reference prefab to spawn.
+		/// </summary>
+		public GameObject refPrefab;
+
+        #region - IPopUp Members -
         /// <summary>
-        /// Public interface to add module data on callback in
-        /// in the Unity Editor.
+        /// The field of the<see cref="popupDistance"/> property.
         /// </summary>
-        public class GameObjectConstructor : MonoBehaviour, IPopUp
-        {
-            public GameObject refPrefab;
+        [SerializeField] private float m_popupDistance;
 
-            #region - IPopUp Members -
-            [SerializeField] private float m_popupDistance;
-            public float popupDistance
-            {
-                get => m_popupDistance;
-                private set => m_popupDistance = value;
-            }
+		/// <inheritdoc/>
+		public float popupDistance
+		{
+			get => m_popupDistance;
+			private set => m_popupDistance = value;
+		}
 
-            [SerializeField] private float m_popupHeightOffset;
-            public float popupHeightOffset
-            {
-                get => m_popupHeightOffset;
-                private set => m_popupHeightOffset = value;
-            }
+		/// <summary>
+		/// The field of the<see cref="popupHeightOffset"/> property.
+		/// </summary>
+		[SerializeField] private float m_popupHeightOffset;
 
-            [Tooltip("If popup target is left to null, then the Main Camera's transform is used.")]
-            [SerializeField] private Transform m_popupTarget;
-            public Transform popupTarget
-            {
-                get => m_popupTarget;
-                set => m_popupTarget = value;
-            }
-            #endregion
+		/// <inheritdoc/>
+		public float popupHeightOffset
+		{
+			get => m_popupHeightOffset;
+			private set => m_popupHeightOffset = value;
+		}
 
-            public void Constructor()
-            {
-                PopUp();
-            }
+		/// <summary>
+		/// The field of the<see cref="popupTarget"/> property.
+		/// </summary>
+		[Tooltip("If popup target is left to null, then the Main Camera's transform is used.")]
+		[SerializeField] private Transform m_popupTarget;
 
-            #region - IPopUp Methods -
-            public void PopUp()
-            {
-                if (popupTarget == null)
-                {
-                    popupTarget = Camera.main.transform;
-                }
-                Vector3 pos = Positioning.PlaceInFrontOfTarget(popupTarget, m_popupDistance, m_popupHeightOffset);
-                Instantiate(refPrefab, pos, Quaternion.identity);
-            }
-            #endregion
-        }
-    }
+		/// <inheritdoc/>
+		public Transform popupTarget
+		{
+			get => m_popupTarget;
+			set => m_popupTarget = value;
+		}
+		#endregion
+
+		/// <summary>
+		/// Instantiates the reference prefab at the given distance in front of the camera.
+		/// </summary>
+		public void Constructor()
+		{
+			PopUp();
+		}
+
+		#region - IPopUp Methods -
+		/// <inheritdoc/>
+		public void PopUp()
+		{
+			if (popupTarget == null)
+			{
+				popupTarget = Camera.main.transform;
+			}
+			Vector3 pos = Positioning.PlaceInFrontOfTarget(popupTarget, m_popupDistance, m_popupHeightOffset);
+			Instantiate(refPrefab, pos, Quaternion.identity);
+		}
+		#endregion
+	}
 }
 

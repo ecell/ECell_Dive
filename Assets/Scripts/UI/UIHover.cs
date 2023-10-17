@@ -257,7 +257,7 @@ namespace ECellDive.UI
 		}
 
 		/// <summary>
-		/// Creates an <see cref="AudioSource"/> component on the gameobject
+		/// Creates an UnityEngine.AudioSource component on the gameobject
 		/// this script is attached to.
 		/// </summary>
 		private void CreateEffectsAudioSource()

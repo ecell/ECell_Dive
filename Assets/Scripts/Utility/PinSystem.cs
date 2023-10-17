@@ -1,20 +1,32 @@
 using UnityEngine;
 using ECellDive.Utility.PlayerComponents;
+using ECellDive.Utility.Data.PinSystem;
 
 namespace ECellDive.Utility
 {
-	[System.Serializable]
-	public enum PinStatus { ToPlayer, ToWorld }
-
 	/// <summary>
 	/// A component with the logic to manipulate the parent of the gameobject it is attached to.
 	/// </summary>
 	public class PinSystem : MonoBehaviour
 	{
+		/// <summary>
+		/// The enum informing about the current parent of the gameobject.
+		/// </summary>
 		public PinStatus pinStatus;
+
+		/// <summary>
+		/// The reference to the gameobject that will be pinned.
+		/// </summary>
 		public GameObject goToPin;
 
+		/// <summary>
+		/// The reference to the button that will be displayed when the gameobject is pinned.
+		/// </summary>
 		public GameObject pinnedButton;
+
+		/// <summary>
+		/// The reference to the button that will be displayed when the gameobject is not pinned.
+		/// </summary>
 		public GameObject unpinnedButton;
 
 		/// <summary>
