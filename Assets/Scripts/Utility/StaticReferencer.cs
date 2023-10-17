@@ -21,6 +21,9 @@ namespace ECellDive.Utility
 	[RequireComponent(typeof(Player))]
 	public class StaticReferencer : NetworkBehaviour
 	{
+		/// <summary>
+		/// The singleton instance of this class.
+		/// </summary>
 		public static StaticReferencer Instance;
 
 		[Header("UI Elements")]
@@ -33,9 +36,25 @@ namespace ECellDive.Utility
 		/// The anchor for the modules and GUI that will be unpinned from the player
 		/// </summary>
 		[HideInInspector] public GameObject refExternalObjectContainer;
+
+		/// <summary>
+		/// Reference to the gameobject encapsulating the virtual keyboard.
+		/// </summary>
 		[HideInInspector] public GameObject refVirtualKeyboard;
+
+		/// <summary>
+		/// Reference to the component of the color picker.
+		/// </summary>
 		[HideInInspector] public ColorPicker refColorPicker;
+
+		/// <summary>
+		/// Reference to the component defining the behaviour of how to display every group.
+		/// </summary>
 		[HideInInspector] public GroupsMenu refGroupsMenu;
+
+		/// <summary>
+		/// Reference to the component defining the behaviour of how to make the groups.
+		/// </summary>
 		[HideInInspector] public GroupsMakingUIManager refGroupsMakingUIManager;
 
 		/// <summary>
@@ -60,25 +79,71 @@ namespace ECellDive.Utility
 		/// </remarks>
 		public List<GameObject> refInfoTags;
 
+		/// <summary>
+		/// Reference to the left and right XRRayInteractors used to make groups.
+		/// </summary>
 		[Header("XR Interactors References")]
 		public LeftRightData<XRRayInteractor> groupsInteractors;
+
+		/// <summary>
+		/// Reference to the left and right XRRayInteractors used to grab modules.
+		/// </summary>
 		public LeftRightData<XRRayInteractor> remoteGrabInteractors;
+
+		/// <summary>
+		/// Reference to the left and right XRRayInteractors used to interact with
+		/// modules and 2D GUI.
+		/// </summary>
 		public LeftRightData<XRRayInteractor> remoteInteractionInteractors;
+
+		/// <summary>
+		/// Reference to the left and right XRRayInteractors used outside of any interaction.
+		/// </summary>
 		public LeftRightData<XRRayInteractor> mainPointerInteractors;
 
+		/// <summary>
+		/// Reference to the left and right action-based controllers used to interact
+		/// with modules and 2D UI.
+		/// </summary>
 		[Header("XR Action-Based Controller References")]
 		public LeftRightData<ActionBasedController> remoteInteractionABC;
 
+		/// <summary>
+		/// Reference to the left and right gameobjects encapsulating the components
+		/// used to allow the user to move.
+		/// </summary>
 		[Header("Controllers GO References")]
 		public LeftRightData<GameObject> mvtControllersGO;
+
+		/// <summary>
+		/// Reference to the left and right gameobjects encapsulating the components
+		/// used to make groups.
+		/// </summary>
 		public LeftRightData<GameObject> groupControllersGO;
+
+		/// <summary>
+		/// Reference to the left and right gameobjects encapsulating the components
+		/// used to interact with modules and 2D UI.
+		/// </summary>
 		public LeftRightData<GameObject> riControllersGO;
 
+		/// <summary>
+		/// Reference to the left and right components defining the behaviour of
+		/// the volumetric selectors.
+		/// </summary>
 		[Header("Controllers Other References")]
 		public LeftRightData<VolumetricSelectorManager> volumetricSelectorManagers;
 
+		/// <summary>
+		/// Reference to the component defining the logic to switch between the 
+		/// input modes.
+		/// </summary>
 		[Header("Other")]
 		public InputModeManager inputModeManager;
+
+		/// <summary>
+		/// Reference to the component defining the logic to make groups.
+		/// </summary>
 		public GroupsMakingManager groupsMakingManager;
 
 		// This OnNetworkSpawn is called when the player is spawned on the network
