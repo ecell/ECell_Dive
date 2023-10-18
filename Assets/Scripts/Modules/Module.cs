@@ -144,18 +144,6 @@ namespace ECellDive.Modules
 			get => m_refInfoTagsContainer;
 			set => m_refInfoTagsContainer = value;
 		}
-
-		/// <summary>
-		/// Field of the property <see cref="refInfoTags"/>
-		/// </summary>
-		public List<GameObject> m_refInfoTags;
-
-		/// <inheritdoc/>
-		public List<GameObject> refInfoTags
-		{
-			get => m_refInfoTags;
-			set => m_refInfoTags = value;
-		}
 		#endregion
 
 		protected virtual void Awake()
@@ -279,7 +267,6 @@ namespace ECellDive.Modules
 			GameObject infoTag = Instantiate(refInfoTagPrefab, refInfoTagsContainer.transform);
 			infoTag.transform.localPosition = new Vector3(_xyPosition.x, _xyPosition.y, 0f);
 			infoTag.GetComponent<InfoDisplayManager>().SetText(_content);
-			refInfoTags.Add(infoTag);
 		}
 
 		/// <inheritdoc/>
@@ -300,7 +287,6 @@ namespace ECellDive.Modules
 		/// <inheritdoc/>
 		public void ShowInfoTags()
 		{
-			//refInfoTagsContainer.GetComponent<ILookAt>().LookAt();
 			foreach (Transform _infoTag in refInfoTagsContainer.transform)
 			{
 				_infoTag.gameObject.GetComponent<InfoDisplayManager>().LookAt();
