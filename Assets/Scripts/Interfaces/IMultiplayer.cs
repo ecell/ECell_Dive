@@ -240,7 +240,7 @@ namespace ECellDive.Interfaces
 
 		/// <summary>
 		/// Requests the server to generate the data associated to the module.
-		/// This MUST be implemented by any divable module to in order for the data
+		/// This MUST be implemented by any divable module in order for the data
 		/// generation to be broadcasted to the other clients.
 		/// </summary>
 		/// <param name="_expeditorClientID">

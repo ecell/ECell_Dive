@@ -787,8 +787,9 @@ namespace ECellDive
 			[ServerRpc(RequireOwnership = false)]
 			public virtual void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
 			{
-				Debug.LogError("This method should be overriden in the child class.");
-			}
+				Debug.LogError("This method MUST be overriden in the child class.");
+                throw new System.NotImplementedException();
+            }
 
 			/// <inheritdoc/>
 			public IEnumerator SendSourceDataC(ulong _targetClientID)
