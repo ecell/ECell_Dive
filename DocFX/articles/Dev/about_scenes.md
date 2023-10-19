@@ -37,7 +37,44 @@ The gameobject with a custom component [GameNetModuleSpawner](xref:ECellDive.Mul
 ## External Object Manager
 The gameobject responsible for the management of global UI menus through the component [GUIManager](xref:ECellDive.UI.GUIManager). It also acts as a world anchor for UI Menus and modules that are not pinned to the Player's position.
 
-# Diving System
+# Dive Scenes
+
+_Dive Scenes_ are a concept to represent a portion of space in which users can navigate, add modules, interact with data and instantiate portals to go to other dive scenes. They are the main unit for user's mental model of how they delimit the seemingly infinite space of a virtual environment.
+
+In Unity, a scene is an asset containing a hierarchy of gameobjects that make up the content of a virtual space. The hierarchy of gameobjects defines the logic driving anything that is hapening in the space, including user's movement or interaction.
+
+Despite the apparently good match between our concept of _Dive Scene_ and a _Unity Scene_ there are constraints in how scenes are managed in Unity. For one, as far as we could tell, scenes assets are built in the application (and it's reasonnable). This implies that you can only add scenes in the Editor and that you must know what the _Unity Scenes_ will contain in advance which is incompatible with our vision of dynamic _Dive Scene_ when users dive into newly added data.
+
+So, in fact, in _ECellDive_, players who dive from a scene to another, never leave the `Main` _Unity Scene_. Our [DiveScenesManager](xref:ECellDive.SceneManagement.DiveScenesManager) keeps track of which gameobject of the _Unity Scene_ belongs to which _Dive Scene_ and, when a user dives, the manager [hides](xref:ECellDive.SceneManagement.DiveScenesManager.HideScene(System.Int32,System.UInt64)) the gameobjects of the previous _Dive Scene_ and [shows](ECellDive.SceneManagement.DiveScenesManager.ShowScene(System.Int32,System.UInt64)) the gameobjects of the new _Dive Scene_. Fellow divers on the multiplayer network are also hidden and showed depending on the _Dive Scene_ they are currently exploring. Bellow is a sequence diagram represenbting the relevant communications. [GenerativeDiveIn](xref:ECellDive.Interfaces.IDive.GenerativeDiveIn), [HideScene](xref:ECellDive.SceneManagement.DiveScenesManager.HideScene(System.Int32,System.UInt64)), and [ShowScene](ECellDive.SceneManagement.DiveScenesManager.ShowScene(System.Int32,System.UInt64)) invovle more communications with every clients of the network which are not represented here.
+
+```plantuml
+@startuml component
+
+box **Client**
+actor Diver as d
+participant DataModule as DMC1
+participant DiveSceneManager as DSMC1
+endbox
+
+box **Server (Host)**
+participant DiveSceneManager as DSMH
+endbox
+
+d -> DMC1: GenerativeDiveIn()\nDirectDiveIn()
+DMC1 -> DSMC1 ++: SwitchingServerRPC(rootSceneID,\ntargetSceneID, client1ID)
+
+DSMC1 --> DSMH ++: execution on server
+DSMH -> DSMH: HideScene(rootSceneID,\nclient1ID)
+DSMH -> DSMH: ShowScene(targetSceneID,\nclient1ID)
+DSMH -> DSMH: UpdatePlayerData(rootSceneID,\nclient1ID)
+
+DSMH --> DSMC1 --: UpdatePlayerDataClientRPC(\nClientRpcParams)
+
+DSMC1 -> DMC1 --: SceneSwitchIsFinished()
+
+DMC1 -> d: You are in the\nnew dive scene
+
+@enduml
+```
 
 
-## Dive scenes do not exist explicitly in the code
