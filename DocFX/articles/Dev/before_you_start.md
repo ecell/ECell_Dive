@@ -15,7 +15,7 @@ In this section, we will try to answer the following questions:
 - How is the main scene structured? (coming soon)
 - How works the _Dive Scene_ system? (coming soon)
 - How works the input & interaction systems? (coming soon)
-- What makes a _Player_? (coming soon)
+- [What makes a _Player_?](./about_player.md)
 - What makes the UI menu? (coming soon)
 - and probably others...
 
