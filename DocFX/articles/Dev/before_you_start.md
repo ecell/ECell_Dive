@@ -7,15 +7,15 @@ This documentation aims to give a comprehensive understanding of how _ECellDive_
 
 However, _ECellDive_ is still considered in alpha stage and parts of the code base might be refactored several times. As a general guideline, we will try to keep the explanations section matching any minor version number update. Currently, _ECellDive_ versioning follows the classic format **vMAJOR.MINOR.PATCH-stage**. Hence, a release update from **v0.11.5-alpha** to **v0.11.6-alpha** will not contain an update of this section. A release update from **v0.11.5-alpha** to **v0.12.X-alpha** or above will, however.
 
-In this section, we will try to answer the following questions:
+In this section, we give context to answer the following questions:
 - [What are the general coding guidelines?](./about_code.md)
 - [How are action modules implemented?](./about_modules.md)
 - [How to add new modules?](./about_modules.md#general-workflow-to-create-a-new-module)
 - How works the multiplayer code? (coming soon)
-- How is the main scene structured? (coming soon)
-- How works the _Dive Scene_ system? (coming soon)
+- [How is the main scene structured?](./about_scenes.md#main-scene-of-the-project)
+- [How works the _Dive Scene_ system?](./about_scenes.md#dive-scenes)
 - How works the input & interaction systems? (coming soon)
-- What makes a _Player_? (coming soon)
+- [What makes a _Player_?](./about_player.md)
 - What makes the UI menu? (coming soon)
 - and probably others...
 

@@ -32,7 +32,7 @@ namespace ECellDive.Utility.Data.Multiplayer
     }
 
     /// <summary>
-    /// Connection information for the multilayer server.
+    /// Connection information for the multiplayer server.
     /// </summary>
     [Serializable]
     public struct ConnectionSettings
