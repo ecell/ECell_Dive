@@ -12,7 +12,7 @@ In this section, we will try to answer the following questions:
 - [How are action modules implemented?](./about_modules.md)
 - [How to add new modules?](./about_modules.md#general-workflow-to-create-a-new-module)
 - How works the multiplayer code? (coming soon)
-- How is the main scene structured? (coming soon)
+- [How is the main scene structured?](./about_scenes.md#main-scene-of-the-project)
 - How works the _Dive Scene_ system? (coming soon)
 - How works the input & interaction systems? (coming soon)
 - [What makes a _Player_?](./about_player.md)
