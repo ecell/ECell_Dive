@@ -20,10 +20,17 @@ namespace ECellDive.Multiplayer
 	[RequireComponent(typeof(GameNetPortal))]
 	public class ServerGameNetPortal : MonoBehaviour
 	{
+		/// <summary>
+		/// The reference to the GameNetPortal component on this scene.
+		/// </summary>
 		private GameNetPortal m_Portal;
 
-		// used in ApprovalCheck. This is intended as a bit of light protection against DOS attacks that rely on sending silly big buffers of garbage.
-		const int k_MaxConnectPayload = 1024;
+        /// <summary>
+        /// used in ApprovalCheck.
+		/// This is intended as a bit of light protection against
+		/// DOS attacks that rely on sending silly big buffers of garbage.
+        /// </summary>
+        const int k_MaxConnectPayload = 1024;
 
 
 		private void Awake()
@@ -126,6 +133,15 @@ namespace ECellDive.Multiplayer
 			}
 		}
 
+		/// <summary>
+		/// Deciphers the connection payload and returns the status of the connection.
+		/// </summary>
+		/// <param name="connectionPayload">
+		/// Connection information from a client.
+		/// </param>
+		/// <returns>
+		/// The status of the connection.
+		/// </returns>
 		ConnectStatus GetConnectStatus(ConnectionPayload connectionPayload)
 		{
 			//if (m_Portal.NetManager.ConnectedClientsIds.Count >= CharSelectData.k_MaxLobbyPlayers)
@@ -152,7 +168,12 @@ namespace ECellDive.Multiplayer
 			}
 		}
 
-		public void OnNetworkReady()
+        /// <summary>
+        /// Unity callback when the network is ready.
+        /// In this case we check the satus of the NetManager. Since this component is only
+        /// enabled for servers, if the NetManager is not a server, we disable the component.
+        /// </summary>
+        public void OnNetworkReady()
 		{
 			Debug.Log("OnNetworkReady for ServerGameNetPortal componenent");
 			if (!m_Portal.NetManager.IsServer)

@@ -36,25 +36,59 @@ namespace ECellDive.Multiplayer
 	/// </remarks>
 	public class GameNetPortal : MonoBehaviour
 	{
+		/// <summary>
+		/// The reference to the network manager of the scene.
+		/// </summary>
 		public NetworkManager NetManager;
 
+		/// <summary>
+		/// The singleton instance of the GameNetPortal.
+		/// </summary>
 		public static GameNetPortal Instance;
+
+		/// <summary>
+		/// The reference to the client portal.
+		/// </summary>
 		private ClientGameNetPortal m_ClientPortal;
+
+		/// <summary>
+		/// The refence to the server portal.
+		/// </summary>
 		private ServerGameNetPortal m_ServerPortal;
 
+		/// <summary>
+		/// The field for the <see cref="settings"/> property.
+		/// </summary>
 		[SerializeField] ConnectionSettings m_settings;
+		
+		/// <summary>
+		/// The settings of the connection to the server.
+		/// </summary>
 		public ConnectionSettings settings
 		{
 			get => m_settings;
 			private set => m_settings = value;
 		}
 
+		/// <summary>
+		/// The list of the data modules in the scene.
+		/// </summary>
 		public List<IMlprData> dataModules = new List<IMlprData>();
+		
+		/// <summary>
+		/// The list of modules that can be modified by the user.
+		/// </summary>
 		public List<IModifiable> modifiables = new List<IModifiable>();
-		public List<ISaveable> saveables = new List<ISaveable>();
-		public Dictionary<ulong, NetSessionPlayerData> netSessionPlayersDataMap = new Dictionary<ulong, NetSessionPlayerData>();
 
-		private List<int> successFullPorts = new List<int>();
+		/// <summary>
+		/// The list of modules that can be saved.
+		/// </summary>
+		public List<ISaveable> saveables = new List<ISaveable>();
+
+		/// <summary>
+		/// A map between the client id and the data of the player.
+		/// </summary>
+		public Dictionary<ulong, NetSessionPlayerData> netSessionPlayersDataMap = new Dictionary<ulong, NetSessionPlayerData>();
 
 		private void Awake()
 		{
@@ -86,6 +120,12 @@ namespace ECellDive.Multiplayer
 			Instance = null;
 		}
 
+		/// <summary>
+		/// Generates a unique player id.
+		/// </summary>
+		/// <returns>
+		/// The new player id.
+		/// </returns>
 		private string GetPlayerId()
 		{
 			//if (UnityServices.State != ServicesInitializationState.Initialized)
@@ -97,6 +137,12 @@ namespace ECellDive.Multiplayer
 			return PlayerPrefsWrap.GetGuid();
 		}
 
+		/// <summary>
+		/// Encapsulate the connection data into a <see cref="ConnectionPayload"/>
+		/// </summary>
+		/// <returns>
+		/// The connection payload.
+		/// </returns>
 		public ConnectionPayload GetConnectionPayload()
 		{
 			return new ConnectionPayload
@@ -107,6 +153,15 @@ namespace ECellDive.Multiplayer
 			};
 		}
 
+		/// <summary>
+		/// Checks if the password is correct.
+		/// </summary>
+		/// <param name="_password">
+		/// The string to check agains the password.
+		/// </param>
+		/// <returns>
+		/// True if the password is correct, false otherwise.
+		/// </returns>
 		public bool CheckPassword(string _password)
 		{
 			return m_settings.password == _password;
@@ -212,6 +267,21 @@ namespace ECellDive.Multiplayer
 			}
 		}
 
+		/// <summary>
+		/// Sets the connection settings.
+		/// </summary>
+		/// <param name="_name">
+		/// The name of the player.
+		/// </param>
+		/// <param name="_ip">
+		/// The IPv4 of the server.
+		/// </param>
+		/// <param name="_port">
+		/// The port of the server.
+		/// </param>
+		/// <param name="_password">
+		/// The password of the server.
+		/// </param>
 		public void SetConnectionSettings(string _name, string _ip, ushort _port, string _password)
 		{
 			m_settings.SetPlayerName(_name);
@@ -229,6 +299,12 @@ namespace ECellDive.Multiplayer
 			m_settings.SetPassword(_password);
 		}
 
+		/// <summary>
+		/// Retrieves the UnityTransport of the scene.
+		/// </summary>
+		/// <param name="_verbose">
+		/// A boolean to print the retrieved connection data in the console.
+		/// </param>
 		public void SetUnityTransport(bool _verbose=false)
 		{
 			UnityTransport unityTransport = NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
