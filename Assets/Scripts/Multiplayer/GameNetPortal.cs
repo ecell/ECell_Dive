@@ -1,324 +1,361 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using ECellDive.Interfaces;
-using ECellDive.UI;
 using ECellDive.PlayerComponents;
 using ECellDive.Utility;
+using ECellDive.Utility.Data.Multiplayer;
 
 namespace ECellDive.Multiplayer
 {
-    public enum ConnectStatus
-    {
-        Undefined,
-        IncorrectPassword,
-        Success,                  //client successfully connected. This may also be a successful reconnect.
-        ServerFull,               //can't join, server is already at capacity.
-        LoggedInAgain,            //logged in on a separate client, causing this one to be kicked out.
-        UserRequestedDisconnect,  //Intentional Disconnect triggered by the user.
-        GenericDisconnect,        //server disconnected, but no specific reason given.
-        IncompatibleBuildType,    //client build type is incompatible with server.
-        HostEndedSession,         //host intentionally ended the session.
-    }
+	public enum ConnectStatus
+	{
+		Undefined,
+		IncorrectPassword,
+		Success,                  //client successfully connected. This may also be a successful reconnect.
+		ServerFull,               //can't join, server is already at capacity.
+		LoggedInAgain,            //logged in on a separate client, causing this one to be kicked out.
+		UserRequestedDisconnect,  //Intentional Disconnect triggered by the user.
+		GenericDisconnect,        //server disconnected, but no specific reason given.
+		IncompatibleBuildType,    //client build type is incompatible with server.
+		HostEndedSession,         //host intentionally ended the session.
+	}
 
-    [Serializable]
-    public struct ConnectionPayload
-    {
-        public string playerId;
-        public string psw;
-        //public int clientScene = -1;
-        public string playerName;
-        //public bool isDebug;
-    }
+	/// <summary>
+	/// The logic handling the creation of a host using Unity Netcode for
+	/// gameobjects with the default Unity Transport. This intends to be a wrapper of the
+	/// communications between server and client upon creation and termination.
+	/// </summary>
+	/// <remarks>
+	/// This code is copied and adapted from the official Untiy multiplayer sample project
+	/// "Boss Room":
+	/// - https://docs-multiplayer.unity3d.com/netcode/current/learn/bossroom
+	/// - https://github.com/Unity-Technologies/com.unity.multiplayer.samples.coop/releases v1.2.0-pre
+	/// </remarks>
+	public class GameNetPortal : MonoBehaviour
+	{
+		/// <summary>
+		/// The reference to the network manager of the scene.
+		/// </summary>
+		public NetworkManager NetManager;
 
-    [Serializable]
-    public struct ConnectionSettings
-    {
-        public string playerName;
-        public string IP;
-        public ushort port;
-        public string password;
+		/// <summary>
+		/// The singleton instance of the GameNetPortal.
+		/// </summary>
+		public static GameNetPortal Instance;
 
-        public void SetPlayerName(string _playerName)
-        {
-            playerName = _playerName;
-        }
-        
-        public void SetIP(string _IP)
-        {
-            IP = _IP;
-        }
+		/// <summary>
+		/// The reference to the client portal.
+		/// </summary>
+		private ClientGameNetPortal m_ClientPortal;
 
-        public void SetPort(ushort _port)
-        {
-            port = _port;
-        }
+		/// <summary>
+		/// The refence to the server portal.
+		/// </summary>
+		private ServerGameNetPortal m_ServerPortal;
 
-        public void SetPassword(string _password)
-        {
-            password = _password;
-        }
-    }
+		/// <summary>
+		/// The field for the <see cref="settings"/> property.
+		/// </summary>
+		[SerializeField] ConnectionSettings m_settings;
+		
+		/// <summary>
+		/// The settings of the connection to the server.
+		/// </summary>
+		public ConnectionSettings settings
+		{
+			get => m_settings;
+			private set => m_settings = value;
+		}
 
-    /// <summary>
-    /// The logic handling the creation of a host using Unity Netcode for
-    /// gameobjects with the default Unity Transport. This intends to be a wrapper of the
-    /// communications between server and client upon creation and termination.
-    /// </summary>
-    /// <remarks>
-    /// This code is copied and adapted from the official Untiy multiplayer sample project
-    /// "Boss Room":
-    /// - https://docs-multiplayer.unity3d.com/netcode/current/learn/bossroom
-    /// - https://github.com/Unity-Technologies/com.unity.multiplayer.samples.coop/releases v1.2.0-pre
-    /// </remarks>
-    public class GameNetPortal : MonoBehaviour
-    {
-        public NetworkManager NetManager;
+		/// <summary>
+		/// The list of the data modules in the scene.
+		/// </summary>
+		public List<IMlprData> dataModules = new List<IMlprData>();
+		
+		/// <summary>
+		/// The list of modules that can be modified by the user.
+		/// </summary>
+		public List<IModifiable> modifiables = new List<IModifiable>();
 
-        public static GameNetPortal Instance;
-        private ClientGameNetPortal m_ClientPortal;
-        private ServerGameNetPortal m_ServerPortal;
+		/// <summary>
+		/// The list of modules that can be saved.
+		/// </summary>
+		public List<ISaveable> saveables = new List<ISaveable>();
 
-        [SerializeField] ConnectionSettings m_settings;
-        public ConnectionSettings settings
-        {
-            get => m_settings;
-            private set => m_settings = value;
-        }
+		/// <summary>
+		/// A map between the client id and the data of the player.
+		/// </summary>
+		public Dictionary<ulong, NetSessionPlayerData> netSessionPlayersDataMap = new Dictionary<ulong, NetSessionPlayerData>();
 
-        public List<IMlprData> dataModules = new List<IMlprData>();
-        public List<IModifiable> modifiables = new List<IModifiable>();
-        public List<ISaveable> saveables = new List<ISaveable>();
-        public Dictionary<ulong, NetSessionPlayerData> netSessionPlayersDataMap = new Dictionary<ulong, NetSessionPlayerData>();
+		private void Awake()
+		{
+			Debug.Assert(Instance == null);
+			Instance = this;
+			m_ClientPortal = GetComponent<ClientGameNetPortal>();
+			m_ServerPortal = GetComponent<ServerGameNetPortal>();
 
-        private List<int> successFullPorts = new List<int>();
+			NetManager.OnClientConnectedCallback += OnNetworkReady;
+		}
 
-        private void Awake()
-        {
-            Debug.Assert(Instance == null);
-            Instance = this;
-            m_ClientPortal = GetComponent<ClientGameNetPortal>();
-            m_ServerPortal = GetComponent<ServerGameNetPortal>();
+		private void Start()
+		{
+			//default connection payload
+			string payload = JsonUtility.ToJson(GetConnectionPayload());
+			byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
+			NetManager.NetworkConfig.ConnectionData = payloadBytes;
 
-            NetManager.OnClientConnectedCallback += OnNetworkReady;
-        }
+			StartHost();
+		}
 
-        private void Start()
-        {
-            //default connection payload
-            string payload = JsonUtility.ToJson(GetConnectionPayload());
-            byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
-            NetManager.NetworkConfig.ConnectionData = payloadBytes;
+		private void OnDestroy()
+		{
+			if (NetManager != null)
+			{
+				NetManager.OnClientConnectedCallback -= OnNetworkReady;
+			}
 
-            StartHost();
-        }
+			Instance = null;
+		}
 
-        private void OnDestroy()
-        {
-            if (NetManager != null)
-            {
-                NetManager.OnClientConnectedCallback -= OnNetworkReady;
-            }
+		/// <summary>
+		/// Generates a unique player id.
+		/// </summary>
+		/// <returns>
+		/// The new player id.
+		/// </returns>
+		private string GetPlayerId()
+		{
+			//if (UnityServices.State != ServicesInitializationState.Initialized)
+			//{
+			//    return ClientPrefs.GetGuid() + ProfileManager.Profile;
+			//}
 
-            Instance = null;
-        }
+			//return AuthenticationService.Instance.IsSignedIn ? AuthenticationService.Instance.PlayerId : ClientPrefs.GetGuid() + ProfileManager.Profile;
+			return PlayerPrefsWrap.GetGuid();
+		}
 
-        private string GetPlayerId()
-        {
-            //if (UnityServices.State != ServicesInitializationState.Initialized)
-            //{
-            //    return ClientPrefs.GetGuid() + ProfileManager.Profile;
-            //}
+		/// <summary>
+		/// Encapsulate the connection data into a <see cref="ConnectionPayload"/>
+		/// </summary>
+		/// <returns>
+		/// The connection payload.
+		/// </returns>
+		public ConnectionPayload GetConnectionPayload()
+		{
+			return new ConnectionPayload
+			{
+				playerId = GetPlayerId(),
+				playerName = m_settings.playerName,
+				psw = m_settings.password
+			};
+		}
 
-            //return AuthenticationService.Instance.IsSignedIn ? AuthenticationService.Instance.PlayerId : ClientPrefs.GetGuid() + ProfileManager.Profile;
-            return PlayerPrefsWrap.GetGuid();
-        }
-
-        public ConnectionPayload GetConnectionPayload()
-        {
-            return new ConnectionPayload
-            {
-                playerId = GetPlayerId(),
-                playerName = m_settings.playerName,
-                psw = m_settings.password
-            };
-        }
-
-        public bool CheckPassword(string _password)
-        {
-            return m_settings.password == _password;
-        }
+		/// <summary>
+		/// Checks if the password is correct.
+		/// </summary>
+		/// <param name="_password">
+		/// The string to check agains the password.
+		/// </param>
+		/// <returns>
+		/// True if the password is correct, false otherwise.
+		/// </returns>
+		public bool CheckPassword(string _password)
+		{
+			return m_settings.password == _password;
+		}
 
         /// <summary>
-        /// This method runs when NetworkManager has started up (following a
-        /// succesful connect on the client, or directly after StartHost is invoked
-        /// on the host). It is named to match NetworkBehaviour.OnNetworkSpawn,
-        /// and serves the same role, even though GameNetPortal itself isn't a NetworkBehaviour.
+        /// This method is subscribed to Unity's NetworkManager.OnClientConnectedCallback.
+		/// So, it runs when NetworkManager has started up (following a succesful
+		/// connect on the client, or directly after StartHost is invoked on the host).
+		/// It is named to match NetworkBehaviour.OnNetworkSpawn, and serves the same
+		/// role, even though GameNetPortal itself isn't a NetworkBehaviour.
         /// </summary>
         private void OnNetworkReady(ulong _clientID)
-        {
-            Debug.Log($"OnNetworkReady called from Client Connection with id {_clientID}");
-            if (_clientID == NetManager.LocalClientId)
-            {
-                if (NetManager.IsHost)
-                {
-                    //special host code. This is what kicks off the flow that happens on a regular client
-                    //when it has finished connecting successfully. A dedicated server would remove this.
+		{
+			Debug.Log($"OnNetworkReady called from Client Connection with id {_clientID}");
+			if (_clientID == NetManager.LocalClientId)
+			{
+				if (NetManager.IsHost)
+				{
+					//special host code. This is what kicks off the flow that happens on a regular client
+					//when it has finished connecting successfully. A dedicated server would remove this.
 
-                    m_ClientPortal.OnConnectFinished(ConnectStatus.Success);
-                }
+					m_ClientPortal.OnConnectFinished(ConnectStatus.Success);
+				}
 
-                m_ClientPortal.OnNetworkReady();
-                m_ServerPortal.OnNetworkReady();
-            }
+				m_ClientPortal.OnNetworkReady();
+				m_ServerPortal.OnNetworkReady();
+			}
 
-            if (NetManager.IsServer)
-            {
-                StartCoroutine(SendData(_clientID));
-            }
-        }
+			if (NetManager.IsServer)
+			{
+				StartCoroutine(SendData(_clientID));
+			}
+		}
 
-        /// <summary>
-        /// Shuts down the current session and starts a new one as a host.
-        /// </summary>
-        private IEnumerator Restart()
-        {
-            NetManager.Shutdown();
-            
-            //We make sure the previous instance of the host is closed
-            yield return new WaitWhile(()=>NetManager.IsListening);
+		/// <summary>
+		/// Shuts down the current session and starts a new one as a host.
+		/// </summary>
+		private IEnumerator Restart()
+		{
+			NetManager.Shutdown();
+			
+			//We make sure the previous instance of the host is closed
+			yield return new WaitWhile(()=>NetManager.IsListening);
 
-            //We try hosting at the new address alredy stored in Unity Transport Connection Data.
-            bool isHostStarted = NetManager.StartHost();
-            string msgStr;
-            if (!isHostStarted)
-            {
-                msgStr = "<color=red>Host couldn't be started: bind and listening to " + m_settings.IP + ":" +
-                     m_settings.port + " failed.\n" + "Falling back to 127.0.0.1:7777</color>";
+			//We try hosting at the new address alredy stored in Unity Transport Connection Data.
+			bool isHostStarted = NetManager.StartHost();
+			string msgStr;
+			if (!isHostStarted)
+			{
+				msgStr = "<color=red>Host couldn't be started: bind and listening to " + m_settings.IP + ":" +
+					 m_settings.port + " failed.\n" + "Falling back to 127.0.0.1:7777</color>";
 
-                LogSystem.AddMessage(LogMessageTypes.Errors,
-                    "Host couldn't be started: bind and listening to " + m_settings.IP + ":" +
-                     m_settings.port + " failed.\n" + "Falling back to 127.0.0.1:7777");
+				LogSystem.AddMessage(LogMessageTypes.Errors,
+					"Host couldn't be started: bind and listening to " + m_settings.IP + ":" +
+					 m_settings.port + " failed.\n" + "Falling back to 127.0.0.1:7777");
 
-                SetConnectionSettings(m_settings.playerName, "127.0.0.1", 7777, m_settings.password);
-                SetUnityTransport();
+				SetConnectionSettings(m_settings.playerName, "127.0.0.1", 7777, m_settings.password);
+				SetUnityTransport();
 
-                //We are in the case where hosting to the new address failed.
-                //We wait until the failed server has properly shut down.
-                yield return new WaitWhile(() => NetManager.IsListening);
+				//We are in the case where hosting to the new address failed.
+				//We wait until the failed server has properly shut down.
+				yield return new WaitWhile(() => NetManager.IsListening);
 
-                NetManager.StartHost();
-            }
-            else
-            {
-                msgStr = "<color=green>Successfully hosting at " + m_settings.IP + ":" + m_settings.port+ "</color>";
-                
-                LogSystem.AddMessage(LogMessageTypes.Trace,
-                    "Successfully hosting at " + m_settings.IP + ":" + m_settings.port);
+				NetManager.StartHost();
+			}
+			else
+			{
+				msgStr = "<color=green>Successfully hosting at " + m_settings.IP + ":" + m_settings.port+ "</color>";
+				
+				LogSystem.AddMessage(LogMessageTypes.Trace,
+					"Successfully hosting at " + m_settings.IP + ":" + m_settings.port);
 
-            }
-            yield return new WaitForSeconds(1f);
-        }
+			}
+			yield return new WaitForSeconds(1f);
+		}
 
-        /// <summary>
-        /// Synchronizes the content of the data modules that already exist
-        /// in the scene (and stored in <see cref="dataModules"/>) for the
-        /// client with id <paramref name="_clientID"/>.
-        /// </summary>
-        /// <param name="_clientID">The id of the target client to which
-        /// we send the content of the data modules in the scene.</param>
-        /// <remarks>This should be used only with (or after) <see
-        /// cref="OnNetworkReady(ulong)"/> to be sure that the data modules
-        /// have been spawned in the scene of the target client.</remarks>
-        private IEnumerator SendData(ulong _clientID)
-        {
-            int nbClientReadyLoaded;
-            foreach (IMlprData mlprData in dataModules)
-            {
-                Debug.Log($"Sending data {mlprData.sourceDataName}");
-                nbClientReadyLoaded = mlprData.nbClientReadyLoaded.Value;
-                StartCoroutine(mlprData.SendSourceDataC(_clientID));
+		/// <summary>
+		/// Synchronizes the content of the data modules that already exist
+		/// in the scene (and stored in <see cref="dataModules"/>) for the
+		/// client with id <paramref name="_clientID"/>.
+		/// </summary>
+		/// <param name="_clientID">The id of the target client to which
+		/// we send the content of the data modules in the scene.</param>
+		/// <remarks>This should be used only with (or after) <see
+		/// cref="OnNetworkReady(ulong)"/> to be sure that the data modules
+		/// have been spawned in the scene of the target client.</remarks>
+		private IEnumerator SendData(ulong _clientID)
+		{
+			int nbClientReadyLoaded;
+			foreach (IMlprData mlprData in dataModules)
+			{
+				Debug.Log($"Sending data {mlprData.sourceDataName}");
+				nbClientReadyLoaded = mlprData.nbClientReadyLoaded.Value;
+				StartCoroutine(mlprData.SendSourceDataC(_clientID));
 
-                //We wait for the current data to be completely loaded
-                //in the scene of the new client before starting to load
-                //the next one (next step of the foreach loop.
-                //We know when the data has been loaded once the network
-                //variable storing the number of client that has loaded
-                //the data has been incremented by 1.
-                yield return new WaitUntil(() => mlprData.nbClientReadyLoaded.Value == nbClientReadyLoaded + 1);
-            }
-        }
+				//We wait for the current data to be completely loaded
+				//in the scene of the new client before starting to load
+				//the next one (next step of the foreach loop.
+				//We know when the data has been loaded once the network
+				//variable storing the number of client that has loaded
+				//the data has been incremented by 1.
+				yield return new WaitUntil(() => mlprData.nbClientReadyLoaded.Value == nbClientReadyLoaded + 1);
+			}
+		}
 
-        public void SetConnectionSettings(string _name, string _ip, ushort _port, string _password)
-        {
-            m_settings.SetPlayerName(_name);
+		/// <summary>
+		/// Sets the connection settings.
+		/// </summary>
+		/// <param name="_name">
+		/// The name of the player.
+		/// </param>
+		/// <param name="_ip">
+		/// The IPv4 of the server.
+		/// </param>
+		/// <param name="_port">
+		/// The port of the server.
+		/// </param>
+		/// <param name="_password">
+		/// The password of the server.
+		/// </param>
+		public void SetConnectionSettings(string _name, string _ip, ushort _port, string _password)
+		{
+			m_settings.SetPlayerName(_name);
 
-            if (_ip != "")
-            {
-                m_settings.SetIP(_ip);
-            }
+			if (_ip != "")
+			{
+				m_settings.SetIP(_ip);
+			}
 
-            if (_port != 0)
-            {
-                m_settings.SetPort(_port);
-            }
+			if (_port != 0)
+			{
+				m_settings.SetPort(_port);
+			}
 
-            m_settings.SetPassword(_password);
-        }
+			m_settings.SetPassword(_password);
+		}
 
-        public void SetUnityTransport(bool _verbose=false)
-        {
-            UnityTransport unityTransport = NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
-            unityTransport.SetConnectionData(m_settings.IP, m_settings.port); 
+		/// <summary>
+		/// Retrieves the UnityTransport of the scene.
+		/// </summary>
+		/// <param name="_verbose">
+		/// A boolean to print the retrieved connection data in the console.
+		/// </param>
+		public void SetUnityTransport(bool _verbose=false)
+		{
+			UnityTransport unityTransport = NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
+			unityTransport.SetConnectionData(m_settings.IP, m_settings.port); 
 
-            if (_verbose)
-            {
-                Debug.Log($"Setting up transport connection to {unityTransport.ConnectionData.Address}:" +
-                $"{unityTransport.ConnectionData.Port} and server listen address is {unityTransport.ConnectionData.ServerListenAddress}");
+			if (_verbose)
+			{
+				Debug.Log($"Setting up transport connection to {unityTransport.ConnectionData.Address}:" +
+				$"{unityTransport.ConnectionData.Port} and server listen address is {unityTransport.ConnectionData.ServerListenAddress}");
 
-                LogSystem.AddMessage(LogMessageTypes.Debug, $"Setting up transport connection to {unityTransport.ConnectionData.Address}:" +
-                $"{unityTransport.ConnectionData.Port} and server listen address is {unityTransport.ConnectionData.ServerListenAddress}");
-            }
-        }
+				LogSystem.AddMessage(LogMessageTypes.Debug, $"Setting up transport connection to {unityTransport.ConnectionData.Address}:" +
+				$"{unityTransport.ConnectionData.Port} and server listen address is {unityTransport.ConnectionData.ServerListenAddress}");
+			}
+		}
 
-        /// <summary>
-        /// Public interface to start a client.
-        /// </summary>
-        /// <remarks>
-        /// Forwards a call to <see cref= "ClientGameNetPortal.StartClient"/> 
-        /// through <see cref="m_ClientPortal"/> which is private.
-        /// </remarks>
-        public void StartClient()
-        {
-            m_ClientPortal.StartClient();
-        }
+		/// <summary>
+		/// Public interface to start a client.
+		/// </summary>
+		/// <remarks>
+		/// Forwards a call to <see cref= "ClientGameNetPortal.StartClient"/> 
+		/// through <see cref="m_ClientPortal"/> which is private.
+		/// </remarks>
+		public void StartClient()
+		{
+			m_ClientPortal.StartClient();
+		}
 
-        /// <summary>
-        /// Initializes host mode on this client. Call this and then other clients 
-        /// should connect to us!
-        /// Uses the IP and port registered in <see cref="m_settings"/>.
-        /// </summary>
-        public void StartHost()
-        {
-            if (NetManager.IsHost)
-            {
-                string payload = JsonUtility.ToJson(GetConnectionPayload());
-                byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
-                NetManager.NetworkConfig.ConnectionData = payloadBytes;
+		/// <summary>
+		/// Initializes host mode on this client. Call this and then other clients 
+		/// should connect to us!
+		/// Uses the IP and port registered in <see cref="m_settings"/>.
+		/// </summary>
+		public void StartHost()
+		{
+			if (NetManager.IsHost)
+			{
+				string payload = JsonUtility.ToJson(GetConnectionPayload());
+				byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
+				NetManager.NetworkConfig.ConnectionData = payloadBytes;
 
-                LogSystem.AddMessage(LogMessageTypes.Debug, 
-                    $"Network: a session was already running so we are shutting it down before re-launching");
-                SetUnityTransport(true);
-                StartCoroutine(Restart());
-            }
-            else
-            {
-                SetUnityTransport();
-                NetManager.StartHost();
-            }
-        }
-    }
+				LogSystem.AddMessage(LogMessageTypes.Debug, 
+					$"Network: a session was already running so we are shutting it down before re-launching");
+				SetUnityTransport(true);
+				StartCoroutine(Restart());
+			}
+			else
+			{
+				SetUnityTransport();
+				NetManager.StartHost();
+			}
+		}
+	}
 }

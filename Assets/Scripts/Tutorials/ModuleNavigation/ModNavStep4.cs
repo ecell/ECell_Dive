@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using ECellDive.UI;
-using ECellDive.Modules;
 
 namespace ECellDive.Tutorials
 {

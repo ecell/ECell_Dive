@@ -1,36 +1,63 @@
 ﻿using UnityEngine;
 using ECellDive.Interfaces;
 
-namespace ECellDive
+namespace ECellDive.GraphComponents
 {
-    namespace GraphComponents
-    {
-        [System.Serializable]
-        public class Edge : IEdge
-        {
-            [SerializeField] private uint m_ID;
-            public uint ID { get => m_ID; set => m_ID = value; }
+	/// <summary>
+	/// The data structure to encode an edge for a cyjson graph.
+	/// </summary>
+	[System.Serializable]
+	public class Edge : IEdge
+	{
+		#region - IEdge Fields -
+		/// <summary>
+		/// The field for <see cref="ID"/>.
+		/// </summary>
+		[SerializeField] private uint m_ID;
 
-            [SerializeField] private uint m_source;
-            public uint source { get => m_source; set => m_source = value; }
+		/// <inheritdoc/>
+		public uint ID { get => m_ID; set => m_ID = value; }
 
-            [SerializeField] private uint m_target;
-            public uint target { get => m_target; set => m_target = value; }
+		/// <summary>
+		/// The field for <see cref="source"/>.
+		/// </summary>
+		[SerializeField] private uint m_source;
 
-            [SerializeField] private string m_name;
-            public string name { get => m_name; set => m_name = value; }
+		/// <inheritdoc/>
+		public uint source { get => m_source; set => m_source = value; }
 
-            [SerializeField] private string m_reaction_name;
-            public string reaction_name { get => m_reaction_name; set => m_reaction_name = value; }
+		/// <summary>
+		/// The field for <see cref="target"/>.
+		/// </summary>
+		[SerializeField] private uint m_target;
 
-            public Edge(uint _ID, string _reaction_name, string _name, uint _source, uint _target)
-            {
-                ID = _ID;
-                source = _source;
-                target = _target;
-                reaction_name = _reaction_name;
-                name = _name;
-            }
-        }
-    }
+		/// <inheritdoc/>
+		public uint target { get => m_target; set => m_target = value; }
+
+		/// <summary>
+		/// The field for <see cref="name"/>.
+		/// </summary>
+		[SerializeField] private string m_name;
+
+		/// <inheritdoc/>
+		public string name { get => m_name; set => m_name = value; }
+
+		/// <summary>
+		/// The field for <see cref="reaction_name"/>.
+		/// </summary>
+		[SerializeField] private string m_reaction_name;
+
+		/// <inheritdoc/>
+		public string reaction_name { get => m_reaction_name; set => m_reaction_name = value; }
+		#endregion
+
+		public Edge(uint _ID, string _reaction_name, string _name, uint _source, uint _target)
+		{
+			ID = _ID;
+			source = _source;
+			target = _target;
+			reaction_name = _reaction_name;
+			name = _name;
+		}
+	}
 }

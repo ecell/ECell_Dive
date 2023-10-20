@@ -4,7 +4,7 @@ using System.Collections;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
-using ECellDive.Modules;
+using ECellDive.Utility.Data.Network;
 
 namespace ECellDive.CustomEditors
 {

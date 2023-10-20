@@ -1,0 +1,59 @@
+using UnityEngine;
+
+namespace ECellDive.Utility.Data.Graph
+{
+    /// <summary>
+    /// The struct encapsulating the parameters relevant to
+    /// controlling the scale of the graph.
+    /// </summary>
+    [System.Serializable]
+    public struct GraphScalingData
+    {
+        /// <summary>
+        /// Modulates the values of Transform.position for
+        /// every node of the graph.
+        /// </summary>
+        /// <remarks>
+        /// Useful when the original coordinates of the nodes spans over
+        /// hundreds of equivalent Unity distance units.
+        /// </remarks>
+        [Min(1)] public float positionScaleFactor;
+
+        /// <summary>
+        /// Modulates the values of Transform.localScale for
+        /// every node and edge of the graph.
+        /// </summary>
+        /// <remarks>
+        /// Usefull when to change the size of the whole graph.
+        /// </remarks>
+        [Min(1)] public float sizeScaleFactor;
+
+    }
+
+    /// <summary>
+    /// The struct encapsulating the parameters relevant to
+    /// controlling the batched instantiation of the nodes and
+    /// the edges of the graph.
+    /// </summary>
+    /// <remarks>
+    /// Usefull when instantiating the nodes and edges of a graph
+    /// that is synchronized over the network between a host and
+    /// its clients. When the graph is big we need to batch the
+    /// instantiation of the networkbjects to avoid overflowing
+    /// the authorized bandwitdh (since the server sends the
+    /// instantiation message to every clients).
+    /// </remarks>
+    [System.Serializable]
+	public struct GraphBatchSpawning
+	{
+		/// <summary>
+		/// The number of nodes instantiated within a frame.
+		/// </summary>
+		public int nodesBatchSize;
+
+		/// <summary>
+		/// The number of edges instantiated within a frame.
+		/// </summary>
+		public int edgesBatchSize;
+	}
+}

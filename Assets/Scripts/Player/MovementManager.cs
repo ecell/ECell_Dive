@@ -1,281 +1,370 @@
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using ECellDive.Utility;
-using ECellDive.Interfaces;
 using ECellDive.UI;
+using ECellDive.Utility.Data.PlayerComponents;
 
 namespace ECellDive.PlayerComponents
 {
-    [System.Serializable]
-    public struct MovementActionData
-    {
-        public InputActionReference movement;
-        public InputActionReference cursorController;
-        public InputActionReference switchMovementMode;
-        public InputActionReference controllerPosition;
-    }
+	/// <summary>
+	/// The logic behind the movement feature. Handles switching between
+	/// teleportation and continous movement.
+	/// </summary>
+	public class MovementManager : NetworkBehaviour
+	{
+		/// <summary>
+		/// Reference to the gameobject encapsulating the XRRig of the player
+		/// </summary>
+		public GameObject refXRRig;
 
-    [System.Serializable]
-    public struct TeleportationMovementData
-    {
-        public GameObject teleportationReticle;
-        public Vector3 defaultReticlePosition;
-        public float reticleMovementSpeed;
-        public LineRenderer teleportationLine;
-        public float minTeleportationDistance;
-        public float maxTeleportationDistance;
-    }
+		/// <summary>
+		/// The struct to store the data related to the movement action.
+		/// </summary>
+		public MovementActionData movementActionData;
 
-    [System.Serializable]
-    public struct ContinousMovementData
-    {
-        public AnchoredContinousMoveHelper directionHelper;
-        public Vector3 defaultPosition;
-        public Vector3 deadZone;
-        public float speed;
-    }
+		/// <summary>
+		/// The struct to store the data related to the teleportation feature.
+		/// </summary>
+		public TeleportationMovementData teleportationData;
 
-    public class MovementManager : NetworkBehaviour
-    {
-        public GameObject refXRRig;
+		/// <summary>
+		/// A buffer for the velocity of the reticle.
+		/// </summary>
+		private Vector3 reticleVelocity = Vector3.zero;
 
-        public MovementActionData movementActionData;
+		/// <summary>
+		/// The position of the reticle.
+		/// </summary>
+		/// <remarks>
+		/// This variable is synchronized across the multiplayer network.
+		/// </remarks>
+		private NetworkVariable<Vector3> reticlePosition = new NetworkVariable<Vector3>(default,
+			default, NetworkVariableWritePermission.Owner);
 
-        public TeleportationMovementData teleportationData;
-        private Vector3 reticleVelocity = Vector3.zero;
-        private NetworkVariable<Vector3> reticlePosition = new NetworkVariable<Vector3>(default,
-            default, NetworkVariableWritePermission.Owner);
+		/// <summary>
+		/// The struct to store the data related to the continous movement feature.
+		/// </summary>
+		public ContinousMovementData continousMovementData;
 
-        public ContinousMovementData continousMovementData;
-        private NetworkVariable<bool>isContinuous = new NetworkVariable<bool>(false);
-        private bool doContinousMove = false;
-        private Vector3 continousVelocity = Vector3.zero;
+		/// <summary>
+		/// Boolean to inform whether the continous movement used over the teleportation.
+		/// </summary>
+		/// <remarks>
+		/// This variable is synchronized across the multiplayer network.
+		/// </remarks>
+		private NetworkVariable<bool>isContinuous = new NetworkVariable<bool>(false);
 
-        public SurgeAndShrinkInfoTag inputModeTag;
+		/// <summary>
+		/// Boolean to inform whether the continous movement is currently being used.
+		/// </summary>
+		private bool doContinousMove = false;
 
-        public override void OnNetworkSpawn()
-        {
-            movementActionData.movement.action.started += TryMoveStart;
-            movementActionData.movement.action.canceled += TryMoveEnd;
-            movementActionData.switchMovementMode.action.performed += SwitchMovementMode;
-            movementActionData.cursorController.action.performed += ReticleUpdate;
+		/// <summary>
+		/// A buffer for the velocity of the continous movement in the 3D space.
+		/// </summary>
+		private Vector3 continousVelocity = Vector3.zero;
 
-            isContinuous.OnValueChanged += ApplyControllerMvtMode;
-            reticlePosition.OnValueChanged += ApplyReticlePosition;
-        }
+		/// <summary>
+		/// Reference to the component defininf the behaviour of the input information tag.
+		/// Used to display the movement mode the user is switching to.
+		/// </summary>
+		public SurgeAndShrinkInfoTag inputModeTag;
 
-        public override void OnNetworkDespawn()
-        {
-            movementActionData.movement.action.started -= TryMoveStart;
-            movementActionData.movement.action.canceled -= TryMoveEnd;
-            movementActionData.switchMovementMode.action.performed -= SwitchMovementMode;
-            movementActionData.cursorController.action.performed -= ReticleUpdate;
+		public override void OnNetworkSpawn()
+		{
+			movementActionData.movement.action.started += TryMoveStart;
+			movementActionData.movement.action.canceled += TryMoveEnd;
+			movementActionData.switchMovementMode.action.performed += SwitchMovementMode;
+			movementActionData.cursorController.action.performed += ReticleUpdate;
 
-            isContinuous.OnValueChanged -= ApplyControllerMvtMode;
-            reticlePosition.OnValueChanged -= ApplyReticlePosition;
-        }
+			isContinuous.OnValueChanged += ApplyControllerMvtMode;
+			reticlePosition.OnValueChanged += ApplyReticlePosition;
+		}
 
-        private void OnEnable()
-        {
-            ResetTeleportationTools();
-            ResetContinousMoveHelper();
-        }
+		public override void OnNetworkDespawn()
+		{
+			movementActionData.movement.action.started -= TryMoveStart;
+			movementActionData.movement.action.canceled -= TryMoveEnd;
+			movementActionData.switchMovementMode.action.performed -= SwitchMovementMode;
+			movementActionData.cursorController.action.performed -= ReticleUpdate;
 
-        private void FixedUpdate()
-        {
-            if (doContinousMove)
-            {
-                ContinousMove();
-            }
-        }
+			isContinuous.OnValueChanged -= ApplyControllerMvtMode;
+			reticlePosition.OnValueChanged -= ApplyReticlePosition;
+		}
 
-        private void ApplyControllerMvtMode(bool previous, bool current)
-        {
-            if (isContinuous.Value)
-            {
-                teleportationData.teleportationLine.enabled = false;
-                teleportationData.teleportationReticle.SetActive(false);
+		private void OnEnable()
+		{
+			ResetTeleportationTools();
+			ResetContinousMoveHelper();
+		}
 
-                //Placing the helper
-                continousMovementData.directionHelper.gameObject.SetActive(true);
-                ResetContinousMoveHelper();
-                continousMovementData.directionHelper.SetSphereScale(2 * continousMovementData.deadZone);
+		private void FixedUpdate()
+		{
+			if (doContinousMove)
+			{
+				ContinousMove();
+			}
+		}
 
-                inputModeTag.SurgeAndShrink("Movement Mode:\nContinous");
-            }
-            else
-            {
-                teleportationData.teleportationLine.enabled = true;
-                teleportationData.teleportationReticle.SetActive(true);
-                ResetTeleportationTools();
+		/// <summary>
+		/// Handles the switch between the teleportation and continous movement.
+		/// Called back when the value of <see cref="isContinuous"/> changes.
+		/// </summary>
+		/// <param name="previous">
+		/// The previous value of <see cref="isContinuous"/>.
+		/// It is necessary to statisfy the constraint on the callback signature but 
+		/// we are not using it.
+		/// </param>
+		/// <param name="current">
+		/// The newly assigned value of <see cref="isContinuous"/>.
+		/// It is necessary to statisfy the constraint on the callback signature but
+		/// we are not using it.
+		/// </param>
+		private void ApplyControllerMvtMode(bool previous, bool current)
+		{
+			if (isContinuous.Value)
+			{
+				teleportationData.teleportationLine.enabled = false;
+				teleportationData.teleportationReticle.SetActive(false);
 
-                //Placing the helper
-                continousMovementData.directionHelper.gameObject.SetActive(false);
+				//Placing the helper
+				continousMovementData.directionHelper.gameObject.SetActive(true);
+				ResetContinousMoveHelper();
+				continousMovementData.directionHelper.SetSphereScale(2 * continousMovementData.deadZone);
 
-                inputModeTag.SurgeAndShrink("Movement Mode:\nTeleportation");
-            }
-        }
+				inputModeTag.SurgeAndShrink("Movement Mode:\nContinous");
+			}
+			else
+			{
+				teleportationData.teleportationLine.enabled = true;
+				teleportationData.teleportationReticle.SetActive(true);
+				ResetTeleportationTools();
 
-        private void ApplyReticlePosition(Vector3 previous, Vector3 current)
-        {
-            if (!IsOwner)
-            {
-                teleportationData.teleportationReticle.transform.localPosition = reticlePosition.Value;
-                ResetTeleportationLine();
-            }
-        }
+				//Placing the helper
+				continousMovementData.directionHelper.gameObject.SetActive(false);
 
-        [ServerRpc]
-        public void BroadcastControllerMvtModeServerRpc()
-        {
-            isContinuous.Value = !isContinuous.Value;
-        }
+				inputModeTag.SurgeAndShrink("Movement Mode:\nTeleportation");
+			}
+		}
+
+		/// <summary>
+		/// Corrects the position of the teleportation line based on the reticle
+		/// position for every replicated client.
+		/// Called back when the value of <see cref="reticlePosition"/> changes.
+		/// </summary>
+		/// <param name="previous">
+		/// The previous value of <see cref="reticlePosition"/>.
+		/// It is necessary to statisfy the constraint on the callback signature but
+		/// we are not using it.
+		/// </param>
+		/// <param name="current">
+		/// The newly assigned value of <see cref="reticlePosition"/>.
+		/// It is necessary to statisfy the constraint on the callback signature but
+		/// we are not using it.
+		/// </param>
+		private void ApplyReticlePosition(Vector3 previous, Vector3 current)
+		{
+			if (!IsOwner)
+			{
+				teleportationData.teleportationReticle.transform.localPosition = reticlePosition.Value;
+				ResetTeleportationLine();
+			}
+		}
+
+		/// <summary>
+		/// Notifies the server that the user wants to switch between the teleportation
+		/// and continous movement.
+		/// </summary>
+		[ServerRpc]
+		public void BroadcastControllerMvtModeServerRpc()
+		{
+			isContinuous.Value = !isContinuous.Value;
+		}
+
+		/// <summary>
+		/// Moves the user's XRRig in the direction where the controller is relatively to its
+		/// position at the start of the grabbing.
+		/// </summary>
+		private void ContinousMove()
+		{
+			Vector3 dir = (movementActionData.controllerPosition.action.ReadValue<Vector3>() -
+							continousMovementData.directionHelper.transform.localPosition);
+
+			//Handling the Helper
+			Vector3 dirInHelperSpace = continousMovementData.directionHelper.gameObject.transform.InverseTransformDirection(dir);
+			continousMovementData.directionHelper.SetLinesEndPositions(dirInHelperSpace);
+			continousMovementData.directionHelper.CheckValidity(dirInHelperSpace, continousMovementData.deadZone);
+
+			Vector3 dir_corr = Vector3.zero;
+
+			if (Mathf.Abs(dirInHelperSpace.x) > continousMovementData.deadZone.x)
+			{
+				dir_corr.x = dirInHelperSpace.x;
+			}
+
+			if (Mathf.Abs(dirInHelperSpace.y) > continousMovementData.deadZone.y)
+			{
+				dir_corr.y = dirInHelperSpace.y;
+			}
+
+			if (Mathf.Abs(dirInHelperSpace.z) > continousMovementData.deadZone.z)
+			{
+				dir_corr.z = dirInHelperSpace.z;
+			}
+
+			Vector3 target = refXRRig.transform.position + continousMovementData.speed * (
+													dir_corr.x * continousMovementData.directionHelper.gameObject.transform.right +
+													dir_corr.y * continousMovementData.directionHelper.gameObject.transform.up +
+													dir_corr.z * continousMovementData.directionHelper.gameObject.transform.forward);
+
+			refXRRig.transform.position = Vector3.SmoothDamp(
+													refXRRig.transform.position,
+													target,
+													ref continousVelocity,
+													0.1f);
+		}
+
+		/// <summary>
+		/// Checks whether Abs(<paramref name="_value"/>) lower than 
+		/// <paramref name="_threshold"/>. Returns false otherwise.
+		/// </summary>
+		/// <remarks>
+		/// Used to clamp Joystick input data since we couldn't
+		/// make the built-in deadzone work as intended.
+		/// </remarks>
+		private bool IsInDeadZone(float _value, float _threshold = 0.5f)
+		{
+			return Mathf.Abs(_value) < _threshold;
+		}
+
+		/// <summary>
+		/// Moves the selector forward or backward.
+		/// </summary>
+		/// <param name="_mvtFactor">
+		/// If greater than 0 then forward movement;
+		/// If lower than 0 then backward movement.
+		/// </param>
+		private void ManageDistance(float _mvtFactor)
+		{
+			if (IsOwner)
+			{
+				Vector3 target = teleportationData.teleportationReticle.transform.localPosition +
+								_mvtFactor * teleportationData.reticleMovementSpeed * Vector3.forward;
+
+				float _d = (target - teleportationData.defaultReticlePosition).z;
+				if (_d < teleportationData.minTeleportationDistance)
+				{
+					target = teleportationData.teleportationReticle.transform.localPosition;
+				}
+				if (_d > teleportationData.maxTeleportationDistance)
+				{
+					target = teleportationData.teleportationReticle.transform.localPosition;
+				}
+				teleportationData.teleportationReticle.transform.localPosition = Vector3.SmoothDamp(
+											teleportationData.teleportationReticle.transform.localPosition,
+											target,
+											ref reticleVelocity,
+											0.1f);
+				reticlePosition.Value = teleportationData.teleportationReticle.transform.localPosition;
+				ResetTeleportationLine();
+			}
+		}
 
         /// <summary>
-        /// Moves the object in the direction where the controller is relatively to its
-        /// position at the start of the grabbing.
+        /// Resets data of the <see cref="continousMovementData"/>.directionHelper.
         /// </summary>
-        private void ContinousMove()
-        {
-            Vector3 dir = (movementActionData.controllerPosition.action.ReadValue<Vector3>() -
-                            continousMovementData.directionHelper.transform.localPosition);
-
-            //Handling the Helper
-            Vector3 dirInHelperSpace = continousMovementData.directionHelper.gameObject.transform.InverseTransformDirection(dir);
-            continousMovementData.directionHelper.SetLinesEndPositions(dirInHelperSpace);
-            continousMovementData.directionHelper.CheckValidity(dirInHelperSpace, continousMovementData.deadZone);
-
-            Vector3 dir_corr = Vector3.zero;
-
-            if (Mathf.Abs(dirInHelperSpace.x) > continousMovementData.deadZone.x)
-            {
-                dir_corr.x = dirInHelperSpace.x;
-            }
-
-            if (Mathf.Abs(dirInHelperSpace.y) > continousMovementData.deadZone.y)
-            {
-                dir_corr.y = dirInHelperSpace.y;
-            }
-
-            if (Mathf.Abs(dirInHelperSpace.z) > continousMovementData.deadZone.z)
-            {
-                dir_corr.z = dirInHelperSpace.z;
-            }
-
-            Vector3 target = refXRRig.transform.position + continousMovementData.speed * (
-                                                    dir_corr.x * continousMovementData.directionHelper.gameObject.transform.right +
-                                                    dir_corr.y * continousMovementData.directionHelper.gameObject.transform.up +
-                                                    dir_corr.z * continousMovementData.directionHelper.gameObject.transform.forward);
-
-            refXRRig.transform.position = Vector3.SmoothDamp(
-                                                    refXRRig.transform.position,
-                                                    target,
-                                                    ref continousVelocity,
-                                                    0.1f);
-        }
-
-        /// <summary>
-        /// A hard coded method returning true if Abs(<paramref name="_value"/>)
-        /// lower than <paramref name="_threshold"/>. Returns false otherwise.
-        /// </summary>
-        /// <remarks>Used to clamp Joystick input data since I couldn't
-        /// make the built-in deadzone work as intended.</remarks>
-        private bool IsInDeadZone(float _value, float _threshold = 0.5f)
-        {
-            return Mathf.Abs(_value) < _threshold;
-        }
-
-        /// <summary>
-        /// Moves the selector forward or backward.
-        /// </summary>
-        /// <param name="_mvtFactor">If greater than 0 then forward movement;
-        /// If lower than 0 then backward movement.</param>
-        private void ManageDistance(float _mvtFactor)
-        {
-            if (IsOwner)
-            {
-                Vector3 target = teleportationData.teleportationReticle.transform.localPosition +
-                                _mvtFactor * teleportationData.reticleMovementSpeed * Vector3.forward;
-
-                float _d = (target - teleportationData.defaultReticlePosition).z;
-                if (_d < teleportationData.minTeleportationDistance)
-                {
-                    target = teleportationData.teleportationReticle.transform.localPosition;
-                }
-                if (_d > teleportationData.maxTeleportationDistance)
-                {
-                    target = teleportationData.teleportationReticle.transform.localPosition;
-                }
-                teleportationData.teleportationReticle.transform.localPosition = Vector3.SmoothDamp(
-                                            teleportationData.teleportationReticle.transform.localPosition,
-                                            target,
-                                            ref reticleVelocity,
-                                            0.1f);
-                reticlePosition.Value = teleportationData.teleportationReticle.transform.localPosition;
-                ResetTeleportationLine();
-            }
-        }
-
         private void ResetContinousMoveHelper()
-        {
-            continousMovementData.directionHelper.gameObject.transform.localPosition = Vector3.zero;
-            continousMovementData.directionHelper.SetLinesEndPositions(2*continousMovementData.deadZone);
-            continousMovementData.directionHelper.gameObject.transform.localRotation = Quaternion.identity;
-        }
+		{
+			continousMovementData.directionHelper.gameObject.transform.localPosition = Vector3.zero;
+			continousMovementData.directionHelper.SetLinesEndPositions(2*continousMovementData.deadZone);
+			continousMovementData.directionHelper.gameObject.transform.localRotation = Quaternion.identity;
+		}
 
-        private void ResetTeleportationTools()
-        {
-            teleportationData.teleportationReticle.transform.localPosition = teleportationData.defaultReticlePosition;
-            ResetTeleportationLine();
-        }
-            
-        private void ResetTeleportationLine()
-        {
-            teleportationData.teleportationLine.SetPosition(1, teleportationData.teleportationReticle.transform.localPosition);
-        }
+		/// <summary>
+		/// Resets data of the teleportation tools.
+		/// </summary>
+		private void ResetTeleportationTools()
+		{
+			teleportationData.teleportationReticle.transform.localPosition = teleportationData.defaultReticlePosition;
+			ResetTeleportationLine();
+		}
+		
+		/// <summary>
+		/// Resets the end of the teleportation line to the position of the reticle.
+		/// </summary>
+		private void ResetTeleportationLine()
+		{
+			teleportationData.teleportationLine.SetPosition(1, teleportationData.teleportationReticle.transform.localPosition);
+		}
 
-        /// <summary>
-        /// Manages the data from the Joystick and processes it to
-        /// move the gameobject and scale it.
-        /// </summary>
-        private void ReticleUpdate(InputAction.CallbackContext _ctx)
-        {
-            Vector2 _das = _ctx.ReadValue<Vector2>();
-            if (!IsInDeadZone(_das.y))
-            {
-                ManageDistance(_das.y);
-            }
-        }
+		/// <summary>
+		/// Manages the data from the Joystick and processes it to
+		/// move the gameobject and scale it.
+		/// </summary>
+		private void ReticleUpdate(InputAction.CallbackContext _ctx)
+		{
+			Vector2 _das = _ctx.ReadValue<Vector2>();
+			if (!IsInDeadZone(_das.y))
+			{
+				ManageDistance(_das.y);
+			}
+		}
 
-        private void SwitchMovementMode(InputAction.CallbackContext _ctx)
-        {
-            if (IsOwner)
-            {
-                BroadcastControllerMvtModeServerRpc();
-            }       
-        }
+		/// <summary>
+		/// Switches the movement mode between teleportation and continous movement.
+		/// Called back when the switch movement mode action is performed.
+		/// </summary>
+		/// <param name="_ctx">
+		/// The context of the input action at the time of the callback.
+		/// It is necessary to statisfy the constraint on the callback signature but 
+		/// we are not using it.
+		/// </param>
+		private void SwitchMovementMode(InputAction.CallbackContext _ctx)
+		{
+			if (IsOwner)
+			{
+				BroadcastControllerMvtModeServerRpc();
+			}       
+		}
 
-        private void TryMoveEnd(InputAction.CallbackContext _ctx)
-        {
-            if (isContinuous.Value)
-            {
-                doContinousMove = false;
-                continousMovementData.directionHelper.gameObject.transform.parent = gameObject.transform;
-                ResetContinousMoveHelper();
-            }
-        }
-        private void TryMoveStart(InputAction.CallbackContext _ctx)
-        {
-            if (isContinuous.Value)
-            {
-                doContinousMove = true;
-                continousMovementData.directionHelper.gameObject.transform.parent = refXRRig.transform;
-            }
-            else
-            {
-                refXRRig.transform.position = teleportationData.teleportationReticle.transform.position;
-            }
-        }
-    }
+		/// <summary>
+		/// Handles needed reset when the user stops moving.
+		/// Called back when the movement action is canceled.
+		/// </summary>
+		/// <param name="_ctx">
+		/// The context of the input action at the time of the callback.
+		/// It is necessary to statisfy the constraint on the callback signature but
+		/// we are not using it.
+		/// </param>
+		private void TryMoveEnd(InputAction.CallbackContext _ctx)
+		{
+			if (isContinuous.Value)
+			{
+				doContinousMove = false;
+				continousMovementData.directionHelper.gameObject.transform.parent = gameObject.transform;
+				ResetContinousMoveHelper();
+			}
+		}
+
+		/// <summary>
+		/// Handles some data initialization when the user starts moving.
+		/// </summary>
+		/// <param name="_ctx">
+		/// The context of the input action at the time of the callback.
+		/// It is necessary to statisfy the constraint on the callback signature but
+		/// we are not using it.
+		/// </param>
+		private void TryMoveStart(InputAction.CallbackContext _ctx)
+		{
+			if (isContinuous.Value)
+			{
+				doContinousMove = true;
+				continousMovementData.directionHelper.gameObject.transform.parent = refXRRig.transform;
+			}
+			else
+			{
+				refXRRig.transform.position = teleportationData.teleportationReticle.transform.position;
+			}
+		}
+	}
 }

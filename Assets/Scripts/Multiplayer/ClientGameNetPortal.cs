@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
-using ECellDive.UI;
 using ECellDive.Utility;
 using ECellDive.Modules;
 
@@ -22,8 +19,15 @@ namespace ECellDive.Multiplayer
     [RequireComponent(typeof(GameNetPortal))]
     public class ClientGameNetPortal : MonoBehaviour
     {
+        /// <summary>
+        /// The singleton instance of this class.
+        /// </summary>
         public static ClientGameNetPortal Instance;
-        GameNetPortal m_Portal;
+
+        /// <summary>
+        /// Reference to the GameNetPortal component on this scene.
+        /// </summary>
+        private GameNetPortal m_Portal;
 
         /// <summary>
         /// Time in seconds before the client considers a lack of server response a timeout
@@ -36,6 +40,12 @@ namespace ECellDive.Multiplayer
             m_Portal = GetComponent<GameNetPortal>();
         }
 
+        /// <summary>
+        /// What to do immediately after the client connection protocol has finished.
+        /// </summary>
+        /// <param name="status">
+        /// The status of the connection attempt.
+        /// </param>
         public void OnConnectFinished(ConnectStatus status)
         {
             //on success, there is nothing to do (the Netcode for GameObjects (Netcode) scene management system will take us to the next scene).
@@ -57,12 +67,23 @@ namespace ECellDive.Multiplayer
             //}
         }
 
+        /// <summary>
+        /// Debug utility to print the reason of the disconnection.
+        /// </summary>
+        /// <param name="status">
+        /// The status of the disconnection.
+        /// </param>
         private void OnDisconnectReasonReceived(ConnectStatus status)
         {
             Debug.Log("Got disconnected with status: " + status);
             //DisconnectReason.SetDisconnectReason(status);
         }
 
+        /// <summary>
+        /// Called by <see cref="ECellDive.Multiplayer.GameNetPortal"/> when the network is ready.
+        /// In this case we check the satus of the NetManager. Since this component is only
+        /// enabled for clients, if the NetManager is not a client, we disable the component.
+        /// </summary>
         public void OnNetworkReady()
         {
             Debug.Log("OnNetworkReady for ClientGameNetPortal component");
@@ -73,12 +94,32 @@ namespace ECellDive.Multiplayer
             }
         }
 
+        /// <summary>
+        /// A custom message handler for the client to receive the result of the connection
+        /// attempt.
+        /// </summary>
+        /// <param name="clientID">
+        /// The ID of the client that should receive the message.
+        /// </param>
+        /// <param name="reader">
+        /// The optimized data struct to encapsulate the data to be sent.
+        /// </param>
         public static void ReceiveServerToClientConnectResult_CustomMessage(ulong clientID, FastBufferReader reader)
         {
             reader.ReadValueSafe(out ConnectStatus status);
             Instance.OnConnectFinished(status);
         }
 
+        /// <summary>
+        /// A custom message handler for the client to receive the reason of the
+        /// disconnection.
+        /// </summary>
+        /// <param name="clientID">
+        /// The ID of the client that should receive the message.
+        /// </param>
+        /// <param name="reader">
+        /// The optimized data struct to encapsulate the data to be sent.
+        /// </param>
         public static void ReceiveServerToClientSetDisconnectReason_CustomMessage(ulong clientID, FastBufferReader reader)
         {
             reader.ReadValueSafe(out ConnectStatus status);

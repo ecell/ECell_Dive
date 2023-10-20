@@ -19,6 +19,15 @@ jobs:
         #run: choco install -y docfx
         run: dotnet tool install -g docfx
 
+      - name: plantuml
+        id: plantuml
+        uses: grassedge/generate-plantuml-action@v1.5
+        with:
+          path: .
+          message: "Render PlantUML files"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build
         run: docfx DocFX/docfx.json
 

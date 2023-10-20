@@ -1,110 +1,118 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
-using ECellDive.Interfaces;
-using ECellDive.Utility;
+using ECellDive.Utility.Data.UI;
+using ECellDive.Utility.PlayerComponents;
 
-
-namespace ECellDive
+namespace ECellDive.UI
 {
-    namespace UI
-    {
-        [System.Serializable]
-        public struct GroupData
-        {
-            public string value;
-            public Color color;
-            public IHighlightable[] members;
-            public uint[] membersIds;
-        }
+	/// <summary>
+	/// Manages the GUI element exposing a Group data (name, color &amp; activation)
+	/// in the scene to the user.
+	/// </summary>
+	public class GroupUIManager : MonoBehaviour
+	{
+		/// <summary>
+		/// The reference to the toggle that allows the user to activate or deactivate
+		/// the visualization of the group. When deactivated, the members of the group
+		/// are displayed with the default color.
+		/// </summary>
+		public Toggle refToggle;
 
-        /// <summary>
-        /// Manages the GUI element exposing a Group data (name, color & activation)
-        /// in the scene to the user.
-        /// </summary>
-        public class GroupUIManager : MonoBehaviour
-        {
-            public Toggle refToggle;
-            public TMP_Text refValueText;
-            public Button refButtonColorPicker;
+		/// <summary>
+		/// The reference to the text mesh element to display the value representative
+		/// of the group.
+		/// </summary>
+		public TMP_Text refValueText;
 
-            public UnityEvent OnDestroy;
+		/// <summary>
+		/// The reference to the button that allows the user to change the color of the
+		/// group.
+		/// </summary>
+		public Button refButtonColorPicker;
 
-            private GroupData groupData;
+		/// <summary>
+		/// The event to be invoked when the user wants to destroy the group.
+		/// </summary>
+		public UnityEvent OnDestroy;
 
-            /// <summary>
-            /// The procedure when destroying this group.
-            /// </summary>
-            public void DestroySelf()
-            {
-                //Resetting the group info (color) of every object in hte group.
-                ForceDistributeColor(false);
+		/// <summary>
+		/// The struct to hold the data of the group represented by the GUI this script
+		/// is attached to.
+		/// </summary>
+		private GroupData groupData;
 
-                //Hiding the object.
-                gameObject.SetActive(false);
+		/// <summary>
+		/// The procedure when destroying this group.
+		/// </summary>
+		public void DestroySelf()
+		{
+			//Resetting the group info (color) of every object in hte group.
+			ForceDistributeColor(false);
 
-                //Remove the object from the scroll list containing every group.
-                transform.parent = null;
+			//Hiding the object.
+			gameObject.SetActive(false);
 
-                //Invoking external functions.
-                OnDestroy?.Invoke();
+			//Remove the object from the scroll list containing every group.
+			transform.parent = null;
 
-                //Finally, destroying the object.
-                Destroy(gameObject);
-            }
+			//Invoking external functions.
+			OnDestroy?.Invoke();
 
-            /// <summary>
-            /// Public method to be used by external objects that globally controls the
-            /// activation or deactivation of the visualization of the group.
-            /// </summary>
-            /// <param name="_forceValue">If True, the visuals are forcefully activated; If 
-            /// False, the visuals are forcefully deactivated.</param>
-            public void ForceDistributeColor(bool _forceValue)
-            {
-                if (_forceValue)
-                {
-                    StaticReferencer.Instance.refGroupsMenu.DistributeColorToMembers(groupData.color, groupData.members);
-                }
-                else
-                {
-                    StaticReferencer.Instance.refGroupsMenu.DistributeColorToMembers(Color.white, groupData.members);
-                }
-            }
+			//Finally, destroying the object.
+			Destroy(gameObject);
+		}
 
-            /// <summary>
-            /// Public method intended to be called back whenever the user wants to
-            /// activate or deactivate the visualization of the group.
-            /// </summary>
-            public void ManageMembersVisual()
-            {
-                if (refToggle.isOn)
-                {
-                    groupData.color = refButtonColorPicker.colors.normalColor;
-                }
-                else
-                {
-                    groupData.color = Color.white;
-                }
-                StaticReferencer.Instance.refGroupsMenu.DistributeColorToMembers(groupData.color, groupData.members);
-            }
+		/// <summary>
+		/// Public method to be used by external objects that globally controls the
+		/// activation or deactivation of the visualization of the group.
+		/// </summary>
+		/// <param name="_forceValue">If True, the visuals are forcefully activated; If 
+		/// False, the visuals are forcefully deactivated.</param>
+		public void ForceDistributeColor(bool _forceValue)
+		{
+			if (_forceValue)
+			{
+				StaticReferencer.Instance.refGroupsMenu.DistributeColorToMembers(groupData.color, groupData.members);
+			}
+			else
+			{
+				StaticReferencer.Instance.refGroupsMenu.DistributeColorToMembers(Color.white, groupData.members);
+			}
+		}
 
-            /// <summary>
-            /// Sets the data about the group represented by the GUI this script is attached to.
-            /// </summary>
-            public void SetData(GroupData _data)
-            {
-                groupData = _data;
-                refValueText.text = groupData.value;
+		/// <summary>
+		/// Public method intended to be called back whenever the user wants to
+		/// activate or deactivate the visualization of the group.
+		/// </summary>
+		public void ManageMembersVisual()
+		{
+			if (refToggle.isOn)
+			{
+				groupData.color = refButtonColorPicker.colors.normalColor;
+			}
+			else
+			{
+				groupData.color = Color.white;
+			}
+			StaticReferencer.Instance.refGroupsMenu.DistributeColorToMembers(groupData.color, groupData.members);
+		}
 
-                ColorBlock colors = refButtonColorPicker.colors;
-                colors.normalColor = groupData.color;
-                colors.highlightedColor = groupData.color;
-                colors.pressedColor = groupData.color;
-                refButtonColorPicker.colors = colors;
-            }
-        }
-    }
+		/// <summary>
+		/// Sets the data of the group represented by the GUI this script is attached to.
+		/// </summary>
+		public void SetData(GroupData _data)
+		{
+			groupData = _data;
+			refValueText.text = groupData.value;
+
+			ColorBlock colors = refButtonColorPicker.colors;
+			colors.normalColor = groupData.color;
+			colors.highlightedColor = groupData.color;
+			colors.pressedColor = groupData.color;
+			refButtonColorPicker.colors = colors;
+		}
+	}
 }
 

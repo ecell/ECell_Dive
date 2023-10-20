@@ -4,175 +4,227 @@ using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 using ECellDive.Interfaces;
-using ECellDive.Utility;
+using ECellDive.Utility;//to avoid ambiguity with UnityEngine.UI.Toggle
 
-
-namespace ECellDive
+namespace ECellDive.UI
 {
-    namespace UI
-    {
+	/// <summary>
+	/// Manages the GUI container (drop down) storing every GUI element representing
+	/// groups.
+	/// </summary>
+	public class SemanticGroupUIManager : MonoBehaviour, IDropDown
+	{
+		/// <summary>
+		/// The reference to a toggle to activate or deactivate every UI element
+		/// stored in the container.
+		/// </summary>
+		public Toggle refToggle;
+
+		/// <summary>
+		/// The reference to the text mesh displaying the name of the group.
+		/// </summary>
+		public TMP_Text refNameText;
+
+		/// <summary>
+		/// A unity event to be invoked when the container is destroyed.
+		/// </summary>
+		public UnityEvent OnDestroy;
+
+        #region - IDropDown Members -
         /// <summary>
-        /// Manages the GUI container (drop down) storing every GUI element representing
-        /// groups.
+        /// The field for the <see cref="refDropDownImageCollapsed"/> property.
         /// </summary>
-        public class SemanticGroupUIManager : MonoBehaviour, IDropDown
-        {
-            public Toggle refToggle;
-            public TMP_Text refNameText;
+        [SerializeField]
+		private GameObject m_refDropDownImageCollapsed;
 
-            public UnityEvent OnDestroy;
+		/// <inheritdoc/>
+		public GameObject refDropDownImageCollapsed
+		{
+			get => m_refDropDownImageCollapsed;
+			set => m_refDropDownImageCollapsed = value;
+		}
 
-            #region - IDropDown Members -
-            [SerializeField]
-            private GameObject m_refDropDownImageCollapsed;
-            public GameObject refDropDownImageCollapsed
-            {
-                get => m_refDropDownImageCollapsed;
-                set => m_refDropDownImageCollapsed = value;
-            }
-            [SerializeField]
-            private GameObject m_refDropDownImageExpanded;
-            public GameObject refDropDownImageExpanded
-            {
-                get => m_refDropDownImageExpanded;
-                set => m_refDropDownImageExpanded = value;
-            }
-            private bool m_isExpanded = false;
-            public bool isExpanded
-            {
-                get => m_isExpanded;
-                protected set => m_isExpanded = value;
-            }
+		/// <summary>
+		/// The field for the <see cref="refDropDownImageExpanded"/> property.
+		/// </summary>
+		[SerializeField]
+		private GameObject m_refDropDownImageExpanded;
 
-            private GameObject m_content;
-            public GameObject content
-            {
-                get => m_content;
-                set => m_content = value;
-            }
+		/// <inheritdoc/>
+		public GameObject refDropDownImageExpanded
+		{
+			get => m_refDropDownImageExpanded;
+			set => m_refDropDownImageExpanded = value;
+		}
 
-            [SerializeField] private GameObject m_scrollListHolderPrefab;
-            public GameObject scrollListHolderPrefab
-            {
-                get => m_scrollListHolderPrefab;
-                set => m_scrollListHolderPrefab = value;
-            }
+		/// <summary>
+		/// The field for the <see cref="isExpanded"/> property.
+		/// </summary>
+		private bool m_isExpanded = false;
 
-            [SerializeField] private GameObject m_scrollListPrefab;
-            public GameObject scrollListPrefab
-            {
-                get => m_scrollListPrefab;
-                set => m_scrollListPrefab = value;
-            }
+		/// <inheritdoc/>
+		public bool isExpanded
+		{
+			get => m_isExpanded;
+			protected set => m_isExpanded = value;
+		}
 
-            private GameObject m_scrollListHolder;
-            public GameObject scrollListHolder
-            {
-                get => m_scrollListHolder;
-                set => m_scrollListHolder = value;
-            }
+		/// <summary>
+		/// The field for the <see cref="content"/> property.
+		/// </summary>
+		private GameObject m_content;
 
-            private OptimizedVertScrollList m_scrollList;
-            public OptimizedVertScrollList scrollList
-            {
-                get => m_scrollList;
-                set => m_scrollList = value;
-            }
-            #endregion
+		/// <inheritdoc/>
+		public GameObject content
+		{
+			get => m_content;
+			set => m_content = value;
+		}
 
-            /// <summary>
-            /// The procedure when destroying this semantic group.
-            /// </summary>
-            public void DestroySelf()
-            {
-                //Resetting the group info (color) of every child.
-                foreach (RectTransform _child in scrollList.refContent)
-                {
-                    GroupUIManager refGM = _child.gameObject.GetComponent<GroupUIManager>();
-                    refGM.ForceDistributeColor(false);
-                }
+		/// <summary>
+		/// The field for the <see cref="scrollListHolderPrefab"/> property.
+		/// </summary>
+		[SerializeField] private GameObject m_scrollListHolderPrefab;
 
-                //Destroying the scroll list of the content of the drop down (semantic group). 
-                Destroy(scrollListHolder);
+		/// <inheritdoc/>
+		public GameObject scrollListHolderPrefab
+		{
+			get => m_scrollListHolderPrefab;
+			set => m_scrollListHolderPrefab = value;
+		}
 
-                //Hiding the object.
-                gameObject.SetActive(false);
+		/// <summary>
+		/// The field for the <see cref="scrollListPrefab"/> property.
+		/// </summary>
+		[SerializeField] private GameObject m_scrollListPrefab;
 
-                //Remove the object from the scroll list containing every semantic group.
-                transform.parent = null;
+		/// <inheritdoc/>
+		public GameObject scrollListPrefab
+		{
+			get => m_scrollListPrefab;
+			set => m_scrollListPrefab = value;
+		}
 
-                //Invoking external functions.
-                OnDestroy?.Invoke();
+		/// <summary>
+		/// The field for the <see cref="scrollListHolder"/> property.
+		/// </summary>
+		private GameObject m_scrollListHolder;
 
-                //Finally, destroying the object.
-                Destroy(gameObject);
-            }
+		/// <inheritdoc/>
+		public GameObject scrollListHolder
+		{
+			get => m_scrollListHolder;
+			set => m_scrollListHolder = value;
+		}
 
-            /// <summary>
-            /// To be called back when the user wants to expand of collapse the
-            /// view of the groups stored in the container.
-            /// </summary>
-            public void ManageExpansion()
-            {
-                isExpanded = !isExpanded;
-                if (isExpanded)
-                {
-                    refDropDownImageCollapsed.SetActive(false);
-                    refDropDownImageExpanded.SetActive(true);
-                    DisplayContent();
-                }
-                else
-                {
-                    refDropDownImageExpanded.SetActive(false);
-                    refDropDownImageCollapsed.SetActive(true);
-                    HideContent();
-                }
-            }
+		/// <summary>
+		/// The field for the <see cref="scrollList"/> property.
+		/// </summary>
+		private OptimizedVertScrollList m_scrollList;
 
-            /// <summary>
-            /// To be called back when the user wants to forcefully activate or deactivate
-            /// every group stored in the container.
-            /// </summary>
-            public void OnToggleValueChange()
-            {
-                foreach(RectTransform _child in scrollList.refContent)
-                {
-                    GroupUIManager refGM = _child.gameObject.GetComponent<GroupUIManager>();
-                    refGM.ForceDistributeColor(refToggle.isOn);
-                    refGM.refToggle.interactable = refToggle.isOn;
-                }
-            }
+		/// <inheritdoc/>
+		public OptimizedVertScrollList scrollList
+		{
+			get => m_scrollList;
+			set => m_scrollList = value;
+		}
+		#endregion
 
-            #region - IDropDown Methods -
+		/// <summary>
+		/// The procedure when destroying this semantic group.
+		/// </summary>
+		public void DestroySelf()
+		{
+			//Resetting the group info (color) of every child.
+			foreach (RectTransform _child in scrollList.refContent)
+			{
+				GroupUIManager refGM = _child.gameObject.GetComponent<GroupUIManager>();
+				refGM.ForceDistributeColor(false);
+			}
 
-            public GameObject AddItem()
-            {
-                return scrollList.AddItem();
-            }
+			//Destroying the scroll list of the content of the drop down (semantic group). 
+			Destroy(scrollListHolder);
 
-            public void DisplayContent()
-            {
-                m_content.SetActive(true);
-                m_scrollListHolder.GetComponent<IPopUp>().PopUp();
-            }
+			//Hiding the object.
+			gameObject.SetActive(false);
 
-            public void HideContent()
-            {
-                m_content.SetActive(false);
-            }
+			//Remove the object from the scroll list containing every semantic group.
+			transform.parent = null;
 
-            public void InstantiateContent()
-            {
-                m_scrollListHolder = Instantiate(m_scrollListHolderPrefab, Vector3.zero, Quaternion.identity);
-                m_scrollListHolder.SetActive(true);
-                m_scrollListHolder.GetComponent<IPopUp>().PopUp();
-                m_content = Instantiate(m_scrollListPrefab, m_scrollListHolder.transform);
-                m_scrollListHolder.GetComponent<XRGrabInteractable>().colliders.Add(m_content.GetComponentInChildren<BoxCollider>());
-                m_scrollListHolder.GetComponent<XRGrabInteractable>().enabled = true;
+			//Invoking external functions.
+			OnDestroy?.Invoke();
 
-                m_scrollList = m_content.GetComponentInChildren<OptimizedVertScrollList>();
-            }
-            #endregion
-        }
-    }
+			//Finally, destroying the object.
+			Destroy(gameObject);
+		}
+
+		/// <summary>
+		/// To be called back when the user wants to expand of collapse the
+		/// view of the groups stored in the container.
+		/// </summary>
+		public void ManageExpansion()
+		{
+			isExpanded = !isExpanded;
+			if (isExpanded)
+			{
+				refDropDownImageCollapsed.SetActive(false);
+				refDropDownImageExpanded.SetActive(true);
+				DisplayContent();
+			}
+			else
+			{
+				refDropDownImageExpanded.SetActive(false);
+				refDropDownImageCollapsed.SetActive(true);
+				HideContent();
+			}
+		}
+
+		/// <summary>
+		/// To be called back when the user wants to forcefully activate or deactivate
+		/// every group stored in the container.
+		/// </summary>
+		public void OnToggleValueChange()
+		{
+			foreach(RectTransform _child in scrollList.refContent)
+			{
+				GroupUIManager refGM = _child.gameObject.GetComponent<GroupUIManager>();
+				refGM.ForceDistributeColor(refToggle.isOn);
+				refGM.refToggle.interactable = refToggle.isOn;
+			}
+		}
+
+		#region - IDropDown Methods -
+		/// <inheritdoc/>
+		public GameObject AddItem()
+		{
+			return scrollList.AddItem();
+		}
+
+		/// <inheritdoc/>
+		public void DisplayContent()
+		{
+			m_content.SetActive(true);
+			m_scrollListHolder.GetComponent<IPopUp>().PopUp();
+		}
+
+		/// <inheritdoc/>
+		public void HideContent()
+		{
+			m_content.SetActive(false);
+		}
+
+		/// <inheritdoc/>
+		public void InstantiateContent()
+		{
+			m_scrollListHolder = Instantiate(m_scrollListHolderPrefab, Vector3.zero, Quaternion.identity);
+			m_scrollListHolder.SetActive(true);
+			m_scrollListHolder.GetComponent<IPopUp>().PopUp();
+			m_content = Instantiate(m_scrollListPrefab, m_scrollListHolder.transform);
+			m_scrollListHolder.GetComponent<XRGrabInteractable>().colliders.Add(m_content.GetComponentInChildren<BoxCollider>());
+			m_scrollListHolder.GetComponent<XRGrabInteractable>().enabled = true;
+
+			m_scrollList = m_content.GetComponentInChildren<OptimizedVertScrollList>();
+		}
+		#endregion
+	}
 }

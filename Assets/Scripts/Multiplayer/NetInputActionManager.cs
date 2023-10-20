@@ -8,14 +8,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace ECellDive.Multiplayer
 {
     /// <summary>
-    /// Use this class to automatically enable or disable all the inputs of type <see cref="InputAction"/>
-    /// in a list of assets of type <see cref="InputActionAsset"/>.
+    /// Use this class to automatically enable or disable all the inputs of type UnityEngine.InputSystem.InputAction.
+    /// in a list of assets of type UnityEngine.InputSystem.InputActionAsset.
     /// </summary>
     /// <remarks>
     /// Actions are initially disabled, meaning they do not listen/react to input yet. This class
     /// is used to mass enable actions so that they actively listen for input and run callbacks.
     /// </remarks>
-    /// <seealso cref="InputAction"/>
     [HelpURL(XRHelpURLConstants.k_InputActionManager)]
     public class NetInputActionManager : NetworkBehaviour
     {
@@ -31,14 +30,6 @@ namespace ECellDive.Multiplayer
             set => m_ActionAssets = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        /// <summary>
-        /// See <see cref="MonoBehaviour"/>.
-        /// </summary>
-        //protected void OnEnable()
-        //{
-        //    EnableInput();
-        //}
-
         public override void OnNetworkSpawn()
         {
             if (IsOwner)
@@ -46,14 +37,6 @@ namespace ECellDive.Multiplayer
                 EnableInput();
             }
         }
-
-        /// <summary>
-        /// See <see cref="MonoBehaviour"/>.
-        /// </summary>
-        //protected void OnDisable()
-        //{
-        //    DisableInput();
-        //}
 
         public override void OnNetworkDespawn()
         {
@@ -67,7 +50,7 @@ namespace ECellDive.Multiplayer
         /// Enable all actions referenced by this component.
         /// </summary>
         /// <remarks>
-        /// This function will automatically be called when this <see cref="NetInputActionManager"/> component is enabled.
+        /// This function will automatically be called when this <see cref="ECellDive.Multiplayer.NetInputActionManager"/> component is enabled.
         /// However, this method can be called to enable input manually, such as after disabling it with <see cref="DisableInput"/>.
         /// <br />
         /// Note that enabling inputs will only enable the action maps contained within the referenced
@@ -92,7 +75,7 @@ namespace ECellDive.Multiplayer
         /// Disable all actions referenced by this component.
         /// </summary>
         /// <remarks>
-        /// This function will automatically be called when this <see cref="NetInputActionManager"/> component is disabled.
+        /// This function will automatically be called when this <see cref="ECellDive.Multiplayer.NetInputActionManager"/> component is disabled.
         /// However, this method can be called to disable input manually, such as after enabling it with <see cref="EnableInput"/>.
         /// <br />
         /// Note that disabling inputs will only disable the action maps contained within the referenced

@@ -2,46 +2,82 @@
 using UnityEngine;
 using ECellDive.Interfaces;
 
-namespace ECellDive
+namespace ECellDive.GraphComponents
 {
-    namespace GraphComponents
-    {
-        [System.Serializable]
-        public class Node : INode
-        {
-            //Interface members
-            [SerializeField] private uint m_ID;
-            public uint ID { get => m_ID; set => m_ID = value; }
+	/// <summary>
+	/// The data structure to encode a node for a cyjson graph.
+	/// </summary>
+	[System.Serializable]
+	public class Node : INode
+	{
+		#region - INode Fields -
+		/// <summary>
+		/// The field for <see cref="ID"/>.
+		/// </summary>
+		[SerializeField] private uint m_ID;
 
-            [SerializeField] private Vector3 m_position;
-            public Vector3 position { get => m_position; set => m_position = value; }
+		/// <inheritdoc/>
+		public uint ID { get => m_ID; set => m_ID = value; }
 
-            [SerializeField] private string m_name;
-            public string name { get => m_name; set => m_name = value; }
+		/// <summary>
+		/// The field for <see cref="position"/>.
+		/// </summary>
+		[SerializeField] private Vector3 m_position;
 
-            [SerializeField] private string m_label;
-            public string label { get => m_label; set => m_label = value; }
+		/// <inheritdoc/>
+		public Vector3 position { get => m_position; set => m_position = value; }
 
-            [SerializeField] private List<uint> m_incommingEdges;
-            public List<uint> incommingEdges { get => m_incommingEdges; set => m_incommingEdges = value; }
+		/// <summary>
+		/// The field for <see cref="name"/>.
+		/// </summary>
+		[SerializeField] private string m_name;
 
-            [SerializeField] private List<uint> m_outgoingEdges;
-            public List<uint> outgoingEdges { get => m_outgoingEdges; set => m_outgoingEdges = value; }
+		/// <inheritdoc/>
+		public string name { get => m_name; set => m_name = value; }
 
-            [SerializeField] private bool m_isVirtual;
-            public bool isVirtual { get => m_isVirtual; set => m_isVirtual = value; }
+		/// <summary>
+		/// The field for <see cref="label"/>.
+		/// </summary>
+		[SerializeField] private string m_label;
 
-            public Node(uint _ID, string _label, string _name, Vector3 _position, bool _isVirtual)
-            {
-                ID = _ID;
-                position = _position;
-                label = _label;
-                name = _name;
-                incommingEdges = new List<uint>();
-                outgoingEdges = new List<uint>();
-                isVirtual = _isVirtual;
-            }
-        }
-    }
+		/// <inheritdoc/>
+		public string label { get => m_label; set => m_label = value; }
+
+		/// <summary>
+		/// The field for <see cref="incommingEdges"/>.
+		/// </summary>
+		[SerializeField] private List<uint> m_incommingEdges;
+
+		/// <inheritdoc/>
+		public List<uint> incommingEdges { get => m_incommingEdges; set => m_incommingEdges = value; }
+
+		/// <summary>
+		/// The field for <see cref="outgoingEdges"/>.
+		/// </summary>
+		[SerializeField] private List<uint> m_outgoingEdges;
+
+		/// <inheritdoc/>
+		public List<uint> outgoingEdges { get => m_outgoingEdges; set => m_outgoingEdges = value; }
+
+		/// <summary>
+		/// The field for <see cref="isVirtual"/>.
+		/// </summary>
+		[SerializeField] private bool m_isVirtual;
+
+		/// <inheritdoc/>
+		public bool isVirtual { get => m_isVirtual; set => m_isVirtual = value; }
+		#endregion
+
+		public Node(uint _ID, string _label, string _name, Vector3 _position, bool _isVirtual)
+		{
+			ID = _ID;
+			position = _position;
+			label = _label;
+			name = _name;
+			incommingEdges = new List<uint>();
+			outgoingEdges = new List<uint>();
+			isVirtual = _isVirtual;
+		}
+	}
 }
 
