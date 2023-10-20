@@ -6,8 +6,28 @@ on:
       - main
 
 jobs:
+
+  generate_plantuml:
+    runs-on: ubuntu-latest #Required to have correct paths
+    name: plantuml
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        lfs: true
+
+    - name: plantuml
+      id: plantuml
+      uses: grassedge/generate-plantuml-action@v1.5
+      with:
+        path: example
+        message: "Render PlantUML files"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   # Build the documentation
   build:
+    needs: generate_plantuml # Required to have all generated diagram svg files
     runs-on: windows-latest # Required by DocFX
     steps:
       - name: Checkout
@@ -18,15 +38,6 @@ jobs:
       - name: Install DocFX
         #run: choco install -y docfx
         run: dotnet tool install -g docfx
-
-      - name: plantuml
-        id: plantuml
-        uses: grassedge/generate-plantuml-action@v1.5
-        with:
-          path: .
-          message: "Render PlantUML files"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
         run: docfx DocFX/docfx.json
