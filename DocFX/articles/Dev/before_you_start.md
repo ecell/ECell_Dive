@@ -16,7 +16,7 @@ In this section, we give context to answer the following questions:
 - [How works the _Dive Scene_ system?](./about_scenes.md#dive-scenes)
 - How works the multiplayer code? (coming soon)
 - [What UI is available?](./about_UI.md#2d-ui-menus)
-- How works the input & interaction systems? (coming soon)
+- [How do we handle interactions?](./about_UI.md#interactions)
 - and probably others...
 
 Don't hesitate [to start an issue](https://github.com/ecell/ECell_Dive/issues) if you have other questions that would be like to be answered here.
