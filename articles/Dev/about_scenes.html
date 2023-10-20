@@ -116,34 +116,7 @@
 <p>In Unity, a scene is an asset containing a hierarchy of gameobjects that make up the content of a virtual space. The hierarchy of gameobjects defines the logic driving anything that is happening in the space, including user's movement or interaction.</p>
 <p>Despite the apparently good match between our concept of <em>Dive Scene</em> and a <em>Unity Scene</em> there are constraints in how scenes are managed in Unity. For one, as far as we could tell, scenes assets are built in the application (and it's reasonnable). This implies that you can only add scenes in the Editor and that you must know what the <em>Unity Scenes</em> will contain in advance which is incompatible with our vision of dynamic <em>Dive Scene</em> when users dive into newly added data.</p>
 <p>So, in fact, in <em>ECellDive</em>, players who dive from a scene to another, never leave the <code>Main</code> <em>Unity Scene</em>. Our <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html">DiveScenesManager</a> keeps track of which gameobject of the <em>Unity Scene</em> belongs to which <em>Dive Scene</em> and, when a user dives, the manager <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_HideScene_System_Int32_System_UInt64_">hides</a> the gameobjects of the previous <em>Dive Scene</em> and <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_ShowScene_System_Int32_System_UInt64_">shows</a> the gameobjects of the new <em>Dive Scene</em>. Fellow divers on the multiplayer network are also hidden and showed depending on the <em>Dive Scene</em> they are currently exploring. Bellow is a sequence diagram representing the relevant communications. <a class="xref" href="../../api/ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_GenerativeDiveIn">GenerativeDiveIn</a>, <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_HideScene_System_Int32_System_UInt64_">HideScene</a>, and <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_ShowScene_System_Int32_System_UInt64_">ShowScene</a> involve more communications with every clients of the network which are not represented here.</p>
-<pre><code class="lang-plantuml">@startuml component
-
-box **Client**
-actor Diver as d
-participant DataModule as DMC1
-participant DiveSceneManager as DSMC1
-endbox
-
-box **Server (Host)**
-participant DiveSceneManager as DSMH
-endbox
-
-d -&gt; DMC1: GenerativeDiveIn()\nDirectDiveIn()
-DMC1 -&gt; DSMC1: SwitchingServerRPC(rootSceneID,\ntargetSceneID, diverID)
-
-DSMC1 --&gt; DSMH: execution on server
-DSMH -&gt; DSMH: HideScene(rootSceneID,\ndiverID)
-DSMH -&gt; DSMH: ShowScene(targetSceneID,\ndiverID)
-DSMH -&gt; DSMH: UpdatePlayerData(rootSceneID,\ndiverID)
-
-DSMH --&gt; DSMC1 --: UpdatePlayerDataClientRPC(\nClientRpcParams)
-
-DSMC1 -&gt; DMC1 --: SceneSwitchIsFinished()
-
-DMC1 -&gt; d: You are in the\nnew dive scene
-
-@enduml
-</code></pre>
+<img src="../../resources/diagrams/sceneManagementDive.svg" alt="Scene Management Dive">
 
 </article>
 

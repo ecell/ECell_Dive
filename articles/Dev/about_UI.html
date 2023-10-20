@@ -85,38 +85,7 @@
 <p>Unity provides a solution to support Extended Reality development called <a href="https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@1.0/manual/index.html">XR Interaction Toolkit</a>. From this package, we used the <code>XRRig</code>, <code>InteractionManager</code>, <code>XRController (Action-Based)</code>, <code>XRRayInteractor</code>, <code>XRGrabInteractable</code>, and a few others to enable interaction and navigation in <em>Dive Scenes</em> via the XR controllers.</p>
 <p>In <em>ECellDive</em>, every interaction with objects or UI menus is performed remotely thanks to <a href="../UserManual/Controls/ray_based_interaction_controls.html">rays</a> that stems from the base of the controllers and extend for 30 units of distance in the virtual environment. The parameters of the rays are controlled by an <code>XRRayInteractor</code> component attached to the gameobject (GO) representing the ray. In the <code>Player</code> prefab (<code>Assets/Resources/Prefabs/Player</code>) search for the GOs named <code>G Left Ray</code>, <code>RG Left Ray</code>, or <code>RI Left Ray</code> to have examples. A ray interactor works in pair with an interactable in the scenes (e.g. <code>XRGrabInteractable</code>) via an interaction manager (i.e., the <code>XRInteractionManager</code> in the main scene). In <em>ECellDive</em> every module have an <code>XRGrabInteractable</code> and the 2D UI have a <code>TrackedDeviceGraphicRaycaster</code>. The <code>XRRayInteractor</code> and <code>XRGrabInteractable</code> offer a large range of parameters but we mostly don't use them. We only use the pair of components to use <a href="https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@1.0/manual/index.html#update-loop">the interaction detection system implemented in the interaction manager</a> and to bind to events related to this detection such as <code>First/Last Hover</code> (e.g. the <code>XRGrabInteractable</code> of <code>CyJsonModule</code> prefab at <code>Assets/Resources/Prefabs/Modules/CyJsonModules</code>). Then, we implemented our own subsystems such as a customized object movements with the <a class="xref" href="../../api/ECellDive.PlayerComponents.GrabManager.html">GrabManager</a> (in every modules), or a customized player teleportation and continuous movements in <a class="xref" href="../../api/ECellDive.PlayerComponents.MovementManager.html">MovementManager</a> (in <code>MVT Left Container</code> and <code>MVT Right Container</code> in the <code>Player</code> prefab).</p>
 <p>We separated the inputs of <em>ECellDive</em> in three sets of action maps for the movements (teleportation &amp; continuous), the ray-based interaction with UI and modules (grab &amp; move, press button), the ray-based and volumetric interactions with modules to make custom groups. Users can switch cycle on them thanks to the component <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html">InputModeManager</a> (in <code>Controllers</code> of the <code>Player</code> prefab). The component exposes access to two fields <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_refLeftControlSwitch">refLeftControlSwitch</a> and <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_refRightControlSwitch">refRightControlSwitch</a> to specify which action will trigger the input mode cycle on the respective controller. In turn, the action are listening to buttons of the controllers. Hence, when the user press the corresponding button, the action is performed which leads to execution of <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_LeftControllerModeSwitch_InputAction_CallbackContext_">LeftControllerModeSwitch</a> or <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_RightControllerModeSwitch_InputAction_CallbackContext_">RightControllerModeSwitch</a>. Those two methods respectively increment the <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_leftControllerModeID">leftControllerModeID</a> and <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_rightControllerModeID">rightControllerModeID</a>: the ray-based controls are associated with value <code>0</code>, the movement controls with value <code>1</code>, and the group controls with value <code>2</code>. From <code>2</code>, the value cycles to <code>0</code>. <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_leftControllerModeID">leftControllerModeID</a> and <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_rightControllerModeID">rightControllerModeID</a> are network variables which changes trigger the network event <code>OnValueChanged</code> to which the methods <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_ApplyLeftControllerActionMapSwitch_System_Int32_System_Int32_">ApplyLeftControllerActionMapSwitch</a>, <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_ApplyLeftControllerInteractorsSwitch_System_Int32_System_Int32_">ApplyLeftControllerInteractorsSwitch</a>, <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_ApplyRightControllerActionMapSwitch_System_Int32_System_Int32_">ApplyRightControllerActionMapSwitch</a> and <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_ApplyRightControllerInteractorsSwitch_System_Int32_System_Int32_">ApplyRightControllerInteractorsSwitch</a> have respectively subscribed. Finally, in those methods, the action maps and interactors the previous <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_leftControllerModeID">leftControllerModeID</a> or <a class="xref" href="../../api/ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_leftControllerModeID">leftControllerModeID</a> are deactivated while the ones of the new value are activated. Finally, the information tags of the buttons are updated to match the new input mode.</p>
-<pre><code class="lang-plantuml">@startuml
-
-participant &quot;Physical Controller&quot; as PC
-participant &quot;Switch Action&quot; as SA
-
-box &quot;Virtual Controller&quot;
-participant &quot;Input Mode Manager&quot; as IMM
-participant &quot;Input Mode //i//&quot; as IMI
-participant &quot;Input Mode //j//&quot; as IMJ
-participant &quot;Buttons Information Tags&quot; as BIT
-endbox
-
-activate IMI
-
-PC -&gt; SA: Button Pressed
-
-SA -&gt; IMM: action.performed
-note over IMM
-    controllerModeID++;
-    if controllerModeID &gt; 2
-        controllerModeID = 0
-end note
-
-IMM -&gt; IMI: deactivate action map\ndeactivate interactor
-deactivate IMI
-
-IMM -&gt; IMJ ++: activate action map\nactivate interactor
-
-IMM -&gt; BIT: update text
-
-@enduml
-</code></pre>
+<img src="../../resources/diagrams/uiSwitchInputMode.svg" alt="UI Switch Input Mode">
 <h2 id="2d-ui-menus">2D UI menus</h2>
 <p>All 2D UI panel menus are hand-made. Until this point during development, it has been more cost-efficient to duplicate already existing 2D UI items than to spend time making a procedural script that could generate some base menus. As a consequence there is quite a number of 2D UI items in the projects that resemble each other and have only been slightly modified.</p>
 <h3 id="in-the-ui-folder">In the UI folder</h3>

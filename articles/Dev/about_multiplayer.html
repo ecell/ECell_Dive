@@ -102,86 +102,14 @@
 <p>There are many others in the project.</p>
 <h2 id="big-ones-with-remote-procedure-calls-rpcs">&quot;Big ones&quot; with Remote Procedure Calls (RPCs)</h2>
 <h3 id="example-1-broadcast-data-imported-by-a-user-from-kosmogora">Example 1: Broadcast data imported by a user from Kosmogora</h3>
-<p>When a user imports data in a dive scene from a <a href="(%7E/articles/UserManual/Network/connecting_to_Kosmogora.md)">Kosmogora-like</a> server thanks to <a class="xref" href="../../api/ECellDive.Modules.HttpServerImporterModule.html">HttpServerImporterModule</a>, it is immediately sent to every other user in the multiplayer session. We could have enforced that every user in the multiplayer session have the same access to the <a href="(%7E/articles/UserManual/Network/connecting_to_Kosmogora.md)">Kosmogora-like</a> server. But we did not because it is likely that, in a collaborative setting, some users have access to <a href="(%7E/articles/UserManual/Network/connecting_to_Kosmogora.md)">Kosmogora-like</a> servers hosted on their institution's servers that are not accessible by outsiders. Hence, when data is imported by a user, it must transit to other users through the multiplayer network.</p>
-<p>In the system we implemented, the data is fragmented into chunks of 1024 bytes at most. Then the <a href="xref:ECellDive.Modules.GameNetModuleSpawner">GameNetModuleSpawner</a> on the server side spawns the GO, assigns the fragmented data to it and gives ownership of the GO back to the client who made the request first. Finally the owner fragments are broadcasted one by one to all clients by the server. Then, the fragments are reassembled on the side of each client and relevant data is extracted to initialize the module encapsulating the data. This last bit is specific to every data module.</p>
+<p>When a user imports data in a dive scene from a <a href="../UserManual/Network/connecting_to_Kosmogora.html">Kosmogora-like</a> server thanks to <a class="xref" href="../../api/ECellDive.Modules.HttpServerImporterModule.html">HttpServerImporterModule</a>, it is immediately sent to every other user in the multiplayer session. We could have enforced that every user in the multiplayer session have the same access to the <a href="../UserManual/Network/connecting_to_Kosmogora.html">Kosmogora-like</a> server. But we did not because it is likely that, in a collaborative setting, some users have access to <a href="../UserManual/Network/connecting_to_Kosmogora.html">Kosmogora-like</a> servers hosted on their institution's servers that are not accessible by outsiders. Hence, when data is imported by a user, it must transit to other users through the multiplayer network.</p>
+<p>In the system we implemented, the data is fragmented into chunks of 1024 bytes at most. Then the <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetModuleSpawner.html">GameNetModuleSpawner</a> on the server side spawns the GO, assigns the fragmented data to it and gives ownership of the GO back to the client who made the request first. Finally the owner fragments are broadcasted one by one to all clients by the server. Then, the fragments are reassembled on the side of each client and relevant data is extracted to initialize the module encapsulating the data. This last bit is specific to every data module.</p>
 <img src="../../resources/diagrams/multiplayerDataBroadcastRPC.svg" alt="Multiplayer Data Broadcast RPC Example">
 <p>A big downside of the current implementation state of the method is that the client only checks is it has received all fragments but it has not way to know which fragment is missing, should it be the case. This must be covered before even thinking of enabling multiplayer session through the internet for <em>ECellDive</em>.</p>
 <h3 id="example-2-broadcast-dive-scene-generation-on-first-dive-from-any-user">Example 2: Broadcast <em>Dive Scene</em> generation on first dive from any user</h3>
 <p>Before users can dive in a data module (e.g., <a class="xref" href="../../api/ECellDive.Modules.CyJsonModule.html">CyJsonModule</a>), its content must be generated and hidden within a dive scene. This generation happens on the first dive by any of the user in a multiplayer session. Since the generated data must be visible by every user, it must be instantiated (spawned by the server). But there may be a lot of such objects in the dive scene so the generation must be batched to avoid exceeding the communication limits set by <code>Unity Transport</code> (such limits are mandatory since, in principle, too many communications or too big data traffic could be because of malicious attack of the server).</p>
-<p>A <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a> implementing <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_GenerativeDiveInC">GenerativeDiveInC</a> (see also the explanations about <a href="about_scenes.html#dive-scenes"><em>Dive Scenes</em></a>) can request the generation of the data to the server thanks to <a href="xref:ECellDive.Modules.GameNetModule.RequestSourceDataGenerationServerRpc">RequestSourceDataGenerationServerRpc</a> (which it must also implement). The details of how the generation is implemented is specific for every data module. Here is an example of what it looks like for <a class="xref" href="../../api/ECellDive.Modules.CyJsonModule.html">CyJsonModule</a>:</p>
-<pre><code class="lang-plantuml">
-@startuml
-
-box client //i//
-actor diver as di
-participant dataModule as DMi
-participant &quot;New Dive Scene Content&quot; as NDSCi
-endbox
-
-box Server (Host)
-participant dataModule as DMS
-participant &quot;Dive Scene Manager&quot; as DSMS
-participant &quot;New Dive Scene Content&quot; as NDSCS
-endbox
-
-box client //j//
-participant &quot;New Dive Scene Content&quot; as NDSCj
-participant dataModule as DMj
-
-endbox
-
-di -&gt; DMi++: GenerativeDiveIn
-
-DMi --&gt; DMS: RequestSourceDataGenerationServerRpc(clientID)
-
-note over DMi
-Wait Until isReadyForDive
-end note
-
-DMS -&gt; DSMS: AddNewDiveScene(rootSceneID) 
-
-== CyJsonModule ==
-
-DMS -&gt; DMS ++ : RequestGraphGenerationServerRpc(\nclientID, targetSceneID)
-
-DMS -&gt; DSMS : SpawnModuleInScene(_rootSceneId, rootGO)
-DSMS -&gt; NDSCS ++: Spawn Root
-NDSCS --&gt; NDSCi ++: Replicate Root\n(order unknown)
-NDSCS --&gt; NDSCj ++: Replicate Root\n(order unknown)
-
-DMS -&gt; DMS ++ : NodesBatchSpawn(targetSceneID)
-
-loop nbNodeBatch
-    loop nodeBatchSize
-        DMS -&gt; DSMS: SpawnModuleInScene(targetSceneID, nodeGO)
-        DSMS -&gt; NDSCS ++: Spawn Node
-        NDSCS --&gt; NDSCj ++: Replicate Node\n(order unknown)
-        NDSCS --&gt; NDSCi ++: Replicate Node\n(order unknown)
-    end
-end
-deactivate DMS
-
-DMS -&gt; DMS ++ : EdgesBatchSpawn(targetSceneID)
-
-loop nbEdgeBatch
-    loop edgeBatchSize
-        DMS -&gt; DSMS: SpawnModuleInScene(targetSceneID, EdgeGO)
-        DSMS -&gt; NDSCS ++: Spawn Edge
-        NDSCS --&gt; NDSCi ++: Replicate Edge\n(order unknown)
-        NDSCS --&gt; NDSCj ++: Replicate Edge\n(order unknown)
-    end
-end
-deactivate DMS
-deactivate DMS
-
-DMS --&gt; DMj: IsReadyForDive\n(order unknown)
-DMS --&gt; DMi: IsReadyForDive\n(order unknown)
-
-DMi -&gt; DMi: DirectDiveIn
-
-@enduml
-
-</code></pre>
+<p>A <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a> implementing <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_GenerativeDiveInC">GenerativeDiveInC</a> (see also the explanations about <a href="about_scenes.html#dive-scenes"><em>Dive Scenes</em></a>) can request the generation of the data to the server thanks to <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_RequestSourceDataGenerationServerRpc_System_UInt64_">RequestSourceDataGenerationServerRpc</a> (which it must also implement). The details of how the generation is implemented is specific for every data module. Here is an example of what it looks like for <a class="xref" href="../../api/ECellDive.Modules.CyJsonModule.html">CyJsonModule</a>:</p>
+<img src="../../resources/diagrams/multiplayerSpawnBroadcast.svg" alt="Multiplayer Spawn Broadcast Example">
 
 </article>
 
