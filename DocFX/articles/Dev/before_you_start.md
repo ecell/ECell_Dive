@@ -14,7 +14,8 @@ In this section, we give context to answer the following questions:
 - [What makes a _Player_?](./about_player.md)
 - [How is the main scene structured?](./about_scenes.md#main-scene-of-the-project)
 - [How works the _Dive Scene_ system?](./about_scenes.md#dive-scenes)
-- How works the multiplayer code? (coming soon)
+- [How works the multiplayer connection?](./about_multiplayer.md#hosting-and-joining)
+- [How works multiplayer data broadcast?](./about_multiplayer.md#broadcast-data)
 - [What UI is available?](./about_UI.md#2d-ui-menus)
 - [How do we handle interactions?](./about_UI.md#interactions)
 - and probably others...
