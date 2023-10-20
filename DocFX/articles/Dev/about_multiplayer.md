@@ -28,7 +28,7 @@ When a user imports data in a dive scene from a [Kosmogora-like](~/articles/User
 
 In the system we implemented, the data is fragmented into chunks of 1024 bytes at most. Then the [GameNetModuleSpawner](xref:ECellDive.Multiplayer.GameNetModuleSpawner) on the server side spawns the GO, assigns the fragmented data to it and gives ownership of the GO back to the client who made the request first. Finally the owner fragments are broadcasted one by one to all clients by the server. Then, the fragments are reassembled on the side of each client and relevant data is extracted to initialize the module encapsulating the data. This last bit is specific to every data module.
 
-<img src="~/resources/diagrams/multiplayerDataBroadcastRPC.svg" alt="Multiplayer Data Broadcast RPC Example"/>
+<img src="../../resources/diagrams/multiplayerDataBroadcastRPC.svg" alt="Multiplayer Data Broadcast RPC Example"/>
 
 A big downside of the current implementation state of the method is that the client only checks is it has received all fragments but it has not way to know which fragment is missing, should it be the case. This must be covered before even thinking of enabling multiplayer session through the internet for _ECellDive_.  
 
@@ -39,5 +39,5 @@ Before users can dive in a data module (e.g., [CyJsonModule](xref:ECellDive.Modu
 
 A [GameNetModule](xref:ECellDive.Modules.GameNetModule) implementing [GenerativeDiveInC](xref:ECellDive.Modules.GameNetModule.GenerativeDiveInC) (see also the explanations about [_Dive Scenes_](./about_scenes.md#dive-scenes)) can request the generation of the data to the server thanks to [RequestSourceDataGenerationServerRpc](xref:ECellDive.Modules.GameNetModule.RequestSourceDataGenerationServerRpc(System.UInt64)) (which it must also implement). The details of how the generation is implemented is specific for every data module. Here is an example of what it looks like for [CyJsonModule](xref:ECellDive.Modules.CyJsonModule):
 
-<img src="~/resources/diagrams/multiplayerSpawnBroadcast.svg" alt="Multiplayer Spawn Broadcast Example"/>
+<img src="../../resources/diagrams/multiplayerSpawnBroadcast.svg" alt="Multiplayer Spawn Broadcast Example"/>
 
