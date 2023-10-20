@@ -47,32 +47,4 @@ Despite the apparently good match between our concept of _Dive Scene_ and a _Uni
 
 So, in fact, in _ECellDive_, players who dive from a scene to another, never leave the `Main` _Unity Scene_. Our [DiveScenesManager](xref:ECellDive.SceneManagement.DiveScenesManager) keeps track of which gameobject of the _Unity Scene_ belongs to which _Dive Scene_ and, when a user dives, the manager [hides](xref:ECellDive.SceneManagement.DiveScenesManager.HideScene(System.Int32,System.UInt64)) the gameobjects of the previous _Dive Scene_ and [shows](xref:ECellDive.SceneManagement.DiveScenesManager.ShowScene(System.Int32,System.UInt64)) the gameobjects of the new _Dive Scene_. Fellow divers on the multiplayer network are also hidden and showed depending on the _Dive Scene_ they are currently exploring. Bellow is a sequence diagram representing the relevant communications. [GenerativeDiveIn](xref:ECellDive.Interfaces.IDive.GenerativeDiveIn), [HideScene](xref:ECellDive.SceneManagement.DiveScenesManager.HideScene(System.Int32,System.UInt64)), and [ShowScene](xref:ECellDive.SceneManagement.DiveScenesManager.ShowScene(System.Int32,System.UInt64)) involve more communications with every clients of the network which are not represented here.
 
-```plantuml
-@startuml component
-
-box **Client**
-actor Diver as d
-participant DataModule as DMC1
-participant DiveSceneManager as DSMC1
-endbox
-
-box **Server (Host)**
-participant DiveSceneManager as DSMH
-endbox
-
-d -> DMC1: GenerativeDiveIn()\nDirectDiveIn()
-DMC1 -> DSMC1: SwitchingServerRPC(rootSceneID,\ntargetSceneID, diverID)
-
-DSMC1 --> DSMH: execution on server
-DSMH -> DSMH: HideScene(rootSceneID,\ndiverID)
-DSMH -> DSMH: ShowScene(targetSceneID,\ndiverID)
-DSMH -> DSMH: UpdatePlayerData(rootSceneID,\ndiverID)
-
-DSMH --> DSMC1 --: UpdatePlayerDataClientRPC(\nClientRpcParams)
-
-DSMC1 -> DMC1 --: SceneSwitchIsFinished()
-
-DMC1 -> d: You are in the\nnew dive scene
-
-@enduml
-```
+<img src="~/resources/diagrams/sceneManagementDive.svg" alt="Scene Management Dive"/>

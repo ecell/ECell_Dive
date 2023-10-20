@@ -7,39 +7,7 @@ In _ECellDive_, every interaction with objects or UI menus is performed remotely
 
 We separated the inputs of _ECellDive_ in three sets of action maps for the movements (teleportation & continuous), the ray-based interaction with UI and modules (grab & move, press button), the ray-based and volumetric interactions with modules to make custom groups. Users can switch cycle on them thanks to the component [InputModeManager](xref:ECellDive.Input.InputModeManager) (in `Controllers` of the `Player` prefab). The component exposes access to two fields [refLeftControlSwitch](xref:ECellDive.Input.InputModeManager.refLeftControlSwitch) and [refRightControlSwitch](xref:ECellDive.Input.InputModeManager.refRightControlSwitch) to specify which action will trigger the input mode cycle on the respective controller. In turn, the action are listening to buttons of the controllers. Hence, when the user press the corresponding button, the action is performed which leads to execution of [LeftControllerModeSwitch](xref:ECellDive.Input.InputModeManager.LeftControllerModeSwitch(InputAction.CallbackContext)) or [RightControllerModeSwitch](xref:ECellDive.Input.InputModeManager.RightControllerModeSwitch(InputAction.CallbackContext)). Those two methods respectively increment the [leftControllerModeID](xref:ECellDive.Input.InputModeManager.leftControllerModeID) and [rightControllerModeID](xref:ECellDive.Input.InputModeManager.rightControllerModeID): the ray-based controls are associated with value `0`, the movement controls with value `1`, and the group controls with value `2`. From `2`, the value cycles to `0`. [leftControllerModeID](xref:ECellDive.Input.InputModeManager.leftControllerModeID) and [rightControllerModeID](xref:ECellDive.Input.InputModeManager.rightControllerModeID) are network variables which changes trigger the network event `OnValueChanged` to which the methods [ApplyLeftControllerActionMapSwitch](xref:ECellDive.Input.InputModeManager.ApplyLeftControllerActionMapSwitch(System.Int32,System.Int32)), [ApplyLeftControllerInteractorsSwitch](xref:ECellDive.Input.InputModeManager.ApplyLeftControllerInteractorsSwitch(System.Int32,System.Int32)), [ApplyRightControllerActionMapSwitch](xref:ECellDive.Input.InputModeManager.ApplyRightControllerActionMapSwitch(System.Int32,System.Int32)) and [ApplyRightControllerInteractorsSwitch](xref:ECellDive.Input.InputModeManager.ApplyRightControllerInteractorsSwitch(System.Int32,System.Int32)) have respectively subscribed. Finally, in those methods, the action maps and interactors the previous [leftControllerModeID](xref:ECellDive.Input.InputModeManager.leftControllerModeID) or [leftControllerModeID](xref:ECellDive.Input.InputModeManager.leftControllerModeID) are deactivated while the ones of the new value are activated. Finally, the information tags of the buttons are updated to match the new input mode.
 
-```plantuml
-@startuml
-
-participant "Physical Controller" as PC
-participant "Switch Action" as SA
-
-box "Virtual Controller"
-participant "Input Mode Manager" as IMM
-participant "Input Mode //i//" as IMI
-participant "Input Mode //j//" as IMJ
-participant "Buttons Information Tags" as BIT
-endbox
-
-activate IMI
-
-PC -> SA: Button Pressed
-
-SA -> IMM: action.performed
-note over IMM
-    controllerModeID++;
-    if controllerModeID > 2
-        controllerModeID = 0
-end note
-
-IMM -> IMI: deactivate action map\ndeactivate interactor
-deactivate IMI
-
-IMM -> IMJ ++: activate action map\nactivate interactor
-
-IMM -> BIT: update text
-
-@enduml
-```
+<img src="~/resources/diagrams/uiSwitchInputMode.svg" alt="UI Switch Input Mode"/>
 
 ## 2D UI menus
 All 2D UI panel menus are hand-made. Until this point during development, it has been more cost-efficient to duplicate already existing 2D UI items than to spend time making a procedural script that could generate some base menus. As a consequence there is quite a number of 2D UI items in the projects that resemble each other and have only been slightly modified.
