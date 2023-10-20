@@ -11,12 +11,12 @@ In this section, we give context to answer the following questions:
 - [What are the general coding guidelines?](./about_code.md)
 - [How are action modules implemented?](./about_modules.md)
 - [How to add new modules?](./about_modules.md#general-workflow-to-create-a-new-module)
-- How works the multiplayer code? (coming soon)
+- [What makes a _Player_?](./about_player.md)
 - [How is the main scene structured?](./about_scenes.md#main-scene-of-the-project)
 - [How works the _Dive Scene_ system?](./about_scenes.md#dive-scenes)
+- How works the multiplayer code? (coming soon)
+- [What UI is available?](./about_UI.md#2d-ui-menus)
 - How works the input & interaction systems? (coming soon)
-- [What makes a _Player_?](./about_player.md)
-- What makes the UI menu? (coming soon)
 - and probably others...
 
 Don't hesitate [to start an issue](https://github.com/ecell/ECell_Dive/issues) if you have other questions that would be like to be answered here.
