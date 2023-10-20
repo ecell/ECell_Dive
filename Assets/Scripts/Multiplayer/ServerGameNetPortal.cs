@@ -169,7 +169,7 @@ namespace ECellDive.Multiplayer
 		}
 
         /// <summary>
-        /// Unity callback when the network is ready.
+        /// Called by <see cref="ECellDive.Multiplayer.GameNetPortal"/> when the network is ready.
         /// In this case we check the satus of the NetManager. Since this component is only
         /// enabled for servers, if the NetManager is not a server, we disable the component.
         /// </summary>

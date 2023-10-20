@@ -167,13 +167,14 @@ namespace ECellDive.Multiplayer
 			return m_settings.password == _password;
 		}
 
-		/// <summary>
-		/// This method runs when NetworkManager has started up (following a
-		/// succesful connect on the client, or directly after StartHost is invoked
-		/// on the host). It is named to match NetworkBehaviour.OnNetworkSpawn,
-		/// and serves the same role, even though GameNetPortal itself isn't a NetworkBehaviour.
-		/// </summary>
-		private void OnNetworkReady(ulong _clientID)
+        /// <summary>
+        /// This method is subscribed to Unity's NetworkManager.OnClientConnectedCallback.
+		/// So, it runs when NetworkManager has started up (following a succesful
+		/// connect on the client, or directly after StartHost is invoked on the host).
+		/// It is named to match NetworkBehaviour.OnNetworkSpawn, and serves the same
+		/// role, even though GameNetPortal itself isn't a NetworkBehaviour.
+        /// </summary>
+        private void OnNetworkReady(ulong _clientID)
 		{
 			Debug.Log($"OnNetworkReady called from Client Connection with id {_clientID}");
 			if (_clientID == NetManager.LocalClientId)
