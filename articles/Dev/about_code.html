@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Project Code conventions </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Project Code conventions ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../FusionApiDev/toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/Dev/about_code.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="project-code-conventions">Project Code conventions</h1>
+
+<p>The following are loose constraints. We understand first draft of a code might not respect that. But as it stabilizes and is updated, any code file should tend toward those conventions.</p>
+<h2 id="naming">Naming</h2>
+<ul>
+<li>Generally, the name of the file matches the name of the main class in the file (if any).</li>
+<li>File names, class names, and method names are Pascal Case (aka upper camel case) so every word in a classe name start by an upper case letter (e.g., <code>SomeScript.cs</code>, <code>AClassName</code>, <code>AMethodName</code>).</li>
+<li>Interface names start with a capital <code>I</code> and are then Pascal Case; that's pretty standard in C# (e.g., <code>IHereIsAnInterface</code>)</li>
+<li>Field names and property names are camel Case so they start with a low case letter and then wevery word start with an upper case letter (e.g. <code>hereIsAFieldName</code>, <code>andHereIsAPropertyName</code>). Camel case for property name is apparently not C# standard.</li>
+<li>Private fields of properties are prefixed with <code>m_</code> and then repeats the name of the property (e.g., <code>propertyWithFieldName</code>, <code>m_propertyWithFieldName</code>):
+<pre><code class="lang-csharp">///&lt;summary&gt;
+///The field of the &lt;see cref=&quot;aBoolProperty&quot;/&gt; property.
+///&lt;/summary&gt;
+private bool m_aBoolProperty
+
+///&lt;summary&gt;
+///The property using field &lt;see cref=&quot;m_aBoolProperty&quot;/&gt;.
+///&lt;/summary&gt;
+public bool aBoolProperty
+{
+  get =&gt; m_aBoolProperty;
+  set =&gt; m_aBoolProperty = value;
+}
+</code></pre>
+</li>
+<li>Region statement' names are bounded by hyphens (<code>-</code>), include the name of the interface or class the methods or fields they contain come from, and tell if the content of the region are methods or members. Generally speaking, no region contain both.
+<pre><code class="lang-csharp">#region - IHereIsTheInterfaceName Members -
+//here are fields and properties of interface IHereIsTheInterfaceName
+#endregion
+
+//
+//some code, maybe other regions.
+//
+
+#region - IHereIsTheInterfaceName Methods -
+//here are the implementation of the methods of interface IHereIsTheInterfaceName
+#endregion
+
+</code></pre>
+</li>
+</ul>
+<h2 id="file-layout">File Layout</h2>
+<ul>
+<li>Methods inplementations should appear in alphabetical order.</li>
+<li>There is no order constraint for properties nor fields. This is to allow developers to organise the order in which the fields appear in the Inspector of Unity as they want.</li>
+<li>Interface implementations should appear in alphabetical oder of their interface name.</li>
+<li>Interface implementations should be bounded by <code>#region</code> and <code>#endregion</code> statements to allow popular IDEs to create automatic foldout buttons for readability.</li>
+<li>Unity methods overriden in a class (e.g., <code>Start</code>, <code>Update</code>, <code>OnTriggerEnter</code>, <code>OnNetworkSpawn</code>,...) should appear before methods of that class.</li>
+<li>Members and methods of a class appear before that of the interface implementation.</li>
+</ul>
+<p>Here is a typical file structure for a gameobject component:</p>
+<pre><code class="lang-csharp">public class ANewGOComponent: MonoBehaviour, IAnInterface, IBebopInterface, ICowboyInterface
+{
+    //
+    // fields of ANewGOComponent in no particular order
+    //
+
+    #region - IAnInterface Members -
+    //members in no particular order
+    #endregion
+
+    #region - IBebopInterface Members -
+    //members in no particular order
+    #endregion
+
+    #region - ICowboyInterface Members -
+    //members in no particular order
+    #endregion
+
+    //
+    //methods of Unity overriden in ANewGOComponent
+    //
+
+    //
+    //methods of ANewGOComponent in alphabetical order
+    //
+
+    #region - IAnInterface Methods -
+    //methods alphabetical order
+    #endregion
+
+    #region - IBebopInterface Methods -
+    //members alphabetical order
+    #endregion
+
+    #region - ICowboyInterface Methods -
+    //members alphabetical order
+    #endregion
+}
+</code></pre>
+<h2 id="namespaces">Namespaces</h2>
+<p>All the code base is encapsulated in namespaces. At the root is <code>ECellDive</code> and then various other namespace levels branche out from there.
+Generally speaking, the layout of the directories under <code>Assets\Scripts</code> in the project represent the namespace ramifications where the folder names correspond to namespace levels. There are a few mismatches that will eventually be adjusted.</p>
+<h2 id="document-everything">Document everything!</h2>
+<p>Use the <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/">XML based</a> documentation to explain the purpose of every class, field, property and method. This will be automatically picked up by <a href="https://dotnet.github.io/docfx/">DocFx</a> to generate the <a class="xref" href="../../api/ECellDive.html">Scripting API</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/Dev/about_code.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprModuleSpawn.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprModuleSpawn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -117,10 +124,12 @@ that will help requesting the server to spawn a root module (e.g.
 
   <h3 id="ECellDive_Interfaces_IMlprModuleSpawn_fragmentedSourceData" data-uid="ECellDive.Interfaces.IMlprModuleSpawn.fragmentedSourceData">
   fragmentedSourceData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>List of byte arrays containing the data associated to the module
+but fragmented to avoid exceeding the maximum size of a RPC.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -148,10 +157,11 @@ that will help requesting the server to spawn a root module (e.g.
 
   <h3 id="ECellDive_Interfaces_IMlprModuleSpawn_sourceDataName" data-uid="ECellDive.Interfaces.IMlprModuleSpawn.sourceDataName">
   sourceDataName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The name of the data associated to the module.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -183,10 +193,12 @@ that will help requesting the server to spawn a root module (e.g.
 
   <h3 id="ECellDive_Interfaces_IMlprModuleSpawn_GiveDataToModule_ECellDive_Modules_GameNetModule_" data-uid="ECellDive.Interfaces.IMlprModuleSpawn.GiveDataToModule(ECellDive.Modules.GameNetModule)">
   GiveDataToModule(GameNetModule)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Transmits the <a class="xref" href="ECellDive.Interfaces.IMlprModuleSpawn.html#ECellDive_Interfaces_IMlprModuleSpawn_fragmentedSourceData">fragmentedSourceData</a> to the module
+<code class="paramref">_gameNetModule</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -196,7 +208,8 @@ that will help requesting the server to spawn a root module (e.g.
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_gameNetModule</code> <a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a></dt>
-    <dd></dd>
+    <dd><p>The module to which the data should be transmitted.</p>
+</dd>
   </dl>
 
 
@@ -214,10 +227,12 @@ that will help requesting the server to spawn a root module (e.g.
 
   <h3 id="ECellDive_Interfaces_IMlprModuleSpawn_GiveNetworkObjectReferenceClientRpc_NetworkObjectReference_ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprModuleSpawn.GiveNetworkObjectReferenceClientRpc(NetworkObjectReference,ClientRpcParams)">
   GiveNetworkObjectReferenceClientRpc(NetworkObjectReference, ClientRpcParams)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sending the reference of the module <code class="paramref">_networkObjectReference</code>
+to the client referenced by <code class="paramref">_clientRpcParams</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -227,9 +242,11 @@ that will help requesting the server to spawn a root module (e.g.
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_networkObjectReference</code> <span class="xref">NetworkObjectReference</span></dt>
-    <dd></dd>
+    <dd><p>The reference to the module's NetworkObject.</p>
+</dd>
     <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
-    <dd></dd>
+    <dd><p>The client to which the module's reference should be given.</p>
+</dd>
   </dl>
 
 
@@ -247,10 +264,12 @@ that will help requesting the server to spawn a root module (e.g.
 
   <h3 id="ECellDive_Interfaces_IMlprModuleSpawn_GiveOwnership_GameObject_System_UInt64_" data-uid="ECellDive.Interfaces.IMlprModuleSpawn.GiveOwnership(GameObject,System.UInt64)">
   GiveOwnership(GameObject, ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Giving the ownership of the module <code class="paramref">_of</code> to the client
+with the ID <code class="paramref">_newOwnerClientID</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -260,9 +279,11 @@ that will help requesting the server to spawn a root module (e.g.
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_of</code> <span class="xref">GameObject</span></dt>
-    <dd></dd>
+    <dd><p>The module to which the ownership should be given.</p>
+</dd>
     <dt><code>_newOwnerClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the client to which the ownership should be given.</p>
+</dd>
   </dl>
 
 
@@ -280,10 +301,11 @@ that will help requesting the server to spawn a root module (e.g.
 
   <h3 id="ECellDive_Interfaces_IMlprModuleSpawn_RequestModuleSpawnFromData_System_Int32_System_Byte___System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Interfaces.IMlprModuleSpawn.RequestModuleSpawnFromData(System.Int32,System.Byte[],System.Collections.Generic.List{System.Byte[]})">
   RequestModuleSpawnFromData(int, byte[], List&lt;byte[]&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L77"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The method calling <a class="xref" href="ECellDive.Interfaces.IMlprModuleSpawn.html#ECellDive_Interfaces_IMlprModuleSpawn_RequestModuleSpawnServerRpc_System_Int32_System_UInt64_">RequestModuleSpawnServerRpc(int, ulong)</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -293,11 +315,16 @@ that will help requesting the server to spawn a root module (e.g.
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_moduleID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the module to spawn. The IDs are hardcoded indexes from the editor in the
+<a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_modulePrefabs">modulePrefabs</a>.</p>
+</dd>
     <dt><code>_dataName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>The name of the data associated to the module.</p>
+</dd>
     <dt><code>_fragmentedData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
-    <dd></dd>
+    <dd><p>The data associated to the module but fragmented to avoid exceeding the maximum size
+of a RPC.</p>
+</dd>
   </dl>
 
 
@@ -315,10 +342,12 @@ that will help requesting the server to spawn a root module (e.g.
 
   <h3 id="ECellDive_Interfaces_IMlprModuleSpawn_RequestModuleSpawnServerRpc_System_Int32_System_UInt64_" data-uid="ECellDive.Interfaces.IMlprModuleSpawn.RequestModuleSpawnServerRpc(System.Int32,System.UInt64)">
   RequestModuleSpawnServerRpc(int, ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The client with ID <code class="paramref">_expeditorClientID</code> requests the server to spawn
+a module of type <code class="paramref">_moduleTypeID</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -328,9 +357,12 @@ that will help requesting the server to spawn a root module (e.g.
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_moduleTypeID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the module to spawn. The IDs are hardcoded indexes from the editor in the
+<a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_modulePrefabs">modulePrefabs</a>.</p>
+</dd>
     <dt><code>_expeditorClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the client that is requesting the spawn.</p>
+</dd>
   </dl>
 
 
@@ -351,7 +383,7 @@ that will help requesting the server to spawn a root module (e.g.
           <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

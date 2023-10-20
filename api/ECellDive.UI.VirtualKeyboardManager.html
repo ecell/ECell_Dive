@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_VirtualKeyboardManager.md&amp;value=---%0Auid%3A%20ECellDive.UI.VirtualKeyboardManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_UI_VirtualKeyboardManager" data-uid="ECellDive.UI.VirtualKeyboardManager" class="text-break">
     Class VirtualKeyboardManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -87,7 +94,9 @@
   
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Simple virtual keyboard manager for QUERTY layout, with
+symbols, numbers and capital letters.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -118,16 +127,17 @@
 
 
 
-  <h3 id="ECellDive_UI_VirtualKeyboardManager_uiPressActions" data-uid="ECellDive.UI.VirtualKeyboardManager.uiPressActions">
-  uiPressActions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_UI_VirtualKeyboardManager_activeVKSet" data-uid="ECellDive.UI.VirtualKeyboardManager.activeVKSet">
+  activeVKSet
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The index of the set of virtual keyboard layout that should be used.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LeftRightData&lt;InputActionReference&gt; uiPressActions</code></pre>
+    <pre><code class="lang-csharp hljs">private int activeVKSet</code></pre>
   </div>
 
 
@@ -135,7 +145,42 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_UI_VirtualKeyboardManager_activeVKSet_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>TO DO: build layouts for AZERTY, or any language
+that requires accents.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_UI_VirtualKeyboardManager_refTargetInputField" data-uid="ECellDive.UI.VirtualKeyboardManager.refTargetInputField">
+  refTargetInputField
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reference to the TMP_InputField currently focused.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private TMP_InputField refTargetInputField</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TMP_InputField</span></dt>
     <dd></dd>
   </dl>
 
@@ -148,9 +193,77 @@
 
 
 
+  <h3 id="ECellDive_UI_VirtualKeyboardManager_uiPressActions" data-uid="ECellDive.UI.VirtualKeyboardManager.uiPressActions">
+  uiPressActions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The press key actions associated with the left or right controllers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;InputActionReference&gt; uiPressActions</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_VirtualKeyboardManager_uiPressActionsPressed" data-uid="ECellDive.UI.VirtualKeyboardManager.uiPressActionsPressed">
+  uiPressActionsPressed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Booleans to keep track whether the left or right press
+actions were performed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private LeftRightData&lt;bool&gt; uiPressActionsPressed</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_UI_VirtualKeyboardManager_uiPressActionsPressed_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Somehow, the Input System API to retrieve this exact
+information did not seem to work, so we implemented
+our own.</p>
+</div>
+
+
+
+
+
   <h3 id="ECellDive_UI_VirtualKeyboardManager_virtualKeyBoardDatas" data-uid="ECellDive.UI.VirtualKeyboardManager.virtualKeyBoardDatas">
   virtualKeyBoardDatas
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The list of sub-layouts for QWERTY, AZERTY or &quot;language with accents&quot;</p>
@@ -166,7 +279,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.UI.VirtualKeyBoardData.html">VirtualKeyBoardData</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.Utility.Data.UI.VirtualKeyBoardData.html">VirtualKeyBoardData</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -186,7 +299,7 @@
 
   <h3 id="ECellDive_UI_VirtualKeyboardManager_AddCharToTargetInputField_TMP_Text_" data-uid="ECellDive.UI.VirtualKeyboardManager.AddCharToTargetInputField(TMP_Text)">
   AddCharToTargetInputField(TMP_Text)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L73"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds the character of the key the VK that was just pressed at the position
@@ -217,14 +330,41 @@ should be added.</p>
 
 
 
+  <a id="ECellDive_UI_VirtualKeyboardManager_Awake_" data-uid="ECellDive.UI.VirtualKeyboardManager.Awake*"></a>
+
+  <h3 id="ECellDive_UI_VirtualKeyboardManager_Awake" data-uid="ECellDive.UI.VirtualKeyboardManager.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_UI_VirtualKeyboardManager_Hide_" data-uid="ECellDive.UI.VirtualKeyboardManager.Hide*"></a>
 
   <h3 id="ECellDive_UI_VirtualKeyboardManager_Hide" data-uid="ECellDive.UI.VirtualKeyboardManager.Hide">
   Hide()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Hides the virtual keyboard by deactivating the game object.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -247,10 +387,12 @@ should be added.</p>
 
   <h3 id="ECellDive_UI_VirtualKeyboardManager_IsAlreadySelected_TMP_InputField_" data-uid="ECellDive.UI.VirtualKeyboardManager.IsAlreadySelected(TMP_InputField)">
   IsAlreadySelected(TMP_InputField)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L105"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A utility check to see if an input field (<code class="paramref">_targetInputField</code>)
+is already the target of the virtual keyboard.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -260,14 +402,42 @@ should be added.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_targetInputField</code> <span class="xref">TMP_InputField</span></dt>
-    <dd></dd>
+    <dd><p>The input field to check.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
+    <dd><p>True if <code class="paramref">_targetInputField</code> is equal to <a class="xref" href="ECellDive.UI.VirtualKeyboardManager.html#ECellDive_UI_VirtualKeyboardManager_refTargetInputField">refTargetInputField</a>, false otherwise.</p>
+</dd>
   </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_UI_VirtualKeyboardManager_OnDestroy_" data-uid="ECellDive.UI.VirtualKeyboardManager.OnDestroy*"></a>
+
+  <h3 id="ECellDive_UI_VirtualKeyboardManager_OnDestroy" data-uid="ECellDive.UI.VirtualKeyboardManager.OnDestroy">
+  OnDestroy()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void OnDestroy()</code></pre>
+  </div>
+
+
 
 
 
@@ -283,7 +453,7 @@ should be added.</p>
 
   <h3 id="ECellDive_UI_VirtualKeyboardManager_RemoveCharInTargetInputField" data-uid="ECellDive.UI.VirtualKeyboardManager.RemoveCharInTargetInputField">
   RemoveCharInTargetInputField()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L113"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Deletes the character on the left of the position of the caret</p>
@@ -306,11 +476,38 @@ should be added.</p>
 
 
 
+  <a id="ECellDive_UI_VirtualKeyboardManager_SendHapticImpulse_" data-uid="ECellDive.UI.VirtualKeyboardManager.SendHapticImpulse*"></a>
+
+  <h3 id="ECellDive_UI_VirtualKeyboardManager_SendHapticImpulse" data-uid="ECellDive.UI.VirtualKeyboardManager.SendHapticImpulse">
+  SendHapticImpulse()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Send a haptic impulse to the left or right controllers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void SendHapticImpulse()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_UI_VirtualKeyboardManager_SetTargetInputField_" data-uid="ECellDive.UI.VirtualKeyboardManager.SetTargetInputField*"></a>
 
   <h3 id="ECellDive_UI_VirtualKeyboardManager_SetTargetInputField_TMP_InputField_" data-uid="ECellDive.UI.VirtualKeyboardManager.SetTargetInputField(TMP_InputField)">
   SetTargetInputField(TMP_InputField)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L200"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Focuses the attention of the virtual keyboard on <code class="paramref">_targetInputField</code></p>
@@ -342,10 +539,12 @@ should be added.</p>
 
   <h3 id="ECellDive_UI_VirtualKeyboardManager_Show" data-uid="ECellDive.UI.VirtualKeyboardManager.Show">
   Show()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L152"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Displays the virtual keyboard by activating the game object and
+poping it up in front of the user.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -368,11 +567,11 @@ should be added.</p>
 
   <h3 id="ECellDive_UI_VirtualKeyboardManager_SwitchToLowerCaseVK" data-uid="ECellDive.UI.VirtualKeyboardManager.SwitchToLowerCaseVK">
   SwitchToLowerCaseVK()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L162"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Interfgace to display the Lower Case sub-layout of the
-<a class="xref" href="ECellDive.UI.VirtualKeyBoardData.html">VirtualKeyBoardData</a> struct.</p>
+<a class="xref" href="ECellDive.Utility.Data.UI.VirtualKeyBoardData.html">VirtualKeyBoardData</a> struct.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -396,11 +595,11 @@ should be added.</p>
 
   <h3 id="ECellDive_UI_VirtualKeyboardManager_SwitchToNumAndSignsVK" data-uid="ECellDive.UI.VirtualKeyboardManager.SwitchToNumAndSignsVK">
   SwitchToNumAndSignsVK()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L150"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L175"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Interfgace to display the Num and Signs sub-layout of the
-<a class="xref" href="ECellDive.UI.VirtualKeyBoardData.html">VirtualKeyBoardData</a> struct.</p>
+<a class="xref" href="ECellDive.Utility.Data.UI.VirtualKeyBoardData.html">VirtualKeyBoardData</a> struct.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -424,11 +623,11 @@ should be added.</p>
 
   <h3 id="ECellDive_UI_VirtualKeyboardManager_SwitchToUpperCaseVK" data-uid="ECellDive.UI.VirtualKeyboardManager.SwitchToUpperCaseVK">
   SwitchToUpperCaseVK()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L188"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Interfgace to display the Upper Case sub-layout of the
-<a class="xref" href="ECellDive.UI.VirtualKeyBoardData.html">VirtualKeyBoardData</a> struct.</p>
+<a class="xref" href="ECellDive.Utility.Data.UI.VirtualKeyBoardData.html">VirtualKeyBoardData</a> struct.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -452,7 +651,7 @@ should be added.</p>
 
   <h3 id="ECellDive_UI_VirtualKeyboardManager_UnsetTargetInputField" data-uid="ECellDive.UI.VirtualKeyboardManager.UnsetTargetInputField">
   UnsetTargetInputField()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L208"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Resets the virtual keyboard focus.</p>
@@ -479,10 +678,10 @@ should be added.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L25" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardManager.cs/#L17" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

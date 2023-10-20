@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_GroupUIManager.md&amp;value=---%0Auid%3A%20ECellDive.UI.GroupUIManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_UI_GroupUIManager" data-uid="ECellDive.UI.GroupUIManager" class="text-break">
     Class GroupUIManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -87,7 +94,9 @@
   
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Manages the GUI element exposing a Group data (name, color &amp; activation)
+in the scene to the user.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -120,10 +129,11 @@
 
   <h3 id="ECellDive_UI_GroupUIManager_OnDestroy" data-uid="ECellDive.UI.GroupUIManager.OnDestroy">
   OnDestroy
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The event to be invoked when the user wants to destroy the group.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -148,12 +158,46 @@
 
 
 
-  <h3 id="ECellDive_UI_GroupUIManager_refButtonColorPicker" data-uid="ECellDive.UI.GroupUIManager.refButtonColorPicker">
-  refButtonColorPicker
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_UI_GroupUIManager_groupData" data-uid="ECellDive.UI.GroupUIManager.groupData">
+  groupData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The struct to hold the data of the group represented by the GUI this script
+is attached to.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private GroupData groupData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.UI.GroupData.html">GroupData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_GroupUIManager_refButtonColorPicker" data-uid="ECellDive.UI.GroupUIManager.refButtonColorPicker">
+  refButtonColorPicker
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The reference to the button that allows the user to change the color of the
+group.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -180,10 +224,13 @@
 
   <h3 id="ECellDive_UI_GroupUIManager_refToggle" data-uid="ECellDive.UI.GroupUIManager.refToggle">
   refToggle
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the toggle that allows the user to activate or deactivate
+the visualization of the group. When deactivated, the members of the group
+are displayed with the default color.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -210,10 +257,12 @@
 
   <h3 id="ECellDive_UI_GroupUIManager_refValueText" data-uid="ECellDive.UI.GroupUIManager.refValueText">
   refValueText
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the text mesh element to display the value representative
+of the group.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -245,7 +294,7 @@
 
   <h3 id="ECellDive_UI_GroupUIManager_DestroySelf" data-uid="ECellDive.UI.GroupUIManager.DestroySelf">
   DestroySelf()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The procedure when destroying this group.</p>
@@ -272,7 +321,7 @@
 
   <h3 id="ECellDive_UI_GroupUIManager_ForceDistributeColor_System_Boolean_" data-uid="ECellDive.UI.GroupUIManager.ForceDistributeColor(System.Boolean)">
   ForceDistributeColor(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L73"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Public method to be used by external objects that globally controls the
@@ -307,7 +356,7 @@ False, the visuals are forcefully deactivated.</p>
 
   <h3 id="ECellDive_UI_GroupUIManager_ManageMembersVisual" data-uid="ECellDive.UI.GroupUIManager.ManageMembersVisual">
   ManageMembersVisual()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Public method intended to be called back whenever the user wants to
@@ -333,12 +382,12 @@ activate or deactivate the visualization of the group.</p>
 
   <a id="ECellDive_UI_GroupUIManager_SetData_" data-uid="ECellDive.UI.GroupUIManager.SetData*"></a>
 
-  <h3 id="ECellDive_UI_GroupUIManager_SetData_ECellDive_UI_GroupData_" data-uid="ECellDive.UI.GroupUIManager.SetData(ECellDive.UI.GroupData)">
+  <h3 id="ECellDive_UI_GroupUIManager_SetData_ECellDive_Utility_Data_UI_GroupData_" data-uid="ECellDive.UI.GroupUIManager.SetData(ECellDive.Utility.Data.UI.GroupData)">
   SetData(GroupData)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L105"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Sets the data about the group represented by the GUI this script is attached to.</p>
+  <div class="markdown level1 summary"><p>Sets the data of the group represented by the GUI this script is attached to.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -348,7 +397,7 @@ activate or deactivate the visualization of the group.</p>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>_data</code> <a class="xref" href="ECellDive.UI.GroupData.html">GroupData</a></dt>
+    <dt><code>_data</code> <a class="xref" href="ECellDive.Utility.Data.UI.GroupData.html">GroupData</a></dt>
     <dd></dd>
   </dl>
 
@@ -367,10 +416,10 @@ activate or deactivate the visualization of the group.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L27" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/GroupUIManager.cs/#L14" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

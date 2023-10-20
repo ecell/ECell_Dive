@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -81,49 +88,6 @@
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
 
-    <h3 id="classes">
-Classes
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.InteractorsRegister.html">InteractorsRegister</a></dt>
-      <dd></dd>
-    </dl>
-    <h3 id="structs">
-Structs
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.GraphBatchSpawning.html">GraphBatchSpawning</a></dt>
-      <dd><p>The struct encapsulating the parameters relevant to
-controlling the batched instantiation of the nodes and
-the edges of the graph.</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.GraphScalingData.html">GraphScalingData</a></dt>
-      <dd><p>The struct encapsulating the parameters relevant to
-controlling the scale of the graph.</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.LeftRightDataPointer-2.html">LeftRightDataPointer&lt;T, U&gt;</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData&lt;T&gt;</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.Modification.html">Modification</a></dt>
-      <dd><p>The struct to store information about a command that can be
-part of a modification (<a class="xref" href="ECellDive.Interfaces.Modification.html">Modification</a>) in a
-modification file (<a class="xref" href="ECellDive.Interfaces.ModificationFile.html">ModificationFile</a>).</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.ModificationFile.html">ModificationFile</a></dt>
-      <dd><p>Struct to store information about a modification file.</p>
-</dd>
-    </dl>
     <h3 id="interfaces">
 Interfaces
 </h3>
@@ -198,7 +162,8 @@ manual grouping features, this interface needs to be implemented.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></dt>
-      <dd></dd>
+      <dd><p>An interface to implement highlighting of a gameobject.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></dt>
@@ -217,10 +182,6 @@ UI elements.</p>
       <dd><p>An interface to encode knowledge about a chemical reaction being
 knockedout.</p>
 </dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.ILeftRightData-1.html">ILeftRightData&lt;T&gt;</a></dt>
-      <dd></dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Interfaces.ILookAt.html">ILookAt</a></dt>
@@ -245,9 +206,10 @@ that will help requesting the server to spawn a root module (e.g.
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html">IMlprVisibility</a></dt>
       <dd><p>The interface used to manipulate the visibility status of a
-network object. We cannot use Netcode's API for that (NetworkObject.NetworkHide(ulong) and NetworkObject.NetworkShow(ulong)) because the Server
-cannot be affected by it. It is an understandable behaviour
-as it seems that this API simply deletes the replicated
+network object. We cannot use Netcode's API for that (see
+NetworkObject.NetworkHide(ulong) and NetworkObject.NetworkShow(ulong))
+because the Server cannot be affected by it. It is an understandable
+behaviour as it seems that this API simply deletes the replicated
 version of a NetworkObject for a target client.
 However, we also want to the host to not see some NetworkObject.
 Namely, the content of a scene that the host may not have dived
@@ -277,7 +239,7 @@ reaction.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></dt>
-      <dd><p>Interface for GameObject in the scene that may
+      <dd><p>Interface for gameobject in the scene that may
 display a name.</p>
 </dd>
     </dl>
@@ -308,10 +270,6 @@ the information stored in a <a class="xref" href="ECellDive.Interfaces.INode.htm
       <dd><p>An interface to allow the modfied data of the class to be saved.</p>
 </dd>
     </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.ISessionPlayerData.html">ISessionPlayerData</a></dt>
-      <dd></dd>
-    </dl>
 
 
 </article>
@@ -319,7 +277,7 @@ the information stored in a <a class="xref" href="ECellDive.Interfaces.INode.htm
         <div class="contribution d-print-none">
         </div>
 
-        
+
       </div>
 
       <div class="affix">

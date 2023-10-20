@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -86,18 +93,22 @@ Classes
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.ButtonColorPicker.html">ButtonColorPicker</a></dt>
-      <dd></dd>
+      <dd><p>Associates a color picker to a button. This way
+clicking on the button will open the color picker.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.ConnectionAnchorPosition.html">ConnectionAnchorPosition</a></dt>
-      <dd><p>UI class used to compute the position of the anchor
-of the line connecting the information panel to its object.</p>
+      <dd><p>Computes the position of an anchor in a 2D UI panel that is the
+closest to its master object. A connection line will be drawn between
+the anchor and the master object.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.ContextualHelpManager.html">ContextualHelpManager</a></dt>
-      <dd><p>Class to control the visibility of all contextual info tags
-that could be attached to children gameobjects.</p>
+      <dd><p>Class to link the input mode of the controllers to the content of the information
+tags. When the input mode changes, the information tags are updated accordingly.
+It also provides a method to hide all information tags at once.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -108,7 +119,8 @@ of the HttpServerFbaAnalysisModule.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.GUIManager.html">GUIManager</a></dt>
-      <dd><p>Logic to switch On and Off the main menu.</p>
+      <dd><p>Manages the initialization of the GUI and the logic to open/close
+the Main Menu.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -119,11 +131,15 @@ interacts with in order to request processing groups.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.GroupUIManager.html">GroupUIManager</a></dt>
-      <dd></dd>
+      <dd><p>Manages the GUI element exposing a Group data (name, color &amp; activation)
+in the scene to the user.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.GroupsMakingUIManager.html">GroupsMakingUIManager</a></dt>
-      <dd></dd>
+      <dd><p>The high level manager of the UI used to validate or cancel the creation
+of new groups.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.GroupsMenu.html">GroupsMenu</a></dt>
@@ -133,11 +149,17 @@ or made out of selected objects by the user.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.InfoDisplayManager.html">InfoDisplayManager</a></dt>
-      <dd></dd>
+      <dd><p>A class to manage an information 2D UI panel that is attached to a
+gameobject by a connection line. The info tag can be displayed/hidden,
+can look at a target, and can change its text.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.InfoTagManager.html">InfoTagManager</a></dt>
-      <dd></dd>
+      <dd><p>A specialized InfoDisplayManager that manages the display of the
+input controls of the player. Typically handles what it should display
+when the player is in a certain control mode (i.e. Interaction, Movement or Groups).</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.LogManager.html">LogManager</a></dt>
@@ -157,15 +179,16 @@ the log in app at runtime.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.MultiplayerMenuManager.html">MultiplayerMenuManager</a></dt>
-      <dd></dd>
+      <dd><p>The class to manage the multiplayer menu UI.
+It is used both to join and host a multiplayer session.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html">OptimizedVertScrollList</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.UI.PlayerNameUIManager.html">PlayerNameUIManager</a></dt>
-      <dd></dd>
+      <dd><p>A quick implementation of a vertical scroll list that
+can be used to display long lists of items without causing
+performance issues.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.SemanticGroupUIManager.html">SemanticGroupUIManager</a></dt>
@@ -186,7 +209,11 @@ slider, with an input field and two buttons (+ and -)</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.SurgeAndShrinkInfoTag.html">SurgeAndShrinkInfoTag</a></dt>
-      <dd></dd>
+      <dd><p>A utility class to trigger a surge and shrink animation on
+the game object this script is attached to. Requires a
+reference to a text mesh to explain the surge and shrink to
+the player.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.UIHover.html">UIHover</a></dt>
@@ -201,46 +228,9 @@ interactible UI elements.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.UI.VirtualKeyboardManager.html">VirtualKeyboardManager</a></dt>
-      <dd></dd>
-    </dl>
-    <h3 id="structs">
-Structs
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.UI.AudioData.html">AudioData</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.UI.GroupData.html">GroupData</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.UI.HapticData.html">HapticData</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.UI.InfoTagManager.Tag.html">InfoTagManager.Tag</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.UI.InfoTagManager.TagMutator.html">InfoTagManager.TagMutator</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.UI.Padding.html">Padding</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.UI.VirtualKeyBoardData.html">VirtualKeyBoardData</a></dt>
-      <dd><p>A struct to encapsulate the virtual keyboards sub-layouts</p>
+      <dd><p>Simple virtual keyboard manager for QUERTY layout, with
+symbols, numbers and capital letters.</p>
 </dd>
-    </dl>
-    <h3 id="enums">
-Enums
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.UI.InfoTagManager.InputActionTime.html">InfoTagManager.InputActionTime</a></dt>
-      <dd></dd>
     </dl>
 
 
@@ -249,7 +239,7 @@ Enums
         <div class="contribution d-print-none">
         </div>
 
-        
+
       </div>
 
       <div class="affix">

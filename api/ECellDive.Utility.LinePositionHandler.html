@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Utility_LinePositionHandler.md&amp;value=---%0Auid%3A%20ECellDive.Utility.LinePositionHandler%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_Utility_LinePositionHandler" data-uid="ECellDive.Utility.LinePositionHandler" class="text-break">
     Class LinePositionHandler
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -114,6 +121,9 @@ info display and its module, node, edge, etc...</p>
 
 
 
+  <h2 id="ECellDive_Utility_LinePositionHandler_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Should be simplified. There is legacy code in there.</p>
+</div>
 
 
   <h2 class="section" id="fields">Fields
@@ -123,10 +133,11 @@ info display and its module, node, edge, etc...</p>
 
   <h3 id="ECellDive_Utility_LinePositionHandler_end" data-uid="ECellDive.Utility.LinePositionHandler.end">
   end
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The transform of the end position.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -153,10 +164,11 @@ info display and its module, node, edge, etc...</p>
 
   <h3 id="ECellDive_Utility_LinePositionHandler_endPositionScope" data-uid="ECellDive.Utility.LinePositionHandler.endPositionScope">
   endPositionScope
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The referential to use for the end position</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -183,10 +195,12 @@ info display and its module, node, edge, etc...</p>
 
   <h3 id="ECellDive_Utility_LinePositionHandler_overrideEnd" data-uid="ECellDive.Utility.LinePositionHandler.overrideEnd">
   overrideEnd
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>An arbitrary position to use for the end position.
+Only used if <a class="xref" href="ECellDive.Utility.LinePositionHandler.html#ECellDive_Utility_LinePositionHandler_endPositionScope">endPositionScope</a> is set to <a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html#ECellDive_Utility_LinePositionHandler_PositionScope__override">_override</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -213,10 +227,12 @@ info display and its module, node, edge, etc...</p>
 
   <h3 id="ECellDive_Utility_LinePositionHandler_overrideStart" data-uid="ECellDive.Utility.LinePositionHandler.overrideStart">
   overrideStart
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>An arbitrary position to use for the start position.
+Only used if <a class="xref" href="ECellDive.Utility.LinePositionHandler.html#ECellDive_Utility_LinePositionHandler_startPositionScope">startPositionScope</a> is set to <a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html#ECellDive_Utility_LinePositionHandler_PositionScope__override">_override</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -243,10 +259,11 @@ info display and its module, node, edge, etc...</p>
 
   <h3 id="ECellDive_Utility_LinePositionHandler_refLineRenderer" data-uid="ECellDive.Utility.LinePositionHandler.refLineRenderer">
   refLineRenderer
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the LineRenderer to update.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -273,10 +290,11 @@ info display and its module, node, edge, etc...</p>
 
   <h3 id="ECellDive_Utility_LinePositionHandler_start" data-uid="ECellDive.Utility.LinePositionHandler.start">
   start
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The transform of the start position.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -303,10 +321,11 @@ info display and its module, node, edge, etc...</p>
 
   <h3 id="ECellDive_Utility_LinePositionHandler_startPositionScope" data-uid="ECellDive.Utility.LinePositionHandler.startPositionScope">
   startPositionScope
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The referential to use for the start position</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -338,10 +357,27 @@ info display and its module, node, edge, etc...</p>
 
   <h3 id="ECellDive_Utility_LinePositionHandler_RefreshLineEndPosition" data-uid="ECellDive.Utility.LinePositionHandler.RefreshLineEndPosition">
   RefreshLineEndPosition()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L147"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates the end position of the LineRenderer.</p>
+<ul><li>
+If <a class="xref" href="ECellDive.Utility.LinePositionHandler.html#ECellDive_Utility_LinePositionHandler_endPositionScope">endPositionScope</a> is set to <a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html#ECellDive_Utility_LinePositionHandler_PositionScope_local">local</a>,
+<pre><code class="lang-csharp">end.localPosition</code></pre> is used.
+</li><li>	
+If <a class="xref" href="ECellDive.Utility.LinePositionHandler.html#ECellDive_Utility_LinePositionHandler_endPositionScope">endPositionScope</a> is set to <a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html#ECellDive_Utility_LinePositionHandler_PositionScope_world">world</a>,
+<pre><code class="lang-csharp">end.position</code></pre> is used.
+</li><li>
+If <a class="xref" href="ECellDive.Utility.LinePositionHandler.html#ECellDive_Utility_LinePositionHandler_endPositionScope">endPositionScope</a> is set to <a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html#ECellDive_Utility_LinePositionHandler_PositionScope_delta">delta</a>,
+<pre><code class="lang-csharp">end.position - start.position</code></pre> is used.
+</li><li>
+If <a class="xref" href="ECellDive.Utility.LinePositionHandler.html#ECellDive_Utility_LinePositionHandler_endPositionScope">endPositionScope</a> is set to <a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html#ECellDive_Utility_LinePositionHandler_PositionScope__override">_override</a>,
+<pre><code class="lang-csharp">overrideStart</code></pre> is used.
+</li><li>
+If <a class="xref" href="ECellDive.Utility.LinePositionHandler.html#ECellDive_Utility_LinePositionHandler_endPositionScope">endPositionScope</a> is set to <a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html#ECellDive_Utility_LinePositionHandler_PositionScope_startLocal">startLocal</a>,
+<pre><code class="lang-csharp">start.InverseTransformPoint(end.position)</code></pre> is used.
+</li></ul>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -364,7 +400,7 @@ info display and its module, node, edge, etc...</p>
 
   <h3 id="ECellDive_Utility_LinePositionHandler_RefreshLinePositions" data-uid="ECellDive.Utility.LinePositionHandler.RefreshLinePositions">
   RefreshLinePositions()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L173"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs both RefreshLineStartPosition() and
@@ -392,10 +428,24 @@ RefreshLineEndPosition().</p>
 
   <h3 id="ECellDive_Utility_LinePositionHandler_RefreshLineStartPosition" data-uid="ECellDive.Utility.LinePositionHandler.RefreshLineStartPosition">
   RefreshLineStartPosition()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates the start position of the LineRenderer.</p>
+<ul><li>
+If <a class="xref" href="ECellDive.Utility.LinePositionHandler.html#ECellDive_Utility_LinePositionHandler_startPositionScope">startPositionScope</a> is set to <a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html#ECellDive_Utility_LinePositionHandler_PositionScope_local">local</a>,
+<pre><code class="lang-csharp">start.localPosition</code></pre> is used.
+</li><li>	
+If <a class="xref" href="ECellDive.Utility.LinePositionHandler.html#ECellDive_Utility_LinePositionHandler_startPositionScope">startPositionScope</a> is set to <a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html#ECellDive_Utility_LinePositionHandler_PositionScope_world">world</a>,
+<pre><code class="lang-csharp">start.position</code></pre> is used.
+</li><li>
+If <a class="xref" href="ECellDive.Utility.LinePositionHandler.html#ECellDive_Utility_LinePositionHandler_startPositionScope">startPositionScope</a> is set to <a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html#ECellDive_Utility_LinePositionHandler_PositionScope_delta">delta</a>,
+<pre><code class="lang-csharp">start.position - end.position</code></pre> is used.
+</li><li>
+If <a class="xref" href="ECellDive.Utility.LinePositionHandler.html#ECellDive_Utility_LinePositionHandler_startPositionScope">startPositionScope</a> is set to <a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html#ECellDive_Utility_LinePositionHandler_PositionScope__override">_override</a>,
+<pre><code class="lang-csharp">overrideStart</code></pre> is used.
+</li></ul>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -414,14 +464,47 @@ RefreshLineEndPosition().</p>
 
 
 
+  <a id="ECellDive_Utility_LinePositionHandler_Start_" data-uid="ECellDive.Utility.LinePositionHandler.Start*"></a>
+
+  <h3 id="ECellDive_Utility_LinePositionHandler_Start" data-uid="ECellDive.Utility.LinePositionHandler.Start">
+  Start()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>That is a hack to make sure the line is updated after the objects are spawned
+and may have moved. There is probably a better way to do this.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private IEnumerator Start()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L14" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/LinePositionHandler.cs/#L16" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

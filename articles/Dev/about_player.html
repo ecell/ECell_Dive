@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Player </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Player ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../FusionApiDev/toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/Dev/about_player.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<p>The player gameobject (GO) in the project is at location <code>Assets/Resources/Prefabs/Player/Player</code>. This is the GO used to represent users. It has children GOs to define the <code>XRRig</code> (a sort of physics anchor for XR environments in Unity), the <code>Camera</code>, the <code>Head Model</code>, the <code>Movement Systems</code>, and the <code>Controllers</code>.</p>
+<img src="../../resources/images/dev/Player/GOHierarchy_Player.jpg" alt="Player GO Hierarchy">
+<h1 id="player">Player</h1>
+<p>The top parent GO <code>Player</code> has essential components to make it XR-compatible (<code>XRRig</code>) and visible on the multiplayer network (<code>NetworkObject</code>). It also has custom components to:</p>
+<ul>
+<li>manage its name and visibility on the network (<a class="xref" href="../../api/ECellDive.PlayerComponents.Player.html">Player</a>)</li>
+<li>to activate/deactivate children components depending on whether the instance of the gameobject is for the local client or a replicated player on the client's session (<a class="xref" href="../../api/ECellDive.Utility.Multiplayer.NetworkSpawnComponentActivation.html">NetworkSpawnComponentActivation</a>)</li>
+<li>to expose some children GOs or components to outside (<a class="xref" href="../../api/ECellDive.Utility.PlayerComponents.StaticReferencer.html">StaticReferencer</a>)</li>
+</ul>
+<h2 id="main-camera">Main Camera</h2>
+<p>Contains the <code>Camera</code> (and <code>UniversalAdditionalCameraData</code>) component to render the world from the view point of the player, an <code>AudioListener</code> to receive sounds, <code>TrackedPoseDriver</code> to track the position and rotation of the head of the player, <code>NetAvatarTransformTracker</code> to broadcast the position of the head on the multiplayer network. The only custom component in <a class="xref" href="../../api/ECellDive.Utility.PerLayerCulling.html">PerLayerCulling</a> to control distance visibility of GOs in the scene that are part of some <a href="https://docs.unity3d.com/Manual/Layers.html">layers</a>.</p>
+<h3 id="diving-occulation">Diving Occulation</h3>
+<p>Manages the occultation animation of the camera when the player is diving but is <strong>currently disabled</strong>.</p>
+<h3 id="player-name-container">Player Name Container</h3>
+<p>A container GO for the canvas and text mesh to write the name of this player GO. It is always deactivated for the local client, but it will be visible on its replicated version in the sessions of other clients. The <a class="xref" href="../../api/ECellDive.Utility.FaceCamera.html">FaceCamera</a> and <a class="xref" href="../../api/ECellDive.Utility.AlwaysLookAt.html">AlwaysLookAt</a> components are used in order for the container of a replicated player to always look at the camera of a local client. This way, the name of the replicated player is always visible.</p>
+<h3 id="head">Head</h3>
+<p>Is the simple 3D model of a head.</p>
+<h2 id="camera-floor-offset">Camera Floor Offset</h2>
+<p>An empty GO used to set the reference position of the floor (currently at <code>(0, 0, 0)</code>). It is a required field for <code>XRRig</code>.</p>
+<h2 id="controllers">Controllers</h2>
+<p>The base GO to encapsulate the 3D models and input logic of the XR controllers. The custom components are:</p>
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Input.InputModeManager.html">InputModeManager</a> to switch the input modes between the <code>Ray-Based Interactions</code>, the <code>Movement</code>, and the <code>Groups</code> controls (see the dedicated section in the <a href="../UserManual/Controls/controls.html">User Manual</a>).</li>
+<li><a class="xref" href="../../api/ECellDive.UI.ContextualHelpManager.html">ContextualHelpManager</a> to link the information tags about each buttons to the switch of input modes.</li>
+<li><a class="xref" href="../../api/ECellDive.PlayerComponents.GroupsMakingManager.html">GroupsMakingManager</a> to keep track of the objects manually selected to form a group with the discrete or volumetric selectors.</li>
+</ul>
+<h3 id="main-pointer">Main Pointer</h3>
+<p>Empty GO to encapsulate the 3D models and and input logic of the XR controllers.
+<strong>This is legacy structure and could be simplified</strong></p>
+<h4 id="mp-left">MP Left</h4>
+<p>Everything that concerns the left controller. It has a <code>XRController (Acion-based)</code> component to link left controller input (position, rotation, buttons) to actions and a <code>NetAvatarTransformTracker</code> to broadcast its position to the replicated version on other clients' session.</p>
+<h5 id="left-input-mode-surge-info-tag">Left Input Mode Surge Info Tag</h5>
+<p>An information label that surges and shrinks when switching input modes on the left controller to tell the player what input mode it is switching to. It contains and <code>Animation</code> component to drive the surge and shink animations. The custom components are:</p>
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Utility.FaceCamera.html">FaceCamera</a> and <a class="xref" href="../../api/ECellDive.Utility.AlwaysLookAt.html">AlwaysLookAt</a> so that the information tag is always readable from the Player's view.</li>
+<li><a class="xref" href="../../api/ECellDive.UI.SurgeAndShrinkInfoTag.html">SurgeAndShrinkInfoTag</a> to trigger the animation and manage the content of the string.</li>
+</ul>
+<h5 id="left_quest2_controller_world">left_quest2_controller_world</h5>
+<p>The 3D models of the Quest 2 controller. Downladed from the <a href="https://developer.oculus.com/downloads/package/oculus-controller-art/#oculus-touch-for-quest-2">open assets of Meta</a>. It is a modified version to with UI information tags attached to each button.</p>
+<h5 id="input-modes-graphics-local-client">Input Modes Graphics Local Client</h5>
+<p>All renderers, 3D models, <code>XRRayInteractor</code>, and <code>XRController (Acion-based)</code> to enable the local client to interact and navigate in the virtual environment. It is those children GOs that are Activated/Deactivated when the player switches between input modes on the left controller.</p>
+<h5 id="input-modes-graphics-replicated-client">Input Modes Graphics Replicated Client</h5>
+<p>The <code>LineRenderer</code> to represent the line of the ray controls that will be visible by local clients when they look at the replicated player GOs of the other clients on the multiplayer network.</p>
+<h4 id="mp-right">MP Right</h4>
+<p>The symetrical GO to MP Left for the right controller.</p>
+<h3 id="xr-locomotion-system">XR Locomotion System</h3>
+<p>A GO with a unique component (<code>Locomotion System</code>) provided by Unity to help with moving the player's <code>XRRig</code> in the virtual environment.</p>
+<h3 id="xr-teleportation-provider">XR Teleportation Provider</h3>
+<p>A GO with a unique component (<code>Teleportation Provider</code>) provided by Unity to help teleport the player's <code>XRRig</code> in the virtual environment.</p>
+<h3 id="internal-object-container">Internal Object Container</h3>
+<p>An anchor GO with no component. It's only purpose is to provide a parent position for every items that are pinned to the player (e.g., UI menu or modules).</p>
+<h1 id="player_debug">Player_Debug</h1>
+<p>This version of the player can be found under the path <code>Assets/Resources/Prefabs/Player/Player_Debug</code>. It is a copy of <code>Player</code> with only an additional child GO named <code>XR Device Simulator</code>. It is provided by Unity to be able to manipulate the position of the head and the controllers with a Keyboard &amp; Mouse. It is extremely practical to test and debug without the VR headset. Be sure that the Headset is <strong>NOT</strong> connected to the computer. Otherwise the inputs will collide and the behaviour is undefined.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/Dev/about_player.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

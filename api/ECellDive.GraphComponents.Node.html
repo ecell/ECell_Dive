@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_GraphComponents_Node.md&amp;value=---%0Auid%3A%20ECellDive.GraphComponents.Node%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_GraphComponents_Node" data-uid="ECellDive.GraphComponents.Node" class="text-break">
     Class Node
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -87,7 +94,8 @@
   
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>The data structure to encode a node for a cyjson graph.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -153,7 +161,7 @@ public class Node : INode</code></pre>
 
   <h3 id="ECellDive_GraphComponents_Node__ctor_System_UInt32_System_String_System_String_Vector3_System_Boolean_" data-uid="ECellDive.GraphComponents.Node.#ctor(System.UInt32,System.String,System.String,Vector3,System.Boolean)">
   Node(uint, string, string, Vector3, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -188,6 +196,227 @@ public class Node : INode</code></pre>
 
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="ECellDive_GraphComponents_Node_m_ID" data-uid="ECellDive.GraphComponents.Node.m_ID">
+  m_ID
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.GraphComponents.Node.html#ECellDive_GraphComponents_Node_ID">ID</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private uint m_ID</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_GraphComponents_Node_m_incommingEdges" data-uid="ECellDive.GraphComponents.Node.m_incommingEdges">
+  m_incommingEdges
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.GraphComponents.Node.html#ECellDive_GraphComponents_Node_incommingEdges">incommingEdges</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private List&lt;uint&gt; m_incommingEdges</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_GraphComponents_Node_m_isVirtual" data-uid="ECellDive.GraphComponents.Node.m_isVirtual">
+  m_isVirtual
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.GraphComponents.Node.html#ECellDive_GraphComponents_Node_isVirtual">isVirtual</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private bool m_isVirtual</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_GraphComponents_Node_m_label" data-uid="ECellDive.GraphComponents.Node.m_label">
+  m_label
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.GraphComponents.Node.html#ECellDive_GraphComponents_Node_label">label</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private string m_label</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_GraphComponents_Node_m_name" data-uid="ECellDive.GraphComponents.Node.m_name">
+  m_name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.GraphComponents.Node.html#ECellDive_GraphComponents_Node_name">name</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private string m_name</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_GraphComponents_Node_m_outgoingEdges" data-uid="ECellDive.GraphComponents.Node.m_outgoingEdges">
+  m_outgoingEdges
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.GraphComponents.Node.html#ECellDive_GraphComponents_Node_outgoingEdges">outgoingEdges</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private List&lt;uint&gt; m_outgoingEdges</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_GraphComponents_Node_m_position" data-uid="ECellDive.GraphComponents.Node.m_position">
+  m_position
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.GraphComponents.Node.html#ECellDive_GraphComponents_Node_position">position</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private Vector3 m_position</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="properties">Properties
 </h2>
 
@@ -196,7 +425,7 @@ public class Node : INode</code></pre>
 
   <h3 id="ECellDive_GraphComponents_Node_ID" data-uid="ECellDive.GraphComponents.Node.ID">
   ID
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A unique ID.</p>
@@ -228,7 +457,7 @@ public class Node : INode</code></pre>
 
   <h3 id="ECellDive_GraphComponents_Node_incommingEdges" data-uid="ECellDive.GraphComponents.Node.incommingEdges">
   incommingEdges
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The list of the <a class="xref" href="ECellDive.Interfaces.IEdge.html#ECellDive_Interfaces_IEdge_ID">ID</a> of the edges that
@@ -261,7 +490,7 @@ started from somewhere and are arriving to this node.</p>
 
   <h3 id="ECellDive_GraphComponents_Node_isVirtual" data-uid="ECellDive.GraphComponents.Node.isVirtual">
   isVirtual
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A utility state variable to describe whether the node is
@@ -295,7 +524,7 @@ representing important data for the user.</p>
 
   <h3 id="ECellDive_GraphComponents_Node_label" data-uid="ECellDive.GraphComponents.Node.label">
   label
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A string to store additional textual information about the
@@ -333,10 +562,11 @@ and less explicit.</p>
 
   <h3 id="ECellDive_GraphComponents_Node_name" data-uid="ECellDive.GraphComponents.Node.name">
   name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The name of the node.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -364,7 +594,7 @@ and less explicit.</p>
 
   <h3 id="ECellDive_GraphComponents_Node_outgoingEdges" data-uid="ECellDive.GraphComponents.Node.outgoingEdges">
   outgoingEdges
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The list of the <a class="xref" href="ECellDive.Interfaces.IEdge.html#ECellDive_Interfaces_IEdge_ID">ID</a> of the edges that
@@ -397,7 +627,7 @@ are starting from this node.</p>
 
   <h3 id="ECellDive_GraphComponents_Node_position" data-uid="ECellDive.GraphComponents.Node.position">
   position
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Position in the 3D space of the node</p>
@@ -429,10 +659,10 @@ are starting from this node.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L9" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/Node.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

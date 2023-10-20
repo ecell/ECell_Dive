@@ -16,13 +16,20 @@
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Network/multiplayer.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../../../public/main.js'
-    import { init } from './../../../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../../../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -80,6 +87,7 @@
 In the schematic above, it is the the user at 192.168.14.28 that decides to host the session at his address under the port 7777. Once the session is created, other users can join by inputting the target IP(v4) address of the host as well as the port.</p>
 <img src="../../../resources/images/schematics/network/Multiplayer_Kosmogora_request.jpg" alt="Multiplayer-Kosmogora Request" style="height: 400px;">
 <p>Once all users are connected to the host, they can all query the instance of a Kosmogora server as they would do in the single player scheme. In particular, when a user imports data from the server, it is synchronised between all of them and they can dive into it together.</p>
+
 </article>
 
         <div class="contribution d-print-none">
@@ -87,7 +95,7 @@ In the schematic above, it is the the user at 192.168.14.28 that decides to host
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
-        
+
       </div>
 
       <div class="affix">

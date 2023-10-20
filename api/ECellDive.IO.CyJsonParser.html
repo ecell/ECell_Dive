@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_IO_CyJsonParser.md&amp;value=---%0Auid%3A%20ECellDive.IO.CyJsonParser%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_IO_CyJsonParser" data-uid="ECellDive.IO.CyJsonParser" class="text-break">
     Class CyJsonParser
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -87,7 +94,8 @@
   
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Static class containing methods to parse a Cytoscape Json file.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -146,7 +154,7 @@
 
   <h3 id="ECellDive_IO_CyJsonParser_GetEdges_JObject_" data-uid="ECellDive.IO.CyJsonParser.GetEdges(JObject)">
   GetEdges(JObject)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Extract all the edges as a JArray from the JObject representation
@@ -186,7 +194,7 @@ of the Cytoscape Json file.</p>
 
   <h3 id="ECellDive_IO_CyJsonParser_GetNodes_JObject_" data-uid="ECellDive.IO.CyJsonParser.GetNodes(JObject)">
   GetNodes(JObject)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Extract all the nodes as a JArray from the JObject representation
@@ -226,7 +234,7 @@ of the Cytoscape Json file.</p>
 
   <h3 id="ECellDive_IO_CyJsonParser_GroupDataByKey_JArray_System_String_" data-uid="ECellDive.IO.CyJsonParser.GroupDataByKey(JArray,System.String)">
   GroupDataByKey(JArray, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Extract and group the the json nodes according to a key</p>
@@ -269,7 +277,7 @@ per their value of the key.</p>
 
   <h3 id="ECellDive_IO_CyJsonParser_LookForID_JToken_" data-uid="ECellDive.IO.CyJsonParser.LookForID(JToken)">
   LookForID(JToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Looks for either a &quot;SUID&quot; or &quot;id&quot; field</p>
@@ -283,13 +291,15 @@ per their value of the key.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_jToken</code> <span class="xref">JToken</span></dt>
-    <dd></dd>
+    <dd><p>The JToken to look into.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The id of the node if it exists, -1 otherwise.</p>
+</dd>
   </dl>
 
 
@@ -306,7 +316,7 @@ per their value of the key.</p>
 
   <h3 id="ECellDive_IO_CyJsonParser_LookForLabel_JToken_" data-uid="ECellDive.IO.CyJsonParser.LookForLabel(JToken)">
   LookForLabel(JToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L93"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Looks for a &quot;label&quot; field in a &quot;data&quot; field in a _JToken.</p>
@@ -320,13 +330,15 @@ per their value of the key.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_jToken</code> <span class="xref">JToken</span></dt>
-    <dd></dd>
+    <dd><p>The JToken to look into.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The label of the node if it exists, &quot;No Label&quot; otherwise.</p>
+</dd>
   </dl>
 
 
@@ -343,7 +355,7 @@ per their value of the key.</p>
 
   <h3 id="ECellDive_IO_CyJsonParser_LookForName_JToken_" data-uid="ECellDive.IO.CyJsonParser.LookForName(JToken)">
   LookForName(JToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L116"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Looks for a &quot;name&quot; field in a &quot;data&quot; field in a _JToken.</p>
@@ -357,13 +369,15 @@ per their value of the key.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_jToken</code> <span class="xref">JToken</span></dt>
-    <dd></dd>
+    <dd><p>The JToken to look into.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The name of the node if it exists, &quot;No Name&quot; otherwise.</p>
+</dd>
   </dl>
 
 
@@ -380,10 +394,11 @@ per their value of the key.</p>
 
   <h3 id="ECellDive_IO_CyJsonParser_LookForNodePosition_JToken_" data-uid="ECellDive.IO.CyJsonParser.LookForNodePosition(JToken)">
   LookForNodePosition(JToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L140"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Looks for a &quot;x&quot; and &quot;y&quot; field in a &quot;position&quot; field in a _JToken.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -399,7 +414,9 @@ per their value of the key.</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><span class="xref">Vector3</span></dt>
-    <dd></dd>
+    <dd><p>A Vector3 containing the x and y coordinates of the node.
+The z coordinate is set to 0.</p>
+</dd>
   </dl>
 
 
@@ -416,10 +433,12 @@ per their value of the key.</p>
 
   <h3 id="ECellDive_IO_CyJsonParser_LookForNodeType_JToken_" data-uid="ECellDive.IO.CyJsonParser.LookForNodeType(JToken)">
   LookForNodeType(JToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L156"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L162"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if the &quot;node_type&quot; field in a &quot;data&quot; field in a _JToken
+is equal to &quot;midmarker&quot; or &quot;multimarker&quot;.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -429,13 +448,15 @@ per their value of the key.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_node</code> <span class="xref">JToken</span></dt>
-    <dd></dd>
+    <dd><p>The JToken to look into.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
+    <dd><p>True if the node is a midmarker or a multimarker, false otherwise.</p>
+</dd>
   </dl>
 
 
@@ -452,10 +473,10 @@ per their value of the key.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L13" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/IO/CyJsonParser.cs/#L11" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

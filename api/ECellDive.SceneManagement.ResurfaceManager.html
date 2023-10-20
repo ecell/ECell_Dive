@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_ResurfaceManager.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.ResurfaceManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_SceneManagement_ResurfaceManager" data-uid="ECellDive.SceneManagement.ResurfaceManager" class="text-break">
     Class ResurfaceManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -125,10 +132,12 @@ is at the level of the scene.</p>
 
   <h3 id="ECellDive_SceneManagement_ResurfaceManager_resurfaceAction" data-uid="ECellDive.SceneManagement.ResurfaceManager.resurfaceAction">
   resurfaceAction
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the left and right input actions that will trigger
+the resurface.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -140,7 +149,7 @@ is at the level of the scene.</p>
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -156,11 +165,115 @@ is at the level of the scene.</p>
 </h2>
 
 
+  <a id="ECellDive_SceneManagement_ResurfaceManager_Awake_" data-uid="ECellDive.SceneManagement.ResurfaceManager.Awake*"></a>
+
+  <h3 id="ECellDive_SceneManagement_ResurfaceManager_Awake" data-uid="ECellDive.SceneManagement.ResurfaceManager.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_SceneManagement_ResurfaceManager_OnDestroy_" data-uid="ECellDive.SceneManagement.ResurfaceManager.OnDestroy*"></a>
+
+  <h3 id="ECellDive_SceneManagement_ResurfaceManager_OnDestroy" data-uid="ECellDive.SceneManagement.ResurfaceManager.OnDestroy">
+  OnDestroy()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void OnDestroy()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_SceneManagement_ResurfaceManager_OnDisable_" data-uid="ECellDive.SceneManagement.ResurfaceManager.OnDisable*"></a>
+
+  <h3 id="ECellDive_SceneManagement_ResurfaceManager_OnDisable" data-uid="ECellDive.SceneManagement.ResurfaceManager.OnDisable">
+  OnDisable()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void OnDisable()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_SceneManagement_ResurfaceManager_OnEnable_" data-uid="ECellDive.SceneManagement.ResurfaceManager.OnEnable*"></a>
+
+  <h3 id="ECellDive_SceneManagement_ResurfaceManager_OnEnable" data-uid="ECellDive.SceneManagement.ResurfaceManager.OnEnable">
+  OnEnable()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void OnEnable()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_ResurfaceManager_Resurface_" data-uid="ECellDive.SceneManagement.ResurfaceManager.Resurface*"></a>
 
   <h3 id="ECellDive_SceneManagement_ResurfaceManager_Resurface" data-uid="ECellDive.SceneManagement.ResurfaceManager.Resurface">
   Resurface()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Start point of the logic allowing a user to resurface from a child
@@ -184,14 +297,94 @@ dive scene to the parent dive scene.</p>
 
 
 
+  <a id="ECellDive_SceneManagement_ResurfaceManager_ResurfaceLeft_" data-uid="ECellDive.SceneManagement.ResurfaceManager.ResurfaceLeft*"></a>
+
+  <h3 id="ECellDive_SceneManagement_ResurfaceManager_ResurfaceLeft_InputAction_CallbackContext_" data-uid="ECellDive.SceneManagement.ResurfaceManager.ResurfaceLeft(InputAction.CallbackContext)">
+  ResurfaceLeft(CallbackContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Buffer logic to callback <a class="xref" href="ECellDive.SceneManagement.ResurfaceManager.html#ECellDive_SceneManagement_ResurfaceManager_Resurface">Resurface()</a> when the
+input on the left controller is triggered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ResurfaceLeft(InputAction.CallbackContext _ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_ctx</code> <span class="xref">CallbackContext</span></dt>
+    <dd><p>The context of the input action at the time of the callback.
+It is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_SceneManagement_ResurfaceManager_ResurfaceLeft_InputAction_CallbackContext__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Same as <a class="xref" href="ECellDive.SceneManagement.ResurfaceManager.html#ECellDive_SceneManagement_ResurfaceManager_ResurfaceRight_InputAction_CallbackContext_">ResurfaceRight(CallbackContext)</a>
+but for the left controller.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_SceneManagement_ResurfaceManager_ResurfaceRight_" data-uid="ECellDive.SceneManagement.ResurfaceManager.ResurfaceRight*"></a>
+
+  <h3 id="ECellDive_SceneManagement_ResurfaceManager_ResurfaceRight_InputAction_CallbackContext_" data-uid="ECellDive.SceneManagement.ResurfaceManager.ResurfaceRight(InputAction.CallbackContext)">
+  ResurfaceRight(CallbackContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Buffer logic to callback <a class="xref" href="ECellDive.SceneManagement.ResurfaceManager.html#ECellDive_SceneManagement_ResurfaceManager_Resurface">Resurface()</a> when the
+input on the left controller is triggered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ResurfaceRight(InputAction.CallbackContext _ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_ctx</code> <span class="xref">CallbackContext</span></dt>
+    <dd><p>The context of the input action at the time of the callback.
+It is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_SceneManagement_ResurfaceManager_ResurfaceRight_InputAction_CallbackContext__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Same as <a class="xref" href="ECellDive.SceneManagement.ResurfaceManager.html#ECellDive_SceneManagement_ResurfaceManager_ResurfaceLeft_InputAction_CallbackContext_">ResurfaceLeft(CallbackContext)</a>
+but for the right controller.</p>
+</div>
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L16" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/ResurfaceManager.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

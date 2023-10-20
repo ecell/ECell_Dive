@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Interfaces_IMlprData.md&amp;value=---%0Auid%3A%20ECellDive.Interfaces.IMlprData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_Interfaces_IMlprData" data-uid="ECellDive.Interfaces.IMlprData" class="text-break">
     Interface IMlprData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -116,10 +123,11 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_fragmentedSourceData" data-uid="ECellDive.Interfaces.IMlprData.fragmentedSourceData">
   fragmentedSourceData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L103"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>List of byte arrays containing the fragmented data associated to the module.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -147,10 +155,12 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_isReadyForGeneration" data-uid="ECellDive.Interfaces.IMlprData.isReadyForGeneration">
   isReadyForGeneration
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L129"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A network variable that is true when all clients have received all
+the fragments from <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -178,10 +188,12 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_nbClientReadyLoaded" data-uid="ECellDive.Interfaces.IMlprData.nbClientReadyLoaded">
   nbClientReadyLoaded
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The number of clients that have received all the fragments from
+<a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -209,10 +221,11 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_sourceDataName" data-uid="ECellDive.Interfaces.IMlprData.sourceDataName">
   sourceDataName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The name of the data associated to the module (in <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a>)</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -240,10 +253,11 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_sourceDataNbFrags" data-uid="ECellDive.Interfaces.IMlprData.sourceDataNbFrags">
   sourceDataNbFrags
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L117"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The number of fragments in <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -263,6 +277,9 @@ to a module in a multiplayer context.</p>
 
 
 
+  <h4 class="section" id="ECellDive_Interfaces_IMlprData_sourceDataNbFrags_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>It should be equal to <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a>.Count.</p>
+</div>
 
 
 
@@ -275,10 +292,12 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_AssembleFragmentedData" data-uid="ECellDive.Interfaces.IMlprData.AssembleFragmentedData">
   AssembleFragmentedData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L138"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Reassembles the fragments from <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a> into
+a single byte array and interprets it.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -293,6 +312,9 @@ to a module in a multiplayer context.</p>
 
 
 
+  <h4 class="section" id="ECellDive_Interfaces_IMlprData_AssembleFragmentedData_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>It is marked as abstract because it MUST be implemented by any divable module.</p>
+</div>
 
 
 
@@ -301,10 +323,13 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataC" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataC">
   BroadcastSourceDataC()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L150"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Public interface to a coroutine requesting the server to send the name,
+the number of fragments and the fragments of the data associated to the module
+to all clients.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -324,6 +349,11 @@ to a module in a multiplayer context.</p>
 
 
 
+  <h4 class="section" id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataC_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Sequentially calls <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameServerRpc_System_Byte___">BroadcastSourceDataNameServerRpc(byte[])</a>,
+<a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsServerRpc_System_UInt16_">BroadcastSourceDataNbFragsServerRpc(ushort)</a> and
+<a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____">BroadcastSourceDataFragsC(List&lt;byte[]&gt;)</a>.</p>
+</div>
 
 
 
@@ -332,10 +362,11 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragClientRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragClientRpc(System.Byte[])">
   BroadcastSourceDataFragClientRpc(byte[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L158"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The server sends a data fragment to the module to the clients.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -345,7 +376,8 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_fragment</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>The fragment to send.</p>
+</dd>
   </dl>
 
 
@@ -363,10 +395,12 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragServerRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragServerRpc(System.Byte[])">
   BroadcastSourceDataFragServerRpc(byte[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L186"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The client who has ownership of the module confirms request the
+server to broadcast the data fragment to the other clients.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -376,7 +410,8 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_fragment</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>The fragment to send.</p>
+</dd>
   </dl>
 
 
@@ -394,10 +429,12 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataFragsC(System.Collections.Generic.List{System.Byte[]})">
   BroadcastSourceDataFragsC(List&lt;byte[]&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L216"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The coroutine requesting to broadcast all the fragments in
+<a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a> to all clients.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -407,7 +444,8 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_fragmentedSourceData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
-    <dd></dd>
+    <dd><p>The fragments to broadcast.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -430,10 +468,11 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameClientRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameClientRpc(System.Byte[])">
   BroadcastSourceDataNameClientRpc(byte[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L167"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The server sends the name of the data associated to the module to the clients.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -443,7 +482,8 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>The name of the data associated to the module.</p>
+</dd>
   </dl>
 
 
@@ -461,10 +501,12 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNameServerRpc_System_Byte___" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNameServerRpc(System.Byte[])">
   BroadcastSourceDataNameServerRpc(byte[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L196"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The client who has ownership of the module requests the server to
+broadcast the name of the data associated to the module to the other clients.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -474,7 +516,8 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>The name of the data associated to the module.</p>
+</dd>
   </dl>
 
 
@@ -492,10 +535,11 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsClientRpc_System_UInt16_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsClientRpc(System.UInt16)">
   BroadcastSourceDataNbFragsClientRpc(ushort)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L176"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The server sends the number of fragments to the clients.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -505,7 +549,8 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_sourceDataNbFrags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
-    <dd></dd>
+    <dd><p>The number of fragments.</p>
+</dd>
   </dl>
 
 
@@ -523,10 +568,12 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_BroadcastSourceDataNbFragsServerRpc_System_UInt16_" data-uid="ECellDive.Interfaces.IMlprData.BroadcastSourceDataNbFragsServerRpc(System.UInt16)">
   BroadcastSourceDataNbFragsServerRpc(ushort)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L206"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The client who has ownership of the module requests the server to
+broadcast the number of fragments to the other clients.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -536,7 +583,8 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_sourceDataNbFrags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
-    <dd></dd>
+    <dd><p>The number of fragments.</p>
+</dd>
   </dl>
 
 
@@ -554,10 +602,12 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_ConfirmSourceDataReceptionServerRpc" data-uid="ECellDive.Interfaces.IMlprData.ConfirmSourceDataReceptionServerRpc">
   ConfirmSourceDataReceptionServerRpc()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L225"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Any client sends a confirmation to the server that it has received all
+the fragments from <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -572,6 +622,9 @@ to a module in a multiplayer context.</p>
 
 
 
+  <h4 class="section" id="ECellDive_Interfaces_IMlprData_ConfirmSourceDataReceptionServerRpc_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This happens before <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_AssembleFragmentedData">AssembleFragmentedData()</a>.</p>
+</div>
 
 
 
@@ -580,10 +633,13 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_DirectReceiveSourceData_System_Byte___System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Interfaces.IMlprData.DirectReceiveSourceData(System.Byte[],System.Collections.Generic.List{System.Byte[]})">
   DirectReceiveSourceData(byte[], List&lt;byte[]&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L239"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>This is a shortcut to assign values to <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_sourceDataName">sourceDataName</a>,
+and <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a> for the client who has ownership
+of the module.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -593,9 +649,11 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_sourceDataName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>The name of the data associated to the module.</p>
+</dd>
     <dt><code>_sourceData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
-    <dd></dd>
+    <dd><p>The fragments of the data associated to the module.</p>
+</dd>
   </dl>
 
 
@@ -613,10 +671,13 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_RequestSourceDataGenerationServerRpc_System_UInt64_" data-uid="ECellDive.Interfaces.IMlprData.RequestSourceDataGenerationServerRpc(System.UInt64)">
   RequestSourceDataGenerationServerRpc(ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L255"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests the server to generate the data associated to the module.
+This MUST be implemented by any divable module in order for the data
+generation to be broadcasted to the other clients.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -626,7 +687,8 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_expeditorClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the client that is requesting the generation.</p>
+</dd>
   </dl>
 
 
@@ -636,6 +698,12 @@ to a module in a multiplayer context.</p>
 
 
 
+  <h4 class="section" id="ECellDive_Interfaces_IMlprData_RequestSourceDataGenerationServerRpc_System_UInt64__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>RPCs cannot be marked as abstract so we can only define the method as virtual.
+Unfortunately, this means that we cannot force the implementation of this method
+and that developpers will have to remember to implement it in their modules if it
+is divable.</p>
+</div>
 
 
 
@@ -644,10 +712,13 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_SendSourceDataC_System_UInt64_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataC(System.UInt64)">
   SendSourceDataC(ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L266"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Public interface to a coroutine requesting the server to send the name,
+the number of fragments and the fragments of the data associated to the module
+to the client with the ID <code class="paramref">_targetClientID</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -657,7 +728,8 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_targetClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the client to which the data should be sent.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -680,10 +752,12 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_SendSourceDataFragClientRpc_System_Byte___ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataFragClientRpc(System.Byte[],ClientRpcParams)">
   SendSourceDataFragClientRpc(byte[], ClientRpcParams)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L278"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The server sends a data fragment to the module to the client reprensented
+by <code class="paramref">_clientRpcParams</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -693,9 +767,11 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_fragment</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>The fragment to send.</p>
+</dd>
     <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
-    <dd></dd>
+    <dd><p>The struct encoding the information about the client to which the data should be sent.</p>
+</dd>
   </dl>
 
 
@@ -713,10 +789,13 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_SendSourceDataFragsC_System_Collections_Generic_List_System_Byte____ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataFragsC(System.Collections.Generic.List{System.Byte[]},ClientRpcParams)">
   SendSourceDataFragsC(List&lt;byte[]&gt;, ClientRpcParams)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L318"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The coroutine controlling the sending of all the fragments in
+<a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a> to the client reprensented
+by <code class="paramref">_clientRpcParams</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -726,9 +805,11 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_fragmentedSourceData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
-    <dd></dd>
+    <dd><p>The fragments to send.</p>
+</dd>
     <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
-    <dd></dd>
+    <dd><p>The struct encoding the information about the client to which the data should be sent.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -751,10 +832,12 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_SendSourceDataNameClientRpc_System_Byte___ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataNameClientRpc(System.Byte[],ClientRpcParams)">
   SendSourceDataNameClientRpc(byte[], ClientRpcParams)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L291"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The server sends the name of the data associated to the module to the client
+reprensented by <code class="paramref">_clientRpcParams</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -764,9 +847,11 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>The name of the data associated to the module.</p>
+</dd>
     <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
-    <dd></dd>
+    <dd><p>The struct encoding the information about the client to which the data should be sent.</p>
+</dd>
   </dl>
 
 
@@ -784,10 +869,12 @@ to a module in a multiplayer context.</p>
 
   <h3 id="ECellDive_Interfaces_IMlprData_SendSourceDataNbFragsClientRpc_System_UInt16_ClientRpcParams_" data-uid="ECellDive.Interfaces.IMlprData.SendSourceDataNbFragsClientRpc(System.UInt16,ClientRpcParams)">
   SendSourceDataNbFragsClientRpc(ushort, ClientRpcParams)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L304"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The server sends the number of fragments to the client reprensented
+by <code class="paramref">_clientRpcParams</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -797,9 +884,11 @@ to a module in a multiplayer context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_sourceDataNbFrags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
-    <dd></dd>
+    <dd><p>The number of fragments.</p>
+</dd>
     <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
-    <dd></dd>
+    <dd><p>The struct encoding the information about the client to which the data should be sent.</p>
+</dd>
   </dl>
 
 
@@ -817,10 +906,10 @@ to a module in a multiplayer context.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L40" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IMultiplayer.cs/#L98" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

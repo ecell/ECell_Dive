@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_ServerGameNetPortal.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.ServerGameNetPortal%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_Multiplayer_ServerGameNetPortal" data-uid="ECellDive.Multiplayer.ServerGameNetPortal" class="text-break">
     Class ServerGameNetPortal
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -123,18 +130,227 @@ trying to connect. It uses Unity Netcode for gameobjects with the default Unity 
 </div>
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="ECellDive_Multiplayer_ServerGameNetPortal_k_MaxConnectPayload" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.k_MaxConnectPayload">
+  k_MaxConnectPayload
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>used in ApprovalCheck.
+This is intended as a bit of light protection against
+DOS attacks that rely on sending silly big buffers of garbage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private const int k_MaxConnectPayload = 1024</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_ServerGameNetPortal_m_Portal" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.m_Portal">
+  m_Portal
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The reference to the GameNetPortal component on this scene.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private GameNetPortal m_Portal</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Multiplayer.GameNetPortal.html">GameNetPortal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
+
+
+  <a id="ECellDive_Multiplayer_ServerGameNetPortal_ApprovalCheck_" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.ApprovalCheck*"></a>
+
+  <h3 id="ECellDive_Multiplayer_ServerGameNetPortal_ApprovalCheck_System_Byte___System_UInt64_NetworkManager_ConnectionApprovedDelegate_" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.ApprovalCheck(System.Byte[],System.UInt64,NetworkManager.ConnectionApprovedDelegate)">
+  ApprovalCheck(byte[], ulong, ConnectionApprovedDelegate)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>This logic plugs into the &quot;ConnectionApprovalCallback&quot; exposed by Netcode.NetworkManager, and is run every time a client connects to us.
+See ClientGameNetPortal.StartClient for the complementary logic that runs when the client starts its connection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ApprovalCheck(byte[] connectionData, ulong clientId, NetworkManager.ConnectionApprovedDelegate connectionApprovedCallback)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connectionData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>binary data passed into StartClient. In our case this is the client's GUID, which is a unique identifier for their install of the game that persists across app restarts.</p>
+</dd>
+    <dt><code>clientId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>This is the clientId that Netcode assigned us on login. It does not persist across multiple logins from the same client.</p>
+</dd>
+    <dt><code>connectionApprovedCallback</code> <span class="xref">ConnectionApprovedDelegate</span></dt>
+    <dd><p>The delegate we must invoke to signal that the connection was approved or not.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Multiplayer_ServerGameNetPortal_ApprovalCheck_System_Byte___System_UInt64_NetworkManager_ConnectionApprovedDelegate__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Since our game doesn't have to interact with some third party authentication service to validate the identity of the new connection, our ApprovalCheck
+method is simple, and runs synchronously, invoking &quot;callback&quot; to signal approval at the end of the method. Netcode currently doesn't support the ability
+to send back more than a &quot;true/false&quot;, which means we have to work a little harder to provide a useful error return to the client. To do that, we invoke a
+custom message in the same channel that Netcode uses for its connection callback. Since the delivery is NetworkDelivery.ReliableSequenced, we can be
+confident that our login result message will execute before any disconnect message.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_Multiplayer_ServerGameNetPortal_Awake_" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.Awake*"></a>
+
+  <h3 id="ECellDive_Multiplayer_ServerGameNetPortal_Awake" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_ServerGameNetPortal_GetConnectStatus_" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.GetConnectStatus*"></a>
+
+  <h3 id="ECellDive_Multiplayer_ServerGameNetPortal_GetConnectStatus_ECellDive_Utility_Data_Multiplayer_ConnectionPayload_" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.GetConnectStatus(ECellDive.Utility.Data.Multiplayer.ConnectionPayload)">
+  GetConnectStatus(ConnectionPayload)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Deciphers the connection payload and returns the status of the connection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private ConnectStatus GetConnectStatus(ConnectionPayload connectionPayload)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connectionPayload</code> <a class="xref" href="ECellDive.Utility.Data.Multiplayer.ConnectionPayload.html">ConnectionPayload</a></dt>
+    <dd><p>Connection information from a client.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Multiplayer.ConnectStatus.html">ConnectStatus</a></dt>
+    <dd><p>The status of the connection.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_ServerGameNetPortal_OnDestroy_" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.OnDestroy*"></a>
+
+  <h3 id="ECellDive_Multiplayer_ServerGameNetPortal_OnDestroy" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.OnDestroy">
+  OnDestroy()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void OnDestroy()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
   <a id="ECellDive_Multiplayer_ServerGameNetPortal_OnNetworkReady_" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.OnNetworkReady*"></a>
 
   <h3 id="ECellDive_Multiplayer_ServerGameNetPortal_OnNetworkReady" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.OnNetworkReady">
   OnNetworkReady()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L176"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Called by <a class="xref" href="ECellDive.Multiplayer.GameNetPortal.html">GameNetPortal</a> when the network is ready.
+In this case we check the satus of the NetManager. Since this component is only
+enabled for servers, if the NetManager is not a server, we disable the component.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -153,14 +369,86 @@ trying to connect. It uses Unity Netcode for gameobjects with the default Unity 
 
 
 
+  <a id="ECellDive_Multiplayer_ServerGameNetPortal_SendServerToClientConnectResult_" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.SendServerToClientConnectResult*"></a>
+
+  <h3 id="ECellDive_Multiplayer_ServerGameNetPortal_SendServerToClientConnectResult_System_UInt64_ECellDive_Multiplayer_ConnectStatus_" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.SendServerToClientConnectResult(System.UInt64,ECellDive.Multiplayer.ConnectStatus)">
+  SendServerToClientConnectResult(ulong, ConnectStatus)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Responsible for the Server-&gt;Client custom message of the connection result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private static void SendServerToClientConnectResult(ulong clientID, ConnectStatus status)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>clientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>id of the client to send to</p>
+</dd>
+    <dt><code>status</code> <a class="xref" href="ECellDive.Multiplayer.ConnectStatus.html">ConnectStatus</a></dt>
+    <dd><p>the status to pass to the client</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_ServerGameNetPortal_SendServerToClientSetDisconnectReason_" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.SendServerToClientSetDisconnectReason*"></a>
+
+  <h3 id="ECellDive_Multiplayer_ServerGameNetPortal_SendServerToClientSetDisconnectReason_System_UInt64_ECellDive_Multiplayer_ConnectStatus_" data-uid="ECellDive.Multiplayer.ServerGameNetPortal.SendServerToClientSetDisconnectReason(System.UInt64,ECellDive.Multiplayer.ConnectStatus)">
+  SendServerToClientSetDisconnectReason(ulong, ConnectStatus)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L201"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sends a DisconnectReason to the indicated client. This should only be done on the server, prior to disconnecting the client.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private static void SendServerToClientSetDisconnectReason(ulong clientID, ConnectStatus status)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>clientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>id of the client to send to</p>
+</dd>
+    <dt><code>status</code> <a class="xref" href="ECellDive.Multiplayer.ConnectStatus.html">ConnectStatus</a></dt>
+    <dd><p>The reason for the upcoming disconnect.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L18" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/ServerGameNetPortal.cs/#L20" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

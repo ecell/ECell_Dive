@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerBaseModule.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerBaseModule%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_Modules_HttpServerBaseModule" data-uid="ECellDive.Modules.HttpServerBaseModule" class="text-break">
     Class HttpServerBaseModule
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -87,11 +94,13 @@
   
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>The base class for all modules that need to send requests to a server
+using the HTTP protocol.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class HttpServerBaseModule : Module, IFocus, IGroupable, IColorHighlightable, IHighlightable, IInfoTags</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class HttpServerBaseModule : Module, IFocus, IGroupable, IColorHighlightable, IHighlightable, IInfoTags</code></pre>
   </div>
 
 
@@ -134,19 +143,37 @@
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refName">Module.refName</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_isFocused">Module.m_isFocused</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_isFocused">Module.isFocused</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_grpMemberIndex">Module.m_grpMemberIndex</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_grpMemberIndex">Module.grpMemberIndex</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_delegateTarget">Module.m_delegateTarget</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_delegateTarget">Module.delegateTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_defaultColor">Module.m_defaultColor</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_defaultColor">Module.defaultColor</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_highlightColor">Module.m_highlightColor</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_highlightColor">Module.highlightColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_forceHighlight">Module.m_forceHighlight</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_forceHighlight">Module.forceHighlight</a>
@@ -173,16 +200,13 @@
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refInfoTagsContainer">Module.refInfoTagsContainer</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_refInfoTags">Module.m_refInfoTags</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refInfoTags">Module.refInfoTags</a>
-    </div>
-    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_Awake">Module.Awake()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_OnDestroy">Module.OnDestroy()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ManageInfoTagsDisplay_InputAction_CallbackContext_">Module.ManageInfoTagsDisplay(InputAction.CallbackContext)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SelfDestroy">Module.SelfDestroy()</a>
@@ -226,12 +250,109 @@
 
 
 
-  <h3 id="ECellDive_Modules_HttpServerBaseModule_requestData" data-uid="ECellDive.Modules.HttpServerBaseModule.requestData">
-  requestData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_Modules_HttpServerBaseModule_colorID" data-uid="ECellDive.Modules.HttpServerBaseModule.colorID">
+  colorID
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L58"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The ID of the color property in the shader.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private int colorID</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_HttpServerBaseModule_mpb" data-uid="ECellDive.Modules.HttpServerBaseModule.mpb">
+  mpb
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The property block used to change the color of the module.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private MaterialPropertyBlock mpb</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MaterialPropertyBlock</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_HttpServerBaseModule_renderers" data-uid="ECellDive.Modules.HttpServerBaseModule.renderers">
+  renderers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The array of renderers of this module</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private Renderer[] renderers</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Renderer</span>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_HttpServerBaseModule_renderers_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Used to change the color of the module when highlighted.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Modules_HttpServerBaseModule_requestData" data-uid="ECellDive.Modules.HttpServerBaseModule.requestData">
+  requestData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The data structure to store request data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -243,7 +364,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Modules.RequestData.html">RequestData</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.Network.RequestData.html">RequestData</a></dt>
     <dd></dd>
   </dl>
 
@@ -258,10 +379,11 @@
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_serverData" data-uid="ECellDive.Modules.HttpServerBaseModule.serverData">
   serverData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The data structure storing the server address and port.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -273,7 +395,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Modules.ServerData.html">ServerData</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.Network.ServerData.html">ServerData</a></dt>
     <dd></dd>
   </dl>
 
@@ -288,10 +410,11 @@
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_serverUIData" data-uid="ECellDive.Modules.HttpServerBaseModule.serverUIData">
   serverUIData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The data structure storing the input fields for the server address and port.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -303,7 +426,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Modules.ServerUIData.html">ServerUIData</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.Network.ServerUIData.html">ServerUIData</a></dt>
     <dd></dd>
   </dl>
 
@@ -323,7 +446,7 @@
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_AddPagesToURL_System_String___" data-uid="ECellDive.Modules.HttpServerBaseModule.AddPagesToURL(System.String[])">
   AddPagesToURL(string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Simple API to add pages to the base server url.</p>
@@ -362,7 +485,7 @@
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_AddQueriesToURL_System_String_System_String___System_String___" data-uid="ECellDive.Modules.HttpServerBaseModule.AddQueriesToURL(System.String,System.String[],System.String[])">
   AddQueriesToURL(string, string[], string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Simple API to add queries to a base URL.</p>
@@ -416,7 +539,7 @@ in the elements stored at each index.</p>
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_AddQueryToURL_System_String_System_String_System_String_System_Boolean_" data-uid="ECellDive.Modules.HttpServerBaseModule.AddQueryToURL(System.String,System.String,System.String,System.Boolean)">
   AddQueryToURL(string, string, string, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L128"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Simple API to add one query to a base URL.</p>
@@ -469,7 +592,7 @@ query.</p>
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_ApplyColor_Color_" data-uid="ECellDive.Modules.HttpServerBaseModule.ApplyColor(Color)">
   ApplyColor(Color)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L217"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L219"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The function to call when we wish to apply a color to the material
@@ -502,7 +625,7 @@ of the gameobject.</p>
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_GetRequest_System_String_" data-uid="ECellDive.Modules.HttpServerBaseModule.GetRequest(System.String)">
   GetRequest(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L140"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Send a request to the server.</p>
@@ -536,11 +659,37 @@ of the gameobject.</p>
 
 
 
+  <a id="ECellDive_Modules_HttpServerBaseModule_OnEnable_" data-uid="ECellDive.Modules.HttpServerBaseModule.OnEnable*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerBaseModule_OnEnable" data-uid="ECellDive.Modules.HttpServerBaseModule.OnEnable">
+  OnEnable()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void OnEnable()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_Modules_HttpServerBaseModule_SetHighlight_" data-uid="ECellDive.Modules.HttpServerBaseModule.SetHighlight*"></a>
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_SetHighlight" data-uid="ECellDive.Modules.HttpServerBaseModule.SetHighlight">
   SetHighlight()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L226"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L229"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The function to call when the object should enter highlighted
@@ -568,14 +717,11 @@ state.</p>
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_UnsetHighlight" data-uid="ECellDive.Modules.HttpServerBaseModule.UnsetHighlight">
   UnsetHighlight()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L235"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The function to call when the object should exit the highlighted
-state.
-Checks for <a class="xref" href="ECellDive.Interfaces.IHighlightable.html#ECellDive_Interfaces_IHighlightable_forceHighlight">forceHighlight</a>.
-If false, applies defaultColor to currentColor.
-If true, nothing happens.</p>
+state.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -599,7 +745,7 @@ If true, nothing happens.</p>
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_UpdateIP" data-uid="ECellDive.Modules.HttpServerBaseModule.UpdateIP">
   UpdateIP()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L199"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L200"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the value for the IP in <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_serverData">serverData</a></p>
@@ -629,7 +775,7 @@ If true, nothing happens.</p>
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_UpdatePort" data-uid="ECellDive.Modules.HttpServerBaseModule.UpdatePort">
   UpdatePort()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L210"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L211"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the value for the Port in <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_serverData">serverData</a></p>
@@ -659,7 +805,7 @@ If true, nothing happens.</p>
 
   <h3 id="ECellDive_Modules_HttpServerBaseModule_isRequestProcessed" data-uid="ECellDive.Modules.HttpServerBaseModule.isRequestProcessed">
   isRequestProcessed()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L188"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L189"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Typically used by the coroutines to wait until the
@@ -675,7 +821,7 @@ request sent to the servers has been processed.</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p><a class="xref" href="ECellDive.Modules.RequestData.html#ECellDive_Modules_RequestData_requestProcessed">requestProcessed</a></p>
+    <dd><p><a class="xref" href="ECellDive.Utility.Data.Network.RequestData.html#ECellDive_Utility_Data_Network_RequestData_requestProcessed">requestProcessed</a></p>
 </dd>
   </dl>
 
@@ -693,10 +839,10 @@ request sent to the servers has been processed.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L37" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerBaseModule.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

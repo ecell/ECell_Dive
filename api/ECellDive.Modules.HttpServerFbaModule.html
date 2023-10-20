@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerFbaModule.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerFbaModule%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_Modules_HttpServerFbaModule" data-uid="ECellDive.Modules.HttpServerFbaModule" class="text-break">
     Class HttpServerFbaModule
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -87,7 +94,9 @@
   
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>The module to request a Flux Balance Analysis (FBA) on the
+Kosmogora-like server.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -132,6 +141,18 @@
       <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_requestData">HttpServerBaseModule.requestData</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_renderers">HttpServerBaseModule.renderers</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_mpb">HttpServerBaseModule.mpb</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_colorID">HttpServerBaseModule.colorID</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_OnEnable">HttpServerBaseModule.OnEnable()</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_AddPagesToURL_System_String___">HttpServerBaseModule.AddPagesToURL(string[])</a>
     </div>
     <div>
@@ -165,19 +186,37 @@
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refName">Module.refName</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_isFocused">Module.m_isFocused</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_isFocused">Module.isFocused</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_grpMemberIndex">Module.m_grpMemberIndex</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_grpMemberIndex">Module.grpMemberIndex</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_delegateTarget">Module.m_delegateTarget</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_delegateTarget">Module.delegateTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_defaultColor">Module.m_defaultColor</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_defaultColor">Module.defaultColor</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_highlightColor">Module.m_highlightColor</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_highlightColor">Module.highlightColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_forceHighlight">Module.m_forceHighlight</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_forceHighlight">Module.forceHighlight</a>
@@ -204,16 +243,13 @@
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refInfoTagsContainer">Module.refInfoTagsContainer</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_refInfoTags">Module.m_refInfoTags</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refInfoTags">Module.refInfoTags</a>
-    </div>
-    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_Awake">Module.Awake()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_OnDestroy">Module.OnDestroy()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ManageInfoTagsDisplay_InputAction_CallbackContext_">Module.ManageInfoTagsDisplay(InputAction.CallbackContext)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SelfDestroy">Module.SelfDestroy()</a>
@@ -257,12 +293,50 @@
 
 
 
-  <h3 id="ECellDive_Modules_HttpServerFbaModule_OnFbaResultsReceive" data-uid="ECellDive.Modules.HttpServerFbaModule.OnFbaResultsReceive">
-  OnFbaResultsReceive
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_Modules_HttpServerFbaModule_LoadedCyJsonPathway" data-uid="ECellDive.Modules.HttpServerFbaModule.LoadedCyJsonPathway">
+  LoadedCyJsonPathway
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A buffer to store the cyjson pathway that is currently loaded
+in the dive scene.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private CyJsonModule LoadedCyJsonPathway</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Modules.CyJsonModule.html">CyJsonModule</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_HttpServerFbaModule_LoadedCyJsonPathway_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>TODO: This is a temporary solution. We should be able to provide
+the pathway to the FBA module dynamically.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Modules_HttpServerFbaModule_OnFbaResultsReceive" data-uid="ECellDive.Modules.HttpServerFbaModule.OnFbaResultsReceive">
+  OnFbaResultsReceive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A delegate to be called when a user requested an FBA.
+This is called whether the request is successful or not.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -282,6 +356,10 @@
 
 
 
+  <h4 class="section" id="ECellDive_Modules_HttpServerFbaModule_OnFbaResultsReceive_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This is added for the tutorials check. There is probably a way to
+get rid of this.</p>
+</div>
 
 
 
@@ -289,10 +367,12 @@
 
   <h3 id="ECellDive_Modules_HttpServerFbaModule_animLW" data-uid="ECellDive.Modules.HttpServerFbaModule.animLW">
   animLW
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L77"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The animation loop controller to control the visual feedback
+of the module in case of request.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -317,12 +397,44 @@
 
 
 
-  <h3 id="ECellDive_Modules_HttpServerFbaModule_fbaParametersManager" data-uid="ECellDive.Modules.HttpServerFbaModule.fbaParametersManager">
-  fbaParametersManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_Modules_HttpServerFbaModule_fbaAnalysisData" data-uid="ECellDive.Modules.HttpServerFbaModule.fbaAnalysisData">
+  fbaAnalysisData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The data struture to store information about the FBA analysis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private FbaAnalysisData fbaAnalysisData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Modules.FbaAnalysisData.html">FbaAnalysisData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_HttpServerFbaModule_fbaParametersManager" data-uid="ECellDive.Modules.HttpServerFbaModule.fbaParametersManager">
+  fbaParametersManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>An object linking parameters of the FBA to the UI.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -354,7 +466,7 @@
 
   <h3 id="ECellDive_Modules_HttpServerFbaModule_GetModelSolution_System_String_System_Collections_Generic_List_System_String__" data-uid="ECellDive.Modules.HttpServerFbaModule.GetModelSolution(System.String,System.Collections.Generic.List{System.String})">
   GetModelSolution(string, List&lt;string&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L140"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Builds and sends the URI of the request that should activate the
@@ -374,8 +486,7 @@ in the server.</p>
 </dd>
     <dt><code>_knockouts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
     <dd><p>The string listing the names of
-the knockedout reactions. The string can be generated by
-the GetKnockoutString</p>
+the knockedout reactions.</p>
 </dd>
   </dl>
 
@@ -394,7 +505,7 @@ the GetKnockoutString</p>
 
   <h3 id="ECellDive_Modules_HttpServerFbaModule_RequestModelSolve" data-uid="ECellDive.Modules.HttpServerFbaModule.RequestModelSolve">
   RequestModelSolve()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L163"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Starts the process to ask the server for the FBA of the model.</p>
@@ -421,10 +532,12 @@ the GetKnockoutString</p>
 
   <h3 id="ECellDive_Modules_HttpServerFbaModule_ShowComputedFluxes" data-uid="ECellDive.Modules.HttpServerFbaModule.ShowComputedFluxes">
   ShowComputedFluxes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L187"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A public interface to update the visuals of the pathway
+with the values of the edges.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -443,11 +556,44 @@ the GetKnockoutString</p>
 
 
 
+  <a id="ECellDive_Modules_HttpServerFbaModule_ShowComputedFluxesC_" data-uid="ECellDive.Modules.HttpServerFbaModule.ShowComputedFluxesC*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerFbaModule_ShowComputedFluxesC" data-uid="ECellDive.Modules.HttpServerFbaModule.ShowComputedFluxesC">
+  ShowComputedFluxesC()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L196"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transfers the results of the FBA (fluxes values) to the shaders
+of the edges (representing the reactions).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private IEnumerator ShowComputedFluxesC()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_Modules_HttpServerFbaModule_SolveModel_" data-uid="ECellDive.Modules.HttpServerFbaModule.SolveModel*"></a>
 
   <h3 id="ECellDive_Modules_HttpServerFbaModule_SolveModel_System_String_System_Collections_Generic_List_System_String__" data-uid="ECellDive.Modules.HttpServerFbaModule.SolveModel(System.String,System.Collections.Generic.List{System.String})">
   SolveModel(string, List&lt;string&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L246"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The public interface to ask the server for the FBA.</p>
@@ -465,10 +611,78 @@ the GetKnockoutString</p>
 in the server.</p>
 </dd>
     <dt><code>_knockouts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p>The list the knock out commands.
-The list is generated by the GetKnockouts</p>
+    <dd><p>The list the knock out commands.</p>
 </dd>
   </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_HttpServerFbaModule_SolveModelC_" data-uid="ECellDive.Modules.HttpServerFbaModule.SolveModelC*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerFbaModule_SolveModelC_System_String_System_Collections_Generic_List_System_String__" data-uid="ECellDive.Modules.HttpServerFbaModule.SolveModelC(System.String,System.Collections.Generic.List{System.String})">
+  SolveModelC(string, List&lt;string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L259"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The coroutine handling the request to the server and the
+parsing of the FBA results if the request was successful.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private IEnumerator SolveModelC(string _modelName, List&lt;string&gt; _knockouts)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_modelName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the model as stored
+in the server.</p>
+</dd>
+    <dt><code>_knockouts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>The list the knock out commands.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_HttpServerFbaModule_Start_" data-uid="ECellDive.Modules.HttpServerFbaModule.Start*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerFbaModule_Start" data-uid="ECellDive.Modules.HttpServerFbaModule.Start">
+  Start()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Start()</code></pre>
+  </div>
+
 
 
 
@@ -485,10 +699,10 @@ The list is generated by the GetKnockouts</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L24" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerFbaModule.cs/#L54" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

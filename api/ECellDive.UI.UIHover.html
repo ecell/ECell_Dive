@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_UIHover.md&amp;value=---%0Auid%3A%20ECellDive.UI.UIHover%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_UI_UIHover" data-uid="ECellDive.UI.UIHover" class="text-break">
     Class UIHover
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -124,12 +131,81 @@ interactible UI elements.</p>
 
 
 
-  <h3 id="ECellDive_UI_UIHover_doTriggerInstanciation" data-uid="ECellDive.UI.UIHover.doTriggerInstanciation">
-  doTriggerInstanciation
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_UI_UIHover_EffectsAudioSource" data-uid="ECellDive.UI.UIHover.EffectsAudioSource">
+  EffectsAudioSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The audio source to play the audio clips.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private AudioSource EffectsAudioSource</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">AudioSource</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_UI_UIHover_EffectsAudioSource_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>It is created on demand.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_UI_UIHover_currentXRController" data-uid="ECellDive.UI.UIHover.currentXRController">
+  currentXRController
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A buffer reference to the XRcontroller that is currently hovering.
+It is used to assign the haptic feedback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private XRBaseController currentXRController</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">XRBaseController</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_UIHover_doTriggerInstanciation" data-uid="ECellDive.UI.UIHover.doTriggerInstanciation">
+  doTriggerInstanciation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A boolean to control whether to add enter end exit hover events to
+every Button, Slider, Toggle and TMP_InputField that are children of
+the gameobject this script is attached to.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -159,7 +235,8 @@ interactible UI elements.</p>
   <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The audio data to use when entering hovering.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -171,7 +248,7 @@ interactible UI elements.</p>
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.UI.AudioData.html">AudioData</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.UI.AudioData.html">AudioData</a></dt>
     <dd></dd>
   </dl>
 
@@ -186,10 +263,11 @@ interactible UI elements.</p>
 
   <h3 id="ECellDive_UI_UIHover_hoverEnterHapticData" data-uid="ECellDive.UI.UIHover.hoverEnterHapticData">
   hoverEnterHapticData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The haptic data to use when entering hovering.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -201,7 +279,7 @@ interactible UI elements.</p>
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.UI.HapticData.html">HapticData</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.UI.HapticData.html">HapticData</a></dt>
     <dd></dd>
   </dl>
 
@@ -216,10 +294,11 @@ interactible UI elements.</p>
 
   <h3 id="ECellDive_UI_UIHover_hoverExitAudioData" data-uid="ECellDive.UI.UIHover.hoverExitAudioData">
   hoverExitAudioData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The audio data to use when exiting hovering.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -231,7 +310,7 @@ interactible UI elements.</p>
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.UI.AudioData.html">AudioData</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.UI.AudioData.html">AudioData</a></dt>
     <dd></dd>
   </dl>
 
@@ -246,10 +325,11 @@ interactible UI elements.</p>
 
   <h3 id="ECellDive_UI_UIHover_hoverExitHapticData" data-uid="ECellDive.UI.UIHover.hoverExitHapticData">
   hoverExitHapticData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The haptic data to use when exiting hovering.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -261,7 +341,135 @@ interactible UI elements.</p>
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.UI.HapticData.html">HapticData</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.UI.HapticData.html">HapticData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_UIHover_leftInteractorActive" data-uid="ECellDive.UI.UIHover.leftInteractorActive">
+  leftInteractorActive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A boolean to keep track whether the left interactor is hovering
+something.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private bool leftInteractorActive</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_UIHover_leftLastHovered" data-uid="ECellDive.UI.UIHover.leftLastHovered">
+  leftLastHovered
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A buffer to the last object the left interactor hovered.
+Used to detect when the interactor stops hovering the object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private GameObject leftLastHovered</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_UIHover_rightInteractorActive" data-uid="ECellDive.UI.UIHover.rightInteractorActive">
+  rightInteractorActive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A boolean to keep track whether the right interactor is hovering
+something</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private bool rightInteractorActive</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_UIHover_rightLastHovered" data-uid="ECellDive.UI.UIHover.rightLastHovered">
+  rightLastHovered
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A buffer to the last object the right interactor hovered.
+Used to detect when the interactor stops hovering the object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private GameObject rightLastHovered</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
     <dd></dd>
   </dl>
 
@@ -281,10 +489,13 @@ interactible UI elements.</p>
 
   <h3 id="ECellDive_UI_UIHover_AddPointerEvents_GameObject_" data-uid="ECellDive.UI.UIHover.AddPointerEvents(GameObject)">
   AddPointerEvents(GameObject)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L113"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Adds and EventTrigger component to the given gameobject
+<code class="paramref">_item</code> and adds the HoverEnter and HoverExit
+callbacks to it.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -294,7 +505,8 @@ interactible UI elements.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_item</code> <span class="xref">GameObject</span></dt>
-    <dd></dd>
+    <dd><p>The gameobject to which HoverEnter and HoverExit callbacks subscribe.</p>
+</dd>
   </dl>
 
 
@@ -308,14 +520,175 @@ interactible UI elements.</p>
 
 
 
+  <a id="ECellDive_UI_UIHover_Awake_" data-uid="ECellDive.UI.UIHover.Awake*"></a>
+
+  <h3 id="ECellDive_UI_UIHover_Awake" data-uid="ECellDive.UI.UIHover.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_UI_UIHover_CreateEffectsAudioSource_" data-uid="ECellDive.UI.UIHover.CreateEffectsAudioSource*"></a>
+
+  <h3 id="ECellDive_UI_UIHover_CreateEffectsAudioSource" data-uid="ECellDive.UI.UIHover.CreateEffectsAudioSource">
+  CreateEffectsAudioSource()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L263"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates an UnityEngine.AudioSource component on the gameobject
+this script is attached to.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void CreateEffectsAudioSource()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_UI_UIHover_HoverEnter_" data-uid="ECellDive.UI.UIHover.HoverEnter*"></a>
+
+  <h3 id="ECellDive_UI_UIHover_HoverEnter_BaseEventData_" data-uid="ECellDive.UI.UIHover.HoverEnter(BaseEventData)">
+  HoverEnter(BaseEventData)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Detection of HoverEnter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void HoverEnter(BaseEventData eventData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventData</code> <span class="xref">BaseEventData</span></dt>
+    <dd><p>The event data of the trigger.
+This is necessary to satisfy the EventTrigger callback signature
+but we are not using it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_UI_UIHover_HoverExit_" data-uid="ECellDive.UI.UIHover.HoverExit*"></a>
+
+  <h3 id="ECellDive_UI_UIHover_HoverExit_BaseEventData_" data-uid="ECellDive.UI.UIHover.HoverExit(BaseEventData)">
+  HoverExit(BaseEventData)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L189"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Detection of HoverExit.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void HoverExit(BaseEventData eventData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventData</code> <span class="xref">BaseEventData</span></dt>
+    <dd><p>The event data of the trigger.
+This is necessary to satisfy the EventTrigger callback signature
+but we are not using it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_UI_UIHover_PlayAudio_" data-uid="ECellDive.UI.UIHover.PlayAudio*"></a>
+
+  <h3 id="ECellDive_UI_UIHover_PlayAudio_AudioClip_" data-uid="ECellDive.UI.UIHover.PlayAudio(AudioClip)">
+  PlayAudio(AudioClip)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L248"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Play a Unity AudioClip</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void PlayAudio(AudioClip audioClip)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>audioClip</code> <span class="xref">AudioClip</span></dt>
+    <dd><p>The clip to play.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_UI_UIHover_PlayAudio_AudioClip__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Copied from the XRBaseControllerInteractor class
+as a workaround</p>
+</div>
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L37" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/UIHover.cs/#L22" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

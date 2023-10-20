@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -81,6 +88,21 @@
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
 
+    <h3 id="namespaces">
+Namespaces
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="ECellDive.Utility.Data.html">ECellDive.Utility.Data</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="ECellDive.Utility.Multiplayer.html">ECellDive.Utility.Multiplayer</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="ECellDive.Utility.PlayerComponents.html">ECellDive.Utility.PlayerComponents</a></dt>
+      <dd></dd>
+    </dl>
     <h3 id="classes">
 Classes
 </h3>
@@ -92,28 +114,40 @@ on update.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Utility.AnchoredContinousMoveHelper.html">AnchoredContinousMoveHelper</a></dt>
-      <dd></dd>
+      <dd><p>This class is used to help the user to understand the AnchoredContinousMove
+component. It is used to display the deadzone and the magnitude of the
+resulting movement vector.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Utility.AnimationLoopWrapper.html">AnimationLoopWrapper</a></dt>
-      <dd></dd>
+      <dd><p>A utility class to play an animation loop.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Utility.ArrayManipulation.html">ArrayManipulation</a></dt>
-      <dd></dd>
+      <dd><p>A utility class to manipulate arrays. The purpose is to be able to fragment an array
+to a 2 dimensional array or a list of arrays and to assemble them back.
+This is useful to send data over the multiplayer network.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Utility.ColorFlash.html">ColorFlash</a></dt>
-      <dd></dd>
+      <dd><p>A utility class to flash a color on an array of renderers.
+The flash is a sine wave defined by a period and a number of periods.
+The flash is done by lerping between the start colors of the renderers
+and the target colors.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Utility.FaceCamera.html">FaceCamera</a></dt>
-      <dd></dd>
+      <dd><p>A utility component to make the gameobject it is attached to face the camera
+or pop up in front of the camera.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Utility.GameObjectConstructor.html">GameObjectConstructor</a></dt>
-      <dd><p>Public interface to add module data on callback in
-in the Unity Editor.</p>
+      <dd><p>Spawns a prefab at a given distance in front of the camera.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -131,11 +165,8 @@ in the log.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Utility.PerLayerCulling.html">PerLayerCulling</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Utility.PinData.html">PinData</a></dt>
-      <dd><p>Only serves the purpose to have access to a</p>
+      <dd><p>A utility class to set the culling distance of each layer.
+This is a performance optimization.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -149,22 +180,16 @@ in the log.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Utility.StaticReferencer.html">StaticReferencer</a></dt>
-      <dd><p>Singleton class referencing elements (GameObjects, Components,...) of the player
-that are needed by gameobjects outside it. Typically, an instanced module needs
-access to the controller's interactors to correctly compute the movements when grabed.
-This class therefore exposes all the interactors to the ouside.</p>
+      <dt><a class="xref" href="ECellDive.Utility.ToFind.html">ToFind</a></dt>
+      <dd><p>A utility class that provides a function to find a component in itself, its children
+gameobject and its parent (if it exists).</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Utility.ToFind.html">ToFind</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Utility.TriggerBroadcaster.html">TriggerBroadcaster</a></dt>
-      <dd><p>A component allowing external scripts to subscribe to events
-that are invoked following Trigger events associated with the
-gameobject this component is attached to.</p>
+      <dd><p>A component allowing external scripts to subscribe to &quot;major&quot;
+Unity events (e.g. OnTriggerEnter) that are invoked on by this
+gameobject.</p>
 </dd>
     </dl>
     <h3 id="structs">
@@ -180,16 +205,13 @@ Enums
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Utility.LinePositionHandler.PositionScope.html">LinePositionHandler.PositionScope</a></dt>
-      <dd></dd>
+      <dd><p>An enum to specify what referential to use for the start and end positions.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Utility.LogMessageTypes.html">LogMessageTypes</a></dt>
       <dd><p>The different types of Log messages we handle.</p>
 </dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Utility.PinStatus.html">PinStatus</a></dt>
-      <dd></dd>
     </dl>
 
 
@@ -198,7 +220,7 @@ Enums
         <div class="contribution d-print-none">
         </div>
 
-        
+
       </div>
 
       <div class="affix">

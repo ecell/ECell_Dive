@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_DiveScenesManager.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.DiveScenesManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_SceneManagement_DiveScenesManager" data-uid="ECellDive.SceneManagement.DiveScenesManager" class="text-break">
     Class DiveScenesManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -123,12 +130,45 @@ or resurfacing.</p>
 
 
 
-  <h3 id="ECellDive_SceneManagement_DiveScenesManager_divingAnimationData" data-uid="ECellDive.SceneManagement.DiveScenesManager.divingAnimationData">
-  divingAnimationData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_currentSceneisHidden" data-uid="ECellDive.SceneManagement.DiveScenesManager.currentSceneisHidden">
+  currentSceneisHidden
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A boolean to indicate that a scene has finished hiding thanks to
+<a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_HideScene_System_Int32_System_UInt64_">HideScene(int, ulong)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private bool currentSceneisHidden</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_divingAnimationData" data-uid="ECellDive.SceneManagement.DiveScenesManager.divingAnimationData">
+  divingAnimationData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Data to control the dive animation.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -140,7 +180,7 @@ or resurfacing.</p>
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.SceneManagement.DivingAnimationData.html">DivingAnimationData</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.Dive.DivingAnimationData.html">DivingAnimationData</a></dt>
     <dd></dd>
   </dl>
 
@@ -155,11 +195,11 @@ or resurfacing.</p>
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_modulePrefabs" data-uid="ECellDive.SceneManagement.DiveScenesManager.modulePrefabs">
   modulePrefabs
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A list of prefabs that may be instantiated by the user at runtime.
-Every prefab MUST have a <a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a> and NetworkObject
+Every prefab MUST have a <a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a> and Unity.Netcode.NetworkObject.
 component. We advise to use this list for root data modules (e.g. CyJsonModule) only.
 &quot;Submodules&quot; that may be instantiated as a result of a module's data generation
 should be referenced in the script detailing the said data generation process.</p>
@@ -190,10 +230,11 @@ should be referenced in the script detailing the said data generation process.</
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_scenesBank" data-uid="ECellDive.SceneManagement.DiveScenesManager.scenesBank">
   scenesBank
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The list of dive scenes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -205,7 +246,39 @@ should be referenced in the script detailing the said data generation process.</
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.SceneManagement.SceneData.html">SceneData</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.Utility.Data.Dive.SceneData.html">SceneData</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_targetSceneIsVisible" data-uid="ECellDive.SceneManagement.DiveScenesManager.targetSceneIsVisible">
+  targetSceneIsVisible
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A boolean to indicate that a scene has finished showing thanks to
+<a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_ShowScene_System_Int32_System_UInt64_">ShowScene(int, ulong)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private bool targetSceneIsVisible</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 
@@ -225,14 +298,14 @@ should be referenced in the script detailing the said data generation process.</
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_Instance" data-uid="ECellDive.SceneManagement.DiveScenesManager.Instance">
   Instance
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static DiveScenesManager Instance { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static DiveScenesManager Instance { get; private set; }</code></pre>
   </div>
 
 
@@ -260,7 +333,7 @@ should be referenced in the script detailing the said data generation process.</
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_AddNewDiveScene_System_Int32_" data-uid="ECellDive.SceneManagement.DiveScenesManager.AddNewDiveScene(System.Int32)">
   AddNewDiveScene(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L142"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Called to instantiate a new scene upon diving in a module</p>
@@ -297,7 +370,7 @@ should be referenced in the script detailing the said data generation process.</
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_CheckIfDiveSceneHasPlayers_System_Int32_" data-uid="ECellDive.SceneManagement.DiveScenesManager.CheckIfDiveSceneHasPlayers(System.Int32)">
   CheckIfDiveSceneHasPlayers(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L93"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Checks whether a dive scenes has at least one player in.</p>
@@ -336,10 +409,12 @@ should be referenced in the script detailing the said data generation process.</
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_ClearPlayerFromSessionServerRpc_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ClearPlayerFromSessionServerRpc(System.UInt64)">
   ClearPlayerFromSessionServerRpc(ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L78"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Remove the reference to the diver with id <code class="paramref">_clientIdToClear</code>
+from every scene in the <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_scenesBank">scenesBank</a> (in and out divers' lists).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -349,7 +424,8 @@ should be referenced in the script detailing the said data generation process.</
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_clientIdToClear</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the client to remove from every scene.</p>
+</dd>
   </dl>
 
 
@@ -367,7 +443,7 @@ should be referenced in the script detailing the said data generation process.</
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_DebugScene" data-uid="ECellDive.SceneManagement.DiveScenesManager.DebugScene">
   DebugScene()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L212"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L157"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Outputs the content of the <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_scenesBank">scenesBank</a>.</p>
@@ -397,7 +473,7 @@ should be referenced in the script detailing the said data generation process.</
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_DestroyDiveScene_System_Int32_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DestroyDiveScene(System.Int32)">
   DestroyDiveScene(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Removes the scene at index <code class="paramref">_sceneId</code> from the <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_scenesBank">scenesBank</a>.</p>
@@ -430,10 +506,11 @@ should be referenced in the script detailing the said data generation process.</
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_DiverGetsInServerRpc_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DiverGetsInServerRpc(System.Int32,System.UInt64)">
   DiverGetsInServerRpc(int, ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L180"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L116"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A client notifies the server that it is entering a scene.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -443,9 +520,11 @@ should be referenced in the script detailing the said data generation process.</
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_sceneId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The scene id of the scene the diver is entering.</p>
+</dd>
     <dt><code>_diverClientId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
-    <dd></dd>
+    <dd><p>The client id of the diver entering the scene.</p>
+</dd>
   </dl>
 
 
@@ -463,10 +542,11 @@ should be referenced in the script detailing the said data generation process.</
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_DiverGetsOutServerRpc_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.DiverGetsOutServerRpc(System.Int32,System.UInt64)">
   DiverGetsOutServerRpc(int, ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L132"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A client notifies the server that it is leaving a scene.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -476,11 +556,56 @@ should be referenced in the script detailing the said data generation process.</
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_sceneId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The scene id of the scene the diver is leaving.</p>
+</dd>
     <dt><code>_diverClientId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
-    <dd></dd>
+    <dd><p>The client id of the diver leaving the scene.</p>
+</dd>
   </dl>
 
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_SceneManagement_DiveScenesManager_HideScene_" data-uid="ECellDive.SceneManagement.DiveScenesManager.HideScene*"></a>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_HideScene_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.HideScene(System.Int32,System.UInt64)">
+  HideScene(int, ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calls <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHide">NetHide()</a> for every <a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a> of the scene with <code class="paramref">_sceneID</code>
+for the local client.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private IEnumerator HideScene(int _sceneID, ulong _outDiverClientId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sceneID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the scene in <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_scenesBank">scenesBank</a></p>
+</dd>
+    <dt><code>_outDiverClientId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>Client Id of the diver leaving the scene
+with id <code class="paramref">_sceneID</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
 
 
 
@@ -496,7 +621,7 @@ should be referenced in the script detailing the said data generation process.</
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_OnNetworkSpawn" data-uid="ECellDive.SceneManagement.DiveScenesManager.OnNetworkSpawn">
   OnNetworkSpawn()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -518,11 +643,51 @@ should be referenced in the script detailing the said data generation process.</
 
 
 
+  <a id="ECellDive_SceneManagement_DiveScenesManager_ResurfaceC_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ResurfaceC*"></a>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_ResurfaceC_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ResurfaceC(System.UInt64)">
+  ResurfaceC(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L401"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The coroutine performing the work to actually move a diver from its
+current dive scene to the parent of that dive scene (resurface).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private IEnumerator ResurfaceC(ulong _surfacingDiverId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_surfacingDiverId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The clientID of the diver asking to resurface
+from his current dive scene.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_SceneManagement_DiveScenesManager_ResurfaceServerRpc_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ResurfaceServerRpc*"></a>
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_ResurfaceServerRpc_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ResurfaceServerRpc(System.UInt64)">
   ResurfaceServerRpc(ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L433"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L389"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The server call to resurface a diver.</p>
@@ -556,10 +721,11 @@ from his current dive scene.</p>
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_SceneSwitchIsFinished" data-uid="ECellDive.SceneManagement.DiveScenesManager.SceneSwitchIsFinished">
   SceneSwitchIsFinished()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L459"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L421"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if the scene switch is finished (the target scene is visible).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -570,6 +736,50 @@ from his current dive scene.</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Returns True is <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_targetSceneIsVisible">targetSceneIsVisible</a> is true. False, otherwise.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_SceneManagement_DiveScenesManager_ShowScene_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ShowScene*"></a>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_ShowScene_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.ShowScene(System.Int32,System.UInt64)">
+  ShowScene(int, ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L246"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calls <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShow">NetShow()</a> for every <a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a> of the scene with <code class="paramref">_sceneID</code>
+for the local client.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private IEnumerator ShowScene(int _sceneID, ulong _newInDiverClientId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sceneID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the scene in <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_scenesBank">scenesBank</a></p>
+</dd>
+    <dt><code>_newInDiverClientId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>Client Id of the diver entering the scene
+with id <code class="paramref">_sceneID</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
     <dd></dd>
   </dl>
 
@@ -587,10 +797,13 @@ from his current dive scene.</p>
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_SpawnModuleInScene_System_Int32_GameObject_Vector3_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SpawnModuleInScene(System.Int32,GameObject,Vector3)">
   SpawnModuleInScene(int, GameObject, Vector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L382"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L325"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Instantiates a game object and spawns it for replication across the network.
+This method can only be called on the SERVER. So, be sure to call from a server
+object or called inside a ServerRpc.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -600,17 +813,22 @@ from his current dive scene.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_sceneId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The Id of the scene in which it the new game object is instantiated.</p>
+</dd>
     <dt><code>_prefab</code> <span class="xref">GameObject</span></dt>
-    <dd></dd>
+    <dd><p>The gameobject to instantiate and spawn.
+It MUST be a <a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a> and a Unity.Netcode.NetworkObject.</p>
+</dd>
     <dt><code>_position</code> <span class="xref">Vector3</span></dt>
-    <dd></dd>
+    <dd><p>The position at which to instantiate the gameobject.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><span class="xref">GameObject</span></dt>
-    <dd></dd>
+    <dd><p>The game object that got instantiated &amp; spawned.</p>
+</dd>
   </dl>
 
 
@@ -627,10 +845,13 @@ from his current dive scene.</p>
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_SpawnModuleInScene_System_Int32_System_Int32_Vector3_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SpawnModuleInScene(System.Int32,System.Int32,Vector3)">
   SpawnModuleInScene(int, int, Vector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L405"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L348"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Instantiates a game object and spawns it for replication across the network.
+This method can only be called on the SERVER. So, be sure to call from a server object
+or called inside a ServerRpc.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -640,17 +861,22 @@ from his current dive scene.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_sceneId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The Id of the scene in which it the new game object is instantiated.</p>
+</dd>
     <dt><code>_prefabIdx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The index of the game object in the.
+It MUST be a <a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a> and a Unity.Netcode.NetworkObject.</p>
+</dd>
     <dt><code>_position</code> <span class="xref">Vector3</span></dt>
-    <dd></dd>
+    <dd><p>The position at which to instantiate the gameobject.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><span class="xref">GameObject</span></dt>
-    <dd></dd>
+    <dd><p>The game object that got instantiated &amp; spawned.</p>
+</dd>
   </dl>
 
 
@@ -667,10 +893,12 @@ from his current dive scene.</p>
 
   <h3 id="ECellDive_SceneManagement_DiveScenesManager_SwitchingScenesServerRpc_System_Int32_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.SwitchingScenesServerRpc(System.Int32,System.Int32,System.UInt64)">
   SwitchingScenesServerRpc(int, int, ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L418"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L374"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The server notification that the diver with id <code class="paramref">_clientId</code>
+is going from scene ID <code class="paramref">_from</code> to scene ID <code class="paramref">_to</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -680,11 +908,91 @@ from his current dive scene.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_from</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the scene the diver is leaving.</p>
+</dd>
     <dt><code>_to</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the scene the diver is entering.</p>
+</dd>
     <dt><code>_clientId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The client ID of the diver switching scenes.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_SceneManagement_DiveScenesManager_UpdatePlayerDataC_" data-uid="ECellDive.SceneManagement.DiveScenesManager.UpdatePlayerDataC*"></a>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_UpdatePlayerDataC_System_Int32_System_UInt64_" data-uid="ECellDive.SceneManagement.DiveScenesManager.UpdatePlayerDataC(System.Int32,System.UInt64)">
+  UpdatePlayerDataC(int, ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L443"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A coroutine waiting until the target scene is visible for the client
+from the perspective of the server before broadcasting the scene
+switch information to the other clients.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private IEnumerator UpdatePlayerDataC(int _to, ulong _clientId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_to</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The ID of the scene the diver is entering.</p>
+</dd>
+    <dt><code>_clientId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The ID of the client switching scenes.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
     <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_SceneManagement_DiveScenesManager_UpdatePlayerDataClientRPC_" data-uid="ECellDive.SceneManagement.DiveScenesManager.UpdatePlayerDataClientRPC*"></a>
+
+  <h3 id="ECellDive_SceneManagement_DiveScenesManager_UpdatePlayerDataClientRPC_ClientRpcParams_" data-uid="ECellDive.SceneManagement.DiveScenesManager.UpdatePlayerDataClientRPC(ClientRpcParams)">
+  UpdatePlayerDataClientRPC(ClientRpcParams)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L468"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets <a class="xref" href="ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_targetSceneIsVisible">targetSceneIsVisible</a> to true for the clients
+identified in <code class="paramref">_clientRpcParams</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void UpdatePlayerDataClientRPC(ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
+    <dd><p>The client RPC parameters to target specific clients.</p>
+</dd>
   </dl>
 
 
@@ -702,10 +1010,10 @@ from his current dive scene.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L118" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/DiveScenesManager.cs/#L22" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

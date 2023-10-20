@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_LogManager.md&amp;value=---%0Auid%3A%20ECellDive.UI.LogManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_UI_LogManager" data-uid="ECellDive.UI.LogManager" class="text-break">
     Class LogManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -122,10 +129,11 @@ the log in app at runtime.</p>
 
   <h3 id="ECellDive_UI_LogManager_messageTypeColors" data-uid="ECellDive.UI.LogManager.messageTypeColors">
   messageTypeColors
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The array of colors to assign to the messages depending on their types.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -152,10 +160,12 @@ the log in app at runtime.</p>
 
   <h3 id="ECellDive_UI_LogManager_refHiddenMessageStorage" data-uid="ECellDive.UI.LogManager.refHiddenMessageStorage">
   refHiddenMessageStorage
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the rect transform of a deactivated UI gameobject
+to which we will store the messages that are not currently displayed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -182,10 +192,11 @@ the log in app at runtime.</p>
 
   <h3 id="ECellDive_UI_LogManager_refMessageScrollList" data-uid="ECellDive.UI.LogManager.refMessageScrollList">
   refMessageScrollList
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the scroll list used to display the head of the messages.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -212,10 +223,12 @@ the log in app at runtime.</p>
 
   <h3 id="ECellDive_UI_LogManager_refMessageSpace" data-uid="ECellDive.UI.LogManager.refMessageSpace">
   refMessageSpace
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the larger text mesh where a longer version of the
+message will be displayed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -242,10 +255,11 @@ the log in app at runtime.</p>
 
   <h3 id="ECellDive_UI_LogManager_toggleAll" data-uid="ECellDive.UI.LogManager.toggleAll">
   toggleAll
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A reference to the toggle that controls the value of all the other toggles.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -272,10 +286,12 @@ the log in app at runtime.</p>
 
   <h3 id="ECellDive_UI_LogManager_toggleIndividuals" data-uid="ECellDive.UI.LogManager.toggleIndividuals">
   toggleIndividuals
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>An array of toggles that controls the visibility of the messages in the list
+depending on their types.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -307,7 +323,7 @@ the log in app at runtime.</p>
 
   <h3 id="ECellDive_UI_LogManager_DisplayInMessageSpace_TextMeshProUGUI_" data-uid="ECellDive.UI.LogManager.DisplayInMessageSpace(TextMeshProUGUI)">
   DisplayInMessageSpace(TextMeshProUGUI)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Logic to display the whole content of a message.</p>
@@ -342,9 +358,46 @@ message to display.</p>
 
   <a id="ECellDive_UI_LogManager_DrawMessageList_" data-uid="ECellDive.UI.LogManager.DrawMessageList*"></a>
 
+  <h3 id="ECellDive_UI_LogManager_DrawMessageList_System_Boolean_System_Collections_Generic_List_ECellDive_Utility_LogMessage__" data-uid="ECellDive.UI.LogManager.DrawMessageList(System.Boolean,System.Collections.Generic.List{ECellDive.Utility.LogMessage})">
+  DrawMessageList(bool, List&lt;LogMessage&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The private implementation of the operations necessary to draw an individual
+message list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void DrawMessageList(bool _visibility, List&lt;LogMessage&gt; _msgList)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_visibility</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether the list should be drawn.</p>
+</dd>
+    <dt><code>_msgList</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.Utility.LogMessage.html">LogMessage</a>&gt;</dt>
+    <dd><p>The list to draw or hide.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_UI_LogManager_DrawMessageList_" data-uid="ECellDive.UI.LogManager.DrawMessageList*"></a>
+
   <h3 id="ECellDive_UI_LogManager_DrawMessageList_System_Int32_" data-uid="ECellDive.UI.LogManager.DrawMessageList(System.Int32)">
   DrawMessageList(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The public interface to callback when we wish to only update the
@@ -381,7 +434,7 @@ trace toggle, 1 for the ping toggle, 2 for the debug toggle and
 
   <h3 id="ECellDive_UI_LogManager_DrawMessageLists" data-uid="ECellDive.UI.LogManager.DrawMessageLists">
   DrawMessageLists()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L147"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Updates the drawing status of every list.</p>
@@ -408,11 +461,10 @@ trace toggle, 1 for the ping toggle, 2 for the debug toggle and
 
   <h3 id="ECellDive_UI_LogManager_ForceAllMessagesActivity" data-uid="ECellDive.UI.LogManager.ForceAllMessagesActivity">
   ForceAllMessagesActivity()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L164"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Forces to switch the visibility of every message of every type
-(see LogSystem.LogMessageTypes).</p>
+  <div class="markdown level1 summary"><p>Forces to switch the visibility of every message of every type.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -439,7 +491,7 @@ trace toggle, 1 for the ping toggle, 2 for the debug toggle and
 
   <h3 id="ECellDive_UI_LogManager_GenerateMessageUI_System_String_ECellDive_Utility_LogMessageTypes_" data-uid="ECellDive.UI.LogManager.GenerateMessageUI(System.String,ECellDive.Utility.LogMessageTypes)">
   GenerateMessageUI(string, LogMessageTypes)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L177"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Instantiate the new GUI element that will tease the content of the message.</p>
@@ -474,14 +526,40 @@ trace toggle, 1 for the ping toggle, 2 for the debug toggle and
 
 
 
+  <a id="ECellDive_UI_LogManager_Start_" data-uid="ECellDive.UI.LogManager.Start*"></a>
+
+  <h3 id="ECellDive_UI_LogManager_Start" data-uid="ECellDive.UI.LogManager.Start">
+  Start()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Start()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Menu Elements/LogManager.cs/#L13" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

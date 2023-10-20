@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Input_InputModeManager.md&amp;value=---%0Auid%3A%20ECellDive.Input.InputModeManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_Input_InputModeManager" data-uid="ECellDive.Input.InputModeManager" class="text-break">
     Class InputModeManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -87,7 +94,8 @@
   
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>The class to switch between the different input modes of the controllers.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -111,6 +119,10 @@
 
 
 
+  <h2 id="ECellDive_Input_InputModeManager_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>This is a network behaviour so the input modes of users are made visible
+to every user in the session.</p>
+</div>
 
 
   <h2 class="section" id="fields">Fields
@@ -120,10 +132,12 @@
 
   <h3 id="ECellDive_Input_InputModeManager_groupControllersGO" data-uid="ECellDive.Input.InputModeManager.groupControllersGO">
   groupControllersGO
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L137"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the right and left game objects encapsulating the
+logic of the group controls.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -135,7 +149,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -150,10 +164,12 @@
 
   <h3 id="ECellDive_Input_InputModeManager_inputModeTags" data-uid="ECellDive.Input.InputModeManager.inputModeTags">
   inputModeTags
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L154"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the left and right information telling the
+user which input mode he is switching to.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -165,7 +181,74 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<a class="xref" href="ECellDive.UI.SurgeAndShrinkInfoTag.html">SurgeAndShrinkInfoTag</a>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<a class="xref" href="ECellDive.UI.SurgeAndShrinkInfoTag.html">SurgeAndShrinkInfoTag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Input_InputModeManager_leftControllerModeID" data-uid="ECellDive.Input.InputModeManager.leftControllerModeID">
+  leftControllerModeID
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The ID of the current input mode of the left controller.
+Starting value is 0, which corresponds to Ray Based Controls.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private NetworkVariable&lt;int&gt; leftControllerModeID</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Input_InputModeManager_leftControllerModeID_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Since this is a NetworkVariable, the control mode of the left controller
+of a user is made visible to every user in the session.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Input_InputModeManager_leftRBCs" data-uid="ECellDive.Input.InputModeManager.leftRBCs">
+  leftRBCs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Array of all the XRRayInteractors of the left controller.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private XRRayInteractor[] leftRBCs</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">XRRayInteractor</span>[]</dt>
     <dd></dd>
   </dl>
 
@@ -180,10 +263,12 @@
 
   <h3 id="ECellDive_Input_InputModeManager_mainPointerInteractors" data-uid="ECellDive.Input.InputModeManager.mainPointerInteractors">
   mainPointerInteractors
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L124"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the Unity.XR.Interaction.Toolkit.XRRayInteractor
+of the left and right controllers used to point at objects.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -195,7 +280,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -210,10 +295,12 @@
 
   <h3 id="ECellDive_Input_InputModeManager_mvtControllersGO" data-uid="ECellDive.Input.InputModeManager.mvtControllersGO">
   mvtControllersGO
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L131"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to theright and left game objects encapsulating the
+logic of the movement of the player.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -225,7 +312,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -238,12 +325,82 @@
 
 
 
-  <h3 id="ECellDive_Input_InputModeManager_refInputActionAsset" data-uid="ECellDive.Input.InputModeManager.refInputActionAsset">
-  refInputActionAsset
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_Input_InputModeManager_refGCLHMap" data-uid="ECellDive.Input.InputModeManager.refGCLHMap">
+  refGCLHMap
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The Group Controls action map for the Left Hand</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private InputActionMap refGCLHMap</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">InputActionMap</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Input_InputModeManager_refGCLHMap_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The ID of Group Controls is 2.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Input_InputModeManager_refGCRHMap" data-uid="ECellDive.Input.InputModeManager.refGCRHMap">
+  refGCRHMap
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The Group Controls action map for the Right Hand</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private InputActionMap refGCRHMap</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">InputActionMap</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Input_InputModeManager_refGCRHMap_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The ID of Group Controls is 2.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Input_InputModeManager_refInputActionAsset" data-uid="ECellDive.Input.InputModeManager.refInputActionAsset">
+  refInputActionAsset
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reference to the InputActionAsset containing all the action maps that
+might be triggered by pressing buttons on the controllers.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -270,10 +427,12 @@
 
   <h3 id="ECellDive_Input_InputModeManager_refLeftControlSwitch" data-uid="ECellDive.Input.InputModeManager.refLeftControlSwitch">
   refLeftControlSwitch
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L78"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The InputActionReference to the action that triggers the switch of the
+input mode of the left controller.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -298,12 +457,150 @@
 
 
 
-  <h3 id="ECellDive_Input_InputModeManager_refRightControlSwitch" data-uid="ECellDive.Input.InputModeManager.refRightControlSwitch">
-  refRightControlSwitch
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_Input_InputModeManager_refMvtLHMap" data-uid="ECellDive.Input.InputModeManager.refMvtLHMap">
+  refMvtLHMap
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The Movement action map for the Left Hand</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private InputActionMap refMvtLHMap</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">InputActionMap</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Input_InputModeManager_refMvtLHMap_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The ID of Movement controls is 1.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Input_InputModeManager_refMvtRHMap" data-uid="ECellDive.Input.InputModeManager.refMvtRHMap">
+  refMvtRHMap
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The Movement action map for the Right Hand</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private InputActionMap refMvtRHMap</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">InputActionMap</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Input_InputModeManager_refMvtRHMap_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The ID of Movement controls is 1.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Input_InputModeManager_refRBCLHMap" data-uid="ECellDive.Input.InputModeManager.refRBCLHMap">
+  refRBCLHMap
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The Ray Based Controls action map for the Left Hand</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private InputActionMap refRBCLHMap</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">InputActionMap</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Input_InputModeManager_refRBCLHMap_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The ID of Ray Based Controls is 0.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Input_InputModeManager_refRBCRHMap" data-uid="ECellDive.Input.InputModeManager.refRBCRHMap">
+  refRBCRHMap
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The Ray Based Controls action map for the Right Hand</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private InputActionMap refRBCRHMap</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">InputActionMap</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Input_InputModeManager_refRBCRHMap_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The ID or Ray Based Controls is 0.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Input_InputModeManager_refRightControlSwitch" data-uid="ECellDive.Input.InputModeManager.refRightControlSwitch">
+  refRightControlSwitch
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The InputActionReference to the action that triggers the switch of the
+input mode of the right controller.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -330,10 +627,12 @@
 
   <h3 id="ECellDive_Input_InputModeManager_remoteGrabInteractors" data-uid="ECellDive.Input.InputModeManager.remoteGrabInteractors">
   remoteGrabInteractors
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the Unity.XR.Interaction.Toolkit.XRRayInteractor
+of the left and right controllers used to grad objects remotely.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -345,7 +644,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -360,10 +659,12 @@
 
   <h3 id="ECellDive_Input_InputModeManager_remoteInteractionInteractors" data-uid="ECellDive.Input.InputModeManager.remoteInteractionInteractors">
   remoteInteractionInteractors
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the Unity.XR.Interaction.Toolkit.XRRayInteractor
+of the left and right controllers used to interact with objects remotely.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -375,7 +676,74 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">XRRayInteractor</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Input_InputModeManager_rightControllerModeID" data-uid="ECellDive.Input.InputModeManager.rightControllerModeID">
+  rightControllerModeID
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The ID of the current input mode of the right controller.
+Starting value is 1, which corresponds to Movement.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private NetworkVariable&lt;int&gt; rightControllerModeID</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Input_InputModeManager_rightControllerModeID_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Since this is a NetworkVariable, the control mode of the right controller
+of a user is made visible to every user in the session.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Input_InputModeManager_rightRBCs" data-uid="ECellDive.Input.InputModeManager.rightRBCs">
+  rightRBCs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Array of all the XRRayInteractors of the right controller.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private XRRayInteractor[] rightRBCs</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">XRRayInteractor</span>[]</dt>
     <dd></dd>
   </dl>
 
@@ -391,14 +759,210 @@
 </h2>
 
 
+  <a id="ECellDive_Input_InputModeManager_ApplyLeftControllerActionMapSwitch_" data-uid="ECellDive.Input.InputModeManager.ApplyLeftControllerActionMapSwitch*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_ApplyLeftControllerActionMapSwitch_System_Int32_System_Int32_" data-uid="ECellDive.Input.InputModeManager.ApplyLeftControllerActionMapSwitch(System.Int32,System.Int32)">
+  ApplyLeftControllerActionMapSwitch(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L291"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Handles disabling and enabling of the action maps of the left controller.
+Callback function to call when the OnValueChanged event of the
+leftControllerModeID NetworkVariable is triggered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ApplyLeftControllerActionMapSwitch(int _previous, int current)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_previous</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>This is the previous value of the leftControllerModeID NetworkVariable.
+It is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
+    <dt><code>current</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>This is the newly assigned value of the leftControllerModeID NetworkVariable.
+It is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Input_InputModeManager_ApplyLeftControllerInteractorsSwitch_" data-uid="ECellDive.Input.InputModeManager.ApplyLeftControllerInteractorsSwitch*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_ApplyLeftControllerInteractorsSwitch_System_Int32_System_Int32_" data-uid="ECellDive.Input.InputModeManager.ApplyLeftControllerInteractorsSwitch(System.Int32,System.Int32)">
+  ApplyLeftControllerInteractorsSwitch(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L234"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Handles disabling and enabling of interactors of the left controller.
+Callback function to call when the OnValueChanged event of the
+leftControllerModeID NetworkVariable is triggered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ApplyLeftControllerInteractorsSwitch(int _previous, int current)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_previous</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>This is the previous value of the leftControllerModeID NetworkVariable.
+It is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
+    <dt><code>current</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>This is the newly assigned value of the leftControllerModeID NetworkVariable.
+It is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Input_InputModeManager_ApplyRightControllerActionMapSwitch_" data-uid="ECellDive.Input.InputModeManager.ApplyRightControllerActionMapSwitch*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_ApplyRightControllerActionMapSwitch_System_Int32_System_Int32_" data-uid="ECellDive.Input.InputModeManager.ApplyRightControllerActionMapSwitch(System.Int32,System.Int32)">
+  ApplyRightControllerActionMapSwitch(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L396"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Handles disabling and enabling of the action maps of the right controller.
+Callback function to call when the OnValueChanged event of the
+rightControllerModeID NetworkVariable is triggered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ApplyRightControllerActionMapSwitch(int _previous, int current)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_previous</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>This is the previous value of the rightControllerModeID NetworkVariable.
+It is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
+    <dt><code>current</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>This is the newly assigned value of the rightControllerModeID NetworkVariable.
+It is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Input_InputModeManager_ApplyRightControllerInteractorsSwitch_" data-uid="ECellDive.Input.InputModeManager.ApplyRightControllerInteractorsSwitch*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_ApplyRightControllerInteractorsSwitch_System_Int32_System_Int32_" data-uid="ECellDive.Input.InputModeManager.ApplyRightControllerInteractorsSwitch(System.Int32,System.Int32)">
+  ApplyRightControllerInteractorsSwitch(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L340"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Handles disabling and enabling of interactors of the right controller.
+Callback function to call when the OnValueChanged event of the
+rightControllerModeID NetworkVariable is triggered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ApplyRightControllerInteractorsSwitch(int _previous, int current)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_previous</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>This is the previous value of the rightControllerModeID NetworkVariable.
+It is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
+    <dt><code>current</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>This is the newly assigned value of the rightControllerModeID NetworkVariable.
+It is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Input_InputModeManager_Awake_" data-uid="ECellDive.Input.InputModeManager.Awake*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_Awake" data-uid="ECellDive.Input.InputModeManager.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L156"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_Input_InputModeManager_BroadcastLeftControllerModeServerRpc_" data-uid="ECellDive.Input.InputModeManager.BroadcastLeftControllerModeServerRpc*"></a>
 
   <h3 id="ECellDive_Input_InputModeManager_BroadcastLeftControllerModeServerRpc_System_Int32_" data-uid="ECellDive.Input.InputModeManager.BroadcastLeftControllerModeServerRpc(System.Int32)">
   BroadcastLeftControllerModeServerRpc(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L266"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L437"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Notifies the server that the user wants to switch the input mode of
+the left controller.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -408,7 +972,8 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_modeIdx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The new value of the leftControllerModeID NetworkVariable.</p>
+</dd>
   </dl>
 
 
@@ -426,10 +991,12 @@
 
   <h3 id="ECellDive_Input_InputModeManager_BroadcastRightControllerModeServerRpc_System_Int32_" data-uid="ECellDive.Input.InputModeManager.BroadcastRightControllerModeServerRpc(System.Int32)">
   BroadcastRightControllerModeServerRpc(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L272"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L450"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Notifies the server that the user wants to switch the input mode of
+the right controller.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -439,7 +1006,181 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_modeIdx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The new value of the rightControllerModeID NetworkVariable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Input_InputModeManager_DisableInteractor_" data-uid="ECellDive.Input.InputModeManager.DisableInteractor*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_DisableInteractor_GameObject_" data-uid="ECellDive.Input.InputModeManager.DisableInteractor(GameObject)">
+  DisableInteractor(GameObject)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L477"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Utility function to disable all interactors in a game object.
+It simply sets the game object to inactive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void DisableInteractor(GameObject _selector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_selector</code> <span class="xref">GameObject</span></dt>
+    <dd><p>The game object containing the interactors to disable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Input_InputModeManager_DisableInteractors_" data-uid="ECellDive.Input.InputModeManager.DisableInteractors*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_DisableInteractors_XRRayInteractor___" data-uid="ECellDive.Input.InputModeManager.DisableInteractors(XRRayInteractor[])">
+  DisableInteractors(XRRayInteractor[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L462"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Utility function to disable all the interactors in an array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void DisableInteractors(XRRayInteractor[] _interactors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_interactors</code> <span class="xref">XRRayInteractor</span>[]</dt>
+    <dd><p>The array of interactors to disable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Input_InputModeManager_EnableInteractor_" data-uid="ECellDive.Input.InputModeManager.EnableInteractor*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_EnableInteractor_GameObject_" data-uid="ECellDive.Input.InputModeManager.EnableInteractor(GameObject)">
+  EnableInteractor(GameObject)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L503"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Utility function to enable all interactors in a game object.
+It simply sets the game object to active.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void EnableInteractor(GameObject _selector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_selector</code> <span class="xref">GameObject</span></dt>
+    <dd><p>The game object containing the interactors to enable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Input_InputModeManager_EnableInteractors_" data-uid="ECellDive.Input.InputModeManager.EnableInteractors*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_EnableInteractors_XRRayInteractor___" data-uid="ECellDive.Input.InputModeManager.EnableInteractors(XRRayInteractor[])">
+  EnableInteractors(XRRayInteractor[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L488"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Utility function to enable all the interactors in an array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void EnableInteractors(XRRayInteractor[] _interactors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_interactors</code> <span class="xref">XRRayInteractor</span>[]</dt>
+    <dd><p>The array of interactors to enable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Input_InputModeManager_LeftControllerModeSwitch_" data-uid="ECellDive.Input.InputModeManager.LeftControllerModeSwitch*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_LeftControllerModeSwitch_InputAction_CallbackContext_" data-uid="ECellDive.Input.InputModeManager.LeftControllerModeSwitch(InputAction.CallbackContext)">
+  LeftControllerModeSwitch(CallbackContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L520"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Callback function to call when the refLeftControlSwitch action is triggered.
+It will notify the server that the user wants to switch the input mode of
+the left controller if the user (client) is the owner of game object. This
+checks avoids the local client to forcefully switch the input mode of the
+replicated game object of another user.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void LeftControllerModeSwitch(InputAction.CallbackContext _ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_ctx</code> <span class="xref">CallbackContext</span></dt>
+    <dd><p>Context information of the input action at the moment of the callback.
+This is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
   </dl>
 
 
@@ -457,7 +1198,7 @@
 
   <h3 id="ECellDive_Input_InputModeManager_OnNetworkDespawn" data-uid="ECellDive.Input.InputModeManager.OnNetworkDespawn">
   OnNetworkDespawn()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L206"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -479,14 +1220,82 @@
 
 
 
+  <a id="ECellDive_Input_InputModeManager_RightControllerModeSwitch_" data-uid="ECellDive.Input.InputModeManager.RightControllerModeSwitch*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_RightControllerModeSwitch_InputAction_CallbackContext_" data-uid="ECellDive.Input.InputModeManager.RightControllerModeSwitch(InputAction.CallbackContext)">
+  RightControllerModeSwitch(CallbackContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L540"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Callback function to call when the refRightControlSwitch action is triggered.
+It will notify the server that the user wants to switch the input mode of
+the right controller if the user (client) is the owner of game object. This
+checks avoids the local client to forcefully switch the input mode of the
+replicated game object of another user.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void RightControllerModeSwitch(InputAction.CallbackContext _ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_ctx</code> <span class="xref">CallbackContext</span></dt>
+    <dd><p>Context information of the input action at the moment of the callback.
+This is necessary to satisfy the constraint on the signature of the callback
+but we are not using it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Input_InputModeManager_Start_" data-uid="ECellDive.Input.InputModeManager.Start*"></a>
+
+  <h3 id="ECellDive_Input_InputModeManager_Start" data-uid="ECellDive.Input.InputModeManager.Start">
+  Start()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L168"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Start()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_Input_InputModeManager_SubscribeActionMapsSwitch_" data-uid="ECellDive.Input.InputModeManager.SubscribeActionMapsSwitch*"></a>
 
   <h3 id="ECellDive_Input_InputModeManager_SubscribeActionMapsSwitch" data-uid="ECellDive.Input.InputModeManager.SubscribeActionMapsSwitch">
   SubscribeActionMapsSwitch()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L320"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L553"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Public utility function to subscribe <a class="xref" href="ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_ApplyLeftControllerInteractorsSwitch_System_Int32_System_Int32_">ApplyLeftControllerInteractorsSwitch(int, int)</a>
+to the OnValueChanged event of the leftControllerModeID NetworkVariable.
+This is usefull only for the tutorials.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -509,10 +1318,13 @@
 
   <h3 id="ECellDive_Input_InputModeManager_UnsubscribeActionMapsSwitch" data-uid="ECellDive.Input.InputModeManager.UnsubscribeActionMapsSwitch">
   UnsubscribeActionMapsSwitch()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L326"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L564"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Public utility function to unsubscribe <a class="xref" href="ECellDive.Input.InputModeManager.html#ECellDive_Input_InputModeManager_ApplyLeftControllerInteractorsSwitch_System_Int32_System_Int32_">ApplyLeftControllerInteractorsSwitch(int, int)</a>
+to the OnValueChanged event of the leftControllerModeID NetworkVariable.
+This is usefull only for the tutorials.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -535,10 +1347,10 @@
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L12" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Input/InputModeManager.cs/#L17" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

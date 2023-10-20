@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_ContextualHelpManager.md&amp;value=---%0Auid%3A%20ECellDive.UI.ContextualHelpManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_UI_ContextualHelpManager" data-uid="ECellDive.UI.ContextualHelpManager" class="text-break">
     Class ContextualHelpManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -87,8 +94,9 @@
   
   </div>
 
-  <div class="markdown summary"><p>Class to control the visibility of all contextual info tags
-that could be attached to children gameobjects.</p>
+  <div class="markdown summary"><p>Class to link the input mode of the controllers to the content of the information
+tags. When the input mode changes, the information tags are updated accordingly.
+It also provides a method to hide all information tags at once.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -122,10 +130,12 @@ that could be attached to children gameobjects.</p>
 
   <h3 id="ECellDive_UI_ContextualHelpManager_leftControllerModel" data-uid="ECellDive.UI.ContextualHelpManager.leftControllerModel">
   leftControllerModel
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the gameobject encapsulating the information tags on
+the left controller.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -150,12 +160,45 @@ that could be attached to children gameobjects.</p>
 
 
 
-  <h3 id="ECellDive_UI_ContextualHelpManager_rightControllerModel" data-uid="ECellDive.UI.ContextualHelpManager.rightControllerModel">
-  rightControllerModel
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_UI_ContextualHelpManager_leftInfoTagManagers" data-uid="ECellDive.UI.ContextualHelpManager.leftInfoTagManagers">
+  leftInfoTagManagers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The array of information tag managers on the left controller.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private InfoTagManager[] leftInfoTagManagers</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.UI.InfoTagManager.html">InfoTagManager</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_ContextualHelpManager_rightControllerModel" data-uid="ECellDive.UI.ContextualHelpManager.rightControllerModel">
+  rightControllerModel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The reference to the gameobject encapsulating the information tags on
+the right controller.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -179,18 +222,77 @@ that could be attached to children gameobjects.</p>
 
 
 
+
+  <h3 id="ECellDive_UI_ContextualHelpManager_rightInfoTagManagers" data-uid="ECellDive.UI.ContextualHelpManager.rightInfoTagManagers">
+  rightInfoTagManagers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The array of information tag managers on the right controller.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private InfoTagManager[] rightInfoTagManagers</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.UI.InfoTagManager.html">InfoTagManager</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
+
+
+  <a id="ECellDive_UI_ContextualHelpManager_Awake_" data-uid="ECellDive.UI.ContextualHelpManager.Awake*"></a>
+
+  <h3 id="ECellDive_UI_ContextualHelpManager_Awake" data-uid="ECellDive.UI.ContextualHelpManager.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
   <a id="ECellDive_UI_ContextualHelpManager_BroadcastControlModeSwitchToLeftController_" data-uid="ECellDive.UI.ContextualHelpManager.BroadcastControlModeSwitchToLeftController*"></a>
 
   <h3 id="ECellDive_UI_ContextualHelpManager_BroadcastControlModeSwitchToLeftController_System_Int32_" data-uid="ECellDive.UI.ContextualHelpManager.BroadcastControlModeSwitchToLeftController(System.Int32)">
   BroadcastControlModeSwitchToLeftController(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Changes the information tags on the left controller to the input mode
+indicated by <code class="paramref">_controlModeID</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -200,7 +302,8 @@ that could be attached to children gameobjects.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_controlModeID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the input mode to switch to.</p>
+</dd>
   </dl>
 
 
@@ -218,10 +321,12 @@ that could be attached to children gameobjects.</p>
 
   <h3 id="ECellDive_UI_ContextualHelpManager_BroadcastControlModeSwitchToRightController_System_Int32_" data-uid="ECellDive.UI.ContextualHelpManager.BroadcastControlModeSwitchToRightController(System.Int32)">
   BroadcastControlModeSwitchToRightController(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L62"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Changes the information tags on the right controller to the input mode
+indicated by <code class="paramref">_controlModeID</code>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -231,7 +336,8 @@ that could be attached to children gameobjects.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_controlModeID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the input mode to switch to.</p>
+</dd>
   </dl>
 
 
@@ -249,10 +355,11 @@ that could be attached to children gameobjects.</p>
 
   <h3 id="ECellDive_UI_ContextualHelpManager_ContextualHelpGlobalHide" data-uid="ECellDive.UI.ContextualHelpManager.ContextualHelpGlobalHide">
   ContextualHelpGlobalHide()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L73"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Hides all information tags on both controllers.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -275,10 +382,10 @@ that could be attached to children gameobjects.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L11" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/ContextualHelpManager.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

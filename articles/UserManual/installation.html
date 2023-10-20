@@ -16,13 +16,20 @@
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/installation.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../../public/main.js'
-    import { init } from './../../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -76,9 +83,8 @@
 
 <p>To work properly, ECellDive should <a href="Network/connecting_to_Kosmogora.html">be connected to Kosmogora</a>. It is a server to which the user can connect in ECellDive to import data, request calculations and save modification files. To properly communicate, the computer running <em>Kosmogora</em> and the Meta Quest 2 headset <strong>must be on the same local network</strong>; preferably the same router but a VPN might also work. When both are runing (see <a href="https://github.com/ecell/kosmogora">Kosmogora</a> page for details on how to launch the server), you can access the server from ECellDive with different <a href="Modules/modules.html">modules</a> in-app.</p>
 <h1 id="ecelldive">ECellDive</h1>
-<h2 id="app">App</h2>
 <p>The application executable (<em>.apk file</em>) can be downloaded from the <a href="https://github.com/ecell/ECell_Dive/releases">release page</a> and installed on any Quest 2 headset thanks to <a href="https://sidequestvr.com/">SideQuest</a>.</p>
-<h3 id="connect-the-headset-to-sidequest">Connect the headset to SideQuest</h3>
+<h2 id="connect-the-headset-to-sidequest">Connect the headset to SideQuest</h2>
 <p>Requirement: After installing SideQuest
 Plug-in your headset to your computer with a USB-C cable (a <a href="https://www.meta.com/en-gb/help/quest/articles/headsets-and-accessories/oculus-link/connect-link-with-quest-2/">Link</a> cable shouldn't be necessary at this step).</p>
 <p>The connection is successful if you see a green circle on the top left corner (see image bellow).</p>
@@ -86,7 +92,7 @@ Plug-in your headset to your computer with a USB-C cable (a <a href="https://www
   <summary>Successful connection</summary>
 <img src="../../resources/images/Installation/confirm_quest_connection.png" alt="link cable success">
 </details>
-<h3 id="select-the-apk-file">Select the .apk file</h3>
+<h2 id="select-the-apk-file">Select the .apk file</h2>
 <p>In SideQuest, click on the button <em>Install APK file from folder on computer</em></p>
 <details>
   <summary>Button location</summary>
@@ -104,85 +110,7 @@ Plug-in your headset to your computer with a USB-C cable (a <a href="https://www
 <img src="../../resources/images/Installation/apk_file_installed.png" alt="apk installed">
 </details>
 <p>The installation should take less than 5 seconds.</p>
-<h2 id="project-for-developers">Project (for developers)</h2>
-<h3 id="download-the-zip-of-the-project">Download the zip of the project</h3>
-<p>Cloning the git repo through the https uri is possible (last tested on 2023-07-19) but it is more stable to download the zip archive of the project instead. On the github page of the code:</p>
-<ol>
-<li>click on the green button <em>Code</em></li>
-<li>click on the button <em>Download ZIP</em>.</li>
-</ol>
-<div class="WARNING">
-<h5>Warning</h5>
-<p>[FOR WINDOWS] If you plan on developing for the multiplayer networking, you will probably use <a href="https://github.com/VeriorPies/ParrelSync">ParrelSync</a> in the project. ParrelSync makes clones of the whole project which involves copying files very deep in the project. If you are not careful, the paths <strong>may exceed the 260 characters limit</strong> on Windows. To work around this, we advise you put the project at a directory close to the root. Something like <code>C:\Users\username\src</code>. This is a known limit in ParrelSync (see <a href="https://github.com/VeriorPies/ParrelSync/wiki/Troubleshooting-&amp;-FAQs#cant-clone-the-project--cant-open-the-cloned-project">FAQ</a> and <a href="https://github.com/VeriorPies/ParrelSync/issues/13">issue#13</a>)</p>
-</div>
-<p>Once you have downloaded the archive (a few dozen Mo), unzip it (see <a href="https://www.7-zip.org/">Windows</a>, <a href="https://support.apple.com/en-gb/guide/mac-help/mchlp2528/mac">MacOs</a>, <a href="https://askubuntu.com/questions/86849/how-to-unzip-a-zip-file-from-the-terminal">Linux</a> for relevant ways) at a location of your choice.</p>
-<details>
-  <summary>Example Download ZIP</summary>
-<img src="../../resources/images/Installation/download_zip.gif" alt="download zip">
-</details>
-<h3 id="download-unity">Download Unity</h3>
-<blockquote>
-<p>![WARNING]
-Currently, the project works with Unity 2023.3.27f1. We recommend to not open the project with a more recent version of Unity if it is not your goal to upgrade the whole project. That is because packages dependencies will be updated along in Unity 2021.X or 2022.X and this may break the project.</p>
-</blockquote>
-<h4 id="download-unity-hub">Download Unity Hub</h4>
-<p><a href="https://unity.com/download">Unity Hub</a> is the official launcher application by Unity to manage your installation of Unity versions as well as start and open projects. Follow the instructions to install Unity Hub on your system.</p>
-<h4 id="download-version-2022327f1">Download version 2022.3.27f1</h4>
-<ol>
-<li>Open Unity Hub.</li>
-<li>Click on the button <em>Installs</em> on the left panel.</li>
-<li>Click on the button <em>Install Editor</em> on the top right.</li>
-<li>Click on the tab <em>Archive</em>.</li>
-<li>Click on the link <em>download archive</em>.</li>
-</ol>
-<details>
-  <summary>Get To Unity Archive</summary>
-<img src="../../resources/images/Installation/get_to_unity_archive.gif" alt="get to unity archive">
-</details>
-<ol start="6">
-<li>Click on the tab <em>Unity 2020.X</em>.</li>
-<li>Scroll down until you find Unity 2023.3.27 (January 31, 2022).</li>
-<li>Click on the button <em>Unity Hub</em>.</li>
-</ol>
-<details>
-  <summary>Find version 2020.3.27</summary>
-<img src="../../resources/images/Installation/find_2023_3_27.gif" alt="find 2023.3.27">
-</details>
-<ol start="9">
-<li>Accept to open the link with Unity Hub (this depends on your internet navigator and OS).</li>
-<li>In Unity Hub, make sure to select the options related to <em>Android</em> if you want to be able to build the application for the Meta Quest headeset series.</li>
-</ol>
-<details>
-  <summary>Mandatory options to build for Quest 2 (Android)</summary>
-<img src="../../resources/images/Installation/select_android_options.png" alt="select android options">
-</details>
-<ol start="11">
-<li>Click on the blue button <em>Continue</em> in the bottom left corner.</li>
-<li>Read and Agree to the terms of use; click on the blue button <em>Install</em>.</li>
-</ol>
-<p>Installation typically takes 10-15 minutes on a gaming laptop.</p>
-<h3 id="open-the-project">Open the project</h3>
-<ol>
-<li>Open Unity Hub.</li>
-<li>Click on the button <em>Projects</em> in the left panel.</li>
-<li>Click on the button <em>Open</em> in the top right corner.
-<ol>
-<li>If you click on the button itself, the file explorer of your local system should open by default.</li>
-<li>If you click on the arrow, a drop down will appear, giving you the choice to <em>Add a project from disk</em> or <em>Open remote project</em>.</li>
-</ol>
-</li>
-<li>Navigate to where you the uncompressed  folder of <em>ECellDive</em> is located on your system.
-<ol>
-<li>If you chose option 3.1, then clicking on the &quot;Open&quot; should immediately trigger the opening of the project in Unity.</li>
-<li>If you chose option 3.2, then the project will be added to the list of project in Unity Hub and you need to click on it once more to really open it.</li>
-</ol>
-</li>
-</ol>
-<details>
-  <summary>Open project</summary>
-<img src="../../resources/images/Installation/open_project.gif" alt="open project">
-</details>
-<p>Opening the project for the first time might take 5 mins on a gaming laptop.</p>
+
 </article>
 
         <div class="contribution d-print-none">
@@ -190,7 +118,7 @@ Currently, the project works with Unity 2023.3.27f1. We recommend to not open th
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
-        
+
       </div>
 
       <div class="affix">

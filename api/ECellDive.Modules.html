@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -97,8 +104,18 @@ network modules across all scenes.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="ECellDive.Modules.DummyGameNetModule.html">DummyGameNetModule</a></dt>
+      <dd><p>A dummy game net module.
+This only serves the purpose of demonstrating how to create a game net module
+and which methods must be implemented.
+It does not do anything. It is only attached to the game object called
+&quot;BaseGameNetModule&quot; for demonstration. DO NOT REUSE THIS CLASS.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Modules.EdgeGO.html">EdgeGO</a></dt>
-      <dd></dd>
+      <dd><p>The class to manage the behaviour of an edge in the graph.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a></dt>
@@ -113,19 +130,26 @@ the game object representation of a module.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html">HttpServerBaseModule</a></dt>
-      <dd></dd>
+      <dd><p>The base class for all modules that need to send requests to a server
+using the HTTP protocol.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Modules.HttpServerFbaModule.html">HttpServerFbaModule</a></dt>
-      <dd></dd>
+      <dd><p>The module to request a Flux Balance Analysis (FBA) on the
+Kosmogora-like server.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Modules.HttpServerImporterModule.html">HttpServerImporterModule</a></dt>
-      <dd></dd>
+      <dd><p>The module to import models from the Kosmogora-like server.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Modules.HttpServerInfoQueryModule.html">HttpServerInfoQueryModule</a></dt>
-      <dd></dd>
+      <dd><p>A module to request the Kosmogora-like server to get additional
+information about a reaction on reachable databases.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Modules.HttpServerModificationModule.html">HttpServerModificationModule</a></dt>
@@ -146,7 +170,8 @@ the game object representation of a module.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Modules.NodeGO.html">NodeGO</a></dt>
-      <dd></dd>
+      <dd><p>The class to manage the behaviour of a node game object.</p>
+</dd>
     </dl>
     <h3 id="structs">
 Structs
@@ -157,19 +182,9 @@ Structs
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Modules.FbaAnalysisData.html">FbaAnalysisData</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Modules.RequestData.html">RequestData</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Modules.ServerData.html">ServerData</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Modules.ServerUIData.html">ServerUIData</a></dt>
-      <dd></dd>
+      <dd><p>A utility data structure to store the parameters
+and results of the FBA analysis.</p>
+</dd>
     </dl>
 
 
@@ -178,7 +193,7 @@ Structs
         <div class="contribution d-print-none">
         </div>
 
-        
+
       </div>
 
       <div class="affix">

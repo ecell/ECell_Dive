@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_GameNetPortal.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.GameNetPortal%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_Multiplayer_GameNetPortal" data-uid="ECellDive.Multiplayer.GameNetPortal" class="text-break">
     Class GameNetPortal
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -131,10 +138,11 @@ communications between server and client upon creation and termination.</p>
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_Instance" data-uid="ECellDive.Multiplayer.GameNetPortal.Instance">
   Instance
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The singleton instance of the GameNetPortal.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -161,10 +169,11 @@ communications between server and client upon creation and termination.</p>
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_NetManager" data-uid="ECellDive.Multiplayer.GameNetPortal.NetManager">
   NetManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the network manager of the scene.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -191,10 +200,11 @@ communications between server and client upon creation and termination.</p>
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_dataModules" data-uid="ECellDive.Multiplayer.GameNetPortal.dataModules">
   dataModules
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The list of the data modules in the scene.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -219,12 +229,106 @@ communications between server and client upon creation and termination.</p>
 
 
 
-  <h3 id="ECellDive_Multiplayer_GameNetPortal_modifiables" data-uid="ECellDive.Multiplayer.GameNetPortal.modifiables">
-  modifiables
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_Multiplayer_GameNetPortal_m_ClientPortal" data-uid="ECellDive.Multiplayer.GameNetPortal.m_ClientPortal">
+  m_ClientPortal
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the client portal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private ClientGameNetPortal m_ClientPortal</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Multiplayer.ClientGameNetPortal.html">ClientGameNetPortal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetPortal_m_ServerPortal" data-uid="ECellDive.Multiplayer.GameNetPortal.m_ServerPortal">
+  m_ServerPortal
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The refence to the server portal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private ServerGameNetPortal m_ServerPortal</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Multiplayer.ServerGameNetPortal.html">ServerGameNetPortal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetPortal_m_settings" data-uid="ECellDive.Multiplayer.GameNetPortal.m_settings">
+  m_settings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for the <a class="xref" href="ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_settings">settings</a> property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private ConnectionSettings m_settings</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.Multiplayer.ConnectionSettings.html">ConnectionSettings</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetPortal_modifiables" data-uid="ECellDive.Multiplayer.GameNetPortal.modifiables">
+  modifiables
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The list of modules that can be modified by the user.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -251,10 +355,11 @@ communications between server and client upon creation and termination.</p>
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_netSessionPlayersDataMap" data-uid="ECellDive.Multiplayer.GameNetPortal.netSessionPlayersDataMap">
   netSessionPlayersDataMap
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L91"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A map between the client id and the data of the player.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -266,7 +371,7 @@ communications between server and client upon creation and termination.</p>
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>, <a class="xref" href="ECellDive.Multiplayer.NetSessionPlayerData.html">NetSessionPlayerData</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>, <a class="xref" href="ECellDive.Utility.Data.Multiplayer.NetSessionPlayerData.html">NetSessionPlayerData</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -281,10 +386,11 @@ communications between server and client upon creation and termination.</p>
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_saveables" data-uid="ECellDive.Multiplayer.GameNetPortal.saveables">
   saveables
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L86"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The list of modules that can be saved.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -316,14 +422,15 @@ communications between server and client upon creation and termination.</p>
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_settings" data-uid="ECellDive.Multiplayer.GameNetPortal.settings">
   settings
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L67"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The settings of the connection to the server.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ConnectionSettings settings { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ConnectionSettings settings { get; private set; }</code></pre>
   </div>
 
 
@@ -332,7 +439,7 @@ communications between server and client upon creation and termination.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Multiplayer.ConnectionSettings.html">ConnectionSettings</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.Multiplayer.ConnectionSettings.html">ConnectionSettings</a></dt>
     <dd></dd>
   </dl>
 
@@ -347,14 +454,41 @@ communications between server and client upon creation and termination.</p>
 </h2>
 
 
+  <a id="ECellDive_Multiplayer_GameNetPortal_Awake_" data-uid="ECellDive.Multiplayer.GameNetPortal.Awake*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetPortal_Awake" data-uid="ECellDive.Multiplayer.GameNetPortal.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_Multiplayer_GameNetPortal_CheckPassword_" data-uid="ECellDive.Multiplayer.GameNetPortal.CheckPassword*"></a>
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_CheckPassword_System_String_" data-uid="ECellDive.Multiplayer.GameNetPortal.CheckPassword(System.String)">
   CheckPassword(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L150"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L165"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if the password is correct.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -364,13 +498,15 @@ communications between server and client upon creation and termination.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The string to check agains the password.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
+    <dd><p>True if the password is correct, false otherwise.</p>
+</dd>
   </dl>
 
 
@@ -387,10 +523,11 @@ communications between server and client upon creation and termination.</p>
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_GetConnectionPayload" data-uid="ECellDive.Multiplayer.GameNetPortal.GetConnectionPayload">
   GetConnectionPayload()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L146"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Encapsulate the connection data into a <a class="xref" href="ECellDive.Utility.Data.Multiplayer.ConnectionPayload.html">ConnectionPayload</a></p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -400,7 +537,102 @@ communications between server and client upon creation and termination.</p>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Multiplayer.ConnectionPayload.html">ConnectionPayload</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.Multiplayer.ConnectionPayload.html">ConnectionPayload</a></dt>
+    <dd><p>The connection payload.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetPortal_GetPlayerId_" data-uid="ECellDive.Multiplayer.GameNetPortal.GetPlayerId*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetPortal_GetPlayerId" data-uid="ECellDive.Multiplayer.GameNetPortal.GetPlayerId">
+  GetPlayerId()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a unique player id.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private string GetPlayerId()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The new player id.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetPortal_OnDestroy_" data-uid="ECellDive.Multiplayer.GameNetPortal.OnDestroy*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetPortal_OnDestroy" data-uid="ECellDive.Multiplayer.GameNetPortal.OnDestroy">
+  OnDestroy()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void OnDestroy()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetPortal_OnNetworkReady_" data-uid="ECellDive.Multiplayer.GameNetPortal.OnNetworkReady*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetPortal_OnNetworkReady_System_UInt64_" data-uid="ECellDive.Multiplayer.GameNetPortal.OnNetworkReady(System.UInt64)">
+  OnNetworkReady(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>This method is subscribed to Unity's NetworkManager.OnClientConnectedCallback.
+So, it runs when NetworkManager has started up (following a succesful
+connect on the client, or directly after StartHost is invoked on the host).
+It is named to match NetworkBehaviour.OnNetworkSpawn, and serves the same
+role, even though GameNetPortal itself isn't a NetworkBehaviour.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void OnNetworkReady(ulong _clientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_clientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
     <dd></dd>
   </dl>
 
@@ -414,14 +646,93 @@ communications between server and client upon creation and termination.</p>
 
 
 
+
+  <a id="ECellDive_Multiplayer_GameNetPortal_Restart_" data-uid="ECellDive.Multiplayer.GameNetPortal.Restart*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetPortal_Restart" data-uid="ECellDive.Multiplayer.GameNetPortal.Restart">
+  Restart()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Shuts down the current session and starts a new one as a host.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private IEnumerator Restart()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetPortal_SendData_" data-uid="ECellDive.Multiplayer.GameNetPortal.SendData*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetPortal_SendData_System_UInt64_" data-uid="ECellDive.Multiplayer.GameNetPortal.SendData(System.UInt64)">
+  SendData(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L252"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Synchronizes the content of the data modules that already exist
+in the scene (and stored in <a class="xref" href="ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_dataModules">dataModules</a>) for the
+client with id <code class="paramref">_clientID</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private IEnumerator SendData(ulong _clientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_clientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The id of the target client to which
+we send the content of the data modules in the scene.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Multiplayer_GameNetPortal_SendData_System_UInt64__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This should be used only with (or after) <a class="xref" href="ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_OnNetworkReady_System_UInt64_">OnNetworkReady(ulong)</a> to be sure that the data modules
+have been spawned in the scene of the target client.</p>
+</div>
+
+
+
+
   <a id="ECellDive_Multiplayer_GameNetPortal_SetConnectionSettings_" data-uid="ECellDive.Multiplayer.GameNetPortal.SetConnectionSettings*"></a>
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_SetConnectionSettings_System_String_System_String_System_UInt16_System_String_" data-uid="ECellDive.Multiplayer.GameNetPortal.SetConnectionSettings(System.String,System.String,System.UInt16,System.String)">
   SetConnectionSettings(string, string, ushort, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L255"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L286"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the connection settings.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -431,13 +742,17 @@ communications between server and client upon creation and termination.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The name of the player.</p>
+</dd>
     <dt><code>_ip</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The IPv4 of the server.</p>
+</dd>
     <dt><code>_port</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
-    <dd></dd>
+    <dd><p>The port of the server.</p>
+</dd>
     <dt><code>_password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The password of the server.</p>
+</dd>
   </dl>
 
 
@@ -455,10 +770,11 @@ communications between server and client upon creation and termination.</p>
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_SetUnityTransport_System_Boolean_" data-uid="ECellDive.Multiplayer.GameNetPortal.SetUnityTransport(System.Boolean)">
   SetUnityTransport(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L272"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L309"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Retrieves the UnityTransport of the scene.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -468,8 +784,35 @@ communications between server and client upon creation and termination.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_verbose</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
+    <dd><p>A boolean to print the retrieved connection data in the console.</p>
+</dd>
   </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetPortal_Start_" data-uid="ECellDive.Multiplayer.GameNetPortal.Start*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetPortal_Start" data-uid="ECellDive.Multiplayer.GameNetPortal.Start">
+  Start()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Start()</code></pre>
+  </div>
+
 
 
 
@@ -486,7 +829,7 @@ communications between server and client upon creation and termination.</p>
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_StartClient" data-uid="ECellDive.Multiplayer.GameNetPortal.StartClient">
   StartClient()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L294"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L331"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Public interface to start a client.</p>
@@ -507,7 +850,7 @@ communications between server and client upon creation and termination.</p>
 
   <h4 class="section" id="ECellDive_Multiplayer_GameNetPortal_StartClient_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Forwards a call to <a class="xref" href="ECellDive.Multiplayer.ClientGameNetPortal.html#ECellDive_Multiplayer_ClientGameNetPortal_StartClient">StartClient()</a>
-through <a class="xref" href="ECellDive.Multiplayer.GameNetPortal.html#ECellDive.Multiplayer.GameNetPortal.m_ClientPortal">m_ClientPortal</a> which is private.</p>
+through <a class="xref" href="ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_m_ClientPortal">m_ClientPortal</a> which is private.</p>
 </div>
 
 
@@ -517,12 +860,12 @@ through <a class="xref" href="ECellDive.Multiplayer.GameNetPortal.html#ECellDive
 
   <h3 id="ECellDive_Multiplayer_GameNetPortal_StartHost" data-uid="ECellDive.Multiplayer.GameNetPortal.StartHost">
   StartHost()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L304"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L341"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes host mode on this client. Call this and then other clients
 should connect to us!
-Uses the IP and port registered in <a class="xref" href="ECellDive.Multiplayer.GameNetPortal.html#ECellDive.Multiplayer.GameNetPortal.m_settings">m_settings</a>.</p>
+Uses the IP and port registered in <a class="xref" href="ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_m_settings">m_settings</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -546,10 +889,10 @@ Uses the IP and port registered in <a class="xref" href="ECellDive.Multiplayer.G
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L77" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Multiplayer/GameNetPortal.cs/#L37" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

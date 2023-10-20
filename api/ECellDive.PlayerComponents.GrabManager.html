@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_PlayerComponents_GrabManager.md&amp;value=---%0Auid%3A%20ECellDive.PlayerComponents.GrabManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_PlayerComponents_GrabManager" data-uid="ECellDive.PlayerComponents.GrabManager" class="text-break">
     Class GrabManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -87,7 +94,8 @@
   
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>The logic behind the remote grab feature.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -126,10 +134,13 @@
 
   <h3 id="ECellDive_PlayerComponents_GrabManager_attractionSpeedCurve" data-uid="ECellDive.PlayerComponents.GrabManager.attractionSpeedCurve">
   attractionSpeedCurve
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The curve controlling the speed of attraction.
+The value of the curve is evaluated at the linerar interpolation
+of the current distance between the minimum and maximum distances.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -154,12 +165,168 @@
 
 
 
-  <h3 id="ECellDive_PlayerComponents_GrabManager_objectMaxDistance" data-uid="ECellDive.PlayerComponents.GrabManager.objectMaxDistance">
-  objectMaxDistance
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_PlayerComponents_GrabManager_isReady" data-uid="ECellDive.PlayerComponents.GrabManager.isReady">
+  isReady
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A boolean to inform whether grabing is in progress.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private bool isReady</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_m_OnPostGrabMovementUpdate" data-uid="ECellDive.PlayerComponents.GrabManager.m_OnPostGrabMovementUpdate">
+  m_OnPostGrabMovementUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field of the <a class="xref" href="ECellDive.PlayerComponents.GrabManager.html#ECellDive_PlayerComponents_GrabManager_OnPostGrabMovementUpdate">OnPostGrabMovementUpdate</a> property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private UnityEvent m_OnPostGrabMovementUpdate</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_m_isGrabed" data-uid="ECellDive.PlayerComponents.GrabManager.m_isGrabed">
+  m_isGrabed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field of the <a class="xref" href="ECellDive.PlayerComponents.GrabManager.html#ECellDive_PlayerComponents_GrabManager_isGrabed">isGrabed</a> property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private LeftRightData&lt;bool&gt; m_isGrabed</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_m_manageDistance" data-uid="ECellDive.PlayerComponents.GrabManager.m_manageDistance">
+  m_manageDistance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field of the <a class="xref" href="ECellDive.PlayerComponents.GrabManager.html#ECellDive_PlayerComponents_GrabManager_manageDistance">manageDistance</a> property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private LeftRightData&lt;InputActionReference&gt; m_manageDistance</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_objDistance" data-uid="ECellDive.PlayerComponents.GrabManager.objDistance">
+  objDistance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The distance between the object and the controller.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private float objDistance</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_objectMaxDistance" data-uid="ECellDive.PlayerComponents.GrabManager.objectMaxDistance">
+  objectMaxDistance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The maximum distance an object can be moved away from the controller.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -186,10 +353,11 @@
 
   <h3 id="ECellDive_PlayerComponents_GrabManager_objectMinDistance" data-uid="ECellDive.PlayerComponents.GrabManager.objectMinDistance">
   objectMinDistance
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The minimum distance an object can be moved away from the controller.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -214,12 +382,81 @@
 
 
 
-  <h3 id="ECellDive_PlayerComponents_GrabManager_repulsionSpeedCurve" data-uid="ECellDive.PlayerComponents.GrabManager.repulsionSpeedCurve">
-  repulsionSpeedCurve
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_PlayerComponents_GrabManager_refInteractable" data-uid="ECellDive.PlayerComponents.GrabManager.refInteractable">
+  refInteractable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Reference to the XRBaseInteractable of this gameobject.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private XRBaseInteractable refInteractable</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">XRBaseInteractable</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_PlayerComponents_GrabManager_refInteractable_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>It is automatically set in the Start() method.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_refVelocity" data-uid="ECellDive.PlayerComponents.GrabManager.refVelocity">
+  refVelocity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reference to the velocity of the movement of the object used for
+a smooth damp movement.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private Vector3 refVelocity</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_repulsionSpeedCurve" data-uid="ECellDive.PlayerComponents.GrabManager.repulsionSpeedCurve">
+  repulsionSpeedCurve
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The curve controlling the speed of repulsion.
+The value of the curve is evaluated at the linerar interpolation
+of the current distance between the minimum and maximum distances.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -251,7 +488,7 @@
 
   <h3 id="ECellDive_PlayerComponents_GrabManager_OnPostGrabMovementUpdate" data-uid="ECellDive.PlayerComponents.GrabManager.OnPostGrabMovementUpdate">
   OnPostGrabMovementUpdate
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Additional call back to perform right after the object
@@ -284,7 +521,7 @@ has been moved (direct or remote grab).</p>
 
   <h3 id="ECellDive_PlayerComponents_GrabManager_currentRemoteInteractor" data-uid="ECellDive.PlayerComponents.GrabManager.currentRemoteInteractor">
   currentRemoteInteractor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A reference to the XRRayInteractor that was used
@@ -317,7 +554,7 @@ as an intermediary to grab the gameobject.</p>
 
   <h3 id="ECellDive_PlayerComponents_GrabManager_isGrabed" data-uid="ECellDive.PlayerComponents.GrabManager.isGrabed">
   isGrabed
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The boolean struct to inform whether the gameobject
@@ -335,7 +572,7 @@ is being grabed by the left or right controllers.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -350,7 +587,7 @@ is being grabed by the left or right controllers.</p>
 
   <h3 id="ECellDive_PlayerComponents_GrabManager_manageDistance" data-uid="ECellDive.PlayerComponents.GrabManager.manageDistance">
   manageDistance
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The references to the input actions on the left and right controller
@@ -368,7 +605,7 @@ used to modulate the distance of grabed objects.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -383,7 +620,7 @@ used to modulate the distance of grabed objects.</p>
 
   <h3 id="ECellDive_PlayerComponents_GrabManager_refCurrentController" data-uid="ECellDive.PlayerComponents.GrabManager.refCurrentController">
   refCurrentController
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A reference to the gameobject of the controller that is currently
@@ -416,11 +653,64 @@ used to grab the gameobject.</p>
 </h2>
 
 
+  <a id="ECellDive_PlayerComponents_GrabManager_Awake_" data-uid="ECellDive.PlayerComponents.GrabManager.Awake*"></a>
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_Awake" data-uid="ECellDive.PlayerComponents.GrabManager.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_PlayerComponents_GrabManager_FollowBeamTranslation_" data-uid="ECellDive.PlayerComponents.GrabManager.FollowBeamTranslation*"></a>
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_FollowBeamTranslation" data-uid="ECellDive.PlayerComponents.GrabManager.FollowBeamTranslation">
+  FollowBeamTranslation()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Logic to translate the object when grabed from a distance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void FollowBeamTranslation()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_PlayerComponents_GrabManager_IsGrabed_" data-uid="ECellDive.PlayerComponents.GrabManager.IsGrabed*"></a>
 
   <h3 id="ECellDive_PlayerComponents_GrabManager_IsGrabed" data-uid="ECellDive.PlayerComponents.GrabManager.IsGrabed">
   IsGrabed()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L235"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Informs whether the gameobject is currently grabed by
@@ -451,11 +741,187 @@ right controller. Flase, otherwise.</p>
 
 
 
+  <a id="ECellDive_PlayerComponents_GrabManager_IsInDeadZone_" data-uid="ECellDive.PlayerComponents.GrabManager.IsInDeadZone*"></a>
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_IsInDeadZone_System_Single_System_Single_" data-uid="ECellDive.PlayerComponents.GrabManager.IsInDeadZone(System.Single,System.Single)">
+  IsInDeadZone(float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L196"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A hard coded method returning true if Abs(<code class="paramref">_value</code>)
+lower than <code class="paramref">_threshold</code>. Returns false otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private bool IsInDeadZone(float _value, float _threshold = 0.5)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>_threshold</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_PlayerComponents_GrabManager_IsInDeadZone_System_Single_System_Single__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Used to clamp Joystick input data since I couldn't
+make the built-in deadzone work as intended.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_PlayerComponents_GrabManager_ManageDistance_" data-uid="ECellDive.PlayerComponents.GrabManager.ManageDistance*"></a>
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_ManageDistance_System_Single_" data-uid="ECellDive.PlayerComponents.GrabManager.ManageDistance(System.Single)">
+  ManageDistance(float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L206"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves the selector forward or backward.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ManageDistance(float _mvtFactor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_mvtFactor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>If greater than 0 then forward movement;
+If lower than 0 then backward movement.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_PlayerComponents_GrabManager_ManageDistanceLeft_" data-uid="ECellDive.PlayerComponents.GrabManager.ManageDistanceLeft*"></a>
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_ManageDistanceLeft_InputAction_CallbackContext_" data-uid="ECellDive.PlayerComponents.GrabManager.ManageDistanceLeft(InputAction.CallbackContext)">
+  ManageDistanceLeft(CallbackContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Manages the distance between the object and the left controller.
+Calledback when the action <a class="xref" href="ECellDive.PlayerComponents.GrabManager.html#ECellDive_PlayerComponents_GrabManager_manageDistance">manageDistance</a>.left is performed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ManageDistanceLeft(InputAction.CallbackContext _ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_ctx</code> <span class="xref">CallbackContext</span></dt>
+    <dd><p>The input context at the time of the callback.
+It is necessary to statisfy the constraint on the callback signature.
+Used to retrieve a Vector2.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_PlayerComponents_GrabManager_ManageDistanceRight_" data-uid="ECellDive.PlayerComponents.GrabManager.ManageDistanceRight*"></a>
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_ManageDistanceRight_InputAction_CallbackContext_" data-uid="ECellDive.PlayerComponents.GrabManager.ManageDistanceRight(InputAction.CallbackContext)">
+  ManageDistanceRight(CallbackContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Manages the distance between the object and the right controller.
+Calledback when the action <a class="xref" href="ECellDive.PlayerComponents.GrabManager.html#ECellDive_PlayerComponents_GrabManager_manageDistance">manageDistance</a>.right is performed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ManageDistanceRight(InputAction.CallbackContext _ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_ctx</code> <span class="xref">CallbackContext</span></dt>
+    <dd><p>The input context at the time of the callback.
+It is necessary to statisfy the constraint on the callback signature.
+Used to retrieve a Vector2.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_PlayerComponents_GrabManager_OnDestroy_" data-uid="ECellDive.PlayerComponents.GrabManager.OnDestroy*"></a>
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_OnDestroy" data-uid="ECellDive.PlayerComponents.GrabManager.OnDestroy">
+  OnDestroy()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void OnDestroy()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_PlayerComponents_GrabManager_OnGrab_" data-uid="ECellDive.PlayerComponents.GrabManager.OnGrab*"></a>
 
   <h3 id="ECellDive_PlayerComponents_GrabManager_OnGrab" data-uid="ECellDive.PlayerComponents.GrabManager.OnGrab">
   OnGrab()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L241"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Operations to perform when the user is grabing an object
@@ -483,7 +949,7 @@ after making a remote contact with it.</p>
 
   <h3 id="ECellDive_PlayerComponents_GrabManager_OnReleaseGrab" data-uid="ECellDive.PlayerComponents.GrabManager.OnReleaseGrab">
   OnReleaseGrab()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L185"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L261"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Operations to perform when a user realeases the object
@@ -507,14 +973,66 @@ it had grabed from a remote contact with it.</p>
 
 
 
+  <a id="ECellDive_PlayerComponents_GrabManager_Start_" data-uid="ECellDive.PlayerComponents.GrabManager.Start*"></a>
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_Start" data-uid="ECellDive.PlayerComponents.GrabManager.Start">
+  Start()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Start()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_PlayerComponents_GrabManager_Update_" data-uid="ECellDive.PlayerComponents.GrabManager.Update*"></a>
+
+  <h3 id="ECellDive_PlayerComponents_GrabManager_Update" data-uid="ECellDive.PlayerComponents.GrabManager.Update">
+  Update()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Update()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Player/GrabManager.cs/#L14" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

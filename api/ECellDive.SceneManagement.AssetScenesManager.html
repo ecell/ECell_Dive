@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_SceneManagement_AssetScenesManager.md&amp;value=---%0Auid%3A%20ECellDive.SceneManagement.AssetScenesManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -119,12 +126,45 @@
 
 
 
-  <h3 id="ECellDive_SceneManagement_AssetScenesManager_scenePaths" data-uid="ECellDive.SceneManagement.AssetScenesManager.scenePaths">
-  scenePaths
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/AssetScenesManager.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_SceneManagement_AssetScenesManager_loadedScenes" data-uid="ECellDive.SceneManagement.AssetScenesManager.loadedScenes">
+  loadedScenes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/AssetScenesManager.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The dictionary identifying the loaded scenes by their name in <a class="xref" href="ECellDive.SceneManagement.AssetScenesManager.html#ECellDive_SceneManagement_AssetScenesManager_scenePaths">scenePaths</a>.
+This is used to unload the scenes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private Dictionary&lt;string, Scene&gt; loadedScenes</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <span class="xref">Scene</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_SceneManagement_AssetScenesManager_scenePaths" data-uid="ECellDive.SceneManagement.AssetScenesManager.scenePaths">
+  scenePaths
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/AssetScenesManager.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The array of scenes names that might be loaded</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -156,11 +196,11 @@
 
   <h3 id="ECellDive_SceneManagement_AssetScenesManager_LoadScene_System_Int32_" data-uid="ECellDive.SceneManagement.AssetScenesManager.LoadScene(System.Int32)">
   LoadScene(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/AssetScenesManager.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/AssetScenesManager.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>CallsSceneManager.LoadScene(string)  to loads the
-scene at index <code class="paramref">_sceneIdx</code> in Scene.</p>
+  <div class="markdown level1 summary"><p>Calls UnityEngine.SceneManagement.SceneManager.LoadScene(string)  to loads the
+scene at index <code class="paramref">_sceneIdx</code> in  UnityEngine.SceneManagement.Scene.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -172,7 +212,7 @@ scene at index <code class="paramref">_sceneIdx</code> in Scene.</p>
   <dl class="parameters">
     <dt><code>_sceneIdx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>The index of the scene we wish to load as ordered in
-scenes</p>
+<a class="xref" href="ECellDive.SceneManagement.AssetScenesManager.html#ECellDive_SceneManagement_AssetScenesManager_scenePaths">scenePaths</a></p>
 </dd>
   </dl>
 
@@ -191,7 +231,7 @@ scenes</p>
 
   <h3 id="ECellDive_SceneManagement_AssetScenesManager_OnNetworkSpawn" data-uid="ECellDive.SceneManagement.AssetScenesManager.OnNetworkSpawn">
   OnNetworkSpawn()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/AssetScenesManager.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/AssetScenesManager.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -213,14 +253,54 @@ scenes</p>
 
 
 
+  <a id="ECellDive_SceneManagement_AssetScenesManager_OnSceneEvent_" data-uid="ECellDive.SceneManagement.AssetScenesManager.OnSceneEvent*"></a>
+
+  <h3 id="ECellDive_SceneManagement_AssetScenesManager_OnSceneEvent_SceneEvent_" data-uid="ECellDive.SceneManagement.AssetScenesManager.OnSceneEvent(SceneEvent)">
+  OnSceneEvent(SceneEvent)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/AssetScenesManager.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Subscribed to Unity.Netcode.NetworkManager.SceneManager.OnSceneEvent.
+Used to control instructions based on the nature of the event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void OnSceneEvent(SceneEvent _sceneEvent)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_sceneEvent</code> <span class="xref">SceneEvent</span></dt>
+    <dd><p>The class containing information about the scene.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_SceneManagement_AssetScenesManager_OnSceneEvent_SceneEvent__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Copied and adapted from documentation (2022-08-15):
+<a href="https://docs-multiplayer.unity3d.com/netcode/current/basics/scenemanagement/using-networkscenemanager#unloading-a-scene/">https://docs-multiplayer.unity3d.com/netcode/current/basics/scenemanagement/using-networkscenemanager#unloading-a-scene/</a></p>
+</div>
+
+
+
+
   <a id="ECellDive_SceneManagement_AssetScenesManager_UnloadScene_" data-uid="ECellDive.SceneManagement.AssetScenesManager.UnloadScene*"></a>
 
   <h3 id="ECellDive_SceneManagement_AssetScenesManager_UnloadScene_System_Int32_" data-uid="ECellDive.SceneManagement.AssetScenesManager.UnloadScene(System.Int32)">
   UnloadScene(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/AssetScenesManager.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/AssetScenesManager.cs/#L105"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Unloads the scene which name is at index <code class="paramref">_sceneIdx</code> in
+<a class="xref" href="ECellDive.SceneManagement.AssetScenesManager.html#ECellDive_SceneManagement_AssetScenesManager_scenePaths">scenePaths</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -230,7 +310,8 @@ scenes</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_sceneIdx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The index of the scene we wish to unload as ordered in <a class="xref" href="ECellDive.SceneManagement.AssetScenesManager.html#ECellDive_SceneManagement_AssetScenesManager_scenePaths">scenePaths</a>.</p>
+</dd>
   </dl>
 
 
@@ -251,7 +332,7 @@ scenes</p>
           <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Scenes/AssetScenesManager.cs/#L14" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

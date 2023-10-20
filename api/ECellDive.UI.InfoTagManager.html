@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_InfoTagManager.md&amp;value=---%0Auid%3A%20ECellDive.UI.InfoTagManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_UI_InfoTagManager" data-uid="ECellDive.UI.InfoTagManager" class="text-break">
     Class InfoTagManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -87,7 +94,10 @@
   
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>A specialized InfoDisplayManager that manages the display of the
+input controls of the player. Typically handles what it should display
+when the player is in a certain control mode (i.e. Interaction, Movement or Groups).</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -142,10 +152,16 @@
       <a class="xref" href="ECellDive.UI.InfoDisplayManager.html#ECellDive_UI_InfoDisplayManager_hideOnStart">InfoDisplayManager.hideOnStart</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.UI.InfoDisplayManager.html#ECellDive_UI_InfoDisplayManager_m_flip">InfoDisplayManager.m_flip</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.UI.InfoDisplayManager.html#ECellDive_UI_InfoDisplayManager_flip">InfoDisplayManager.flip</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.UI.InfoDisplayManager.html#ECellDive_UI_InfoDisplayManager_lookAtTarget">InfoDisplayManager.lookAtTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.UI.InfoDisplayManager.html#ECellDive_UI_InfoDisplayManager_Update">InfoDisplayManager.Update()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.UI.InfoDisplayManager.html#ECellDive_UI_InfoDisplayManager_GlobalHide">InfoDisplayManager.GlobalHide()</a>
@@ -171,16 +187,19 @@
 
 
 
-  <h3 id="ECellDive_UI_InfoTagManager_tagGC" data-uid="ECellDive.UI.InfoTagManager.tagGC">
-  tagGC
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_UI_InfoTagManager_currentTag" data-uid="ECellDive.UI.InfoTagManager.currentTag">
+  currentTag
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A reference to the current active tag.
+It shouldn't be different from <a class="xref" href="ECellDive.UI.InfoTagManager.html#ECellDive_UI_InfoTagManager_tagGC">tagGC</a>,
+<a class="xref" href="ECellDive.UI.InfoTagManager.html#ECellDive_UI_InfoTagManager_tagMvt">tagMvt</a> or <a class="xref" href="ECellDive.UI.InfoTagManager.html#ECellDive_UI_InfoTagManager_tagRBC">tagRBC</a>.&quot;/&gt;</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InfoTagManager.Tag tagGC</code></pre>
+    <pre><code class="lang-csharp hljs">private Tag currentTag</code></pre>
   </div>
 
 
@@ -188,7 +207,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.UI.InfoTagManager.html">InfoTagManager</a>.<a class="xref" href="ECellDive.UI.InfoTagManager.Tag.html">Tag</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.UI.Tag.html">Tag</a></dt>
     <dd></dd>
   </dl>
 
@@ -198,19 +217,63 @@
 
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
+
+
+
+  <h3 id="ECellDive_UI_InfoTagManager_tagGC" data-uid="ECellDive.UI.InfoTagManager.tagGC">
+  tagGC
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The tag associated with the Group Control mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Tag tagGC</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.UI.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
 
 
 
   <h3 id="ECellDive_UI_InfoTagManager_tagMvt" data-uid="ECellDive.UI.InfoTagManager.tagMvt">
   tagMvt
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The tag associated with the Movement mode.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InfoTagManager.Tag tagMvt</code></pre>
+    <pre><code class="lang-csharp hljs">public Tag tagMvt</code></pre>
   </div>
 
 
@@ -218,7 +281,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.UI.InfoTagManager.html">InfoTagManager</a>.<a class="xref" href="ECellDive.UI.InfoTagManager.Tag.html">Tag</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.UI.Tag.html">Tag</a></dt>
     <dd></dd>
   </dl>
 
@@ -228,19 +291,26 @@
 
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
 
 
 
   <h3 id="ECellDive_UI_InfoTagManager_tagRBC" data-uid="ECellDive.UI.InfoTagManager.tagRBC">
   tagRBC
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The tag associated with the Interaction mode.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InfoTagManager.Tag tagRBC</code></pre>
+    <pre><code class="lang-csharp hljs">public Tag tagRBC</code></pre>
   </div>
 
 
@@ -248,7 +318,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.UI.InfoTagManager.html">InfoTagManager</a>.<a class="xref" href="ECellDive.UI.InfoTagManager.Tag.html">Tag</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.UI.Tag.html">Tag</a></dt>
     <dd></dd>
   </dl>
 
@@ -258,20 +328,137 @@
 
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
 
 
   <h2 class="section" id="methods">Methods
 </h2>
 
 
+  <a id="ECellDive_UI_InfoTagManager_Awake_" data-uid="ECellDive.UI.InfoTagManager.Awake*"></a>
+
+  <h3 id="ECellDive_UI_InfoTagManager_Awake" data-uid="ECellDive.UI.InfoTagManager.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
+
+
+  <a id="ECellDive_UI_InfoTagManager_AwakeCallBackActions_" data-uid="ECellDive.UI.InfoTagManager.AwakeCallBackActions*"></a>
+
+  <h3 id="ECellDive_UI_InfoTagManager_AwakeCallBackActions_ECellDive_Utility_Data_UI_Tag_" data-uid="ECellDive.UI.InfoTagManager.AwakeCallBackActions(ECellDive.Utility.Data.UI.Tag)">
+  AwakeCallBackActions(Tag)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Subscribe the mutators callback of a tag to the corresponding input action timings
+according to <a class="xref" href="ECellDive.Utility.Data.UI.TagMutator.html#ECellDive_Utility_Data_UI_TagMutator_actionTime">actionTime</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void AwakeCallBackActions(Tag _tag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_tag</code> <a class="xref" href="ECellDive.Utility.Data.UI.Tag.html">Tag</a></dt>
+    <dd><p>The tag which mutators callback subscription must be initialized.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
+
+
+  <a id="ECellDive_UI_InfoTagManager_ButtonTagCallBack_" data-uid="ECellDive.UI.InfoTagManager.ButtonTagCallBack*"></a>
+
+  <h3 id="ECellDive_UI_InfoTagManager_ButtonTagCallBack_UnityEvent_" data-uid="ECellDive.UI.InfoTagManager.ButtonTagCallBack(UnityEvent)">
+  ButtonTagCallBack(UnityEvent)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The link function between the subscription of a tag mutator input action
+callback and the invocation of the corresponding UnityEvent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ButtonTagCallBack(UnityEvent _callbackEvent)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_callbackEvent</code> <span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
+
+
   <a id="ECellDive_UI_InfoTagManager_Hide_" data-uid="ECellDive.UI.InfoTagManager.Hide*"></a>
 
   <h3 id="ECellDive_UI_InfoTagManager_Hide" data-uid="ECellDive.UI.InfoTagManager.Hide">
   Hide()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Hides the Info tag without setting it inactive</p>
+  <div class="markdown level1 summary"><p>Hides the tag by setting its alpha to 0.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -289,16 +476,25 @@
 
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
 
 
   <a id="ECellDive_UI_InfoTagManager_SetText_" data-uid="ECellDive.UI.InfoTagManager.SetText*"></a>
 
   <h3 id="ECellDive_UI_InfoTagManager_SetText_System_Int32_" data-uid="ECellDive.UI.InfoTagManager.SetText(System.Int32)">
   SetText(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Forcefully sets the text in the <a class="xref" href="ECellDive.UI.InfoTagManager.html#ECellDive_UI_InfoTagManager_currentTag">currentTag</a>'s content array at index
+<code class="paramref">_contentIndex</code> into the inherited text mesh
+(<a class="xref" href="ECellDive.UI.InfoDisplayManager.html#ECellDive_UI_InfoDisplayManager_refInfoTextMesh">refInfoTextMesh</a>).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -308,7 +504,8 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_contentIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The index of the content to display.</p>
+</dd>
   </dl>
 
 
@@ -320,16 +517,22 @@
 
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
 
 
   <a id="ECellDive_UI_InfoTagManager_Show_" data-uid="ECellDive.UI.InfoTagManager.Show*"></a>
 
   <h3 id="ECellDive_UI_InfoTagManager_Show" data-uid="ECellDive.UI.InfoTagManager.Show">
   Show()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Shows the info tag without setting it active</p>
+  <div class="markdown level1 summary"><p>Shows the tag by setting its alpha to 1.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -347,16 +550,59 @@
 
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
+
+
+  <a id="ECellDive_UI_InfoTagManager_Start_" data-uid="ECellDive.UI.InfoTagManager.Start*"></a>
+
+  <h3 id="ECellDive_UI_InfoTagManager_Start" data-uid="ECellDive.UI.InfoTagManager.Start">
+  Start()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Start()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
 
 
   <a id="ECellDive_UI_InfoTagManager_SwitchControlMode_" data-uid="ECellDive.UI.InfoTagManager.SwitchControlMode*"></a>
 
   <h3 id="ECellDive_UI_InfoTagManager_SwitchControlMode_System_Int32_" data-uid="ECellDive.UI.InfoTagManager.SwitchControlMode(System.Int32)">
   SwitchControlMode(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L134"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Switch the value of <a class="xref" href="ECellDive.UI.InfoTagManager.html#ECellDive_UI_InfoTagManager_currentTag">currentTag</a> according to the the
+<code class="paramref">_controlModeID</code> value.
+0 is for the Interaction mode (<a class="xref" href="ECellDive.UI.InfoTagManager.html#ECellDive_UI_InfoTagManager_tagRBC">tagRBC</a>), 1 for the
+Movement mode (<a class="xref" href="ECellDive.UI.InfoTagManager.html#ECellDive_UI_InfoTagManager_tagMvt">tagMvt</a>) and 2 for the Group Control
+mode (<a class="xref" href="ECellDive.UI.InfoTagManager.html#ECellDive_UI_InfoTagManager_tagGC">tagGC</a>).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -366,7 +612,8 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_controlModeID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the control mode to switch to.</p>
+</dd>
   </dl>
 
 
@@ -378,13 +625,19 @@
 
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
 
 
   <a id="ECellDive_UI_InfoTagManager_TextRotation_" data-uid="ECellDive.UI.InfoTagManager.TextRotation*"></a>
 
   <h3 id="ECellDive_UI_InfoTagManager_TextRotation" data-uid="ECellDive.UI.InfoTagManager.TextRotation">
   TextRotation()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L155"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Changes the content of the Text UI by rotating the indeces
@@ -406,16 +659,62 @@ over the content array.</p>
 
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
 
 
+  <a id="ECellDive_UI_InfoTagManager_updateTagText_" data-uid="ECellDive.UI.InfoTagManager.updateTagText*"></a>
+
+  <h3 id="ECellDive_UI_InfoTagManager_updateTagText" data-uid="ECellDive.UI.InfoTagManager.updateTagText">
+  updateTagText()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the text in the <a class="xref" href="ECellDive.UI.InfoTagManager.html#ECellDive_UI_InfoTagManager_currentTag">currentTag</a>'s content array at index
+<code class="paramref">_contentIndex</code> into the inherited text mesh
+(<a class="xref" href="ECellDive.UI.InfoDisplayManager.html#ECellDive_UI_InfoDisplayManager_refInfoTextMesh">refInfoTextMesh</a>).
+but first checks if the content is empty. If the string is empty, the tag is hidden.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void updateTagText()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="seealso">See Also</h2>
+  <div class="seealso">
+      <div><a class="xref" href="ECellDive.Input.InputModeManager.html">InputModeManager</a></div>
+  </div>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L12" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/InfoTags/InfoTagManager.cs/#L14" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

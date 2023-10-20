@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Main scene of the project </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Main scene of the project ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../FusionApiDev/toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/Dev/about_scenes.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<p>Putting aside the scenes dedicated to the tutorials, there is only one scene where everything happens (even diving from one dive scene to another)</p>
+<h1 id="main-scene-of-the-project">Main scene of the project</h1>
+<p>The following is a screenshot of the content of the <code>Main</code> Unity scene.</p>
+<img src="../../resources/images/dev/Scenes/Hierarchy_Main.jpg" alt="Main Scene Hierarchy">
+<h2 id="directional-light">Directional Light</h2>
+<p>A gameobject with unique component (<code>Light</code>) provided by Unity to setup a default lighting of the scene.</p>
+<h2 id="event-system">Event System</h2>
+<p>A gameobject with mandatory Unity components to enable the input detection for XR controllers. The first (<code>EventSystem</code>) makes sure the scene is compatible with Unity <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.7/manual/index.html">Input System</a> which is the latest recommended API to listen to any kind of controllers. The second (<code>XRUIInputModule</code>) sets up some global values to control the click speed, move dead zone, repeat delay, and so on.</p>
+<h2 id="scene-manager">Scene Manager</h2>
+<p>This is the gameobject that manages any scene transition including the transition between scene assets (e.g., main, tutorials, demo) and the dive scenes (which all exists within the main scene). Transitioning between dive scenes implies sending data over the multiplayer network so it is mandatory to attach a <code>NetworkObject</code> component the scene manager. This is one of the major component provided by Unity's <a href="https://docs-multiplayer.unity3d.com/netcode/current/basics/networkobject/">Netcode for GameObjects</a> package. Then the custom components are:</p>
+<ul>
+<li><a class="xref" href="../../api/ECellDive.SceneManagement.AssetScenesManager.html">AssetScenesManager</a> which handles the transitions between the main scene and the tutorials or the demo scene.</li>
+<li><a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html">DiveScenesManager</a> which handles diving and &quot;resurfacing&quot; (returning to the previous scene).</li>
+<li><a class="xref" href="../../api/ECellDive.SceneManagement.ResurfaceManager.html">ResurfaceManager</a> which listens to controllers input to detect when a user wishes to return to the dive scene he was before the current one.</li>
+</ul>
+<h2 id="input-action-manager">Input Action Manager</h2>
+<p>A gameobject with a unique component (<code>InputActionManager</code>) part of the of the <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.7/manual/index.html">Input System</a> which task is to enable every input actions defined into the action assets specified. In the project, there is only one such asset located at <code>Assets/Input/Controls</code>. If actions are not enabled at the start, then any subsequent subscription to the action events <code>started</code>, <code>performed</code>, or <code>canceled</code> will never be invoked. In is possible to micro-manage enable/disable of every action and in the action assets, but we do not need to do so in this project so it is much more convenient to enable everything in one go.</p>
+<h2 id="network-manager">Network Manager</h2>
+<p>The base gameobject to support the multiplayer network. It has a component of the same name (<code>NetworkManager</code>) which handles the spawn of game objects that must be replicated in the session of every client. Currently, this includes the <code>Player</code>, the <code>CyjsonModule</code>, the <code>CyJsonNodeModule</code> and the <code>CyJsonEdgeModule</code>. its second component is <code>UnityTransport</code> which is the solution from Unity to define the low level data exchange and communication on the network.</p>
+<p>It is possible to implement our own transport solution and to replace the default one. It might prove useful to facilitate sharing big model files within the multiplayer network but it is not a priority.</p>
+<h2 id="game-net-portal">Game Net Portal</h2>
+<p>The gameobject with custom components which rely on the <code>NetworkManager</code> to implement the host/client architecture for <em>ECellDive</em>. The components are:</p>
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html">GameNetPortal</a> to manage the communications the creation of a host as well as communication of incoming new clients.</li>
+<li><a class="xref" href="../../api/ECellDive.Multiplayer.ClientGameNetPortal.html">ClientGameNetPortal</a> to manage the details for a client trying to connect to a host.</li>
+<li><a class="xref" href="../../api/ECellDive.Multiplayer.ServerGameNetPortal.html">ServerGameNetPortal</a> to manage the details for a host client sorting out the clients trying to connect to it.</li>
+</ul>
+<h2 id="game-net-spawner">Game Net Spawner</h2>
+<p>The gameobject with a custom component <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetModuleSpawner.html">GameNetModuleSpawner</a> of the same name which role is to link user UI interaction with the creation of new network object (game objects synchronized for every clients of the network).</p>
+<h2 id="external-object-manager">External Object Manager</h2>
+<p>The gameobject responsible for the management of global UI menus through the component <a class="xref" href="../../api/ECellDive.UI.GUIManager.html">GUIManager</a>. It also acts as a world anchor for UI Menus and modules that are not pinned to the Player's position.</p>
+<h1 id="dive-scenes">Dive Scenes</h1>
+<p><em>Dive Scenes</em> are a concept to represent a portion of space in which users can navigate, add modules, interact with data and instantiate portals to go to other dive scenes. They are the main unit for user's mental model of how they delimit the seemingly infinite space of a virtual environment.</p>
+<p>In Unity, a scene is an asset containing a hierarchy of gameobjects that make up the content of a virtual space. The hierarchy of gameobjects defines the logic driving anything that is happening in the space, including user's movement or interaction.</p>
+<p>Despite the apparently good match between our concept of <em>Dive Scene</em> and a <em>Unity Scene</em> there are constraints in how scenes are managed in Unity. For one, as far as we could tell, scenes assets are built in the application (and it's reasonnable). This implies that you can only add scenes in the Editor and that you must know what the <em>Unity Scenes</em> will contain in advance which is incompatible with our vision of dynamic <em>Dive Scene</em> when users dive into newly added data.</p>
+<p>So, in fact, in <em>ECellDive</em>, players who dive from a scene to another, never leave the <code>Main</code> <em>Unity Scene</em>. Our <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html">DiveScenesManager</a> keeps track of which gameobject of the <em>Unity Scene</em> belongs to which <em>Dive Scene</em> and, when a user dives, the manager <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_HideScene_System_Int32_System_UInt64_">hides</a> the gameobjects of the previous <em>Dive Scene</em> and <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_ShowScene_System_Int32_System_UInt64_">shows</a> the gameobjects of the new <em>Dive Scene</em>. Fellow divers on the multiplayer network are also hidden and showed depending on the <em>Dive Scene</em> they are currently exploring. Bellow is a sequence diagram representing the relevant communications. <a class="xref" href="../../api/ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_GenerativeDiveIn">GenerativeDiveIn</a>, <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_HideScene_System_Int32_System_UInt64_">HideScene</a>, and <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_ShowScene_System_Int32_System_UInt64_">ShowScene</a> involve more communications with every clients of the network which are not represented here.</p>
+<pre><code class="lang-plantuml">@startuml component
+
+box **Client**
+actor Diver as d
+participant DataModule as DMC1
+participant DiveSceneManager as DSMC1
+endbox
+
+box **Server (Host)**
+participant DiveSceneManager as DSMH
+endbox
+
+d -&gt; DMC1: GenerativeDiveIn()\nDirectDiveIn()
+DMC1 -&gt; DSMC1: SwitchingServerRPC(rootSceneID,\ntargetSceneID, diverID)
+
+DSMC1 --&gt; DSMH: execution on server
+DSMH -&gt; DSMH: HideScene(rootSceneID,\ndiverID)
+DSMH -&gt; DSMH: ShowScene(targetSceneID,\ndiverID)
+DSMH -&gt; DSMH: UpdatePlayerData(rootSceneID,\ndiverID)
+
+DSMH --&gt; DSMC1 --: UpdatePlayerDataClientRPC(\nClientRpcParams)
+
+DSMC1 -&gt; DMC1 --: SceneSwitchIsFinished()
+
+DMC1 -&gt; d: You are in the\nnew dive scene
+
+@enduml
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/Dev/about_scenes.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

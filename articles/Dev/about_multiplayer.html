@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Hosting and Joining </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Hosting and Joining ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../FusionApiDev/toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/Dev/about_multiplayer.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<p>The multiplayer feature of <em>ECellDive</em> is powered by Unity's solution <a href="https://docs-multiplayer.unity3d.com/netcode/current/about/index.html">Netcode for GameObjects</a> (NetGO). To use NetGO, it is mandatory to include a gameobject with a <code>NetworkManager</code> component and a <code>Transport</code> component. The former is high-level singleton wrapper to control main settings (e.g., tick rates, log level, network player and objects prefab) and subsystems (e.g., network object spawning, scene management, server start). The latter is the low-level layer to handle network protocols and data packet. It is possible to write custom Transports to solve peculiar needs but we are using the default Unity Transport for this project. It might be relevant to implement our own or, at least, adapt a bit Unity's default one to smooth the broadcast of large model files between users in <em>ECellDive</em>. You may find those two components attached the gameobject (GO) named <code>NetworkManager</code> in the <em>Unity Scene</em> called <code>main</code> of this project.</p>
+<h1 id="hosting-and-joining">Hosting and Joining</h1>
+<p>We used the sample project <a href="https://docs-multiplayer.unity3d.com/netcode/current/learn/bossroom/bossroom/">Boss Room</a> to jump start the host/client architecture of our project. The core of the hosting/connection system in <em>ECellDive</em> is handled by the components <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html">GameNetPortal</a>, <a class="xref" href="../../api/ECellDive.Multiplayer.ServerGameNetPortal.html">ServerGameNetPortal</a>, and <a class="xref" href="../../api/ECellDive.Multiplayer.ClientGameNetPortal.html">ClientGameNetPortal</a> (all are singletons and <a class="xref" href="../../api/ECellDive.Multiplayer.ServerGameNetPortal.html">ServerGameNetPortal</a> should not exists at the same time as <a class="xref" href="../../api/ECellDive.Multiplayer.ClientGameNetPortal.html">ClientGameNetPortal</a>); while the UI to enter server's settings and whether to host or join pass by the module (and component) <a class="xref" href="../../api/ECellDive.Modules.MultiplayerModule.html">MultiplayerModule</a> and its 2D UI menu <a class="xref" href="../../api/ECellDive.UI.MultiplayerMenuManager.html">MultiplayerMenuManager</a>.</p>
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Modules.MultiplayerModule.html">MultiplayerModule</a>'s role is to give visual feedback that the connection is currently trying to be processed and to indicate whether it is a success or a failure.</li>
+<li><a class="xref" href="../../api/ECellDive.UI.MultiplayerMenuManager.html">MultiplayerMenuManager</a>'s role is to retrieve the information given by the user to connect to the server (IPv4, Port, Player Name, and password), and then to ask the <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html">GameNetPortal</a> to start a host or a client based on the information.</li>
+<li><a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html">GameNetPortal</a> has three essential methods at this stage which are <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_StartHost">StartHost</a>, <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_StartClient">StartClient</a>, and <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_OnNetworkReady_System_UInt64_">OnNetworkReady</a>.
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_StartClient">StartClient</a> directly gives a call to the <a class="xref" href="../../api/ECellDive.Multiplayer.ClientGameNetPortal.html">ClientGameNetPortal</a>'s own <a class="xref" href="../../api/ECellDive.Multiplayer.ClientGameNetPortal.html#ECellDive_Multiplayer_ClientGameNetPortal_StartClient">StartClient</a>. It will process the connection data and then transfer the call to the <code>NetworkManager.StartClient()</code>.</li>
+<li><a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_StartHost">StartHost</a> will first check whether the user is already a host. If so, it will <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_Restart">Restart</a> before calling <code>NetworkManager.StartHost()</code></li>
+</ul>
+</li>
+<li>Once the <code>NetworkManager</code> has started a host or connected the current user as a client to a host, it will trigger the event <code>NetworkManager.OnClientConnectedCallback</code> to which <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html">GameNetPortal</a>'s method <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_OnNetworkReady_System_UInt64_">OnNetworkReady</a> is subscribed.</li>
+<li><a class="xref" href="../../api/ECellDive.Multiplayer.GameNetPortal.html#ECellDive_Multiplayer_GameNetPortal_OnNetworkReady_System_UInt64_">OnNetworkReady</a>'s role is to close the connection protocol for <a class="xref" href="../../api/ECellDive.Multiplayer.ServerGameNetPortal.html">ServerGameNetPortal</a> and <a class="xref" href="../../api/ECellDive.Multiplayer.ClientGameNetPortal.html">ClientGameNetPortal</a> through their own <code>OnNetworkReady</code>. Most importantly, it will guarantee sending the data of every modules already imported in the session to any new client for synchronization.</li>
+</ul>
+<h1 id="broadcast-data">Broadcast Data</h1>
+<p>NetGO gives two solutions to share data between over the network between clients. The first is <a href="https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls">NetworkVariables</a> and the second is <a href="https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls">Remote Procedure Calls</a>.</p>
+<h2 id="small-ones-with-networkvariables">&quot;Small ones&quot; with NetworkVariables</h2>
+<p>In <em>ECellDive</em> we used network variables to easily synchronize &quot;small&quot; data. For example, the <a class="xref" href="../../api/ECellDive.Interfaces.IColorHighlightableNet.html#ECellDive_Interfaces_IColorHighlightableNet_currentColor">currentColor</a> in the interface <a class="xref" href="../../api/ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a> to synchronize the color change of modules when users point at them. This is very useful to easily share on the network which module a user is currently interacting with. Or the <a class="xref" href="../../api/ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockout</a> status in the interface <a class="xref" href="../../api/ECellDive.Interfaces.IKnockable.html">IKnockable</a> to guarantee that the state of a model is synchronized for all users when one of them is knocking out a reaction.</p>
+<p>There are many others in the project.</p>
+<h2 id="big-ones-with-remote-procedure-calls-rpcs">&quot;Big ones&quot; with Remote Procedure Calls (RPCs)</h2>
+<h3 id="example-1-broadcast-data-imported-by-a-user-from-kosmogora">Example 1: Broadcast data imported by a user from Kosmogora</h3>
+<p>When a user imports data in a dive scene from a <a href="(%7E/articles/UserManual/Network/connecting_to_Kosmogora.md)">Kosmogora-like</a> server thanks to <a class="xref" href="../../api/ECellDive.Modules.HttpServerImporterModule.html">HttpServerImporterModule</a>, it is immediately sent to every other user in the multiplayer session. We could have enforced that every user in the multiplayer session have the same access to the <a href="(%7E/articles/UserManual/Network/connecting_to_Kosmogora.md)">Kosmogora-like</a> server. But we did not because it is likely that, in a collaborative setting, some users have access to <a href="(%7E/articles/UserManual/Network/connecting_to_Kosmogora.md)">Kosmogora-like</a> servers hosted on their institution's servers that are not accessible by outsiders. Hence, when data is imported by a user, it must transit to other users through the multiplayer network.</p>
+<p>In the system we implemented, the data is fragmented into chunks of 1024 bytes at most. Then the <a href="xref:ECellDive.Modules.GameNetModuleSpawner">GameNetModuleSpawner</a> on the server side spawns the GO, assigns the fragmented data to it and gives ownership of the GO back to the client who made the request first. Finally the owner fragments are broadcasted one by one to all clients by the server. Then, the fragments are reassembled on the side of each client and relevant data is extracted to initialize the module encapsulating the data. This last bit is specific to every data module.</p>
+<img src="../../resources/diagrams/multiplayerDataBroadcastRPC.svg" alt="Multiplayer Data Broadcast RPC Example">
+<p>A big downside of the current implementation state of the method is that the client only checks is it has received all fragments but it has not way to know which fragment is missing, should it be the case. This must be covered before even thinking of enabling multiplayer session through the internet for <em>ECellDive</em>.</p>
+<h3 id="example-2-broadcast-dive-scene-generation-on-first-dive-from-any-user">Example 2: Broadcast <em>Dive Scene</em> generation on first dive from any user</h3>
+<p>Before users can dive in a data module (e.g., <a class="xref" href="../../api/ECellDive.Modules.CyJsonModule.html">CyJsonModule</a>), its content must be generated and hidden within a dive scene. This generation happens on the first dive by any of the user in a multiplayer session. Since the generated data must be visible by every user, it must be instantiated (spawned by the server). But there may be a lot of such objects in the dive scene so the generation must be batched to avoid exceeding the communication limits set by <code>Unity Transport</code> (such limits are mandatory since, in principle, too many communications or too big data traffic could be because of malicious attack of the server).</p>
+<p>A <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a> implementing <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_GenerativeDiveInC">GenerativeDiveInC</a> (see also the explanations about <a href="about_scenes.html#dive-scenes"><em>Dive Scenes</em></a>) can request the generation of the data to the server thanks to <a href="xref:ECellDive.Modules.GameNetModule.RequestSourceDataGenerationServerRpc">RequestSourceDataGenerationServerRpc</a> (which it must also implement). The details of how the generation is implemented is specific for every data module. Here is an example of what it looks like for <a class="xref" href="../../api/ECellDive.Modules.CyJsonModule.html">CyJsonModule</a>:</p>
+<pre><code class="lang-plantuml">
+@startuml
+
+box client //i//
+actor diver as di
+participant dataModule as DMi
+participant &quot;New Dive Scene Content&quot; as NDSCi
+endbox
+
+box Server (Host)
+participant dataModule as DMS
+participant &quot;Dive Scene Manager&quot; as DSMS
+participant &quot;New Dive Scene Content&quot; as NDSCS
+endbox
+
+box client //j//
+participant &quot;New Dive Scene Content&quot; as NDSCj
+participant dataModule as DMj
+
+endbox
+
+di -&gt; DMi++: GenerativeDiveIn
+
+DMi --&gt; DMS: RequestSourceDataGenerationServerRpc(clientID)
+
+note over DMi
+Wait Until isReadyForDive
+end note
+
+DMS -&gt; DSMS: AddNewDiveScene(rootSceneID) 
+
+== CyJsonModule ==
+
+DMS -&gt; DMS ++ : RequestGraphGenerationServerRpc(\nclientID, targetSceneID)
+
+DMS -&gt; DSMS : SpawnModuleInScene(_rootSceneId, rootGO)
+DSMS -&gt; NDSCS ++: Spawn Root
+NDSCS --&gt; NDSCi ++: Replicate Root\n(order unknown)
+NDSCS --&gt; NDSCj ++: Replicate Root\n(order unknown)
+
+DMS -&gt; DMS ++ : NodesBatchSpawn(targetSceneID)
+
+loop nbNodeBatch
+    loop nodeBatchSize
+        DMS -&gt; DSMS: SpawnModuleInScene(targetSceneID, nodeGO)
+        DSMS -&gt; NDSCS ++: Spawn Node
+        NDSCS --&gt; NDSCj ++: Replicate Node\n(order unknown)
+        NDSCS --&gt; NDSCi ++: Replicate Node\n(order unknown)
+    end
+end
+deactivate DMS
+
+DMS -&gt; DMS ++ : EdgesBatchSpawn(targetSceneID)
+
+loop nbEdgeBatch
+    loop edgeBatchSize
+        DMS -&gt; DSMS: SpawnModuleInScene(targetSceneID, EdgeGO)
+        DSMS -&gt; NDSCS ++: Spawn Edge
+        NDSCS --&gt; NDSCi ++: Replicate Edge\n(order unknown)
+        NDSCS --&gt; NDSCj ++: Replicate Edge\n(order unknown)
+    end
+end
+deactivate DMS
+deactivate DMS
+
+DMS --&gt; DMj: IsReadyForDive\n(order unknown)
+DMS --&gt; DMi: IsReadyForDive\n(order unknown)
+
+DMi -&gt; DMi: DirectDiveIn
+
+@enduml
+
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/Dev/about_multiplayer.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

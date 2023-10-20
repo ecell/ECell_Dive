@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_OptimizedVertScrollList.md&amp;value=---%0Auid%3A%20ECellDive.UI.OptimizedVertScrollList%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -87,7 +94,10 @@
   
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>A quick implementation of a vertical scroll list that
+can be used to display long lists of items without causing
+performance issues.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -111,6 +121,11 @@
 
 
 
+  <h2 id="ECellDive_UI_OptimizedVertScrollList_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>This should be refactored to use a pool of items instead of
+instantiating everything and deactivating the ones that are
+out of the viewport.</p>
+</div>
 
 
   <h2 class="section" id="fields">Fields
@@ -118,12 +133,75 @@
 
 
 
-  <h3 id="ECellDive_UI_OptimizedVertScrollList_padding" data-uid="ECellDive.UI.OptimizedVertScrollList.padding">
-  padding
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_UI_OptimizedVertScrollList_firstVisibleChildIdx" data-uid="ECellDive.UI.OptimizedVertScrollList.firstVisibleChildIdx">
+  firstVisibleChildIdx
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The index of the first item to be displayed in the scroll list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private int firstVisibleChildIdx</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_OptimizedVertScrollList_lastVisibleChildIdx" data-uid="ECellDive.UI.OptimizedVertScrollList.lastVisibleChildIdx">
+  lastVisibleChildIdx
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The index of the last item to be displayed in the scroll list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private int lastVisibleChildIdx</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_UI_OptimizedVertScrollList_padding" data-uid="ECellDive.UI.OptimizedVertScrollList.padding">
+  padding
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Padding information for the items in the scroll list.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -135,7 +213,7 @@
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.UI.Padding.html">Padding</a></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.UI.Padding.html">Padding</a></dt>
     <dd></dd>
   </dl>
 
@@ -150,10 +228,12 @@
 
   <h3 id="ECellDive_UI_OptimizedVertScrollList_refContent" data-uid="ECellDive.UI.OptimizedVertScrollList.refContent">
   refContent
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the RectTransform of the content of the scroll list
+(it is inside the viewport).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -180,10 +260,11 @@
 
   <h3 id="ECellDive_UI_OptimizedVertScrollList_refItem" data-uid="ECellDive.UI.OptimizedVertScrollList.refItem">
   refItem
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A reference to the prefab of the item to be displayed in the scroll list.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -210,10 +291,11 @@
 
   <h3 id="ECellDive_UI_OptimizedVertScrollList_refViewport" data-uid="ECellDive.UI.OptimizedVertScrollList.refViewport">
   refViewport
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The reference to the RectTransform of the viewport of the scroll list.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -245,10 +327,12 @@
 
   <h3 id="ECellDive_UI_OptimizedVertScrollList_AddItem" data-uid="ECellDive.UI.OptimizedVertScrollList.AddItem">
   AddItem()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L70"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Adds an item (<a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html#ECellDive_UI_OptimizedVertScrollList_refItem">refItem</a>) as a child of the content
+(<a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html#ECellDive_UI_OptimizedVertScrollList_refContent">refContent</a>).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -259,7 +343,8 @@
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><span class="xref">GameObject</span></dt>
-    <dd></dd>
+    <dd><p>The newly added item.</p>
+</dd>
   </dl>
 
 
@@ -276,10 +361,12 @@
 
   <h3 id="ECellDive_UI_OptimizedVertScrollList_GetBorderVisibleChildren" data-uid="ECellDive.UI.OptimizedVertScrollList.GetBorderVisibleChildren">
   GetBorderVisibleChildren()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Computes values for <a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html#ECellDive_UI_OptimizedVertScrollList_firstVisibleChildIdx">firstVisibleChildIdx</a> and
+<a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html#ECellDive_UI_OptimizedVertScrollList_lastVisibleChildIdx">lastVisibleChildIdx</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -302,10 +389,11 @@
 
   <h3 id="ECellDive_UI_OptimizedVertScrollList_OnChildDestruction" data-uid="ECellDive.UI.OptimizedVertScrollList.OnChildDestruction">
   OnChildDestruction()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Performs the necessary updates when a child is destroyed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -324,14 +412,41 @@
 
 
 
+  <a id="ECellDive_UI_OptimizedVertScrollList_Start_" data-uid="ECellDive.UI.OptimizedVertScrollList.Start*"></a>
+
+  <h3 id="ECellDive_UI_OptimizedVertScrollList_Start" data-uid="ECellDive.UI.OptimizedVertScrollList.Start">
+  Start()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Start()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_UI_OptimizedVertScrollList_UpdateAllChildrenPositions_" data-uid="ECellDive.UI.OptimizedVertScrollList.UpdateAllChildrenPositions*"></a>
 
   <h3 id="ECellDive_UI_OptimizedVertScrollList_UpdateAllChildrenPositions" data-uid="ECellDive.UI.OptimizedVertScrollList.UpdateAllChildrenPositions">
   UpdateAllChildrenPositions()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L148"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Computes the positions of all the children of <a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html#ECellDive_UI_OptimizedVertScrollList_refContent">refContent</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -354,10 +469,14 @@
 
   <h3 id="ECellDive_UI_OptimizedVertScrollList_UpdateAllChildrenVisibility" data-uid="ECellDive.UI.OptimizedVertScrollList.UpdateAllChildrenVisibility">
   UpdateAllChildrenVisibility()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L167"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Computes the visibility of all the children of <a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html#ECellDive_UI_OptimizedVertScrollList_refContent">refContent</a>
+based on their index respectively to <a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html#ECellDive_UI_OptimizedVertScrollList_firstVisibleChildIdx">firstVisibleChildIdx</a>
+and <a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html#ECellDive_UI_OptimizedVertScrollList_lastVisibleChildIdx">lastVisibleChildIdx</a> (i.e. visible if their index is
+between those two values).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -380,10 +499,12 @@
 
   <h3 id="ECellDive_UI_OptimizedVertScrollList_UpdateBorderChildrenVisibility" data-uid="ECellDive.UI.OptimizedVertScrollList.UpdateBorderChildrenVisibility">
   UpdateBorderChildrenVisibility()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L190"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates the visibility of the children at the indeces <a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html#ECellDive_UI_OptimizedVertScrollList_firstVisibleChildIdx">firstVisibleChildIdx</a> and
+<a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html#ECellDive_UI_OptimizedVertScrollList_lastVisibleChildIdx">lastVisibleChildIdx</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -402,14 +523,42 @@
 
 
 
+  <a id="ECellDive_UI_OptimizedVertScrollList_UpdateContentSize_" data-uid="ECellDive.UI.OptimizedVertScrollList.UpdateContentSize*"></a>
+
+  <h3 id="ECellDive_UI_OptimizedVertScrollList_UpdateContentSize" data-uid="ECellDive.UI.OptimizedVertScrollList.UpdateContentSize">
+  UpdateContentSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Update the size of <a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html#ECellDive_UI_OptimizedVertScrollList_refContent">refContent</a> to fit all its children.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void UpdateContentSize()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_UI_OptimizedVertScrollList_UpdateScrollList_" data-uid="ECellDive.UI.OptimizedVertScrollList.UpdateScrollList*"></a>
 
   <h3 id="ECellDive_UI_OptimizedVertScrollList_UpdateScrollList" data-uid="ECellDive.UI.OptimizedVertScrollList.UpdateScrollList">
   UpdateScrollList()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L238"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates the scroll list.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -435,7 +584,7 @@
           <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/Elements/OptimizedVertScrollList.cs/#L16" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

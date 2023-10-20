@@ -1,0 +1,573 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DummyGameNetModule
+ </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DummyGameNetModule
+ ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_DummyGameNetModule.md&amp;value=---%0Auid%3A%20ECellDive.Modules.DummyGameNetModule%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.Modules.DummyGameNetModule">
+
+
+
+  <h1 id="ECellDive_Modules_DummyGameNetModule" data-uid="ECellDive.Modules.DummyGameNetModule" class="text-break">
+    Class DummyGameNetModule
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/DummyGameNetModule.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Modules.html">Modules</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>A dummy game net module.
+This only serves the purpose of demonstrating how to create a game net module
+and which methods must be implemented.
+It does not do anything. It is only attached to the game object called
+&quot;BaseGameNetModule&quot; for demonstration. DO NOT REUSE THIS CLASS.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DummyGameNetModule : GameNetModule, IDive, IFocus, IGroupable, IColorHighlightableNet, IColorHighlightable, IHighlightable, IInfoTags, INamed, IMlprData, IMlprVisibility</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a></div>
+      <div><span class="xref">DummyGameNetModule</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="ECellDive.Interfaces.IDive.html">IDive</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html">IMlprVisibility</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_Collider">GameNetModule.m_Collider</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_Renderer">GameNetModule.m_Renderer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_LineRenderer">GameNetModule.m_LineRenderer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_mpb">GameNetModule.mpb</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_colorID">GameNetModule.colorID</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_isDiving">GameNetModule.m_isDiving</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isDiving">GameNetModule.isDiving</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_rootSceneId">GameNetModule.m_rootSceneId</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_rootSceneId">GameNetModule.rootSceneId</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_targetSceneId">GameNetModule.m_targetSceneId</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_targetSceneId">GameNetModule.targetSceneId</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_isReadyForDive">GameNetModule.m_isReadyForDive</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isReadyForDive">GameNetModule.isReadyForDive</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_isFocused">GameNetModule.m_isFocused</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isFocused">GameNetModule.isFocused</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_grpMemberIndex">GameNetModule.m_grpMemberIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_grpMemberIndex">GameNetModule.grpMemberIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_delegateTarget">GameNetModule.m_delegateTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_delegateTarget">GameNetModule.delegateTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_forceHighlight">GameNetModule.m_forceHighlight</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_forceHighlight">GameNetModule.forceHighlight</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_currentColor">GameNetModule.m_currentColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_currentColor">GameNetModule.currentColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_defaultColor">GameNetModule.m_defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_defaultColor">GameNetModule.defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_highlightColor">GameNetModule.m_highlightColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_highlightColor">GameNetModule.highlightColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_areVisible">GameNetModule.areVisible</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_displayInfoTagsActions">GameNetModule.m_displayInfoTagsActions</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_displayInfoTagsActions">GameNetModule.displayInfoTagsActions</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_refInfoTagPrefab">GameNetModule.m_refInfoTagPrefab</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_refInfoTagPrefab">GameNetModule.refInfoTagPrefab</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_refInfoTagsContainer">GameNetModule.m_refInfoTagsContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_refInfoTagsContainer">GameNetModule.refInfoTagsContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_nameTextFieldContainer">GameNetModule.m_nameTextFieldContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_nameTextFieldContainer">GameNetModule.nameTextFieldContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_nameField">GameNetModule.nameField</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_fragmentedSourceData">GameNetModule.m_fragmentedSourceData</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_fragmentedSourceData">GameNetModule.fragmentedSourceData</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_sourceDataName">GameNetModule.sourceDataName</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_sourceDataNbFrags">GameNetModule.m_sourceDataNbFrags</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_sourceDataNbFrags">GameNetModule.sourceDataNbFrags</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_nbClientReadyLoaded">GameNetModule.m_nbClientReadyLoaded</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_nbClientReadyLoaded">GameNetModule.nbClientReadyLoaded</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_isReadyForGeneration">GameNetModule.m_isReadyForGeneration</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isReadyForGeneration">GameNetModule.isReadyForGeneration</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_isActivated">GameNetModule.m_isActivated</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isActivated">GameNetModule.isActivated</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_Awake">GameNetModule.Awake()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_OnDestroy">GameNetModule.OnDestroy()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_OnNetworkSpawn">GameNetModule.OnNetworkSpawn()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ApplyCurrentColorChange_Color_Color_">GameNetModule.ApplyCurrentColorChange(Color, Color)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_LookAt">GameNetModule.LookAt()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ManageInfoTagsDisplay_InputAction_CallbackContext_">GameNetModule.ManageInfoTagsDisplay(InputAction.CallbackContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SelfDestroyServerRpc">GameNetModule.SelfDestroyServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectDiveIn">GameNetModule.DirectDiveIn()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectDiveInC">GameNetModule.DirectDiveInC()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_GenerativeDiveIn">GameNetModule.GenerativeDiveIn()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_TryDiveIn">GameNetModule.TryDiveIn()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetFocus">GameNetModule.SetFocus()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_UnsetFocus">GameNetModule.UnsetFocus()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ApplyColor_Color_">GameNetModule.ApplyColor(Color)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetCurrentColorToDefaultServerRpc">GameNetModule.SetCurrentColorToDefaultServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetCurrentColorToHighlightServerRpc">GameNetModule.SetCurrentColorToHighlightServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetHighlight">GameNetModule.SetHighlight()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_UnsetHighlight">GameNetModule.UnsetHighlight()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DisplayInfoTags">GameNetModule.DisplayInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_HideInfoTags">GameNetModule.HideInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_InstantiateInfoTag_Vector2_System_String_">GameNetModule.InstantiateInfoTag(Vector2, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_InstantiateInfoTags_System_String___">GameNetModule.InstantiateInfoTags(string[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ShowInfoTags">GameNetModule.ShowInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DisplayName">GameNetModule.DisplayName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_GetName">GameNetModule.GetName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_HideName">GameNetModule.HideName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetName_System_String_">GameNetModule.SetName(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ShowName">GameNetModule.ShowName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataC">GameNetModule.BroadcastSourceDataC()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragClientRpc_System_Byte___">GameNetModule.BroadcastSourceDataFragClientRpc(byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataNameClientRpc_System_Byte___">GameNetModule.BroadcastSourceDataNameClientRpc(byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsClientRpc_System_UInt16_">GameNetModule.BroadcastSourceDataNbFragsClientRpc(ushort)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragServerRpc_System_Byte___">GameNetModule.BroadcastSourceDataFragServerRpc(byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataNameServerRpc_System_Byte___">GameNetModule.BroadcastSourceDataNameServerRpc(byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsServerRpc_System_UInt16_">GameNetModule.BroadcastSourceDataNbFragsServerRpc(ushort)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____">GameNetModule.BroadcastSourceDataFragsC(List&lt;byte[]&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ConfirmSourceDataReceptionServerRpc">GameNetModule.ConfirmSourceDataReceptionServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectReceiveSourceData_System_Byte___System_Collections_Generic_List_System_Byte____">GameNetModule.DirectReceiveSourceData(byte[], List&lt;byte[]&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataC_System_UInt64_">GameNetModule.SendSourceDataC(ulong)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataFragClientRpc_System_Byte___ClientRpcParams_">GameNetModule.SendSourceDataFragClientRpc(byte[], ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataNameClientRpc_System_Byte___ClientRpcParams_">GameNetModule.SendSourceDataNameClientRpc(byte[], ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataNbFragsClientRpc_System_UInt16_ClientRpcParams_">GameNetModule.SendSourceDataNbFragsClientRpc(ushort, ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataFragsC_System_Collections_Generic_List_System_Byte____ClientRpcParams_">GameNetModule.SendSourceDataFragsC(List&lt;byte[]&gt;, ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ManageActivationStatus_System_Boolean_System_Boolean_">GameNetModule.ManageActivationStatus(bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHide">GameNetModule.NetHide()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHideClientRpc_ClientRpcParams_">GameNetModule.NetHideClientRpc(ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShow">GameNetModule.NetShow()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShowClientRpc_ClientRpcParams_">GameNetModule.NetShowClientRpc(ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_RequestSetActiveServerRpc_System_Boolean_">GameNetModule.RequestSetActiveServerRpc(bool)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ECellDive_Modules_DummyGameNetModule_AssembleFragmentedData_" data-uid="ECellDive.Modules.DummyGameNetModule.AssembleFragmentedData*"></a>
+
+  <h3 id="ECellDive_Modules_DummyGameNetModule_AssembleFragmentedData" data-uid="ECellDive.Modules.DummyGameNetModule.AssembleFragmentedData">
+  AssembleFragmentedData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/DummyGameNetModule.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reassembles the fragments from <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a> into
+a single byte array and interprets it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void AssembleFragmentedData()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_DummyGameNetModule_AssembleFragmentedData_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>It is marked as abstract because it MUST be implemented by any divable module.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_Modules_DummyGameNetModule_GenerativeDiveInC_" data-uid="ECellDive.Modules.DummyGameNetModule.GenerativeDiveInC*"></a>
+
+  <h3 id="ECellDive_Modules_DummyGameNetModule_GenerativeDiveInC" data-uid="ECellDive.Modules.DummyGameNetModule.GenerativeDiveInC">
+  GenerativeDiveInC()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/DummyGameNetModule.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Coroutine started by <a class="xref" href="ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_GenerativeDiveIn">GenerativeDiveIn()</a>.
+Generates the content of the module before transfering the diver
+to the dive scene.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerator GenerativeDiveInC()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_DummyGameNetModule_RequestSourceDataGenerationServerRpc_" data-uid="ECellDive.Modules.DummyGameNetModule.RequestSourceDataGenerationServerRpc*"></a>
+
+  <h3 id="ECellDive_Modules_DummyGameNetModule_RequestSourceDataGenerationServerRpc_System_UInt64_" data-uid="ECellDive.Modules.DummyGameNetModule.RequestSourceDataGenerationServerRpc(System.UInt64)">
+  RequestSourceDataGenerationServerRpc(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/DummyGameNetModule.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Requests the server to generate the data associated to the module.
+This MUST be implemented by any divable module in order for the data
+generation to be broadcasted to the other clients.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_expeditorClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The ID of the client that is requesting the generation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_DummyGameNetModule_RequestSourceDataGenerationServerRpc_System_UInt64__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>RPCs cannot be marked as abstract so we can only define the method as virtual.
+Unfortunately, this means that we cannot force the implementation of this method
+and that developpers will have to remember to implement it in their modules if it
+is divable.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/DummyGameNetModule.cs/#L13" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

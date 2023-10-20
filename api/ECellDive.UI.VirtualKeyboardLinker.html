@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_UI_VirtualKeyboardLinker.md&amp;value=---%0Auid%3A%20ECellDive.UI.VirtualKeyboardLinker%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_UI_VirtualKeyboardLinker" data-uid="ECellDive.UI.VirtualKeyboardLinker" class="text-break">
     Class VirtualKeyboardLinker
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardLinker.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardLinker.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -114,6 +121,41 @@
 
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="ECellDive_UI_VirtualKeyboardLinker_refVKManager" data-uid="ECellDive.UI.VirtualKeyboardLinker.refVKManager">
+  refVKManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardLinker.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The reference of the component defining the virtual keyboard of the scene.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private VirtualKeyboardManager refVKManager</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.UI.VirtualKeyboardManager.html">VirtualKeyboardManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -122,11 +164,11 @@
 
   <h3 id="ECellDive_UI_VirtualKeyboardLinker_GetSetVKManager" data-uid="ECellDive.UI.VirtualKeyboardLinker.GetSetVKManager">
   GetSetVKManager()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardLinker.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardLinker.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the value of StaticReferencer.Instance.refVirtualKeyboard
-and sets the value of <a class="xref" href="ECellDive.UI.VirtualKeyboardLinker.html#ECellDive.UI.VirtualKeyboardLinker.refVKManager">refVKManager</a> from it.</p>
+  <div class="markdown level1 summary"><p>Gets the value of <a class="xref" href="ECellDive.Utility.PlayerComponents.StaticReferencer.html#ECellDive_Utility_PlayerComponents_StaticReferencer_refVirtualKeyboard">refVirtualKeyboard</a>
+and sets the value of <a class="xref" href="ECellDive.UI.VirtualKeyboardLinker.html#ECellDive_UI_VirtualKeyboardLinker_refVKManager">refVKManager</a> from it.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -150,7 +192,7 @@ and sets the value of <a class="xref" href="ECellDive.UI.VirtualKeyboardLinker.h
 
   <h3 id="ECellDive_UI_VirtualKeyboardLinker_OnSelect" data-uid="ECellDive.UI.VirtualKeyboardLinker.OnSelect">
   OnSelect()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardLinker.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardLinker.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The method to add in the UnityEvent OnSelect of the TMP_InputField.
@@ -174,14 +216,40 @@ It focuses the virtual keyboard output on the input field text.</p>
 
 
 
+  <a id="ECellDive_UI_VirtualKeyboardLinker_Start_" data-uid="ECellDive.UI.VirtualKeyboardLinker.Start*"></a>
+
+  <h3 id="ECellDive_UI_VirtualKeyboardLinker_Start" data-uid="ECellDive.UI.VirtualKeyboardLinker.Start">
+  Start()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardLinker.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Start()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardLinker.cs/#L12" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/UI/VirtualKeyboard/VirtualKeyboardLinker.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

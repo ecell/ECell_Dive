@@ -12,19 +12,26 @@
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
       <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_Module.md&amp;value=---%0Auid%3A%20ECellDive.Modules.Module%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -79,7 +86,7 @@
 
   <h1 id="ECellDive_Modules_Module" data-uid="ECellDive.Modules.Module" class="text-break">
     Class Module
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -138,12 +145,75 @@ the game object representation of a module.</p>
 
 
 
-  <h3 id="ECellDive_Modules_Module_m_displayInfoTagsActions" data-uid="ECellDive.Modules.Module.m_displayInfoTagsActions">
-  m_displayInfoTagsActions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_Modules_Module_m_defaultColor" data-uid="ECellDive.Modules.Module.m_defaultColor">
+  m_defaultColor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L73"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Field of the property <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_defaultColor">defaultColor</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private Color m_defaultColor</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_Module_m_delegateTarget" data-uid="ECellDive.Modules.Module.m_delegateTarget">
+  m_delegateTarget
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field of the property <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_delegateTarget">delegateTarget</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private GameObject m_delegateTarget</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_Module_m_displayInfoTagsActions" data-uid="ECellDive.Modules.Module.m_displayInfoTagsActions">
+  m_displayInfoTagsActions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field of the property <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_displayInfoTagsActions">displayInfoTagsActions</a></p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -155,7 +225,131 @@ the game object representation of a module.</p>
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_Module_m_forceHighlight" data-uid="ECellDive.Modules.Module.m_forceHighlight">
+  m_forceHighlight
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field of the property <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_forceHighlight">forceHighlight</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private bool m_forceHighlight</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_Module_m_grpMemberIndex" data-uid="ECellDive.Modules.Module.m_grpMemberIndex">
+  m_grpMemberIndex
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field of the property <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_grpMemberIndex">grpMemberIndex</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private int m_grpMemberIndex</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_Module_m_highlightColor" data-uid="ECellDive.Modules.Module.m_highlightColor">
+  m_highlightColor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field of the property <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_highlightColor">highlightColor</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private Color m_highlightColor</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_Module_m_isFocused" data-uid="ECellDive.Modules.Module.m_isFocused">
+  m_isFocused
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field of the property <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_isFocused">isFocused</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private bool m_isFocused</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 
@@ -170,10 +364,11 @@ the game object representation of a module.</p>
 
   <h3 id="ECellDive_Modules_Module_m_refInfoTagPrefab" data-uid="ECellDive.Modules.Module.m_refInfoTagPrefab">
   m_refInfoTagPrefab
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Field of the property <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refInfoTagPrefab">refInfoTagPrefab</a></p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -198,42 +393,13 @@ the game object representation of a module.</p>
 
 
 
-  <h3 id="ECellDive_Modules_Module_m_refInfoTags" data-uid="ECellDive.Modules.Module.m_refInfoTags">
-  m_refInfoTags
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L98"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;GameObject&gt; m_refInfoTags</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
   <h3 id="ECellDive_Modules_Module_m_refInfoTagsContainer" data-uid="ECellDive.Modules.Module.m_refInfoTagsContainer">
   m_refInfoTagsContainer
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L139"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Field of the property <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refInfoTagsContainer">refInfoTagsContainer</a></p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -260,10 +426,11 @@ the game object representation of a module.</p>
 
   <h3 id="ECellDive_Modules_Module_refName" data-uid="ECellDive.Modules.Module.refName">
   refName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The test mesh to display the name of the module.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -295,7 +462,7 @@ the game object representation of a module.</p>
 
   <h3 id="ECellDive_Modules_Module_areVisible" data-uid="ECellDive.Modules.Module.areVisible">
   areVisible
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A boolean to inform whether the infotags are currently visible (i.e. displayed).</p>
@@ -327,7 +494,7 @@ the game object representation of a module.</p>
 
   <h3 id="ECellDive_Modules_Module_defaultColor" data-uid="ECellDive.Modules.Module.defaultColor">
   defaultColor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The color the object should be when non highlighted.</p>
@@ -359,7 +526,7 @@ the game object representation of a module.</p>
 
   <h3 id="ECellDive_Modules_Module_delegateTarget" data-uid="ECellDive.Modules.Module.delegateTarget">
   delegateTarget
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L62"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The actual gameobject that should be grouped.</p>
@@ -367,7 +534,7 @@ the game object representation of a module.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GameObject delegateTarget { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public GameObject delegateTarget { get; private set; }</code></pre>
   </div>
 
 
@@ -396,7 +563,7 @@ reference of the gameobject that should actually be grouped.</p>
 
   <h3 id="ECellDive_Modules_Module_displayInfoTagsActions" data-uid="ECellDive.Modules.Module.displayInfoTagsActions">
   displayInfoTagsActions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The references to the input actions on the left and right controller
@@ -414,7 +581,7 @@ used to trigger the info tags visibility.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -429,7 +596,7 @@ used to trigger the info tags visibility.</p>
 
   <h3 id="ECellDive_Modules_Module_forceHighlight" data-uid="ECellDive.Modules.Module.forceHighlight">
   forceHighlight
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A boolean to inform whether the object should stay in an
@@ -462,7 +629,7 @@ highlighted state even when it should go back to default.</p>
 
   <h3 id="ECellDive_Modules_Module_grpMemberIndex" data-uid="ECellDive.Modules.Module.grpMemberIndex">
   grpMemberIndex
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The index of the gameobject in the last group he was made
@@ -495,7 +662,7 @@ part of.</p>
 
   <h3 id="ECellDive_Modules_Module_highlightColor" data-uid="ECellDive.Modules.Module.highlightColor">
   highlightColor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The color the object should be when highlighted.</p>
@@ -527,7 +694,7 @@ part of.</p>
 
   <h3 id="ECellDive_Modules_Module_isFocused" data-uid="ECellDive.Modules.Module.isFocused">
   isFocused
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A boolean to inform whether a gameobject is currently
@@ -564,7 +731,7 @@ is pointing at it, and false otherwise.</p>
 
   <h3 id="ECellDive_Modules_Module_refInfoTagPrefab" data-uid="ECellDive.Modules.Module.refInfoTagPrefab">
   refInfoTagPrefab
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L130"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The prefab used to instantiate more infotags programatically.</p>
@@ -592,42 +759,11 @@ is pointing at it, and false otherwise.</p>
 
 
 
-  <a id="ECellDive_Modules_Module_refInfoTags_" data-uid="ECellDive.Modules.Module.refInfoTags*"></a>
-
-  <h3 id="ECellDive_Modules_Module_refInfoTags" data-uid="ECellDive.Modules.Module.refInfoTags">
-  refInfoTags
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L99"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;GameObject&gt; refInfoTags { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="ECellDive_Modules_Module_refInfoTagsContainer_" data-uid="ECellDive.Modules.Module.refInfoTagsContainer*"></a>
 
   <h3 id="ECellDive_Modules_Module_refInfoTagsContainer" data-uid="ECellDive.Modules.Module.refInfoTagsContainer">
   refInfoTagsContainer
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L142"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The reference to the parent gameobject each info tag will
@@ -664,7 +800,7 @@ be made a child upon instantiation.</p>
 
   <h3 id="ECellDive_Modules_Module_ApplyColor_Color_" data-uid="ECellDive.Modules.Module.ApplyColor(Color)">
   ApplyColor(Color)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L229"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The function to call when we wish to apply a color to the material
@@ -697,7 +833,7 @@ of the gameobject.</p>
 
   <h3 id="ECellDive_Modules_Module_Awake" data-uid="ECellDive.Modules.Module.Awake">
   Awake()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L149"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -723,7 +859,7 @@ of the gameobject.</p>
 
   <h3 id="ECellDive_Modules_Module_DisplayInfoTags" data-uid="ECellDive.Modules.Module.DisplayInfoTags">
   DisplayInfoTags()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L204"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L247"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Make the InfoTags visible in the scene</p>
@@ -750,7 +886,7 @@ of the gameobject.</p>
 
   <h3 id="ECellDive_Modules_Module_HideInfoTags" data-uid="ECellDive.Modules.Module.HideInfoTags">
   HideInfoTags()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L256"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Make the InfoTags invisible in the scene</p>
@@ -777,7 +913,7 @@ of the gameobject.</p>
 
   <h3 id="ECellDive_Modules_Module_InstantiateInfoTag_Vector2_System_String_" data-uid="ECellDive.Modules.Module.InstantiateInfoTag(Vector2,System.String)">
   InstantiateInfoTag(Vector2, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L222"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L265"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Instantiate one info tag gameobject.</p>
@@ -814,7 +950,7 @@ The Z position will be set to 0.</p>
 
   <h3 id="ECellDive_Modules_Module_InstantiateInfoTags_System_String___" data-uid="ECellDive.Modules.Module.InstantiateInfoTags(System.String[])">
   InstantiateInfoTags(string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L273"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Instantiates all info tags of a module based on the
@@ -845,11 +981,45 @@ to display within text fields of the tags.</p>
 
 
 
+  <a id="ECellDive_Modules_Module_ManageInfoTagsDisplay_" data-uid="ECellDive.Modules.Module.ManageInfoTagsDisplay*"></a>
+
+  <h3 id="ECellDive_Modules_Module_ManageInfoTagsDisplay_InputAction_CallbackContext_" data-uid="ECellDive.Modules.Module.ManageInfoTagsDisplay(InputAction.CallbackContext)">
+  ManageInfoTagsDisplay(CallbackContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Input call back action on which the floating display
+is turned on or off.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ManageInfoTagsDisplay(InputAction.CallbackContext _ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_ctx</code> <span class="xref">CallbackContext</span></dt>
+    <dd><p>The input action callback context</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_Modules_Module_OnDestroy_" data-uid="ECellDive.Modules.Module.OnDestroy*"></a>
 
   <h3 id="ECellDive_Modules_Module_OnDestroy" data-uid="ECellDive.Modules.Module.OnDestroy">
   OnDestroy()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L164"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -875,7 +1045,7 @@ to display within text fields of the tags.</p>
 
   <h3 id="ECellDive_Modules_Module_SelfDestroy" data-uid="ECellDive.Modules.Module.SelfDestroy">
   SelfDestroy()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L194"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The method to call when we wish to destroy a GameNetModule.</p>
@@ -902,7 +1072,7 @@ to display within text fields of the tags.</p>
 
   <h3 id="ECellDive_Modules_Module_SetFocus" data-uid="ECellDive.Modules.Module.SetFocus">
   SetFocus()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L215"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A mutator to set the value of <a class="xref" href="ECellDive.Interfaces.IFocus.html#ECellDive_Interfaces_IFocus_isFocused">isFocused</a> to true.</p>
@@ -922,7 +1092,9 @@ to display within text fields of the tags.</p>
 
 
   <h4 class="section" id="ECellDive_Modules_Module_SetFocus_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>It is mainly used as a subscriber toUnityEngine.XR.     Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(     UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)</p>
+  <div class="markdown level1 remarks"><p>It is mainly used as a subscriber to &quot;UnityEngine.XR.
+Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(
+UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)&quot;</p>
 </div>
 
 
@@ -932,7 +1104,7 @@ to display within text fields of the tags.</p>
 
   <h3 id="ECellDive_Modules_Module_SetHighlight" data-uid="ECellDive.Modules.Module.SetHighlight">
   SetHighlight()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L192"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L235"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The function to call when the object should enter highlighted
@@ -960,7 +1132,7 @@ state.</p>
 
   <h3 id="ECellDive_Modules_Module_SetName_System_String_" data-uid="ECellDive.Modules.Module.SetName(System.String)">
   SetName(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L156"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L199"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -991,7 +1163,7 @@ state.</p>
 
   <h3 id="ECellDive_Modules_Module_ShowInfoTags" data-uid="ECellDive.Modules.Module.ShowInfoTags">
   ShowInfoTags()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L246"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L288"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Make the InfoTags face in the direction of the player</p>
@@ -1018,7 +1190,7 @@ state.</p>
 
   <h3 id="ECellDive_Modules_Module_ShowNameToPlayer" data-uid="ECellDive.Modules.Module.ShowNameToPlayer">
   ShowNameToPlayer()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L208"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Makes sure the name of the module's name faces the
@@ -1046,7 +1218,7 @@ Player's POV and is therefore readable.</p>
 
   <h3 id="ECellDive_Modules_Module_UnsetFocus" data-uid="ECellDive.Modules.Module.UnsetFocus">
   UnsetFocus()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L221"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A mutator to set the value of <a class="xref" href="ECellDive.Interfaces.IFocus.html#ECellDive_Interfaces_IFocus_isFocused">isFocused</a> to false.</p>
@@ -1066,7 +1238,9 @@ Player's POV and is therefore readable.</p>
 
 
   <h4 class="section" id="ECellDive_Modules_Module_UnsetFocus_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>It is mainly used as a subscriber toUnityEngine.XR.     Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(     UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)</p>
+  <div class="markdown level1 remarks"><p>It is mainly used as a subscriber to &quot;UnityEngine.XR.
+Interaction.Toolkit.XRBaseInteractable.OnHoverEntered(
+UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)&quot;</p>
 </div>
 
 
@@ -1076,14 +1250,11 @@ Player's POV and is therefore readable.</p>
 
   <h3 id="ECellDive_Modules_Module_UnsetHighlight" data-uid="ECellDive.Modules.Module.UnsetHighlight">
   UnsetHighlight()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L240"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The function to call when the object should exit the highlighted
-state.
-Checks for <a class="xref" href="ECellDive.Interfaces.IHighlightable.html#ECellDive_Interfaces_IHighlightable_forceHighlight">forceHighlight</a>.
-If false, applies defaultColor to currentColor.
-If true, nothing happens.</p>
+state.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1107,10 +1278,10 @@ If true, nothing happens.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L18" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Module.cs/#L16" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">
