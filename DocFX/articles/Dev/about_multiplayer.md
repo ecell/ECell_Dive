@@ -28,69 +28,7 @@ When a user imports data in a dive scene from a [Kosmogora-like]((~/articles/Use
 
 In the system we implemented, the data is fragmented into chunks of 1024 bytes at most. Then the [GameNetModuleSpawner](xref:ECellDive.Modules.GameNetModuleSpawner) on the server side spawns the GO, assigns the fragmented data to it and gives ownership of the GO back to the client who made the request first. Finally the owner fragments are broadcasted one by one to all clients by the server. Then, the fragments are reassembled on the side of each client and relevant data is extracted to initialize the module encapsulating the data. This last bit is specific to every data module.
 
-```plantuml
-
-@startuml
-
-box "Client //i//"
-participant HttpServerImporterModule as HttpSIMCi
-participant GameNetModuleSpawner as GNMSCi
-participant DataModule as DMCi
-endbox
-
-box Server (Host)
-participant GameNetModuleSpawner as GNMSS
-participant DataModule as DMS
-endbox
-
-box "Client //j//"
-participant DataModule as DMCj
-endbox 
-
-HttpSIMCi -> GNMSCi : RequestModuleSpawnFromData(\nmoduleTypeID, dataName, fragments)
-GNMSCi --> GNMSS: RequestModuleSpawnServerRpc(\nmoduleTypeID, clientID)
-
-GNMSS -> DMS++: Spawn
-DMS --> DMCj++: Replication\n(order unknown)
-DMS --> DMCi++: Replication\n(order unknown)
-
-GNMSS -> DMS: ChangeOwnership(clientID)
-note over DMS
-new owner is "Client //i//"
-end note
-
-GNMSS --> GNMSCi: GiveNetworkObjectReferenceClientRpc(\ndataModuleNetRef, clientRpcParams)
-
-GNMSCi -> DMCi: DirectReceiveSourceData(\ndataName, fragments)
-DMCi -> DMCi: AssembleData
-
-DMCi --> DMS: BroadcastSourceDataNameServerRpc(dataName)
-DMS --> DMCj: BroadcastSourceDataNameClientRpc(dataName)
-
-DMCi --> DMS: BroadcastSourceDataNbFragsServerRpc(nbTotFrags)
-DMS --> DMCj: BroadcastSourceDataNbFragsClientRpc(nbTotFrags)
-
-loop nbFrags
-DMCi --> DMS: BroadcastSourceDataFragServerRpc(frag)
-DMS --> DMCj: BroadcastSourceDataFragClientRpc(frag)
-end
-
-note over DMCj
-if (nbFragsReceived == nbTotFrags)
-    confirm + assemble
-end note
-
-DMCj --> DMS: ConfirmSourceDataReceptionServerRpc
-DMCj -> DMCj: AssembleData
-
-note over DMS
-if (nbClientConfirmation == nbTotClient)
-    data is ready for generation
-end note
-
-@enduml
-
-```
+<img src="~/resources/diagrams/multiplayerDataBroadcastRPC.svg" alt="Multiplayer Data Broadcast RPC Example"/>
 
 A big downside of the current implementation state of the method is that the client only checks is it has received all fragments but it has not way to know which fragment is missing, should it be the case. This must be covered before even thinking of enabling multiplayer session through the internet for _ECellDive_.  
 
