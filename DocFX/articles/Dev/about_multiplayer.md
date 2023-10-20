@@ -8,7 +8,7 @@ We used the sample project [Boss Room](https://docs-multiplayer.unity3d.com/netc
 - [GameNetPortal](xref:ECellDive.Multiplayer.GameNetPortal) has three essential methods at this stage which are [StartHost](xref:ECellDive.Multiplayer.GameNetPortal.StartHost), [StartClient](xref:ECellDive.Multiplayer.GameNetPortal.StartClient), and [OnNetworkReady](xref:ECellDive.Multiplayer.GameNetPortal.OnNetworkReady(System.UInt64)).
   - [StartClient](xref:ECellDive.Multiplayer.GameNetPortal.StartClient) directly gives a call to the [ClientGameNetPortal](xref:ECellDive.Multiplayer.ClientGameNetPortal)'s own [StartClient](xref:ECellDive.Multiplayer.ClientGameNetPortal.StartClient). It will process the connection data and then transfer the call to the `NetworkManager.StartClient()`.
   - [StartHost](xref:ECellDive.Multiplayer.GameNetPortal.StartHost) will first check whether the user is already a host. If so, it will [Restart](xref:ECellDive.Multiplayer.GameNetPortal.Restart) before calling `NetworkManager.StartHost()`
-- Once the `NetworkManager` has started a host or the connected the current user as a client to a host, it will trigger the event `NetworkManager.OnClientConnectedCallback` to which [GameNetPortal](xref:ECellDive.Multiplayer.GameNetPortal)'s method [OnNetworkReady](xref:ECellDive.Multiplayer.GameNetPortal.OnNetworkReady(System.UInt64)) is subscribed.
+- Once the `NetworkManager` has started a host or connected the current user as a client to a host, it will trigger the event `NetworkManager.OnClientConnectedCallback` to which [GameNetPortal](xref:ECellDive.Multiplayer.GameNetPortal)'s method [OnNetworkReady](xref:ECellDive.Multiplayer.GameNetPortal.OnNetworkReady(System.UInt64)) is subscribed.
 - [OnNetworkReady](xref:ECellDive.Multiplayer.GameNetPortal.OnNetworkReady(System.UInt64))'s role is to close the connection protocol for [ServerGameNetPortal](xref:ECellDive.Multiplayer.ServerGameNetPortal) and [ClientGameNetPortal](xref:ECellDive.Multiplayer.ClientGameNetPortal) through their own `OnNetworkReady`. Most importantly, it will guarantee sending the data of every modules already imported in the session to any new client for synchronization.
 
 # Broadcast Data
@@ -26,7 +26,71 @@ There are many others in the project.
 
 When a user imports data in a dive scene from a [Kosmogora-like]((~/articles/UserManual/Network/connecting_to_Kosmogora.md)) server thanks to [HttpServerImporterModule](xref:ECellDive.Modules.HttpServerImporterModule), it is immediately sent to every other user in the multiplayer session. We could have enforced that every user in the multiplayer session have the same access to the [Kosmogora-like]((~/articles/UserManual/Network/connecting_to_Kosmogora.md)) server. But we did not because it is likely that, in a collaborative setting, some users have access to [Kosmogora-like]((~/articles/UserManual/Network/connecting_to_Kosmogora.md)) servers hosted on their institution's servers that are not accessible by outsiders. Hence, when data is imported by a user, it must transit to other users through the multiplayer network.
 
-In the system we implemented, the data is fragmented into chunks of 1024 bytes at most and the fragments are broadcasted one by one to all clients by the server. Then, the fragments are reassembled on the side of each client and relevant data is extracted to initialize the module encapsulating the data. This last bit is specific to every data module.
+In the system we implemented, the data is fragmented into chunks of 1024 bytes at most. Then the [GameNetModuleSpawner](xref:ECellDive.Modules.GameNetModuleSpawner) on the server side spawns the GO, assigns the fragmented data to it and gives ownership of the GO back to the client who made the request first. Finally the owner fragments are broadcasted one by one to all clients by the server. Then, the fragments are reassembled on the side of each client and relevant data is extracted to initialize the module encapsulating the data. This last bit is specific to every data module.
+
+```plantuml
+
+@startuml
+
+box "Client //i//"
+participant HttpServerImporterModule as HttpSIMCi
+participant GameNetModuleSpawner as GNMSCi
+participant DataModule as DMCi
+endbox
+
+box Server (Host)
+participant GameNetModuleSpawner as GNMSS
+participant DataModule as DMS
+endbox
+
+box "Client //j//"
+participant DataModule as DMCj
+endbox 
+
+HttpSIMCi -> GNMSCi : RequestModuleSpawnFromData(\nmoduleTypeID, dataName, fragments)
+GNMSCi --> GNMSS: RequestModuleSpawnServerRpc(\nmoduleTypeID, clientID)
+
+GNMSS -> DMS++: Spawn
+DMS --> DMCj++: Replication\n(order unknown)
+DMS --> DMCi++: Replication\n(order unknown)
+
+GNMSS -> DMS: ChangeOwnership(clientID)
+note over DMS
+new owner is "Client //i//"
+end note
+
+GNMSS --> GNMSCi: GiveNetworkObjectReferenceClientRpc(\ndataModuleNetRef, clientRpcParams)
+
+GNMSCi -> DMCi: DirectReceiveSourceData(\ndataName, fragments)
+DMCi -> DMCi: AssembleData
+
+DMCi --> DMS: BroadcastSourceDataNameServerRpc(dataName)
+DMS --> DMCj: BroadcastSourceDataNameClientRpc(dataName)
+
+DMCi --> DMS: BroadcastSourceDataNbFragsServerRpc(nbTotFrags)
+DMS --> DMCj: BroadcastSourceDataNbFragsClientRpc(nbTotFrags)
+
+loop nbFrags
+DMCi --> DMS: BroadcastSourceDataFragServerRpc(frag)
+DMS --> DMCj: BroadcastSourceDataFragClientRpc(frag)
+end
+
+note over DMCj
+if (nbFragsReceived == nbTotFrags)
+    confirm + assemble
+end note
+
+DMCj --> DMS: ConfirmSourceDataReceptionServerRpc
+DMCj -> DMCj: AssembleData
+
+note over DMS
+if (nbClientConfirmation == nbTotClient)
+    data is ready for generation
+end note
+
+@enduml
+
+```
 
 A big downside of the current implementation state of the method is that the client only checks is it has received all fragments but it has not way to know which fragment is missing, should it be the case. This must be covered before even thinking of enabling multiplayer session through the internet for _ECellDive_.  
 
@@ -37,3 +101,77 @@ Before users can dive in a data module (e.g., [CyJsonModule](xref:ECellDive.Modu
 
 A [GameNetModule](xref:ECellDive.Modules.GameNetModule) implementing [GenerativeDiveInC](xref:ECellDive.Modules.GameNetModule.GenerativeDiveInC) (see also the explanations about [_Dive Scenes_](./about_scenes.md#dive-scenes)) can request the generation of the data to the server thanks to [RequestSourceDataGenerationServerRpc](xref:ECellDive.Modules.GameNetModule.RequestSourceDataGenerationServerRpc) (which it must also implement). The details of how the generation is implemented is specific for every data module. Here is an example of what it looks like for [CyJsonModule](xref:ECellDive.Modules.CyJsonModule):
 
+```plantuml
+
+@startuml
+
+box client //i//
+actor diver as di
+participant dataModule as DMi
+participant "New Dive Scene Content" as NDSCi
+endbox
+
+box Server (Host)
+participant dataModule as DMS
+participant "Dive Scene Manager" as DSMS
+participant "New Dive Scene Content" as NDSCS
+endbox
+
+box client //j//
+participant "New Dive Scene Content" as NDSCj
+participant dataModule as DMj
+
+endbox
+
+di -> DMi++: GenerativeDiveIn
+
+DMi --> DMS: RequestSourceDataGenerationServerRpc(clientID)
+
+note over DMi
+Wait Until isReadyForDive
+end note
+
+DMS -> DSMS: AddNewDiveScene(rootSceneID) 
+
+== CyJsonModule ==
+
+DMS -> DMS ++ : RequestGraphGenerationServerRpc(\nclientID, targetSceneID)
+
+DMS -> DSMS : SpawnModuleInScene(_rootSceneId, rootGO)
+DSMS -> NDSCS ++: Spawn Root
+NDSCS --> NDSCi ++: Replicate Root\n(order unknown)
+NDSCS --> NDSCj ++: Replicate Root\n(order unknown)
+
+DMS -> DMS ++ : NodesBatchSpawn(targetSceneID)
+
+loop nbNodeBatch
+    loop nodeBatchSize
+        DMS -> DSMS: SpawnModuleInScene(targetSceneID, nodeGO)
+        DSMS -> NDSCS ++: Spawn Node
+        NDSCS --> NDSCj ++: Replicate Node\n(order unknown)
+        NDSCS --> NDSCi ++: Replicate Node\n(order unknown)
+    end
+end
+deactivate DMS
+
+DMS -> DMS ++ : EdgesBatchSpawn(targetSceneID)
+
+loop nbEdgeBatch
+    loop edgeBatchSize
+        DMS -> DSMS: SpawnModuleInScene(targetSceneID, EdgeGO)
+        DSMS -> NDSCS ++: Spawn Edge
+        NDSCS --> NDSCi ++: Replicate Edge\n(order unknown)
+        NDSCS --> NDSCj ++: Replicate Edge\n(order unknown)
+    end
+end
+deactivate DMS
+deactivate DMS
+
+DMS --> DMj: IsReadyForDive\n(order unknown)
+DMS --> DMi: IsReadyForDive\n(order unknown)
+
+DMi -> DMi: DirectDiveIn
+
+@enduml
+
+```
