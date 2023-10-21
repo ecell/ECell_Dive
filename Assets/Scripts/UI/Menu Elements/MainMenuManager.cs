@@ -46,6 +46,13 @@ namespace ECellDive.UI
         }
 
         /// <inheritdoc/>
+        public void ForceSingleInteractibility(int _targetIdx, bool _interactibility)
+        {
+            m_previousInteractibility[_targetIdx] = m_targetGroup[_targetIdx].interactable;
+            m_targetGroup[_targetIdx].interactable = _interactibility;
+        }
+
+        /// <inheritdoc/>
         public void RestoreGroupInteractibility()
         {
             bool interactibility = true;
@@ -58,11 +65,11 @@ namespace ECellDive.UI
         }
 
         /// <inheritdoc/>
-        public void RestoreSingleInteractibility(int targetIdx)
+        public void RestoreSingleInteractibility(int _targetIdx)
         {
-            bool interactibility = m_targetGroup[targetIdx].interactable;
-            m_targetGroup[targetIdx].interactable = m_previousInteractibility[targetIdx];
-            m_previousInteractibility[targetIdx] = interactibility;
+            bool interactibility = m_targetGroup[_targetIdx].interactable;
+            m_targetGroup[_targetIdx].interactable = m_previousInteractibility[_targetIdx];
+            m_previousInteractibility[_targetIdx] = interactibility;
         }
 
         /// <inheritdoc/>
@@ -75,9 +82,9 @@ namespace ECellDive.UI
         }
 
         /// <inheritdoc/>
-        public void StoreSingleInteractibility(int targetIdx)
+        public void StoreSingleInteractibility(int _targetIdx)
         {
-            m_previousInteractibility[targetIdx] = m_targetGroup[targetIdx].interactable;
+            m_previousInteractibility[_targetIdx] = m_targetGroup[_targetIdx].interactable;
         }
 
         /// <inheritdoc/>

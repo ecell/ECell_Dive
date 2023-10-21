@@ -157,6 +157,20 @@ namespace ECellDive
             void ForceGroupInteractibility(bool _interactibility);
 
             /// <summary>
+            /// Forces the value <paramref name="_interactibility"/> upon
+            /// UnityEngine.UI.Selectable.interactable for the member with
+            /// index <paramref name="_targetIdx"/> in <see cref="targetGroup"/>.
+            /// </summary>
+            /// <param name="_targetIdx">
+            /// Index of a UnityEngine.UI.Selectable in <see cref="targetGroup"/>
+            /// to force the interactibility state of.
+            /// </param>
+            /// <param name="_interactibility">
+            /// The value to apply to UnityEngine.UI.Selectable.interactable.
+            /// </param>
+            void ForceSingleInteractibility(int _targetIdx, bool _interactibility);
+
+            /// <summary>
             /// Assigns the stored interactibility state in <see cref="previousInteractibility"/>
             /// to UnityEngine.UI.Selectable.interactable for each member of the
             /// <see cref="targetGroup"/>.
@@ -166,13 +180,13 @@ namespace ECellDive
             /// <summary>
             /// Assigns the stored interactibility state in <see cref="previousInteractibility"/>
             /// to UnityEngine.UI.Selectable.interactable for the member with index
-            /// <paramref name="targetIdx"/> in <see cref="targetGroup"/>.
+            /// <paramref name="_targetIdx"/> in <see cref="targetGroup"/>.
             /// </summary>
-            /// <param name="targetIdx">
+            /// <param name="_targetIdx">
             /// Index of a UnityEngine.UI.Selectable in <see cref="targetGroup"/>
             /// to restore the interactibility state of.
             /// </param>
-            void RestoreSingleInteractibility(int targetIdx);
+            void RestoreSingleInteractibility(int _targetIdx);
 
             /// <summary>
             /// Assigns the value of UnityEngine.UI.Selectable.interactable to
@@ -184,13 +198,13 @@ namespace ECellDive
             /// <summary>
             /// Assigns the value of UnityEngine.UI.Selectable.interactable to
             /// <see cref="previousInteractibility"/> for the member with index
-            /// <paramref name="targetIdx"/> in <see cref="targetGroup"/>.
+            /// <paramref name="_targetIdx"/> in <see cref="targetGroup"/>.
             /// </summary>
-            /// <param name="targetIdx">
+            /// <param name="_targetIdx">
             /// Index of a UnityEngine.UI.Selectable in <see cref="targetGroup"/>
             /// to store the interactibility state of.
             /// </param>
-            void StoreSingleInteractibility(int targetIdx);
+            void StoreSingleInteractibility(int _targetIdx);
 
             /// <summary>
             /// Switches the value of UnityEngine.UI.Selectable.interactable to
@@ -200,12 +214,12 @@ namespace ECellDive
 
             /// <summary>
             /// Switches the value of UnityEngine.UI.Selectable.interactable to
-            /// its opposite for the member with index <paramref name="targetIdx"/>
+            /// its opposite for the member with index <paramref name="_targetIdx"/>
             /// in <see cref="targetGroup"/>.
             /// </summary>
-            /// <param name="targetIdx">Index of a UnityEngine.UI.Selectable in <see
+            /// <param name="_targetIdx">Index of a UnityEngine.UI.Selectable in <see
             /// cref="targetGroup"/></param>
-            void SwitchSingleInteractibility(int targetIdx);
+            void SwitchSingleInteractibility(int _targetIdx);
         }
     }
 }
