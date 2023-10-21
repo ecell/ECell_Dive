@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 74620176937815134}
   - component: {fileID: 5575962332339270175}
   - component: {fileID: 6232264981710746866}
-  - component: {fileID: 6514582200933200131}
   - component: {fileID: 2344240678665000161}
   m_Layer: 7
   m_Name: HttpServerAPICheckModule
@@ -78,7 +77,7 @@ MonoBehaviour:
   m_FirstHoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6514582200933200131}
+      - m_Target: {fileID: 2344240678665000161}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
         m_MethodName: ShowNameToPlayer
         m_Mode: 1
@@ -90,7 +89,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6514582200933200131}
+      - m_Target: {fileID: 2344240678665000161}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
         m_MethodName: SetFocus
         m_Mode: 1
@@ -102,8 +101,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 6514582200933200131}
-        m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
+      - m_Target: {fileID: 2344240678665000161}
+        m_TargetAssemblyTypeName: ECellDive.Modules.HttpServerBaseModule, Assembly-CSharp
         m_MethodName: SetHighlight
         m_Mode: 1
         m_Arguments:
@@ -117,7 +116,7 @@ MonoBehaviour:
   m_LastHoverExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6514582200933200131}
+      - m_Target: {fileID: 2344240678665000161}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
         m_MethodName: UnsetFocus
         m_Mode: 1
@@ -129,8 +128,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6514582200933200131}
-        m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
+      - m_Target: {fileID: 2344240678665000161}
+        m_TargetAssemblyTypeName: ECellDive.Modules.HttpServerBaseModule, Assembly-CSharp
         m_MethodName: UnsetHighlight
         m_Mode: 1
         m_Arguments:
@@ -277,7 +276,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6514582200933200131}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
         m_MethodName: ShowInfoTags
         m_Mode: 1
@@ -370,30 +369,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showOnEnable: 1
-  m_flip: 0
+  m_flip: 1
   m_popupDistance: 0
   m_popupHeightOffset: 0
---- !u!114 &6514582200933200131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 73486288688774602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 031f2f632828d1c498ae0d27326c1c9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  refName: {fileID: 1835025109669801434}
-  m_delegateTarget: {fileID: 0}
-  m_defaultColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-  m_highlightColor: {r: 0, g: 0.8980392, b: 0.8962264, a: 1}
-  m_displayInfoTagsActions:
-    m_left: {fileID: -2874468441403497665, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-    m_right: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
-  m_refInfoTagPrefab: {fileID: 603604554048001299}
-  m_refInfoTagsContainer: {fileID: 4456094612635035181}
 --- !u!114 &2344240678665000161
 MonoBehaviour:
   m_ObjectHideFlags: 0

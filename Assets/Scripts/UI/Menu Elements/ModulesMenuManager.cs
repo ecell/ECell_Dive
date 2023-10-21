@@ -38,7 +38,8 @@ namespace ECellDive.UI
 		{
 			m_previousInteractibility = new bool[targetGroup.Length];
 			ForceGroupInteractibility(false);
-			StoreGroupInteractibility();
+			StoreGroupInteractibility();//Initialize the previous interactibility states to false.
+			ForceSingleInteractibility(0, true);//The first button is the "API Checker" button, which is always available.
 		}
 
 		#region - IInteractibility Methods -
