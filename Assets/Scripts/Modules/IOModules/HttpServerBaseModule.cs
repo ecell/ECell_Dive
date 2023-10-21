@@ -30,6 +30,11 @@ namespace ECellDive.Modules
 		public ServerUIData serverUIData;
 
 		/// <summary>
+		/// The names of the Http commands that this module can send to the server.
+		/// </summary>
+		[SerializeField] string[] implementedHttpAPI;
+
+		/// <summary>
 		/// The data structure to store request data.
 		/// </summary>
 		protected RequestData requestData = new RequestData

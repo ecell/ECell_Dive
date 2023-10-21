@@ -76,17 +76,6 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Requests the SBML file of a model to the server.
-		/// </summary>
-		/// <param name="_modelName">The name of the model as
-		/// stored in the server.</param>
-		private void GetModelSBML(string _modelName)
-		{
-			string requestURL = AddPagesToURL(new string[] { "open_sbml", _modelName });
-			StartCoroutine(GetRequest(requestURL));
-		}
-
-		/// <summary>
 		/// The public interface to ask the server for the .cyjs
 		/// file of a model and instantiating its corresponding
 		/// module in the main room.

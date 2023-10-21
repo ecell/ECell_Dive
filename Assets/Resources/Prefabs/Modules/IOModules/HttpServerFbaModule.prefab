@@ -1492,15 +1492,14 @@ MonoBehaviour:
     m_right: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   m_refInfoTagPrefab: {fileID: 8508590404914015345}
   m_refInfoTagsContainer: {fileID: 4873951086362238799}
-  m_refInfoTags:
-  - {fileID: 8491422362764111447}
-  - {fileID: 7612038282557138453}
   serverData:
     serverIP: 127.0.0.1
     port: 8000
   serverUIData:
     refIPInputField: {fileID: 7039209632596778522}
     refPortInputField: {fileID: 1103660899261237650}
+  implementedHttpAPI:
+  - solve
   renderers:
   - {fileID: 1438284790012430114}
   - {fileID: 2215118677684141772}
@@ -1831,11 +1830,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
---- !u!1 &8491422362764111447 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5810667918191864985, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-  m_PrefabInstance: {fileID: 2698839290796393166}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8491422362764111446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
@@ -3712,11 +3706,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9389232a68206364f87fa904c12ab459, type: 3}
---- !u!1 &7612038282557138453 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3519219193293785576, guid: 9389232a68206364f87fa904c12ab459, type: 3}
-  m_PrefabInstance: {fileID: 6446237976509640701}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7612038282557138452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3519219193293785577, guid: 9389232a68206364f87fa904c12ab459, type: 3}
@@ -3727,7 +3716,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9035657342371299377, guid: 9389232a68206364f87fa904c12ab459, type: 3}
   m_PrefabInstance: {fileID: 6446237976509640701}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7612038282557138453}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95ba47ee8386d9548a31918cabfaab91, type: 3}
