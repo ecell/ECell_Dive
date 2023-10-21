@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5575962332339270175}
   - component: {fileID: 6232264981710746866}
   - component: {fileID: 2344240678665000161}
+  - component: {fileID: 7417961073450793407}
   m_Layer: 7
   m_Name: HttpServerAPICheckModule
   m_TagString: Untagged
@@ -405,6 +406,25 @@ MonoBehaviour:
   - {fileID: 1110206571462821875}
   animLW: {fileID: 2935900254795262594}
   colorFlash: {fileID: 134226476624684806}
+--- !u!95 &7417961073450793407
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73486288688774602}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 74ef79137476c2e48806901fe4668003, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &127013607150887806
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,8 +483,9 @@ Animation:
   m_GameObject: {fileID: 127013607150887806}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: ad528a91d121e1942a9c6b18aeb00a86, type: 2}
-  m_Animations: []
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: ad528a91d121e1942a9c6b18aeb00a86, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -1213,9 +1234,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
   m_PrefabInstance: {fileID: 8577809709407207520}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3733202270026996916 stripped
+--- !u!114 &6714385249828080444 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4955226041271000276, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3036773826860747612, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
   m_PrefabInstance: {fileID: 8577809709407207520}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1224,9 +1245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6714385249828080444 stripped
+--- !u!114 &3733202270026996916 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3036773826860747612, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4955226041271000276, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
   m_PrefabInstance: {fileID: 8577809709407207520}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
