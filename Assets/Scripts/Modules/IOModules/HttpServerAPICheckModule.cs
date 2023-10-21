@@ -17,11 +17,17 @@ namespace ECellDive.Modules
 	/// </summary>
 	public class HttpServerAPICheckModule : HttpServerBaseModule
 	{
-		/// <summary>
-		/// The color flash component to alter the visual feedback
-		/// of the module in case of request.
-		/// </summary>
-		[Header("HttpServerAPICheckModule")]//A Header to make the inspector more readable
+        /// <summary>
+        /// The animation loop controller to control the visual feedback
+        /// of the module in case of request.
+        /// </summary>
+        [Header("HttpServerAPICheckModule")]//A Header to make the inspector more readable
+        [SerializeField] private AnimationLoopWrapper animLW;
+
+        /// <summary>
+        /// The color flash component to alter the visual feedback
+        /// of the module in case of request.
+        /// </summary>
 		[SerializeField] private ColorFlash colorFlash;
 
 		private string BuildCheckAPIRequest()
@@ -37,7 +43,8 @@ namespace ECellDive.Modules
 		public void CheckAPI()
 		{
 			StartCoroutine(CheckAPIC());
-		}
+            animLW.PlayLoop("HttpServerAPICheckModule");
+        }
 
 		private IEnumerator CheckAPIC()
 		{
@@ -46,7 +53,7 @@ namespace ECellDive.Modules
 			yield return new WaitUntil(isRequestProcessed);
 
 			//stop the "Work In Progress" animation of this module
-			//animLW.StopLoop();
+			animLW.StopLoop();
 
 			if (requestData.requestSuccess)
 			{
@@ -71,7 +78,6 @@ namespace ECellDive.Modules
 							allAPIImplemented &= (idx >= 0 && idx < apiCmdNames.Count);
 						}
 						interactibilityManager.ForceSingleInteractibility(i, allAPIImplemented);
-						Debug.Log($"Module {interactibilityManager.targetGroup[i].GetComponent<GameObjectConstructor>().refPrefab.name} is {(allAPIImplemented ? "" : "not ")}available.");
 					}
 				}
 			}
