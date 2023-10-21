@@ -32,7 +32,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The names of the Http commands that this module can send to the server.
 		/// </summary>
-		[SerializeField] string[] implementedHttpAPI;
+		public string[] implementedHttpAPI;
 
 		/// <summary>
 		/// The data structure to store request data.
