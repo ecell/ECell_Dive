@@ -19,7 +19,8 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The scroll list to display the models available on the server.
 		/// </summary>
-		public OptimizedVertScrollList refModelsScrollList;
+		[Header("HttpServerImporterModule")]//A Header to make the inspector more readable
+        public OptimizedVertScrollList refModelsScrollList;
 
 		/// <summary>
 		/// The buffer to the name of the model to import.
@@ -71,17 +72,6 @@ namespace ECellDive.Modules
 		private void GetModelCyJs(string _modelName)
 		{
 			string requestURL = AddPagesToURL(new string[] { "open_view", _modelName });
-			StartCoroutine(GetRequest(requestURL));
-		}
-
-		/// <summary>
-		/// Requests the SBML file of a model to the server.
-		/// </summary>
-		/// <param name="_modelName">The name of the model as
-		/// stored in the server.</param>
-		private void GetModelSBML(string _modelName)
-		{
-			string requestURL = AddPagesToURL(new string[] { "open_sbml", _modelName });
 			StartCoroutine(GetRequest(requestURL));
 		}
 

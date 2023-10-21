@@ -68,7 +68,8 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// An object linking parameters of the FBA to the UI.
 		/// </summary>
-		public FbaParametersManager fbaParametersManager;
+		[Header("HttpServerFbaModule")]//A Header to make the inspector more readable
+        public FbaParametersManager fbaParametersManager;
 
 		/// <summary>
 		/// The animation loop controller to control the visual feedback

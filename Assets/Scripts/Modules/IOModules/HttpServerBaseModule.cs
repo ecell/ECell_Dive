@@ -17,6 +17,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The data structure storing the server address and port.
 		/// </summary>
+		[Header("HttpServerBaseModule")]//A Header to make the inspector more readable
 		public ServerData serverData = new ServerData
 		{
 			port = "8000",
@@ -27,6 +28,11 @@ namespace ECellDive.Modules
 		/// The data structure storing the input fields for the server address and port.
 		/// </summary>
 		public ServerUIData serverUIData;
+
+		/// <summary>
+		/// The names of the Http commands that this module can send to the server.
+		/// </summary>
+		public string[] implementedHttpAPI;
 
 		/// <summary>
 		/// The data structure to store request data.

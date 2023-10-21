@@ -1301,14 +1301,16 @@ MonoBehaviour:
     m_right: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   m_refInfoTagPrefab: {fileID: 5864863595514551457}
   m_refInfoTagsContainer: {fileID: 7265285906250182559}
-  m_refInfoTags:
-  - {fileID: 7307473042925819052}
   serverData:
     serverIP: 127.0.0.1
     port: 8000
   serverUIData:
     refIPInputField: {fileID: 2223510960994144613}
     refPortInputField: {fileID: 7840392959307407682}
+  implementedHttpAPI:
+  - list_user_model
+  - open_user_model
+  - save
   renderers:
   - {fileID: 9024194524823361624}
   - {fileID: 7632367772103431894}
@@ -2511,11 +2513,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0096adc919f78e6449e867f8759c8a34, type: 3}
---- !u!1 &7307473042925819052 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5232617613838119673, guid: 0096adc919f78e6449e867f8759c8a34, type: 3}
-  m_PrefabInstance: {fileID: 3311449725820200533}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7307473042925819053 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5232617613838119672, guid: 0096adc919f78e6449e867f8759c8a34, type: 3}

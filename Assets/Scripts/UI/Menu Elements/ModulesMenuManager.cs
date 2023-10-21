@@ -4,49 +4,113 @@ using ECellDive.Interfaces;
 
 namespace ECellDive.UI
 {
-    /// <summary>
-    /// The class to manage the module menu UI.
-    /// </summary>
-    public class ModulesMenuManager : MonoBehaviour,
-                                    IInteractibility
-    {
-        #region - IInteractibility Members -
-        /// <summary>
-        /// The field for the <see cref="targetGroup"/> property.
-        /// </summary>
-        [SerializeField] private Selectable[] m_targetGroup;
+	/// <summary>
+	/// The class to manage the module menu UI.
+	/// </summary>
+	public class ModulesMenuManager : MonoBehaviour,
+									IInteractibility
+	{
+		#region - IInteractibility Members -
+		/// <summary>
+		/// The field for the <see cref="previousInteractibility"/> property.
+		/// </summary>
+		private bool[] m_previousInteractibility;
 
-        ///<inheritdoc/>
-        public Selectable[] targetGroup
-        {
-            get => m_targetGroup;
-        }
-        #endregion
+		///<inheritdoc/>
+		public bool[] previousInteractibility
+		{
+			get => m_previousInteractibility;
+		}
 
-        #region - IInteractibility Methods -
-        /// <inheritdoc/>
-        public void ForceGroupInteractibility(bool _interactibility)
-        {
-            foreach (Selectable selectable in m_targetGroup)
-            {
-                selectable.interactable = _interactibility;
-            }
-        }
+		/// <summary>
+		/// The field for the <see cref="targetGroup"/> property.
+		/// </summary>
+		[SerializeField] private Selectable[] m_targetGroup;
 
-        /// <inheritdoc/>
-        public void SwitchGroupInteractibility()
-        {
-            foreach (Selectable selectable in m_targetGroup)
-            {
-                selectable.interactable = !selectable.interactable;
-            }
-        }
+		///<inheritdoc/>
+		public Selectable[] targetGroup
+		{
+			get => m_targetGroup;
+		}
+		#endregion
 
-        /// <inheritdoc/>
-        public void SwitchSingleInteractibility(int _targetIdx)
-        {
-            m_targetGroup[_targetIdx].interactable = !m_targetGroup[_targetIdx].interactable;
-        }
-        #endregion
-    }
+		private void Start()
+		{
+			m_previousInteractibility = new bool[targetGroup.Length];
+			ForceGroupInteractibility(false);
+			StoreGroupInteractibility();//Initialize the previous interactibility states to false.
+			ForceSingleInteractibility(0, true);//The first button is the "API Checker" button, which is always available.
+		}
+
+		#region - IInteractibility Methods -
+		/// <inheritdoc/>
+		public void ForceGroupInteractibility(bool _interactibility)
+		{
+			for (int i = 0; i < m_targetGroup.Length; i++)
+			{
+				m_previousInteractibility[i] = m_targetGroup[i].interactable;
+				m_targetGroup[i].interactable = _interactibility;
+			}
+		}
+
+		/// <inheritdoc/>
+		public void ForceSingleInteractibility(int targetIdx, bool _interactibility)
+		{
+			m_previousInteractibility[targetIdx] = m_targetGroup[targetIdx].interactable;
+			m_targetGroup[targetIdx].interactable = _interactibility;
+		}
+
+		/// <inheritdoc/>
+		public void RestoreGroupInteractibility()
+		{
+			bool interactibility = true;
+			for (int i = 0; i < m_targetGroup.Length; i++)
+			{
+				interactibility = m_targetGroup[i].interactable;
+				m_targetGroup[i].interactable = m_previousInteractibility[i];
+				m_previousInteractibility[i] = interactibility;
+			}
+		}
+
+		/// <inheritdoc/>
+		public void RestoreSingleInteractibility(int _targetIdx)
+		{
+			bool interactibility = m_targetGroup[_targetIdx].interactable;
+			m_targetGroup[_targetIdx].interactable = m_previousInteractibility[_targetIdx];
+			m_previousInteractibility[_targetIdx] = interactibility;
+		}
+
+		/// <inheritdoc/>
+		public void StoreGroupInteractibility()
+		{
+			for (int i = 0; i < m_targetGroup.Length; i++)
+			{
+				m_previousInteractibility[i] = m_targetGroup[i].interactable;
+			}
+		}
+
+		/// <inheritdoc/>
+		public void StoreSingleInteractibility(int _targetIdx)
+		{
+			m_previousInteractibility[_targetIdx] = m_targetGroup[_targetIdx].interactable;
+		}
+
+		/// <inheritdoc/>
+		public void SwitchGroupInteractibility()
+		{
+			for(int i = 0; i < m_targetGroup.Length; i++)
+			{
+				m_previousInteractibility[i] = m_targetGroup[i].interactable;
+				m_targetGroup[i].interactable = !m_targetGroup[i].interactable;
+			}
+		}
+
+		/// <inheritdoc/>
+		public void SwitchSingleInteractibility(int _targetIdx)
+		{
+			m_previousInteractibility[_targetIdx] = m_targetGroup[_targetIdx].interactable;
+			m_targetGroup[_targetIdx].interactable = !m_targetGroup[_targetIdx].interactable;
+		}
+		#endregion
+	}
 }
