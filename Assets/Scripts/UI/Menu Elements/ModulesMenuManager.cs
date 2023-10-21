@@ -52,15 +52,15 @@ namespace ECellDive.UI
 			}
 		}
 
-        /// <inheritdoc/>
-        public void ForceSingleInteractibility(int targetIdx, bool _interactibility)
-        {
-            m_previousInteractibility[targetIdx] = m_targetGroup[targetIdx].interactable;
-            m_targetGroup[targetIdx].interactable = _interactibility;
-        }
+		/// <inheritdoc/>
+		public void ForceSingleInteractibility(int targetIdx, bool _interactibility)
+		{
+			m_previousInteractibility[targetIdx] = m_targetGroup[targetIdx].interactable;
+			m_targetGroup[targetIdx].interactable = _interactibility;
+		}
 
-        /// <inheritdoc/>
-        public void RestoreGroupInteractibility()
+		/// <inheritdoc/>
+		public void RestoreGroupInteractibility()
 		{
 			bool interactibility = true;
 			for (int i = 0; i < m_targetGroup.Length; i++)
