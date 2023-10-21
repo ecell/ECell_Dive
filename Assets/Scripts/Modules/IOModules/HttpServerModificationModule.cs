@@ -21,7 +21,8 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The scroll list displaying the modification files.
 		/// </summary>
-		public OptimizedVertScrollList refModificationFilesScrollList;
+		[Header("HttpServerModificationModule")]//A Header to make the inspector more readable
+        public OptimizedVertScrollList refModificationFilesScrollList;
 
 		/// <summary>
 		/// The scroll list displaying the models which can be modified.

@@ -19,7 +19,8 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The scroll list to display the models available on the server.
 		/// </summary>
-		public OptimizedVertScrollList refModelsScrollList;
+		[Header("HttpServerImporterModule")]//A Header to make the inspector more readable
+        public OptimizedVertScrollList refModelsScrollList;
 
 		/// <summary>
 		/// The buffer to the name of the model to import.

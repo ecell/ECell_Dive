@@ -17,7 +17,8 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The scroll list of the databases we can try to query.
 		/// </summary>
-		public OptimizedVertScrollList refTargetDatabaseScrollList;
+		[Header("HttpServerInfoQueryModule")]//A Header to make the inspector more readable
+        public OptimizedVertScrollList refTargetDatabaseScrollList;
 
 		/// <summary>
 		/// The test mesh displaying the database to use for the query.
