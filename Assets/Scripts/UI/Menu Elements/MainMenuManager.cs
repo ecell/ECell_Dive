@@ -10,16 +10,33 @@ namespace ECellDive.UI
 	public class MainMenuManager : MonoBehaviour,
 									IInteractibility
 	{
-		[SerializeField] private Selectable[] m_targetGroup;
-		///<inheritdoc/>
-		public Selectable[] targetGroup
-		{
-			get => m_targetGroup;
-		}
+        #region - IInteractibility Members -
+        /// <summary>
+        /// The field for the <see cref="previousInteractibility"/> property.
+        /// </summary>
+        private bool[] m_previousInteractibility;
 
-		#region - IInteractibility Methods -
-		/// <inheritdoc/>
-		public void ForceGroupInteractibility(bool _interactibility)
+        ///<inheritdoc/>
+        public bool[] previousInteractibility
+        {
+            get => m_previousInteractibility;
+        }
+
+        /// <summary>
+        /// The field for the <see cref="targetGroup"/> property.
+        /// </summary>
+        [SerializeField] private Selectable[] m_targetGroup;
+
+        ///<inheritdoc/>
+        public Selectable[] targetGroup
+        {
+            get => m_targetGroup;
+        }
+        #endregion
+
+        #region - IInteractibility Methods -
+        /// <inheritdoc/>
+        public void ForceGroupInteractibility(bool _interactibility)
 		{
 			foreach (Selectable selectable in m_targetGroup)
 			{
@@ -27,8 +44,38 @@ namespace ECellDive.UI
 			}
 		}
 
-		/// <inheritdoc/>
-		public void SwitchGroupInteractibility()
+        /// <inheritdoc/>
+        public void RestoreGroupInteractibility()
+        {
+            for (int i = 0; i < m_targetGroup.Length; i++)
+            {
+                m_targetGroup[i].interactable = m_previousInteractibility[i];
+            }
+        }
+
+        /// <inheritdoc/>
+        public void RestoreSingleInteractibility(int targetIdx)
+        {
+            m_targetGroup[targetIdx].interactable = m_previousInteractibility[targetIdx];
+        }
+
+        /// <inheritdoc/>
+        public void StoreGroupInteractibility()
+        {
+            for (int i = 0; i < m_targetGroup.Length; i++)
+            {
+                m_previousInteractibility[i] = m_targetGroup[i].interactable;
+            }
+        }
+
+        /// <inheritdoc/>
+        public void StoreSingleInteractibility(int targetIdx)
+        {
+            m_previousInteractibility[targetIdx] = m_targetGroup[targetIdx].interactable;
+        }
+
+        /// <inheritdoc/>
+        public void SwitchGroupInteractibility()
 		{
 			foreach (Selectable selectable in m_targetGroup)
 			{
