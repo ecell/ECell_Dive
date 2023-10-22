@@ -8,6 +8,7 @@ using ECellDive.Interfaces;
 using ECellDive.UI;
 using ECellDive.Utility;
 using ECellDive.Utility.PlayerComponents;
+using ECellDive.Utility.Data.Network;
 
 namespace ECellDive.Modules
 {
@@ -17,17 +18,22 @@ namespace ECellDive.Modules
 	/// </summary>
 	public class HttpServerAPICheckModule : HttpServerBaseModule
 	{
-        /// <summary>
-        /// The animation loop controller to control the visual feedback
-        /// of the module in case of request.
-        /// </summary>
-        [Header("HttpServerAPICheckModule")]//A Header to make the inspector more readable
-        [SerializeField] private AnimationLoopWrapper animLW;
+		/// <summary>
+		/// The data structure storing the input fields for the server address and port.
+		/// </summary>
+		[Header("HttpServerAPICheckModule")]//A Header to make the inspector more readable
+		public ServerUIData serverUIData;
 
-        /// <summary>
-        /// The color flash component to alter the visual feedback
-        /// of the module in case of request.
-        /// </summary>
+		/// <summary>
+		/// The animation loop controller to control the visual feedback
+		/// of the module in case of request.
+		/// </summary>
+		[SerializeField] private AnimationLoopWrapper animLW;
+
+		/// <summary>
+		/// The color flash component to alter the visual feedback
+		/// of the module in case of request.
+		/// </summary>
 		[SerializeField] private ColorFlash colorFlash;
 
 		/// <summary>
@@ -49,8 +55,8 @@ namespace ECellDive.Modules
 		public void CheckAPI()
 		{
 			StartCoroutine(CheckAPIC());
-            animLW.PlayLoop("HttpServerAPICheckModule");
-        }
+			animLW.PlayLoop("HttpServerAPICheckModule");
+		}
 
 		/// <summary>
 		/// The coroutine to request the list of implemented API
@@ -107,6 +113,39 @@ namespace ECellDive.Modules
 				colorFlash.Flash(0);
 			}
 		}
-	}
+
+        /// <summary>
+        /// Sets the value for the IP in <see cref="serverData"/>.
+        /// </summary>
+        /// <remarks>
+        /// Called back on value change of the input field dedicated to the IP.
+        /// </remarks>
+        public void UpdateIP()
+        {
+            serverData.serverIP = serverUIData.refIPInputField.text;
+        }
+
+        /// <summary>
+        /// Sets the value for the Port in <see cref="serverData"/>.
+        /// </summary>
+        /// <remarks>
+        /// Called back on value change of the input field dedicated to the Port.
+        /// </remarks>
+        public void UpdatePort()
+        {
+            serverData.port = serverUIData.refPortInputField.text;
+        }
+
+        /// <summary>
+        /// Sets the value for the Name in <see cref="serverData"/>.
+        /// </summary>
+        /// <remarks>
+        /// Called back on value change of the input field dedicated to the Name.
+        /// </remarks>
+        public void UpdateName()
+        {
+            serverData.name = serverUIData.refNameInputField.text;
+        }
+    }
 
 }

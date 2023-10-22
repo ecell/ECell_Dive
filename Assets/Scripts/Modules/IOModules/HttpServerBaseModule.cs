@@ -26,11 +26,6 @@ namespace ECellDive.Modules
 		};
 
 		/// <summary>
-		/// The data structure storing the input fields for the server address and port.
-		/// </summary>
-		public ServerUIData serverUIData;
-
-		/// <summary>
 		/// The names of the Http commands that this module can send to the server.
 		/// </summary>
 		public string[] implementedHttpAPI;
@@ -196,39 +191,6 @@ namespace ECellDive.Modules
 		protected bool isRequestProcessed()
 		{
 			return requestData.requestProcessed;
-		}
-
-		/// <summary>
-		/// Sets the value for the IP in <see cref="serverData"/>.
-		/// </summary>
-		/// <remarks>
-		/// Called back on value change of the input field dedicated to the IP.
-		/// </remarks>
-		public void UpdateIP()
-		{
-			serverData.serverIP = serverUIData.refIPInputField.text;
-		}
-
-		/// <summary>
-		/// Sets the value for the Port in <see cref="serverData"/>.
-		/// </summary>
-		/// <remarks>
-		/// Called back on value change of the input field dedicated to the Port.
-		/// </remarks>
-		public void UpdatePort()
-		{
-			serverData.port = serverUIData.refPortInputField.text;
-		}
-
-		/// <summary>
-		/// Sets the value for the Name in <see cref="serverData"/>.
-		/// </summary>
-		/// <remarks>
-		/// Called back on value change of the input field dedicated to the Name.
-		/// </remarks>
-		public void UpdateName()
-		{
-			serverData.name = serverUIData.refNameInputField.text;
 		}
 
 		#region - IHighlightable -

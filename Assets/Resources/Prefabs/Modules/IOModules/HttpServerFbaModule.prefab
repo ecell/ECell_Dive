@@ -536,7 +536,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8491422362764111446}
   - {fileID: 7612038282557138452}
   m_Father: {fileID: 9183378004188021929}
   m_RootOrder: 2
@@ -1493,11 +1492,9 @@ MonoBehaviour:
   m_refInfoTagPrefab: {fileID: 8508590404914015345}
   m_refInfoTagsContainer: {fileID: 4873951086362238799}
   serverData:
+    name: Kosmogora
     serverIP: 127.0.0.1
     port: 8000
-  serverUIData:
-    refIPInputField: {fileID: 7039209632596778522}
-    refPortInputField: {fileID: 1103660899261237650}
   implementedHttpAPI:
   - solve
   renderers:
@@ -1689,180 +1686,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Button
---- !u!1001 &2698839290796393166
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1422253545267511607}
-    m_Modifications:
-    - target: {fileID: 38309469586559663, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: refMasterObject
-      value: 
-      objectReference: {fileID: 1615351103191169783}
-    - target: {fileID: 582783372890599466, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_text
-      value: 'Run FBA
-
-'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2288943537978776175, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: defaultPositionOffset.x
-      value: -0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2288943537978776175, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: defaultPositionOffset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3036773826860747612, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3036773826860747612, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3036773826860747612, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4916496559549191361}
-    - target: {fileID: 3036773826860747612, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3036773826860747612, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdatePort
-      objectReference: {fileID: 0}
-    - target: {fileID: 3036773826860747612, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ECellDive.Modules.HttpServerBaseModule, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3036773826860747612, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955226041271000276, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955226041271000276, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955226041271000276, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4916496559549191361}
-    - target: {fileID: 4955226041271000276, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955226041271000276, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateIP
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955226041271000276, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ECellDive.Modules.HttpServerBaseModule, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955226041271000276, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143193382549299513, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: end
-      value: 
-      objectReference: {fileID: 1615351103191169783}
-    - target: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810667918191864985, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_Name
-      value: FBA Running Server
-      objectReference: {fileID: 0}
-    - target: {fileID: 7061448664483335453, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4916496559549191361}
-    - target: {fileID: 7061448664483335453, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RequestModelSolve
-      objectReference: {fileID: 0}
-    - target: {fileID: 7061448664483335453, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ECellDive.Modules.HttpServerFbaModule, Assembly-CSharp
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
---- !u!4 &8491422362764111446 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5810667918191864984, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-  m_PrefabInstance: {fileID: 2698839290796393166}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7039209632596778522 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4955226041271000276, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-  m_PrefabInstance: {fileID: 2698839290796393166}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1103660899261237650 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3036773826860747612, guid: 3a18d7f767b3ce744a984c2acc44d4ec, type: 3}
-  m_PrefabInstance: {fileID: 2698839290796393166}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6446237976509640701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2652,7 +2475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3519219193293785577, guid: 9389232a68206364f87fa904c12ab459, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3519219193293785577, guid: 9389232a68206364f87fa904c12ab459, type: 3}
       propertyPath: m_LocalPosition.x
