@@ -20,6 +20,7 @@ namespace ECellDive.Modules
 		[Header("HttpServerBaseModule")]//A Header to make the inspector more readable
 		public ServerData serverData = new ServerData
 		{
+			name = "Kosmogora",
 			port = "8000",
 			serverIP = "127.0.0.1"
 		};
@@ -198,10 +199,10 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Sets the value for the IP in <see cref="HttpServerBaseModule.serverData"/>
+		/// Sets the value for the IP in <see cref="serverData"/>.
 		/// </summary>
 		/// <remarks>
-		/// Called back on value change of the input field dedicated to the IP
+		/// Called back on value change of the input field dedicated to the IP.
 		/// </remarks>
 		public void UpdateIP()
 		{
@@ -209,14 +210,25 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Sets the value for the Port in <see cref="HttpServerBaseModule.serverData"/>
+		/// Sets the value for the Port in <see cref="serverData"/>.
 		/// </summary>
 		/// <remarks>
-		/// Called back on value change of the input field dedicated to the Port
+		/// Called back on value change of the input field dedicated to the Port.
 		/// </remarks>
 		public void UpdatePort()
 		{
 			serverData.port = serverUIData.refPortInputField.text;
+		}
+
+		/// <summary>
+		/// Sets the value for the Name in <see cref="serverData"/>.
+		/// </summary>
+		/// <remarks>
+		/// Called back on value change of the input field dedicated to the Name.
+		/// </remarks>
+		public void UpdateName()
+		{
+			serverData.name = serverUIData.refNameInputField.text;
 		}
 
 		#region - IHighlightable -
