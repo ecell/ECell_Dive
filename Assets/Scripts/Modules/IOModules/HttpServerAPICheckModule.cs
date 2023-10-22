@@ -123,38 +123,50 @@ namespace ECellDive.Modules
 			}
 		}
 
-        /// <summary>
-        /// Sets the value for the IP in <see cref="serverData"/>.
-        /// </summary>
-        /// <remarks>
-        /// Called back on value change of the input field dedicated to the IP.
-        /// </remarks>
-        public void UpdateIP()
-        {
-            serverData.serverIP = serverUIData.refIPInputField.text;
-        }
+		/// <summary>
+		/// This method is not implemented in this module.
+		/// This module is the only one that can contact any HttpServer in ECellDive.
+		/// </summary>
+		/// <returns>
+		/// Null.
+		/// </returns>
+		protected override List<ServerData> GetAvailableServers()
+		{
+			return null;
+		}
 
-        /// <summary>
-        /// Sets the value for the Port in <see cref="serverData"/>.
-        /// </summary>
-        /// <remarks>
-        /// Called back on value change of the input field dedicated to the Port.
-        /// </remarks>
-        public void UpdatePort()
-        {
-            serverData.port = serverUIData.refPortInputField.text;
-        }
+		/// <summary>
+		/// Sets the value for the IP in <see cref="serverData"/>.
+		/// </summary>
+		/// <remarks>
+		/// Called back on value change of the input field dedicated to the IP.
+		/// </remarks>
+		public void UpdateIP()
+		{
+			serverData.serverIP = serverUIData.refIPInputField.text;
+		}
 
-        /// <summary>
-        /// Sets the value for the Name in <see cref="serverData"/>.
-        /// </summary>
-        /// <remarks>
-        /// Called back on value change of the input field dedicated to the Name.
-        /// </remarks>
-        public void UpdateName()
-        {
-            serverData.name = serverUIData.refNameInputField.text;
-        }
-    }
+		/// <summary>
+		/// Sets the value for the Port in <see cref="serverData"/>.
+		/// </summary>
+		/// <remarks>
+		/// Called back on value change of the input field dedicated to the Port.
+		/// </remarks>
+		public void UpdatePort()
+		{
+			serverData.port = serverUIData.refPortInputField.text;
+		}
+
+		/// <summary>
+		/// Sets the value for the Name in <see cref="serverData"/>.
+		/// </summary>
+		/// <remarks>
+		/// Called back on value change of the input field dedicated to the Name.
+		/// </remarks>
+		public void UpdateName()
+		{
+			serverData.name = serverUIData.refNameInputField.text;
+		}
+	}
 
 }

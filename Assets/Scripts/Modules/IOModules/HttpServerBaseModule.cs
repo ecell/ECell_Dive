@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using ECellDive.Utility;
 using ECellDive.Utility.Data.Network;
+using System.Collections.Generic;
 
 namespace ECellDive.Modules
 {
@@ -15,7 +16,8 @@ namespace ECellDive.Modules
 	public abstract class HttpServerBaseModule : Module
 	{
 		/// <summary>
-		/// The data structure storing the server address and port.
+		/// The data structure storing information about the server*
+		/// this module uses.
 		/// </summary>
 		[Header("HttpServerBaseModule")]//A Header to make the inspector more readable
 		public ServerData serverData = new ServerData
@@ -182,6 +184,17 @@ namespace ECellDive.Modules
 				requestData.requestProcessed = true;
 			}
 		}
+
+		/// <summary>
+		/// Gets the list of available Http servers for this module.
+		/// </summary>
+		/// <remarks>
+		/// The dereived classes will probably use <see cref="ECellDive.IO.HttpNetPortal"/>
+		/// </remarks>
+		/// <returns>
+		/// Returns the list of available servers for this module.
+		/// </returns>
+		protected abstract List<ServerData> GetAvailableServers();
 
 		/// <summary>
 		/// Typically used by the coroutines to wait until the
