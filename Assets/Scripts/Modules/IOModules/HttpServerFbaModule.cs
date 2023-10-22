@@ -221,27 +221,6 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// The public interface to populate the scroll list <see cref="refAvailableServersScrollList"/>
-		/// of available servers for this module.
-		/// </summary>
-		/// <remarks>
-		/// Used as callback from the editor.
-		/// </remarks>
-		public void UpdateAvailableServers()
-		{
-			List<ServerData> availableServers = GetAvailableServers();
-
-			refAvailableServersScrollList.ClearScrollList();
-			foreach (ServerData server in availableServers)
-			{
-				GameObject serverUIContainer = refAvailableServersScrollList.AddItem();
-				serverUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = server.name + "\n<size=0.025>" + server.serverIP + ":" + server.port + "</size>";
-				serverUIContainer.SetActive(true);
-			}
-			refAvailableServersScrollList.UpdateScrollList();
-		}
-
-		/// <summary>
 		/// A public interface to update the visuals of the pathway
 		/// with the values of the edges.
 		/// </summary>
@@ -364,6 +343,27 @@ namespace ECellDive.Modules
 				//Flash of the fail color
 				GetComponentInChildren<ColorFlash>().Flash(0);
 			}
+		}
+
+		/// <summary>
+		/// The public interface to populate the scroll list <see cref="refAvailableServersScrollList"/>
+		/// of available servers for this module.
+		/// </summary>
+		/// <remarks>
+		/// Used as callback from the editor.
+		/// </remarks>
+		public void UpdateAvailableServers()
+		{
+			List<ServerData> availableServers = GetAvailableServers();
+
+			refAvailableServersScrollList.ClearScrollList();
+			foreach (ServerData server in availableServers)
+			{
+				GameObject serverUIContainer = refAvailableServersScrollList.AddItem();
+				serverUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = server.name + "\n<size=0.025>" + server.serverIP + ":" + server.port + "</size>";
+				serverUIContainer.SetActive(true);
+			}
+			refAvailableServersScrollList.UpdateScrollList();
 		}
 	}
 }
