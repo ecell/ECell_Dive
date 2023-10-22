@@ -40,6 +40,7 @@ namespace ECellDive.UI
 			ForceGroupInteractibility(false);
 			StoreGroupInteractibility();//Initialize the previous interactibility states to false.
 			ForceSingleInteractibility(0, true);//The first button is the "API Checker" button, which is always available.
+			ForceSingleInteractibility(5, true);//The button for the "GroupBy" function which should be always available..
 		}
 
 		#region - IInteractibility Methods -
