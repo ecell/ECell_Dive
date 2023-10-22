@@ -159,6 +159,20 @@ namespace ECellDive.Modules
 			}
 		}
 
+
+		/// <summary>
+		/// Sets the text value of the database to use for the query.
+		/// </summary>
+		/// <remarks>Used as callback from the editor.</remarks>
+		/// <param name="dataBaseButtonLabel">
+		/// The text mesh of the button representing the database in
+		/// <see cref="refTargetDatabaseScrollList"/>.
+		/// </param>
+		public void SetTargetDatabase(TextMeshProUGUI dataBaseButtonLabel)
+		{
+			refTargetDatabase.text = dataBaseButtonLabel.text;
+		}
+
 		/// <summary>
 		/// Sets the <see cref="serverData"/> to the server selected by retrieving
 		/// the server data based in the index of the button representing the server
@@ -176,19 +190,6 @@ namespace ECellDive.Modules
 			List<ServerData> availableServers = GetAvailableServers();
 			serverData = availableServers[ _serverButtonGO.transform.GetSiblingIndex()];
 			refTargetServer.text = serverData.name;
-		}
-
-		/// <summary>
-		/// Sets the text value of the database to use for the query.
-		/// </summary>
-		/// <remarks>Used as callback from the editor.</remarks>
-		/// <param name="dataBaseButtonLabel">
-		/// The text mesh of the button representing the database in
-		/// <see cref="refTargetDatabaseScrollList"/>.
-		/// </param>
-		public void SetTargetDatabase(TextMeshProUGUI dataBaseButtonLabel)
-		{
-			refTargetDatabase.text = dataBaseButtonLabel.text;
 		}
 
 		/// <summary>
