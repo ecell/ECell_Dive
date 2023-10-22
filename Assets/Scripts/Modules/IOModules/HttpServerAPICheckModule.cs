@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 using ECellDive.Interfaces;
+using ECellDive.IO;
 using ECellDive.UI;
 using ECellDive.Utility;
 using ECellDive.Utility.PlayerComponents;
@@ -93,17 +94,25 @@ namespace ECellDive.Modules
 					bool allAPIImplemented = true;
 					if (httpServerBaseModule != null)
 					{
-						foreach (string apiCmdName in interactibilityManager.targetGroup[i].GetComponent<GameObjectConstructor>().refPrefab.GetComponent<HttpServerBaseModule>().implementedHttpAPI)
+						foreach (string apiCmdName in httpServerBaseModule.implementedHttpAPI)
 						{
 							int idx = apiCmdNames.BinarySearch(apiCmdName);
 							allAPIImplemented &= (idx >= 0 && idx < apiCmdNames.Count);
 						}
-						//Update the interactibility of the button to spawn the module.
-						//TODO: eventually, users might connect to different servers with overlapping API.
-						//In that case, we should check if a module is already allowed to be used by another
-						//server and avoid disabling it if its API is not implemented by the server we are
-						//currently checking.
-						interactibilityManager.ForceSingleInteractibility(i, allAPIImplemented);
+
+						//If the button is not interactable yet, update its interactibility.
+						if (!interactibilityManager.targetGroup[i].interactable)
+						{
+							//Update the interactibility of the button to spawn the module.
+							interactibilityManager.ForceSingleInteractibility(i, allAPIImplemented);
+						}
+
+						//If all the API are implemented, add the server to the list of servers the 
+						//module can be used with.
+						if (allAPIImplemented)
+						{
+							HttpNetPortal.Instance.AddModuleServer(httpServerBaseModule.name, serverData);
+						}
 					}
 				}
 			}
