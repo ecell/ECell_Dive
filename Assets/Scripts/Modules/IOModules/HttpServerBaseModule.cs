@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using ECellDive.Utility;
 using ECellDive.Utility.Data.Network;
+using System.Collections.Generic;
 
 namespace ECellDive.Modules
 {
@@ -15,19 +16,16 @@ namespace ECellDive.Modules
 	public abstract class HttpServerBaseModule : Module
 	{
 		/// <summary>
-		/// The data structure storing the server address and port.
+		/// The data structure storing information about the server*
+		/// this module uses.
 		/// </summary>
 		[Header("HttpServerBaseModule")]//A Header to make the inspector more readable
 		public ServerData serverData = new ServerData
 		{
+			name = "Kosmogora",
 			port = "8000",
 			serverIP = "127.0.0.1"
 		};
-
-		/// <summary>
-		/// The data structure storing the input fields for the server address and port.
-		/// </summary>
-		public ServerUIData serverUIData;
 
 		/// <summary>
 		/// The names of the Http commands that this module can send to the server.
@@ -188,6 +186,17 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
+		/// Gets the list of available Http servers for this module.
+		/// </summary>
+		/// <remarks>
+		/// The dereived classes will probably use <see cref="ECellDive.IO.HttpNetPortal"/>
+		/// </remarks>
+		/// <returns>
+		/// Returns the list of available servers for this module.
+		/// </returns>
+		protected abstract List<ServerData> GetAvailableServers();
+
+		/// <summary>
 		/// Typically used by the coroutines to wait until the
 		/// request sent to the servers has been processed.
 		/// </summary>
@@ -195,28 +204,6 @@ namespace ECellDive.Modules
 		protected bool isRequestProcessed()
 		{
 			return requestData.requestProcessed;
-		}
-
-		/// <summary>
-		/// Sets the value for the IP in <see cref="HttpServerBaseModule.serverData"/>
-		/// </summary>
-		/// <remarks>
-		/// Called back on value change of the input field dedicated to the IP
-		/// </remarks>
-		public void UpdateIP()
-		{
-			serverData.serverIP = serverUIData.refIPInputField.text;
-		}
-
-		/// <summary>
-		/// Sets the value for the Port in <see cref="HttpServerBaseModule.serverData"/>
-		/// </summary>
-		/// <remarks>
-		/// Called back on value change of the input field dedicated to the Port
-		/// </remarks>
-		public void UpdatePort()
-		{
-			serverData.port = serverUIData.refPortInputField.text;
 		}
 
 		#region - IHighlightable -

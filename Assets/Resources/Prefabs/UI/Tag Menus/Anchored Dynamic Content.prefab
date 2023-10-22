@@ -453,7 +453,7 @@ MonoBehaviour:
   alwaysShowInfoToPlayer: 0
   globalHide: 0
   hideOnStart: 0
-  m_isUI: 0
+  m_flip: 0
 --- !u!114 &2798867427875467781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,10 +517,10 @@ RectTransform:
   m_Father: {fileID: 3597416004986118178}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.5, y: 1.13}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3597416004693725196
 CanvasRenderer:
@@ -626,7 +626,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.5, y: 1.13}
+  m_SizeDelta: {x: 0.5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3597416004986118190
 Canvas:
@@ -844,7 +844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6163761101047436993, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 6163761101047436993, guid: f07fc10d663739345b4c9bf96c500a43, type: 3}
       propertyPath: m_LocalPosition.x

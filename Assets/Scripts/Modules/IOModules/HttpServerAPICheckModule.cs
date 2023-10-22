@@ -5,9 +5,11 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 using ECellDive.Interfaces;
+using ECellDive.IO;
 using ECellDive.UI;
 using ECellDive.Utility;
 using ECellDive.Utility.PlayerComponents;
+using ECellDive.Utility.Data.Network;
 
 namespace ECellDive.Modules
 {
@@ -17,17 +19,22 @@ namespace ECellDive.Modules
 	/// </summary>
 	public class HttpServerAPICheckModule : HttpServerBaseModule
 	{
-        /// <summary>
-        /// The animation loop controller to control the visual feedback
-        /// of the module in case of request.
-        /// </summary>
-        [Header("HttpServerAPICheckModule")]//A Header to make the inspector more readable
-        [SerializeField] private AnimationLoopWrapper animLW;
+		/// <summary>
+		/// The data structure storing the input fields for the server address and port.
+		/// </summary>
+		[Header("HttpServerAPICheckModule")]//A Header to make the inspector more readable
+		public ServerUIData serverUIData;
 
-        /// <summary>
-        /// The color flash component to alter the visual feedback
-        /// of the module in case of request.
-        /// </summary>
+		/// <summary>
+		/// The animation loop controller to control the visual feedback
+		/// of the module in case of request.
+		/// </summary>
+		[SerializeField] private AnimationLoopWrapper animLW;
+
+		/// <summary>
+		/// The color flash component to alter the visual feedback
+		/// of the module in case of request.
+		/// </summary>
 		[SerializeField] private ColorFlash colorFlash;
 
 		/// <summary>
@@ -49,8 +56,8 @@ namespace ECellDive.Modules
 		public void CheckAPI()
 		{
 			StartCoroutine(CheckAPIC());
-            animLW.PlayLoop("HttpServerAPICheckModule");
-        }
+			animLW.PlayLoop("HttpServerAPICheckModule");
+		}
 
 		/// <summary>
 		/// The coroutine to request the list of implemented API
@@ -87,17 +94,25 @@ namespace ECellDive.Modules
 					bool allAPIImplemented = true;
 					if (httpServerBaseModule != null)
 					{
-						foreach (string apiCmdName in interactibilityManager.targetGroup[i].GetComponent<GameObjectConstructor>().refPrefab.GetComponent<HttpServerBaseModule>().implementedHttpAPI)
+						foreach (string apiCmdName in httpServerBaseModule.implementedHttpAPI)
 						{
 							int idx = apiCmdNames.BinarySearch(apiCmdName);
 							allAPIImplemented &= (idx >= 0 && idx < apiCmdNames.Count);
 						}
-						//Update the interactibility of the button to spawn the module.
-						//TODO: eventually, users might connect to different servers with overlapping API.
-						//In that case, we should check if a module is already allowed to be used by another
-						//server and avoid disabling it if its API is not implemented by the server we are
-						//currently checking.
-						interactibilityManager.ForceSingleInteractibility(i, allAPIImplemented);
+
+						//If the button is not interactable yet, update its interactibility.
+						if (!interactibilityManager.targetGroup[i].interactable)
+						{
+							//Update the interactibility of the button to spawn the module.
+							interactibilityManager.ForceSingleInteractibility(i, allAPIImplemented);
+						}
+
+						//If all the API are implemented, add the server to the list of servers the 
+						//module can be used with.
+						if (allAPIImplemented)
+						{
+							HttpNetPortal.Instance.AddModuleServer(httpServerBaseModule.name, serverData);
+						}
 					}
 				}
 			}
@@ -106,6 +121,51 @@ namespace ECellDive.Modules
 				//Flash of the fail color
 				colorFlash.Flash(0);
 			}
+		}
+
+		/// <summary>
+		/// This method is not implemented in this module.
+		/// This module is the only one that can contact any HttpServer in ECellDive.
+		/// </summary>
+		/// <returns>
+		/// Null.
+		/// </returns>
+		protected override List<ServerData> GetAvailableServers()
+		{
+			return null;
+		}
+
+		/// <summary>
+		/// Sets the value for the IP in <see cref="serverData"/>.
+		/// </summary>
+		/// <remarks>
+		/// Called back on value change of the input field dedicated to the IP.
+		/// </remarks>
+		public void UpdateIP()
+		{
+			serverData.serverIP = serverUIData.refIPInputField.text;
+		}
+
+		/// <summary>
+		/// Sets the value for the Port in <see cref="serverData"/>.
+		/// </summary>
+		/// <remarks>
+		/// Called back on value change of the input field dedicated to the Port.
+		/// </remarks>
+		public void UpdatePort()
+		{
+			serverData.port = serverUIData.refPortInputField.text;
+		}
+
+		/// <summary>
+		/// Sets the value for the Name in <see cref="serverData"/>.
+		/// </summary>
+		/// <remarks>
+		/// Called back on value change of the input field dedicated to the Name.
+		/// </remarks>
+		public void UpdateName()
+		{
+			serverData.name = serverUIData.refNameInputField.text;
 		}
 	}
 
