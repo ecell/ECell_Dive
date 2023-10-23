@@ -24,8 +24,8 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The field for the property <see cref="nameField"/>
 		/// </summary>
+		[Header("INamed Parameters")]//reverse order of the header actually displays correctly in Unity 2020.3
 		[Header("Module Parameters")]
-		[Header("INamed Parameters")]
 		[SerializeField] TextMeshProUGUI m_nameField;
 
 		/// <inheritdoc/>
