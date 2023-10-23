@@ -134,7 +134,7 @@ namespace ECellDive.Tutorials
 			CyJsonPathwayLoader.Populate(pathway);
 			//CyJsonModulesData.AddData(pathway);
 
-			cyJsonModule.SetNetworkData(pathway);
+			cyJsonModule.SetGraphData(pathway);
 			cyJsonModule.isReadyForGeneration.Value = true;
 			cyJsonModule.TryDiveIn();            
 		}

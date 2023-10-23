@@ -286,7 +286,7 @@ namespace ECellDive.Modules
 			SetEdgeData(_edge);
 			gameObject.SetActive(true);
 			gameObject.name = $"{edgeData.ID}";
-			SetName(edgeData.reaction_name);
+			SetName(edgeData.name);
 			HideName();
 			SetDefaultWidth(1 / refMasterPathway.graphScalingData.sizeScaleFactor,
 							1 / refMasterPathway.graphScalingData.sizeScaleFactor);
@@ -348,7 +348,6 @@ namespace ECellDive.Modules
 		{
 			informationString = $"SUID: {edgeData.ID} \n" +
 								$"Name: {edgeData.name} \n" +
-								$"Reaction: {edgeData.reaction_name} \n" +
 								$"Knockedout: {knockedOut.Value} \n" +
 								$"Flux: {fluxLevel.Value}";
 			m_refInfoTagsContainer.transform.GetChild(0).GetComponent<InfoDisplayManager>().SetText(informationString);

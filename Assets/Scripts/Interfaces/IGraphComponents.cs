@@ -1,4 +1,3 @@
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -37,7 +36,7 @@ namespace ECellDive.Interfaces
 		/// </summary>
 		/// <remarks>
 		/// In CyJson graphs, the user-readable name for nodes is
-		/// actually encoded the Label and while the Name is shorter
+		/// actually encoded the Label while the Name is shorter
 		/// and less explicit.
 		/// </remarks>
 		string label { get; set; }
@@ -65,16 +64,17 @@ namespace ECellDive.Interfaces
 	/// <summary>
 	/// The interface for the data structure encoding an edge in a graph.
 	/// </summary>
-	/// <remarks>
-	/// This interface is probably overdefined with cyjson graphs in mind.
-	/// For example, the <see cref="reaction_name"/> field is too specific.
-	/// </remarks>
 	public interface IEdge
 	{
 		/// <summary>
 		/// A unique ID.
 		/// </summary>
 		uint ID { get; set; }
+
+		/// <summary>
+		/// The name of the edge.
+		/// </summary>
+		string name { get; set; }
 
 		/// <summary>
 		/// The <see cref="INode.ID"/> of the node used from where the
@@ -87,20 +87,6 @@ namespace ECellDive.Interfaces
 		/// edge is heading.
 		/// </summary>
 		uint target { get; set; }
-
-		/// <summary>
-		/// The name of the edge.
-		/// </summary>
-		string name { get; set; }
-
-		/// <summary>
-		/// The name of the reaction associated with the edge.
-		/// </summary>
-		/// <remarks>
-		/// This is a field that is specific to the Cytoscape Json format.
-		/// This should be moved to a more specific data structure.
-		/// </remarks>
-		string reaction_name { get; set; }
 	}
 
 	/// <summary>
@@ -115,27 +101,12 @@ namespace ECellDive.Interfaces
 		string name { get; }
 
 		/// <summary>
-		/// The JObject extracted from the Json file that encodes the graph.
-		/// </summary>
-		JObject graphData { get;}
-
-		/// <summary>
-		/// The JArray (from Newtonsoft Json Linq) representing the nodes in <see cref="graphData"/>.
-		/// </summary>
-		JArray jNodes { get; }
-
-		/// <summary>
-		/// The JArray (from Newtonsoft Json Linq) representing the edges in <see cref="graphData"/>.
-		/// </summary>
-		JArray jEdges { get;}
-
-		/// <summary>
-		/// The array of <see cref="INode"/> translating the nodes stored in <see cref="jNodes"/>.
+		/// The nodes of this graph.
 		/// </summary>
 		INode[] nodes { get; }
 
 		/// <summary>
-		/// The array of <see cref="IEdge"/> translating the edges stored in <see cref="jEdges"/>.
+		/// The edges of this graph.
 		/// </summary>
 		IEdge[] edges { get; }
 
@@ -146,26 +117,14 @@ namespace ECellDive.Interfaces
 		void MapInOutEdgesIntoNodes();
 
 		/// <summary>
-		/// Creates the <see cref="nodes"/> array mirroring the information
-		/// stored in <see cref="jNodes"/> but in a more accessible way.
+		/// Populates the <see cref="nodes"/> array.
 		/// </summary>
 		void PopulateNodes();
 
 		/// <summary>
-		/// Creates the <see cref="edges"/> array mirroring the information
-		/// stored in <see cref="jNodes"/> but in a more accessible way.
+		/// Populates the <see cref="edges"/> array.
 		/// </summary>
 		void PopulateEdges();
-
-		/// <summary>
-		/// Sets the <see cref="jNodes"/>.
-		/// </summary>
-		void SetNodes();
-
-		/// <summary>
-		/// Sets the <see cref="jEdges"/>.
-		/// </summary>
-		void SetEdges();
 
 	}
 
@@ -310,22 +269,10 @@ namespace ECellDive.Interfaces
 		Dictionary<uint, GameObject> DataID_to_DataGO { get; set; }
 
 		/// <summary>
-		/// Executes the logic on the server side that is needed to 
-		/// spawn all the nodes and edges of the graph.
-		/// </summary>
-		/// <param name="_expeditorClientId">The ID of the client
-		/// that made the request.</param>
-		/// <param name="_rootSceneId">The ID of the dive scene
-		/// where the graph should be generated (i.e. where the
-		/// nodes and edges will be spawned.</param>
-		[ServerRpc(RequireOwnership = false)]
-		void RequestGraphGenerationServerRpc(ulong _expeditorClientId, int _rootSceneId);
-
-		/// <summary>
 		/// Sets the value for <see cref="graphData"/>.
 		/// </summary>
-		/// <param name="_INetwork"></param>
-		void SetNetworkData(IGraph _INetwork);
+		/// <param name="graphData"></param>
+		void SetGraphData(IGraph graphData);
 
 	}
 
@@ -341,5 +288,17 @@ namespace ECellDive.Interfaces
 		/// the batch instantiation of the nodes and edges of the graph.
 		/// </summary>
 		GraphBatchSpawning graphBatchSpawning { get; }
+
+		/// <summary>
+		/// Executes the logic on the server side that is needed to 
+		/// spawn all the nodes and edges of the graph.
+		/// </summary>
+		/// <param name="_expeditorClientId">The ID of the client
+		/// that made the request.</param>
+		/// <param name="_rootSceneId">The ID of the dive scene
+		/// where the graph should be generated (i.e. where the
+		/// nodes and edges will be spawned.</param>
+		[ServerRpc(RequireOwnership = false)]
+		void RequestGraphGenerationServerRpc(ulong _expeditorClientId, int _rootSceneId);
 	}
 }

@@ -208,11 +208,22 @@ namespace ECellDive
 			/// </summary>
 			public void GenerateGraphAsset()
 			{
-				TextAsset graphDataAsset = new TextAsset(graphData.graphData.ToString());
+				TextAsset graphDataAsset = new TextAsset(m_graphData.cyJsonGraphData.graphData.ToString());
 				AssetDatabase.CreateAsset(graphDataAsset, "Assets/Resources/Prefabs/Modules/Demo_iJO1366/"+graphData.name+"_GraphData.asset");
 				
 			}
 #endif
+
+			/// <summary>
+			/// Gets the raw Json data used to generate the CyJsonPathway.
+			/// </summary>
+			/// <returns>
+			/// The Json data used to generate the CyJsonPathway.
+			/// </returns>
+			public GraphData<JObject, JArray, JArray> GetJsonGraphData()
+			{
+				return m_graphData.cyJsonGraphData;
+			}
 
 			/// <summary>
 			/// Translates the information about knockedout reactions stored
@@ -345,7 +356,7 @@ namespace ECellDive
 			}
 
 			/// <inheritdoc/>
-			public void SetNetworkData(IGraph _IGraph)
+			public void SetGraphData(IGraph _IGraph)
 			{
 				graphData = _IGraph;
 				SetName(_IGraph.name);
@@ -410,7 +421,7 @@ namespace ECellDive
 				CyJsonModulesData.AddData(this);
 				SetIndex(CyJsonModulesData.loadedData.Count - 1);
 
-				SetNetworkData(pathway);
+				SetGraphData(pathway);
 			}
 
 			/// <inheritdoc/>

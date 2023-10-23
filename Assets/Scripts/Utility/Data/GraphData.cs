@@ -3,6 +3,36 @@ using UnityEngine;
 namespace ECellDive.Utility.Data.Graph
 {
     /// <summary>
+    /// The struct encapsulating the data of a graph.
+    /// </summary>
+    /// <typeparam name="TGraphData">
+    /// The type of the data containing everything about the graph.
+    /// </typeparam>
+    /// <typeparam name="TEdgesData">
+    /// The type of the data containing everything about the edges.
+    /// </typeparam>
+    /// <typeparam name="TNodesData">
+    /// The type of the data containing everything about the nodes.
+    /// </typeparam>
+    public struct GraphData<TGraphData, TEdgesData, TNodesData>
+    {
+        /// <summary>
+        /// The data containing everything about the graph.
+        /// </summary>
+        public TGraphData graphData;
+
+        /// <summary>
+        /// The data containing everything about the edges.
+        /// </summary>
+		public TEdgesData edgesData;
+
+        /// <summary>
+        /// The data containing everything about the nodes.
+        /// </summary>
+		public TNodesData nodesData;
+    }
+
+    /// <summary>
     /// The struct encapsulating the parameters relevant to
     /// controlling the scale of the graph.
     /// </summary>

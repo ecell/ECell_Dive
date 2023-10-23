@@ -32,8 +32,8 @@ namespace ECellDive.Modules
 			refCyJsonPathwayGO = FindObjectOfType<CyJsonModule>();
 			if (refCyJsonPathwayGO != null)
 			{
-				AddData("-- Nodes --", refCyJsonPathwayGO.graphData.jNodes, (JObject)refCyJsonPathwayGO.graphData.jNodes[0]["data"]);
-				AddData("-- Edges --", refCyJsonPathwayGO.graphData.jEdges, (JObject)refCyJsonPathwayGO.graphData.jEdges[0]["data"]);
+				AddData("-- Nodes --", refCyJsonPathwayGO.GetJsonGraphData().nodesData, (JObject)refCyJsonPathwayGO.GetJsonGraphData().nodesData[0]["data"]);
+				AddData("-- Edges --", refCyJsonPathwayGO.GetJsonGraphData().edgesData, (JObject)refCyJsonPathwayGO.GetJsonGraphData().edgesData[0]["data"]);
 			}
 			else
 			{

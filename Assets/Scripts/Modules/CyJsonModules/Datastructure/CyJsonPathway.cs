@@ -4,6 +4,8 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using ECellDive.IO;
 using ECellDive.Interfaces;
+using ECellDive.Utility.Data.Graph;
+using UnityEditor.ShaderGraph.Serialization;
 
 namespace ECellDive.GraphComponents
 {
@@ -17,20 +19,13 @@ namespace ECellDive.GraphComponents
 		public string name { get; protected set; }
 
 		/// <inheritdoc/>
-		public JObject graphData { get; protected set; }
-
-		/// <inheritdoc/>
-		public JArray jNodes { get; protected set; }
-
-		/// <inheritdoc/>
-		public JArray jEdges { get; protected set; }
-
-		/// <inheritdoc/>
 		public INode[] nodes { get; protected set; }
 
 		/// <inheritdoc/>
 		public IEdge[] edges { get; protected set; }
 		#endregion
+
+		public GraphData<JObject, JArray, JArray> cyJsonGraphData;
 			
 		/// <summary>
 		/// Instantiate from a Cytoscape Json file.
@@ -43,8 +38,15 @@ namespace ECellDive.GraphComponents
 		/// </param>
 		public CyJsonPathway(string _path, string _name)
 		{
-			graphData = JsonImporter.OpenFile(_path, _name);
 			name = _name;
+			JObject graphDataTemp = JsonImporter.OpenFile(_path, _name);
+			cyJsonGraphData = new GraphData<JObject, JArray, JArray>
+			{
+				graphData = graphDataTemp,
+				nodesData = CyJsonParser.GetNodes(graphDataTemp),
+				edgesData = CyJsonParser.GetEdges(graphDataTemp)
+			};
+
 		}
 
 		/// <summary>
@@ -59,8 +61,13 @@ namespace ECellDive.GraphComponents
 		/// </param>
 		public CyJsonPathway(JObject _cyJspathway, string _name)
 		{
-			graphData = _cyJspathway;
 			name = _name;
+			cyJsonGraphData = new GraphData<JObject, JArray, JArray>
+			{
+				graphData = _cyJspathway,
+				nodesData = CyJsonParser.GetNodes(_cyJspathway),
+				edgesData = CyJsonParser.GetEdges(_cyJspathway)
+			};
 		}
 
 		#region - IGraph Methods -
@@ -84,16 +91,16 @@ namespace ECellDive.GraphComponents
 		/// <inheritdoc/>
 		public void PopulateNodes()
 		{
-			int nbNodes = jNodes.Count();
+			int nbNodes = cyJsonGraphData.nodesData.Count();
 			nodes = new INode[nbNodes];
 
 			for (int i = 0; i < nbNodes; i++)
 			{
-				Vector3 nodePos = CyJsonParser.LookForNodePosition(jNodes.ElementAt(i));
-				string name = CyJsonParser.LookForName(jNodes.ElementAt(i));
-				string label = CyJsonParser.LookForLabel(jNodes.ElementAt(i));
-				bool isVirtual = CyJsonParser.LookForNodeType(jNodes.ElementAt(i));
-				nodes[i] = new Node(jNodes.ElementAt(i)["data"]["id"].Value<uint>(),
+				Vector3 nodePos = CyJsonParser.LookForNodePosition(cyJsonGraphData.nodesData.ElementAt(i));
+				string name = CyJsonParser.LookForName(cyJsonGraphData.nodesData.ElementAt(i));
+				string label = CyJsonParser.LookForLabel(cyJsonGraphData.nodesData.ElementAt(i));
+				bool isVirtual = CyJsonParser.LookForNodeType(cyJsonGraphData.nodesData.ElementAt(i));
+				nodes[i] = new Node(cyJsonGraphData.nodesData.ElementAt(i)["data"]["id"].Value<uint>(),
 									label,
 									name,
 									nodePos,
@@ -104,29 +111,16 @@ namespace ECellDive.GraphComponents
 		/// <inheritdoc/>
 		public void PopulateEdges()
 		{
-			int nbEdges = jEdges.Count();
+			int nbEdges = cyJsonGraphData.edgesData.Count();
 			edges = new IEdge[nbEdges];
 
 			for (int i = 0; i < nbEdges; i++)
 			{
-				edges[i] = new Edge(jEdges.ElementAt(i)["data"]["id"].Value<uint>(),
-									jEdges.ElementAt(i)["data"]["reaction_name"].Value<string>(),
-									jEdges.ElementAt(i)["data"]["name"].Value<string>(),
-									jEdges.ElementAt(i)["data"]["source"].Value<uint>(),
-									jEdges.ElementAt(i)["data"]["target"].Value<uint>());
+				edges[i] = new Edge(cyJsonGraphData.edgesData.ElementAt(i)["data"]["id"].Value<uint>(),
+									cyJsonGraphData.edgesData.ElementAt(i)["data"]["reaction_name"].Value<string>(),
+									cyJsonGraphData.edgesData.ElementAt(i)["data"]["source"].Value<uint>(),
+									cyJsonGraphData.edgesData.ElementAt(i)["data"]["target"].Value<uint>());
 			}
-		}
-
-		/// <inheritdoc/>
-		public void SetNodes()
-		{
-			jNodes = CyJsonParser.GetNodes(graphData);
-		}
-
-		/// <inheritdoc/>
-		public void SetEdges()
-		{
-			jEdges = CyJsonParser.GetEdges(graphData);
 		}
 		#endregion
 	}

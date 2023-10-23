@@ -41,22 +41,13 @@ namespace ECellDive.GraphComponents
 
 		/// <inheritdoc/>
 		public string name { get => m_name; set => m_name = value; }
-
-		/// <summary>
-		/// The field for <see cref="reaction_name"/>.
-		/// </summary>
-		[SerializeField] private string m_reaction_name;
-
-		/// <inheritdoc/>
-		public string reaction_name { get => m_reaction_name; set => m_reaction_name = value; }
 		#endregion
 
-		public Edge(uint _ID, string _reaction_name, string _name, uint _source, uint _target)
+		public Edge(uint _ID, string _name, uint _source, uint _target)
 		{
 			ID = _ID;
 			source = _source;
 			target = _target;
-			reaction_name = _reaction_name;
 			name = _name;
 		}
 	}
