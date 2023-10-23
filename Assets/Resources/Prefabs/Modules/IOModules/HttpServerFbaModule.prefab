@@ -308,7 +308,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1615351103191169783}
-  - {fileID: 3068317796833122193}
+  - {fileID: 8559084805569376671}
   - {fileID: 1422253545267511607}
   - {fileID: 272589805557523012}
   - {fileID: 8508590404914015344}
@@ -355,7 +355,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4916496559549191361}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
-        m_MethodName: ShowNameToPlayer
+        m_MethodName: ShowName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -651,7 +651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e9f8b3a99aa344386edb605116f14b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refName: {fileID: 7422965027347289272}
+  m_nameField: {fileID: 7422965027347289272}
+  m_nameTextFieldContainer: {fileID: 7371656049773261547}
   m_delegateTarget: {fileID: 0}
   m_defaultColor: {r: 1, g: 1, b: 1, a: 0}
   m_highlightColor: {r: 0, g: 0.8980392, b: 0.8962264, a: 1}
@@ -785,6 +786,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9183378004188021929}
     m_Modifications:
+    - target: {fileID: 808541041817234254, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 2062267535512959358, guid: 15539f246618a3f458706907b1edbac4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -877,19 +882,36 @@ PrefabInstance:
       propertyPath: goToPin
       value: 
       objectReference: {fileID: 9183378004188021928}
+    - target: {fileID: 5081507737544544479, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 7827955701121370687, guid: 15539f246618a3f458706907b1edbac4, type: 3}
       propertyPath: m_text
       value: Flux Balance Analysis
       objectReference: {fileID: 0}
     - target: {fileID: 7920905404335500396, guid: 15539f246618a3f458706907b1edbac4, type: 3}
       propertyPath: m_Name
-      value: Module Name Canvas
+      value: Module Name
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15539f246618a3f458706907b1edbac4, type: 3}
---- !u!224 &3068317796833122193 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2392833787185907990, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+--- !u!1 &7371656049773261547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7920905404335500396, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+  m_PrefabInstance: {fileID: 838187818386431623}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8559084805569376671 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
   m_PrefabInstance: {fileID: 838187818386431623}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7422965027347289272 stripped

@@ -253,7 +253,7 @@ Transform:
   m_Children:
   - {fileID: 5327318578212062619}
   - {fileID: 5492224755675184731}
-  - {fileID: 1157955981458260075}
+  - {fileID: 5495168194396251749}
   - {fileID: 2994898854734172956}
   - {fileID: 6065779609157887525}
   - {fileID: 6220838219079039897}
@@ -300,7 +300,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7768257950668000874}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
-        m_MethodName: ShowNameToPlayer
+        m_MethodName: ShowName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -596,7 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bebf4a86a7c738a4f9ab336b209e503c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refName: {fileID: 6739235859067454274}
+  m_nameField: {fileID: 6739235859067454274}
+  m_nameTextFieldContainer: {fileID: 6685692659576382737}
   m_delegateTarget: {fileID: 0}
   m_defaultColor: {r: 1, g: 1, b: 1, a: 0}
   m_highlightColor: {r: 0, g: 0.8980392, b: 0.8962264, a: 1}
@@ -1306,13 +1307,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7920905404335500396, guid: 15539f246618a3f458706907b1edbac4, type: 3}
       propertyPath: m_Name
-      value: Module Name Canvas
+      value: Module Name
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15539f246618a3f458706907b1edbac4, type: 3}
---- !u!224 &1157955981458260075 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2392833787185907990, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+--- !u!1 &6685692659576382737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7920905404335500396, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+  m_PrefabInstance: {fileID: 3541218482871798141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5495168194396251749 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
   m_PrefabInstance: {fileID: 3541218482871798141}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6739235859067454274 stripped

@@ -17,13 +17,34 @@ namespace ECellDive.Modules
 							IFocus,
 							IGroupable,
 							IColorHighlightable,
-							IInfoTags
+							IInfoTags,
+							INamed
 	{
+		#region - INamed Members -
 		/// <summary>
-		/// The test mesh to display the name of the module.
+		/// The field for the property <see cref="nameField"/>
 		/// </summary>
-		[Header("Module Info")]
-		public TextMeshProUGUI refName;
+		[Header("Module Parameters")]
+		[Header("INamed Parameters")]
+		[SerializeField] TextMeshProUGUI m_nameField;
+
+		/// <inheritdoc/>
+		public TextMeshProUGUI nameField
+		{
+			get => m_nameField;
+		}
+
+		/// <summary>
+		/// The field for the property <see cref="nameTextFieldContainer"/>
+		/// </summary>
+		[SerializeField] GameObject m_nameTextFieldContainer;
+
+		/// <inheritdoc/>
+		public GameObject nameTextFieldContainer
+		{
+			get => m_nameTextFieldContainer;
+		}
+		#endregion
 
 		#region - IFocus Members -
 		/// <summary>
@@ -44,6 +65,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// Field of the property <see cref="grpMemberIndex"/>
 		/// </summary>
+		[Header("IGroupable Parameters")]
 		private int m_grpMemberIndex = -1;
 		   
 		/// <inheritdoc/>
@@ -70,6 +92,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// Field of the property <see cref="defaultColor"/>
 		/// </summary>
+		[Header("IHighlightable Parameters")]
 		[SerializeField] private Color m_defaultColor;
 			
 		/// <inheritdoc/>
@@ -111,7 +134,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// Field of the property <see cref="displayInfoTagsActions"/>
 		/// </summary>
-		[Header("Info Tags Data")]
+		[Header("IInfoTags Parameters")]
 		public LeftRightData<InputActionReference> m_displayInfoTagsActions;
 
 		/// <inheritdoc/>
@@ -196,20 +219,6 @@ namespace ECellDive.Modules
 			Destroy(gameObject);
 		}
 
-		public void SetName(string _name)
-		{
-			refName.text = _name;
-		}
-
-		/// <summary>
-		/// Makes sure the name of the module's name faces the
-		/// Player's POV and is therefore readable.
-		/// </summary>
-		public void ShowNameToPlayer()
-		{
-			Positioning.UIFaceTarget(refName.gameObject.transform.parent.gameObject, Camera.main.transform);
-		}
-
 		#region - IFocus Methods -
 		/// <inheritdoc/>
 		public void SetFocus()
@@ -291,6 +300,37 @@ namespace ECellDive.Modules
 			{
 				_infoTag.gameObject.GetComponent<InfoDisplayManager>().LookAt();
 			}
+		}
+		#endregion
+
+		#region - INamed Methods -
+		/// <inheritdoc/>
+		public void DisplayName()
+		{
+			nameTextFieldContainer.SetActive(true);
+		}
+
+		/// <inheritdoc/>
+		public string GetName()
+		{
+			return nameField.text;
+		}
+
+		/// <inheritdoc/>
+		public void HideName()
+		{
+			nameTextFieldContainer.SetActive(false);
+		}
+
+		public void SetName(string _name)
+		{
+			nameField.text = _name;
+		}
+
+		/// <inheritdoc/>
+		public void ShowName()
+		{
+			nameTextFieldContainer.GetComponent<ILookAt>().LookAt();
 		}
 		#endregion
 	}

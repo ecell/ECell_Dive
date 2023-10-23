@@ -8,7 +8,6 @@ using ECellDive.Multiplayer;
 using ECellDive.PlayerComponents;
 using ECellDive.Utility;
 using ECellDive.Utility.Data.Dive;
-using ECellDive.Utility.Data.Multiplayer;
 
 namespace ECellDive.SceneManagement
 {

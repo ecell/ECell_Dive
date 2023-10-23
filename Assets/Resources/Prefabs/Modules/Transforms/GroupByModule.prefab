@@ -484,7 +484,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4885793222510870722}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
-        m_MethodName: ShowNameToPlayer
+        m_MethodName: ShowName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -780,7 +780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43213243ddf1dc84faa0d817b643f400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refName: {fileID: 485866145100869063}
+  m_nameField: {fileID: 0}
+  m_nameTextFieldContainer: {fileID: 0}
   m_delegateTarget: {fileID: 0}
   m_defaultColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_highlightColor: {r: 0, g: 0.8980392, b: 0.8962264, a: 1}
@@ -789,8 +790,6 @@ MonoBehaviour:
     m_right: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   m_refInfoTagPrefab: {fileID: 1704922619892765966}
   m_refInfoTagsContainer: {fileID: 2458489595693557296}
-  m_refInfoTags:
-  - {fileID: 6047181027898612915}
   refAttributsManager: {fileID: 6929803362426747709}
   renderers:
   - {fileID: 6161285645716690164}
@@ -2763,11 +2762,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e4662a35a60954a8fe13c6eac53329, type: 3}
---- !u!1 &6047181027898612915 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3063892179024338671, guid: d9e4662a35a60954a8fe13c6eac53329, type: 3}
-  m_PrefabInstance: {fileID: 8750149581565002332}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6047181027898612914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3063892179024338670, guid: d9e4662a35a60954a8fe13c6eac53329, type: 3}
@@ -2778,7 +2772,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1820964834023831905, guid: d9e4662a35a60954a8fe13c6eac53329, type: 3}
   m_PrefabInstance: {fileID: 8750149581565002332}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6047181027898612915}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5628b5d6d4976c74db960883a7f50f38, type: 3}
