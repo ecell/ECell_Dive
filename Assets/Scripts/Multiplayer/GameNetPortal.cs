@@ -70,26 +70,6 @@ namespace ECellDive.Multiplayer
 			private set => m_settings = value;
 		}
 
-		/// <summary>
-		/// The list of the data modules in the scene.
-		/// </summary>
-		public List<IMlprData> dataModules = new List<IMlprData>();
-		
-		/// <summary>
-		/// The list of modules that can be modified by the user.
-		/// </summary>
-		public List<IModifiable> modifiables = new List<IModifiable>();
-
-		/// <summary>
-		/// The list of modules that can be saved.
-		/// </summary>
-		public List<ISaveable> saveables = new List<ISaveable>();
-
-		/// <summary>
-		/// A map between the client id and the data of the player.
-		/// </summary>
-		public Dictionary<ulong, NetSessionPlayerData> netSessionPlayersDataMap = new Dictionary<ulong, NetSessionPlayerData>();
-
 		private void Awake()
 		{
 			Debug.Assert(Instance == null);
@@ -130,11 +110,11 @@ namespace ECellDive.Multiplayer
 		{
 			//if (UnityServices.State != ServicesInitializationState.Initialized)
 			//{
-			//    return ClientPrefs.GetGuid() + ProfileManager.Profile;
+			//    return ClientPrefs.GetGUID() + ProfileManager.Profile;
 			//}
 
-			//return AuthenticationService.Instance.IsSignedIn ? AuthenticationService.Instance.PlayerId : ClientPrefs.GetGuid() + ProfileManager.Profile;
-			return PlayerPrefsWrap.GetGuid();
+			//return AuthenticationService.Instance.IsSignedIn ? AuthenticationService.Instance.PlayerId : ClientPrefs.GetGUID() + ProfileManager.Profile;
+			return PlayerPrefsWrap.GetGUID();
 		}
 
 		/// <summary>
@@ -167,14 +147,14 @@ namespace ECellDive.Multiplayer
 			return m_settings.password == _password;
 		}
 
-        /// <summary>
-        /// This method is subscribed to Unity's NetworkManager.OnClientConnectedCallback.
+		/// <summary>
+		/// This method is subscribed to Unity's NetworkManager.OnClientConnectedCallback.
 		/// So, it runs when NetworkManager has started up (following a succesful
 		/// connect on the client, or directly after StartHost is invoked on the host).
 		/// It is named to match NetworkBehaviour.OnNetworkSpawn, and serves the same
 		/// role, even though GameNetPortal itself isn't a NetworkBehaviour.
-        /// </summary>
-        private void OnNetworkReady(ulong _clientID)
+		/// </summary>
+		private void OnNetworkReady(ulong _clientID)
 		{
 			Debug.Log($"OnNetworkReady called from Client Connection with id {_clientID}");
 			if (_clientID == NetManager.LocalClientId)
@@ -189,11 +169,6 @@ namespace ECellDive.Multiplayer
 
 				m_ClientPortal.OnNetworkReady();
 				m_ServerPortal.OnNetworkReady();
-			}
-
-			if (NetManager.IsServer)
-			{
-				StartCoroutine(SendData(_clientID));
 			}
 		}
 
@@ -240,35 +215,6 @@ namespace ECellDive.Multiplayer
 		}
 
 		/// <summary>
-		/// Synchronizes the content of the data modules that already exist
-		/// in the scene (and stored in <see cref="dataModules"/>) for the
-		/// client with id <paramref name="_clientID"/>.
-		/// </summary>
-		/// <param name="_clientID">The id of the target client to which
-		/// we send the content of the data modules in the scene.</param>
-		/// <remarks>This should be used only with (or after) <see
-		/// cref="OnNetworkReady(ulong)"/> to be sure that the data modules
-		/// have been spawned in the scene of the target client.</remarks>
-		private IEnumerator SendData(ulong _clientID)
-		{
-			int nbClientReadyLoaded;
-			foreach (IMlprData mlprData in dataModules)
-			{
-				Debug.Log($"Sending data {mlprData.sourceDataName}");
-				nbClientReadyLoaded = mlprData.nbClientReadyLoaded.Value;
-				StartCoroutine(mlprData.SendSourceDataC(_clientID));
-
-				//We wait for the current data to be completely loaded
-				//in the scene of the new client before starting to load
-				//the next one (next step of the foreach loop.
-				//We know when the data has been loaded once the network
-				//variable storing the number of client that has loaded
-				//the data has been incremented by 1.
-				yield return new WaitUntil(() => mlprData.nbClientReadyLoaded.Value == nbClientReadyLoaded + 1);
-			}
-		}
-
-		/// <summary>
 		/// Sets the connection settings.
 		/// </summary>
 		/// <param name="_name">
@@ -285,6 +231,8 @@ namespace ECellDive.Multiplayer
 		/// </param>
 		public void SetConnectionSettings(string _name, string _ip, ushort _port, string _password)
 		{
+			PlayerPrefsWrap.SetPlayerName(_name);
+
 			m_settings.SetPlayerName(_name);
 
 			if (_ip != "")
@@ -330,6 +278,7 @@ namespace ECellDive.Multiplayer
 		/// </remarks>
 		public void StartClient()
 		{
+			GameNetDataManager.Instance.Clear();
 			m_ClientPortal.StartClient();
 		}
 
@@ -340,10 +289,11 @@ namespace ECellDive.Multiplayer
 		/// </summary>
 		public void StartHost()
 		{
+			GameNetDataManager.Instance.Clear();
 			if (NetManager.IsHost)
 			{
-				string payload = JsonUtility.ToJson(GetConnectionPayload());
-				byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
+				ConnectionPayload payload = GetConnectionPayload();
+				byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(payload));
 				NetManager.NetworkConfig.ConnectionData = payloadBytes;
 
 				LogSystem.AddMessage(LogMessageTypes.Debug, 

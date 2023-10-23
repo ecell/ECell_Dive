@@ -2,54 +2,66 @@ using UnityEngine;
 
 namespace ECellDive.PlayerComponents
 {
-    /// <summary>
-    /// Singleton class which saves/loads local-client settings.
-    /// (This is just a wrapper around the PlayerPrefs system,
-    /// so that all the calls are in the same place.)
-    /// </summary>
-    public static class PlayerPrefsWrap
-    {
-        //const float k_DefaultMasterVolume = 0.5f;
-        //const float k_DefaultMusicVolume = 0.8f;
+	/// <summary>
+	/// Singleton class which saves/loads local-client settings.
+	/// (This is just a wrapper around the PlayerPrefs system,
+	/// so that all the calls are in the same place.)
+	/// </summary>
+	public static class PlayerPrefsWrap
+	{
+		public static string GetPlayerName()
+		{
+			return PlayerPrefs.GetString("PlayerName", "Player");
+		}
 
-        //public static float GetMasterVolume()
-        //{
-        //    return PlayerPrefs.GetFloat("MasterVolume", k_DefaultMasterVolume);
-        //}
+		public static void SetPlayerName(string name)
+		{
+			PlayerPrefs.SetString("PlayerName", name);
+		}
 
-        //public static void SetMasterVolume(float volume)
-        //{
-        //    PlayerPrefs.SetFloat("MasterVolume", volume);
-        //}
+		//const float k_DefaultMasterVolume = 0.5f;
+		//const float k_DefaultMusicVolume = 0.8f;
 
-        //public static float GetMusicVolume()
-        //{
-        //    return PlayerPrefs.GetFloat("MusicVolume", k_DefaultMusicVolume);
-        //}
+		//public static float GetMasterVolume()
+		//{
+		//    return PlayerPrefs.GetFloat("MasterVolume", k_DefaultMasterVolume);
+		//}
 
-        //public static void SetMusicVolume(float volume)
-        //{
-        //    PlayerPrefs.SetFloat("MusicVolume", volume);
-        //}
+		//public static void SetMasterVolume(float volume)
+		//{
+		//    PlayerPrefs.SetFloat("MasterVolume", volume);
+		//}
 
-        /// <summary>
-        /// Either loads a Guid string from Unity preferences, or creates one and checkpoints it, then returns it.
-        /// </summary>
-        /// <returns>The Guid that uniquely identifies this client install, in string form. </returns>
-        public static string GetGuid()
-        {
-            if (PlayerPrefs.HasKey("client_guid"))
-            {
-                return PlayerPrefs.GetString("client_guid");
-            }
+		//public static float GetMusicVolume()
+		//{
+		//    return PlayerPrefs.GetFloat("MusicVolume", k_DefaultMusicVolume);
+		//}
 
-            var guid = System.Guid.NewGuid();
-            var guidString = guid.ToString();
+		//public static void SetMusicVolume(float volume)
+		//{
+		//    PlayerPrefs.SetFloat("MusicVolume", volume);
+		//}
 
-            PlayerPrefs.SetString("client_guid", guidString);
-            return guidString;
-        }
+		/// <summary>
+		/// Either loads a Guid string from Unity preferences, or creates one and checkpoints it, then returns it.
+		/// </summary>
+		/// <returns>
+		/// The Guid that uniquely identifies this client install, in string form.
+		/// </returns>
+		public static string GetGUID()
+		{
+			if (PlayerPrefs.HasKey("client_guid"))
+			{
+				return PlayerPrefs.GetString("client_guid");
+			}
 
-    }
+			var guid = System.Guid.NewGuid();
+			var guidString = guid.ToString();
+
+			PlayerPrefs.SetString("client_guid", guidString);
+			return guidString;
+		}
+
+	}
 }
 

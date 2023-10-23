@@ -2,7 +2,6 @@ using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
-using ECellDive.SceneManagement;
 using ECellDive.Utility.Data.Multiplayer;
 
 namespace ECellDive.Multiplayer
@@ -25,12 +24,12 @@ namespace ECellDive.Multiplayer
 		/// </summary>
 		private GameNetPortal m_Portal;
 
-        /// <summary>
-        /// used in ApprovalCheck.
+		/// <summary>
+		/// used in ApprovalCheck.
 		/// This is intended as a bit of light protection against
 		/// DOS attacks that rely on sending silly big buffers of garbage.
-        /// </summary>
-        const int k_MaxConnectPayload = 1024;
+		/// </summary>
+		const int k_MaxConnectPayload = 1024;
 
 
 		private void Awake()
@@ -88,9 +87,6 @@ namespace ECellDive.Multiplayer
 			{
 				Debug.Log("Client ID corresponds to local object: this is the host");
 
-				//Storing about the Host relevant data (as a player)
-				m_Portal.netSessionPlayersDataMap[clientId] = new NetSessionPlayerData(connectionPayload.playerName, clientId, 0);
-
 				connectionApprovedCallback(true, null, true, null, null);
 				return;
 			}
@@ -102,10 +98,6 @@ namespace ECellDive.Multiplayer
 
 				Debug.Log($"New Connection was a success. The new player's name is " +
 					$"{connectionPayload.playerName}, with GUID {connectionPayload.playerId}");
-
-				//Storing about the new client relevant data (who is a player)
-				m_Portal.netSessionPlayersDataMap[clientId] = new NetSessionPlayerData(connectionPayload.playerName, clientId, 0);
-				DiveScenesManager.Instance.DiverGetsInServerRpc(0, clientId);
 				
 				SendServerToClientConnectResult(clientId, gameReturnStatus);
 
@@ -168,12 +160,12 @@ namespace ECellDive.Multiplayer
 			}
 		}
 
-        /// <summary>
-        /// Called by <see cref="ECellDive.Multiplayer.GameNetPortal"/> when the network is ready.
-        /// In this case we check the satus of the NetManager. Since this component is only
-        /// enabled for servers, if the NetManager is not a server, we disable the component.
-        /// </summary>
-        public void OnNetworkReady()
+		/// <summary>
+		/// Called by <see cref="ECellDive.Multiplayer.GameNetPortal"/> when the network is ready.
+		/// In this case we check the satus of the NetManager. Since this component is only
+		/// enabled for servers, if the NetManager is not a server, we disable the component.
+		/// </summary>
+		public void OnNetworkReady()
 		{
 			Debug.Log("OnNetworkReady for ServerGameNetPortal componenent");
 			if (!m_Portal.NetManager.IsServer)

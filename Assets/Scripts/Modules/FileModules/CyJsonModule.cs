@@ -93,8 +93,8 @@ namespace ECellDive
 				base.OnNetworkSpawn();
 
 				DataID_to_DataGO = new Dictionary<uint, GameObject>();
-				GameNetPortal.Instance.modifiables.Add(this);
-				GameNetPortal.Instance.saveables.Add(this);
+				GameNetDataManager.Instance.modifiables.Add(this);
+				GameNetDataManager.Instance.saveables.Add(this);
 			}
 
 			protected override void ApplyCurrentColorChange(Color _previous, Color _current)
@@ -417,7 +417,7 @@ namespace ECellDive
 			[ServerRpc(RequireOwnership = false)]
 			public override void RequestSourceDataGenerationServerRpc(ulong _expeditorClientID)
 			{
-				int rootSceneId = GameNetPortal.Instance.netSessionPlayersDataMap[_expeditorClientID].currentScene;
+				int rootSceneId = GameNetDataManager.Instance.GetCurrentScene(_expeditorClientID);
 
 				targetSceneId.Value = DiveScenesManager.Instance.AddNewDiveScene(rootSceneId);
 				LogSystem.AddMessage(LogMessageTypes.Debug,
@@ -430,7 +430,7 @@ namespace ECellDive
 			/// <inheritdoc/>
 			public void CompileModificationFile()
 			{
-				string author = GameNetPortal.Instance.netSessionPlayersDataMap[NetworkManager.Singleton.LocalClientId].playerName;
+				string author = GameNetDataManager.Instance.GetClientName(NetworkManager.Singleton.LocalClientId);
 				string baseModelName = graphData.name;
 
 				//ScanForKOModifications();

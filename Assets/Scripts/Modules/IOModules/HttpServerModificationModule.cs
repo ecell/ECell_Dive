@@ -102,12 +102,12 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Gets the first modifiable from <see cref="GameNetPortal.modifiables"/>
+		/// Gets the first modifiable from <see cref="GameNetDataManager.modifiables"/>
 		/// that matches the <paramref name="_name"/>
 		/// </summary>
 		private IModifiable GetModifiable(string _name)
 		{
-			foreach(IModifiable _mod in GameNetPortal.Instance.modifiables)
+			foreach(IModifiable _mod in GameNetDataManager.Instance.modifiables)
 			{
 				if (_mod.CheckName(_name))
 				{
@@ -288,12 +288,12 @@ namespace ECellDive.Modules
 
 		/// <summary>
 		/// Sets the <see cref="targetSaveable"/> to the object that is of the same index in
-		/// <see cref="ECellDive.Multiplayer.GameNetPortal.saveables"/> than the <paramref name="_container"/>
+		/// <see cref="ECellDive.Multiplayer.GameNetDataManager.saveables"/> than the <paramref name="_container"/>
 		/// sibling index.
 		/// </summary>
 		public void SetTargetSaveable(GameObject _container)
 		{
-			targetSaveable = GameNetPortal.Instance.saveables[_container.transform.GetSiblingIndex()];
+			targetSaveable = GameNetDataManager.Instance.saveables[_container.transform.GetSiblingIndex()];
 			refSelectedBaseModel.text = _container.GetComponentInChildren<TMP_Text>().text;
 		}
 
@@ -343,7 +343,7 @@ namespace ECellDive.Modules
 			//stop the "Work In Progress" animation of this module
 			animLW.StopLoop();
 
-			if (GameNetPortal.Instance.saveables.Count > 0)
+			if (GameNetDataManager.Instance.saveables.Count > 0)
 			{
 				//Flash of the succesful color.
 				GetComponentInChildren<ColorFlash>().Flash(1);
