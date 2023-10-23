@@ -8,7 +8,7 @@ namespace ECellDive.GraphComponents
 	/// The data structure to encode a node for a cyjson graph.
 	/// </summary>
 	[System.Serializable]
-	public class Node : INode
+	public struct Node : INode
 	{
 		#region - INode Fields -
 		/// <summary>
@@ -70,13 +70,13 @@ namespace ECellDive.GraphComponents
 
 		public Node(uint _ID, string _label, string _name, Vector3 _position, bool _isVirtual)
 		{
-			ID = _ID;
-			position = _position;
-			label = _label;
-			name = _name;
-			incommingEdges = new List<uint>();
-			outgoingEdges = new List<uint>();
-			isVirtual = _isVirtual;
+			m_ID = _ID;
+			m_position = _position;
+			m_label = _label;
+			m_name = _name;
+			m_incommingEdges = new List<uint>();
+			m_outgoingEdges = new List<uint>();
+			m_isVirtual = _isVirtual;
 		}
 	}
 }

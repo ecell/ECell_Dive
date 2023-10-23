@@ -7,7 +7,7 @@ namespace ECellDive.GraphComponents
 	/// The data structure to encode an edge for a cyjson graph.
 	/// </summary>
 	[System.Serializable]
-	public class Edge : IEdge
+	public struct Edge : IEdge
 	{
 		#region - IEdge Fields -
 		/// <summary>
@@ -45,10 +45,10 @@ namespace ECellDive.GraphComponents
 
 		public Edge(uint _ID, string _name, uint _source, uint _target)
 		{
-			ID = _ID;
-			source = _source;
-			target = _target;
-			name = _name;
+			m_ID = _ID;
+			m_source = _source;
+			m_target = _target;
+			m_name = _name;
 		}
 	}
 }
