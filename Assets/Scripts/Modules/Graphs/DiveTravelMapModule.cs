@@ -82,40 +82,48 @@ namespace ECellDive.Modules
 
 			diveTravelMapRoot = Instantiate(m_graphPrefabsComponents[0], gameObject.transform);
 
+			Dictionary<uint, Color> nodesColors = new Dictionary<uint, Color>();
 			Vector3 nodePosition = Vector3.zero;
-			foreach (Node node in m_graphData.nodes)
+			for (int i = 0; i < m_graphData.nodes.Length; i++)
 			{
 				GameObject nodeGO = Instantiate(m_graphPrefabsComponents[1], diveTravelMapRoot.transform);
 				NodeGO nodeGOcp = nodeGO.GetComponent<NodeGO>();
-				nodeGOcp.SetNodeData(node);
+				nodeGOcp.SetNodeData(m_graphData.nodes[i]);
 				nodeGOcp.SetPosition(nodePosition, graphScalingData.positionScaleFactor);
 				nodeGOcp.SetScale(Vector3.one, graphScalingData.sizeScaleFactor);
 				
-				nodeGOcp.SetName(node.name);
+				nodeGOcp.SetName(m_graphData.nodes[i].name);
 				nodeGOcp.SetNamePosition(graphScalingData.sizeScaleFactor);
 				nodeGOcp.HideName();
 
-				DataID_to_DataGO.Add(node.ID, nodeGO);
+				DataID_to_DataGO.Add(m_graphData.nodes[i].ID, nodeGO);
 
+				nodeGOcp.defaultColor = Color.HSVToRGB((float)i / m_graphData.nodes.Length, 1, 1);
+				nodeGOcp.ApplyColor(nodeGOcp.defaultColor);
+
+				nodesColors.Add(m_graphData.nodes[i].ID, nodeGOcp.defaultColor);
 				nodePosition += Vector3.right * 1f;
 			}
 
-			foreach (Edge edge in m_graphData.edges)
+			for (int i = 0; i < m_graphData.edges.Length; i++)
 			{
 				GameObject edgeGO = Instantiate(m_graphPrefabsComponents[2], diveTravelMapRoot.transform);
 				EdgeGO edgeGOcp = edgeGO.GetComponent<EdgeGO>();
-				edgeGOcp.SetEdgeData(edge);
+				edgeGOcp.SetEdgeData(m_graphData.edges[i]);
 				edgeGOcp.SetLineRendererWidth();
-				edgeGOcp.SetLineRendererPosition(DataID_to_DataGO[edge.source].transform,
-												DataID_to_DataGO[edge.target].transform);
-				edgeGOcp.SetCollider(DataID_to_DataGO[edge.source].transform,
-									DataID_to_DataGO[edge.target].transform);
+				edgeGOcp.SetLineRendererPosition(DataID_to_DataGO[m_graphData.edges[i].source].transform,
+												DataID_to_DataGO[m_graphData.edges[i].target].transform);
+				edgeGOcp.SetCollider(DataID_to_DataGO[m_graphData.edges[i].source].transform,
+									DataID_to_DataGO[m_graphData.edges[i].target].transform);
 
-				edgeGOcp.SetName(edge.name);
+				edgeGOcp.SetName(m_graphData.edges[i].name);
 				edgeGOcp.SetNamePosition(graphScalingData.sizeScaleFactor);
 				edgeGOcp.HideName();
+				
+				edgeGOcp.SetColorGradient(nodesColors[m_graphData.edges[i].source],
+										  nodesColors[m_graphData.edges[i].target]);
 
-				DataID_to_DataGO.Add(edge.ID, edgeGO);
+				DataID_to_DataGO.Add(m_graphData.edges[i].ID, edgeGO);
 			}
 
 		}

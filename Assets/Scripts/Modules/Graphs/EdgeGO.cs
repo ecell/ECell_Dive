@@ -75,6 +75,25 @@ namespace ECellDive.Modules
 		#endregion
 
 		/// <summary>
+		/// Maps a gradient of colors on the edge.
+		/// This is possible only if the edge uses the custom shader "Edge"
+		/// (Assets/Resources/Shaders/Edge.shadergraph).
+		/// </summary>
+		/// <param name="'_start">
+		/// The color at the start of the edge.
+		/// </param>
+		/// <param name="_end">
+		/// The color at the end of the edge.
+		/// </param>
+		public void SetColorGradient(Color _start, Color _end)
+		{
+			mpb.SetFloat("_UseGradient", 1f);
+			mpb.SetVector("_GradientColorA", _start);
+			mpb.SetVector("_GradientColorB", _end);
+			lineRenderers[0].SetPropertyBlock(mpb);
+		}
+
+		/// <summary>
 		/// Sets the position of the <see cref="ECellDive.Modules.Module.nameTextFieldContainer"/>
 		/// to compensate for the movement of the line renderer (<see
 		/// cref="SetLineRendererPosition(Transform, Transform)"/>. The new position is
@@ -140,6 +159,16 @@ namespace ECellDive.Modules
 			lineRenderers[0].startWidth = defaultStartWidth;
 			lineRenderers[0].endWidth = defaultEndWidth;
 		}
+		#endregion
+
+		#region - IColorHighlightable Methods -
+
+		public override void ApplyColor(Color _color)
+		{
+			mpb.SetFloat("_UseGradient", 0f);
+			base.ApplyColor(_color);
+		}
+
 		#endregion
 	}
 }

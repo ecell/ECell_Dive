@@ -484,6 +484,7 @@ namespace ECellDive.Modules
 			nameTextFieldContainer.SetActive(false);
 		}
 
+		/// <inheritdoc/>
 		public void SetName(string _name)
 		{
 			nameField.text = _name;
