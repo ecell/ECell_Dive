@@ -11,12 +11,6 @@ namespace ECellDive.Modules
 	/// </summary>
 	public class EdgeGO : Module, IEdgeGO<Edge>
 	{
-		/// <summary>
-		/// The line renderer to draw the edge.
-		/// </summary>
-		[Header("Edge Parameters")]
-		[SerializeField] private LineRenderer m_LineRenderer;
-
 		#region - IEdgeGO<Edge> Members -
 		/// <summary>
 		/// The field for the property <see cref="edgeData"/>.
@@ -91,7 +85,7 @@ namespace ECellDive.Modules
 		/// </param>
 		public void SetNamePosition(float _sizeScaleFactor)
 		{
-			nameTextFieldContainer.transform.localPosition = 0.5f * (m_LineRenderer.GetPosition(0) + m_LineRenderer.GetPosition(1)) +
+			nameTextFieldContainer.transform.localPosition = 0.5f * (m_LineRenderers[0].GetPosition(0) + m_LineRenderers[0].GetPosition(1)) +
 															_sizeScaleFactor * 1.5f * Vector3.up;
 		}
 
@@ -99,9 +93,9 @@ namespace ECellDive.Modules
 		/// <inheritdoc/>
 		public void ReverseOrientation()
 		{
-			Vector3 startBuffer = m_LineRenderer.GetPosition(0);
-			m_LineRenderer.SetPosition(0, m_LineRenderer.GetPosition(1));
-			m_LineRenderer.SetPosition(1, startBuffer);
+			Vector3 startBuffer = m_LineRenderers[0].GetPosition(0);
+			m_LineRenderers[0].SetPosition(0, m_LineRenderers[0].GetPosition(1));
+			m_LineRenderers[0].SetPosition(1, startBuffer);
 		}
 
 		/// <inheritdoc/>
@@ -110,8 +104,8 @@ namespace ECellDive.Modules
 			m_refBoxColliderHolder.transform.localPosition = 0.5f * (_start.localPosition + _end.localPosition);
 			m_refBoxColliderHolder.transform.LookAt(_end);
 			m_refBoxColliderHolder.transform.localScale = new Vector3(
-															0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),//0.33f is custom for the inner size of the arrow texture
-															0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),//0.33f is custom for the inner size of the arrow texture
+															0.33f * Mathf.Max(m_LineRenderers[0].startWidth, m_LineRenderers[0].endWidth),//0.33f is custom for the inner size of the arrow texture
+															0.33f * Mathf.Max(m_LineRenderers[0].startWidth, m_LineRenderers[0].endWidth),//0.33f is custom for the inner size of the arrow texture
 															0.95f * Vector3.Distance(_start.localPosition, _end.localPosition));//0.95f is custom to avoid overlapping of the edge box collider with the nodes colliders
 		}
 
@@ -136,15 +130,15 @@ namespace ECellDive.Modules
 		/// <inheritdoc/>
 		public void SetLineRendererPosition(Transform _start, Transform _end)
 		{
-			m_LineRenderer.SetPosition(0, _start.localPosition);
-			m_LineRenderer.SetPosition(1, _end.localPosition);
+			m_LineRenderers[0].SetPosition(0, _start.localPosition);
+			m_LineRenderers[0].SetPosition(1, _end.localPosition);
 		}
 
 		/// <inheritdoc/>
 		public void SetLineRendererWidth()
 		{
-			m_LineRenderer.startWidth = defaultStartWidth;
-			m_LineRenderer.endWidth = defaultEndWidth;
+			m_LineRenderers[0].startWidth = defaultStartWidth;
+			m_LineRenderers[0].endWidth = defaultEndWidth;
 		}
 		#endregion
 	}

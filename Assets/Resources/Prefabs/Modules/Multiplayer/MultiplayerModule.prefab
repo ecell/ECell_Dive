@@ -537,6 +537,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db545101cbadf64ca10f9c0c6941368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Renderers:
+  - {fileID: 970285693800237209}
+  - {fileID: 4969685516946748144}
+  - {fileID: 2771167266501704580}
+  - {fileID: 8238302814384197722}
+  m_LineRenderers: []
   m_nameField: {fileID: 6753292982099039483}
   m_nameTextFieldContainer: {fileID: 6698626622818366120}
   m_delegateTarget: {fileID: 0}
@@ -549,11 +555,6 @@ MonoBehaviour:
   m_refInfoTagsContainer: {fileID: 1160059909674251913}
   alw: {fileID: 2513209053041123865}
   colorFlash: {fileID: 3123308137619405471}
-  renderers:
-  - {fileID: 970285693800237209}
-  - {fileID: 4969685516946748144}
-  - {fileID: 2771167266501704580}
-  - {fileID: 8238302814384197722}
 --- !u!111 &6390238286109296275
 Animation:
   m_ObjectHideFlags: 0
@@ -597,8 +598,16 @@ MonoBehaviour:
   flashColors: []
   period: 0.33
   nbPeriods: 3
-  renderers: []
-  propertyNames: []
+  renderers:
+  - {fileID: 970285693800237209}
+  - {fileID: 4969685516946748144}
+  - {fileID: 2771167266501704580}
+  - {fileID: 8238302814384197722}
+  propertyNames:
+  - _Color
+  - _BaseColor
+  - _Color
+  - _BaseColor
 --- !u!1 &8692369473335679816
 GameObject:
   m_ObjectHideFlags: 0

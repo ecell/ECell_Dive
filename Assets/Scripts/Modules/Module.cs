@@ -6,6 +6,7 @@ using ECellDive.Interfaces;
 using ECellDive.UI;
 using ECellDive.Utility;
 using ECellDive.Utility.Data;
+using Unity.Netcode;
 
 namespace ECellDive.Modules
 {
@@ -20,12 +21,42 @@ namespace ECellDive.Modules
 							IInfoTags,
 							INamed
 	{
+		/// <summary>
+		/// The renderer of the module.
+		/// </summary>
+		/// <remarks>
+		/// May be null is the module doesn't have a renderer.
+		/// </remarks>
+		[Header("Module Parameters")]
+		[Tooltip("If null, tries to find one in this gameobject.")]
+		[SerializeField] protected Renderer[] m_Renderers;
+
+		/// <summary>
+		/// The line renderer of the module.
+		/// </summary>
+		/// <remarks>
+		/// May be null is the module doesn't have a line renderer.
+		/// </remarks>
+		[Tooltip("If null, tries to find one in this gameobject.")]
+		[SerializeField] protected LineRenderer[] m_LineRenderers;
+
+		/// <summary>
+		/// The material property block used to change the color of the module while 
+		/// avoiding to create a new material instance.
+		/// </summary>
+		protected MaterialPropertyBlock mpb;
+
+		/// <summary>
+		/// The ID of the color property in the shader of the module to change its color
+		/// in the material property block.
+		/// </summary>
+		protected int colorID;
+
 		#region - INamed Members -
 		/// <summary>
 		/// The field for the property <see cref="nameField"/>
 		/// </summary>
-		[Header("INamed Parameters")]//reverse order of the header actually displays correctly in Unity 2020.3
-		[Header("Module Parameters")]
+		[Header("INamed Parameters")]
 		[SerializeField] TextMeshProUGUI m_nameField;
 
 		/// <inheritdoc/>
@@ -180,6 +211,15 @@ namespace ECellDive.Modules
 				m_delegateTarget = gameObject;
 			}
 
+			if (m_Renderers == null)
+			{
+				m_Renderers = new Renderer[] { GetComponent<Renderer>() };
+			}
+			if (m_LineRenderers == null)
+			{
+				m_LineRenderers = new LineRenderer[] { GetComponent<LineRenderer>() };
+			}
+
 			m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
 			m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
 		}
@@ -188,6 +228,13 @@ namespace ECellDive.Modules
 		{
 			m_displayInfoTagsActions.left.action.performed -= ManageInfoTagsDisplay;
 			m_displayInfoTagsActions.right.action.performed -= ManageInfoTagsDisplay;
+		}
+
+		private void OnEnable()
+		{
+			mpb = new MaterialPropertyBlock();
+			colorID = Shader.PropertyToID("_Color");
+			ApplyColor(defaultColor);
 		}
 
 		/// <summary>
@@ -234,20 +281,39 @@ namespace ECellDive.Modules
 		#endregion
 
 		#region - IColorHighlightable Methods -
-		/// <inheritdoc/>
 		public virtual void ApplyColor(Color _color)
 		{
+			mpb.SetVector(colorID, _color);
+			if (m_Renderers != null)
+			{
+				for(int i = 0; i<m_Renderers.Length; i++)
+				{
+					m_Renderers[i].SetPropertyBlock(mpb);
+				}
+			}
 
+			if (m_LineRenderers != null)
+			{
+				for (int i = 0; i < m_LineRenderers.Length; i++)
+				{
+					m_LineRenderers[i].SetPropertyBlock(mpb);
+				}
+			}
 		}
 
 		/// <inheritdoc/>
 		public virtual void SetHighlight()
 		{
+			ApplyColor(highlightColor);
 		}
 
 		/// <inheritdoc/>
 		public virtual void UnsetHighlight()
 		{
+			if (!m_forceHighlight)
+			{
+				ApplyColor(defaultColor);
+			}
 		}
 		#endregion
 
