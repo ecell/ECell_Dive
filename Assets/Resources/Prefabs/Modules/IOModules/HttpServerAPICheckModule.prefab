@@ -33,7 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7502464288663667605}
-  - {fileID: 4897046769614340424}
+  - {fileID: 2280772600379402054}
   - {fileID: 7910615420922591317}
   - {fileID: 603604554048001298}
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2344240678665000161}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
-        m_MethodName: ShowNameToPlayer
+        m_MethodName: ShowName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -384,7 +384,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe5420c1e81e6145aea2722e9494f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refName: {fileID: 1036601480557609569}
+  renderers:
+  - {fileID: 6558213575010283857}
+  - {fileID: 1110206571462821875}
+  renderersColorPropertyNames:
+  - _Color
+  - _Color
+  lineRenderers: []
+  lineRenderersColorPropertyNames: []
+  m_nameField: {fileID: 1036601480557609569}
+  m_nameTextFieldContainer: {fileID: 1093379436955378738}
   m_delegateTarget: {fileID: 0}
   m_defaultColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_highlightColor: {r: 0, g: 0.8980392, b: 0.8962264, a: 1}
@@ -398,9 +407,6 @@ MonoBehaviour:
     serverIP: 127.0.0.1
     port: 8000
   implementedHttpAPI: []
-  renderers:
-  - {fileID: 6558213575010283857}
-  - {fileID: 1110206571462821875}
   serverUIData:
     refNameInputField: {fileID: 6664578177745554331}
     refIPInputField: {fileID: 3733202270026996916}
@@ -947,19 +953,44 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5081507737544544479, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081507737544544479, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7827955701121370687, guid: 15539f246618a3f458706907b1edbac4, type: 3}
       propertyPath: m_text
       value: API Checker
       objectReference: {fileID: 0}
     - target: {fileID: 7920905404335500396, guid: 15539f246618a3f458706907b1edbac4, type: 3}
       propertyPath: m_Name
-      value: Module Name Canvas
+      value: Base Module Name
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15539f246618a3f458706907b1edbac4, type: 3}
---- !u!224 &4897046769614340424 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2392833787185907990, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+--- !u!1 &1093379436955378738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7920905404335500396, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+  m_PrefabInstance: {fileID: 7115902578580424798}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2280772600379402054 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
   m_PrefabInstance: {fileID: 7115902578580424798}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1036601480557609569 stripped

@@ -6,21 +6,24 @@ using TMPro;
 using ECellDive.UI;
 using ECellDive.Interfaces;
 using ECellDive.Utility.Data;
+using ECellDive.Utility.Data.Graph;
 
 namespace ECellDive.Modules
 {
 	/// <summary>
-	/// The class to manage the behaviour of an edge in the graph.
+	/// The class to manage the behaviour of an edge in a CyJson graph.
 	/// </summary>
 	/// <remarks>
 	/// It is synchronized over the multiplayer network.
 	/// </remarks>
-	public class EdgeGO : GameNetModule,
-							IEdgeGO, IModulateFlux
+	public class CyJsonEdgeGO : GameNetModule,
+								IEdgeGO<CyJsonEdge>,
+								IModulateFlux
 	{
 		#region - IEdgeGO Members -
+		[SerializeField] private CyJsonEdge m_edgeData;
 		/// <inheritdoc/>
-		public IEdge edgeData { get; set; }
+		public CyJsonEdge edgeData { get; private set; }
 			
 		/// <inheritdoc/>
 		public string informationString { get; protected set; }
@@ -139,7 +142,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// A reference to the pathway this node belongs to.
 		/// </summary>
-		private IGraphGO refMasterPathway;
+		private CyJsonModule refRootCyJsonGraphGO;
 
 		protected override void Awake()
 		{
@@ -201,18 +204,18 @@ namespace ECellDive.Modules
 			m_LineRenderer.SetPropertyBlock(mpb);
 		}
 
-        /// <summary>
-        /// Callback function to react to the OnValueChanged event of <see cref="fluxLevel"/>.
-        /// </summary>
-        /// <param name="_previous">
-        /// The previous value of <see cref="fluxLevel"/>. This is required for the
-        /// to satisfy the signature constraint of the event but we don't use it.
-        /// </param>
-        /// <param name="_current">
-        /// The newly set value of <see cref="fluxLevel"/>. This is required for the
-        /// to satisfy the signature constraint of the event but we don't use it.
-        /// </param>
-        private void ApplyFLChanges(float _previous, float _current)
+		/// <summary>
+		/// Callback function to react to the OnValueChanged event of <see cref="fluxLevel"/>.
+		/// </summary>
+		/// <param name="_previous">
+		/// The previous value of <see cref="fluxLevel"/>. This is required for the
+		/// to satisfy the signature constraint of the event but we don't use it.
+		/// </param>
+		/// <param name="_current">
+		/// The newly set value of <see cref="fluxLevel"/>. This is required for the
+		/// to satisfy the signature constraint of the event but we don't use it.
+		/// </param>
+		private void ApplyFLChanges(float _previous, float _current)
 		{
 			ApplyFluxLevel();
 		}
@@ -255,13 +258,13 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// Uses the information from <paramref name="_edge"/> to initialize the edge.
 		/// </summary>
-		/// <param name="_masterPathway">
+		/// <param name="_rootCyJsonGraphGO">
 		/// The pathway this edge belongs to.
 		/// </param>
 		/// <param name="_edge">
 		/// The edge data to use to initialize the edge.
 		/// </param>
-		public void Initialize(CyJsonModule _masterPathway, IEdge _edge)
+		public void Initialize(CyJsonModule _rootCyJsonGraphGO, CyJsonEdge _edge)
 		{
 #if UNITY_EDITOR
 			m_LineRenderer = GetComponent<LineRenderer>();
@@ -281,20 +284,20 @@ namespace ECellDive.Modules
 			emissionModule = refParticleSystem.emission;
 			shapeModule = refParticleSystem.shape;
 #endif
-			refMasterPathway = _masterPathway;
+			refRootCyJsonGraphGO = _rootCyJsonGraphGO;
 			InstantiateInfoTags(new string[] { "" });
 			SetEdgeData(_edge);
 			gameObject.SetActive(true);
 			gameObject.name = $"{edgeData.ID}";
-			SetName(edgeData.reaction_name);
+			SetName(edgeData.name);
 			HideName();
-			SetDefaultWidth(1 / refMasterPathway.graphScalingData.sizeScaleFactor,
-							1 / refMasterPathway.graphScalingData.sizeScaleFactor);
+			SetDefaultWidth(1 / refRootCyJsonGraphGO.graphScalingData.sizeScaleFactor,
+							1 / refRootCyJsonGraphGO.graphScalingData.sizeScaleFactor);
 
 			SetLineRendererWidth();
 
-			Transform start = refMasterPathway.DataID_to_DataGO[edgeData.source].transform;
-			Transform target = refMasterPathway.DataID_to_DataGO[edgeData.target].transform;
+			Transform start = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.source].transform;
+			Transform target = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.target].transform;
 			SetLineRendererPosition(start, target);
 			SetCollider(start, target);
 
@@ -307,7 +310,7 @@ namespace ECellDive.Modules
 				
 
 			m_nameTextFieldContainer.transform.position = 0.5f * (start.position + target.position) +
-															1 / refMasterPathway.graphScalingData.sizeScaleFactor * 1.5f * Vector3.up;
+															1 / refRootCyJsonGraphGO.graphScalingData.sizeScaleFactor * 1.5f * Vector3.up;
 		}
 
 		/// <summary>
@@ -348,7 +351,6 @@ namespace ECellDive.Modules
 		{
 			informationString = $"SUID: {edgeData.ID} \n" +
 								$"Name: {edgeData.name} \n" +
-								$"Reaction: {edgeData.reaction_name} \n" +
 								$"Knockedout: {knockedOut.Value} \n" +
 								$"Flux: {fluxLevel.Value}";
 			m_refInfoTagsContainer.transform.GetChild(0).GetComponent<InfoDisplayManager>().SetText(informationString);
@@ -383,12 +385,12 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Sets the value for <see cref="refMasterPathway"/>.
+		/// Sets the value for <see cref="refRootCyJsonGraphGO"/>.
 		/// </summary>
-		/// <param name="_masterPathway">The value for <see cref="refMasterPathway"/>.</param>
-		public void SetRefMasterPathway(IGraphGO _masterPathway)
+		/// <param name="_rootCyJsonGraphGO">The value for <see cref="refRootCyJsonGraphGO"/>.</param>
+		public void SetRefMasterPathway(CyJsonModule _rootCyJsonGraphGO)
 		{
-			refMasterPathway = _masterPathway;
+			refRootCyJsonGraphGO = _rootCyJsonGraphGO;
 		}
 
 		/// <summary>
@@ -398,19 +400,19 @@ namespace ECellDive.Modules
 		{
 			ActivateServerRpc();
 
-			GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-			foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+			GameObject targetNode = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.target];
+			foreach (uint edgeID in targetNode.GetComponent<CyJsonNodeGO>().nodeData.outgoingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
 					neighbourEdgeGo.SpreadActivationDownward();
 				}
 			}
 
-			foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+			foreach (uint edgeID in targetNode.GetComponent<CyJsonNodeGO>().nodeData.incommingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
 					neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
@@ -426,19 +428,19 @@ namespace ECellDive.Modules
 		{
 			ActivateServerRpc();
 
-			GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-			foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+			GameObject sourceNode = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.source];
+			foreach (uint edgeID in sourceNode.GetComponent<CyJsonNodeGO>().nodeData.incommingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
 					neighbourEdgeGo.SpreadActivationUpward();
 				}
 			}
 
-			foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+			foreach (uint edgeID in sourceNode.GetComponent<CyJsonNodeGO>().nodeData.outgoingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
 					neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
@@ -454,19 +456,19 @@ namespace ECellDive.Modules
 		{
 			KnockoutServerRpc();
 
-			GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-			foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+			GameObject targetNode = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.target];
+			foreach (uint edgeID in targetNode.GetComponent<CyJsonNodeGO>().nodeData.outgoingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
 					neighbourEdgeGo.SpreadKODownward();
 				}
 			}
 
-			foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+			foreach (uint edgeID in targetNode.GetComponent<CyJsonNodeGO>().nodeData.incommingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
 					neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
@@ -482,19 +484,19 @@ namespace ECellDive.Modules
 		{
 			KnockoutServerRpc();
 
-			GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-			foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+			GameObject sourceNode = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.source];
+			foreach (uint edgeID in sourceNode.GetComponent<CyJsonNodeGO>().nodeData.incommingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
 					neighbourEdgeGo.SpreadKOUpward();
 				}
 			}
 
-			foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+			foreach (uint edgeID in sourceNode.GetComponent<CyJsonNodeGO>().nodeData.outgoingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
 					neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
@@ -512,19 +514,19 @@ namespace ECellDive.Modules
 			refParticleSystem.gameObject.SetActive(true);
 			refParticleSystem.Play();
 
-			GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-			foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+			GameObject targetNode = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.target];
+			foreach (uint edgeID in targetNode.GetComponent<CyJsonNodeGO>().nodeData.outgoingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
 					neighbourEdgeGo.SpreadHighlightDownward();
 				}
 			}
 
-			foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+			foreach (uint edgeID in targetNode.GetComponent<CyJsonNodeGO>().nodeData.incommingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
 					neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
@@ -542,19 +544,19 @@ namespace ECellDive.Modules
 			refParticleSystem.gameObject.SetActive(true);
 			refParticleSystem.Play();
 
-			GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-			foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+			GameObject sourceNode = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.source];
+			foreach (uint edgeID in sourceNode.GetComponent<CyJsonNodeGO>().nodeData.incommingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
 					neighbourEdgeGo.SpreadHighlightUpward();
 				}
 			}
 
-			foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+			foreach (uint edgeID in sourceNode.GetComponent<CyJsonNodeGO>().nodeData.outgoingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
 					neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
@@ -571,19 +573,19 @@ namespace ECellDive.Modules
 			SetCurrentColorToDefaultServerRpc();
 			refParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 
-			GameObject targetNode = refMasterPathway.DataID_to_DataGO[edgeData.target];
-			foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+			GameObject targetNode = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.target];
+			foreach (uint edgeID in targetNode.GetComponent<CyJsonNodeGO>().nodeData.outgoingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
 					neighbourEdgeGo.SpreadUnsetHighlightDownward();
 				}
 			}
 
-			foreach (uint edgeID in targetNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+			foreach (uint edgeID in targetNode.GetComponent<CyJsonNodeGO>().nodeData.incommingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
 					neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
@@ -600,19 +602,19 @@ namespace ECellDive.Modules
 			SetCurrentColorToDefaultServerRpc();
 			refParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 
-			GameObject sourceNode = refMasterPathway.DataID_to_DataGO[edgeData.source];
-			foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.incommingEdges)
+			GameObject sourceNode = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.source];
+			foreach (uint edgeID in sourceNode.GetComponent<CyJsonNodeGO>().nodeData.incommingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
 					neighbourEdgeGo.SpreadUnsetHighlightUpward();
 				}
 			}
 
-			foreach (uint edgeID in sourceNode.GetComponent<NodeGO>().nodeData.outgoingEdges)
+			foreach (uint edgeID in sourceNode.GetComponent<CyJsonNodeGO>().nodeData.outgoingEdges)
 			{
-				EdgeGO neighbourEdgeGo = refMasterPathway.DataID_to_DataGO[edgeID].GetComponent<EdgeGO>();
+				CyJsonEdgeGO neighbourEdgeGo = refRootCyJsonGraphGO.DataID_to_DataGO[edgeID].GetComponent<CyJsonEdgeGO>();
 				if (neighbourEdgeGo.edgeData.ID != edgeData.ID &&
 					neighbourEdgeGo.edgeData.name == edgeData.name)
 				{
@@ -679,9 +681,9 @@ namespace ECellDive.Modules
 		}
 
 		/// <inheritdoc/>
-		public void SetEdgeData(IEdge _IEdge)
+		public void SetEdgeData(CyJsonEdge _edgeData)
 		{
-			edgeData = _IEdge;
+			edgeData = _edgeData;
 			SetInformationString();
 		}
 

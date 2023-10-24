@@ -134,7 +134,7 @@ namespace ECellDive.Tutorials
 			CyJsonPathwayLoader.Populate(pathway);
 			//CyJsonModulesData.AddData(pathway);
 
-			cyJsonModule.SetNetworkData(pathway);
+			cyJsonModule.SetGraphData(pathway);
 			cyJsonModule.isReadyForGeneration.Value = true;
 			cyJsonModule.TryDiveIn();            
 		}
@@ -192,10 +192,10 @@ namespace ECellDive.Tutorials
 				cHN.ApplyColor(Color.white);
 			}
 
-			EdgeGO edgeGO;
+			CyJsonEdgeGO edgeGO;
 			foreach (FluxData _fd in cyJsonFluxData.data)
 			{
-				edgeGO = cyJsonModule.DataID_to_DataGO[_fd.targetGoID].GetComponent<EdgeGO>();
+				edgeGO = cyJsonModule.DataID_to_DataGO[_fd.targetGoID].GetComponent<CyJsonEdgeGO>();
 				edgeGO.SetFlux(0f, 0f);
 			}
 		}
@@ -213,10 +213,10 @@ namespace ECellDive.Tutorials
 
 		public void ShowFBA()
 		{
-			EdgeGO edgeGO;
+			CyJsonEdgeGO edgeGO;
 			foreach (FluxData _fd in cyJsonFluxData.data)
 			{
-				edgeGO = cyJsonModule.DataID_to_DataGO[_fd.targetGoID].GetComponent<EdgeGO>();
+				edgeGO = cyJsonModule.DataID_to_DataGO[_fd.targetGoID].GetComponent<CyJsonEdgeGO>();
 				edgeGO.SetFlux(_fd.fluxLevel, _fd.fluxLevelClamped);
 			}
 		}

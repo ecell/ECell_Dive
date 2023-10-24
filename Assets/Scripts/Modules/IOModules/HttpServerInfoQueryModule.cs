@@ -146,7 +146,7 @@ namespace ECellDive.Modules
 				else
 				{
 					colorFlash.Flash(1);//success flash
-					EdgeGO edge = LoadedCyJsonPathway.DataID_to_DataGO[Convert.ToUInt16(refReactionID.text)].GetComponent<EdgeGO>();
+					CyJsonEdgeGO edge = LoadedCyJsonPathway.DataID_to_DataGO[Convert.ToUInt16(refReactionID.text)].GetComponent<CyJsonEdgeGO>();
 					edge.InstantiateInfoTag(new Vector2(0.15f, 0.15f), reactionString);
 				}
 			}

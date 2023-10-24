@@ -44,35 +44,6 @@ namespace ECellDive.Modules
 		};
 
 		/// <summary>
-		/// The array of renderers of this module
-		/// </summary>
-		/// <remarks>
-		/// Used to change the color of the module when highlighted.
-		/// </remarks>
-		[SerializeField] private Renderer[] renderers;
-
-		/// <summary>
-		/// The property block used to change the color of the module.
-		/// </summary>
-		private MaterialPropertyBlock mpb;
-
-		/// <summary>
-		/// The ID of the color property in the shader.
-		/// </summary>
-		private int colorID;
-
-		private void OnEnable()
-		{
-			mpb = new MaterialPropertyBlock();
-			colorID = Shader.PropertyToID("_Color");
-			mpb.SetVector(colorID, defaultColor);
-			foreach (Renderer _renderer in renderers)
-			{
-				_renderer.SetPropertyBlock(mpb);
-			}
-		}
-
-		/// <summary>
 		/// Simple API to add pages to the base server url.
 		/// </summary>
 		/// <param name="_pages">The name of successive pages.</param>
@@ -205,33 +176,5 @@ namespace ECellDive.Modules
 		{
 			return requestData.requestProcessed;
 		}
-
-		#region - IHighlightable -
-
-		/// <inheritdoc/>
-		public override void ApplyColor(Color _color)
-		{
-			mpb.SetVector(colorID, _color);
-			foreach (Renderer _renderer in renderers)
-			{
-				_renderer.SetPropertyBlock(mpb);
-			}
-		}
-
-		/// <inheritdoc/>
-		public override void SetHighlight()
-		{
-			ApplyColor(highlightColor);
-		}
-
-		/// <inheritdoc/>
-		public override void UnsetHighlight()
-		{
-			if (!forceHighlight)
-			{
-				ApplyColor(defaultColor);
-			}
-		}
-		#endregion
 	}
 }

@@ -8,7 +8,6 @@ using ECellDive.Multiplayer;
 using ECellDive.PlayerComponents;
 using ECellDive.Utility;
 using ECellDive.Utility.Data.Dive;
-using ECellDive.Utility.Data.Multiplayer;
 
 namespace ECellDive.SceneManagement
 {
@@ -21,6 +20,9 @@ namespace ECellDive.SceneManagement
 	/// </remarks>
 	public class DiveScenesManager : NetworkBehaviour
 	{
+		/// <summary>
+		/// The singleton instance of this class.
+		/// </summary>
 		public static DiveScenesManager Instance { get; private set; }
 
 		/// <summary>
@@ -171,6 +173,9 @@ namespace ECellDive.SceneManagement
 		/// <param name="_sceneID">Index of the scene in <see cref="scenesBank"/></param>
 		/// <param name="_outDiverClientId">Client Id of the diver leaving the scene
 		/// with id <paramref name="_sceneID"/>.</param>
+		/// <remarks>
+		/// This is used server-side.
+		/// </remarks>
 		private IEnumerator HideScene(int _sceneID, ulong _outDiverClientId)
 		{
 			Debug.Log($"Original scene information:");
@@ -243,6 +248,9 @@ namespace ECellDive.SceneManagement
 		/// <param name="_sceneID">Index of the scene in <see cref="scenesBank"/></param>
 		/// <param name="_newInDiverClientId">Client Id of the diver entering the scene
 		/// with id <paramref name="_sceneID"/>.</param>
+		/// <remarks>
+		/// This is used server-side.
+		/// </remarks>
 		private IEnumerator ShowScene(int _sceneID, ulong _newInDiverClientId)
 		{
 			yield return new WaitUntil(() => currentSceneisHidden);
@@ -401,7 +409,7 @@ namespace ECellDive.SceneManagement
 		private IEnumerator ResurfaceC(ulong _surfacingDiverId)
 		{
 			yield return null;
-			int from = GameNetPortal.Instance.netSessionPlayersDataMap[_surfacingDiverId].currentScene;
+			int from = GameNetDataManager.Instance.GetCurrentScene(_surfacingDiverId);
 			int to = scenesBank[from].parentSceneID;
 
 			Debug.Log($"Resurfacing client {_surfacingDiverId} from {from} to {to}");
@@ -433,42 +441,46 @@ namespace ECellDive.SceneManagement
 		/// from the perspective of the server before broadcasting the scene
 		/// switch information to the other clients.
 		/// </summary>
-		/// <param name="_to">
-		/// The ID of the scene the diver is entering.
-		/// </param>
+		
 		/// <param name="_clientId">
 		/// The ID of the client switching scenes.
 		/// </param>
-		/// <returns></returns>
+		/// <remarks>
+		/// This is used server-side.
+		/// </remarks>
 		private IEnumerator UpdatePlayerDataC(int _to, ulong _clientId)
 		{
 			yield return new WaitUntil(() => targetSceneIsVisible);
 			targetSceneIsVisible = false;
 
-			NetSessionPlayerData plrData = GameNetPortal.Instance.netSessionPlayersDataMap[_clientId];
-			plrData.SetSceneId(_to);
-			GameNetPortal.Instance.netSessionPlayersDataMap[_clientId] = plrData;
+			GameNetDataManager.Instance.AddToTrace(_clientId, _to);
 
-			UpdatePlayerDataClientRPC(new ClientRpcParams
-			{
-				Send = new ClientRpcSendParams
-				{
-					TargetClientIds = new ulong[] { _clientId }
-				}
-			});
+			UpdatePlayerDataClientRPC(_clientId, _to);
 		}
 
 		/// <summary>
-		/// Sets <see cref="targetSceneIsVisible"/> to true for the clients
-		/// identified in <paramref name="_clientRpcParams"/>.
+		/// Updates data in all clients about the player who just switched scenes.
 		/// </summary>
-		/// <param name="_clientRpcParams">
-		/// The client RPC parameters to target specific clients.
+		/// <param name="_diverID">
+		/// The player who just switched scenes.
+		/// </param>
+		/// <param name="_to">
+		/// The ID of the scene the diver is entering.
 		/// </param>
 		[ClientRpc]
-		private void UpdatePlayerDataClientRPC(ClientRpcParams _clientRpcParams)
+		private void UpdatePlayerDataClientRPC(ulong _diverID, int _to)
 		{
-			targetSceneIsVisible = true;
+			//The diver data in case of a host is already updated in the server
+			if (!IsHost)
+			{
+				//We update the diver data for other clients
+				GameNetDataManager.Instance.AddToTrace(_diverID, _to);
+			}
+
+			if (NetworkManager.Singleton.LocalClientId == _diverID)
+			{
+				targetSceneIsVisible = true;
+			}
 		}
 	}
 }

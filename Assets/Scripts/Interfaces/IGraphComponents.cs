@@ -1,4 +1,3 @@
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -22,27 +21,6 @@ namespace ECellDive.Interfaces
 		uint ID { get; set; }
 
 		/// <summary>
-		/// Position in the 3D space of the node
-		/// </summary>
-		Vector3 position { get; set; }
-
-		/// <summary>
-		/// The name of the node.
-		/// </summary>
-		string name { get; set; }
-
-		/// <summary>
-		/// A string to store additional textual information about the 
-		/// node.
-		/// </summary>
-		/// <remarks>
-		/// In CyJson graphs, the user-readable name for nodes is
-		/// actually encoded the Label and while the Name is shorter
-		/// and less explicit.
-		/// </remarks>
-		string label { get; set; }
-
-		/// <summary>
 		/// The list of the <see cref="IEdge.ID"/> of the edges that
 		/// started from somewhere and are arriving to this node.
 		/// </summary>
@@ -54,27 +32,27 @@ namespace ECellDive.Interfaces
 		/// </summary>
 		List<uint> outgoingEdges { get; set; }
 
+
 		/// <summary>
-		/// A utility state variable to describe whether the node is
-		/// simply there to structure the network or if it's a node
-		/// representing important data for the user.
+		/// The name of the node.
 		/// </summary>
-		bool isVirtual { get; set; }
+		string name { get; set; }
 	}
 
 	/// <summary>
 	/// The interface for the data structure encoding an edge in a graph.
 	/// </summary>
-	/// <remarks>
-	/// This interface is probably overdefined with cyjson graphs in mind.
-	/// For example, the <see cref="reaction_name"/> field is too specific.
-	/// </remarks>
 	public interface IEdge
 	{
 		/// <summary>
 		/// A unique ID.
 		/// </summary>
 		uint ID { get; set; }
+
+		/// <summary>
+		/// The name of the edge.
+		/// </summary>
+		string name { get; set; }
 
 		/// <summary>
 		/// The <see cref="INode.ID"/> of the node used from where the
@@ -87,27 +65,13 @@ namespace ECellDive.Interfaces
 		/// edge is heading.
 		/// </summary>
 		uint target { get; set; }
-
-		/// <summary>
-		/// The name of the edge.
-		/// </summary>
-		string name { get; set; }
-
-		/// <summary>
-		/// The name of the reaction associated with the edge.
-		/// </summary>
-		/// <remarks>
-		/// This is a field that is specific to the Cytoscape Json format.
-		/// This should be moved to a more specific data structure.
-		/// </remarks>
-		string reaction_name { get; set; }
 	}
 
 	/// <summary>
 	/// The interface for the data structure encoding a graph
 	/// made of nodes connected by edges.
 	/// </summary>
-	public interface IGraph
+	public interface IGraph<EdgeType, NodeType> where EdgeType : IEdge where NodeType : INode
 	{
 		/// <summary>
 		/// The name of the graph.
@@ -115,58 +79,14 @@ namespace ECellDive.Interfaces
 		string name { get; }
 
 		/// <summary>
-		/// The JObject extracted from the Json file that encodes the graph.
+		/// The nodes of this graph.
 		/// </summary>
-		JObject graphData { get;}
+		NodeType[] nodes { get; }
 
 		/// <summary>
-		/// The JArray (from Newtonsoft Json Linq) representing the nodes in <see cref="graphData"/>.
+		/// The edges of this graph.
 		/// </summary>
-		JArray jNodes { get; }
-
-		/// <summary>
-		/// The JArray (from Newtonsoft Json Linq) representing the edges in <see cref="graphData"/>.
-		/// </summary>
-		JArray jEdges { get;}
-
-		/// <summary>
-		/// The array of <see cref="INode"/> translating the nodes stored in <see cref="jNodes"/>.
-		/// </summary>
-		INode[] nodes { get; }
-
-		/// <summary>
-		/// The array of <see cref="IEdge"/> translating the edges stored in <see cref="jEdges"/>.
-		/// </summary>
-		IEdge[] edges { get; }
-
-		/// <summary>
-		/// Uses the information stored in the <see cref="edges"/> to fill the 
-		/// <see cref="INode.incommingEdges"/> and <see cref="INode.outgoingEdges"/> lists.
-		/// </summary>
-		void MapInOutEdgesIntoNodes();
-
-		/// <summary>
-		/// Creates the <see cref="nodes"/> array mirroring the information
-		/// stored in <see cref="jNodes"/> but in a more accessible way.
-		/// </summary>
-		void PopulateNodes();
-
-		/// <summary>
-		/// Creates the <see cref="edges"/> array mirroring the information
-		/// stored in <see cref="jNodes"/> but in a more accessible way.
-		/// </summary>
-		void PopulateEdges();
-
-		/// <summary>
-		/// Sets the <see cref="jNodes"/>.
-		/// </summary>
-		void SetNodes();
-
-		/// <summary>
-		/// Sets the <see cref="jEdges"/>.
-		/// </summary>
-		void SetEdges();
-
+		EdgeType[] edges { get; }
 	}
 
 	/// <summary>
@@ -174,12 +94,15 @@ namespace ECellDive.Interfaces
 	/// the information stored in a <see cref="INode"/> of a
 	/// <see cref="IGraph"/>.
 	/// </summary>
-	public interface INodeGO
+	/// <typeparam name="T">
+	/// The type of the data structure encoding the node.
+	/// </typeparam>
+	public interface INodeGO<T> where T : INode
 	{
 		/// <summary>
 		/// The data structure encoding the node.
 		/// </summary>
-		INode nodeData { get; }
+		T nodeData { get; }
 
 		/// <summary>
 		/// The string containing information to be displayed about 
@@ -190,10 +113,10 @@ namespace ECellDive.Interfaces
 		/// <summary>
 		/// Sets the value for <see cref="nodeData"/>.
 		/// </summary>
-		/// <param name="_INode">
+		/// <param name="_nodeData">
 		/// The value to pass on to <see cref="nodeData"/>.
 		/// </param>
-		void SetNodeData(INode _INode);
+		void SetNodeData(T _nodeData);
 	}
 
 	/// <summary>
@@ -201,12 +124,15 @@ namespace ECellDive.Interfaces
 	/// the information stored in a <see cref="IEdge"/> of a
 	/// <see cref="IGraph"/>.
 	/// </summary>
-	public interface IEdgeGO
+	/// <typeparam name="T">
+	/// The type of the data structure encoding the edge.
+	/// </typeparam>
+	public interface IEdgeGO<T> where T : IEdge
 	{
 		/// <summary>
 		/// The data structure encoding the edge.
 		/// </summary>
-		IEdge edgeData { get; }
+		T edgeData { get; }
 
 		/// <summary>
 		/// The string containing information to be displayed about 
@@ -239,8 +165,8 @@ namespace ECellDive.Interfaces
 		/// <summary>
 		/// Set the value for <see cref="edgeData"/>.
 		/// </summary>
-		/// <param name="_IEdge">The value to pass on to <see cref="edgeData"/>.</param>
-		void SetEdgeData(IEdge _IEdge);
+		/// <param name="_edgeData">The value to pass on to <see cref="edgeData"/>.</param>
+		void SetEdgeData(T _edgeData);
 
 		/// <summary>
 		/// Sets the values of <see cref="defaultStartWidth"/> and
@@ -282,12 +208,12 @@ namespace ECellDive.Interfaces
 	/// The interface defining the required logic to manipulate
 	/// the information stored in a <see cref="IGraph"/>.
 	/// </summary>
-	public interface IGraphGO
+	public interface IGraphGO<EdgeType, NodeType> where EdgeType : IEdge where NodeType : INode
 	{
 		/// <summary>
 		/// The data structure encoding the graph.
 		/// </summary>
-		IGraph graphData { get; }
+		IGraph<EdgeType, NodeType> graphData { get; }
 
 		/// <summary>
 		/// The list of prefabs that will be used as nodes or edges.
@@ -310,6 +236,27 @@ namespace ECellDive.Interfaces
 		Dictionary<uint, GameObject> DataID_to_DataGO { get; set; }
 
 		/// <summary>
+		/// Sets the value for <see cref="graphData"/>.
+		/// </summary>
+		/// <param name="_graphData"></param>
+		void SetGraphData(IGraph<EdgeType, NodeType> _graphData);
+
+	}
+
+	/// <summary>
+	/// The interface defining the logic to manipulate a graph
+	/// synchronized over the network between the host and the 
+	/// clients
+	/// </summary>
+	public interface IGraphGONet<EdgeType, NodeType> : IGraphGO<EdgeType, NodeType> where EdgeType : IEdge where NodeType : INode
+	{
+		/// <summary>
+		/// The struct encapsulating the parameters relevant to
+		/// the batch instantiation of the nodes and edges of the graph.
+		/// </summary>
+		GraphBatchSpawning graphBatchSpawning { get; }
+
+		/// <summary>
 		/// Executes the logic on the server side that is needed to 
 		/// spawn all the nodes and edges of the graph.
 		/// </summary>
@@ -320,26 +267,5 @@ namespace ECellDive.Interfaces
 		/// nodes and edges will be spawned.</param>
 		[ServerRpc(RequireOwnership = false)]
 		void RequestGraphGenerationServerRpc(ulong _expeditorClientId, int _rootSceneId);
-
-		/// <summary>
-		/// Sets the value for <see cref="graphData"/>.
-		/// </summary>
-		/// <param name="_INetwork"></param>
-		void SetNetworkData(IGraph _INetwork);
-
-	}
-
-	/// <summary>
-	/// The interface defining the logic to manipulate a graph
-	/// synchronized over the network between the host and the 
-	/// clients
-	/// </summary>
-	public interface IGraphGONet : IGraphGO
-	{
-		/// <summary>
-		/// The struct encapsulating the parameters relevant to
-		/// the batch instantiation of the nodes and edges of the graph.
-		/// </summary>
-		GraphBatchSpawning graphBatchSpawning { get; }
 	}
 }

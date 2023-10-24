@@ -94,10 +94,10 @@ namespace ECellDive
 		}
 
 		/// <summary>
-		/// An interface to change switch between two colors when a gameobject
-		/// needs to be highlighted.
+		/// An Interface to store a default color and a method on 
+		/// how to apply a color to a gameobject.
 		/// </summary>
-		public interface IColorHighlightable : IHighlightable
+		public interface IColorable
 		{
 			/// <summary>
 			/// The color the object should be when non highlighted.
@@ -105,15 +105,22 @@ namespace ECellDive
 			Color defaultColor { get; set; }
 
 			/// <summary>
-			/// The color the object should be when highlighted.
-			/// </summary>
-			Color highlightColor { get; set; }
-
-			/// <summary>
 			/// The function to call when we wish to apply a color to the material
 			/// of the gameobject.
 			/// </summary>
 			abstract void ApplyColor(Color _color);
+		}
+
+		/// <summary>
+		/// An interface to change switch between two colors when a gameobject
+		/// needs to be highlighted.
+		/// </summary>
+		public interface IColorHighlightable : IColorable, IHighlightable
+		{
+			/// <summary>
+			/// The color the object should be when highlighted.
+			/// </summary>
+			Color highlightColor { get; set; }
 		}
 
 		/// <summary>

@@ -383,8 +383,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2666248917989042025}
-  - {fileID: 1539307278938157787}
   - {fileID: 3804529761049670119}
+  - {fileID: 5264592924855801045}
   - {fileID: 3677392356716550982}
   - {fileID: 2066249288867376468}
   - {fileID: 3359950989250884645}
@@ -432,7 +432,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4121836892299767802}
         m_TargetAssemblyTypeName: ECellDive.Modules.Module, Assembly-CSharp
-        m_MethodName: ShowNameToPlayer
+        m_MethodName: ShowName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -728,7 +728,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321526d16f1fb284dae08fae7a5078e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refName: {fileID: 6398425717685203442}
+  renderers:
+  - {fileID: 9024194524823361624}
+  - {fileID: 7632367772103431894}
+  - {fileID: 8189514868613853203}
+  - {fileID: 8540097861833030491}
+  renderersColorPropertyNames:
+  - _Color
+  - _Color
+  - _Color
+  - _Color
+  lineRenderers: []
+  lineRenderersColorPropertyNames: []
+  m_nameField: {fileID: 6398425717685203442}
+  m_nameTextFieldContainer: {fileID: 6450578575936411553}
   m_delegateTarget: {fileID: 0}
   m_defaultColor: {r: 1, g: 1, b: 1, a: 0}
   m_highlightColor: {r: 0, g: 0.8980392, b: 0.8962264, a: 1}
@@ -745,11 +758,6 @@ MonoBehaviour:
   - list_user_model
   - open_user_model
   - save
-  renderers:
-  - {fileID: 9024194524823361624}
-  - {fileID: 7632367772103431894}
-  - {fileID: 8189514868613853203}
-  - {fileID: 8540097861833030491}
   refAvailableServersScrollList: {fileID: 8068583446531807353}
   refTargetServer: {fileID: 8406557554631777863}
   refModificationFilesScrollList: {fileID: 8237387901532829466}
@@ -867,7 +875,7 @@ Transform:
   m_Children:
   - {fileID: 7307473042925819053}
   m_Father: {fileID: 6341440025480328313}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &208342158445156915
 PrefabInstance:
@@ -1982,19 +1990,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5081507737544544479, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 170
+      objectReference: {fileID: 0}
     - target: {fileID: 7827955701121370687, guid: 15539f246618a3f458706907b1edbac4, type: 3}
       propertyPath: m_text
       value: Modification Handler
       objectReference: {fileID: 0}
     - target: {fileID: 7920905404335500396, guid: 15539f246618a3f458706907b1edbac4, type: 3}
       propertyPath: m_Name
-      value: Module Name Canvas
+      value: Module Name
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15539f246618a3f458706907b1edbac4, type: 3}
---- !u!224 &1539307278938157787 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2392833787185907990, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+--- !u!1 &6450578575936411553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7920905404335500396, guid: 15539f246618a3f458706907b1edbac4, type: 3}
+  m_PrefabInstance: {fileID: 3776754780014967757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5264592924855801045 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9035959357012733720, guid: 15539f246618a3f458706907b1edbac4, type: 3}
   m_PrefabInstance: {fileID: 3776754780014967757}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6398425717685203442 stripped

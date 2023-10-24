@@ -17,13 +17,108 @@ namespace ECellDive.Modules
 							IFocus,
 							IGroupable,
 							IColorHighlightable,
-							IInfoTags
+							IInfoTags,
+							INamed
 	{
 		/// <summary>
-		/// The test mesh to display the name of the module.
+		/// The array of renderers this module might have.
+		/// If nothing is set in the Editor (length = 0), the module
+		/// will try to find one in this gameobject and its children
+		/// in the Awake method. If really nothing is found, the array
+		/// is set to null. So, if you need to know if the module has
+		/// any renderer, check against null.
+		/// 
+		/// If you specify a renderer in the Editor, you need to specify
+		/// the corresponding color property name in <see cref="renderersColorPropertyNames"/>.
 		/// </summary>
-		[Header("Module Info")]
-		public TextMeshProUGUI refName;
+		[Header("Module Parameters")]
+		[Tooltip("If null, tries to find one in this gameobject and its children.")]
+		[SerializeField] protected Renderer[] renderers;
+
+		/// <summary>
+		/// The names of the properties of the shaders used by the renderers
+		/// to manipulate the color of the module. The names are used to search
+		/// for the ColorID of the properties in the shaders which, in turn, are
+		/// used to assign the color of the module in the material property block
+		/// (see <see cref="mpb"/>).
+		/// 
+		/// In case nothing is set in the Editor <see cref="renderers"/> AND 
+		/// the module automatically finds a renderer in this gameobject or its
+		/// children AND nothing is set in the Editor <see cref="renderersColorPropertyNames"/>,
+		/// it will default to "_BaseColor".
+		/// </summary>
+		[SerializeField] protected string[] renderersColorPropertyNames;
+
+		/// <summary>
+		/// The ID of the color property in the shader of the module to change its color
+		/// in the material property block.
+		/// </summary>
+		protected int[] renderersColorPropertyIDs;
+
+		/// <summary>
+		/// The array of line renderers this module might have.
+		/// If nothing is set in the Editor (length = 0), the module
+		/// will try to find one in this gameobject and its children
+		/// in the Awake method. If really nothing is found, the array
+		/// is set to null. So, if you need to know if the module has
+		/// any line renderer, check against null.
+		/// 
+		/// If you specify a line renderer in the Editor, you need to specify
+		/// the corresponding color property name in <see cref="renderersColorPropertyNames"/>.
+		/// </summary>
+		[Tooltip("If null, tries to find one in this gameobject and its children.")]
+		[SerializeField] protected LineRenderer[] lineRenderers;
+
+		/// <summary>
+		/// The names of the properties of the shaders used by the line renderers
+		/// to manipulate the color of the module. The names are used to search
+		/// for the ColorID of the properties in the shaders which, in turn, are
+		/// used to assign the color of the module in the material property block
+		/// (see <see cref="mpb"/>).
+		/// 
+		/// In case nothing is set in the Editor <see cref="lineRenderers"/> AND 
+		/// the module automatically finds a line renderer in this gameobject or its
+		/// children AND nothing is set in the Editor <see cref="lineRenderersColorPropertyNames"/>,
+		/// it will default to "_BaseColor".
+		/// </summary>
+		[SerializeField] protected string[] lineRenderersColorPropertyNames;
+
+		/// <summary>
+		/// The ID of the color property in the shader of the module to change its color
+		/// in the material property block.
+		/// </summary>
+		protected int[] lineRenderersColorPropertyIDs;
+
+		/// <summary>
+		/// The material property block used to change the color of the module while 
+		/// avoiding to create a new material instance.
+		/// </summary>
+		protected MaterialPropertyBlock mpb;
+
+		#region - INamed Members -
+		/// <summary>
+		/// The field for the property <see cref="nameField"/>
+		/// </summary>
+		[Header("INamed Parameters")]
+		[SerializeField] TextMeshProUGUI m_nameField;
+
+		/// <inheritdoc/>
+		public TextMeshProUGUI nameField
+		{
+			get => m_nameField;
+		}
+
+		/// <summary>
+		/// The field for the property <see cref="nameTextFieldContainer"/>
+		/// </summary>
+		[SerializeField] GameObject m_nameTextFieldContainer;
+
+		/// <inheritdoc/>
+		public GameObject nameTextFieldContainer
+		{
+			get => m_nameTextFieldContainer;
+		}
+		#endregion
 
 		#region - IFocus Members -
 		/// <summary>
@@ -44,6 +139,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// Field of the property <see cref="grpMemberIndex"/>
 		/// </summary>
+		[Header("IGroupable Parameters")]
 		private int m_grpMemberIndex = -1;
 		   
 		/// <inheritdoc/>
@@ -70,6 +166,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// Field of the property <see cref="defaultColor"/>
 		/// </summary>
+		[Header("IHighlightable Parameters")]
 		[SerializeField] private Color m_defaultColor;
 			
 		/// <inheritdoc/>
@@ -111,7 +208,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// Field of the property <see cref="displayInfoTagsActions"/>
 		/// </summary>
-		[Header("Info Tags Data")]
+		[Header("IInfoTags Parameters")]
 		public LeftRightData<InputActionReference> m_displayInfoTagsActions;
 
 		/// <inheritdoc/>
@@ -157,6 +254,69 @@ namespace ECellDive.Modules
 				m_delegateTarget = gameObject;
 			}
 
+			mpb = new MaterialPropertyBlock();
+			if (renderers.Length == 0)
+			{
+				Renderer renderer = GetComponentInChildren<Renderer>();
+				if (renderer != null)
+				{
+					renderers = new Renderer[] { renderer };
+					if (renderersColorPropertyNames.Length == 0)
+					{
+						renderersColorPropertyNames = new string[] { "_BaseColor" };
+					}
+				}
+				else
+				{
+					renderersColorPropertyNames = null;
+					renderers = null;
+				}
+			}
+
+			if (lineRenderers.Length == 0)
+			{
+				LineRenderer lineRenderer = GetComponentInChildren<LineRenderer>();
+				if (lineRenderer != null)
+				{
+					lineRenderers = new LineRenderer[] { lineRenderer };
+					if (lineRenderersColorPropertyNames.Length == 0)
+					{
+						lineRenderersColorPropertyNames = new string[] { "_BaseColor" };
+					}
+				}
+				else
+				{
+					lineRenderersColorPropertyNames = null;
+					lineRenderers = null;
+				}
+			}
+
+			if (renderers != null)
+			{
+				renderersColorPropertyIDs = new int[renderersColorPropertyNames.Length];
+				for (int i = 0; i < renderersColorPropertyNames.Length; i++)
+				{
+					renderersColorPropertyIDs[i] = Shader.PropertyToID(renderersColorPropertyNames[i]);
+				}
+			}
+			else
+			{
+				renderersColorPropertyIDs = null;
+			}
+
+			if (lineRenderers != null)
+			{
+				lineRenderersColorPropertyIDs = new int[lineRenderersColorPropertyNames.Length];
+				for (int i = 0; i < lineRenderersColorPropertyNames.Length; i++)
+				{
+					lineRenderersColorPropertyIDs[i] = Shader.PropertyToID(lineRenderersColorPropertyNames[i]);
+				}
+			}
+			else
+			{
+				lineRenderersColorPropertyIDs = null;
+			}			
+			
 			m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
 			m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
 		}
@@ -165,6 +325,11 @@ namespace ECellDive.Modules
 		{
 			m_displayInfoTagsActions.left.action.performed -= ManageInfoTagsDisplay;
 			m_displayInfoTagsActions.right.action.performed -= ManageInfoTagsDisplay;
+		}
+
+		private void OnEnable()
+		{
+			ApplyColor(defaultColor);
 		}
 
 		/// <summary>
@@ -196,20 +361,6 @@ namespace ECellDive.Modules
 			Destroy(gameObject);
 		}
 
-		public void SetName(string _name)
-		{
-			refName.text = _name;
-		}
-
-		/// <summary>
-		/// Makes sure the name of the module's name faces the
-		/// Player's POV and is therefore readable.
-		/// </summary>
-		public void ShowNameToPlayer()
-		{
-			Positioning.UIFaceTarget(refName.gameObject.transform.parent.gameObject, Camera.main.transform);
-		}
-
 		#region - IFocus Methods -
 		/// <inheritdoc/>
 		public void SetFocus()
@@ -225,20 +376,40 @@ namespace ECellDive.Modules
 		#endregion
 
 		#region - IColorHighlightable Methods -
-		/// <inheritdoc/>
 		public virtual void ApplyColor(Color _color)
 		{
+			if (renderers != null)
+			{
+				for(int i = 0; i<renderers.Length; i++)
+				{
+					mpb.SetVector(renderersColorPropertyIDs[i], _color);
+					renderers[i].SetPropertyBlock(mpb);
+				}
+			}
 
+			if (lineRenderers != null)
+			{
+				for (int i = 0; i < lineRenderers.Length; i++)
+				{
+					mpb.SetVector(lineRenderersColorPropertyIDs[i], _color);
+					lineRenderers[i].SetPropertyBlock(mpb);
+				}
+			}
 		}
 
 		/// <inheritdoc/>
 		public virtual void SetHighlight()
 		{
+			ApplyColor(highlightColor);
 		}
 
 		/// <inheritdoc/>
 		public virtual void UnsetHighlight()
 		{
+			if (!m_forceHighlight)
+			{
+				ApplyColor(defaultColor);
+			}
 		}
 		#endregion
 
@@ -291,6 +462,38 @@ namespace ECellDive.Modules
 			{
 				_infoTag.gameObject.GetComponent<InfoDisplayManager>().LookAt();
 			}
+		}
+		#endregion
+
+		#region - INamed Methods -
+		/// <inheritdoc/>
+		public void DisplayName()
+		{
+			nameTextFieldContainer.SetActive(true);
+		}
+
+		/// <inheritdoc/>
+		public string GetName()
+		{
+			return nameField.text;
+		}
+
+		/// <inheritdoc/>
+		public void HideName()
+		{
+			nameTextFieldContainer.SetActive(false);
+		}
+
+		/// <inheritdoc/>
+		public void SetName(string _name)
+		{
+			nameField.text = _name;
+		}
+
+		/// <inheritdoc/>
+		public void ShowName()
+		{
+			nameTextFieldContainer.GetComponent<ILookAt>().LookAt();
 		}
 		#endregion
 	}
