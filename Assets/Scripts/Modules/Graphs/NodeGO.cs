@@ -2,7 +2,6 @@ using UnityEngine;
 
 using ECellDive.Interfaces;
 using ECellDive.Utility.Data.Graph;
-using UnityEngine.Rendering;
 
 namespace ECellDive.Modules
 {
@@ -39,16 +38,45 @@ namespace ECellDive.Modules
 		}
 		#endregion
 
+		/// <summary>
+		/// Sets the local position (i.e. relative to its parent) of the node.
+		/// </summary>
+		/// <param name="_position">
+		/// The base position of the node.
+		/// </param>
+		/// <param name="_positionScaleFactor">
+		/// A scalar to scale the position of the node.
+		/// </param>
 		public void SetPosition(Vector3 _position, float _positionScaleFactor)
 		{
 			transform.localPosition = _position * _positionScaleFactor;
 		}
 
+		/// <summary>
+		/// Sets the position of the <see cref="ECellDive.Modules.Module.nameTextFieldContainer"/>
+		/// to compensate for the scaling of the node. The position is scaled by the
+		/// <paramref name="_sizeScaleFactor"/> which should be the same as the
+		/// one used in <see cref="SetScale(Vector3, float)"/>.
+		/// </summary>
+		/// <param name="_sizeScaleFactor">
+		/// The scalar initially used to scale the size of the node.
+		/// </param>
 		public void SetNamePosition(float _sizeScaleFactor)
 		{
 			nameTextFieldContainer.transform.localPosition += Vector3.up * 2f * _sizeScaleFactor;
 		}
 
+		/// <summary>
+		/// Scale the node by the <paramref name="_sizeScaleFactor"/>. The scale is applied
+		/// to the <see cref="ECellDive.Modules.Module.transform"/> of the node. The UI
+		/// elements are scaled back to their original size.
+		/// </summary>
+		/// <param name="_scale">
+		/// The base scale of the node.
+		/// </param>
+		/// <param name="_sizeScaleFactor">
+		/// A scalar to scale the size of the node.
+		/// </param>
 		public void SetScale(Vector3 _scale, float _sizeScaleFactor)
 		{
 			transform.localScale = _scale * _sizeScaleFactor;
@@ -62,6 +90,7 @@ namespace ECellDive.Modules
 		}
 
 		#region - INodeGO<Node> Methods -
+		/// <inheritdoc/>
 		public void SetNodeData(Node _nodeData)
 		{
 			nodeData = _nodeData;
