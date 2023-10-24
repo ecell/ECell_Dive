@@ -16,8 +16,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The field for the property <see cref="controlPoints"/>.
 		/// </summary>
-		[Header("IBezierCurve Parameters")]
-		[SerializeField] private Vector3[] m_controlPoints;
+		private Vector3[] m_controlPoints;
 
 		/// <inheritdoc/>
 		public Vector3[] controlPoints
@@ -29,7 +28,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The field for the property <see cref="controlPointsCount"/>.
 		/// </summary>
-		[SerializeField] private uint m_controlPointsCount;
+		private uint m_controlPointsCount;
 
 		/// <inheritdoc/>
 		public uint controlPointsCount
@@ -41,7 +40,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The field for the property <see cref="curvePoints"/>.
 		/// </summary>
-		[SerializeField] private Vector3[] m_curvePoints;
+		private Vector3[] m_curvePoints;
 
 		/// <inheritdoc/>
 		public Vector3[] curvePoints
@@ -53,6 +52,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The field for the property <see cref="curvePointsCount"/>.
 		/// </summary>
+		[Header("IBezierCurve Parameters")]
 		[SerializeField] private uint m_curvePointsCount;
 
 		/// <inheritdoc/>
@@ -67,8 +67,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The field for the property <see cref="edgeData"/>.
 		/// </summary>
-		[Header("IEdgeGO<Edge> Parameters")]
-		[SerializeField] private Edge m_edgeData;
+		private Edge m_edgeData;
 
 		/// <inheritdoc/>
 		public Edge edgeData
@@ -80,7 +79,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The field for the property <see cref="informationString"/>.
 		/// </summary>
-		[SerializeField] private string m_informationString;
+		private string m_informationString;
 
 		/// <inheritdoc/>
 		public string informationString
@@ -92,6 +91,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The field for the property <see cref="defaultStartWidth"/>.
 		/// </summary>
+		[Header("IEdgeGO<Edge> Parameters")]
 		[SerializeField] private float m_defaultStartWidth;
 
 		/// <inheritdoc/>
@@ -126,8 +126,9 @@ namespace ECellDive.Modules
 		}
 		#endregion
 
-		private void Start()
+		protected override void Awake()
 		{
+			base.Awake();
 			SetControlPoints(new Vector3[4]);
 		}
 
@@ -161,7 +162,7 @@ namespace ECellDive.Modules
 		/// </param>
 		public void SetNamePosition(float _sizeScaleFactor)
 		{
-			nameTextFieldContainer.transform.localPosition = 0.5f * (lineRenderers[0].GetPosition(0) + lineRenderers[0].GetPosition(1)) +
+			nameTextFieldContainer.transform.localPosition = 0.5f * (lineRenderers[0].GetPosition(0) + lineRenderers[0].GetPosition((int)curvePointsCount-1)) +
 															_sizeScaleFactor * 1.5f * Vector3.up;
 		}
 
@@ -192,7 +193,7 @@ namespace ECellDive.Modules
 		/// <inheritdoc/>
 		public Vector3[] Interpolate()
 		{
-			Vector3[] curvePoints = new Vector3[curvePointsCount];
+			curvePoints = new Vector3[curvePointsCount];
 			for (int i = 0; i < curvePointsCount; i++)
 			{
 				curvePoints[i] = Bezier.GetPoint(controlPoints, i / (curvePointsCount - 1f));
@@ -203,7 +204,7 @@ namespace ECellDive.Modules
 		/// <inheritdoc/>
 		public Vector3[] Interpolate(uint _curvePointsCount)
 		{
-			Vector3[] curvePoints = new Vector3[_curvePointsCount];
+			curvePoints = new Vector3[_curvePointsCount];
 			for (int i = 0; i < _curvePointsCount; i++)
 			{
 				curvePoints[i] = Bezier.GetPoint(controlPoints, i / (_curvePointsCount - 1f));
@@ -272,17 +273,27 @@ namespace ECellDive.Modules
 		/// <inheritdoc/>
 		public void SetLineRendererPosition(Transform _start, Transform _end)
 		{
+			//We create the control points a the 1/3 and 2/3 of the edge.
+			//They are slightly offset from the edge by a vector perpendicular to the edge.
+			//That vector is the normal to the plane defined by the edge and the vector (0,0,-1).
 			Vector3 p1 = 0.33f * (_end.localPosition - _start.localPosition) + _start.localPosition;
 			p1 += 0.33f * Vector3.Cross(_end.localPosition - _start.localPosition, Vector3.back).normalized;
 			Vector3 p2 = 0.66f * (_end.localPosition - _start.localPosition) + _start.localPosition;
 			p2 += 0.33f * Vector3.Cross(_end.localPosition - _start.localPosition, Vector3.back).normalized;
 
+			//We assigned a 4 points array in the awake method.
+			//We can update it here with the new control points.
 			SetControlPoint(0, _start.localPosition);
 			SetControlPoint(1, p1);
 			SetControlPoint(2, p2);
 			SetControlPoint(3, _end.localPosition);
 
+			//We update the curve points array.
 			Interpolate();
+
+			//We update the line renderer.
+			lineRenderers[0].positionCount = (int)curvePointsCount;
+			lineRenderers[0].SetPositions(curvePoints);
 		}
 
 		/// <inheritdoc/>
