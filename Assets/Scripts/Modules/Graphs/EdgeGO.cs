@@ -2,6 +2,7 @@ using UnityEngine;
 
 using ECellDive.Interfaces;
 using ECellDive.Utility.Data.Graph;
+using ECellDive.Utility.Maths;
 
 namespace ECellDive.Modules
 {
@@ -9,8 +10,59 @@ namespace ECellDive.Modules
 	/// The class to manage an edge defined by <see cref="ECellDive.Utility.Data.Graph.Edge"/>.
 	/// and nothing more.
 	/// </summary>
-	public class EdgeGO : Module, IEdgeGO<Edge>
+	public class EdgeGO : Module, IEdgeGO<Edge>, IBezierCurve
 	{
+		#region - IBezierCurve Members -
+		/// <summary>
+		/// The field for the property <see cref="controlPoints"/>.
+		/// </summary>
+		[Header("IBezierCurve Parameters")]
+		[SerializeField] private Vector3[] m_controlPoints;
+
+		/// <inheritdoc/>
+		public Vector3[] controlPoints
+		{
+			get => m_controlPoints;
+			private set => m_controlPoints = value;
+		}
+
+		/// <summary>
+		/// The field for the property <see cref="controlPointsCount"/>.
+		/// </summary>
+		[SerializeField] private uint m_controlPointsCount;
+
+		/// <inheritdoc/>
+		public uint controlPointsCount
+		{
+			get => m_controlPointsCount;
+			private set => m_controlPointsCount = value;
+		}
+
+		/// <summary>
+		/// The field for the property <see cref="curvePoints"/>.
+		/// </summary>
+		[SerializeField] private Vector3[] m_curvePoints;
+
+		/// <inheritdoc/>
+		public Vector3[] curvePoints
+		{
+			get => m_curvePoints;
+			private set => m_curvePoints = value;
+		}
+
+		/// <summary>
+		/// The field for the property <see cref="curvePointsCount"/>.
+		/// </summary>
+		[SerializeField] private uint m_curvePointsCount;
+
+		/// <inheritdoc/>
+		public uint curvePointsCount
+		{
+			get => m_curvePointsCount;
+			set => m_curvePointsCount = value;
+		}
+		#endregion
+
 		#region - IEdgeGO<Edge> Members -
 		/// <summary>
 		/// The field for the property <see cref="edgeData"/>.
@@ -74,6 +126,11 @@ namespace ECellDive.Modules
 		}
 		#endregion
 
+		private void Start()
+		{
+			SetControlPoints(new Vector3[4]);
+		}
+
 		/// <summary>
 		/// Maps a gradient of colors on the edge.
 		/// This is possible only if the edge uses the custom shader "Edge"
@@ -107,6 +164,72 @@ namespace ECellDive.Modules
 			nameTextFieldContainer.transform.localPosition = 0.5f * (lineRenderers[0].GetPosition(0) + lineRenderers[0].GetPosition(1)) +
 															_sizeScaleFactor * 1.5f * Vector3.up;
 		}
+
+		#region - IColorHighlightable Methods -
+
+		public override void ApplyColor(Color _color)
+		{
+			mpb.SetFloat("_UseGradient", 0f);
+			base.ApplyColor(_color);
+		}
+
+		#endregion
+
+		#region - ICurve Methods -
+		/// <inheritdoc/>
+		public void AddControlPoint(Vector3 _point)
+		{
+			Vector3[] newControlPoints = new Vector3[controlPointsCount + 1];
+			for (int i = 0; i < controlPointsCount; i++)
+			{
+				newControlPoints[i] = controlPoints[i];
+			}
+			newControlPoints[controlPointsCount] = _point;
+			controlPoints = newControlPoints;
+			controlPointsCount++;
+		}
+
+		/// <inheritdoc/>
+		public Vector3[] Interpolate()
+		{
+			Vector3[] curvePoints = new Vector3[curvePointsCount];
+			for (int i = 0; i < curvePointsCount; i++)
+			{
+				curvePoints[i] = Bezier.GetPoint(controlPoints, i / (curvePointsCount - 1f));
+			}
+			return curvePoints;
+		}
+
+		/// <inheritdoc/>
+		public Vector3[] Interpolate(uint _curvePointsCount)
+		{
+			Vector3[] curvePoints = new Vector3[_curvePointsCount];
+			for (int i = 0; i < _curvePointsCount; i++)
+			{
+				curvePoints[i] = Bezier.GetPoint(controlPoints, i / (_curvePointsCount - 1f));
+			}
+			curvePointsCount = _curvePointsCount;
+			return curvePoints;
+		}
+
+		/// <inheritdoc/>
+		public void SetControlPoint(int _index, Vector3 _point)
+		{
+			if (_index < 0 || _index >= controlPointsCount)
+			{
+				return;
+			}
+			controlPoints[_index] = _point;
+		}
+
+		/// <inheritdoc/>
+		public void SetControlPoints(Vector3[] _points)
+		{
+			controlPoints = _points;
+			controlPointsCount = (uint)_points.Length;
+		}
+
+		#endregion
 
 		#region - IEdgeGO<Edge> Methods -
 		/// <inheritdoc/>
@@ -149,8 +272,17 @@ namespace ECellDive.Modules
 		/// <inheritdoc/>
 		public void SetLineRendererPosition(Transform _start, Transform _end)
 		{
-			lineRenderers[0].SetPosition(0, _start.localPosition);
-			lineRenderers[0].SetPosition(1, _end.localPosition);
+			Vector3 p1 = 0.33f * (_end.localPosition - _start.localPosition) + _start.localPosition;
+			p1 += 0.33f * Vector3.Cross(_end.localPosition - _start.localPosition, Vector3.back).normalized;
+			Vector3 p2 = 0.66f * (_end.localPosition - _start.localPosition) + _start.localPosition;
+			p2 += 0.33f * Vector3.Cross(_end.localPosition - _start.localPosition, Vector3.back).normalized;
+
+			SetControlPoint(0, _start.localPosition);
+			SetControlPoint(1, p1);
+			SetControlPoint(2, p2);
+			SetControlPoint(3, _end.localPosition);
+
+			Interpolate();
 		}
 
 		/// <inheritdoc/>
@@ -159,16 +291,6 @@ namespace ECellDive.Modules
 			lineRenderers[0].startWidth = defaultStartWidth;
 			lineRenderers[0].endWidth = defaultEndWidth;
 		}
-		#endregion
-
-		#region - IColorHighlightable Methods -
-
-		public override void ApplyColor(Color _color)
-		{
-			mpb.SetFloat("_UseGradient", 0f);
-			base.ApplyColor(_color);
-		}
-
 		#endregion
 	}
 }
