@@ -11,7 +11,7 @@ using ECellDive.Utility.Data.Graph;
 namespace ECellDive.Modules
 {
 	/// <summary>
-	/// The class to manage the behaviour of an edge in the graph.
+	/// The class to manage the behaviour of an edge in a CyJson graph.
 	/// </summary>
 	/// <remarks>
 	/// It is synchronized over the multiplayer network.
@@ -204,18 +204,18 @@ namespace ECellDive.Modules
 			m_LineRenderer.SetPropertyBlock(mpb);
 		}
 
-        /// <summary>
-        /// Callback function to react to the OnValueChanged event of <see cref="fluxLevel"/>.
-        /// </summary>
-        /// <param name="_previous">
-        /// The previous value of <see cref="fluxLevel"/>. This is required for the
-        /// to satisfy the signature constraint of the event but we don't use it.
-        /// </param>
-        /// <param name="_current">
-        /// The newly set value of <see cref="fluxLevel"/>. This is required for the
-        /// to satisfy the signature constraint of the event but we don't use it.
-        /// </param>
-        private void ApplyFLChanges(float _previous, float _current)
+		/// <summary>
+		/// Callback function to react to the OnValueChanged event of <see cref="fluxLevel"/>.
+		/// </summary>
+		/// <param name="_previous">
+		/// The previous value of <see cref="fluxLevel"/>. This is required for the
+		/// to satisfy the signature constraint of the event but we don't use it.
+		/// </param>
+		/// <param name="_current">
+		/// The newly set value of <see cref="fluxLevel"/>. This is required for the
+		/// to satisfy the signature constraint of the event but we don't use it.
+		/// </param>
+		private void ApplyFLChanges(float _previous, float _current)
 		{
 			ApplyFluxLevel();
 		}

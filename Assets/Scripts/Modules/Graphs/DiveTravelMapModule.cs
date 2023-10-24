@@ -5,6 +5,7 @@ using Unity.Netcode;
 using ECellDive.Multiplayer;
 using ECellDive.Interfaces;
 using ECellDive.Utility.Data.Graph;
+using ECellDive.GraphComponents;
 
 namespace ECellDive.Modules
 {
@@ -13,7 +14,7 @@ namespace ECellDive.Modules
 	/// a player has been to and in which order.
 	/// </summary>
 	public class DiveTravelMapModule : Module,
-										IGraphGO
+										IGraphGO<Edge, Node>
 	{
 		#region - IGraphGO Members -
 		/// <summary>
@@ -21,13 +22,13 @@ namespace ECellDive.Modules
 		/// </summary>
 		[Header("DiveTravelMapModule Parameters")]
 		[Header("IGraphGO Parameters")]
-		private IGraph m_graphData;
+		private ContiguousGraph m_graphData;
 
 		/// <inheritdoc/>
-		public IGraph graphData
+		public IGraph<Edge, Node> graphData
 		{
 			get => m_graphData;
-			protected set => m_graphData = value;
+			protected set => m_graphData = (ContiguousGraph)value;
 		}
 
 		/// <summary>
@@ -83,9 +84,9 @@ namespace ECellDive.Modules
 #endif
 		}
 
-		public void SetGraphData(IGraph graphData)
+		public void SetGraphData(IGraph<Edge, Node> _graphData)
 		{
-			m_graphData = graphData;
+			graphData = _graphData;
 		}
 	}
 

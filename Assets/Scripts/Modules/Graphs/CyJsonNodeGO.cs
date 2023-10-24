@@ -9,7 +9,7 @@ using ECellDive.Utility.Data.Graph;
 namespace ECellDive.Modules
 {
 	/// <summary>
-	/// The class to manage the behaviour of a node game object.
+	/// The class to manage the behaviour of a node in a CyJson graph.
 	/// </summary>
 	/// <remarks>
 	/// It is synchronized over the multiplayer network.
