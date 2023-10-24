@@ -63,7 +63,7 @@ namespace ECellDive.CustomEditors
             ushort reactionMatchCount = 0;
             foreach (IEdge _edgeData in cyJsonDataHolder.graphData.edges)
             {
-                if (cyJsonDataHolder.DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut.Value)
+                if (cyJsonDataHolder.DataID_to_DataGO[_edgeData.ID].GetComponent<CyJsonEdgeGO>().knockedOut.Value)
                 {
                     if (!reactionMatch.TryGetValue(_edgeData.name, out reactionMatchCount))
                     {
@@ -160,7 +160,7 @@ namespace ECellDive.CustomEditors
         /// </summary>
         public void ShowComputedFluxes()
         {
-            EdgeGO edgeGO;
+            CyJsonEdgeGO edgeGO;
             foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
             {
                 if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
@@ -172,7 +172,7 @@ namespace ECellDive.CustomEditors
 
                     foreach (uint _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
                     {
-                        edgeGO = cyJsonDataHolder.DataID_to_DataGO[_id].GetComponent<EdgeGO>();
+                        edgeGO = cyJsonDataHolder.DataID_to_DataGO[_id].GetComponent<CyJsonEdgeGO>();
                         if ((edgeGO.fluxLevel.Value < 0 && level > 0) || (edgeGO.fluxLevel.Value > 0 && level < 0))
                         {
                             edgeGO.ReverseOrientation();

@@ -89,12 +89,12 @@ namespace ECellDive.Tutorials
 		{
 			//We just wait a bit to make sure the object we will be looking
 			//for has been instantiated by the server.
+			//It is a very bad solution... but it works for now.
 			yield return new WaitForSeconds(0.5f);
 
 			refCyJsonModule = FindObjectOfType<CyJsonModule>();
 			//At this stage the user has started diving into the data module.
 			//So there should be a rootPathway created that we can capture.
-			Debug.Log($"refCyJsonModule.pathwayRoot", refCyJsonModule.pathwayRoot);
 			ModNavTutorialManager.tutorialGarbage.Add(refCyJsonModule.pathwayRoot);
 		}
 	}

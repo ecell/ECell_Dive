@@ -236,7 +236,7 @@ namespace ECellDive.Modules
 		private IEnumerator ShowComputedFluxesC()
 		{
 			int counter = 0;
-			EdgeGO edgeGO;
+			CyJsonEdgeGO edgeGO;
 			foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
 			{
 				if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
@@ -252,7 +252,7 @@ namespace ECellDive.Modules
 						
 					foreach (uint _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
 					{
-						edgeGO = LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>();
+						edgeGO = LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<CyJsonEdgeGO>();
 							
 						//control direction of the edge if the flux is reversed
 						if ((edgeGO.fluxLevel.Value < 0 && level > 0) || (edgeGO.fluxLevel.Value > 0 && level < 0))

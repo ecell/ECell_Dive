@@ -26,10 +26,14 @@ namespace ECellDive
 		/// CyJson modules.
 		/// </summary>
 		public class CyJsonModule : GameNetModule,
-									IGraphGONet,
+									IGraphGONet<CyJsonEdge, CyJsonNode>,
 									IModifiable,
 									ISaveable
 		{
+			/// <summary>
+			/// A structure to store the parameters to override the default
+			/// visual parameters of the edges.
+			/// </summary>
 			[System.Serializable]
 			public struct EdgeParametersOverride
 			{
@@ -39,13 +43,30 @@ namespace ECellDive
 				[Range(0, 1)] public float endWidthFactor;
 			}
 
-			[Header("GraphGONet")]
-			public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
+			//public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
+
+			/// <summary>
+			/// A counter for the number of data fragments received when this module
+			/// is built from a CyJson file and the data is broadcasted as fragments.
+			/// </summary>
 			public int refIndex { get; private set; }
 			
-			public GameObject pathwayRoot;
+			/// <summary>
+			/// The reference to the root that will contain the nodes and edges
+			/// once the graph is generated.
+			/// </summary>
+			[Header("GraphGONet")]
+			[HideInInspector] public GameObject pathwayRoot;
 
+			/// <summary>
+			/// A boolean to check if all the nodes have been spawned.
+			/// </summary>
 			private bool allNodesSpawned = false;
+
+			/// <summary>
+			/// The structure to store the parameters to override the default
+			/// visual parameters of the edges of this graph.
+			/// </summary>
 			[SerializeField] private EdgeParametersOverride edgeParametersOverride = new EdgeParametersOverride
 			{
 				forceDefaultColor = false,
@@ -55,24 +76,45 @@ namespace ECellDive
 			};
 
 			#region  - IGraphGONet Members - 
+			/// <summary>
+			/// The field of the property <see cref="graphData"/>.
+			/// </summary>
 			[SerializeField] private CyJsonPathway m_graphData;
-			public IGraph graphData { get => m_graphData; protected set => m_graphData = (CyJsonPathway)value; }
 
+			/// <inheritdoc/>
+			public IGraph<CyJsonEdge, CyJsonNode> graphData { get => m_graphData; protected set => m_graphData = (CyJsonPathway)value; }
+
+			/// <summary>
+			/// The field of the property <see cref="graphScalingData"/>.
+			/// </summary>
 			[SerializeField] private GraphScalingData m_graphScalingData;
+
+			/// <inheritdoc/>
 			public GraphScalingData graphScalingData
 			{
 				get => m_graphScalingData;
 			}
 			
+			/// <summary>
+			/// The field of the property <see cref="graphBatchSpawning"/>.
+			/// </summary>
 			[SerializeField] private GraphBatchSpawning m_graphBatchSpawning;
+
+			/// <inheritdoc/>
 			public GraphBatchSpawning graphBatchSpawning
 			{
 				get => m_graphBatchSpawning;
 			}
 
+			/// <inheritdoc/>
 			public Dictionary<uint, GameObject> DataID_to_DataGO { get; set; }
 
+			/// <summary>
+			/// The field of the property <see cref="graphPrefabsComponents"/>.
+			/// </summary>
 			[SerializeField] private List<GameObject> m_graphPrefabsComponents;
+
+			/// <inheritdoc/>
 			public List<GameObject> graphPrefabsComponents
 			{
 				get => m_graphPrefabsComponents;
@@ -81,10 +123,12 @@ namespace ECellDive
 			#endregion
 
 			#region - IModifiable Members -
+			/// <inheritdoc/>
 			public ModificationFile readingModificationFile { get; set; }
 			#endregion
 
 			#region - ISaveable Members -
+			/// <inheritdoc/>
 			public ModificationFile writingModificationFile { get; set; }
 			#endregion
 
@@ -97,26 +141,35 @@ namespace ECellDive
 				GameNetDataManager.Instance.saveables.Add(this);
 			}
 
+			/// <inheritdoc/>
 			protected override void ApplyCurrentColorChange(Color _previous, Color _current)
 			{
 				mpb.SetVector(colorID, _current);
 				m_Renderer.SetPropertyBlock(mpb);
 			}
 
+			/// <summary>
+			/// The public interface to apply the new visual parameters for the
+			/// edges and update the display.
+			/// </summary>
 			public void ApplyEdgeWidthFactorOverride()
 			{
 				StartCoroutine(ApplyEdgeWidthFactorOverrideC());
 			}
 
+			/// <summary>
+			/// The coroutine to apply the new visual parameters for the
+			/// edges and update the display by batches.
+			/// </summary>
 			public IEnumerator ApplyEdgeWidthFactorOverrideC()
 			{
 				Debug.Log($"ApplyEdgeStartWidthFactorOverrideC: startWidthFactor =" +
 					$" {edgeParametersOverride.startWidthFactor}, endWidthFactor = " +
 					$" {edgeParametersOverride.endWidthFactor}", gameObject);
-				EdgeGO edgeGO;
+				CyJsonEdgeGO edgeGO;
 				foreach (IEdge _edge in m_graphData.edges)
 				{
-					edgeGO = DataID_to_DataGO[_edge.ID].GetComponent<EdgeGO>();
+					edgeGO = DataID_to_DataGO[_edge.ID].GetComponent<CyJsonEdgeGO>();
 					edgeGO.forceDefaultColor = edgeParametersOverride.forceDefaultColor;
 					edgeGO.forceDefaultWidth = edgeParametersOverride.forceDefaultWidth;
 					edgeGO.startWidthFactor = edgeParametersOverride.startWidthFactor;
@@ -129,11 +182,11 @@ namespace ECellDive
 				yield return null;
 			}
 
-			[ServerRpc(RequireOwnership = false)]
-			public void ConfirmIsActiveDataStatusServerRpc()
-			{
-				nbActiveDataSet.Value++;
-			}
+			//[ServerRpc(RequireOwnership = false)]
+			//public void ConfirmIsActiveDataStatusServerRpc()
+			//{
+			//	nbActiveDataSet.Value++;
+			//}
 
 			/// <summary>
 			/// Coroutine encapsulating the instantiation of the edges of the pathway.
@@ -156,11 +209,21 @@ namespace ECellDive
 				isReadyForDive.Value = true;
 			}
 
+			/// <summary>
+			/// The server send the reference of the newly spawned edge to the clients
+			/// to locally assign data to the edge and update <see cref="DataID_to_DataGO"/>.
+			/// </summary>
+			/// <param name="_edgeNetObj">
+			/// The network reference to the edge gameobject.
+			/// </param>
+			/// <param name="_edgeIdx">
+			/// The index of the edge data in the <see cref="graphData.edges"/> array.
+			/// </param>
 			[ClientRpc]
 			public void EdgeSpawnClientRpc(NetworkObjectReference _edgeNetObj, int _edgeIdx)
 			{
 				GameObject edgeGO = _edgeNetObj;
-				edgeGO.GetComponent<EdgeGO>().Initialize(this, graphData.edges[_edgeIdx]);
+				edgeGO.GetComponent<CyJsonEdgeGO>().Initialize(this, graphData.edges[_edgeIdx]);
 
 				DataID_to_DataGO[graphData.edges[_edgeIdx].ID] = edgeGO;
 				edgeGO.GetComponent<GameNetModule>().NetHide();
@@ -180,7 +243,7 @@ namespace ECellDive
 					//ModulesData.AddModule(edgeMD);
 					GameObject edgeGO = Instantiate(graphPrefabsComponents[2]);
 					edgeGO.transform.parent = pathwayRoot.transform;
-					edgeGO.GetComponent<EdgeGO>().Initialize(this, graphData.edges[i]);
+					edgeGO.GetComponent<CyJsonEdgeGO>().Initialize(this, graphData.edges[i]);
 
 					DataID_to_DataGO[graphData.edges[i].ID] = edgeGO;
 				}
@@ -238,7 +301,7 @@ namespace ECellDive
 				ushort reactionMatchCount = 0;
 				foreach (IEdge _edgeData in graphData.edges)
 				{
-					if (DataID_to_DataGO[_edgeData.ID].GetComponent<EdgeGO>().knockedOut.Value)
+					if (DataID_to_DataGO[_edgeData.ID].GetComponent<CyJsonEdgeGO>().knockedOut.Value)
 					{
 						if (!reactionMatch.TryGetValue(_edgeData.name, out reactionMatchCount))
 						{
@@ -271,12 +334,22 @@ namespace ECellDive
 				allNodesSpawned = true;
 			}
 
+			/// <summary>
+			/// The server send the reference of the newly spawned node to the clients
+			/// to locally assign data to the node and update <see cref="DataID_to_DataGO"/>.
+			/// </summary>
+			/// <param name="_nodeNetObj">
+			/// The network reference to the node gameobject.
+			/// </param>
+			/// <param name="_nodeIdx">
+			/// The index of the node data in the <see cref="graphData.nodes"/> array.
+			/// </param>
 			[ClientRpc]
 			public void NodeSpawnClientRpc(NetworkObjectReference _nodeNetObj, int _nodeIdx)
 			{
 				GameObject nodeGO = _nodeNetObj;
 				
-				nodeGO.GetComponent<NodeGO>().Initialize(m_graphScalingData, graphData.nodes[_nodeIdx]);
+				nodeGO.GetComponent<CyJsonNodeGO>().Initialize(m_graphScalingData, graphData.nodes[_nodeIdx]);
 				DataID_to_DataGO[graphData.nodes[_nodeIdx].ID] = nodeGO;
 				nodeGO.GetComponent<GameNetModule>().NetHide();
 			}
@@ -294,7 +367,7 @@ namespace ECellDive
 				{
 					GameObject nodeGO = Instantiate(graphPrefabsComponents[1]);
 					nodeGO.transform.parent = pathwayRoot.transform;
-					nodeGO.GetComponent<NodeGO>().Initialize(m_graphScalingData, graphData.nodes[i]);
+					nodeGO.GetComponent<CyJsonNodeGO>().Initialize(m_graphScalingData, graphData.nodes[i]);
 					DataID_to_DataGO[graphData.nodes[i].ID] = nodeGO;
 				}
 			}
@@ -356,10 +429,10 @@ namespace ECellDive
 			}
 
 			/// <inheritdoc/>
-			public void SetGraphData(IGraph _IGraph)
+			public void SetGraphData(IGraph<CyJsonEdge, CyJsonNode> _graphData)
 			{
-				graphData = _IGraph;
-				SetName(_IGraph.name);
+				graphData = _graphData;
+				SetName(_graphData.name);
 			}
 			#endregion
 
@@ -396,7 +469,7 @@ namespace ECellDive
 						if (DataID_to_DataGO.TryGetValue(edgeID, out edgeGO))
 						{
 							Debug.Log("KnockingOut:" + opContent[1]);
-							edgeGO.GetComponent<EdgeGO>().Knockout();
+							edgeGO.GetComponent<CyJsonEdgeGO>().Knockout();
 						}
 						break;
 				}

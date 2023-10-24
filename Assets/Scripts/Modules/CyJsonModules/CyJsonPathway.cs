@@ -5,24 +5,23 @@ using UnityEngine;
 using ECellDive.IO;
 using ECellDive.Interfaces;
 using ECellDive.Utility.Data.Graph;
-using UnityEditor.ShaderGraph.Serialization;
 
 namespace ECellDive.GraphComponents
 {
 	/// <summary>
 	/// The data structure to retrieve a graph from a Cytoscape Json file.
 	/// </summary>
-	public class CyJsonPathway : IGraph
+	public class CyJsonPathway : IGraph<CyJsonEdge, CyJsonNode>
 	{
 		#region - IGraph Fields -
 		/// <inheritdoc/>
 		public string name { get; protected set; }
 
 		/// <inheritdoc/>
-		public INode[] nodes { get; protected set; }
+		public CyJsonNode[] nodes { get; protected set; }
 
 		/// <inheritdoc/>
-		public IEdge[] edges { get; protected set; }
+		public CyJsonEdge[] edges { get; protected set; }
 		#endregion
 
 		public GraphData<JObject, JArray, JArray> cyJsonGraphData;
@@ -70,8 +69,10 @@ namespace ECellDive.GraphComponents
 			};
 		}
 
-		#region - IGraph Methods -
-		/// <inheritdoc/>
+		/// <summary>
+		/// Uses the information stored in the <see cref="edges"/> to fill the 
+		/// <see cref="INode.incommingEdges"/> and <see cref="INode.outgoingEdges"/> lists.
+		/// </summary>
 		public void MapInOutEdgesIntoNodes()
 		{
 			Dictionary<uint, uint> nodesMap = new Dictionary<uint, uint>();
@@ -88,11 +89,13 @@ namespace ECellDive.GraphComponents
 			}
 		}
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Populates the <see cref="nodes"/> array.
+		/// </summary>
 		public void PopulateNodes()
 		{
 			int nbNodes = cyJsonGraphData.nodesData.Count();
-			nodes = new INode[nbNodes];
+			nodes = new CyJsonNode[nbNodes];
 
 			for (int i = 0; i < nbNodes; i++)
 			{
@@ -100,28 +103,30 @@ namespace ECellDive.GraphComponents
 				string name = CyJsonParser.LookForName(cyJsonGraphData.nodesData.ElementAt(i));
 				string label = CyJsonParser.LookForLabel(cyJsonGraphData.nodesData.ElementAt(i));
 				bool isVirtual = CyJsonParser.LookForNodeType(cyJsonGraphData.nodesData.ElementAt(i));
-				nodes[i] = new Node(cyJsonGraphData.nodesData.ElementAt(i)["data"]["id"].Value<uint>(),
-									label,
-									name,
-									nodePos,
-									isVirtual);
+				nodes[i] = new CyJsonNode(cyJsonGraphData.nodesData.ElementAt(i)["data"]["id"].Value<uint>(),
+										label,
+										name,
+										nodePos,
+										isVirtual);
 			}
 		}
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Populates the <see cref="edges"/> array.
+		/// </summary>
 		public void PopulateEdges()
 		{
 			int nbEdges = cyJsonGraphData.edgesData.Count();
-			edges = new IEdge[nbEdges];
+			edges = new CyJsonEdge[nbEdges];
 
 			for (int i = 0; i < nbEdges; i++)
 			{
-				edges[i] = new Edge(cyJsonGraphData.edgesData.ElementAt(i)["data"]["id"].Value<uint>(),
+				edges[i] = new CyJsonEdge(cyJsonGraphData.edgesData.ElementAt(i)["data"]["id"].Value<uint>(),
+									cyJsonGraphData.edgesData.ElementAt(i)["data"]["name"].Value<string>(),
 									cyJsonGraphData.edgesData.ElementAt(i)["data"]["reaction_name"].Value<string>(),
 									cyJsonGraphData.edgesData.ElementAt(i)["data"]["source"].Value<uint>(),
 									cyJsonGraphData.edgesData.ElementAt(i)["data"]["target"].Value<uint>());
 			}
 		}
-		#endregion
 	}
 }

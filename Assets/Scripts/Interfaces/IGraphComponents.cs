@@ -21,27 +21,6 @@ namespace ECellDive.Interfaces
 		uint ID { get; set; }
 
 		/// <summary>
-		/// Position in the 3D space of the node
-		/// </summary>
-		Vector3 position { get; set; }
-
-		/// <summary>
-		/// The name of the node.
-		/// </summary>
-		string name { get; set; }
-
-		/// <summary>
-		/// A string to store additional textual information about the 
-		/// node.
-		/// </summary>
-		/// <remarks>
-		/// In CyJson graphs, the user-readable name for nodes is
-		/// actually encoded the Label while the Name is shorter
-		/// and less explicit.
-		/// </remarks>
-		string label { get; set; }
-
-		/// <summary>
 		/// The list of the <see cref="IEdge.ID"/> of the edges that
 		/// started from somewhere and are arriving to this node.
 		/// </summary>
@@ -53,12 +32,11 @@ namespace ECellDive.Interfaces
 		/// </summary>
 		List<uint> outgoingEdges { get; set; }
 
+
 		/// <summary>
-		/// A utility state variable to describe whether the node is
-		/// simply there to structure the network or if it's a node
-		/// representing important data for the user.
+		/// The name of the node.
 		/// </summary>
-		bool isVirtual { get; set; }
+		string name { get; set; }
 	}
 
 	/// <summary>
@@ -93,7 +71,7 @@ namespace ECellDive.Interfaces
 	/// The interface for the data structure encoding a graph
 	/// made of nodes connected by edges.
 	/// </summary>
-	public interface IGraph
+	public interface IGraph<EdgeType, NodeType> where EdgeType : IEdge where NodeType : INode
 	{
 		/// <summary>
 		/// The name of the graph.
@@ -103,29 +81,12 @@ namespace ECellDive.Interfaces
 		/// <summary>
 		/// The nodes of this graph.
 		/// </summary>
-		INode[] nodes { get; }
+		NodeType[] nodes { get; }
 
 		/// <summary>
 		/// The edges of this graph.
 		/// </summary>
-		IEdge[] edges { get; }
-
-		/// <summary>
-		/// Uses the information stored in the <see cref="edges"/> to fill the 
-		/// <see cref="INode.incommingEdges"/> and <see cref="INode.outgoingEdges"/> lists.
-		/// </summary>
-		void MapInOutEdgesIntoNodes();
-
-		/// <summary>
-		/// Populates the <see cref="nodes"/> array.
-		/// </summary>
-		void PopulateNodes();
-
-		/// <summary>
-		/// Populates the <see cref="edges"/> array.
-		/// </summary>
-		void PopulateEdges();
-
+		EdgeType[] edges { get; }
 	}
 
 	/// <summary>
@@ -133,12 +94,15 @@ namespace ECellDive.Interfaces
 	/// the information stored in a <see cref="INode"/> of a
 	/// <see cref="IGraph"/>.
 	/// </summary>
-	public interface INodeGO
+	/// <typeparam name="T">
+	/// The type of the data structure encoding the node.
+	/// </typeparam>
+	public interface INodeGO<T> where T : INode
 	{
 		/// <summary>
 		/// The data structure encoding the node.
 		/// </summary>
-		INode nodeData { get; }
+		T nodeData { get; }
 
 		/// <summary>
 		/// The string containing information to be displayed about 
@@ -149,10 +113,10 @@ namespace ECellDive.Interfaces
 		/// <summary>
 		/// Sets the value for <see cref="nodeData"/>.
 		/// </summary>
-		/// <param name="_INode">
+		/// <param name="_nodeData">
 		/// The value to pass on to <see cref="nodeData"/>.
 		/// </param>
-		void SetNodeData(INode _INode);
+		void SetNodeData(T _nodeData);
 	}
 
 	/// <summary>
@@ -160,12 +124,15 @@ namespace ECellDive.Interfaces
 	/// the information stored in a <see cref="IEdge"/> of a
 	/// <see cref="IGraph"/>.
 	/// </summary>
-	public interface IEdgeGO
+	/// <typeparam name="T">
+	/// The type of the data structure encoding the edge.
+	/// </typeparam>
+	public interface IEdgeGO<T> where T : IEdge
 	{
 		/// <summary>
 		/// The data structure encoding the edge.
 		/// </summary>
-		IEdge edgeData { get; }
+		T edgeData { get; }
 
 		/// <summary>
 		/// The string containing information to be displayed about 
@@ -198,8 +165,8 @@ namespace ECellDive.Interfaces
 		/// <summary>
 		/// Set the value for <see cref="edgeData"/>.
 		/// </summary>
-		/// <param name="_IEdge">The value to pass on to <see cref="edgeData"/>.</param>
-		void SetEdgeData(IEdge _IEdge);
+		/// <param name="_edgeData">The value to pass on to <see cref="edgeData"/>.</param>
+		void SetEdgeData(T _edgeData);
 
 		/// <summary>
 		/// Sets the values of <see cref="defaultStartWidth"/> and
@@ -241,12 +208,12 @@ namespace ECellDive.Interfaces
 	/// The interface defining the required logic to manipulate
 	/// the information stored in a <see cref="IGraph"/>.
 	/// </summary>
-	public interface IGraphGO
+	public interface IGraphGO<EdgeType, NodeType> where EdgeType : IEdge where NodeType : INode
 	{
 		/// <summary>
 		/// The data structure encoding the graph.
 		/// </summary>
-		IGraph graphData { get; }
+		IGraph<EdgeType, NodeType> graphData { get; }
 
 		/// <summary>
 		/// The list of prefabs that will be used as nodes or edges.
@@ -271,8 +238,8 @@ namespace ECellDive.Interfaces
 		/// <summary>
 		/// Sets the value for <see cref="graphData"/>.
 		/// </summary>
-		/// <param name="graphData"></param>
-		void SetGraphData(IGraph graphData);
+		/// <param name="_graphData"></param>
+		void SetGraphData(IGraph<EdgeType, NodeType> _graphData);
 
 	}
 
@@ -281,7 +248,7 @@ namespace ECellDive.Interfaces
 	/// synchronized over the network between the host and the 
 	/// clients
 	/// </summary>
-	public interface IGraphGONet : IGraphGO
+	public interface IGraphGONet<EdgeType, NodeType> : IGraphGO<EdgeType, NodeType> where EdgeType : IEdge where NodeType : INode
 	{
 		/// <summary>
 		/// The struct encapsulating the parameters relevant to

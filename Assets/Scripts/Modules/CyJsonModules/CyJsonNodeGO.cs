@@ -14,12 +14,22 @@ namespace ECellDive.Modules
 	/// <remarks>
 	/// It is synchronized over the multiplayer network.
 	/// </remarks>
-	public class NodeGO : GameNetModule,
-							INodeGO
+	public class CyJsonNodeGO : GameNetModule,
+								INodeGO<CyJsonNode>
 	{
 		#region - INodeGO Members -
+
+		/// <summary>
+		/// The field for the property <see cref="nodeData"/>.
+		/// </summary>
+		private CyJsonNode m_nodeData;
+		
 		/// <inheritdoc/>
-		public INode nodeData { get; protected set; }
+		public CyJsonNode nodeData
+		{
+			get => m_nodeData;
+			protected set => m_nodeData = value;
+		}
 
 		/// <inheritdoc/>
 		public string informationString { get; protected set; }
@@ -33,7 +43,7 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Uses the <see cref="NodeGO"/> to instantiate a node game object.
+		/// Uses the <see cref="ECellDive.Interfaces.INode"/> to instantiate a node game object.
 		/// </summary>
 		/// <param name="_pathwaySettings">
 		/// Context data about the pathway to adapt the scale of the node.
@@ -41,7 +51,7 @@ namespace ECellDive.Modules
 		/// <param name="_node">
 		/// The node data to instantiate the node game object.
 		/// </param>
-		public void Initialize(GraphScalingData _pathwaySettings, in INode _node)
+		public void Initialize(GraphScalingData _pathwaySettings, in CyJsonNode _node)
 		{
 #if UNITY_EDITOR
 			m_Renderer = GetComponent<Renderer>();
@@ -56,19 +66,19 @@ namespace ECellDive.Modules
 #endif
 			InstantiateInfoTags(new string[] { "" });
 			SetNodeData(_node);
-			Vector3 nodePos = new Vector3(nodeData.position.x,
-											nodeData.position.z,
-											nodeData.position.y) / _pathwaySettings.positionScaleFactor;
-			SetName(nodeData.label);
+			Vector3 nodePos = new Vector3(m_nodeData.position.x,
+										  m_nodeData.position.z,
+										  m_nodeData.position.y) / _pathwaySettings.positionScaleFactor;
+			SetName(m_nodeData.label);
 			HideName();
 			gameObject.SetActive(true);
-			if (nodeData.isVirtual)
+			if (m_nodeData.isVirtual)
 			{
 				m_Renderer.enabled = false;
 			}
 			gameObject.transform.position = nodePos;
 			gameObject.transform.localScale /= _pathwaySettings.sizeScaleFactor;
-			gameObject.name = $"{nodeData.ID}";
+			gameObject.name = $"{m_nodeData.ID}";
 
 			m_refInfoTagsContainer.transform.GetChild(0).localScale *= _pathwaySettings.sizeScaleFactor;
 			m_nameTextFieldContainer.transform.localScale *= _pathwaySettings.sizeScaleFactor;
@@ -86,12 +96,12 @@ namespace ECellDive.Modules
 
 		#region - INodeGO Methods -
 		/// <inheritdoc/>
-		public void SetNodeData(INode _INode)
+		public void SetNodeData(CyJsonNode _nodeData)
 		{
-			nodeData = _INode;
-			informationString = $"SUID: {nodeData.ID} \n" +
-								$"name: {nodeData.name} \n" +
-								$"label: {nodeData.label}";
+			nodeData = _nodeData;
+			informationString = $"SUID: {m_nodeData.ID} \n" +
+								$"name: {m_nodeData.name} \n" +
+								$"label: {m_nodeData.label}";
 			m_refInfoTagsContainer.transform.GetChild(0).GetComponent<InfoDisplayManager>().SetText(informationString);
 		}
 		#endregion
@@ -113,7 +123,7 @@ namespace ECellDive.Modules
 				m_Renderer.enabled = true;
 				SetCurrentColorToDefaultServerRpc();
 
-				if (nodeData.isVirtual)
+				if (m_nodeData.isVirtual)
 				{
 					m_Renderer.enabled = false;
 				}
@@ -125,7 +135,7 @@ namespace ECellDive.Modules
 		/// <inheritdoc/>
 		public override void DisplayName()
 		{
-			if (!nodeData.isVirtual)
+			if (!m_nodeData.isVirtual)
 			{
 				base.DisplayName();
 			}
@@ -146,7 +156,7 @@ namespace ECellDive.Modules
 		{
 			m_Collider.enabled = true;
 
-			if (!nodeData.isVirtual)
+			if (!m_nodeData.isVirtual)
 			{
 				m_Renderer.enabled = true;
 			}
