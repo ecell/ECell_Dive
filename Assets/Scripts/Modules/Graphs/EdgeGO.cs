@@ -4,6 +4,7 @@ using UnityEngine;
 
 using ECellDive.Interfaces;
 using ECellDive.Utility.Data.Graph;
+using static UnityEngine.GraphicsBuffer;
 
 namespace ECellDive.Modules
 {
@@ -81,6 +82,12 @@ namespace ECellDive.Modules
 			set => m_refBoxColliderHolder = value;
 		}
 		#endregion
+
+		public void SetNamePosition(float _sizeScaleFactor)
+		{
+			nameTextFieldContainer.transform.localPosition = 0.5f * (m_LineRenderer.GetPosition(0) + m_LineRenderer.GetPosition(1)) +
+															_sizeScaleFactor * 1.5f * Vector3.up;
+		}
 
 		#region - IEdgeGO<Edge> Methods -
 		public void ReverseOrientation()

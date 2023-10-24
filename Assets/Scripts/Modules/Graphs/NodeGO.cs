@@ -2,6 +2,7 @@ using UnityEngine;
 
 using ECellDive.Interfaces;
 using ECellDive.Utility.Data.Graph;
+using UnityEngine.Rendering;
 
 namespace ECellDive.Modules
 {
@@ -37,6 +38,28 @@ namespace ECellDive.Modules
 			private set => m_informationString = value;
 		}
 		#endregion
+
+		public void SetPosition(Vector3 _position, float _positionScaleFactor)
+		{
+			transform.localPosition = _position * _positionScaleFactor;
+		}
+
+		public void SetNamePosition(float _sizeScaleFactor)
+		{
+			nameTextFieldContainer.transform.localPosition += Vector3.up * 2f * _sizeScaleFactor;
+		}
+
+		public void SetScale(Vector3 _scale, float _sizeScaleFactor)
+		{
+			transform.localScale = _scale * _sizeScaleFactor;
+
+			//Compensating the scale factor so that the UI remains the same size (i.e. readable)
+			for (int i = 0; i < refInfoTagsContainer.transform.childCount; i++)
+			{
+				refInfoTagsContainer.transform.GetChild(i).localScale /= _sizeScaleFactor;
+			}
+			nameTextFieldContainer.transform.localScale /= _sizeScaleFactor;
+		}
 
 		#region - INodeGO<Node> Methods -
 		public void SetNodeData(Node _nodeData)

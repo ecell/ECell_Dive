@@ -47,7 +47,7 @@ namespace ECellDive.Utility.Data.Graph
         /// Useful when the original coordinates of the nodes spans over
         /// hundreds of equivalent Unity distance units.
         /// </remarks>
-        [Min(1)] public float positionScaleFactor;
+        [Min(0.001f)] public float positionScaleFactor;
 
         /// <summary>
         /// Modulates the values of Transform.localScale for
@@ -56,7 +56,7 @@ namespace ECellDive.Utility.Data.Graph
         /// <remarks>
         /// Usefull when to change the size of the whole graph.
         /// </remarks>
-        [Min(1)] public float sizeScaleFactor;
+        [Min(0.001f)] public float sizeScaleFactor;
 
     }
 

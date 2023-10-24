@@ -22,7 +22,7 @@ namespace ECellDive.Modules
 		/// </summary>
 		[Header("DiveTravelMapModule Parameters")]
 		[Header("IGraphGO Parameters")]
-		private ContiguousGraph m_graphData;
+		private ContiguousGraph m_graphData = new ContiguousGraph("Dive Travel Map");
 
 		/// <inheritdoc/>
 		public IGraph<Edge, Node> graphData
@@ -57,7 +57,16 @@ namespace ECellDive.Modules
 		public Dictionary<uint, GameObject> DataID_to_DataGO { get ; set ; }
 		#endregion
 
+		/// <summary>
+		/// The reference to the root of the dive travel map.
+		/// </summary>
 		private GameObject diveTravelMapRoot;
+
+		private void Start()
+		{
+			DataID_to_DataGO = new Dictionary<uint, GameObject>();
+			BuildMap();
+		}
 
 		/// <summary>
 		/// Builds the dive travel map from the dive travel data of the
@@ -66,9 +75,50 @@ namespace ECellDive.Modules
 		public void BuildMap()
 		{
 			Clear();
-			List<int> diveSceneTrace = GameNetDataManager.Instance.GetSceneTrace(NetworkManager.Singleton.LocalClientId);
 
+			//List<int> diveSceneTrace = GameNetDataManager.Instance.GetSceneTrace(NetworkManager.Singleton.LocalClientId);
+			List<int> diveSceneTrace = new List<int>() { 1, 2, 5, 4, 1, 5, 6 };
+			m_graphData.Populate(diveSceneTrace);
 
+			diveTravelMapRoot = Instantiate(m_graphPrefabsComponents[0], gameObject.transform);
+
+			Vector3 nodePosition = Vector3.zero;
+			foreach (Node node in m_graphData.nodes)
+			{
+				Debug.Log($"Building: Adding node {node.ID}");
+
+				GameObject nodeGO = Instantiate(m_graphPrefabsComponents[1], diveTravelMapRoot.transform);
+				NodeGO nodeGOcp = nodeGO.GetComponent<NodeGO>();
+				nodeGOcp.SetNodeData(node);
+				nodeGOcp.SetPosition(nodePosition, graphScalingData.positionScaleFactor);
+				nodeGOcp.SetScale(Vector3.one, graphScalingData.sizeScaleFactor);
+				
+				nodeGOcp.SetName(node.name);
+				nodeGOcp.SetNamePosition(graphScalingData.sizeScaleFactor);
+				nodeGOcp.HideName();
+
+				DataID_to_DataGO.Add(node.ID, nodeGO);
+
+				nodePosition += Vector3.right * 1f;
+			}
+
+			foreach (Edge edge in m_graphData.edges)
+			{
+				GameObject edgeGO = Instantiate(m_graphPrefabsComponents[2], diveTravelMapRoot.transform);
+				EdgeGO edgeGOcp = edgeGO.GetComponent<EdgeGO>();
+				edgeGOcp.SetEdgeData(edge);
+				edgeGOcp.SetLineRendererWidth();
+				edgeGOcp.SetLineRendererPosition(DataID_to_DataGO[edge.source].transform,
+												DataID_to_DataGO[edge.target].transform);
+				edgeGOcp.SetCollider(DataID_to_DataGO[edge.source].transform,
+									DataID_to_DataGO[edge.target].transform);
+
+				edgeGOcp.SetName(edge.name);
+				edgeGOcp.SetNamePosition(graphScalingData.sizeScaleFactor);
+				edgeGOcp.HideName();
+
+				DataID_to_DataGO.Add(edge.ID, edgeGO);
+			}
 
 		}
 
@@ -82,6 +132,7 @@ namespace ECellDive.Modules
 #else
 			Destroy(diveTravelMapRoot);
 #endif
+			DataID_to_DataGO.Clear();
 		}
 
 		public void SetGraphData(IGraph<Edge, Node> _graphData)
