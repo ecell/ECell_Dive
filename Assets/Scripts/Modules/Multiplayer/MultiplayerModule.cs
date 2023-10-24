@@ -7,7 +7,6 @@ namespace ECellDive.Modules
 	/// <summary>
 	/// The Module to control multiplayer connection.
 	/// </summary>
-	[RequireComponent(typeof(AnimationLoopWrapper), typeof(ColorFlash))]
 	public class MultiplayerModule : Module
 	{
 		/// <summary>

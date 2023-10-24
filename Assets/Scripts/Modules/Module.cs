@@ -6,7 +6,6 @@ using ECellDive.Interfaces;
 using ECellDive.UI;
 using ECellDive.Utility;
 using ECellDive.Utility.Data;
-using Unity.Netcode;
 
 namespace ECellDive.Modules
 {
@@ -22,35 +21,79 @@ namespace ECellDive.Modules
 							INamed
 	{
 		/// <summary>
-		/// The renderer of the module.
+		/// The array of renderers this module might have.
+		/// If nothing is set in the Editor (length = 0), the module
+		/// will try to find one in this gameobject and its children
+		/// in the Awake method. If really nothing is found, the array
+		/// is set to null. So, if you need to know if the module has
+		/// any renderer, check against null.
+		/// 
+		/// If you specify a renderer in the Editor, you need to specify
+		/// the corresponding color property name in <see cref="renderersColorPropertyNames"/>.
 		/// </summary>
-		/// <remarks>
-		/// May be null is the module doesn't have a renderer.
-		/// </remarks>
 		[Header("Module Parameters")]
-		[Tooltip("If null, tries to find one in this gameobject.")]
-		[SerializeField] protected Renderer[] m_Renderers;
+		[Tooltip("If null, tries to find one in this gameobject and its children.")]
+		[SerializeField] protected Renderer[] renderers;
 
 		/// <summary>
-		/// The line renderer of the module.
+		/// The names of the properties of the shaders used by the renderers
+		/// to manipulate the color of the module. The names are used to search
+		/// for the ColorID of the properties in the shaders which, in turn, are
+		/// used to assign the color of the module in the material property block
+		/// (see <see cref="mpb"/>).
+		/// 
+		/// In case nothing is set in the Editor <see cref="renderers"/> AND 
+		/// the module automatically finds a renderer in this gameobject or its
+		/// children AND nothing is set in the Editor <see cref="renderersColorPropertyNames"/>,
+		/// it will default to "_BaseColor".
 		/// </summary>
-		/// <remarks>
-		/// May be null is the module doesn't have a line renderer.
-		/// </remarks>
-		[Tooltip("If null, tries to find one in this gameobject.")]
-		[SerializeField] protected LineRenderer[] m_LineRenderers;
+		[SerializeField] protected string[] renderersColorPropertyNames;
+
+		/// <summary>
+		/// The ID of the color property in the shader of the module to change its color
+		/// in the material property block.
+		/// </summary>
+		protected int[] renderersColorPropertyIDs;
+
+		/// <summary>
+		/// The array of line renderers this module might have.
+		/// If nothing is set in the Editor (length = 0), the module
+		/// will try to find one in this gameobject and its children
+		/// in the Awake method. If really nothing is found, the array
+		/// is set to null. So, if you need to know if the module has
+		/// any line renderer, check against null.
+		/// 
+		/// If you specify a line renderer in the Editor, you need to specify
+		/// the corresponding color property name in <see cref="renderersColorPropertyNames"/>.
+		/// </summary>
+		[Tooltip("If null, tries to find one in this gameobject and its children.")]
+		[SerializeField] protected LineRenderer[] lineRenderers;
+
+		/// <summary>
+		/// The names of the properties of the shaders used by the line renderers
+		/// to manipulate the color of the module. The names are used to search
+		/// for the ColorID of the properties in the shaders which, in turn, are
+		/// used to assign the color of the module in the material property block
+		/// (see <see cref="mpb"/>).
+		/// 
+		/// In case nothing is set in the Editor <see cref="lineRenderers"/> AND 
+		/// the module automatically finds a line renderer in this gameobject or its
+		/// children AND nothing is set in the Editor <see cref="lineRenderersColorPropertyNames"/>,
+		/// it will default to "_BaseColor".
+		/// </summary>
+		[SerializeField] protected string[] lineRenderersColorPropertyNames;
+
+		/// <summary>
+		/// The ID of the color property in the shader of the module to change its color
+		/// in the material property block.
+		/// </summary>
+		protected int[] lineRenderersColorPropertyIDs;
 
 		/// <summary>
 		/// The material property block used to change the color of the module while 
 		/// avoiding to create a new material instance.
 		/// </summary>
 		protected MaterialPropertyBlock mpb;
-
-		/// <summary>
-		/// The ID of the color property in the shader of the module to change its color
-		/// in the material property block.
-		/// </summary>
-		protected int colorID;
 
 		#region - INamed Members -
 		/// <summary>
@@ -211,15 +254,69 @@ namespace ECellDive.Modules
 				m_delegateTarget = gameObject;
 			}
 
-			if (m_Renderers == null)
+			mpb = new MaterialPropertyBlock();
+			if (renderers.Length == 0)
 			{
-				m_Renderers = new Renderer[] { GetComponent<Renderer>() };
-			}
-			if (m_LineRenderers == null)
-			{
-				m_LineRenderers = new LineRenderer[] { GetComponent<LineRenderer>() };
+				Renderer renderer = GetComponentInChildren<Renderer>();
+				if (renderer != null)
+				{
+					renderers = new Renderer[] { renderer };
+					if (renderersColorPropertyNames.Length == 0)
+					{
+						renderersColorPropertyNames = new string[] { "_BaseColor" };
+					}
+				}
+				else
+				{
+					renderersColorPropertyNames = null;
+					renderers = null;
+				}
 			}
 
+			if (lineRenderers.Length == 0)
+			{
+				LineRenderer lineRenderer = GetComponentInChildren<LineRenderer>();
+				if (lineRenderer != null)
+				{
+					lineRenderers = new LineRenderer[] { lineRenderer };
+					if (lineRenderersColorPropertyNames.Length == 0)
+					{
+						lineRenderersColorPropertyNames = new string[] { "_BaseColor" };
+					}
+				}
+				else
+				{
+					lineRenderersColorPropertyNames = null;
+					lineRenderers = null;
+				}
+			}
+
+			if (renderers != null)
+			{
+				renderersColorPropertyIDs = new int[renderersColorPropertyNames.Length];
+				for (int i = 0; i < renderersColorPropertyNames.Length; i++)
+				{
+					renderersColorPropertyIDs[i] = Shader.PropertyToID(renderersColorPropertyNames[i]);
+				}
+			}
+			else
+			{
+				renderersColorPropertyIDs = null;
+			}
+
+			if (lineRenderers != null)
+			{
+				lineRenderersColorPropertyIDs = new int[lineRenderersColorPropertyNames.Length];
+				for (int i = 0; i < lineRenderersColorPropertyNames.Length; i++)
+				{
+					lineRenderersColorPropertyIDs[i] = Shader.PropertyToID(lineRenderersColorPropertyNames[i]);
+				}
+			}
+			else
+			{
+				lineRenderersColorPropertyIDs = null;
+			}			
+			
 			m_displayInfoTagsActions.left.action.performed += ManageInfoTagsDisplay;
 			m_displayInfoTagsActions.right.action.performed += ManageInfoTagsDisplay;
 		}
@@ -232,8 +329,6 @@ namespace ECellDive.Modules
 
 		private void OnEnable()
 		{
-			mpb = new MaterialPropertyBlock();
-			colorID = Shader.PropertyToID("_Color");
 			ApplyColor(defaultColor);
 		}
 
@@ -283,20 +378,21 @@ namespace ECellDive.Modules
 		#region - IColorHighlightable Methods -
 		public virtual void ApplyColor(Color _color)
 		{
-			mpb.SetVector(colorID, _color);
-			if (m_Renderers != null)
+			if (renderers != null)
 			{
-				for(int i = 0; i<m_Renderers.Length; i++)
+				for(int i = 0; i<renderers.Length; i++)
 				{
-					m_Renderers[i].SetPropertyBlock(mpb);
+					mpb.SetVector(renderersColorPropertyIDs[i], _color);
+					renderers[i].SetPropertyBlock(mpb);
 				}
 			}
 
-			if (m_LineRenderers != null)
+			if (lineRenderers != null)
 			{
-				for (int i = 0; i < m_LineRenderers.Length; i++)
+				for (int i = 0; i < lineRenderers.Length; i++)
 				{
-					m_LineRenderers[i].SetPropertyBlock(mpb);
+					mpb.SetVector(lineRenderersColorPropertyIDs[i], _color);
+					lineRenderers[i].SetPropertyBlock(mpb);
 				}
 			}
 		}

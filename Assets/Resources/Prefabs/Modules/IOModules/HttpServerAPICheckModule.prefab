@@ -384,10 +384,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe5420c1e81e6145aea2722e9494f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Renderers:
+  renderers:
   - {fileID: 6558213575010283857}
   - {fileID: 1110206571462821875}
-  m_LineRenderers: []
+  renderersColorPropertyNames:
+  - _Color
+  - _Color
+  lineRenderers: []
+  lineRenderersColorPropertyNames: []
   m_nameField: {fileID: 1036601480557609569}
   m_nameTextFieldContainer: {fileID: 1093379436955378738}
   m_delegateTarget: {fileID: 0}
@@ -403,9 +407,6 @@ MonoBehaviour:
     serverIP: 127.0.0.1
     port: 8000
   implementedHttpAPI: []
-  renderers:
-  - {fileID: 6558213575010283857}
-  - {fileID: 1110206571462821875}
   serverUIData:
     refNameInputField: {fileID: 6664578177745554331}
     refIPInputField: {fileID: 3733202270026996916}

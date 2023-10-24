@@ -85,8 +85,6 @@ namespace ECellDive.Modules
 			Vector3 nodePosition = Vector3.zero;
 			foreach (Node node in m_graphData.nodes)
 			{
-				Debug.Log($"Building: Adding node {node.ID}");
-
 				GameObject nodeGO = Instantiate(m_graphPrefabsComponents[1], diveTravelMapRoot.transform);
 				NodeGO nodeGOcp = nodeGO.GetComponent<NodeGO>();
 				nodeGOcp.SetNodeData(node);
