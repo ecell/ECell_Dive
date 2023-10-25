@@ -696,19 +696,10 @@ MonoBehaviour:
     m_right: {fileID: -7671817019672214048, guid: 20c9f019e259ffd43bcace5674974990, type: 3}
   m_refInfoTagPrefab: {fileID: 1851362324981573387}
   m_refInfoTagsContainer: {fileID: 250984153827792071}
-  m_controlPoints: []
-  m_controlPointsCount: 0
-  m_curvePoints: []
   m_curvePointsCount: 10
-  m_edgeData:
-    m_ID: 0
-    m_source: 0
-    m_target: 0
-    m_name: 
-  m_informationString: 
   m_defaultStartWidth: 0.1
   m_defaultEndWidth: 0.1
-  m_refBoxColliderHolder: {fileID: 8331882842184541756}
+  m_refColliderHolder: {fileID: 8331882842184541756}
 --- !u!114 &3034927749020938073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,8 +726,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5123274164833577847}
   - component: {fileID: 2785898690688763487}
+  - component: {fileID: 6030783825770500406}
   m_Layer: 8
-  m_Name: Graphics
+  m_Name: Collider Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -765,10 +757,24 @@ BoxCollider:
   m_GameObject: {fileID: 8331882842184541756}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!64 &6030783825770500406
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8331882842184541756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &1561973035649650771
 PrefabInstance:
   m_ObjectHideFlags: 0

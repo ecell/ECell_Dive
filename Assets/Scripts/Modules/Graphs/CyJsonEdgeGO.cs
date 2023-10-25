@@ -35,15 +35,15 @@ namespace ECellDive.Modules
 		public float defaultEndWidth { get; protected set; }
 
 		/// <summary>
-		/// The field for <see cref="refBoxColliderHolder"/>.
+		/// The field for <see cref="refColliderHolder"/>.
 		/// </summary>
-		[SerializeField] private GameObject m_refBoxColliderHolder;
+		[SerializeField] private GameObject m_refColliderHolder;
 
 		/// <inheritdoc/>
-		public GameObject refBoxColliderHolder
+		public GameObject refColliderHolder
 		{
-			get => m_refBoxColliderHolder;
-			set => refBoxColliderHolder = m_refBoxColliderHolder;
+			get => m_refColliderHolder;
+			set => refColliderHolder = m_refColliderHolder;
 		}
 		#endregion
 
@@ -303,7 +303,7 @@ namespace ECellDive.Modules
 
 			//Particle system parameters
 			emissionModule.rateOverTime = 0;
-			shapeModule.scale = m_refBoxColliderHolder.transform.localScale;
+			shapeModule.scale = m_refColliderHolder.transform.localScale;
 			refParticleSystem.transform.position = start.position;
 			refParticleSystem.transform.LookAt(target.position);
 			mainModule.startLifetime = Vector3.Distance(start.position, target.position);
@@ -378,10 +378,10 @@ namespace ECellDive.Modules
 		/// </summary>
 		private void SetColliderHeightWidth()
 		{
-			m_refBoxColliderHolder.transform.localScale = new Vector3(
+			m_refColliderHolder.transform.localScale = new Vector3(
 															0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),
 															0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),
-															m_refBoxColliderHolder.transform.localScale.z);
+															m_refColliderHolder.transform.localScale.z);
 		}
 
 		/// <summary>
@@ -690,9 +690,9 @@ namespace ECellDive.Modules
 		/// <inheritdoc/>
 		public void SetCollider(Transform _start, Transform _end)
 		{
-			m_refBoxColliderHolder.transform.localPosition = 0.5f * (_start.localPosition + _end.localPosition);
-			m_refBoxColliderHolder.transform.LookAt(_end);
-			m_refBoxColliderHolder.transform.localScale = new Vector3(
+			m_refColliderHolder.transform.localPosition = 0.5f * (_start.localPosition + _end.localPosition);
+			m_refColliderHolder.transform.LookAt(_end);
+			m_refColliderHolder.transform.localScale = new Vector3(
 															0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),//0.33f is custom for the inner size of the arrow texture
 															0.33f * Mathf.Max(m_LineRenderer.startWidth, m_LineRenderer.endWidth),//0.33f is custom for the inner size of the arrow texture
 															0.95f * Vector3.Distance(_start.localPosition, _end.localPosition));//0.95f is custom to avoid overlapping of the edge box collider with the nodes colliders
@@ -760,7 +760,7 @@ namespace ECellDive.Modules
 			SetLineRendererWidth();
 
 			SetColliderHeightWidth();
-			shapeModule.scale = m_refBoxColliderHolder.transform.localScale;
+			shapeModule.scale = m_refColliderHolder.transform.localScale;
 		}
 
 		/// <inheritdoc/>

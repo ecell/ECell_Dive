@@ -151,10 +151,10 @@ namespace ECellDive.Interfaces
 		float defaultEndWidth { get; }
 
 		/// <summary>
-		/// The game object containing a box collider to be placed
+		/// The game object containing a collider to be placed
 		/// dynamically around the edge so that the user can interact with it.
 		/// </summary>
-		GameObject refBoxColliderHolder { get; }
+		GameObject refColliderHolder { get; }
 
 		/// <summary>
 		/// The logic to graphically reverse the orientation of the edge GO.
@@ -177,7 +177,7 @@ namespace ECellDive.Interfaces
 		void SetDefaultWidth(float _start, float _end);
 
 		/// <summary>
-		/// Adapts the position and rotation of the <see cref="refBoxColliderHolder"/>.
+		/// Adapts the position and rotation of the <see cref="refColliderHolder"/>.
 		/// </summary>
 		/// <param name="_start">The transform of the node in the graph from
 		/// where the edge is starting.</param>
