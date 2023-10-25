@@ -126,6 +126,8 @@ namespace ECellDive.Modules
 				DataID_to_DataGO.Add(m_graphData.edges[i].ID, edgeGO);
 			}
 
+			//Center the dive travel map root
+			diveTravelMapRoot.transform.localPosition = -0.5f * (nodePosition - Vector3.right) * graphScalingData.positionScaleFactor;
 		}
 
 		/// <summary>

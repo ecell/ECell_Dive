@@ -70,7 +70,7 @@ BoxCollider:
   m_GameObject: {fileID: 3330463156146007666}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.11}
   m_Center: {x: 0, y: 0, z: 0}
@@ -458,6 +458,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8d3f374200dba44af118e295631615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderers: []
+  renderersColorPropertyNames: []
+  lineRenderers: []
+  lineRenderersColorPropertyNames: []
   m_nameField: {fileID: 5793636836130262405}
   m_nameTextFieldContainer: {fileID: 5848464261312900054}
   m_delegateTarget: {fileID: 0}
@@ -632,7 +636,7 @@ PrefabInstance:
     - target: {fileID: 2062267535512959358, guid: 15539f246618a3f458706907b1edbac4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8866863357936152613}
     - target: {fileID: 2062267535512959358, guid: 15539f246618a3f458706907b1edbac4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SelfDestroy

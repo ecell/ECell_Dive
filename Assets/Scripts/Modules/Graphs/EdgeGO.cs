@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 using ECellDive.Interfaces;
@@ -126,9 +127,12 @@ namespace ECellDive.Modules
 		}
 		#endregion
 
+		Mesh mesh;
+
 		protected override void Awake()
 		{
 			base.Awake();
+			mesh = new Mesh();
 			SetControlPoints(new Vector3[4]);
 		}
 
@@ -164,6 +168,22 @@ namespace ECellDive.Modules
 		{
 			nameTextFieldContainer.transform.localPosition = 0.5f * (lineRenderers[0].GetPosition(0) + lineRenderers[0].GetPosition((int)curvePointsCount-1)) +
 															_sizeScaleFactor * 1.5f * Vector3.up;
+		}
+
+		/// <summary>
+		/// Delaying the by one frame to work around a bug in Unity 2020.3
+		/// It will become obselete once we update the project to Unity 2021.X+.
+		/// <see href="https://forum.unity.com/threads/why-do-instantiated-linerenderers-not-allow-bakemesh-in-unity.1139956/"/>
+		/// </summary>
+		private IEnumerator DelayedSetColliderC()
+		{
+			Debug.Log("Main Camera", Camera.main);
+			yield return new WaitForEndOfFrame();
+			
+			refColliderHolder.transform.LookAt(Camera.main.transform.position);
+			lineRenderers[0].BakeMesh(mesh);
+
+			refColliderHolder.GetComponent<MeshCollider>().sharedMesh = mesh;
 		}
 
 		#region - IColorHighlightable Methods -
@@ -238,18 +258,13 @@ namespace ECellDive.Modules
 		{
 			Vector3 startBuffer = lineRenderers[0].GetPosition(0);
 			lineRenderers[0].SetPosition(0, lineRenderers[0].GetPosition(1));
-			lineRenderers[0].SetPosition(1, startBuffer);
+			lineRenderers[0].SetPosition((int)curvePointsCount-1, startBuffer);
 		}
 
 		/// <inheritdoc/>
 		public void SetCollider(Transform _start, Transform _end)
 		{
-			m_refColliderHolder.transform.localPosition = 0.5f * (_start.localPosition + _end.localPosition);
-			m_refColliderHolder.transform.LookAt(_end);
-			m_refColliderHolder.transform.localScale = new Vector3(
-															0.33f * Mathf.Max(lineRenderers[0].startWidth, lineRenderers[0].endWidth),//0.33f is custom for the inner size of the arrow texture
-															0.33f * Mathf.Max(lineRenderers[0].startWidth, lineRenderers[0].endWidth),//0.33f is custom for the inner size of the arrow texture
-															0.95f * Vector3.Distance(_start.localPosition, _end.localPosition));//0.95f is custom to avoid overlapping of the edge box collider with the nodes colliders
+			StartCoroutine(DelayedSetColliderC());
 		}
 
 		/// <inheritdoc/>
@@ -273,20 +288,31 @@ namespace ECellDive.Modules
 		/// <inheritdoc/>
 		public void SetLineRendererPosition(Transform _start, Transform _end)
 		{
+			//We move the edge to the middle of the two nodes.
+			Vector3 start = transform.localPosition;
+			transform.localPosition = 0.5f * (_start.localPosition + _end.localPosition);
+
+			//We compute the offset between the new position and the old one.
+			Vector3 offset = transform.localPosition - start;
+			
+			//We compensate the line renderer start and end points by the same offset.
+			start = _start.localPosition - offset;
+			Vector3 end = _end.localPosition - offset;
+
 			//We create the control points a the 1/3 and 2/3 of the edge.
 			//They are slightly offset from the edge by a vector perpendicular to the edge.
 			//That vector is the normal to the plane defined by the edge and the vector (0,0,-1).
-			Vector3 p1 = 0.33f * (_end.localPosition - _start.localPosition) + _start.localPosition;
-			p1 += 0.33f * Vector3.Cross(_end.localPosition - _start.localPosition, Vector3.back).normalized;
-			Vector3 p2 = 0.66f * (_end.localPosition - _start.localPosition) + _start.localPosition;
-			p2 += 0.33f * Vector3.Cross(_end.localPosition - _start.localPosition, Vector3.back).normalized;
+			Vector3 p1 = 0.33f * (end - start) + start;
+			p1 += 0.33f * Vector3.Cross(end - start, Vector3.back).normalized;
+			Vector3 p2 = 0.66f * (end - start) + start;
+			p2 += 0.33f * Vector3.Cross(end - start, Vector3.back).normalized;
 
 			//We assigned a 4 points array in the awake method.
 			//We can update it here with the new control points.
-			SetControlPoint(0, _start.localPosition);
+			SetControlPoint(0, start);
 			SetControlPoint(1, p1);
 			SetControlPoint(2, p2);
-			SetControlPoint(3, _end.localPosition);
+			SetControlPoint(3, end);
 
 			//We update the curve points array.
 			Interpolate();
