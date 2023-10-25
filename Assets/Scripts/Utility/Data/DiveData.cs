@@ -34,6 +34,11 @@ namespace ECellDive.Utility.Data.Dive
         public int parentSceneID;
 
         /// <summary>
+        /// The name of the scene.
+        /// </summary>
+        public string sceneName;
+
+        /// <summary>
         /// List of NetworkManager Client Ids that are present in the scene
         /// </summary>
         public List<ulong> inDivers;
@@ -48,10 +53,11 @@ namespace ECellDive.Utility.Data.Dive
         /// </summary>
         public List<GameNetModule> loadedModules;
 
-        public SceneData(int _sceneID, int _parentSceneID)
+        public SceneData(int _sceneID, int _parentSceneID, string _sceneName)
         {
             sceneID = _sceneID;
             parentSceneID = _parentSceneID;
+            sceneName = _sceneName;
             inDivers = new List<ulong>();
             outDivers = new List<ulong>();
             loadedModules = new List<GameNetModule>();

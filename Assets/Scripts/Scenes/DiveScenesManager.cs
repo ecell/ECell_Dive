@@ -42,7 +42,7 @@ namespace ECellDive.SceneManagement
 		/// <summary>
 		/// The list of dive scenes.
 		/// </summary>
-		public static List<SceneData> scenesBank = new List<SceneData>();
+		public List<SceneData> scenesBank = new List<SceneData>();
 
 		/// <summary>
 		/// A boolean to indicate that a scene has finished hiding thanks to
@@ -64,8 +64,22 @@ namespace ECellDive.SceneManagement
 				Debug.Log("Spawning Scene Management");
 				if (scenesBank.Count == 0)
 				{
-					AddNewDiveScene(-1);
+					AddNewDiveScene(-1, "Root");
+
+					//TODO1: This forces the player in the root scene on spwan
+					//But this does not account for player reconnecting to the game
+					//which may have left from a different scene. 
+					//TODO2 (maybe): The scene bank is not synchronized with the clients
+					//but is only managed by the server because currently the "AddNewDiveScene"
+					//method is only called within ServerRPC. But this there are no guarentees
+					//for the future. And we should really think whether the players might
+					//need it a lot in the future that it would be worth synchronizing it.
+					//Otherwise, we should have a Client->Server->Client RPCs to send the 
+					//scene's information to the clients.
 					DiverGetsInServerRpc(0, NetworkManager.Singleton.LocalClientId);
+					currentSceneisHidden = true;
+					StartCoroutine(ShowScene(0, NetworkManager.Singleton.LocalClientId));
+					StartCoroutine(UpdatePlayerDataC(0, NetworkManager.Singleton.LocalClientId));
 				}
 			}
 		}
@@ -141,9 +155,9 @@ namespace ECellDive.SceneManagement
 		/// <summary>
 		/// Called to instantiate a new scene upon diving in a module
 		/// </summary>
-		public int AddNewDiveScene(int _parentSceneId)
+		public int AddNewDiveScene(int _parentSceneId, string _sceneName)
 		{
-			SceneData newScene = new SceneData(scenesBank.Count, _parentSceneId);
+			SceneData newScene = new SceneData(scenesBank.Count, _parentSceneId, _sceneName);
 			foreach (ulong _clientId in NetworkManager.Singleton.ConnectedClientsIds)
 			{
 				newScene.AddOutDiver(_clientId);
@@ -152,6 +166,7 @@ namespace ECellDive.SceneManagement
 			return newScene.sceneID;
 		}
 
+#if UNITY_EDITOR
 		/// <summary>
 		/// Outputs the content of the <see cref="scenesBank"/>.
 		/// </summary>
@@ -164,7 +179,7 @@ namespace ECellDive.SceneManagement
 				LogSystem.AddMessage(LogMessageTypes.Debug, sceneData.ToString());
 			}
 		}
-
+#endif
 		/// <summary>
 		/// Calls <see cref="GameNetModule.NetHide"/> for every <see cref=
 		/// "GameNetModule"/> of the scene with <paramref name="_sceneID"/>

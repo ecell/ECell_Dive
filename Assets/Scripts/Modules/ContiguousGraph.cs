@@ -75,6 +75,18 @@ namespace ECellDive.GraphComponents
 			List<Node> nodesList = new List<Node>();
 			List<Edge> edgesList = new List<Edge>();
 
+			if (contiguousNodes.Count == 0)
+				return;
+
+			if (contiguousNodes.Count == 1)
+			{
+				string nodeName = $"{contiguousNodes[0]}";
+				nodesList.Add(new Node((uint)nodeName.GetHashCode(), nodeName));
+				nodes = nodesList.ToArray();
+				edges = new Edge[0];
+				return;
+			}
+
 			for(int i = 0; i<contiguousNodes.Count-1; i++)
 			{
 				string nodeName = $"{contiguousNodes[i]}";

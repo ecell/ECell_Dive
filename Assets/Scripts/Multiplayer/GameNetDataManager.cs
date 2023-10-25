@@ -9,6 +9,9 @@ using UnityEngine.Events;
 
 namespace ECellDive.Multiplayer
 {
+	/// <summary>
+	/// A class to manage shared data between all players in a multiplayer session.
+	/// </summary>
 	public class GameNetDataManager : NetworkBehaviour
 	{
 		/// <summary>
