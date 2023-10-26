@@ -98,7 +98,11 @@ namespace ECellDive.UI
 		{
 			while(refContent.childCount > 0)
 			{
-                Destroy(refContent.GetChild(0).gameObject);
+#if UNITY_EDITOR
+				DestroyImmediate(refContent.GetChild(0).gameObject);
+#else
+				Destroy(refContent.GetChild(0).gameObject);
+#endif
             }
 		}
 
