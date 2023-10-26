@@ -97,7 +97,7 @@ namespace ECellDive.Multiplayer
 			{
 
 				Debug.Log($"New Connection was a success. The new player's name is " +
-					$"{connectionPayload.playerName}, with GUID {connectionPayload.playerId}");
+					$"{connectionPayload.playerName}, with GUID {connectionPayload.playerId} and clientID {clientId}");
 				
 				SendServerToClientConnectResult(clientId, gameReturnStatus);
 

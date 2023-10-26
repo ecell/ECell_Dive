@@ -269,6 +269,7 @@ namespace ECellDive.Multiplayer
 			//Host side has already been updated in the server.
 			if (!IsHost)
 			{
+				Debug.Log($"SetPlayerGUIDToPlayerNetDataClientRpc in client {NetworkManager.Singleton.LocalClientId}");
 				playerGUIDToPlayerNetData[System.Guid.Parse(_playerGUID)] = _playerNetData;
 			}
 		}
@@ -354,6 +355,7 @@ namespace ECellDive.Multiplayer
 			//playerGUIDToPlayerNetData map of the server (since this is a server RPC).
 			if (!playerGUIDToPlayerNetData.ContainsKey(playerGUID))
 			{
+				Debug.Log($"New player {_playerName} with GUID {_playerGUID} and clientID {_expeditorID} connected to the server.");
 				PlayerNetData newPlayerNewData = new PlayerNetData
 				{
 					playerName = _playerName,
@@ -364,6 +366,16 @@ namespace ECellDive.Multiplayer
 				playerGUIDToPlayerNetData[playerGUID] = newPlayerNewData;
 
 				SetPlayerGUIDToPlayerNetDataClientRpc(_playerGUID, newPlayerNewData);//for all clients
+			}
+
+			foreach (KeyValuePair<ulong, System.Guid> pair in clientIDToPlayerGUIDMap)
+			{
+				Debug.Log($"ClientID {pair.Key} has GUID {pair.Value}");
+			}
+
+			foreach (KeyValuePair<System.Guid, PlayerNetData> pair in playerGUIDToPlayerNetData)
+			{
+				Debug.Log($"PlayerGUID {pair.Key} has PlayerNetData [{pair.Value.playerName}, {pair.Value.clientId}]");
 			}
 
 			//We send data about all other players to the new player
