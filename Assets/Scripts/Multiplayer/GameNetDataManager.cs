@@ -342,7 +342,7 @@ namespace ECellDive.Multiplayer
 		/// <param name="_expeditorID"></param>
 		/// <param name="_playerName"></param>
 		/// <param name="_playerGUID"></param>
-		[ServerRpc]
+		[ServerRpc(RequireOwnership = false)]
 		private void ShareNetworkDataServerRPC(ulong _expeditorID, string _playerName, string _playerGUID)
 		{
 			System.Guid playerGUID = System.Guid.Parse(_playerGUID);
