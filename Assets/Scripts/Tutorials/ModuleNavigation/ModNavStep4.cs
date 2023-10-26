@@ -1,48 +1,102 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using ECellDive.UI;
+using UnityEngine.InputSystem;
+using ECellDive.Modules;
+using ECellDive.Portal;
+using ECellDive.Utility.Data;
+using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.Tutorials
 {
-    /// <summary>
-    /// The step 4 of the Tutorial on Modules Navigation.
-    /// Add an FBA module.
-    /// </summary>
-    public class ModNavStep4 : Step
-    {
-        private Button targetButton;
-        private GUIManager guiManager;
-        private bool targetButtonSelected;
+	/// <summary>
+	/// The step 4 of the Tutorial on Modules Navigation.
+	/// DIVE!
+	/// </summary>
+	public class ModNavStep4 : Step
+	{
+		[Header("Local Step Members")]
+		public LeftRightData<InputActionReference> diveActions;
 
-        public override bool CheckCondition()
-        {
-            return targetButtonSelected;
-        }
+		private CyJsonModule refCyJsonModule;
+		private bool hasStartedDiving;
 
-        public override void Conclude()
-        {
-            base.Conclude();
+		public override bool CheckCondition()
+		{
+			return hasStartedDiving;
+		}
 
-            targetButton.onClick.RemoveListener(OnSelect);
-        }
+		private void CheckDive(RaycastHit _hit)
+		{
+			PortalManager gnm;
+			if (_hit.transform.TryGetComponent(out gnm))
+			{
+				hasStartedDiving = true;
+			}
+		}
 
-        public override void Initialize()
-        {
-            base.Initialize();
+		private void CheckDiveLeft(InputAction.CallbackContext _ctx)
+		{
+			RaycastHit hit;
+			if (Physics.Raycast(
+				StaticReferencer.Instance.riControllersGO.left.transform.position,
+				StaticReferencer.Instance.riControllersGO.left.transform.forward,
+				out hit,
+				30))
+			{
+				CheckDive(hit);
+			}
+		}
 
-            guiManager = GameObject.
-                              FindGameObjectWithTag("ExternalObjectContainer").
-                              GetComponent<GUIManager>();
+		private void CheckDiveRight(InputAction.CallbackContext _ctx)
+		{
+			RaycastHit hit;
+			if (Physics.Raycast(
+				StaticReferencer.Instance.riControllersGO.right.transform.position,
+				StaticReferencer.Instance.riControllersGO.right.transform.forward,
+				out hit,
+				30))
+			{
+				CheckDive(hit);
+			}
+		}
 
-            //The user can interact with the button to add a FBA module to the scene.
-            guiManager.refModulesMenuManager.SwitchSingleInteractibility(3);
-            targetButton = guiManager.refModulesMenuManager.targetGroup[3].GetComponent<Button>();
-            targetButton.onClick.AddListener(OnSelect);
-        }
+		public override void Conclude()
+		{
+			base.Conclude();
 
-        private void OnSelect()
-        {
-            targetButtonSelected = true;
-        }
-    }
+			diveActions.left.action.performed -= CheckDiveLeft;
+			diveActions.right.action.performed -= CheckDiveRight;
+
+			StartCoroutine(DelaySearch());
+		}
+
+		public override void Initialize()
+		{
+			base.Initialize();
+
+			diveActions.left.action.performed += CheckDiveLeft;
+			diveActions.right.action.performed += CheckDiveRight;
+
+			refCyJsonModule = FindObjectOfType<CyJsonModule>();
+
+			//We collect the CyJson module (created at the previous step) to
+			//make sure that it is cleaned up when the user quits the tutorial.
+			ModNavTutorialManager.tutorialGarbage.Add(refCyJsonModule.gameObject);
+
+		}
+
+		private IEnumerator DelaySearch()
+		{
+			//We just wait a bit to make sure the object we will be looking
+			//for has been instantiated by the server.
+			//It is a very bad solution... but it works for now.
+			yield return new WaitForSeconds(0.5f);
+
+			refCyJsonModule = FindObjectOfType<CyJsonModule>();
+			//At this stage the user has started diving into the data module.
+			//So there should be a rootPathway created that we can capture.
+			ModNavTutorialManager.tutorialGarbage.Add(refCyJsonModule.pathwayRoot);
+		}
+	}
 }
+

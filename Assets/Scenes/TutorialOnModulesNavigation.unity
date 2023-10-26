@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 1013638114}
   - component: {fileID: 1013638115}
   m_Layer: 0
-  m_Name: ModNavStep2
+  m_Name: ModNavStep3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -566,7 +566,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2143762825}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1013638115
 MonoBehaviour:
@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 1190507055}
   - component: {fileID: 1190507056}
   m_Layer: 0
-  m_Name: ModNavStep3
+  m_Name: ModNavStep4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -650,7 +650,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2143762825}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1190507056
 MonoBehaviour:
@@ -727,7 +727,7 @@ GameObject:
   - component: {fileID: 1660384882}
   - component: {fileID: 1660384883}
   m_Layer: 0
-  m_Name: ModNavStep6
+  m_Name: ModNavStep7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -745,7 +745,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2143762825}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1660384883
 MonoBehaviour:
@@ -891,7 +891,7 @@ GameObject:
   - component: {fileID: 1961897782}
   - component: {fileID: 1961897783}
   m_Layer: 0
-  m_Name: ModNavStep5
+  m_Name: ModNavStep6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -909,7 +909,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2143762825}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1961897783
 MonoBehaviour:
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 2028496003}
   - component: {fileID: 2028496004}
   m_Layer: 0
-  m_Name: ModNavStep4
+  m_Name: ModNavStep5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -986,7 +986,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2143762825}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2028496004
 MonoBehaviour:
@@ -1046,6 +1046,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1679204126489944202, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 949993373}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2140287971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2140287972}
+  m_Layer: 0
+  m_Name: ModNavStep2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2140287972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140287971}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2143762825}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2143762823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,6 +1163,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 34642054}
+  - {fileID: 2140287972}
   - {fileID: 1013638114}
   - {fileID: 1190507055}
   - {fileID: 2028496003}

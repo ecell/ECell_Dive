@@ -1,44 +1,48 @@
-using ECellDive.Modules;
+using UnityEngine;
+using UnityEngine.UI;
+using ECellDive.UI;
 
 namespace ECellDive.Tutorials
 {
     /// <summary>
     /// The step 5 of the Tutorial on Modules Navigation.
-    /// Suggest to KO reactions and re-simulate to see the
-    /// changes.
+    /// Add an FBA module.
     /// </summary>
     public class ModNavStep5 : Step
     {
-        private HttpServerFbaModule httpFbaM;
-        private bool moduleImported;
+        private Button targetButton;
+        private GUIManager guiManager;
+        private bool targetButtonSelected;
 
         public override bool CheckCondition()
         {
-            return moduleImported;
+            return targetButtonSelected;
         }
 
         public override void Conclude()
         {
             base.Conclude();
 
-            httpFbaM.OnFbaResultsReceive -= ProcessResult;
+            targetButton.onClick.RemoveListener(OnSelect);
         }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            httpFbaM = FindObjectOfType<HttpServerFbaModule>();
-            httpFbaM.OnFbaResultsReceive += ProcessResult;
+            guiManager = GameObject.
+                              FindGameObjectWithTag("ExternalObjectContainer").
+                              GetComponent<GUIManager>();
 
-            //We collect the FBA module (created at the previous step) to
-            //make sure that it is cleaned up when the user quits the tutorial.
-            ModNavTutorialManager.tutorialGarbage.Add(httpFbaM.gameObject);
+            //The user can interact with the button to add a FBA module to the scene.
+            guiManager.refModulesMenuManager.SwitchSingleInteractibility(3);
+            targetButton = guiManager.refModulesMenuManager.targetGroup[3].GetComponent<Button>();
+            targetButton.onClick.AddListener(OnSelect);
         }
 
-        private void ProcessResult(bool _result)
+        private void OnSelect()
         {
-            moduleImported = _result;
+            targetButtonSelected = true;
         }
     }
 }

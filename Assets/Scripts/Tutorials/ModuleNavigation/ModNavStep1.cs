@@ -44,7 +44,7 @@ namespace ECellDive.Tutorials
             //The user can interact with the button leading to the Log Menu
             guiManager.refMainMenu.GetComponent<MainMenuManager>().SwitchSingleInteractibility(4);
 
-            //The user can interact with the button to add a remote importer to the scene.
+            //The user can interact with the button to add an API Checker to the scene.
             guiManager.refModulesMenuManager.SwitchSingleInteractibility(0);
             targetButton = guiManager.refModulesMenuManager.targetGroup[0].GetComponent<Button>();
             targetButton.onClick.AddListener(OnSelect);
