@@ -78,7 +78,7 @@ namespace ECellDive.Modules
 			Clear();
 
 			List<int> diveSceneTrace = GameNetDataManager.Instance.GetSceneTrace(NetworkManager.Singleton.LocalClientId);
-			//List<int> diveSceneTrace = new List<int>() { 1, 2, 5, 4, 1, 5, 6 };
+			//List<int> diveSceneTrace = new List<int>() { 1, 2, 5, 4, 1, 5, 6 }; //For tests and debug
 			m_graphData.Populate(diveSceneTrace);
 
 			diveTravelMapRoot = Instantiate(m_graphPrefabsComponents[0], gameObject.transform);
@@ -94,6 +94,7 @@ namespace ECellDive.Modules
 				nodeGOcp.SetScale(Vector3.one, graphScalingData.sizeScaleFactor);
 				
 				nodeGOcp.SetName(DiveScenesManager.Instance.scenesBank[diveSceneTrace[i]].sceneName);
+				//nodeGOcp.SetName(m_graphData.nodes[i].name); //for tests and debug
 				nodeGOcp.SetNamePosition(graphScalingData.sizeScaleFactor);
 				nodeGOcp.HideName();
 
@@ -120,9 +121,10 @@ namespace ECellDive.Modules
 				edgeGOcp.SetName(m_graphData.edges[i].name);
 				edgeGOcp.SetNamePosition(graphScalingData.sizeScaleFactor);
 				edgeGOcp.HideName();
-				
-				edgeGOcp.SetColorGradient(nodesColors[m_graphData.edges[i].source],
-										  nodesColors[m_graphData.edges[i].target]);
+
+				edgeGOcp.defaultGradient[0] = nodesColors[m_graphData.edges[i].source];
+				edgeGOcp.defaultGradient[1] = nodesColors[m_graphData.edges[i].target];
+				edgeGOcp.ApplyGradient(edgeGOcp.defaultGradient);
 
 				DataID_to_DataGO.Add(m_graphData.edges[i].ID, edgeGO);
 			}

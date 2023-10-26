@@ -162,11 +162,11 @@ namespace ECellDive.Modules
 		}
 		#endregion
 
-		#region - IHighlightable Members - 
+		#region - IColorHighlightable Members - 
 		/// <summary>
 		/// Field of the property <see cref="defaultColor"/>
 		/// </summary>
-		[Header("IHighlightable Parameters")]
+		[Header("IColorHighlightable Parameters")]
 		[SerializeField] private Color m_defaultColor;
 			
 		/// <inheritdoc/>
@@ -255,6 +255,9 @@ namespace ECellDive.Modules
 			}
 
 			mpb = new MaterialPropertyBlock();
+			
+			//We try to assign default values to the renderers and the corresponding
+			//color property names if they have not been set in the editor.
 			if (renderers.Length == 0)
 			{
 				Renderer renderer = GetComponentInChildren<Renderer>();
@@ -273,6 +276,8 @@ namespace ECellDive.Modules
 				}
 			}
 
+			//We try to assign default values to the line renderers and the corresponding
+			//color property names if they have not been set in the editor.
 			if (lineRenderers.Length == 0)
 			{
 				LineRenderer lineRenderer = GetComponentInChildren<LineRenderer>();
@@ -291,6 +296,8 @@ namespace ECellDive.Modules
 				}
 			}
 
+			//If we found renderers, the above code either assigned default color property
+			//names or the user did it in the editor. In both cases, we the names to IDs.
 			if (renderers != null)
 			{
 				renderersColorPropertyIDs = new int[renderersColorPropertyNames.Length];
@@ -304,6 +311,8 @@ namespace ECellDive.Modules
 				renderersColorPropertyIDs = null;
 			}
 
+			//If we found line renderers, the above code either assigned default color property
+			//names or the user did it in the editor. In both cases, we the names to IDs.
 			if (lineRenderers != null)
 			{
 				lineRenderersColorPropertyIDs = new int[lineRenderersColorPropertyNames.Length];
