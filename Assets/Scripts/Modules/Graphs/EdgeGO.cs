@@ -11,7 +11,7 @@ namespace ECellDive.Modules
 	/// The class to manage an edge defined by <see cref="ECellDive.Utility.Data.Graph.Edge"/>.
 	/// and nothing more.
 	/// </summary>
-	public class EdgeGO : Module, IEdgeGO<Edge>, IBezierCurve
+	public class EdgeGO : Module, IEdgeGO<Edge>, IBezierCurve, IGradient
 	{
 		#region - IBezierCurve Members -
 		/// <summary>
@@ -127,32 +127,81 @@ namespace ECellDive.Modules
 		}
 		#endregion
 
-		Mesh mesh;
+		#region - IGradient Members -
+
+		/// <summary>
+		/// The field for the property <see cref="defaultGradient"/>.
+		/// </summary>
+		[Header("IGradient Parameters")]
+		[SerializeField] private Color[] m_defaultGradient;
+
+		/// <inheritdoc/>
+		public Color[] defaultGradient
+		{
+			get => m_defaultGradient;
+			set => m_defaultGradient = value;
+		}
+
+		#endregion
+
+		/// <summary>
+		/// The buffer to the ID of the shader property "_UseGradient"
+		/// so that we don't have to call Shader.PropertyToID every time
+		/// we change the state of the gradient.
+		/// </summary>
+		private int useGradientID;
+
+		/// <summary>
+		/// The buffer to the ID of the shader property "_GradientStartColor"
+		/// so that we don't have to call Shader.PropertyToID every time
+		/// we update the start color of the gradient used by the edge.
+		/// </summary>
+		private int gradientStartColorID;
+
+		/// <summary>
+		/// The buffer to the ID of the shader property "_GradientEndColor"
+		/// so that we don't have to call Shader.PropertyToID every time
+		/// we update the end color of the gradient used by the edge.
+		/// </summary>
+		private int gradientEndColorID;
+
+		/// <summary>
+		/// The mesh buffer for the collider matching the line defined
+		/// by the line renderer.
+		/// </summary>
+		private Mesh colliderMesh;
 
 		protected override void Awake()
 		{
 			base.Awake();
-			mesh = new Mesh();
+
+			useGradientID = Shader.PropertyToID("_UseGradient");
+			gradientStartColorID = Shader.PropertyToID("_GradientStartColor");
+			gradientEndColorID = Shader.PropertyToID("_GradientEndColor");
+			colliderMesh = new Mesh();
+
 			SetControlPoints(new Vector3[4]);
 		}
 
-		/// <summary>
-		/// Maps a gradient of colors on the edge.
-		/// This is possible only if the edge uses the custom shader "Edge"
-		/// (Assets/Resources/Shaders/Edge.shadergraph).
-		/// </summary>
-		/// <param name="'_start">
-		/// The color at the start of the edge.
-		/// </param>
-		/// <param name="_end">
-		/// The color at the end of the edge.
-		/// </param>
-		public void SetColorGradient(Color _start, Color _end)
+		private void OnEnable()
 		{
-			mpb.SetFloat("_UseGradient", 1f);
-			mpb.SetVector("_GradientColorA", _start);
-			mpb.SetVector("_GradientColorB", _end);
-			lineRenderers[0].SetPropertyBlock(mpb);
+			ApplyGradient(defaultGradient);
+		}
+
+		/// <summary>
+		/// Delaying the by one frame to work around a bug in Unity 2020.3
+		/// It will become obselete once we update the project to Unity 2021.X+.
+		/// <see href="https://forum.unity.com/threads/why-do-instantiated-linerenderers-not-allow-bakecolliderMesh-in-unity.1139956/"/>
+		/// </summary>
+		private IEnumerator DelayedSetColliderC()
+		{
+			Debug.Log("Main Camera", Camera.main);
+			yield return new WaitForEndOfFrame();
+
+			refColliderHolder.transform.LookAt(Camera.main.transform.position);
+			lineRenderers[0].BakeMesh(colliderMesh);
+
+			refColliderHolder.GetComponent<MeshCollider>().sharedMesh = colliderMesh;
 		}
 
 		/// <summary>
@@ -170,30 +219,22 @@ namespace ECellDive.Modules
 															_sizeScaleFactor * 1.5f * Vector3.up;
 		}
 
-		/// <summary>
-		/// Delaying the by one frame to work around a bug in Unity 2020.3
-		/// It will become obselete once we update the project to Unity 2021.X+.
-		/// <see href="https://forum.unity.com/threads/why-do-instantiated-linerenderers-not-allow-bakemesh-in-unity.1139956/"/>
-		/// </summary>
-		private IEnumerator DelayedSetColliderC()
-		{
-			Debug.Log("Main Camera", Camera.main);
-			yield return new WaitForEndOfFrame();
-			
-			refColliderHolder.transform.LookAt(Camera.main.transform.position);
-			lineRenderers[0].BakeMesh(mesh);
-
-			refColliderHolder.GetComponent<MeshCollider>().sharedMesh = mesh;
-		}
-
 		#region - IColorHighlightable Methods -
-
+		/// <inheritdoc/>
 		public override void ApplyColor(Color _color)
 		{
-			mpb.SetFloat("_UseGradient", 0f);
+			mpb.SetFloat(useGradientID, 0f);
 			base.ApplyColor(_color);
 		}
 
+		/// <inheritdoc/>
+		public override void UnsetHighlight()
+		{
+			if (!forceHighlight)
+			{
+				ApplyGradient(defaultGradient);
+			}
+		}
 		#endregion
 
 		#region - ICurve Methods -
@@ -327,6 +368,17 @@ namespace ECellDive.Modules
 		{
 			lineRenderers[0].startWidth = defaultStartWidth;
 			lineRenderers[0].endWidth = defaultEndWidth;
+		}
+		#endregion
+
+		#region - IGradient Methods -
+		/// <inheritdoc/>
+		public void ApplyGradient(Color[] _gradient)
+		{
+			mpb.SetFloat(useGradientID, 1f);
+			mpb.SetVector(gradientStartColorID, _gradient[0]);
+			mpb.SetVector(gradientEndColorID, _gradient[1]);
+			lineRenderers[0].SetPropertyBlock(mpb);
 		}
 		#endregion
 	}

@@ -84,11 +84,53 @@ namespace ECellDive.Interfaces
         void SetControlPoints(Vector3[] _points);
     }
 
+	/// <summary>
+	/// An Interface to store a default color and a method on 
+	/// how to apply a color to a gameobject.
+	/// </summary>
+	public interface IColored
+	{
+		/// <summary>
+		/// The color the object should be by default.
+		/// </summary>
+		Color defaultColor { get; set; }
+
+		/// <summary>
+		/// The function to call when we wish to apply a color to the material
+		/// of the gameobject.
+		/// </summary>
+        /// <param name="_color">
+        /// The color to apply.
+        /// </param>
+		abstract void ApplyColor(Color _color);
+	}
+
     /// <summary>
-    /// Interface for gameobject in the scene that may
-    /// display a name.
+    /// An interface to store a gradient and a method on
+    /// how to apply a gradient to a gameobject.
     /// </summary>
-    public interface INamed
+    public interface IGradient
+    {
+        /// <summary>
+        /// The array of colors that make up the gradient.
+        /// </summary>
+        Color[] defaultGradient { get; set; }
+
+        /// <summary>
+        /// The function to call when we wish to apply a gradient to the material
+        /// of the gameobject.
+        /// </summary>
+        /// <param name="_gradient">
+        /// The gradient to apply.
+        /// </param>
+        abstract void ApplyGradient(Color[] _gradient);
+    }
+
+	/// <summary>
+	/// Interface for gameobject in the scene that may
+	/// display a name.
+	/// </summary>
+	public interface INamed
     {
         /// <summary>
         /// The gameobject that contains the <see cref="nameField"/>.
