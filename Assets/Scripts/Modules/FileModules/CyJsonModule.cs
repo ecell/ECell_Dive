@@ -29,28 +29,7 @@ namespace ECellDive
 									IGraphGONet<CyJsonEdge, CyJsonNode>,
 									IModifiable,
 									ISaveable
-		{
-			/// <summary>
-			/// A structure to store the parameters to override the default
-			/// visual parameters of the edges.
-			/// </summary>
-			[System.Serializable]
-			public struct EdgeParametersOverride
-			{
-				public bool forceDefaultColor;
-				public bool forceDefaultWidth;
-				[Range(0, 1)] public float startWidthFactor;
-				[Range(0, 1)] public float endWidthFactor;
-			}
-
-			//public NetworkVariable<int> nbActiveDataSet = new NetworkVariable<int>(0);
-
-			/// <summary>
-			/// A counter for the number of data fragments received when this module
-			/// is built from a CyJson file and the data is broadcasted as fragments.
-			/// </summary>
-			public int refIndex { get; private set; }
-			
+		{			
 			/// <summary>
 			/// The reference to the root that will contain the nodes and edges
 			/// once the graph is generated.
@@ -67,8 +46,8 @@ namespace ECellDive
 			/// The structure to store the parameters to override the default
 			/// visual parameters of the edges of this graph.
 			/// </summary>
-			[SerializeField] private EdgeParametersOverride edgeParametersOverride = new EdgeParametersOverride
-			{
+			[SerializeField] private CyJsonEdgeGOParametersOverrideData edgeParametersOverride = new CyJsonEdgeGOParametersOverrideData
+            {
 				forceDefaultColor = false,
 				forceDefaultWidth = false,
 				startWidthFactor = 1,
@@ -181,12 +160,6 @@ namespace ECellDive
 
 				yield return null;
 			}
-
-			//[ServerRpc(RequireOwnership = false)]
-			//public void ConfirmIsActiveDataStatusServerRpc()
-			//{
-			//	nbActiveDataSet.Value++;
-			//}
 
 			/// <summary>
 			/// Coroutine encapsulating the instantiation of the edges of the pathway.
@@ -372,28 +345,44 @@ namespace ECellDive
 				}
 			}
 #endif
-
-			public void SetIndex(int _index)
-			{
-				refIndex = _index;
-			}
-
+			/// <summary>
+			/// Switches the value of <see cref="ECellDive.Utility.Data.Graph.CyJsonEdgeGOParametersOverrideData.forceDefaultColor"/>
+			/// in <see cref="edgeParametersOverride"/>.
+			/// </summary>
 			public void SwitchEdgeForceDefaultColorOverride()
 			{
 				edgeParametersOverride.forceDefaultColor = !edgeParametersOverride.forceDefaultColor;
 			}
 
+			/// <summary>
+			/// Switches the value of <see cref="ECellDive.Utility.Data.Graph.CyJsonEdgeGOParametersOverrideData.forceDefaultWidth"/>
+			/// in <see cref="edgeParametersOverride"/>.
+			/// </summary>
 			public void SwitchEdgeForceDefaultWidthOverride()
 			{
 				edgeParametersOverride.forceDefaultWidth = !edgeParametersOverride.forceDefaultWidth;
 			}
-			
-			public void SetEdgeStartWidthFactorOverride(float _startWidthFactor)
+
+            /// <summary>
+            /// Sets the value of <see cref="ECellDive.Utility.Data.Graph.CyJsonEdgeGOParametersOverrideData.startWidthFactor"/>
+            /// in <see cref="edgeParametersOverride"/> to <see paramref="_startWidthFactor"/>.
+            /// </summary>
+            /// <param name="_startWidthFactor">
+            /// The new value of <see paramref="_startWidthFactor"/> in <see cref="edgeParametersOverride"/>.
+            /// </param>
+            public void SetEdgeStartWidthFactorOverride(float _startWidthFactor)
 			{
 				edgeParametersOverride.startWidthFactor = _startWidthFactor;
 			}
 
-			public void SetEdgeEndWidthFactorOverride(float _endWidthFactor)
+            /// <summary>
+            /// Sets the value of <see cref="ECellDive.Utility.Data.Graph.CyJsonEdgeGOParametersOverrideData.endWidthFactor"/>
+            /// in <see cref="edgeParametersOverride"/> to <see paramref="_endWidthFactor"/>.
+            /// </summary>
+            /// <param name="_endWidthFactor">
+            /// The new value of <see paramref="endWidthFactor"/> in <see cref="edgeParametersOverride"/>.
+            /// </param>
+            public void SetEdgeEndWidthFactorOverride(float _endWidthFactor)
 			{
 				edgeParametersOverride.endWidthFactor = _endWidthFactor;
 			}
@@ -492,7 +481,7 @@ namespace ECellDive
 				//the layers, nodes and edges.
 				CyJsonPathwayLoader.Populate(pathway);
 				CyJsonModulesData.AddData(this);
-				SetIndex(CyJsonModulesData.loadedData.Count - 1);
+				//SetIndex(CyJsonModulesData.loadedData.Count - 1);
 
 				SetGraphData(pathway);
 			}
@@ -508,11 +497,33 @@ namespace ECellDive
 					$"targetSceneId of the new module is: {targetSceneId}");
 				RequestGraphGenerationServerRpc(_expeditorClientID, targetSceneId.Value);
 			}
-			#endregion
+            #endregion
 
-			#region - ISaveable Methods -
+            #region - IMlprVisibility Methods -
 			/// <inheritdoc/>
-			public void CompileModificationFile()
+            public override void NetHide()
+            {
+                base.NetHide();
+				if (m_nameTextFieldContainer != null)
+				{
+					m_nameTextFieldContainer.SetActive(false);
+				}
+            }
+
+			/// <inheritdoc/>
+			public override void NetShow()
+			{
+				base.NetShow();
+				if (m_nameTextFieldContainer != null)
+				{
+                    m_nameTextFieldContainer.SetActive(true);
+                }
+			}
+            #endregion
+
+            #region - ISaveable Methods -
+            /// <inheritdoc/>
+            public void CompileModificationFile()
 			{
 				string author = GameNetDataManager.Instance.GetClientName(NetworkManager.Singleton.LocalClientId);
 				string baseModelName = graphData.name;
@@ -526,7 +537,7 @@ namespace ECellDive
 				writingModificationFile = new ModificationFile(baseModelName, modification);
 			}
 
-#endregion
+			#endregion
 		}
 	}
 }

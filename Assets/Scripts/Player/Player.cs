@@ -208,9 +208,9 @@ namespace ECellDive.PlayerComponents
 		/// <inheritdoc/>
 		public virtual void NetHide()
 		{
-			Debug.Log($"{NetworkManager.Singleton.LocalClientId} becomes invisible");
+			Debug.Log($"Player {NetworkManager.Singleton.LocalClientId} becomes invisible");
 			LogSystem.AddMessage(LogMessageTypes.Debug,
-				$"{NetworkManager.Singleton.LocalClientId} becomes invisible");
+				$"Player {NetworkManager.Singleton.LocalClientId} becomes invisible");
 			nameField.gameObject.SetActive(false);
 			head.SetActive(false);
 			rootControllers.SetActive(false);
@@ -226,9 +226,9 @@ namespace ECellDive.PlayerComponents
 		/// <inheritdoc/>
 		public virtual void NetShow()
 		{
-			Debug.Log($"{NetworkManager.Singleton.LocalClientId} becomes visible");
+			Debug.Log($"Player {NetworkManager.Singleton.LocalClientId} becomes visible");
 			LogSystem.AddMessage(LogMessageTypes.Debug, 
-				$"{NetworkManager.Singleton.LocalClientId} becomes visible");
+				$"Player {NetworkManager.Singleton.LocalClientId} becomes visible");
 
 			nameField.gameObject.SetActive(true);
 

@@ -2,19 +2,53 @@ using UnityEngine;
 
 namespace ECellDive.Utility.Data.Graph
 {
-	/// <summary>
-	/// The struct encapsulating the data of a graph.
-	/// </summary>
-	/// <typeparam name="TGraphData">
-	/// The type of the data containing everything about the graph.
-	/// </typeparam>
-	/// <typeparam name="TEdgesData">
-	/// The type of the data containing everything about the edges.
-	/// </typeparam>
-	/// <typeparam name="TNodesData">
-	/// The type of the data containing everything about the nodes.
-	/// </typeparam>
-	public struct GraphData<TGraphData, TEdgesData, TNodesData>
+    /// <summary>
+    /// A structure to store the parameters to override the default
+    /// visual parameters of the cyjson edges. It is usefull when
+	/// building UI that would control the visual parameters of
+	/// all the edges of a graph.
+    /// </summary>
+    [System.Serializable]
+    public struct CyJsonEdgeGOParametersOverrideData
+    {
+		/// <summary>
+		/// A boolean that will be matched to override the same boolean
+		/// in <see cref="ECellDive.Modules.CyJsonEdgeGO.forceDefaultColor"/>.
+		/// </summary>
+        public bool forceDefaultColor;
+
+		/// <summary>
+		/// A boolean that will be matched to override the same boolean
+		/// in <see cref="ECellDive.Modules.CyJsonEdgeGO.forceDefaultWidth"/>.
+		/// </summary>
+        public bool forceDefaultWidth;
+
+		/// <summary>
+		/// A float that will be matched to override the same float
+		/// in <see cref="ECellDive.Modules.CyJsonEdgeGO.startWidthFactor"/>.
+		/// </summary>
+        [Range(0, 1)] public float startWidthFactor;
+
+		/// <summary>
+		/// A float that will be matched to override the same float
+		/// in <see cref="ECellDive.Modules.CyJsonEdgeGO.endWidthFactor"/>.
+		/// </summary>
+        [Range(0, 1)] public float endWidthFactor;
+    }
+
+    /// <summary>
+    /// The struct encapsulating the data of a graph.
+    /// </summary>
+    /// <typeparam name="TGraphData">
+    /// The type of the data containing everything about the graph.
+    /// </typeparam>
+    /// <typeparam name="TEdgesData">
+    /// The type of the data containing everything about the edges.
+    /// </typeparam>
+    /// <typeparam name="TNodesData">
+    /// The type of the data containing everything about the nodes.
+    /// </typeparam>
+    public struct GraphData<TGraphData, TEdgesData, TNodesData>
 	{
 		/// <summary>
 		/// The data containing everything about the graph.

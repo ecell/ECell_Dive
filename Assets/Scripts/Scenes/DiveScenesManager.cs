@@ -76,7 +76,6 @@ namespace ECellDive.SceneManagement
 					//need it a lot in the future that it would be worth synchronizing it.
 					//Otherwise, we should have a Client->Server->Client RPCs to send the 
 					//scene's information to the clients.
-					DiverGetsInServerRpc(0, NetworkManager.Singleton.LocalClientId);
 					currentSceneisHidden = true;
 					StartCoroutine(ShowScene(0, NetworkManager.Singleton.LocalClientId));
 					StartCoroutine(UpdatePlayerDataC(0, NetworkManager.Singleton.LocalClientId));
@@ -134,6 +133,7 @@ namespace ECellDive.SceneManagement
 		{
 			Debug.Log($"Diver {_diverClientId} is entering scene {_sceneId}");
 			scenesBank[_sceneId].DiverGetsIn(_diverClientId);
+			Debug.Log($"After diver {_diverClientId} got in, the scene data is:\n{scenesBank[_sceneId].ToString()}");
 		}
 
 		/// <summary>
@@ -163,6 +163,7 @@ namespace ECellDive.SceneManagement
 				newScene.AddOutDiver(_clientId);
 			}
 			scenesBank.Add(newScene);
+			Debug.Log($"End AddNewDiveScene; Scene Data:\n {newScene}");
 			return newScene.sceneID;
 		}
 
@@ -244,9 +245,9 @@ namespace ECellDive.SceneManagement
 			//Hide all the in-divers from the out-diver
 			foreach (ulong _inDiverCliendId in scenesBank[_sceneID].inDivers)
 			{
-				Debug.Log($"Hiding {_inDiverCliendId} to {_outDiverClientId}");
+				Debug.Log($"Hiding Player {_inDiverCliendId} from leaving Player {_outDiverClientId}");
 				LogSystem.AddMessage(LogMessageTypes.Debug,
-				$"Hiding {_inDiverCliendId} to {_outDiverClientId}");
+                $"Hiding Player {_inDiverCliendId} from leaving Player {_outDiverClientId}");
 				//in-Diver gameObject
 				diverGo = NetworkManager.Singleton.ConnectedClients[_inDiverCliendId].PlayerObject.gameObject;
 				diverGo.GetComponent<Player>().NetHideClientRpc(outDiverClientRpcParams);
@@ -312,7 +313,7 @@ namespace ECellDive.SceneManagement
 			//Show all already present in-Divers to the new in Diver
 			foreach (ulong _oldInDiverCliendId in scenesBank[_sceneID].inDivers)
 			{
-				Debug.Log($"Showing {_oldInDiverCliendId} to {_newInDiverClientId}");
+				Debug.Log($"Showing already present Player {_oldInDiverCliendId} to new player {_newInDiverClientId}");
 				LogSystem.AddMessage(LogMessageTypes.Debug,
 				$"Showing {_oldInDiverCliendId} to {_newInDiverClientId}");
 				diverGo = NetworkManager.Singleton.ConnectedClients[_oldInDiverCliendId].PlayerObject.gameObject;
