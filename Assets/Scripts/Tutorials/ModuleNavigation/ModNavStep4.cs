@@ -1,48 +1,46 @@
-using UnityEngine;
-using UnityEngine.UI;
-using ECellDive.UI;
+using ECellDive.Modules;
 
 namespace ECellDive.Tutorials
 {
     /// <summary>
     /// The step 4 of the Tutorial on Modules Navigation.
-    /// Add an FBA module.
+    /// Import a data module.
     /// </summary>
     public class ModNavStep4 : Step
     {
-        private Button targetButton;
-        private GUIManager guiManager;
-        private bool targetButtonSelected;
+        private HttpServerImporterModule httpSIM;
+        private bool moduleImported;
 
         public override bool CheckCondition()
         {
-            return targetButtonSelected;
+            return moduleImported;
         }
 
         public override void Conclude()
         {
             base.Conclude();
 
-            targetButton.onClick.RemoveListener(OnSelect);
+            httpSIM.OnDataModuleImport -= ProcessResult;
         }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            guiManager = GameObject.
-                              FindGameObjectWithTag("ExternalObjectContainer").
-                              GetComponent<GUIManager>();
+            httpSIM = FindObjectOfType<HttpServerImporterModule>();
+            httpSIM.OnDataModuleImport += ProcessResult;
 
-            //The user can interact with the button to add a FBA module to the scene.
-            guiManager.refModulesMenuManager.SwitchSingleInteractibility(3);
-            targetButton = guiManager.refModulesMenuManager.targetGroup[3].GetComponent<Button>();
-            targetButton.onClick.AddListener(OnSelect);
+            //We collect the Remote importer module (created at the previous step) to
+            //make sure that it is cleaned up when the user quits the tutorial.
+            ModNavTutorialManager.tutorialGarbage.Add(httpSIM.gameObject);
         }
 
-        private void OnSelect()
+        private void ProcessResult(bool _result, string _modelName)
         {
-            targetButtonSelected = true;
+            if (_modelName == "iJO1366")
+            {
+                moduleImported = _result;
+            }
         }
     }
 }

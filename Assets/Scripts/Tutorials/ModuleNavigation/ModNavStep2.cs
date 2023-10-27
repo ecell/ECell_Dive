@@ -1,46 +1,75 @@
+using UnityEngine;
+
 using ECellDive.Modules;
+using ECellDive.UI;
+using ECellDive.Utility;
 
 namespace ECellDive.Tutorials
 {
-    /// <summary>
-    /// The step 2 of the Tutorial on Modules Navigation.
-    /// Import a data module.
-    /// </summary>
+	/// <summary>
+	/// The step 2 of the Tutorial on Modules Navigation.
+	/// Request for an API check of the Kosmogora server.
+	/// </summary>
     public class ModNavStep2 : Step
     {
-        private HttpServerImporterModule httpSIM;
-        private bool moduleImported;
+		private GUIManager guiManager;
+		private HttpServerAPICheckModule httpAPIChecker;
+		bool allHttpModulesInteractable = false;
 
-        public override bool CheckCondition()
-        {
-            return moduleImported;
-        }
+		public override bool CheckCondition()
+		{
+			return allHttpModulesInteractable;
+		}
 
-        public override void Conclude()
-        {
-            base.Conclude();
+		public override void Conclude()
+		{
+			base.Conclude();
 
-            httpSIM.OnDataModuleImport -= ProcessResult;
-        }
+			httpAPIChecker.onAPICheck -= APICheckProcessed;
 
-        public override void Initialize()
-        {
-            base.Initialize();
+			//The API Checker normally unlocks every button spawning Http Modules.
+			//But for this tutorial, we only wish to unlock the buttons to add a remote importer.
+			//So we forcefully lock everything and unlock only the button to add a remote importer.
+			guiManager.refModulesMenuManager.ForceGroupInteractibility(false);
+			guiManager.refModulesMenuManager.ForceSingleInteractibility(1, true);
+		}
 
-            httpSIM = FindObjectOfType<HttpServerImporterModule>();
-            httpSIM.OnDataModuleImport += ProcessResult;
+		public override void Initialize()
+		{
+			guiManager = GameObject.
+							  FindGameObjectWithTag("ExternalObjectContainer").
+							  GetComponent<GUIManager>();
 
-            //We collect the Remote importer module (created at the previous step) to
-            //make sure that it is cleaned up when the user quits the tutorial.
-            ModNavTutorialManager.tutorialGarbage.Add(httpSIM.gameObject);
-        }
+			httpAPIChecker = FindObjectOfType<HttpServerAPICheckModule>();
+			httpAPIChecker.onAPICheck += APICheckProcessed;
 
-        private void ProcessResult(bool _result, string _modelName)
-        {
-            if (_modelName == "iJO1366")
-            {
-                moduleImported = _result;
-            }
-        }
-    }
+			//We collect the API Checker module (added at the previous step)
+			//to make sure that it is cleaned up when the user quits the tutorial.
+			ModNavTutorialManager.tutorialGarbage.Add(httpAPIChecker.gameObject);
+		}
+
+		private void APICheckProcessed(bool _serverReached)
+		{
+			if (_serverReached)
+			{
+				bool _allHttpModulesInteractable = true;
+				//We want to check that the user connected to a Kosmogora server
+				//which implements all the API (i.e. all buttons for Http modules
+				//are interactable).
+				for (int i = 0; i < guiManager.refModulesMenuManager.targetGroup.Length; i++)
+				{
+					//Get the HttpServerBaseModule component of the module.
+					//This is to check only the interactibility of the buttons of Http modules.
+					HttpServerBaseModule httpServerBaseModule = guiManager.refModulesMenuManager.targetGroup[i].GetComponent<GameObjectConstructor>().refPrefab.GetComponent<HttpServerBaseModule>();
+					if (httpServerBaseModule != null)
+					{
+						_allHttpModulesInteractable &= guiManager.refModulesMenuManager.targetGroup[i].interactable;
+					}
+				}
+				allHttpModulesInteractable = _allHttpModulesInteractable;
+			}
+
+		}
+	}
+
 }

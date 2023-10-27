@@ -168,15 +168,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skip: 0
   m_goal: Learn how to add a module.
-  m_task: Open the Modules Menu and add a Data Importer.
-  m_details: 'On the left controller, press the button that says <b>Open Main Menu</b>.
+  m_task: Open the Modules Menu and add an API Checker.
+  m_details: "On the left controller, press the button that says <b>Open Main Menu</b>.
     From here, click on the UI button <b>Modules</b> to open the corresponding sub-menu.
-    In this submenu, you will find the modules that will help you interact with data.
-    For now, click on the <b>Data Importer</b> button to add that module to the scene.
-
-    <color=green>You
-    will advance to the next step of the tutorial automatically once you add the
-    module.</color>'
+    In this sub-menu, you will find the modules that will help you interact with
+    data. Then, click on the <b>API Checker</b> button to add that module to the
+    scene.\r\n<color=green>You will advance to the next step of the tutorial automatically
+    once you add the module.</color>\r"
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -289,6 +287,75 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2991400471240366036, guid: 7eddbd484b3093949a8a0b311faa75a6, type: 3}
   m_PrefabInstance: {fileID: 860342028}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &913763000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913763001}
+  - component: {fileID: 913763002}
+  m_Layer: 0
+  m_Name: ModNavStep3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &913763001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913763000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2143762825}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &913763002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913763000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527e2f16c513e87459803c48f5661b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skip: 0
+  m_goal: Learn how to import data from a server (1/2).
+  m_task: Open the Modules Menu and add a Data Importer.
+  m_details: "Go back to the UI Modules Menu that you previously used to add a <b>API
+    Checker</b> to the scene.\r\nThis time, click on the <b>Data Importer</b> button
+    to add a module that will fetch the data available on <i>Kosmogora</i>.\r\n<color=green>You
+    will advance to the next step of the tutorial automatically once you add the
+    module.</color>\r"
+  m_initializationInstructions:
+    m_PersistentCalls:
+      m_Calls: []
+  m_conclusionInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2143762824}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.TutorialManager, Assembly-CSharp
+        m_MethodName: NextStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &949993373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -548,7 +615,7 @@ GameObject:
   - component: {fileID: 1013638114}
   - component: {fileID: 1013638115}
   m_Layer: 0
-  m_Name: ModNavStep2
+  m_Name: ModNavStep4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -566,7 +633,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2143762825}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1013638115
 MonoBehaviour:
@@ -581,31 +648,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skip: 0
-  m_goal: Learn how to import data from a server
+  m_goal: Learn how to import data from a server (2/2).
   m_task: Add the data module of iJO1366 to the scene.
-  m_details: 'Open the menu of the data importer. Input the IP adress of the Kosmogora
-    server. If you did not specify a port when launching Kosmogora, you can leave
-    that input field blank. Then, click on the corresponding button to query the
-    available models and select iJO1366 on the second panel.
-
-    <color=green>You
-    will advance to the next step of the tutorial automatically once you add the
-    module.</color>'
+  m_details: "Open the menu of the data importer. Click on the button <b>Server</b>
+    to select the server from where to import data. There should only be one corresponding
+    to the server you validated with the <b>API Checker</b> at step 2. Then, click
+    on the button <b>Get Models List</b> to query the available models and select
+    iJO1366 on the second panel.\r\n<color=green>You will advance to the next step
+    of the tutorial automatically once you add the module.</color>\r"
   m_initializationInstructions:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 441521338}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_conclusionInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -632,7 +685,7 @@ GameObject:
   - component: {fileID: 1190507055}
   - component: {fileID: 1190507056}
   m_Layer: 0
-  m_Name: ModNavStep3
+  m_Name: ModNavStep5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -650,7 +703,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2143762825}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1190507056
 MonoBehaviour:
@@ -665,8 +718,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skip: 0
-  m_goal: Learn how to dive into a module
-  m_task: Dive and explore the network
+  m_goal: Learn how to dive into a module.
+  m_task: Dive and explore the network.
   m_details: 'Point at the data module iJO1366 you just imported with the <color=orange>Ray-Based
     Controls</color> and tap the primary button of the controller to open the associated
     menus. Then, point at the yellow portal and hold the primary button until the
@@ -680,19 +733,7 @@ MonoBehaviour:
     ready.'
   m_initializationInstructions:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 441521338}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_conclusionInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -727,7 +768,7 @@ GameObject:
   - component: {fileID: 1660384882}
   - component: {fileID: 1660384883}
   m_Layer: 0
-  m_Name: ModNavStep6
+  m_Name: ModNavStep8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -745,7 +786,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2143762825}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1660384883
 MonoBehaviour:
@@ -760,8 +801,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skip: 0
-  m_goal: Learn how to make groups
-  m_task: Add a GroupBy module and make groups
+  m_goal: Learn how to make groups.
+  m_task: Add a GroupBy module and make groups.
   m_details: 'Go to the UI menu for modules and click on the button <b>Group By Operator</b>
     to add the module in the scene.
 
@@ -891,7 +932,7 @@ GameObject:
   - component: {fileID: 1961897782}
   - component: {fileID: 1961897783}
   m_Layer: 0
-  m_Name: ModNavStep5
+  m_Name: ModNavStep7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -909,7 +950,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2143762825}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1961897783
 MonoBehaviour:
@@ -926,19 +967,16 @@ MonoBehaviour:
   skip: 0
   m_goal: Learn how to request a Flux Balance Analysis (2/2).
   m_task: Request the FBA from the server.
-  m_details: 'Open the menu of the FBA module and input the IP. As a reminder, you
-    do not need to set the Port unless you changed the value when you launched Kosmogora.
-
-    Once
-    you entered the information, click on the buton <b>Run FBA</b> to request the
-    simulation from the server. <color=#FF3030>Warning: It will take a few seconds.</color>
-
-    The
-    result of the FBA will be clearly visible as the edges''s widths are scaled according
+  m_details: "Open the menu of the FBA module and press the button <b>Server</b>
+    to select the server where to perform the FBA. There should only be one choice
+    corresponding to the server you validated with the <b>API Checker</b> at step
+    2. \r\nOnce you selected the server, click on the button <b>Run FBA</b> to request
+    the simulation from the server. <color=#FF3030>Warning: It will take a few seconds.</color>\r\nThe
+    result of the FBA will be clearly visible as the edges' widths are scaled according
     to the value of the fluxes. You can use the options to clamp the values or set
     a color gradient.<b>You can also KNOCKOUT reactions by pointing at the edges
     with the <color=orange>Ray-Based Controls</color> and pressing the front trigger</b>.
-    Then, click on <b>Run FBA</b> again.'
+    Then, click on <b>Run FBA</b> again.\r"
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls: []
@@ -968,7 +1006,7 @@ GameObject:
   - component: {fileID: 2028496003}
   - component: {fileID: 2028496004}
   m_Layer: 0
-  m_Name: ModNavStep4
+  m_Name: ModNavStep6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -986,7 +1024,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2143762825}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2028496004
 MonoBehaviour:
@@ -1003,14 +1041,10 @@ MonoBehaviour:
   skip: 0
   m_goal: Learn how to request a Flux Balance Analysis (1/2).
   m_task: Add a FBA module to the dive scene via the UI menu.
-  m_details: 'Go back to the UI Modules Menu that you previously used to add a Data
-    Importer to the scene.
-
-    This time, click on the <b>FBA</b> button to add
-    a FBA Module.
-
-    <color=green>You will advance to the next step of the tutorial
-    automatically once you add the module.</color>'
+  m_details: "Go back to the UI Modules Menu that you previously used to add a <b>Data
+    Importer</b> to the scene.\r\nThis time, click on the <b>FBA</b> button to add
+    a FBA Module.\r\n<color=green>You will advance to the next step of the tutorial
+    automatically once you add the module.</color>\r"
   m_initializationInstructions:
     m_PersistentCalls:
       m_Calls:
@@ -1046,6 +1080,80 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1679204126489944202, guid: eeae58dba3a9c7440b04ddce917ca639, type: 3}
   m_PrefabInstance: {fileID: 949993373}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2140287971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2140287972}
+  - component: {fileID: 2140287973}
+  m_Layer: 0
+  m_Name: ModNavStep2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2140287972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140287971}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2143762825}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2140287973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140287971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b52c53cd640dd4d85a3ba55a5c9188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skip: 0
+  m_goal: Learn how to connect to a <i>Kosmogora</i> server.
+  m_task: "Enter the server\u2019s contact information and check its API is compatible."
+  m_details: "Open the menu of the <b>API Checker</b>. Input the IP address of the
+    <i>Kosmogora</i> server. Also add a port if you did specified one when launching
+    <i>Kosmogora</i>. Enter the name of the server; chose any name you want, it will
+    only be used for display in the future (default is <i>Kosmogora</i>). Finally
+    click on the button <b>Check Server API</b>.\r\nDoing so, an HTTP request will
+    be sent to <i>Kosmogora</i> asking for the list of the API it implements. This
+    list will be compared to the modules\u2019 requirements in ECellDive and will
+    all be unlocked accordingly. However, for this tutorial, modules will be unlocked
+    on at a time.\r\n<color=green>You will advance to the next step of the tutorial
+    automatically once you add the module.</color>"
+  m_initializationInstructions:
+    m_PersistentCalls:
+      m_Calls: []
+  m_conclusionInstructions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2143762824}
+        m_TargetAssemblyTypeName: ECellDive.Tutorials.TutorialManager, Assembly-CSharp
+        m_MethodName: NextStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2143762823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,9 +1200,11 @@ MonoBehaviour:
   initializationInstructions:
     m_PersistentCalls:
       m_Calls: []
-  officialNumberOfSteps: 6
+  officialNumberOfSteps: 8
   steps:
   - {fileID: 34642055}
+  - {fileID: 2140287973}
+  - {fileID: 913763002}
   - {fileID: 1013638115}
   - {fileID: 1190507056}
   - {fileID: 2028496004}
@@ -1133,6 +1243,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 34642054}
+  - {fileID: 2140287972}
+  - {fileID: 913763001}
   - {fileID: 1013638114}
   - {fileID: 1190507055}
   - {fileID: 2028496003}

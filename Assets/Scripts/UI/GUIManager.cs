@@ -82,7 +82,8 @@ namespace ECellDive.UI
 				graphicsHolder.GetComponent<FaceCamera>().SetTargets(
 					_player.gameObject.GetComponentInChildren<Camera>().transform);
 			}
-
+			refMainMenu.GetComponent<MainMenuManager>().Initialize();
+			refModulesMenuManager.Initialize();
 			refGroupsMenu.Initialize();
 		}
 
