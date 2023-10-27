@@ -54,7 +54,7 @@ namespace ECellDive.Tutorials
 			guiManager = StaticReferencer.Instance.refExternalObjectContainer.GetComponent<GUIManager>();
 
 			//Hide the main menu.
-			guiManager.refMainMenu.SetActive(!guiManager.refMainMenu.activeSelf);
+			guiManager.refMainMenu.SetActive(false);
 
 			//The user cannot interact with any of the buttons of the main menu.
 			guiManager.refMainMenu.GetComponent<MainMenuManager>().ForceGroupInteractibility(false);

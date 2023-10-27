@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 using ECellDive.Interfaces;
 using ECellDive.IO;
@@ -36,6 +37,17 @@ namespace ECellDive.Modules
 		/// of the module in case of request.
 		/// </summary>
 		[SerializeField] private ColorFlash colorFlash;
+
+		/// <summary>
+		/// A delegate to be called after the API check request is processed.
+		/// The bool parameter is true if the request was successful. It is
+		/// called after the effects of the request are applied (whether successul or not).
+		/// </summary>
+		/// <remarks>
+		/// This is added for the tutorials check. There is probably a way to
+		/// to get rid of this.
+		/// </remarks>
+		public UnityAction<bool> onAPICheck;
 
 		/// <summary>
 		/// The method to build the request URL for checking the API
@@ -107,8 +119,8 @@ namespace ECellDive.Modules
 							interactibilityManager.ForceSingleInteractibility(i, allAPIImplemented);
 						}
 
-						//If all the API are implemented, add the server to the list of servers the 
-						//module can be used with.
+						//If all the API for a module is implemented, add the server to the
+						//list of servers the module can be used with.
 						if (allAPIImplemented)
 						{
 							HttpNetPortal.Instance.AddModuleServer(httpServerBaseModule.name, serverData);
@@ -121,6 +133,10 @@ namespace ECellDive.Modules
 				//Flash of the fail color
 				colorFlash.Flash(0);
 			}
+
+			//Call the delegate to notify the tutorials check that the request is processed.
+			//and the effects of the request are applied (whether successul or not).
+			onAPICheck?.Invoke(requestData.requestSuccess);
 		}
 
 		/// <summary>
