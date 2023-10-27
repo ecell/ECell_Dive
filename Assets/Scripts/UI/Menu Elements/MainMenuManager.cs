@@ -32,11 +32,16 @@ namespace ECellDive.UI
         {
             get => m_targetGroup;
         }
-        #endregion
+		#endregion
 
-        #region - IInteractibility Methods -
-        /// <inheritdoc/>
-        public void ForceGroupInteractibility(bool _interactibility)
+		public void Initialize()
+		{
+			m_previousInteractibility = new bool[targetGroup.Length];
+        }
+
+		#region - IInteractibility Methods -
+		/// <inheritdoc/>
+		public void ForceGroupInteractibility(bool _interactibility)
         {
             for (int i = 0; i < m_targetGroup.Length; i++)
             {

@@ -34,7 +34,7 @@ namespace ECellDive.UI
 		}
 		#endregion
 
-		private void Start()
+		public void Initialize()
 		{
 			m_previousInteractibility = new bool[targetGroup.Length];
 			ForceGroupInteractibility(false);
