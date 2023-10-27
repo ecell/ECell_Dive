@@ -1,46 +1,49 @@
-using ECellDive.Modules;
+using UnityEngine;
+using UnityEngine.UI;
+using ECellDive.UI;
 
 namespace ECellDive.Tutorials
 {
-    /// <summary>
-    /// The step 3 of the Tutorial on Modules Navigation.
-    /// Import a data module.
-    /// </summary>
-    public class ModNavStep3 : Step
-    {
-        private HttpServerImporterModule httpSIM;
-        private bool moduleImported;
+	/// <summary>
+	/// The step 3 of the Tutorial on Modules Navigation.
+	/// Add an Data importer to the scene.
+	/// </summary>
+	public class ModNavStep3 : Step
+	{
+		private GUIManager guiManager;
+		private Button targetButton; //The button to add a data importer to the scene.
+		private bool targetButtonSelected;
 
-        public override bool CheckCondition()
-        {
-            return moduleImported;
-        }
+		public override bool CheckCondition()
+		{
+			return targetButtonSelected;
+		}
 
-        public override void Conclude()
-        {
-            base.Conclude();
+		public override void Conclude()
+		{
+			base.Conclude();
 
-            httpSIM.OnDataModuleImport -= ProcessResult;
-        }
+			targetButton.onClick.RemoveListener(OnSelect);
 
-        public override void Initialize()
-        {
-            base.Initialize();
+			//We disable the button allowing to add a data importer to the scene.
+			guiManager.refModulesMenuManager.SwitchSingleInteractibility(1);
+		}
 
-            httpSIM = FindObjectOfType<HttpServerImporterModule>();
-            httpSIM.OnDataModuleImport += ProcessResult;
+		public override void Initialize()
+		{
+			base.Initialize();
 
-            //We collect the Remote importer module (created at the previous step) to
-            //make sure that it is cleaned up when the user quits the tutorial.
-            ModNavTutorialManager.tutorialGarbage.Add(httpSIM.gameObject);
-        }
+			guiManager = GameObject.
+							  FindGameObjectWithTag("ExternalObjectContainer").
+							  GetComponent<GUIManager>();
 
-        private void ProcessResult(bool _result, string _modelName)
-        {
-            if (_modelName == "iJO1366")
-            {
-                moduleImported = _result;
-            }
-        }
-    }
+			targetButton = guiManager.refModulesMenuManager.targetGroup[1].GetComponent<Button>();
+			targetButton.onClick.AddListener(OnSelect);
+		}
+
+		private void OnSelect()
+		{
+			targetButtonSelected = true;
+		}
+	}
 }

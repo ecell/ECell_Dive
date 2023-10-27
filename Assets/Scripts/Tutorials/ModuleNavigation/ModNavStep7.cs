@@ -1,57 +1,44 @@
-using UnityEngine;
-using UnityEngine.UI;
-using ECellDive.UI;
 using ECellDive.Modules;
 
 namespace ECellDive.Tutorials
 {
     /// <summary>
     /// The step 7 of the Tutorial on Modules Navigation.
-    /// Add a GroupBy Module and make groups.
+    /// Suggest to KO reactions and re-simulate to see the
+    /// changes.
     /// </summary>
     public class ModNavStep7 : Step
     {
-        private GUIManager guiManager;
-        private Button targetButton;
-        private bool targetButtonSelected;
+        private HttpServerFbaModule httpFbaM;
+        private bool moduleImported;
 
         public override bool CheckCondition()
         {
-            return targetButtonSelected;
+            return moduleImported;
         }
 
         public override void Conclude()
         {
             base.Conclude();
 
-            targetButton.onClick.RemoveListener(OnSelect);
-
-            //The user can interact with the button to open the group menu.
-            guiManager.refMainMenu.GetComponent<MainMenuManager>().SwitchSingleInteractibility(1);
-
-            GroupByModule GrpBM = FindObjectOfType<GroupByModule>();
-
-            //We collect the FBA module (created at the previous step) to
-            //make sure that it is cleaned up when the user quits the tutorial.
-            ModNavTutorialManager.tutorialGarbage.Add(GrpBM.gameObject);
+            httpFbaM.OnFbaResultsReceive -= ProcessResult;
         }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            guiManager = GameObject.FindGameObjectWithTag("ExternalObjectContainer").GetComponent<GUIManager>();
+            httpFbaM = FindObjectOfType<HttpServerFbaModule>();
+            httpFbaM.OnFbaResultsReceive += ProcessResult;
 
-            //The user can interact with the button to add a Group By module to the scene.
-            guiManager.refModulesMenuManager.SwitchSingleInteractibility(4);
-            targetButton = guiManager.refModulesMenuManager.targetGroup[4].GetComponent<Button>();
-            targetButton.onClick.AddListener(OnSelect);
+            //We collect the FBA module (created at the previous step) to
+            //make sure that it is cleaned up when the user quits the tutorial.
+            ModNavTutorialManager.tutorialGarbage.Add(httpFbaM.gameObject);
         }
 
-        private void OnSelect()
+        private void ProcessResult(bool _result)
         {
-            targetButtonSelected = true;
+            moduleImported = _result;
         }
     }
 }
-
