@@ -456,7 +456,7 @@ namespace ECellDive
 				{
 					if (!DiveScenesManager.Instance.CheckIfDiveSceneHasPlayers(targetSceneId.Value))
 					{
-						DiveScenesManager.Instance.DestroyDiveScene(targetSceneId.Value);
+						DiveScenesManager.Instance.DestroyDiveSceneServerRpc(targetSceneId.Value);
 						Destroy(gameObject);
 					}
 					else

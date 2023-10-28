@@ -86,7 +86,7 @@ namespace ECellDive.Multiplayer
         public UnityAction<ulong> OnClientReceivedAllPlayerNetData;
 		
 		/// <summary>
-		/// Synchronoizes with all players the number of player net data that
+		/// Synchronizes with all players the number of player net data that
 		/// the server is managing. This is used to know when the server has
 		/// finished to send all player net data to a new player.
 		/// </summary>
@@ -97,8 +97,8 @@ namespace ECellDive.Multiplayer
 			Instance = this;
 		}
 
-		public override void OnNetworkSpawn()
-		{
+        public override void OnNetworkSpawn()
+		{			
 			//In the particular case of the host, we directly set the data because 
 			//it is the first entity to be spawned in the scene so there is no
 			//data to synchronize.
@@ -108,31 +108,27 @@ namespace ECellDive.Multiplayer
 			{
 				Clear();
 
-				SharePlayerNetDataServerRpc(NetworkManager.Singleton.LocalClientId, PlayerPrefsWrap.GetPlayerName(), PlayerPrefsWrap.GetGUID());
-
-				ShareModuleDataServerRpc(NetworkManager.Singleton.LocalClientId);
-			}
+                SharePlayerNetDataServerRpc(NetworkManager.Singleton.LocalClientId, PlayerPrefsWrap.GetPlayerName(), PlayerPrefsWrap.GetGUID());
+                ShareModuleDataServerRpc(NetworkManager.Singleton.LocalClientId);
+            }
 
 			else if (IsServer)
 			{
-				System.Guid guid = System.Guid.Parse(PlayerPrefsWrap.GetGUID());
-				clientIDToPlayerGUIDMap[NetworkManager.Singleton.LocalClientId] = guid;
-				playerGUIDToPlayerNetData[guid] = new PlayerNetData
-				{
-					clientId = NetworkManager.Singleton.LocalClientId,
-					playerName = PlayerPrefsWrap.GetPlayerName(),
-					scenes = new ListInt32Network(1) { 0 }
-				}; 
-				playerNetDataCount.Value++;
+                System.Guid guid = System.Guid.Parse(PlayerPrefsWrap.GetGUID());
+                clientIDToPlayerGUIDMap[NetworkManager.Singleton.LocalClientId] = guid;
+                playerGUIDToPlayerNetData[guid] = new PlayerNetData
+                {
+                    clientId = NetworkManager.Singleton.LocalClientId,
+                    playerName = PlayerPrefsWrap.GetPlayerName(),
+                    scenes = new ListInt32Network(1) { 0 }
+                };
+                playerNetDataCount.Value++;
 
-				//We make sure the root dive scene is added to the bank before we 
-				//trigger the events.
-				DiveScenesManager.Instance.AddNewDiveScene(-1, "Root");
 
                 //We trigger the events here because there is no need to check.
                 OnClientReceivedAllPlayerNetData?.Invoke(NetworkManager.Singleton.LocalClientId);
-				OnClientReceivedAllModules?.Invoke(NetworkManager.Singleton.LocalClientId);
-			}
+                OnClientReceivedAllModules?.Invoke(NetworkManager.Singleton.LocalClientId);
+            }
 		}
 
 		/// <summary>

@@ -8,6 +8,7 @@ using ECellDive.Multiplayer;
 using ECellDive.PlayerComponents;
 using ECellDive.Utility;
 using ECellDive.Utility.Data.Dive;
+using UnityEngine.Events;
 
 namespace ECellDive.SceneManagement
 {
@@ -56,6 +57,25 @@ namespace ECellDive.SceneManagement
 		/// </summary>
 		private bool targetSceneIsVisible = false;
 
+		/// <summary>
+		/// Trigerred <b> CLIENT SIDE</b>
+		/// 
+		/// Event triggered when the scene bank has been shared to a client
+		/// (likely newly connected). The parameter is the client id of the
+		/// client that received the scene bank. This is used in
+		/// triggered in <see cref="ShareSceneBankClientRpc(ulong)"/>. when
+		/// the client has confirmed that the size of its scene bank is 
+		/// equal to <see cref="sceneBankCount"/>.
+		/// </summary>
+		public UnityAction<ulong> OnSceneBankShared;
+
+		/// <summary>
+		/// Synchronizes with all players the number of scenes in the <see
+		/// cref="scenesBank"/>. This is used to know when the scene bank
+		/// has been fully shared to a client.
+		/// </summary>
+		NetworkVariable<int> sceneBankCount = new NetworkVariable<int>(0);
+
         private void Awake()
         {
 			Instance = this;
@@ -65,28 +85,58 @@ namespace ECellDive.SceneManagement
         {
 			scenesBank.Clear();
 
-            //TODO? The scene bank is not synchronized with the clients
-            //but is only managed by the server because currently the "AddNewDiveScene"
-            //method is only called within ServerRPC. But there are no guarentees
-            //for the future. And we should really think whether the players might
-            //need it a lot in the future that it would be worth synchronizing it.
-            //Otherwise, we should have a Client->Server->Client RPCs to send the 
-            //scene's information to the clients.
+            if (!IsServer)
+			{
+				Debug.Log("Requesting scene bank");
+				ShareSceneBankServerRpc(NetworkManager.Singleton.LocalClientId);
+			}
+			else
+			{
+                //We make sure the root dive scene is added to the bank before we 
+                //trigger the events.
+				Debug.Log("Adding root scene");
+                AddNewDiveSceneServerRpc(-1, "Root");
+            }
         }
 
-        /// <summary>
-        /// Called to instantiate a new scene upon diving in a module
-        /// </summary>
-        public int AddNewDiveScene(int _parentSceneId, string _sceneName)
+		/// <summary>
+		/// Notifies the clients to instantiate a new scene.
+		/// </summary>
+		/// <param name="_sceneData">
+		/// The scene data of the new scene.
+		/// </param>
+		[ClientRpc]		
+        public void AddNewDiveSceneClientRpc(SceneData _sceneData)
         {
+			if (!IsHost)
+			{
+				scenesBank.Add(_sceneData);
+			}
+        }
+
+		/// <summary>
+		/// Notifies the server to instantiate a new scene.
+		/// Broadcasts the creation to all clients.
+		/// </summary>
+		/// <param name="_parentSceneId">
+		/// The ID of the parent scene of the new scene.
+		/// </param>
+		/// <param name="_sceneName">
+		/// The name of the new scene.
+		/// </param>
+		[ServerRpc(RequireOwnership = false)]
+        public void AddNewDiveSceneServerRpc(int _parentSceneId, string _sceneName)
+        {
+			sceneBankCount.Value++;
+
             SceneData newScene = new SceneData(scenesBank.Count, _parentSceneId, _sceneName);
             foreach (ulong _clientId in NetworkManager.Singleton.ConnectedClientsIds)
             {
                 newScene.AddOutDiver(_clientId);
             }
             scenesBank.Add(newScene);
-            //Debug.Log($"End AddNewDiveScene; Scene Data:\n {newScene}");
-            return newScene.sceneID;
+
+			AddNewDiveSceneClientRpc(newScene);
         }
 
 		/// <summary>
@@ -136,12 +186,28 @@ namespace ECellDive.SceneManagement
 		}
 
 		/// <summary>
-		/// Removes the scene at index <paramref name="_sceneId"/> from the <see cref="scenesBank"/>.
+		/// Notifies the clients to remove the scene at index
+		/// <paramref name="_sceneId"/> from the <see cref="scenesBank"/>.
 		/// </summary>
-		/// <param name="_sceneId">The index of the scene to remove from the <see cref="scenesBank"/>.</param>
-		public void DestroyDiveScene(int _sceneId)
+		/// <param name="_sceneId">The index of the scene to remove from
+		/// the <see cref="scenesBank"/>.</param>
+		[ClientRpc]
+        public void DestroyDiveSceneClientRpc(int _sceneId)
 		{
 			scenesBank.RemoveAt(_sceneId);
+		}
+
+		/// <summary>
+		/// Notifies the server to remove the scene at index
+		/// <paramref name="_sceneId"/> from the <see cref="scenesBank"/>.
+		/// Broadcasts the destruction to all clients.
+		/// </summary>
+		/// <param name="_sceneId">The index of the scene to remove from
+		/// the <see cref="scenesBank"/>.</param>
+		[ServerRpc(RequireOwnership = false)]
+		public void DestroyDiveSceneServerRpc(int _sceneId)
+		{
+			DestroyDiveSceneClientRpc(_sceneId);
 		}
 
 		/// <summary>
@@ -153,16 +219,15 @@ namespace ECellDive.SceneManagement
 		/// <param name="_diverClientId">
 		/// The client id of the diver entering the scene.
 		/// </param>
-		[ServerRpc]
-		public void DiverGetsInServerRpc(int _sceneId, ulong _diverClientId)
+		[ClientRpc]
+		private void DiverGetsInClientRpc(int _sceneId, ulong _diverClientId)
 		{
-			Debug.Log($"Diver {_diverClientId} is entering scene {_sceneId}");
+			Debug.Log($"Diver {_diverClientId} gets in scene {_sceneId}");
 			scenesBank[_sceneId].DiverGetsIn(_diverClientId);
-			Debug.Log($"After diver {_diverClientId} got in, the scene data is:\n{scenesBank[_sceneId].ToString()}");
 		}
 
 		/// <summary>
-		/// A client notifies the server that it is leaving a scene.
+		/// The server notifies the clients that a diver is leaving a scene.
 		/// </summary>
 		/// <param name="_sceneId">
 		/// The scene id of the scene the diver is leaving.
@@ -170,10 +235,10 @@ namespace ECellDive.SceneManagement
 		/// <param name="_diverClientId">
 		/// The client id of the diver leaving the scene.
 		/// </param>
-		[ServerRpc]
-		public void DiverGetsOutServerRpc(int _sceneId, ulong _diverClientId)
+		[ClientRpc]
+		private void DiverGetsOutClientRpc(int _sceneId, ulong _diverClientId)
 		{
-			Debug.Log($"Diver {_diverClientId} is leaving scene {_sceneId}");
+			Debug.Log($"Diver {_diverClientId} gets out of scene {_sceneId}");
 			scenesBank[_sceneId].DiverGetsOut(_diverClientId);
 		}
 
@@ -191,25 +256,24 @@ namespace ECellDive.SceneManagement
 			}
 		}
 #endif
-		/// <summary>
-		/// Calls <see cref="GameNetModule.NetHide"/> for every <see cref=
-		/// "GameNetModule"/> of the scene with <paramref name="_sceneID"/>
-		/// for the local client.
-		/// </summary>
-		/// <param name="_sceneID">Index of the scene in <see cref="scenesBank"/></param>
-		/// <param name="_outDiverClientId">Client Id of the diver leaving the scene
-		/// with id <paramref name="_sceneID"/>.</param>
-		/// <remarks>
-		/// This is used server-side.
-		/// </remarks>
-		private IEnumerator HideScene(int _sceneID, ulong _outDiverClientId)
+        /// <summary>
+        /// <b>SERVER SIDE</b>
+        /// 
+        /// Calls <see cref="GameNetModule.NetHide"/> for every <see cref=
+        /// "GameNetModule"/> of the scene with <paramref name="_sceneID"/>
+        /// for the local client.
+        /// </summary>
+        /// <param name="_sceneID">Index of the scene in <see cref="scenesBank"/></param>
+        /// <param name="_outDiverClientId">Client Id of the diver leaving the scene
+        /// with id <paramref name="_sceneID"/>.</param>
+        private IEnumerator HideScene(int _sceneID, ulong _outDiverClientId)
 		{
 			//Debug.Log($"Original scene information:");
 			LogSystem.AddMessage(LogMessageTypes.Debug,
 				$"Original scene information:");
 			DebugScene();
 			//Updating divers for the scene in the Scene bank
-			scenesBank[_sceneID].DiverGetsOut(_outDiverClientId);
+			DiverGetsOutClientRpc(_sceneID, _outDiverClientId);
 
 			//Debug.Log($"Hiding scene {_sceneID} for client {_outDiverClientId}");
 			LogSystem.AddMessage(LogMessageTypes.Debug,
@@ -267,6 +331,56 @@ namespace ECellDive.SceneManagement
 		}
 
 		/// <summary>
+		/// The server sends the <paramref name="_sceneData"/> to the client defined
+		/// in <paramref name="clientRpcParams"/>.
+		/// </summary>
+		/// <param name="_sceneData">
+		/// The scene data to send to the client.
+		/// </param>
+		/// <param name="clientRpcParams">
+		/// The client RPC parameters to indicate the client to send the scene data to.
+		/// </param>
+		[ClientRpc]
+		private void ShareSceneBankClientRpc(SceneData _sceneData, ClientRpcParams clientRpcParams)
+		{
+			if (!IsHost)
+			{
+				scenesBank.Add(_sceneData);
+				if (scenesBank.Count == sceneBankCount.Value)
+				{
+					OnSceneBankShared?.Invoke(NetworkManager.Singleton.LocalClientId);
+				}
+			}
+        }
+
+		/// <summary>
+		/// Notifies the server that the client with id <paramref name="_expeditorClientID"/>
+		/// is requesting the scene bank.
+		/// </summary>
+		/// <param name="_expeditorClientID">
+		/// The ID of the client requesting the scene bank.
+		/// </param>
+		[ServerRpc(RequireOwnership = false)]
+		private void ShareSceneBankServerRpc(ulong _expeditorClientID)
+		{
+			ClientRpcParams clientRpcParams = new ClientRpcParams
+			{
+                Send = new ClientRpcSendParams
+				{
+                    TargetClientIds = new ulong[] { _expeditorClientID }
+                }
+            };
+
+			foreach (SceneData sceneData in scenesBank)
+			{
+				ShareSceneBankClientRpc(sceneData, clientRpcParams);
+			}
+		}
+
+
+		/// <summary>
+		/// <b>SERVER SIDE</b>
+		/// 
 		/// Calls <see cref="GameNetModule.NetShow"/> for every <see cref=
 		/// "GameNetModule"/> of the scene with <paramref name="_sceneID"/>
 		/// for the local client.
@@ -274,9 +388,6 @@ namespace ECellDive.SceneManagement
 		/// <param name="_sceneID">Index of the scene in <see cref="scenesBank"/></param>
 		/// <param name="_newInDiverClientId">Client Id of the diver entering the scene
 		/// with id <paramref name="_sceneID"/>.</param>
-		/// <remarks>
-		/// This is used server-side.
-		/// </remarks>
 		private IEnumerator ShowScene(int _sceneID, ulong _newInDiverClientId)
 		{
 			yield return new WaitUntil(() => currentSceneisHidden);
@@ -331,7 +442,7 @@ namespace ECellDive.SceneManagement
 			}
 
 			//Updating the scene's data in the scene bank once we finished showing everyone
-			scenesBank[_sceneID].DiverGetsIn(_newInDiverClientId);
+			DiverGetsInClientRpc(_sceneID, _newInDiverClientId);
 
 			LogSystem.AddMessage(LogMessageTypes.Debug,
 				$"After showing scene, the scene data is: (look at next messages)");
@@ -340,23 +451,25 @@ namespace ECellDive.SceneManagement
 			targetSceneIsVisible = true;
 		}
 
-		/// <summary>
-		/// Instantiates a game object and spawns it for replication across the network.
-		/// This method can only be called on the SERVER. So, be sure to call from a server
-		/// object or called inside a ServerRpc.
-		/// </summary>
-		/// <param name="_sceneId">
-		/// The Id of the scene in which it the new game object is instantiated.
-		/// </param>
-		/// <param name="_prefab">
-		/// The gameobject to instantiate and spawn.
-		/// It MUST be a <see cref="ECellDive.Modules.GameNetModule"/> and a Unity.Netcode.NetworkObject.
-		/// </param>
-		/// <param name="_position">
-		/// The position at which to instantiate the gameobject.
-		/// </param>
-		/// <returns>The game object that got instantiated &amp; spawned.</returns>
-		public GameObject SpawnModuleInScene(int _sceneId, GameObject _prefab, Vector3 _position)
+        /// <summary>
+        /// <b>SERVER SIDE</b>
+		/// 
+        /// Instantiates a game object and spawns it for replication across the network.
+        /// This method can only be called on the SERVER. So, be sure to call from a server
+        /// object or called inside a ServerRpc.
+        /// </summary>
+        /// <param name="_sceneId">
+        /// The Id of the scene in which it the new game object is instantiated.
+        /// </param>
+        /// <param name="_prefab">
+        /// The gameobject to instantiate and spawn.
+        /// It MUST be a <see cref="ECellDive.Modules.GameNetModule"/> and a Unity.Netcode.NetworkObject.
+        /// </param>
+        /// <param name="_position">
+        /// The position at which to instantiate the gameobject.
+        /// </param>
+        /// <returns>The game object that got instantiated &amp; spawned.</returns>
+        public GameObject SpawnModuleInScene(int _sceneId, GameObject _prefab, Vector3 _position)
 		{
 			GameObject go = Instantiate(_prefab, _position, Quaternion.identity);
 
@@ -369,17 +482,19 @@ namespace ECellDive.SceneManagement
 			return go;
 		}
 
-		/// <summary>
-		/// Instantiates a game object and spawns it for replication across the network.
-		/// This method can only be called on the SERVER. So, be sure to call from a server object
-		/// or called inside a ServerRpc.
-		/// </summary>
-		/// <param name="_sceneId">The Id of the scene in which it the new game object is instantiated.</param>
-		/// <param name="_prefabIdx">The index of the game object in the.
-		/// It MUST be a <see cref="ECellDive.Modules.GameNetModule"/> and a Unity.Netcode.NetworkObject.</param>
-		/// <param name="_position">The position at which to instantiate the gameobject.</param>
-		/// <returns>The game object that got instantiated &amp; spawned.</returns>
-		public GameObject SpawnModuleInScene(int _sceneId, int _prefabIdx, Vector3 _position)
+        /// <summary>
+        /// <b>SERVER SIDE</b>
+        /// 
+        /// Instantiates a game object and spawns it for replication across the network.
+        /// This method can only be called on the SERVER. So, be sure to call from a server object
+        /// or called inside a ServerRpc.
+        /// </summary>
+        /// <param name="_sceneId">The Id of the scene in which it the new game object is instantiated.</param>
+        /// <param name="_prefabIdx">The index of the game object in the.
+        /// It MUST be a <see cref="ECellDive.Modules.GameNetModule"/> and a Unity.Netcode.NetworkObject.</param>
+        /// <param name="_position">The position at which to instantiate the gameobject.</param>
+        /// <returns>The game object that got instantiated &amp; spawned.</returns>
+        public GameObject SpawnModuleInScene(int _sceneId, int _prefabIdx, Vector3 _position)
 		{
 			GameObject go = Instantiate(modulePrefabs[_prefabIdx], _position, Quaternion.identity);
 

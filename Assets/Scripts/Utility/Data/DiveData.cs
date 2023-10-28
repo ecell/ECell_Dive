@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
+
 using ECellDive.Modules;
+using ECellDive.Utility.Data.Multiplayer;
 
 namespace ECellDive.Utility.Data.Dive
 {
@@ -20,9 +23,11 @@ namespace ECellDive.Utility.Data.Dive
     /// <summary>
     /// A struct to keep track about what is hapenning in the dive.
     /// Which divers are in (or out) of the scene and the modules that are loaded.
+    /// 
+    /// The network serialization is partial, it does not serialize the loaded modules.
     /// </summary>
     [System.Serializable]
-    public struct SceneData
+    public struct SceneData : INetworkSerializable
     {
         /// <summary>
         /// ID of the scene.
@@ -42,12 +47,12 @@ namespace ECellDive.Utility.Data.Dive
         /// <summary>
         /// List of NetworkManager Client Ids that are present in the scene
         /// </summary>
-        public List<ulong> inDivers;
+        public ListUInt64Network inDivers;
 
         /// <summary>
         /// List of NetworkManager Client Ids that are NOT present in the scene
         /// </summary>
-        public List<ulong> outDivers;
+        public ListUInt64Network outDivers;
 
         /// <summary>
         /// List of Network Object. Some of them are potential seeds for child scenes.
@@ -59,8 +64,8 @@ namespace ECellDive.Utility.Data.Dive
             sceneID = _sceneID;
             parentSceneID = _parentSceneID;
             sceneName = _sceneName;
-            inDivers = new List<ulong>();
-            outDivers = new List<ulong>();
+            inDivers = new ListUInt64Network(0);
+            outDivers = new ListUInt64Network(0);
             loadedModules = new List<GameNetModule>();
         }
 
@@ -148,6 +153,29 @@ namespace ECellDive.Utility.Data.Dive
                             $"Loaded modules: " + loadedModulesStr;
 
             return final;
+        }
+
+        /// <summary>
+		/// The multiplayer serialization method.
+		/// </summary>
+		/// <remarks>
+		/// This follows the INetworkSerializable interface from Unity Netcode for GameObject.
+		/// This is necessary because this struct uses a List, which is not supported by
+		/// the default serialization methods of Unity Netcode.
+		/// </remarks>
+		/// <typeparam name="TRW">
+		/// An IReaderWriter type from Unity Netcode.
+		/// </typeparam>
+		/// <param name="serializer">
+		/// Serializer from Unity Netcode.
+		/// </param>
+		public void NetworkSerialize<TRW>(BufferSerializer<TRW> serializer) where TRW : IReaderWriter
+        {
+            serializer.SerializeValue(ref sceneID);
+            serializer.SerializeValue(ref parentSceneID);
+            serializer.SerializeValue(ref sceneName);
+            serializer.SerializeValue(ref inDivers);
+            serializer.SerializeValue(ref outDivers);
         }
     }
 }
