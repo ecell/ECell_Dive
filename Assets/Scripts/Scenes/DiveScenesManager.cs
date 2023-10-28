@@ -56,32 +56,57 @@ namespace ECellDive.SceneManagement
 		/// </summary>
 		private bool targetSceneIsVisible = false;
 
-		public override void OnNetworkSpawn()
-		{
+        private void Awake()
+        {
 			Instance = this;
-			if (IsServer)
-			{
-				Debug.Log("Spawning Scene Management");
-				if (scenesBank.Count == 0)
-				{
-					AddNewDiveScene(-1, "Root");
+        }
 
-					//TODO1: This forces the player in the root scene on spwan
-					//But this does not account for player reconnecting to the game
-					//which may have left from a different scene. 
-					//TODO2 (maybe): The scene bank is not synchronized with the clients
-					//but is only managed by the server because currently the "AddNewDiveScene"
-					//method is only called within ServerRPC. But this there are no guarentees
-					//for the future. And we should really think whether the players might
-					//need it a lot in the future that it would be worth synchronizing it.
-					//Otherwise, we should have a Client->Server->Client RPCs to send the 
-					//scene's information to the clients.
-					currentSceneisHidden = true;
-					StartCoroutine(ShowScene(0, NetworkManager.Singleton.LocalClientId));
-					StartCoroutine(UpdatePlayerDataC(0, NetworkManager.Singleton.LocalClientId));
-				}
-			}
-		}
+        public override void OnNetworkSpawn()
+        {
+			scenesBank.Clear();
+
+            //TODO? The scene bank is not synchronized with the clients
+            //but is only managed by the server because currently the "AddNewDiveScene"
+            //method is only called within ServerRPC. But there are no guarentees
+            //for the future. And we should really think whether the players might
+            //need it a lot in the future that it would be worth synchronizing it.
+            //Otherwise, we should have a Client->Server->Client RPCs to send the 
+            //scene's information to the clients.
+        }
+
+        /// <summary>
+        /// Called to instantiate a new scene upon diving in a module
+        /// </summary>
+        public int AddNewDiveScene(int _parentSceneId, string _sceneName)
+        {
+            SceneData newScene = new SceneData(scenesBank.Count, _parentSceneId, _sceneName);
+            foreach (ulong _clientId in NetworkManager.Singleton.ConnectedClientsIds)
+            {
+                newScene.AddOutDiver(_clientId);
+            }
+            scenesBank.Add(newScene);
+            //Debug.Log($"End AddNewDiveScene; Scene Data:\n {newScene}");
+            return newScene.sceneID;
+        }
+
+		/// <summary>
+		/// Notifies the server that the client with id <paramref name="_clientID"/>
+		/// should be dropped in the scene with id <paramref name="_sceneID"/>.
+		/// This is a shorthand to trigger the coroutine displaying everything
+		/// in the current scene of the client with id <paramref name="_clientID"/>.
+		/// This is used to display the scene to the client when it connects to the
+		/// multiplayer session.
+		/// </summary>
+		/// <param name="_clientID">
+		/// The ID of the client to drop in its current scene.
+		/// </param>
+        [ServerRpc(RequireOwnership = false)]
+		public void DropClientInSceneServerRpc(ulong _clientID)
+		{
+			Debug.Log($"Dropping client {_clientID} in scene {GameNetDataManager.Instance.GetCurrentScene(_clientID)}");
+            currentSceneisHidden = true;
+            StartCoroutine(ShowScene(GameNetDataManager.Instance.GetCurrentScene(_clientID), _clientID));
+        }
 
 		/// <summary>
 		/// Remove the reference to the diver with id <paramref name="_clientIdToClear"/>
@@ -152,21 +177,6 @@ namespace ECellDive.SceneManagement
 			scenesBank[_sceneId].DiverGetsOut(_diverClientId);
 		}
 
-		/// <summary>
-		/// Called to instantiate a new scene upon diving in a module
-		/// </summary>
-		public int AddNewDiveScene(int _parentSceneId, string _sceneName)
-		{
-			SceneData newScene = new SceneData(scenesBank.Count, _parentSceneId, _sceneName);
-			foreach (ulong _clientId in NetworkManager.Singleton.ConnectedClientsIds)
-			{
-				newScene.AddOutDiver(_clientId);
-			}
-			scenesBank.Add(newScene);
-			Debug.Log($"End AddNewDiveScene; Scene Data:\n {newScene}");
-			return newScene.sceneID;
-		}
-
 #if UNITY_EDITOR
 		/// <summary>
 		/// Outputs the content of the <see cref="scenesBank"/>.
@@ -194,14 +204,14 @@ namespace ECellDive.SceneManagement
 		/// </remarks>
 		private IEnumerator HideScene(int _sceneID, ulong _outDiverClientId)
 		{
-			Debug.Log($"Original scene information:");
+			//Debug.Log($"Original scene information:");
 			LogSystem.AddMessage(LogMessageTypes.Debug,
 				$"Original scene information:");
 			DebugScene();
 			//Updating divers for the scene in the Scene bank
 			scenesBank[_sceneID].DiverGetsOut(_outDiverClientId);
 
-			Debug.Log($"Hiding scene {_sceneID} for client {_outDiverClientId}");
+			//Debug.Log($"Hiding scene {_sceneID} for client {_outDiverClientId}");
 			LogSystem.AddMessage(LogMessageTypes.Debug,
 				$"Hiding scene {_sceneID} for client {_outDiverClientId}");
 			DebugScene();
@@ -245,7 +255,7 @@ namespace ECellDive.SceneManagement
 			//Hide all the in-divers from the out-diver
 			foreach (ulong _inDiverCliendId in scenesBank[_sceneID].inDivers)
 			{
-				Debug.Log($"Hiding Player {_inDiverCliendId} from leaving Player {_outDiverClientId}");
+				//Debug.Log($"Hiding Player {_inDiverCliendId} from leaving Player {_outDiverClientId}");
 				LogSystem.AddMessage(LogMessageTypes.Debug,
                 $"Hiding Player {_inDiverCliendId} from leaving Player {_outDiverClientId}");
 				//in-Diver gameObject
@@ -271,7 +281,7 @@ namespace ECellDive.SceneManagement
 		{
 			yield return new WaitUntil(() => currentSceneisHidden);
 			currentSceneisHidden = false;
-			Debug.Log($"Showing scene {_sceneID} for client {_newInDiverClientId}");
+			//Debug.Log($"Showing scene {_sceneID} for client {_newInDiverClientId}");
 			LogSystem.AddMessage(LogMessageTypes.Debug,
 				$"Showing scene {_sceneID} for client {_newInDiverClientId}");
 			DebugScene();
@@ -313,7 +323,7 @@ namespace ECellDive.SceneManagement
 			//Show all already present in-Divers to the new in Diver
 			foreach (ulong _oldInDiverCliendId in scenesBank[_sceneID].inDivers)
 			{
-				Debug.Log($"Showing already present Player {_oldInDiverCliendId} to new player {_newInDiverClientId}");
+				//Debug.Log($"Showing already present Player {_oldInDiverCliendId} to new player {_newInDiverClientId}");
 				LogSystem.AddMessage(LogMessageTypes.Debug,
 				$"Showing {_oldInDiverCliendId} to {_newInDiverClientId}");
 				diverGo = NetworkManager.Singleton.ConnectedClients[_oldInDiverCliendId].PlayerObject.gameObject;
@@ -428,7 +438,7 @@ namespace ECellDive.SceneManagement
 			int from = GameNetDataManager.Instance.GetCurrentScene(_surfacingDiverId);
 			int to = scenesBank[from].parentSceneID;
 
-			Debug.Log($"Resurfacing client {_surfacingDiverId} from {from} to {to}");
+			//Debug.Log($"Resurfacing client {_surfacingDiverId} from {from} to {to}");
 
 			if (to >= 0)
 			{

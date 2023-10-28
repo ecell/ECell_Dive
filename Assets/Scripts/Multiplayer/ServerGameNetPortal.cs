@@ -70,7 +70,7 @@ namespace ECellDive.Multiplayer
 		/// <param name="connectionApprovedCallback">The delegate we must invoke to signal that the connection was approved or not. </param>
 		void ApprovalCheck(byte[] connectionData, ulong clientId, NetworkManager.ConnectionApprovedDelegate connectionApprovedCallback)
 		{
-			Debug.Log("Server is checking for approval.");
+			//Debug.Log("Server is checking for approval.");
 			if (connectionData.Length > k_MaxConnectPayload)
 			{
 				// If connectionData too high, deny immediately to avoid wasting time on the server. This is intended as
@@ -85,7 +85,7 @@ namespace ECellDive.Multiplayer
 			// Approval check happens for Host too, but obviously we want it to be approved
 			if (clientId == NetworkManager.Singleton.LocalClientId)
 			{
-				Debug.Log("Client ID corresponds to local object: this is the host");
+				//Debug.Log("Client ID corresponds to local object: this is the host");
 
 				connectionApprovedCallback(true, null, true, null, null);
 				return;
@@ -150,12 +150,12 @@ namespace ECellDive.Multiplayer
 			//    ConnectStatus.LoggedInAgain : ConnectStatus.Success;
 			if (m_Portal.CheckPassword(connectionPayload.psw))
 			{
-				Debug.Log("This is a password match");
+				//Debug.Log("This is a password match");
 				return ConnectStatus.Success;
 			}
 			else
 			{
-				Debug.Log("Password does not match");
+				//Debug.Log("Password does not match");
 				return ConnectStatus.IncorrectPassword;
 			}
 		}
@@ -170,20 +170,20 @@ namespace ECellDive.Multiplayer
 			Debug.Log("OnNetworkReady for ServerGameNetPortal componenent");
 			if (!m_Portal.NetManager.IsServer)
 			{
-				Debug.Log("This NetManager is NOT the server: the component is disabled.");
+				//Debug.Log("This NetManager is NOT the server: the component is disabled.");
 				enabled = false;
 			}
-			//else
-			//{
-			//    //O__O if adding any event registrations here, please add an unregistration in OnClientDisconnect.
-			//    m_Portal.NetManager.OnClientDisconnectCallback += OnClientDisconnect;
+            //else
+            //{
+            //    //O__O if adding any event registrations here, please add an unregistration in OnClientDisconnect.
+            //    m_Portal.NetManager.OnClientDisconnectCallback += OnClientDisconnect;
 
-			//    if (m_Portal.NetManager.IsHost)
-			//    {
-			//        m_ClientSceneMap[m_Portal.NetManager.LocalClientId] = ServerScene;
-			//    }
-			//}
-		}
+            //    if (m_Portal.NetManager.IsHost)
+            //    {
+            //        m_ClientSceneMap[m_Portal.NetManager.LocalClientId] = ServerScene;
+            //    }
+            //}
+        }
 
 		/// <summary>
 		/// Sends a DisconnectReason to the indicated client. This should only be done on the server, prior to disconnecting the client.
@@ -192,7 +192,7 @@ namespace ECellDive.Multiplayer
 		/// <param name="status"> The reason for the upcoming disconnect.</param>
 		static void SendServerToClientSetDisconnectReason(ulong clientID, ConnectStatus status)
 		{
-			Debug.Log("Notifying the disconnection reason to the client.");
+			//Debug.Log("Notifying the disconnection reason to the client.");
 			var writer = new FastBufferWriter(sizeof(ConnectStatus), Allocator.Temp);
 			writer.WriteValueSafe(status);
 			NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(nameof(ClientGameNetPortal.ReceiveServerToClientSetDisconnectReason_CustomMessage), clientID, writer);
@@ -205,7 +205,7 @@ namespace ECellDive.Multiplayer
 		/// <param name="status"> the status to pass to the client</param>
 		static void SendServerToClientConnectResult(ulong clientID, ConnectStatus status)
 		{
-			Debug.Log("Notifying the conneciton results to the client");
+			//Debug.Log("Notifying the conneciton results to the client");
 			var writer = new FastBufferWriter(sizeof(ConnectStatus), Allocator.Temp);
 			writer.WriteValueSafe(status);
 			NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(nameof(ClientGameNetPortal.ReceiveServerToClientConnectResult_CustomMessage), clientID, writer);

@@ -1,6 +1,6 @@
-using ECellDive.Modules;
 using System.Collections.Generic;
 using UnityEngine;
+using ECellDive.Modules;
 
 namespace ECellDive.Utility.Data.Dive
 {
@@ -21,6 +21,7 @@ namespace ECellDive.Utility.Data.Dive
     /// A struct to keep track about what is hapenning in the dive.
     /// Which divers are in (or out) of the scene and the modules that are loaded.
     /// </summary>
+    [System.Serializable]
     public struct SceneData
     {
         /// <summary>

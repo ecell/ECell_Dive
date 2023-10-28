@@ -4,6 +4,7 @@ using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.Multiplayer;
 using ECellDive.Utility;
+using ECellDive.SceneManagement;
 
 namespace ECellDive.PlayerComponents
 {
@@ -64,15 +65,44 @@ namespace ECellDive.PlayerComponents
 		private void Awake()
 		{
 			nameField = m_nameTextFieldContainer.GetComponentInChildren<TextMeshProUGUI>();
-			GameNetDataManager.Instance.OnDataShared += UpdatePlayerNamesInContainersServerRpc;
-			NetworkManager.Singleton.OnClientConnectedCallback += HandleNameTargetCamera;
+		}
+
+		public override void OnNetworkSpawn()
+		{
+			if (IsLocalPlayer)
+			{
+				NetworkManager.Singleton.OnClientConnectedCallback += HandleNameTargetCamera;
+				GameNetDataManager.Instance.OnClientReceivedAllPlayerNetData += UpdatePlayerNamesInContainers;
+				GameNetDataManager.Instance.OnClientReceivedAllModules += SpawnInDiveScene;
+			}
 		}
 
 		public override void OnNetworkDespawn()
 		{
-			base.OnNetworkDespawn();
-			GameNetDataManager.Instance.OnDataShared -= UpdatePlayerNamesInContainersServerRpc;
-			NetworkManager.Singleton.OnClientConnectedCallback -= HandleNameTargetCamera;
+			if (IsLocalPlayer)
+			{
+				NetworkManager.Singleton.OnClientConnectedCallback -= HandleNameTargetCamera;
+				GameNetDataManager.Instance.OnClientReceivedAllPlayerNetData -= UpdatePlayerNamesInContainers;
+				GameNetDataManager.Instance.OnClientReceivedAllModules -= SpawnInDiveScene;
+			}
+		}
+
+		/// <summary>
+		/// A callback to make sure that the name canvas of the replicated
+		/// players in the environment of the local player face the camera
+		/// of the local player. Called back when on new client connection.
+		/// </summary>
+		/// <param name="_clientID">
+		/// The ID of the client that just connected to the server.
+		/// </param>
+		private void HandleNameTargetCamera(ulong _clientID)
+		{
+			Debug.Log($"Player HandleNameTargetCamera {_clientID}, localClientID {NetworkManager.Singleton.LocalClientId}");
+
+			if (_clientID == NetworkManager.LocalClientId)
+			{
+				HandleNameTargetCameraServerRpc(_clientID);
+			}
 		}
 
 		/// <summary>
@@ -103,7 +133,8 @@ namespace ECellDive.PlayerComponents
 		/// <param name="_expeditorClientId">
 		/// The id of the client that just connected to the server.
 		/// </param>
-		private void HandleNameTargetCamera(ulong _expeditorClientId)
+		[ServerRpc(RequireOwnership = false)]
+		private void HandleNameTargetCameraServerRpc(ulong _expeditorClientId)
 		{
 			if (IsServer)
 			{
@@ -123,7 +154,7 @@ namespace ECellDive.PlayerComponents
 					{
 						//Send the order to the already connected replicated clients copies in the 
 						//expeditor client environment to face the camera of the local player (expeditor)
-						
+
 						HandleNameTargetCameraClientRpc(NetworkManager.Singleton.ConnectedClients[_clientId].PlayerObject,
 							clientRpcParams);
 
@@ -143,6 +174,45 @@ namespace ECellDive.PlayerComponents
 				};
 				HandleNameTargetCameraClientRpc(NetworkManager.Singleton.ConnectedClients[_expeditorClientId].PlayerObject,
 					clientRpcParams);
+			}
+		}
+
+        /// <summary>
+        /// A callback to drop the player in the dive scene registered last
+        /// in its Dive travel list. Called back when <see cref="GameNetDataManager.Instance.OnClientReceivedAllModules"/>
+        /// is triggered. This typically happens when the client is a new
+        /// player in the game and the server has finished synchronizing
+        /// all the modules data with him.
+        /// </summary>
+        /// <param name="_clientID">
+        /// The ID of the client that just received all the modules data.
+        /// </param>
+        private void SpawnInDiveScene(ulong _clientID)
+        {
+            Debug.Log($"Player SpawnInDiveScene {_clientID}, localClientID {NetworkManager.Singleton.LocalClientId}");
+            if (_clientID == NetworkManager.Singleton.LocalClientId)
+            {
+                DiveScenesManager.Instance.DropClientInSceneServerRpc(_clientID);
+            }
+        }
+
+		/// <summary>
+		/// A callback to update the name in the name containers of the replicated
+		/// payers in the environment of the local player. Called back when <see cref="GameNetDataManager.Instance.OnClientReceivedAllPlayerNetData"/>
+		/// is triggered. This typically happens when the client is a new
+		/// player in the game and the server has finished synchronizing
+		/// all the player net data with him.
+		/// </summary>
+		/// <param name="_clientID">
+		/// The ID of the client that just received all the player net data.
+		/// </param>
+        private void UpdatePlayerNamesInContainers(ulong _clientID)
+		{
+			Debug.Log($"Player UpdatePlayerNamesInContainers {_clientID}, localClientID {NetworkManager.Singleton.LocalClientId}");
+
+			if (_clientID == NetworkManager.LocalClientId)
+			{
+				UpdatePlayerNamesInContainersServerRpc(_clientID);
 			}
 		}
 
@@ -169,7 +239,7 @@ namespace ECellDive.PlayerComponents
 		}
 
 		/// <summary>
-		/// Reauests the server to order the clients to update the name in the name containers
+		/// Requests the server to order the clients to update the name in the name containers
 		/// of the replicated player copies of each local client.
 		/// </summary>
 		/// <param name="_expeditorClientId">
@@ -194,9 +264,9 @@ namespace ECellDive.PlayerComponents
 				{
 					//Send the order to the already connected replicated clients copies in the 
 					//expeditor client environment to update their names
-					Debug.Log($"Sending name ({GameNetDataManager.Instance.GetClientName(_clientId)})" +
-						$"of already connected clients {_clientId} " +
-						$"to the new client {_expeditorClientId}", gameObject);
+					//Debug.Log($"Sending name ({GameNetDataManager.Instance.GetClientName(_clientId)})" +
+					//	$"of already connected clients {_clientId} " +
+					//	$"to the new client {_expeditorClientId}", gameObject);
 					UpdatePlayerNamesInContainersClientRpc(NetworkManager.Singleton.ConnectedClients[_clientId].PlayerObject,
 						GameNetDataManager.Instance.GetClientName(_clientId),
 						clientRpcParams);
@@ -216,9 +286,9 @@ namespace ECellDive.PlayerComponents
 				}
 			};
 
-			Debug.Log($"Sending name ({GameNetDataManager.Instance.GetClientName(_expeditorClientId)})" +
-				$"of new client {_expeditorClientId} " +
-				$"to the already connected clients", gameObject);
+			//Debug.Log($"Sending name ({GameNetDataManager.Instance.GetClientName(_expeditorClientId)})" +
+			//	$"of new client {_expeditorClientId} " +
+			//	$"to the already connected clients", gameObject);
 			UpdatePlayerNamesInContainersClientRpc(NetworkManager.Singleton.ConnectedClients[_expeditorClientId].PlayerObject,
 				GameNetDataManager.Instance.GetClientName(_expeditorClientId),
 				clientRpcParams);

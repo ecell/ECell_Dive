@@ -50,7 +50,7 @@ namespace ECellDive.Multiplayer
 		{
 			//on success, there is nothing to do (the Netcode for GameObjects (Netcode) scene management system will take us to the next scene).
 			//on failure, we must raise an event so that the UI layer can display something.
-			Debug.Log("RecvConnectFinished Got status: " + status);
+			//Debug.Log("RecvConnectFinished Got status: " + status);
 
 			//if (status != ConnectStatus.Success)
 			//{
@@ -75,7 +75,7 @@ namespace ECellDive.Multiplayer
 		/// </param>
 		private void OnDisconnectReasonReceived(ConnectStatus status)
 		{
-			Debug.Log("Got disconnected with status: " + status);
+			//Debug.Log("Got disconnected with status: " + status);
 			//DisconnectReason.SetDisconnectReason(status);
 		}
 
@@ -89,9 +89,9 @@ namespace ECellDive.Multiplayer
 			Debug.Log("OnNetworkReady for ClientGameNetPortal component");
 			if (!m_Portal.NetManager.IsClient)
 			{
-				Debug.Log("This NetManager is NOT a client: the component is disabled.");
+				//Debug.Log("This NetManager is NOT a client: the component is disabled.");
 				enabled = false;
-			}
+			}			
 		}
 
 		/// <summary>
@@ -197,7 +197,7 @@ namespace ECellDive.Multiplayer
 			//  If the socket connection succeeds, we'll get our ReceiveServerToClientConnectResult_CustomMessage invoked. This is where game-layer failures will be reported.
 			if (m_Portal.NetManager.IsHost || m_Portal.NetManager.IsClient)
 			{
-				Debug.Log("NetManager was already running so we are shutting down before re-launching");
+				//Debug.Log("NetManager was already running so we are shutting down before re-launching");
 				StartCoroutine(Restart());
 			}
 			else

@@ -50,13 +50,14 @@ namespace ECellDive.PlayerComponents
 		/// </returns>
 		public static string GetGUID()
 		{
+#if !UNITY_EDITOR // Don't save GUIDs in editor, so that we can test multiple clients on one machine.
 			if (PlayerPrefs.HasKey("client_guid"))
 			{
 				return PlayerPrefs.GetString("client_guid");
 			}
-
-			var guid = System.Guid.NewGuid();
-			var guidString = guid.ToString();
+#endif
+			System.Guid guid = System.Guid.NewGuid();
+			string guidString = guid.ToString();
 
 			PlayerPrefs.SetString("client_guid", guidString);
 			return guidString;

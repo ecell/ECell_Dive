@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using Unity.Netcode;
+using ECellDive.Multiplayer;
 
 namespace ECellDive.Utility.Data.Multiplayer
 {
@@ -306,7 +306,9 @@ namespace ECellDive.Utility.Data.Multiplayer
 		/// </returns>
 		public int GetCurrentScene()
 		{
-			return scenes[scenes.Count - 1];
+			Debug.Log(ToString());
+
+            return scenes[scenes.Count - 1];
 		}
 
 		/// <summary>
@@ -329,5 +331,22 @@ namespace ECellDive.Utility.Data.Multiplayer
 			serializer.SerializeValue(ref clientId);
 			serializer.SerializeValue(ref scenes);
 		}
+
+		/// <summary>
+		/// The ToString method for debugging purposes.
+		/// </summary>
+		/// <returns>
+		/// The values of the struct as a readable string for debug.
+		/// </returns>
+		public override string ToString()
+		{
+            string msg = $"PlayerNetData: {playerName} (clientID: {clientId}) has visited scenes:\n{{";
+			foreach (int sceneId in scenes)
+			{
+				  msg += $" {sceneId},";
+			}
+			msg += " }";
+			return msg;
+        }
 	}
 }

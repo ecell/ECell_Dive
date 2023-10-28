@@ -6,6 +6,7 @@ using ECellDive.Interfaces;
 using ECellDive.Utility.Data.Multiplayer;
 using ECellDive.PlayerComponents;
 using UnityEngine.Events;
+using ECellDive.SceneManagement;
 
 namespace ECellDive.Multiplayer
 {
@@ -63,11 +64,33 @@ namespace ECellDive.Multiplayer
 		public List<ISaveable> saveables = new List<ISaveable>();
 
 		/// <summary>
-		/// Event triggered when the data to be shared when a new client connects
-		/// has been shared ammong all players.
-		/// Currently triggered at the end of <see cref="ShareModuleDataC(ulong)"/>.
+		/// Triggered <b>CLIENT SIDE</b>.
+		/// 
+		/// Event triggered when the data modules already loaded in a multiplayer
+		/// session has been shared with a new player.
+		/// Triggered at the end of <see cref="ShareModuleDataC(ulong)"/>.
 		/// </summary>
-		public UnityAction<ulong> OnDataShared;
+		public UnityAction<ulong> OnClientReceivedAllModules;
+
+        /// <summary>
+        /// Triggered <b>CLIENT SIDE</b>.
+        /// 
+        /// Event triggered when the player net data of all players has been shared
+        /// on the network. This includes "Already connected players" to "New player",
+		/// and "New player" to "Already connected players".
+        /// It is triggered at the end of <see cref="SharePlayerNetDataClientRpc(string, ECellDive.Utility.Data.Multiplayer.PlayerNetData)"/>
+        /// and <see cref="SharePlayerNetDataClientRpc(string, ECellDive.Utility.Data.Multiplayer.PlayerNetData, ClientRpcParams)"/>.
+        /// It is triggered when the number of player net data loaded on the client
+		/// side is equal to <see cref="playerNetDataCount"/>.
+        /// </summary>
+        public UnityAction<ulong> OnClientReceivedAllPlayerNetData;
+		
+		/// <summary>
+		/// Synchronoizes with all players the number of player net data that
+		/// the server is managing. This is used to know when the server has
+		/// finished to send all player net data to a new player.
+		/// </summary>
+		private NetworkVariable<int> playerNetDataCount = new NetworkVariable<int>(0);
 
 		private void Awake()
 		{
@@ -76,17 +99,39 @@ namespace ECellDive.Multiplayer
 
 		public override void OnNetworkSpawn()
 		{
-			if (IsClient)
+			//In the particular case of the host, we directly set the data because 
+			//it is the first entity to be spawned in the scene so there is no
+			//data to synchronize.
+			//Note that this might change in the future if we decide to spawn
+			//the host in a dive scene with loaded data.
+			if (IsClient & !IsHost)
 			{
-				ShareNetworkDataServerRPC(NetworkManager.Singleton.LocalClientId,
-					PlayerPrefsWrap.GetPlayerName(), PlayerPrefsWrap.GetGUID());
+				Clear();
 
-				StartCoroutine(ShareModuleDataC(NetworkManager.Singleton.LocalClientId));
+				SharePlayerNetDataServerRpc(NetworkManager.Singleton.LocalClientId, PlayerPrefsWrap.GetPlayerName(), PlayerPrefsWrap.GetGUID());
 
-				//TODO: once data sharing is finished:
-				//- we need to spawn the new player in its dive scene.
-				//- we need to authorize all players and replicated copies to assign the
-				//names to their player prefabs name container.
+				ShareModuleDataServerRpc(NetworkManager.Singleton.LocalClientId);
+			}
+
+			else if (IsServer)
+			{
+				System.Guid guid = System.Guid.Parse(PlayerPrefsWrap.GetGUID());
+				clientIDToPlayerGUIDMap[NetworkManager.Singleton.LocalClientId] = guid;
+				playerGUIDToPlayerNetData[guid] = new PlayerNetData
+				{
+					clientId = NetworkManager.Singleton.LocalClientId,
+					playerName = PlayerPrefsWrap.GetPlayerName(),
+					scenes = new ListInt32Network(1) { 0 }
+				}; 
+				playerNetDataCount.Value++;
+
+				//We make sure the root dive scene is added to the bank before we 
+				//trigger the events.
+				DiveScenesManager.Instance.AddNewDiveScene(-1, "Root");
+
+                //We trigger the events here because there is no need to check.
+                OnClientReceivedAllPlayerNetData?.Invoke(NetworkManager.Singleton.LocalClientId);
+				OnClientReceivedAllModules?.Invoke(NetworkManager.Singleton.LocalClientId);
 			}
 		}
 
@@ -162,163 +207,53 @@ namespace ECellDive.Multiplayer
 			return playerGUIDToPlayerNetData[clientIDToPlayerGUIDMap[_clientID]].scenes.Values;
 		}
 
-		/// <summary>
-		/// A coroutine to control the speed at which the server sends the data in
-		/// <see cref="clientIDToPlayerGUIDMap"/> and <see cref="playerGUIDToPlayerNetData"/>
-		/// using <see cref="SetPlayerGUIDToPlayerNetDataClientRpc(ulong, string, ClientRpcParams)"/>
-		/// and <see cref="SetPlayerGUIDToPlayerNetDataClientRpc(string, PlayerNetData, ClientRpcParams)"/>.
-		/// </summary>
-		/// <param name="_expeditorID">
-		/// The ID of the client that should receive the data.
-		/// </param>
-		/// <remarks>
-		/// Executed Server-side in <see cref="ShareNetworkDataServerRPC(ulong, string, string)"/>.
-		/// This one will overide the data set in the new player via ShareNetworkDataServerRPC.
-		/// But it's not a problem because either it is the same data (real new player) or the
-		/// server has data that is more up to date (reconnected player).
-		/// </remarks>
-		private IEnumerator SetPlayerNetDataC(ulong _expeditorID)
+        /// <summary>
+        /// The server notifies the client that there is no more data module
+        /// to share. This is triggered at the end of <see cref="ShareModuleDataC(ulong)"/>.
+        /// </summary>
+        /// <param name="_clientRpcParams">
+        /// The client RPC parameters allowing to reach specific clients.
+        /// </param>
+        [ClientRpc]
+        private void OnClientReceivedAllModulesClientRpc(ClientRpcParams _clientRpcParams)
+        {
+            OnClientReceivedAllModules.Invoke(NetworkManager.LocalClientId);
+        }
+
+        /// <summary>
+        /// Notifies the server that the player with the given client ID would
+        /// like to receive the data modules already loaded in the scene.
+        /// </summary>
+        /// <param name="_expeditorClientID">
+        /// The client ID of the player that would like to receive the data modules.
+        /// </param>
+        /// <seealso cref="ShareModuleDataC"/>
+        [ServerRpc(RequireOwnership = false)]
+		private void ShareModuleDataServerRpc(ulong _expeditorClientID)
 		{
-			ClientRpcParams expeditorRpcParams = new ClientRpcParams
-			{
-				Send = new ClientRpcSendParams
-				{
-					TargetClientIds = new ulong[] { _expeditorID }
-				}
-			};
-
-			//We send the content clientIDToPlayerGUIDMap to the new player
-			foreach (KeyValuePair<ulong, System.Guid> pair in clientIDToPlayerGUIDMap)
-			{
-				SetClientIDToPlayerGUIDClientRpc(pair.Key, pair.Value.ToString(), expeditorRpcParams);
-			}
-
-			yield return new WaitForEndOfFrame();
-
-			//We send the content of playerGUIDToPlayerNetData to the new player. 
-			foreach (KeyValuePair<System.Guid, PlayerNetData> pair in playerGUIDToPlayerNetData)
-			{
-				SetPlayerGUIDToPlayerNetDataClientRpc(pair.Key.ToString(), pair.Value, expeditorRpcParams);
-			}
-
+			StartCoroutine(ShareModuleDataC(_expeditorClientID));
 		}
 
 		/// <summary>
-		/// Send data from the server to all clients to update their <see cref="clientIDToPlayerGUIDMap"/>.
-		/// </summary>
-		/// <param name="_clientID">
-		/// The client ID of the client for which we are setting the data. It will be
-		/// the key in <see cref="clientIDToPlayerGUIDMap"/> of the client targeted by
-		/// <paramref name="clientRpcSendParams"/>.
-		/// </param>
-		/// <param name="_playerGUID">
-		/// The player GUID of the client for which we are setting the data. It will be
-		/// the value in <see cref="clientIDToPlayerGUIDMap"/>.
-		/// </param>
-		[ClientRpc]
-		private void SetClientIDToPlayerGUIDClientRpc(ulong _clientID, string _playerGUID)
-		{
-			//Host side has already been updated in the server.
-			if (!IsHost)
-			{
-				clientIDToPlayerGUIDMap[_clientID] = System.Guid.Parse(_playerGUID);
-			}
-		}
-
-		/// <summary>
-		/// The client targeted via <paramref name="clientRpcSendParams"/> receives data
-		/// from the server to update its <see cref="clientIDToPlayerGUIDMap"/>.
-		/// </summary>
-		/// <param name="_clientID">
-		/// The client ID of the client for which we are setting the data. It will be
-		/// the key in <see cref="clientIDToPlayerGUIDMap"/> of the client targeted by
-		/// <paramref name="clientRpcSendParams"/>.
-		/// </param>
-		/// <param name="_playerGUID">
-		/// The player GUID of the client for which we are setting the data. It will be
-		/// the value in <see cref="clientIDToPlayerGUIDMap"/> of the client targeted by
-		/// <paramref name="clientRpcSendParams"/>.
-		/// </param>
-		/// <param name="clientRpcSendParams">
-		/// The parameters to let the server know which client to target.
-		/// </param>
-		[ClientRpc]
-		private void SetClientIDToPlayerGUIDClientRpc(ulong _clientID, string _playerGUID, ClientRpcParams clientRpcSendParams)
-		{
-			//Host side has already been updated in the server.
-			if (!IsHost)
-			{
-				clientIDToPlayerGUIDMap[_clientID] = System.Guid.Parse(_playerGUID);
-			}
-		}
-
-		/// <summary>
-		/// Sends data from the server to all clients to update their <see cref="playerGUIDToPlayerNetData"/>.
-		/// </summary>
-		/// <param name="_playerGUID">
-		/// The player GUID of the client for which we are setting the data. It will be
-		/// the key in <see cref="playerGUIDToPlayerNetData"/>.
-		/// </param>
-		/// <param name="_playerNetData">
-		/// The player net data of the client for which we are setting the data. It will be
-		/// the value in <see cref="playerGUIDToPlayerNetData"/>.
-		/// </param>
-		[ClientRpc]
-		private void SetPlayerGUIDToPlayerNetDataClientRpc(string _playerGUID, PlayerNetData _playerNetData)
-		{
-			//Host side has already been updated in the server.
-			if (!IsHost)
-			{
-				Debug.Log($"SetPlayerGUIDToPlayerNetDataClientRpc in client {NetworkManager.Singleton.LocalClientId}");
-				playerGUIDToPlayerNetData[System.Guid.Parse(_playerGUID)] = _playerNetData;
-			}
-		}
-
-		/// <summary>
-		/// The client targeted via <paramref name="clientRpcSendParams"/> receives data
-		/// from the server to update its <see cref="playerGUIDToPlayerNetData"/>.
-		/// </summary>
-		/// <param name="_playerGUID">
-		/// The player GUID of the client for which we are setting the data. It will be
-		/// the key in <see cref="playerGUIDToPlayerNetData"/> of the client targeted by
-		/// <paramref name="clientRpcSendParams"/>.
-		/// </param>
-		/// <param name="_playerNetData">
-		/// The player net data of the client for which we are setting the data. It will be
-		/// the value in <see cref="playerGUIDToPlayerNetData"/> of the client targeted by
-		/// <paramref name="clientRpcSendParams"/>.
-		/// </param>
-		/// <param name="clientRpcSendParams">
-		/// The parameters to let the server know which client to target.
-		/// </param>
-		[ClientRpc]
-		private void SetPlayerGUIDToPlayerNetDataClientRpc(string _playerGUID, PlayerNetData _playerNetData, ClientRpcParams clientRpcSendParams)
-		{
-			//Host side has already been updated in the server.
-			if (!IsHost)
-			{
-				playerGUIDToPlayerNetData[System.Guid.Parse(_playerGUID)] = _playerNetData;
-			}
-		}
-
-		/// <summary>
+		/// <b>SERVER SIDE</b>
+		/// 
 		/// Synchronizes the content of the data modules that already exist
 		/// in the scene (and stored in <see cref="dataModules"/>) for the
-		/// client with id <paramref name="_targetClientID"/>.
+		/// client with id <paramref name="_expeditorClientID"/>.
 		/// </summary>
-		/// <param name="_targetClientID">The id of the target client to which
+		/// <param name="_expeditorClientID">The id of the target client to which
 		/// we send the content of the data modules in the scene.</param>
 		/// <remarks>This should be used only with (or after) <see
 		/// cref="OnNetworkReady(ulong)"/> to be sure that the data modules
 		/// have been spawned in the scene of the target client.</remarks>
-		private IEnumerator ShareModuleDataC(ulong _targetClientID)
+		private IEnumerator ShareModuleDataC(ulong _expeditorClientID)
 		{
 			int nbClientReadyLoaded;
 			foreach (IMlprData mlprData in dataModules)
 			{
 				Debug.Log($"Sending data {mlprData.sourceDataName}");
 				nbClientReadyLoaded = mlprData.nbClientReadyLoaded.Value;
-				StartCoroutine(mlprData.SendSourceDataC(_targetClientID));
+				StartCoroutine(mlprData.SendSourceDataC(_expeditorClientID));
 
 				//We wait for the current data to be completely loaded
 				//in the scene of the new client before starting to load
@@ -329,58 +264,153 @@ namespace ECellDive.Multiplayer
 				yield return new WaitUntil(() => mlprData.nbClientReadyLoaded.Value == nbClientReadyLoaded + 1);
 			}
 
-			OnDataShared.Invoke(_targetClientID);
+			ClientRpcParams clientRpcParams = new ClientRpcParams
+			{
+				Send = new ClientRpcSendParams
+				{
+					TargetClientIds = new ulong[] { _expeditorClientID }
+				}
+			};
+
+			//We send the event to the target client to notify it that
+			//it has received all the data modules.
+			OnClientReceivedAllModulesClientRpc(clientRpcParams);
 		}
 
 		/// <summary>
-		/// Updates and/or initializes the data <see cref="clientIDToPlayerGUIDMap"/>" and
-		/// <see cref="playerGUIDToPlayerNetData"/> for the server and then all the clients.
-		/// Checks whether the player is new or reconnecting by comparing the player GUID
-		/// with the one in <see cref="clientIDToPlayerGUIDMap"/>. If the player is new,
-		/// then we add its info in <see cref="playerGUIDToPlayerNetData"/> for the server
-		/// and all clients
+		/// Broadcasts a player's net data to all clients.
 		/// </summary>
-		/// <param name="_expeditorID"></param>
-		/// <param name="_playerName"></param>
-		/// <param name="_playerGUID"></param>
-		[ServerRpc(RequireOwnership = false)]
-		private void ShareNetworkDataServerRPC(ulong _expeditorID, string _playerName, string _playerGUID)
+		/// <param name="_playerGUID">
+		/// The unique player ID of the player which data is broadcasted.
+		/// </param>
+		/// <param name="_playerNetData">
+		/// The data of the player which is broadcasted.
+		/// </param>
+		[ClientRpc]
+		public void SharePlayerNetDataClientRpc(string _playerGUID, PlayerNetData _playerNetData)
 		{
-			System.Guid playerGUID = System.Guid.Parse(_playerGUID);
-			clientIDToPlayerGUIDMap[_expeditorID] = playerGUID;//for the server
+			Debug.Log($"SharePlayerNetDataClientRpc in client " +
+				$"{NetworkManager.Singleton.LocalClientId} about " +
+				$"[_playerGUID: {_playerGUID}, " + _playerNetData + "]");
 
-			SetClientIDToPlayerGUIDClientRpc(_expeditorID, _playerGUID);//for all clients
+			System.Guid guid = System.Guid.Parse(_playerGUID);
+			clientIDToPlayerGUIDMap[_playerNetData.clientId] = guid;
+			playerGUIDToPlayerNetData[guid] = _playerNetData;
 
-			//If the player is really new, we add its info in the
-			//playerGUIDToPlayerNetData map of the server (since this is a server RPC).
-			if (!playerGUIDToPlayerNetData.ContainsKey(playerGUID))
+			Debug.Log($"playerNetDataCount.Value: {playerNetDataCount.Value}, " +
+				$"playerGUIDToPlayerNetData.Count: " +
+				$"{playerGUIDToPlayerNetData.Count}");
+			if (playerNetDataCount.Value == playerGUIDToPlayerNetData.Count)
 			{
-				Debug.Log($"New player {_playerName} with GUID {_playerGUID} and clientID {_expeditorID} connected to the server.");
-				PlayerNetData newPlayerNewData = new PlayerNetData
-				{
-					playerName = _playerName,
-					clientId = _expeditorID,
-					scenes = new ListInt32Network(0)
-				};
-
-				playerGUIDToPlayerNetData[playerGUID] = newPlayerNewData;
-
-				SetPlayerGUIDToPlayerNetDataClientRpc(_playerGUID, newPlayerNewData);//for all clients
+				OnClientReceivedAllPlayerNetData?.Invoke(NetworkManager.Singleton.LocalClientId);
 			}
-
-			foreach (KeyValuePair<ulong, System.Guid> pair in clientIDToPlayerGUIDMap)
-			{
-				Debug.Log($"ClientID {pair.Key} has GUID {pair.Value}");
-			}
-
-			foreach (KeyValuePair<System.Guid, PlayerNetData> pair in playerGUIDToPlayerNetData)
-			{
-				Debug.Log($"PlayerGUID {pair.Key} has PlayerNetData [{pair.Value.playerName}, {pair.Value.clientId}]");
-			}
-
-			//We send data about all other players to the new player
-			StartCoroutine(SetPlayerNetDataC(_expeditorID));
 		}
 
+		/// <summary>
+		/// Broadcasts a player's net data to a subset of clients defined by
+		/// <paramref name="_clientRpcParams"/>.
+		/// </summary>
+		/// <param name="_playerGUID">
+		/// The unique player ID of the player which data is broadcasted.
+		/// </param>
+		/// <param name="_playerNetData">
+		/// The data of the player which is broadcasted.
+		/// </param>
+		/// <param name="_clientRpcParams">
+		/// The client RPC parameters allowing to reach specific clients.
+		/// </param>
+		[ClientRpc]
+		public void SharePlayerNetDataClientRpc(string _playerGUID, PlayerNetData _playerNetData, ClientRpcParams _clientRpcParams)
+		{
+			Debug.Log($"SharePlayerNetDataClientRpc in client " +
+				$"{NetworkManager.Singleton.LocalClientId} about " +
+				$"[_playerGUID: {_playerGUID}, " + _playerNetData + "]");
+
+			System.Guid guid = System.Guid.Parse(_playerGUID);
+			clientIDToPlayerGUIDMap[_playerNetData.clientId] = guid;
+			playerGUIDToPlayerNetData[guid] = _playerNetData;
+
+			Debug.Log($"playerNetDataCount.Value: {playerNetDataCount.Value}, " +
+				$"playerGUIDToPlayerNetData.Count: " +
+				$"{playerGUIDToPlayerNetData.Count}");
+			if (playerNetDataCount.Value == playerGUIDToPlayerNetData.Count)
+			{
+				OnClientReceivedAllPlayerNetData?.Invoke(NetworkManager.Singleton.LocalClientId);
+			}
+		}
+
+		/// <summary>
+		/// Notifies the server that the player with the given client ID would
+		/// like to receive the player net data of all players already connected.
+		/// </summary>
+		/// <param name="_connectingClientID">
+		/// The client ID of the connecting player.
+		/// </param>
+		/// <param name="_playerName">
+		/// The name of the connecting player.
+		/// </param>
+		/// <param name="_playerGUID">
+		/// The unique player ID of the connecting player.
+		/// </param>
+		[ServerRpc(RequireOwnership = false)]
+		public void SharePlayerNetDataServerRpc(ulong _connectingClientID, string _playerName, string _playerGUID)
+		{
+			//If the player is indeed new (not a reconnecting player), we increment
+			//the number of player net data to synchronize.
+			//We must increment this number before the server starts to send the
+			//player net data to the connecting client. Otherwise, the client will
+			//trigger the OnClientReceivedAllPlayerNetData event before the server
+			//has finished to send the connecting player's data to itself.
+			if (!playerGUIDToPlayerNetData.ContainsKey(System.Guid.Parse(_playerGUID)))
+			{
+				playerNetDataCount.Value++;
+			}
+
+			ClientRpcParams clientRpcParams = new ClientRpcParams
+			{
+				Send = new ClientRpcSendParams
+				{
+					TargetClientIds = new ulong[] { _connectingClientID }
+				}
+			};
+
+			//We send the player net data of already connected players to the new player.
+			//The "already connected players" may include the new player itself if it is
+			//a reconnecting player.
+			foreach (KeyValuePair<System.Guid, PlayerNetData> pnd in playerGUIDToPlayerNetData)
+			{
+				Debug.Log($"Server is broadcasting already connected player " +
+										$"{pnd.Value.playerName} with GUID {pnd.Key} to new player");
+				SharePlayerNetDataClientRpc(pnd.Key.ToString(), pnd.Value, clientRpcParams);
+			}
+
+			//If the player is not a reconnecting player, we send its player net data to
+			//all players including itself.
+			if (!playerGUIDToPlayerNetData.ContainsKey(System.Guid.Parse(_playerGUID)))
+			{
+				Debug.Log("Server is Broadcasting new player data to all clients");
+				SharePlayerNetDataClientRpc(_playerGUID, new PlayerNetData
+				{
+					clientId = _connectingClientID,
+					playerName = _playerName,
+					scenes = new ListInt32Network(1) { 0 }
+				});
+
+				//In the case the server is not in a Host/Client architecture,
+				//we must update the data maps of the server here because it
+				//won't be done via the clientRpc above sent above.
+				if (!IsHost)
+				{
+					System.Guid guid = System.Guid.Parse(_playerGUID);
+					clientIDToPlayerGUIDMap[_connectingClientID] = guid;
+					playerGUIDToPlayerNetData[guid] = new PlayerNetData
+					{
+						clientId = _connectingClientID,
+						playerName = _playerName,
+						scenes = new ListInt32Network(1) { 0 }
+					};
+				}
+			}
+		}
 	}
 }
