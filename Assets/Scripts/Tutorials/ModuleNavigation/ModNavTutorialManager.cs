@@ -1,8 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using ECellDive.SceneManagement;
 using ECellDive.UI;
-using System.Collections;
 using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.Tutorials
