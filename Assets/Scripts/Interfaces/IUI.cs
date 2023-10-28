@@ -97,7 +97,7 @@ namespace ECellDive
             /// <summary>
             /// The target to look at.
             /// </summary>
-            Transform lookAtTarget { get; }
+            Transform lookAtTarget { get; set; }
 
             /// <summary>
             /// The method to call to make the gameobject look at its target.
@@ -125,7 +125,7 @@ namespace ECellDive
             /// The gameobject used as reference for the positioning of the
             /// gameobject that pops up.
             /// </summary>
-            Transform popupTarget { get; }
+            Transform popupTarget { get; set; }
 
             void PopUp();
         }

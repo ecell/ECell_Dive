@@ -1,10 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
-using ECellDive.Interfaces;
+
 using ECellDive.PlayerComponents;
+using ECellDive.Modules;
 using ECellDive.Utility;
 using ECellDive.Utility.Data.Multiplayer;
 
@@ -197,6 +197,8 @@ namespace ECellDive.Multiplayer
 				SetConnectionSettings(m_settings.playerName, "127.0.0.1", 7777, m_settings.password);
 				SetUnityTransport();
 
+				MultiplayerModule.Instance.OnConnectionFails();
+
 				//We are in the case where hosting to the new address failed.
 				//We wait until the failed server has properly shut down.
 				yield return new WaitWhile(() => NetManager.IsListening);
@@ -207,6 +209,8 @@ namespace ECellDive.Multiplayer
 			{
 				msgStr = "<color=green>Successfully hosting at " + m_settings.IP + ":" + m_settings.port+ "</color>";
 				
+				MultiplayerModule.Instance.OnConnectionSuccess();
+
 				LogSystem.AddMessage(LogMessageTypes.Trace,
 					"Successfully hosting at " + m_settings.IP + ":" + m_settings.port);
 
@@ -304,7 +308,12 @@ namespace ECellDive.Multiplayer
 			else
 			{
 				SetUnityTransport();
-				NetManager.StartHost();
+				if (NetManager.StartHost())
+				{
+					//The instance might be null if this is the first connection
+					//when launching the app.
+					MultiplayerModule.Instance?.OnConnectionSuccess();
+				}
 			}
 		}
 	}

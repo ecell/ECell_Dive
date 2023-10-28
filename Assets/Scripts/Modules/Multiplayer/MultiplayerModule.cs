@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using ECellDive.Interfaces;
 using ECellDive.Utility;
 
 namespace ECellDive.Modules
@@ -12,13 +13,13 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// The singleton instance of this class.
 		/// </summary>
-		[Header("Multiplayer Module")]
 		static public MultiplayerModule Instance;
 
 		/// <summary>
 		/// The animation loop controller to control the visual feedback
 		/// of the module in case of request.
 		/// </summary>
+		[Header("Multiplayer Module")]
 		[SerializeField] private AnimationLoopWrapper alw;
 
 		/// <summary>
@@ -40,12 +41,19 @@ namespace ECellDive.Modules
 			alw.PlayLoop("MultiplayerModule");
 		}
 
-		/// <summary>
-		/// The logic for this module after the connection has failed.
-		/// </summary>
-		public void OnConnectionFails()
+        /// <summary>
+        /// The logic for this module after the connection has failed.
+        /// </summary>
+        public void OnConnectionFails()
 		{
-			alw.StopLoop();
+            GetComponent<FaceCamera>().SetTargets(Camera.main.transform);
+            nameTextFieldContainer.GetComponent<FaceCamera>().SetTargets(Camera.main.transform);
+            foreach (Transform panel in refInfoTagsContainer.transform)
+            {
+                panel.GetComponent<ILookAt>().lookAtTarget = Camera.main.transform;
+            }
+
+            alw.StopLoop();
 			colorFlash.Flash(0);//red fail flash
 		}
 
@@ -54,6 +62,13 @@ namespace ECellDive.Modules
 		/// </summary>
 		public void OnConnectionSuccess()
 		{
+			GetComponent<FaceCamera>().SetTargets(Camera.main.transform);
+			nameTextFieldContainer.GetComponent<FaceCamera>().SetTargets(Camera.main.transform);
+			foreach (Transform panel in refInfoTagsContainer.transform)
+			{
+				panel.GetComponent<ILookAt>().lookAtTarget = Camera.main.transform;
+			}
+
 			alw.StopLoop();
 			colorFlash.Flash(1);//Green fail flash
 		}
