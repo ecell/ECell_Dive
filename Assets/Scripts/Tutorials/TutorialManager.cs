@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 
+using ECellDive.Utility.PlayerComponents;
+using ECellDive.Utility;
 
 namespace ECellDive.Tutorials
 {
-	
 	public class TutorialManager : MonoBehaviour
 	{
 		[Header("General References")]
@@ -59,7 +60,12 @@ namespace ECellDive.Tutorials
 
 		protected virtual void Initialize()
 		{
-			initializationInstructions.Invoke();
+            //Reset the position of the player.
+            StaticReferencer.Instance.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+
+			tutorialPanel.GetComponent<FaceCamera>().LookAt();
+
+            initializationInstructions.Invoke();
 
 			globalMessageContainer.text = startMessage;
 
