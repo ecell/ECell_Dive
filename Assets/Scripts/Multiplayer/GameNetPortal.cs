@@ -117,18 +117,27 @@ namespace ECellDive.Multiplayer
 			return PlayerPrefsWrap.GetGUID();
 		}
 
-		/// <summary>
-		/// Encapsulate the connection data into a <see cref="ConnectionPayload"/>
-		/// </summary>
-		/// <returns>
-		/// The connection payload.
-		/// </returns>
-		public ConnectionPayload GetConnectionPayload()
+		private string GetPlayerName()
+		{
+#if UNITY_EDITOR
+			return m_settings.playerName;
+#else
+			return PlayerPrefsWrap.GetPlayerName();
+#endif
+        }
+
+        /// <summary>
+        /// Encapsulate the connection data into a <see cref="ConnectionPayload"/>
+        /// </summary>
+        /// <returns>
+        /// The connection payload.
+        /// </returns>
+        public ConnectionPayload GetConnectionPayload()
 		{
 			return new ConnectionPayload
 			{
 				playerId = GetPlayerId(),
-				playerName = m_settings.playerName,
+				playerName = GetPlayerName(),
 				psw = m_settings.password
 			};
 		}

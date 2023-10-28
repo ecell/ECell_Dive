@@ -268,17 +268,8 @@ namespace ECellDive.SceneManagement
         /// with id <paramref name="_sceneID"/>.</param>
         private IEnumerator HideScene(int _sceneID, ulong _outDiverClientId)
 		{
-			//Debug.Log($"Original scene information:");
-			LogSystem.AddMessage(LogMessageTypes.Debug,
-				$"Original scene information:");
-			DebugScene();
 			//Updating divers for the scene in the Scene bank
 			DiverGetsOutClientRpc(_sceneID, _outDiverClientId);
-
-			//Debug.Log($"Hiding scene {_sceneID} for client {_outDiverClientId}");
-			LogSystem.AddMessage(LogMessageTypes.Debug,
-				$"Hiding scene {_sceneID} for client {_outDiverClientId}");
-			DebugScene();
 
 			ClientRpcParams outDiverClientRpcParams = new ClientRpcParams
 			{
@@ -391,11 +382,8 @@ namespace ECellDive.SceneManagement
 		private IEnumerator ShowScene(int _sceneID, ulong _newInDiverClientId)
 		{
 			yield return new WaitUntil(() => currentSceneisHidden);
+			
 			currentSceneisHidden = false;
-			//Debug.Log($"Showing scene {_sceneID} for client {_newInDiverClientId}");
-			LogSystem.AddMessage(LogMessageTypes.Debug,
-				$"Showing scene {_sceneID} for client {_newInDiverClientId}");
-			DebugScene();
 			ClientRpcParams newInDiverClientRpcParams = new ClientRpcParams
 			{
 				Send = new ClientRpcSendParams
@@ -443,10 +431,6 @@ namespace ECellDive.SceneManagement
 
 			//Updating the scene's data in the scene bank once we finished showing everyone
 			DiverGetsInClientRpc(_sceneID, _newInDiverClientId);
-
-			LogSystem.AddMessage(LogMessageTypes.Debug,
-				$"After showing scene, the scene data is: (look at next messages)");
-			DebugScene();
 
 			targetSceneIsVisible = true;
 		}
