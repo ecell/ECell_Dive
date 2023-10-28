@@ -198,7 +198,6 @@ namespace ECellDive.Modules
 			Debug.Log("Main Camera", Camera.main);
 			yield return new WaitForEndOfFrame();
 
-			refColliderHolder.transform.LookAt(Camera.main.transform.position);
 			lineRenderers[0].BakeMesh(colliderMesh);
 
 			refColliderHolder.GetComponent<MeshCollider>().sharedMesh = colliderMesh;
@@ -215,8 +214,17 @@ namespace ECellDive.Modules
 		/// </param>
 		public void SetNamePosition(float _sizeScaleFactor)
 		{
-			nameTextFieldContainer.transform.localPosition = 0.5f * (lineRenderers[0].GetPosition(0) + lineRenderers[0].GetPosition((int)curvePointsCount-1)) +
-															_sizeScaleFactor * 1.5f * Vector3.up;
+			//We compute the middle of the curve
+			Vector3 midpoint = Bezier.GetPoint(controlPoints, 0.5f);
+
+			//We compute the orthogonal to the plane defined by the edge and the
+			//vector from the start to the middle of the curve
+			Vector3 n1 = Vector3.Cross(controlPoints[controlPointsCount - 1] - controlPoints[0], midpoint - controlPoints[0]);
+
+			//We compute the normal to the plane defined by previous orthogonal and the edge
+			Vector3 n2 = Vector3.Cross(n1, controlPoints[controlPointsCount - 1] - controlPoints[0]).normalized;
+
+			nameTextFieldContainer.transform.localPosition = midpoint + 0.1f * n2;
 		}
 
 		#region - IColorHighlightable Methods -

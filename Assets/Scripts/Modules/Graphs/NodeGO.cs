@@ -63,7 +63,7 @@ namespace ECellDive.Modules
 		/// </param>
 		public void SetNamePosition(float _sizeScaleFactor)
 		{
-			nameTextFieldContainer.transform.localPosition += Vector3.up * 2f * _sizeScaleFactor;
+			nameTextFieldContainer.transform.localPosition += Vector3.up * 3f * _sizeScaleFactor;
 		}
 
 		/// <summary>
