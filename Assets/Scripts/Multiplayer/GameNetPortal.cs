@@ -291,7 +291,6 @@ namespace ECellDive.Multiplayer
 		/// </remarks>
 		public void StartClient()
 		{
-			GameNetDataManager.Instance.Clear();
 			m_ClientPortal.StartClient();
 		}
 
