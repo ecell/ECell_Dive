@@ -15,20 +15,22 @@ All 2D UI panel menus are hand-made. Until this point during development, it has
 ### In the UI folder
 The UI menus are at the path `Assets/Resources/UI`.
 
-<img src="~/resources/images/dev/UIAssets/UIAssets.jpg" alt="UI Assets" style="width: 300px;"/>
+<img src="../../resources/images/dev/UIAssets/UIAssets.jpg" alt="UI Assets" style="width: 300px;"/>
 
+- The `Custom Group Maker` is the prefab to name validate or cancel the creation of a custom group made by the users in ECellDive.
 - The `External Object Container` is the prefab holding the [GUIManager](xref:ECellDive.UI.GUIManager) that is mandatory for our the Main scene.
 - `Info Display` is an example of a 2D UI panel with a `LineRenderer` that can make a connection with another object to make them seem attached and related. That's what is used on the demonstration gameobject (GO) `BaseModule` found at `Assets/Resources/Modules`
 - `Info Tag` is a specialization of `Info Display` to inform about the actions bound to the buttons of the XR controllers. It has the component [InfoTagManager](xref:ECellDive.UI.InfoTagManager) to control its content based on the current input mode of the controller.
 - `Picker 2.0 VR` is color picker downloaded from the Unity Asset Store adapted to work in an XR scene.
 - `Picker 2.0 VR Holder` is simply a `Picker 2.0 VR` encapsulated into a GO that can react to user's interaction to move it ([GrabManager](xred:ECellDive.PlayerComponents.GrabManager)) and automatically rotate to be readable from the point of view of the user ([FaceCamera](xref:ECellDive.Utility.FaceCamera)). This one should probably be deleted and replaced with a compound scene GO made from the `Picker 2.0 VR` and `UI Graphics Holder`.
+- `Position Handle` [OBSOLETE] Use the one in `./Elements` folder.
 - `Surge Info Tag` is a specialized info tag with a _surge and shrink_ animation. It is used on the left and right controllers to momentarily inform the users about the input mode they are switching to. 
 - `UI Graphics Holder` is a container prefab in which to put (as child) 2D UI panels that users can move and should automatically face the user to be readable.
 
 ### In the UI/Elements folder
 In this folder are some smaller 2D UI elements that are used to make bigger 2D UI menus.
 
-<img src="~/resources/images/dev/UIAssets/ElementsAssets.jpg" alt="Elements UI" style="width: 300px;"/>
+<img src="../../resources/images/dev/UIAssets/ElementsAssets.jpg" alt="Elements UI" style="width: 300px;"/>
 
 - `Button Scroll List` is an vertical UI with a scroll bar in which `Menu Button` can be instantiated. It uses [OptimizedVertScrollList](xref:ECellDive.UI.OptimizedVertScrollList) to be able to display a lot of elements while limiting performance hit (**but needs further improvements**).
 - `Close Button` is a small square cross button that can be use to suggest a way to close 2D UI menus or destroy modules.
@@ -36,6 +38,7 @@ In this folder are some smaller 2D UI elements that are used to make bigger 2D U
 - `Drop Down Scroll List` is an vertical UI with a scroll bar in which `Drop Down Field` can be instantiated. It uses [OptimizedVertScrollList](xref:ECellDive.UI.OptimizedVertScrollList) to be able to display a lot of elements while limiting performance hit (**but needs further improvements**).
 - `Group Field` is specialized to display groups in a list. It is a composition of a `Close Button` (to destroy the group), a toggle (to show/hide the group), a color button (triggers opening the `Picker 2.0 VR Holder` to chose the color of the group)
 - `Groups Scroll List` is an vertical UI with a scroll bar in which `Group Field` can be instantiated. It uses [OptimizedVertScrollList](xref:ECellDive.UI.OptimizedVertScrollList) to be able to display a lot of elements while limiting performance hit (**but needs further improvements**).
+- `Labelled Button` is the composition of a text mesh on the left side with a button on the right. The text mesh introduces the function of the button. It is used to introduced the selection of Kosmogora server in the Tag menus of HTTP Modules.
 - `Menu Button` is a basic button. Just added a [UIHover](xref:ECellDive.UI.UIHover)
 - `Named Input Field` & `Named Input Field 2` are a composition of a text mesh on the left and an input field on the right. The main difference is the appearance: they have different default values of `Pixel Per Unit Multiplier` in the `Image` components.
 - `Position Handle` is the prefab to the white horizontal bar handle that is present on almost every other 2D UI to allow user to move the 2D UI they are part of.
@@ -51,7 +54,7 @@ All scroll lists could certainly be refactored into one.
 ### In the UI/Menu Elements
 In this folder are 2D UI composed by elements found in `UI/Elements`.
 
-<img src="~/resources/images/dev/UIAssets/MenuElementsAssets.jpg" alt="Menu Elements UI" style="width: 300px;"/>
+<img src="../../resources/images/dev/UIAssets/MenuElementsAssets.jpg" alt="Menu Elements UI" style="width: 300px;"/>
 
 - `Buttons Menu` is a composition of `Button Scroll List` with a `Position Handle`, a name, a `Close Button` and a pin/unpin pair of buttons.
 - `Drop Down Menu` is a composition of `Drop Down Scroll List` with a `Position Handle`, a name, a `Close Button` and a pin/unpin pair of buttons. Clicking a `Drop Down Field` in the scroll list will spawn a `Buttons Menu` with the content associated to the drop down.
@@ -59,8 +62,8 @@ In this folder are 2D UI composed by elements found in `UI/Elements`.
 - `Log Menu` is the menu where users can consult log messages. It is a composition of a `Button Scroll List`, a wide message space, toggles to control the visibility of the messages, a `Close Button` and a pin/unpin pair of buttons. [LogManager](xref:ECellDive.UI.LogManager) is attached to the root GO.
 - `Main Menu` is a a custom display of buttons to open other menus. [MainMenuManager](xref:ECellDive.UI.MainMenuManager) is attached to the root GO.
 - `Modules Menu` is a a custom display of buttons to spawn modules. [ModulesMenuManager](xref:ECellDive.UI.ModulesMenuManager) is attached to the root GO.
-- `Multiplayer Menu` is a composition of various input fields and buttons to enter information about the multiplayer server to host or join. [MultiplayerMenuManager](xref:ECellDive.UI.ModulesMenuManager) is attached to the root GO.
 - `Semantic Groups Menu` is a composition of `Semantic Groups Scroll List` with a `Position Handle`, a name, a `Close Button` and a pin/unpin pair of buttons. [GroupsMenu](xref:ECellDive.UI.GroupsMenu) is attached to the root GO.
+- `Settings Menu` [OBSOLETE]
 - `Short Demo Menu` i is a a custom display of button to switch between aspects of the demo, to reset the visuals, or to quit the demo.
 - `Toggles Menu` is a composition of `Toggle Scroll List` with a `Position Handle`, a name, a `Close Button` and a pin/unpin pair of buttons.
 - `Tutorial Panel` is a custom display of buttons and text to give the tutorial instructions.
@@ -71,6 +74,14 @@ Most of the menus are encapsulated in a `UI Graphics Holder` in the main scene t
 ### In the UI/Tag Menus
 In this folder are 2D UI elements that are attached to modules. So it is a combination of UI elements and the graphic link system to display a line between the menus and the modules they are attached to. They all use the [InfoDisplayManager](xref:ECellDive.UI.InfoDisplayManager).
 
-<img src="~/resources/images/dev/UIAssets/TagMenusAssets.jpg" alt="Tag Menus UI" style="width: 300px;"/>
+<img src="../../resources/images/dev/UIAssets/TagMenusAssets.jpg" alt="Tag Menus UI" style="width: 300px;"/>
 
-`Anchored Dynamic Content` encapsulates a `Button Scroll List` to display a list of options that may be associated to a module. The rest of the UI panel's names indicate to which module they are part of. `FBA Visuals Parameters` uses [FbaParametersManager](xref:ECellDive.UI.FbaParametersManager) and `GroupByAttributsDisplay` uses [GroupByAttributsManager](xref:ECellDive.UI.GroupByAttributsManager).
+- `Anchored Dynamic Content` encapsulates a `Button Scroll List` to display a list of options that may be associated to a module. The rest of the UI panel's names indicate to which module they are part of. `FBA Visuals Parameters` uses [FbaParametersManager](xref:ECellDive.UI.FbaParametersManager) and `GroupByAttributsDisplay` uses [GroupByAttributsManager](xref:ECellDive.UI.GroupByAttributsManager).
+- `CyJsonModuleParameters` is the tag menu of the `CyJsonModule`. It encapsulates toggles and sliders to globally override some parameters of the CyJson graph encoded in the module it is attached to.
+- `FBA Visuals Parameters` is the tag menu of `HttpServerFbaModule`. It encapsulates `Slider Value Color Combo` to control the color interpolation between the lowest and highest fluxes values. It uses [FbaParametersManager](xref:ECellDive.UI.FbaParametersManager) 
+- `GroupByAttributesDisplay` encapsulates a `Toggle Scroll List` to display the attributes used to automatically make groups with [GroupByAttributsManager](xref:ECellDive.UI.GroupByAttributsManager). It also contains prefabs to spawn and visualize the content of the groups.
+- `HttpModificationFileParameters` is the tag menu of `HttpServerModificationModule`. It encapsulates 2 `Labelled Button` to select the server where to load from (or save to) modification files and to detect the base model on which those modifications apply. It also contains a button to query the modifications. Finally, an input field to chose the name of the modification file to save and a button to request saving it.
+- `HttpServerQueryParameters` is the tag menu of `HttpServerInfoQueryModule`. It encapsulates 2 `Labelled Button` to select the server that will process the information query, and another to chose which online database the server should consult. Finally, it contains an input field to chose the ID of the reaction for which we want extra information.
+- `Multiplayer Parameters` is the tag menu of `MultiplayerModule`. It is a composition of various input fields and buttons to enter information about the multiplayer server to host or join. [MultiplayerMenuManager](xref:ECellDive.UI.ModulesMenuManager) is attached to the root GO.
+- `ServerConnectionParameters` is the tag menu of `HttpServerAPICheckerModule`. It is a composition of 3 input fields to enter the server address and name of the server for which to check the API.
+- `ServerSelectionParameters` is the tag menu to select the server that will be used by an HTTP module to perform its tasks. It is used by `HttpServerFbaModule` and `HttpServerImporterModule`.
