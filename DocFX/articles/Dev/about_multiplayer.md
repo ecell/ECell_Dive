@@ -11,6 +11,8 @@ We used the sample project [Boss Room](https://docs-multiplayer.unity3d.com/netc
 - Once the `NetworkManager` has started a host or connected the current user as a client to a host, it will trigger the event `NetworkManager.OnClientConnectedCallback` to which [GameNetPortal](xref:ECellDive.Multiplayer.GameNetPortal)'s method [OnNetworkReady](xref:ECellDive.Multiplayer.GameNetPortal.OnNetworkReady(System.UInt64)) is subscribed.
 - [OnNetworkReady](xref:ECellDive.Multiplayer.GameNetPortal.OnNetworkReady(System.UInt64))'s role is to close the connection protocol for [ServerGameNetPortal](xref:ECellDive.Multiplayer.ServerGameNetPortal) and [ClientGameNetPortal](xref:ECellDive.Multiplayer.ClientGameNetPortal) through their own `OnNetworkReady`.
 
+<img src="../../resources/diagrams/multiplayerHostJoin.svg" alt="Multiplayer Host Join"/>
+
 # Broadcast Data 
 
 NetGO gives two solutions to share data between over the network between clients. The first is [NetworkVariables](https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls) and the second is [Remote Procedure Calls](https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls).
