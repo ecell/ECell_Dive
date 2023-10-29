@@ -37,20 +37,20 @@ Both gameobjects have exactly the same structure: \
 <img src="../../resources/images/dev/BaseGameNetModule/GOHierarchy.jpg" alt="Base Game Net Module Hierarchy" style="width: 400px;"/>
 
 - `Module Graphics` have the collider and renderer attached.
-- `Module Name Canvas` is a container for the name of the module.
+- `Module Name Canvas` is a container for the name of the module. It is a prefab you can find at the path `Assets\Resources\Prefabs\Modules\BaseModuleName`
 - `All Info Tags` is a container for all the info tags that might be attached to the module. Despite the name, it is also used in other modules to contain any UI menu that can be associated to a module.
 - `Info Display` is a prefab that can be instantiated to create information labels associated to the module and which will have `All Info Tags` as parent. This info display is just used for a reference; it is never used. It will be deactivated on module spawn to become invisible and it is never reactivated.
 
 The are assigned similar textures and 3D models:\
-<img src="../../resources/images/dev/BaseModule/3DModel.png" alt="Base Module 3DModel" style="height: 200px;"/>
+<img src="../../resources/images/dev/BaseModule/3DModel.jpg" alt="Base Module 3DModel" style="height: 200px;"/>
 <img src="../../resources/images/dev/BaseGameNetModule/3DModel.jpg" alt="Base Game Net Module 3DModel" style="height: 200px;"/>
 
 What really matters are their respective components.
 The [Module](../../api/ECellDive.Modules.Module.yml) component shows in the Inspector as:\
-<img src="../../resources/images/dev/BaseModule/Component.jpg" alt="Base Module 3DModel" style="width: 400px;"/>
+<img src="../../resources/images/dev/BaseModule/Component.jpg" alt="Base Module 3DModel" style="width: 500px;"/>
 
 The [GameNetModule](../../api/ECellDive.Modules.GameNetModule.yml) component shows in the Inspector as:\
-<img src="../../resources/images/dev/BaseGameNetModule/Component.png" alt="Base Module 3DModel" style="width: 400px;"/>
+<img src="../../resources/images/dev/BaseGameNetModule/Component.jpg" alt="Base Module 3DModel" style="width: 500px;"/>
 
 The `GameNetModule` component is marked as `abstract` so it cannot directly be a component. That is why, we created [DummyGameNetModule](../../api/ECellDive.Modules.DummyGameNetModule.yml) just for the purpose of demonstration of the component. It is in fact empty.
 
@@ -71,7 +71,7 @@ The `GameNetModule` component is marked as `abstract` so it cannot directly be a
 
             //The fields/properties of the interfaces (if any)
 
-            //Unity's overriden methods (Start, Update, OnXXX,...)
+            //Unity's override methods (Start, Update, OnXXX,...)
 
             //The methods of you class in alphabetical order
 
