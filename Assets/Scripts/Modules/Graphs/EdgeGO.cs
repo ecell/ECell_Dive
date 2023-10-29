@@ -115,7 +115,7 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// The field for the property <see cref="refLineRenderer"/>.
+		/// The field for the property <see cref="refColliderHolder"/>.
 		/// </summary>
 		[SerializeField] private GameObject m_refColliderHolder;
 

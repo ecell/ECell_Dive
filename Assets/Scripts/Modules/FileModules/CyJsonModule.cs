@@ -190,7 +190,8 @@ namespace ECellDive
 			/// The network reference to the edge gameobject.
 			/// </param>
 			/// <param name="_edgeIdx">
-			/// The index of the edge data in the <see cref="graphData.edges"/> array.
+			/// The index of the edge data in the <see cref="IGraph{EdgeType, NodeType}.edges"/>
+			/// array of <see cref="IGraphGO{EdgeType, NodeType}.graphData"/>.
 			/// </param>
 			[ClientRpc]
 			public void EdgeSpawnClientRpc(NetworkObjectReference _edgeNetObj, int _edgeIdx)
@@ -315,7 +316,8 @@ namespace ECellDive
 			/// The network reference to the node gameobject.
 			/// </param>
 			/// <param name="_nodeIdx">
-			/// The index of the node data in the <see cref="graphData.nodes"/> array.
+			/// The index of the node data in the <see cref="IGraph{EdgeType, NodeType}.nodes"/>
+			/// array of <see cref="IGraphGO{EdgeType, NodeType}.graphData"/>.
 			/// </param>
 			[ClientRpc]
 			public void NodeSpawnClientRpc(NetworkObjectReference _nodeNetObj, int _nodeIdx)
