@@ -1,32 +1,37 @@
 # About Modules
 Modules are be 3D interactable objects in _ECellDive_ which encapsulate data or actions. They are the main mode of interaction for users to have an effect on the virtual environment of _ECellEngine_. Hence, general requirements about modules is to be able to receive input from user, to be moved around, to encapsulate data, or to encapsulate functions that the user can trigger.
 
-Our approach is to use inheritance to define specific modules. Currently, there are two base classes that can be inherited that already implements the basics about interaction. The first one is [Module](../../api/ECellDive.Modules.Module.yml) and the seconf is [GameNetModule](../../api/ECellDive.Modules.GameNetModule.yml).
+Our approach is to use inheritance to define specific modules. Currently, there are two base classes that can be inherited that already implements the basics about interaction. The first one is [Module](xref:ECellDive.Modules.Module) and the seconf is [GameNetModule](xref:ECellDive.Modules.GameNetModule).
 
 ## Module or GameNetModule? That is the question.
-The primary difference between the two is the [Module](../../api/ECellDive.Modules.Module.yml) is local while [GameNetModule](../../api/ECellDive.Modules.GameNetModule.yml) is synchronized over the multiplayer network. Hence, when making a new module, the first question to answer is whether every user in a session should see the module. For instance, when making a module to encapsulate data in which users can dive, it is likely that this must be shared on the network for every user to access the data and collaborate on it (so inherit from [GameNetModule](../../api/ECellDive.Modules.GameNetModule.yml)). However, if the purpose is to implement a module to modify the environment or the data, there might not be any reason to make an instance of the module accessible to every user(so inherit from [Module](../../api/ECellDive.Modules.Module.yml)). This is ultimately a design decision.
+The primary difference between the two is the [Module](xref:ECellDive.Modules.Module) is local while [GameNetModule](xref:ECellDive.Modules.GameNetModule) is synchronized over the multiplayer network. Hence, when making a new module, the first question to answer is whether every user in a session should see the module. For instance, when making a module to encapsulate data in which users can dive, it is likely that this must be shared on the network for every user to access the data and collaborate on it (so inherit from [GameNetModule](xref:ECellDive.Modules.GameNetModule)). However, if the purpose is to implement a module to modify the environment or the data, there might not be any reason to make an instance of the module accessible to every user(so inherit from [Module](xref:ECellDive.Modules.Module)). This is ultimately a design decision.
 
-Modules that inherit from [GameNetModule](../../api/ECellDive.Modules.GameNetModule.yml):
-- [CyJsonModule](../../api/ECellDive.Modules.CyJsonModule.yml)
-- [EDgeGO](../../api/ECellDive.Modules.EdgeGO.yml)
-- [NodeGO](../../api/ECellDive.Modules.NodeGO.yml)
+Modules that inherit from [GameNetModule](xref:ECellDive.Modules.GameNetModule):
+- [CyJsonModule](xref:ECellDive.Modules.CyJsonModule)
+- [CyJsonEdgeGO](xref:ECellDive.Modules.CyJsonEdgeGO)
+- [CyJsonNodeGO](xref:ECellDive.Modules.CyJsonNodeGO)
+- [DummyGameNetModule](xref:ECellDive.Modules.DummyGameNetModule)
 
-Those represent data. And every module that inherit from [Module](../../api/ECellDive.Modules.Module.yml) are:
-- [GroupByModule](../../api/ECellDive.Modules.GroupByModule.yml)
-- [HttpServerFbaModule](../../api/ECellDive.Modules.HttpServerFbaModule.yml)
-- [HttpServerImporterModule](../../api/ECellDive.Modules.HttpServerImporterModule.yml)
-- [HttpServerInfoQueryModule](../../api/ECellDive.Modules.HttpServerInfoQueryModule.yml)
-- [HttpServerModificationModule](../../api/ECellDive.Modules.HttpServerModificationModule.yml)
+Those represent data. And every module that inherit from [Module](xref:ECellDive.Modules.Module) are:
+- [DiveTravelMapModule](xref:ECellDive.Modules.DiveTravelMapModule)
+- [EdgeGO](xref:ECellDive.Modules.EdgeGO)
+- [GroupByModule](xref:ECellDive.Modules.GroupByModule)
+- [HttpServerAPICheckModule](xref:ECellDive.Modules.HttpServerAPICheckModule)
+- [HttpServerFbaModule](xref:ECellDive.Modules.HttpServerFbaModule)
+- [HttpServerImporterModule](xref:ECellDive.Modules.HttpServerImporterModule)
+- [HttpServerInfoQueryModule](xref:ECellDive.Modules.HttpServerInfoQueryModule)
+- [HttpServerModificationModule](xref:ECellDive.Modules.HttpServerModificationModule)
+- [NodeGO](xref:ECellDive.Modules.NodeGO)
 
 ## GameNetModule's children must override 3 methods
-Currently, [GameNetModule](../../api/ECellDive.Modules.GameNetModule.yml) inherits from the interface [IDive](../../api/ECellDive.Interfaces.IDive.yml) as well as [IMlprData](../../api/ECellDive.Interfaces.IMlprData.yml) which have methods that **MUST** be implemented by children.
+Currently, [GameNetModule](xref:ECellDive.Modules.GameNetModule) inherits from the interface [IDive](xref:ECellDive.Interfaces.IDive) as well as [IMlprData](xref:ECellDive.Interfaces.IMlprData) which have methods that **MUST** be implemented by children.
 
-For [IDive](../../api/ECellDive.Interfaces.IDive.yml) it is
+For [IDive](xref:ECellDive.Interfaces.IDive) it is
 [GenerativeDiveInC](xref:ECellDive.Interfaces.IDive.GenerativeDiveInC). This coroutine is where the user must define what to generate in the new dive scene. This is specific to every "diveable" module so, of course, it must be defined.
 
-For [IMlprData](../../api/ECellDive.Interfaces.IMlprData.yml), there are two methods, [AssembleFragmentedData](xref:ECellDive.Interfaces.IMlprData.AssembleFragmentedData) and [RequestSourceDataGenerationServerRpc](xref:ECellDive.Interfaces.IMlprData.RequestSourceDataGenerationServerRpc(System.UInt64)). The former's role is to reassemble network-synchronized data that has been imported by one the user in the multiplayer session and that was broadcasted (as fragments) to all other clients of the session. The later's role is to request the server to generate the representation of the data stored in the module. It will likely be called inside [GenerativeDiveInC](xref:ECellDive.Interfaces.IDive.GenerativeDiveInC).
+For [IMlprData](xref:ECellDive.Interfaces.IMlprData), there are two methods, [AssembleFragmentedData](xref:ECellDive.Interfaces.IMlprData.AssembleFragmentedData) and [RequestSourceDataGenerationServerRpc](xref:ECellDive.Interfaces.IMlprData.RequestSourceDataGenerationServerRpc(System.UInt64)). The former's role is to reassemble network-synchronized data that has been imported by one the user in the multiplayer session and that was broadcasted (as fragments) to all other clients of the session. The later's role is to request the server to generate the representation of the data stored in the module. It will likely be called inside [GenerativeDiveInC](xref:ECellDive.Interfaces.IDive.GenerativeDiveInC).
 
-To enforce the implementation of [GenerativeDiveInC](xref:ECellDive.Interfaces.IDive.GenerativeDiveInC) and[AssembleFragmentedData](xref:ECellDive.Interfaces.IMlprData.AssembleFragmentedData), the [GameNetModule](../../api/ECellDive.Modules.GameNetModule.yml) was marked as `abstract` and so were the two previous functions. However, it is not possible to do so for [RequestSourceDataGenerationServerRpc](xref:ECellDive.Interfaces.IMlprData.RequestSourceDataGenerationServerRpc(System.UInt64)) as `RPCs` they cannot be `abstract`. So developers must be vigilant to not forget it.
+To enforce the implementation of [GenerativeDiveInC](xref:ECellDive.Interfaces.IDive.GenerativeDiveInC) and[AssembleFragmentedData](xref:ECellDive.Interfaces.IMlprData.AssembleFragmentedData), the [GameNetModule](xref:ECellDive.Modules.GameNetModule) was marked as `abstract` and so were the two methods. However, it is not possible to do so for [RequestSourceDataGenerationServerRpc](xref:ECellDive.Interfaces.IMlprData.RequestSourceDataGenerationServerRpc(System.UInt64)) as `RPCs` cannot be `abstract`. So developers must be vigilant to not forget it.
 
 ## Examples (available in the assets)
 The Unity project contains an example of basic setup for gameobjects using the Module and GameNetModule components. Those are respectively called `BaseModule` and `BaseGameNetModule`. You can find them under `Assets\Resources\Prefabs\Modules`.
@@ -46,18 +51,18 @@ The are assigned similar textures and 3D models:\
 <img src="../../resources/images/dev/BaseGameNetModule/3DModel.jpg" alt="Base Game Net Module 3DModel" style="height: 200px;"/>
 
 What really matters are their respective components.
-The [Module](../../api/ECellDive.Modules.Module.yml) component shows in the Inspector as:\
+The [Module](xref:ECellDive.Modules.Module) component shows in the Inspector as:\
 <img src="../../resources/images/dev/BaseModule/Component.jpg" alt="Base Module 3DModel" style="width: 500px;"/>
 
-The [GameNetModule](../../api/ECellDive.Modules.GameNetModule.yml) component shows in the Inspector as:\
+The [GameNetModule](xref:ECellDive.Modules.GameNetModule) component shows in the Inspector as:\
 <img src="../../resources/images/dev/BaseGameNetModule/Component.jpg" alt="Base Module 3DModel" style="width: 500px;"/>
 
-The `GameNetModule` component is marked as `abstract` so it cannot directly be a component. That is why, we created [DummyGameNetModule](../../api/ECellDive.Modules.DummyGameNetModule.yml) just for the purpose of demonstration of the component. It is in fact empty.
+The `GameNetModule` component is marked as `abstract` so it cannot directly be a component. That is why, we created [DummyGameNetModule](xref:ECellDive.Modules.DummyGameNetModule) just for the purpose of demonstration of the component. It is in fact empty.
 
 ## General workflow to create a new module
 1. We recommend to start by duplicating the `BaseModule` or the `BaseGameNetModule` to have a working basis.
 2. Create a new script following the naming convention `XXXModule` somewhere under `Assets\Scripts\Modules`. You may create a new folder if you think it's relevant.
-   1. If you are making a new locale module, then have your class inherit from [Module](../../api/ECellDive.Modules.Module.yml).
+   1. If you are making a new locale module, then have your class inherit from [Module](xref:ECellDive.Modules.Module).
    ```csharp
     namespace ECellDive.Modules
     {
@@ -80,7 +85,7 @@ The `GameNetModule` component is marked as `abstract` so it cannot directly be a
         }
     }
    ```
-   2. If you are making a new multiplayer module, then have your class inherit from [GameNetModule](../../api/ECellDive.Modules.GameNetModule.yml) and implement the three mandatory methods.
+   2. If you are making a new multiplayer module, then have your class inherit from [GameNetModule](xref:ECellDive.Modules.GameNetModule) and implement the three mandatory methods.
    ```csharp
     namespace ECellDive.Modules
     {
@@ -131,7 +136,7 @@ The `GameNetModule` component is marked as `abstract` so it cannot directly be a
     }
     ```
 3. Add the new component to the gameobject of your module.
-4. Compare with the [Module](../../api/ECellDive.Modules.Module.yml) component or the [DummyGameNetModule](../../api/ECellDive.Modules.DummyGameNetModule.yml) component to assign the correct values in the fields in the inspector.
-5. Remove the [Module](../../api/ECellDive.Modules.Module.yml) component or the [DummyGameNetModule](../../api/ECellDive.Modules.DummyGameNetModule.yml) component.
+4. Compare with the [Module](xref:ECellDive.Modules.Module) component or the [DummyGameNetModule](xref:ECellDive.Modules.DummyGameNetModule) component to assign the correct values in the fields in the inspector.
+5. Remove the [Module](xref:ECellDive.Modules.Module) component or the [DummyGameNetModule](xref:ECellDive.Modules.DummyGameNetModule) component.
 6. Adapt the 3D model and textures of your gameobject via the child `Module Graphics`.
 7. Add UI Menus if needed.
