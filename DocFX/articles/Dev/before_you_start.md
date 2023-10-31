@@ -11,7 +11,8 @@ In this section, we give context to answer the following questions:
 - [What are the general coding guidelines?](./about_code.md)
 - [How are action modules implemented?](./about_modules.md)
 - [How to add new modules?](./about_modules.md#general-workflow-to-create-a-new-module)
-- How to add new graphs? (TODO)
+- [How to communicate with `Kosmogora-like` servers](./about_modules.md#modules-to-communicate-with-kosmogora)
+- How to use the API to generate graphs? (TODO)
 - [What makes a _Player_?](./about_player.md)
 - [How is the main scene structured?](./about_scenes.md#main-scene-of-the-project)
 - [How works the _Dive Scene_ system?](./about_scenes.md#dive-scenes)
@@ -22,4 +23,4 @@ In this section, we give context to answer the following questions:
 - [How do we handle interactions?](./about_UI.md#interactions)
 - and probably others...
 
-Don't hesitate [to start an issue](https://github.com/ecell/ECell_Dive/issues) if you have other questions that would be like to be answered here.
+Do not hesitate [to start an issue](https://github.com/ecell/ECell_Dive/issues) if you have other questions that would be like to be answered here.
