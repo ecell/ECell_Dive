@@ -179,7 +179,7 @@ namespace ECellDive.PlayerComponents
 
         /// <summary>
         /// A callback to drop the player in the dive scene registered last
-        /// in its Dive travel list. Called back when <see cref="GameNetDataManager.Instance.OnClientReceivedAllModules"/>
+        /// in its Dive travel list. Called back when <see cref="ECellDive.Multiplayer.GameNetDataManager.OnClientReceivedAllModules"/>
         /// is triggered. This typically happens when the client is a new
         /// player in the game and the server has finished synchronizing
         /// all the modules data with him.
@@ -198,7 +198,7 @@ namespace ECellDive.PlayerComponents
 
 		/// <summary>
 		/// A callback to update the name in the name containers of the replicated
-		/// payers in the environment of the local player. Called back when <see cref="GameNetDataManager.Instance.OnClientReceivedAllPlayerNetData"/>
+		/// payers in the environment of the local player. Called back when <see cref="ECellDive.Multiplayer.GameNetDataManager.OnClientReceivedAllPlayerNetData"/>
 		/// is triggered. This typically happens when the client is a new
 		/// player in the game and the server has finished synchronizing
 		/// all the player net data with him.
@@ -206,7 +206,7 @@ namespace ECellDive.PlayerComponents
 		/// <param name="_clientID">
 		/// The ID of the client that just received all the player net data.
 		/// </param>
-        private void UpdatePlayerNamesInContainers(ulong _clientID)
+		private void UpdatePlayerNamesInContainers(ulong _clientID)
 		{
 			Debug.Log($"Player UpdatePlayerNamesInContainers {_clientID}, localClientID {NetworkManager.Singleton.LocalClientId}");
 

@@ -1,11 +1,10 @@
-using System.Linq;
+using System.Collections.Generic;
 using System.Collections;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 using ECellDive.Utility;
 using ECellDive.Utility.Data.Network;
-using System.Collections.Generic;
 
 namespace ECellDive.Modules
 {
@@ -160,7 +159,7 @@ namespace ECellDive.Modules
 		/// Gets the list of available Http servers for this module.
 		/// </summary>
 		/// <remarks>
-		/// The dereived classes will probably use <see cref="ECellDive.IO.HttpNetPortal"/>
+		/// The derived classes will probably use <see cref="ECellDive.IO.HttpNetPortal"/>
 		/// </remarks>
 		/// <returns>
 		/// Returns the list of available servers for this module.

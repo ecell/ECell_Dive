@@ -1,6 +1,6 @@
 The player gameobject (GO) in the project is at location `Assets/Resources/Prefabs/Player/Player`. This is the GO used to represent users. It has children GOs to define the `XRRig` (a sort of physics anchor for XR environments in Unity), the `Camera`, the `Head Model`, the `Movement Systems`, and the `Controllers`.
 
-<img src="~/resources/images/dev/Player/GOHierarchy_Player.jpg" alt="Player GO Hierarchy"/>
+<img src="../../resources/images/dev/Player/GOHierarchy_Player.jpg" alt="Player GO Hierarchy"/>
 
 # Player
 The top parent GO `Player` has essential components to make it XR-compatible (`XRRig`) and visible on the multiplayer network (`NetworkObject`). It also has custom components to:

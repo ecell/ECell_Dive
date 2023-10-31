@@ -9,10 +9,6 @@ namespace ECellDive.Interfaces
 	/// <summary>
 	/// The interface for the data structure encoding a node in a graph.
 	/// </summary>
-	/// <remarks>
-	/// This interface is probably overdefined with cyjson graphs in mind.
-	/// For example, the <see cref="isVirtual"/> field might be too specific.
-	/// </remarks>
 	public interface INode
 	{
 		/// <summary>
@@ -91,8 +87,8 @@ namespace ECellDive.Interfaces
 
 	/// <summary>
 	/// The interface defining the required logic to manipulate
-	/// the information stored in a <see cref="INode"/> of a
-	/// <see cref="IGraph"/>.
+	/// the information stored in a <see cref="INode"/>. This interface
+	/// will probably be implemented by a game object.
 	/// </summary>
 	/// <typeparam name="T">
 	/// The type of the data structure encoding the node.
@@ -121,8 +117,8 @@ namespace ECellDive.Interfaces
 
 	/// <summary>
 	/// The interface defining the required logic to manipulate
-	/// the information stored in a <see cref="IEdge"/> of a
-	/// <see cref="IGraph"/>.
+	/// the information stored in a <see cref="IEdge"/>. This interface
+	/// will probably be implemented by a game object.
 	/// </summary>
 	/// <typeparam name="T">
 	/// The type of the data structure encoding the edge.
@@ -206,7 +202,8 @@ namespace ECellDive.Interfaces
 
 	/// <summary>
 	/// The interface defining the required logic to manipulate
-	/// the information stored in a <see cref="IGraph"/>.
+	/// the information stored in a <see cref="IGraph{EdgeType, NodeType}"/>.
+	/// This interface will probably be implemented by a game object.
 	/// </summary>
 	public interface IGraphGO<EdgeType, NodeType> where EdgeType : IEdge where NodeType : INode
 	{
@@ -230,7 +227,7 @@ namespace ECellDive.Interfaces
 		GraphScalingData graphScalingData { get; }
 
 		/// <summary>
-		/// The dictionnary to find <see cref="INodeGO"/> and <see cref="IEdgeGO"/>
+		/// The dictionnary to find <see cref="INodeGO{T}"/> and <see cref="IEdgeGO{T}"/>
 		/// of the graph according to their ids.
 		/// </summary>
 		Dictionary<uint, GameObject> DataID_to_DataGO { get; set; }
