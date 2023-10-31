@@ -86,7 +86,7 @@
 
   <h1 id="ECellDive_Modules_HttpServerImporterModule" data-uid="ECellDive.Modules.HttpServerImporterModule" class="text-break">
     Class HttpServerImporterModule
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -99,7 +99,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class HttpServerImporterModule : HttpServerBaseModule, IFocus, IGroupable, IColorHighlightable, IHighlightable, IInfoTags</code></pre>
+    <pre><code class="lang-csharp hljs">public class HttpServerImporterModule : HttpServerBaseModule, IFocus, IGroupable, IColorHighlightable, IColored, IHighlightable, IInfoTags, INamed</code></pre>
   </div>
 
 
@@ -121,8 +121,10 @@
       <div><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IColored.html">IColored</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></div>
     </dd>
   </dl>
 
@@ -134,22 +136,10 @@
       <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_serverData">HttpServerBaseModule.serverData</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_serverUIData">HttpServerBaseModule.serverUIData</a>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_implementedHttpAPI">HttpServerBaseModule.implementedHttpAPI</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_requestData">HttpServerBaseModule.requestData</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_renderers">HttpServerBaseModule.renderers</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_mpb">HttpServerBaseModule.mpb</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_colorID">HttpServerBaseModule.colorID</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_OnEnable">HttpServerBaseModule.OnEnable()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_AddPagesToURL_System_String___">HttpServerBaseModule.AddPagesToURL(string[])</a>
@@ -167,22 +157,37 @@
       <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_isRequestProcessed">HttpServerBaseModule.isRequestProcessed()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_UpdateIP">HttpServerBaseModule.UpdateIP()</a>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderers">Module.renderers</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_UpdatePort">HttpServerBaseModule.UpdatePort()</a>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderersColorPropertyNames">Module.renderersColorPropertyNames</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_ApplyColor_Color_">HttpServerBaseModule.ApplyColor(Color)</a>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderersColorPropertyIDs">Module.renderersColorPropertyIDs</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_SetHighlight">HttpServerBaseModule.SetHighlight()</a>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderers">Module.lineRenderers</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_UnsetHighlight">HttpServerBaseModule.UnsetHighlight()</a>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderersColorPropertyNames">Module.lineRenderersColorPropertyNames</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refName">Module.refName</a>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderersColorPropertyIDs">Module.lineRenderersColorPropertyIDs</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_mpb">Module.mpb</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_nameField">Module.m_nameField</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_nameField">Module.nameField</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_nameTextFieldContainer">Module.m_nameTextFieldContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_nameTextFieldContainer">Module.nameTextFieldContainer</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_isFocused">Module.m_isFocused</a>
@@ -248,22 +253,28 @@
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_OnDestroy">Module.OnDestroy()</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_OnEnable">Module.OnEnable()</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ManageInfoTagsDisplay_InputAction_CallbackContext_">Module.ManageInfoTagsDisplay(InputAction.CallbackContext)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SelfDestroy">Module.SelfDestroy()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetName_System_String_">Module.SetName(string)</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ShowNameToPlayer">Module.ShowNameToPlayer()</a>
-    </div>
-    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetFocus">Module.SetFocus()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_UnsetFocus">Module.UnsetFocus()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ApplyColor_Color_">Module.ApplyColor(Color)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetHighlight">Module.SetHighlight()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_UnsetHighlight">Module.UnsetHighlight()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_DisplayInfoTags">Module.DisplayInfoTags()</a>
@@ -280,6 +291,21 @@
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ShowInfoTags">Module.ShowInfoTags()</a>
     </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_DisplayName">Module.DisplayName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_GetName">Module.GetName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_HideName">Module.HideName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetName_System_String_">Module.SetName(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ShowName">Module.ShowName()</a>
+    </div>
   </dd></dl>
 
 
@@ -294,7 +320,7 @@
 
   <h3 id="ECellDive_Modules_HttpServerImporterModule_OnDataModuleImport" data-uid="ECellDive.Modules.HttpServerImporterModule.OnDataModuleImport">
   OnDataModuleImport
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A delegate to be called when the data a user requested
@@ -331,7 +357,7 @@ get rid of this.</p>
 
   <h3 id="ECellDive_Modules_HttpServerImporterModule_activeModelName" data-uid="ECellDive.Modules.HttpServerImporterModule.activeModelName">
   activeModelName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The buffer to the name of the model to import.</p>
@@ -362,7 +388,7 @@ get rid of this.</p>
 
   <h3 id="ECellDive_Modules_HttpServerImporterModule_animLW" data-uid="ECellDive.Modules.HttpServerImporterModule.animLW">
   animLW
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The animation loop controller to control the visual feedback
@@ -394,7 +420,7 @@ of the module in case of request.</p>
 
   <h3 id="ECellDive_Modules_HttpServerImporterModule_gameNetModuleSpawner" data-uid="ECellDive.Modules.HttpServerImporterModule.gameNetModuleSpawner">
   gameNetModuleSpawner
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A reference to the game object used to spawn data module
@@ -424,9 +450,40 @@ of the imported model.</p>
 
 
 
+  <h3 id="ECellDive_Modules_HttpServerImporterModule_refAvailableServersScrollList" data-uid="ECellDive.Modules.HttpServerImporterModule.refAvailableServersScrollList">
+  refAvailableServersScrollList
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The scroll list of the available servers this module can use.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OptimizedVertScrollList refAvailableServersScrollList</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.UI.OptimizedVertScrollList.html">OptimizedVertScrollList</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <h3 id="ECellDive_Modules_HttpServerImporterModule_refModelsScrollList" data-uid="ECellDive.Modules.HttpServerImporterModule.refModelsScrollList">
   refModelsScrollList
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The scroll list to display the models available on the server.</p>
@@ -454,15 +511,83 @@ of the imported model.</p>
 
 
 
+
+  <h3 id="ECellDive_Modules_HttpServerImporterModule_refTargetServer" data-uid="ECellDive.Modules.HttpServerImporterModule.refTargetServer">
+  refTargetServer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The reference to the text mesh displaying the name of the server
+this module is using.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_Text refTargetServer</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TMP_Text</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
+
+
+  <a id="ECellDive_Modules_HttpServerImporterModule_GetAvailableServers_" data-uid="ECellDive.Modules.HttpServerImporterModule.GetAvailableServers*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerImporterModule_GetAvailableServers" data-uid="ECellDive.Modules.HttpServerImporterModule.GetAvailableServers">
+  GetAvailableServers()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the list of available Http servers for this module.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override List&lt;ServerData&gt; GetAvailableServers()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.Utility.Data.Network.ServerData.html">ServerData</a>&gt;</dt>
+    <dd><p>Returns the list of available servers for this module.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_HttpServerImporterModule_GetAvailableServers_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The derived classes will probably use <a class="xref" href="ECellDive.IO.HttpNetPortal.html">HttpNetPortal</a></p>
+</div>
+
+
 
 
   <a id="ECellDive_Modules_HttpServerImporterModule_GetModelCyJs_" data-uid="ECellDive.Modules.HttpServerImporterModule.GetModelCyJs*"></a>
 
   <h3 id="ECellDive_Modules_HttpServerImporterModule_GetModelCyJs_System_String_" data-uid="ECellDive.Modules.HttpServerImporterModule.GetModelCyJs(System.String)">
   GetModelCyJs(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Requests the .cyjs file of a model to the server.</p>
@@ -492,45 +617,11 @@ stored in the server.</p>
 
 
 
-  <a id="ECellDive_Modules_HttpServerImporterModule_GetModelSBML_" data-uid="ECellDive.Modules.HttpServerImporterModule.GetModelSBML*"></a>
-
-  <h3 id="ECellDive_Modules_HttpServerImporterModule_GetModelSBML_System_String_" data-uid="ECellDive.Modules.HttpServerImporterModule.GetModelSBML(System.String)">
-  GetModelSBML(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L82"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Requests the SBML file of a model to the server.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">private void GetModelSBML(string _modelName)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>_modelName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The name of the model as
-stored in the server.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
   <a id="ECellDive_Modules_HttpServerImporterModule_GetModelsList_" data-uid="ECellDive.Modules.HttpServerImporterModule.GetModelsList*"></a>
 
   <h3 id="ECellDive_Modules_HttpServerImporterModule_GetModelsList" data-uid="ECellDive.Modules.HttpServerImporterModule.GetModelsList">
   GetModelsList()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Requests the models list to the server.</p>
@@ -557,7 +648,7 @@ stored in the server.</p>
 
   <h3 id="ECellDive_Modules_HttpServerImporterModule_ImportModelCyJs_TextMeshProUGUI_" data-uid="ECellDive.Modules.HttpServerImporterModule.ImportModelCyJs(TextMeshProUGUI)">
   ImportModelCyJs(TextMeshProUGUI)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L106"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The public interface to ask the server for the .cyjs
@@ -594,7 +685,7 @@ button must be displaying the name of the model.</p>
 
   <h3 id="ECellDive_Modules_HttpServerImporterModule_ImportModelCyJsC" data-uid="ECellDive.Modules.HttpServerImporterModule.ImportModelCyJsC">
   ImportModelCyJsC()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The coroutine handling the request to the server and the
@@ -623,11 +714,50 @@ instantiation of the network module.</p>
 
 
 
+  <a id="ECellDive_Modules_HttpServerImporterModule_SetTargetServer_" data-uid="ECellDive.Modules.HttpServerImporterModule.SetTargetServer*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerImporterModule_SetTargetServer_GameObject_" data-uid="ECellDive.Modules.HttpServerImporterModule.SetTargetServer(GameObject)">
+  SetTargetServer(GameObject)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_serverData">serverData</a> to the server selected by retrieving
+the server data based in the index of the button representing the server
+in the <a class="xref" href="ECellDive.Modules.HttpServerImporterModule.html#ECellDive_Modules_HttpServerImporterModule_refAvailableServersScrollList">refAvailableServersScrollList</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetTargetServer(GameObject _serverButtonGO)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_serverButtonGO</code> <span class="xref">GameObject</span></dt>
+    <dd><p>The gameobject encapsulating the button representing the server
+in the <a class="xref" href="ECellDive.Modules.HttpServerImporterModule.html#ECellDive_Modules_HttpServerImporterModule_refAvailableServersScrollList">refAvailableServersScrollList</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_HttpServerImporterModule_SetTargetServer_GameObject__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Used as callback from the editor.</p>
+</div>
+
+
+
+
   <a id="ECellDive_Modules_HttpServerImporterModule_ShowModelsList_" data-uid="ECellDive.Modules.HttpServerImporterModule.ShowModelsList*"></a>
 
   <h3 id="ECellDive_Modules_HttpServerImporterModule_ShowModelsList" data-uid="ECellDive.Modules.HttpServerImporterModule.ShowModelsList">
   ShowModelsList()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L192"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The public interface to ask the server for the list of
@@ -655,7 +785,7 @@ the available models.</p>
 
   <h3 id="ECellDive_Modules_HttpServerImporterModule_ShowModelsListC" data-uid="ECellDive.Modules.HttpServerImporterModule.ShowModelsListC">
   ShowModelsListC()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L203"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The coroutine handling the request to the server and
@@ -688,7 +818,7 @@ the parsing+display of the content of the list.</p>
 
   <h3 id="ECellDive_Modules_HttpServerImporterModule_Start" data-uid="ECellDive.Modules.HttpServerImporterModule.Start">
   Start()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L67"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -710,11 +840,42 @@ the parsing+display of the content of the list.</p>
 
 
 
+  <a id="ECellDive_Modules_HttpServerImporterModule_UpdateAvailableServers_" data-uid="ECellDive.Modules.HttpServerImporterModule.UpdateAvailableServers*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerImporterModule_UpdateAvailableServers" data-uid="ECellDive.Modules.HttpServerImporterModule.UpdateAvailableServers">
+  UpdateAvailableServers()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The public interface to populate the scroll list <a class="xref" href="ECellDive.Modules.HttpServerImporterModule.html#ECellDive_Modules_HttpServerImporterModule_refAvailableServersScrollList">refAvailableServersScrollList</a>
+of available servers for this module.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateAvailableServers()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_HttpServerImporterModule_UpdateAvailableServers_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Used as callback from the editor.</p>
+</div>
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/IOModules/HttpServerImporterModule.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerImporterModule.cs/#L20" class="edit-link">Edit this page</a>
         </div>
 
 

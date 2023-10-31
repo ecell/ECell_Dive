@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Modules/remote_importer_module.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\UserManual\Modules\remote_importer_module.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -81,25 +81,24 @@
         <article data-uid="">
 <h2 id="remote-importer">Remote Importer</h2>
 
-<p>Requires a connection to <a href="https://github.com/ecell/kosmogora">Kosmogora</a>.</p>
+<p>Requires:</p>
+<ul>
+<li>A <a href="../Network/connecting_to_Kosmogora.html">connection to Kosmogora</a>.</li>
+<li>The <a href="api_checker.html">API Checker</a> has validated the <code>Kosmogora</code> server.</li>
+</ul>
 <img src="../../../resources/images/modules/remote_importer.jpg" alt="UI point" style="height: 300px;">
 <p>This is the module that is used to import the data stored on <em>Kosmogora</em>.</p>
 <img src="../../../resources/images/modules/1x/remote_importer_panels.png" alt="UI point" style="height: 300px;">
 <h3 id="panel-server-parameters">Panel <em>Server Parameters</em></h3>
 <ol>
-<li>Input Field <em>Data Server IP</em>. The IP address at which <em>Kosmogora</em> is hosted. Default value is 127.0.0.1 but this only works during development if <em>Kosmogora</em> is hosted on the same machine as the one we are developping ECellDive on.</li>
-<li>Input Field <em>Data Server Port</em>. The Port at which <em>Kosmogora</em> is listening. Default value is 8000. This is also the default value when launching <em>Kosmogora</em> so, unless you specified a port at that time, you can leave the field empty in ECellDive.</li>
+<li>Button <em>Server</em>. Will open the Server choice panel to chose among the <code>Kosmogora-like</code> servers which API allows to store and load data modules in <em>ECellDive</em>.</li>
 <li>Button <em>Query Available Models</em>. Will try to contact <em>Kosmogora</em> at the address and port given to request the list of models currently available. This is fast. If nothing happens check the Log Menu to see if an error was not raised. If the query is successful, the module will flash <span style="color:green"><em>green</em></span>; the list of available files will be displayed in panel <em>Models List</em>. If the query fails, the module will flash <span style="color:red"><em>red</em></span>. In that case, you can check the error message in the <a href="/articles/UserManual/UIMenus/log_menu.html">log</a>.</li>
-</ol>
-<h3 id="panel-models-list">Panel <em>Models List</em></h3>
-<ol start="4">
-<li>Displays the list of models available in <em>Kosmogora</em> if the request was successful.</li>
 </ol>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Modules/remote_importer_module.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\UserManual\Modules\remote_importer_module.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

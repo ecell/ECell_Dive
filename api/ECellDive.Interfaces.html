@@ -92,6 +92,11 @@
 Interfaces
 </h3>
     <dl class="jumplist">
+      <dt><a class="xref" href="ECellDive.Interfaces.IBezierCurve.html">IBezierCurve</a></dt>
+      <dd><p>Interface to manage a Bezier curve.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></dt>
       <dd><p>An interface to change switch between two colors when a gameobject
 needs to be highlighted.</p>
@@ -101,6 +106,12 @@ needs to be highlighted.</p>
       <dt><a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a></dt>
       <dd><p>An interface to change switch between two colors when a NetworkObject
 needs to be highlighted.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="ECellDive.Interfaces.IColored.html">IColored</a></dt>
+      <dd><p>An Interface to store a default color and a method on
+how to apply a color to a gameobject.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -120,10 +131,10 @@ that a user can dive in.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.IEdgeGO.html">IEdgeGO</a></dt>
+      <dt><a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html">IEdgeGO&lt;T&gt;</a></dt>
       <dd><p>The interface defining the required logic to manipulate
-the information stored in a <a class="xref" href="ECellDive.Interfaces.IEdge.html">IEdge</a> of a
-<a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a>.</p>
+the information stored in a <a class="xref" href="ECellDive.Interfaces.IEdge.html">IEdge</a>. This interface
+will probably be implemented by a game object.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -133,22 +144,29 @@ is pointed at by a ray interactor.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a></dt>
-      <dd><p>The interface for the data structure encoding a graph
-made of nodes connected by edges.</p>
+      <dt><a class="xref" href="ECellDive.Interfaces.IGradient.html">IGradient</a></dt>
+      <dd><p>An interface to store a gradient and a method on
+how to apply a gradient to a gameobject.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.IGraphGO.html">IGraphGO</a></dt>
-      <dd><p>The interface defining the required logic to manipulate
-the information stored in a <a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a>.</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.IGraphGONet.html">IGraphGONet</a></dt>
+      <dt><a class="xref" href="ECellDive.Interfaces.IGraphGONet-2.html">IGraphGONet&lt;EdgeType, NodeType&gt;</a></dt>
       <dd><p>The interface defining the logic to manipulate a graph
 synchronized over the network between the host and the
 clients</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="ECellDive.Interfaces.IGraphGO-2.html">IGraphGO&lt;EdgeType, NodeType&gt;</a></dt>
+      <dd><p>The interface defining the required logic to manipulate
+the information stored in a <a class="xref" href="ECellDive.Interfaces.IGraph-2.html">IGraph&lt;EdgeType, NodeType&gt;</a>.
+This interface will probably be implemented by a game object.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="ECellDive.Interfaces.IGraph-2.html">IGraph&lt;EdgeType, NodeType&gt;</a></dt>
+      <dd><p>The interface for the data structure encoding a graph
+made of nodes connected by edges.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -249,10 +267,10 @@ display a name.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ECellDive.Interfaces.INodeGO.html">INodeGO</a></dt>
+      <dt><a class="xref" href="ECellDive.Interfaces.INodeGO-1.html">INodeGO&lt;T&gt;</a></dt>
       <dd><p>The interface defining the required logic to manipulate
-the information stored in a <a class="xref" href="ECellDive.Interfaces.INode.html">INode</a> of a
-<a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a>.</p>
+the information stored in a <a class="xref" href="ECellDive.Interfaces.INode.html">INode</a>. This interface
+will probably be implemented by a game object.</p>
 </dd>
     </dl>
     <dl class="jumplist">

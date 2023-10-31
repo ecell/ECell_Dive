@@ -1,0 +1,701 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class HttpServerAPICheckModule
+ </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class HttpServerAPICheckModule
+ ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_HttpServerAPICheckModule.md&amp;value=---%0Auid%3A%20ECellDive.Modules.HttpServerAPICheckModule%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.Modules.HttpServerAPICheckModule">
+
+
+
+  <h1 id="ECellDive_Modules_HttpServerAPICheckModule" data-uid="ECellDive.Modules.HttpServerAPICheckModule" class="text-break">
+    Class HttpServerAPICheckModule
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Modules.html">Modules</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>The class for checking which API a target server has and which
+server action modules can be used in ECellDive as a result.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class HttpServerAPICheckModule : HttpServerBaseModule, IFocus, IGroupable, IColorHighlightable, IColored, IHighlightable, IInfoTags, INamed</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="ECellDive.Modules.Module.html">Module</a></div>
+      <div><a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html">HttpServerBaseModule</a></div>
+      <div><span class="xref">HttpServerAPICheckModule</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IColored.html">IColored</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_serverData">HttpServerBaseModule.serverData</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_implementedHttpAPI">HttpServerBaseModule.implementedHttpAPI</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_requestData">HttpServerBaseModule.requestData</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_AddPagesToURL_System_String___">HttpServerBaseModule.AddPagesToURL(string[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_AddQueriesToURL_System_String_System_String___System_String___">HttpServerBaseModule.AddQueriesToURL(string, string[], string[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_AddQueryToURL_System_String_System_String_System_String_System_Boolean_">HttpServerBaseModule.AddQueryToURL(string, string, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_GetRequest_System_String_">HttpServerBaseModule.GetRequest(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_isRequestProcessed">HttpServerBaseModule.isRequestProcessed()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderers">Module.renderers</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderersColorPropertyNames">Module.renderersColorPropertyNames</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderersColorPropertyIDs">Module.renderersColorPropertyIDs</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderers">Module.lineRenderers</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderersColorPropertyNames">Module.lineRenderersColorPropertyNames</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderersColorPropertyIDs">Module.lineRenderersColorPropertyIDs</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_mpb">Module.mpb</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_nameField">Module.m_nameField</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_nameField">Module.nameField</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_nameTextFieldContainer">Module.m_nameTextFieldContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_nameTextFieldContainer">Module.nameTextFieldContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_isFocused">Module.m_isFocused</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_isFocused">Module.isFocused</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_grpMemberIndex">Module.m_grpMemberIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_grpMemberIndex">Module.grpMemberIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_delegateTarget">Module.m_delegateTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_delegateTarget">Module.delegateTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_defaultColor">Module.m_defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_defaultColor">Module.defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_highlightColor">Module.m_highlightColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_highlightColor">Module.highlightColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_forceHighlight">Module.m_forceHighlight</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_forceHighlight">Module.forceHighlight</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_areVisible">Module.areVisible</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_displayInfoTagsActions">Module.m_displayInfoTagsActions</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_displayInfoTagsActions">Module.displayInfoTagsActions</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_refInfoTagPrefab">Module.m_refInfoTagPrefab</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refInfoTagPrefab">Module.refInfoTagPrefab</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_refInfoTagsContainer">Module.m_refInfoTagsContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refInfoTagsContainer">Module.refInfoTagsContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_Awake">Module.Awake()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_OnDestroy">Module.OnDestroy()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_OnEnable">Module.OnEnable()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ManageInfoTagsDisplay_InputAction_CallbackContext_">Module.ManageInfoTagsDisplay(InputAction.CallbackContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SelfDestroy">Module.SelfDestroy()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetFocus">Module.SetFocus()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_UnsetFocus">Module.UnsetFocus()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ApplyColor_Color_">Module.ApplyColor(Color)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetHighlight">Module.SetHighlight()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_UnsetHighlight">Module.UnsetHighlight()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_DisplayInfoTags">Module.DisplayInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_HideInfoTags">Module.HideInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_InstantiateInfoTag_Vector2_System_String_">Module.InstantiateInfoTag(Vector2, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_InstantiateInfoTags_System_String___">Module.InstantiateInfoTags(string[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ShowInfoTags">Module.ShowInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_DisplayName">Module.DisplayName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_GetName">Module.GetName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_HideName">Module.HideName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetName_System_String_">Module.SetName(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ShowName">Module.ShowName()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="ECellDive_Modules_HttpServerAPICheckModule_animLW" data-uid="ECellDive.Modules.HttpServerAPICheckModule.animLW">
+  animLW
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The animation loop controller to control the visual feedback
+of the module in case of request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private AnimationLoopWrapper animLW</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.AnimationLoopWrapper.html">AnimationLoopWrapper</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_HttpServerAPICheckModule_colorFlash" data-uid="ECellDive.Modules.HttpServerAPICheckModule.colorFlash">
+  colorFlash
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The color flash component to alter the visual feedback
+of the module in case of request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private ColorFlash colorFlash</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.ColorFlash.html">ColorFlash</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_HttpServerAPICheckModule_onAPICheck" data-uid="ECellDive.Modules.HttpServerAPICheckModule.onAPICheck">
+  onAPICheck
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A delegate to be called after the API check request is processed.
+The bool parameter is true if the request was successful. It is
+called after the effects of the request are applied (whether successul or not).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityAction&lt;bool&gt; onAPICheck</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_HttpServerAPICheckModule_onAPICheck_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This is added for the tutorials check. There is probably a way to
+to get rid of this.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Modules_HttpServerAPICheckModule_serverUIData" data-uid="ECellDive.Modules.HttpServerAPICheckModule.serverUIData">
+  serverUIData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The data structure storing the input fields for the server address and port.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServerUIData serverUIData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.Network.ServerUIData.html">ServerUIData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ECellDive_Modules_HttpServerAPICheckModule_BuildCheckAPIRequest_" data-uid="ECellDive.Modules.HttpServerAPICheckModule.BuildCheckAPIRequest*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerAPICheckModule_BuildCheckAPIRequest" data-uid="ECellDive.Modules.HttpServerAPICheckModule.BuildCheckAPIRequest">
+  BuildCheckAPIRequest()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The method to build the request URL for checking the API</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private string BuildCheckAPIRequest()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The request URL for checking the API</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_HttpServerAPICheckModule_CheckAPI_" data-uid="ECellDive.Modules.HttpServerAPICheckModule.CheckAPI*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerAPICheckModule_CheckAPI" data-uid="ECellDive.Modules.HttpServerAPICheckModule.CheckAPI">
+  CheckAPI()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The public interface to request the list of implemented API
+from the server and update which server action modules can
+be used in ECellDive as a result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CheckAPI()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_HttpServerAPICheckModule_CheckAPIC_" data-uid="ECellDive.Modules.HttpServerAPICheckModule.CheckAPIC*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerAPICheckModule_CheckAPIC" data-uid="ECellDive.Modules.HttpServerAPICheckModule.CheckAPIC">
+  CheckAPIC()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The coroutine to request the list of implemented API
+from the server and update which server action modules can
+be used in ECellDive as a result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private IEnumerator CheckAPIC()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_HttpServerAPICheckModule_GetAvailableServers_" data-uid="ECellDive.Modules.HttpServerAPICheckModule.GetAvailableServers*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerAPICheckModule_GetAvailableServers" data-uid="ECellDive.Modules.HttpServerAPICheckModule.GetAvailableServers">
+  GetAvailableServers()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>This method is not implemented in this module.
+This module is the only one that can contact any HttpServer in ECellDive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override List&lt;ServerData&gt; GetAvailableServers()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.Utility.Data.Network.ServerData.html">ServerData</a>&gt;</dt>
+    <dd><p>Null.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_HttpServerAPICheckModule_UpdateIP_" data-uid="ECellDive.Modules.HttpServerAPICheckModule.UpdateIP*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerAPICheckModule_UpdateIP" data-uid="ECellDive.Modules.HttpServerAPICheckModule.UpdateIP">
+  UpdateIP()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the value for the IP in <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_serverData">serverData</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateIP()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_HttpServerAPICheckModule_UpdateIP_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Called back on value change of the input field dedicated to the IP.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_Modules_HttpServerAPICheckModule_UpdateName_" data-uid="ECellDive.Modules.HttpServerAPICheckModule.UpdateName*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerAPICheckModule_UpdateName" data-uid="ECellDive.Modules.HttpServerAPICheckModule.UpdateName">
+  UpdateName()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the value for the Name in <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_serverData">serverData</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateName()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_HttpServerAPICheckModule_UpdateName_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Called back on value change of the input field dedicated to the Name.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_Modules_HttpServerAPICheckModule_UpdatePort_" data-uid="ECellDive.Modules.HttpServerAPICheckModule.UpdatePort*"></a>
+
+  <h3 id="ECellDive_Modules_HttpServerAPICheckModule_UpdatePort" data-uid="ECellDive.Modules.HttpServerAPICheckModule.UpdatePort">
+  UpdatePort()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the value for the Port in <a class="xref" href="ECellDive.Modules.HttpServerBaseModule.html#ECellDive_Modules_HttpServerBaseModule_serverData">serverData</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdatePort()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_HttpServerAPICheckModule_UpdatePort_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Called back on value change of the input field dedicated to the Port.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\IOModules\HttpServerAPICheckModule.cs/#L21" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

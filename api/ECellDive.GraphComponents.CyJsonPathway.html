@@ -86,7 +86,7 @@
 
   <h1 id="ECellDive_GraphComponents_CyJsonPathway" data-uid="ECellDive.GraphComponents.CyJsonPathway" class="text-break">
     Class CyJsonPathway
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonPathway.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -99,7 +99,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CyJsonPathway : IGraph</code></pre>
+    <pre><code class="lang-csharp hljs">public class CyJsonPathway : IGraph&lt;CyJsonEdge, CyJsonNode&gt;</code></pre>
   </div>
 
 
@@ -116,7 +116,7 @@
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><a class="xref" href="ECellDive.Interfaces.IGraph.html">IGraph</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IGraph-2.html">IGraph</a>&lt;<a class="xref" href="ECellDive.Utility.Data.Graph.CyJsonEdge.html">CyJsonEdge</a>, <a class="xref" href="ECellDive.Utility.Data.Graph.CyJsonNode.html">CyJsonNode</a>&gt;</div>
     </dd>
   </dl>
 
@@ -160,7 +160,7 @@
 
   <h3 id="ECellDive_GraphComponents_CyJsonPathway__ctor_JObject_System_String_" data-uid="ECellDive.GraphComponents.CyJsonPathway.#ctor(JObject,System.String)">
   CyJsonPathway(JObject, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonPathway.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Instantiate from a JObject (from Newtonsoft.Json.Linq)
@@ -197,7 +197,7 @@ that should encode the content of a Cytoscape Json file.</p>
 
   <h3 id="ECellDive_GraphComponents_CyJsonPathway__ctor_System_String_System_String_" data-uid="ECellDive.GraphComponents.CyJsonPathway.#ctor(System.String,System.String)">
   CyJsonPathway(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonPathway.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Instantiate from a Cytoscape Json file.</p>
@@ -229,6 +229,40 @@ that should encode the content of a Cytoscape Json file.</p>
 
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="ECellDive_GraphComponents_CyJsonPathway_cyJsonGraphData" data-uid="ECellDive.GraphComponents.CyJsonPathway.cyJsonGraphData">
+  cyJsonGraphData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonPathway.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GraphData&lt;JObject, JArray, JArray&gt; cyJsonGraphData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.Graph.GraphData-3.html">GraphData</a>&lt;<span class="xref">JObject</span>, <span class="xref">JArray</span>, <span class="xref">JArray</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="properties">Properties
 </h2>
 
@@ -237,15 +271,15 @@ that should encode the content of a Cytoscape Json file.</p>
 
   <h3 id="ECellDive_GraphComponents_CyJsonPathway_edges" data-uid="ECellDive.GraphComponents.CyJsonPathway.edges">
   edges
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonPathway.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>The array of <a class="xref" href="ECellDive.Interfaces.IEdge.html">IEdge</a> translating the edges stored in <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Interfaces_IGraph_jEdges">jEdges</a>.</p>
+  <div class="markdown level1 summary"><p>The edges of this graph.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEdge[] edges { get; protected set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public CyJsonEdge[] edges { get; protected set; }</code></pre>
   </div>
 
 
@@ -254,103 +288,7 @@ that should encode the content of a Cytoscape Json file.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.IEdge.html">IEdge</a>[]</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="ECellDive_GraphComponents_CyJsonPathway_graphData_" data-uid="ECellDive.GraphComponents.CyJsonPathway.graphData*"></a>
-
-  <h3 id="ECellDive_GraphComponents_CyJsonPathway_graphData" data-uid="ECellDive.GraphComponents.CyJsonPathway.graphData">
-  graphData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L20"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>The JObject extracted from the Json file that encodes the graph.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JObject graphData { get; protected set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><span class="xref">JObject</span></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="ECellDive_GraphComponents_CyJsonPathway_jEdges_" data-uid="ECellDive.GraphComponents.CyJsonPathway.jEdges*"></a>
-
-  <h3 id="ECellDive_GraphComponents_CyJsonPathway_jEdges" data-uid="ECellDive.GraphComponents.CyJsonPathway.jEdges">
-  jEdges
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L26"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>The JArray (from Newtonsoft Json Linq) representing the edges in <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Interfaces_IGraph_graphData">graphData</a>.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JArray jEdges { get; protected set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><span class="xref">JArray</span></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="ECellDive_GraphComponents_CyJsonPathway_jNodes_" data-uid="ECellDive.GraphComponents.CyJsonPathway.jNodes*"></a>
-
-  <h3 id="ECellDive_GraphComponents_CyJsonPathway_jNodes" data-uid="ECellDive.GraphComponents.CyJsonPathway.jNodes">
-  jNodes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L23"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>The JArray (from Newtonsoft Json Linq) representing the nodes in <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Interfaces_IGraph_graphData">graphData</a>.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JArray jNodes { get; protected set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><span class="xref">JArray</span></dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.Graph.CyJsonEdge.html">CyJsonEdge</a>[]</dt>
     <dd></dd>
   </dl>
 
@@ -365,7 +303,7 @@ that should encode the content of a Cytoscape Json file.</p>
 
   <h3 id="ECellDive_GraphComponents_CyJsonPathway_name" data-uid="ECellDive.GraphComponents.CyJsonPathway.name">
   name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonPathway.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The name of the graph.</p>
@@ -397,15 +335,15 @@ that should encode the content of a Cytoscape Json file.</p>
 
   <h3 id="ECellDive_GraphComponents_CyJsonPathway_nodes" data-uid="ECellDive.GraphComponents.CyJsonPathway.nodes">
   nodes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonPathway.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>The array of <a class="xref" href="ECellDive.Interfaces.INode.html">INode</a> translating the nodes stored in <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Interfaces_IGraph_jNodes">jNodes</a>.</p>
+  <div class="markdown level1 summary"><p>The nodes of this graph.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public INode[] nodes { get; protected set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public CyJsonNode[] nodes { get; protected set; }</code></pre>
   </div>
 
 
@@ -414,7 +352,7 @@ that should encode the content of a Cytoscape Json file.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ECellDive.Interfaces.INode.html">INode</a>[]</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.Graph.CyJsonNode.html">CyJsonNode</a>[]</dt>
     <dd></dd>
   </dl>
 
@@ -433,10 +371,10 @@ that should encode the content of a Cytoscape Json file.</p>
 
   <h3 id="ECellDive_GraphComponents_CyJsonPathway_MapInOutEdgesIntoNodes" data-uid="ECellDive.GraphComponents.CyJsonPathway.MapInOutEdgesIntoNodes">
   MapInOutEdgesIntoNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonPathway.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Uses the information stored in the <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Interfaces_IGraph_edges">edges</a> to fill the
+  <div class="markdown level1 summary"><p>Uses the information stored in the <a class="xref" href="ECellDive.GraphComponents.CyJsonPathway.html#ECellDive_GraphComponents_CyJsonPathway_edges">edges</a> to fill the
 <a class="xref" href="ECellDive.Interfaces.INode.html#ECellDive_Interfaces_INode_incommingEdges">incommingEdges</a> and <a class="xref" href="ECellDive.Interfaces.INode.html#ECellDive_Interfaces_INode_outgoingEdges">outgoingEdges</a> lists.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -461,11 +399,10 @@ that should encode the content of a Cytoscape Json file.</p>
 
   <h3 id="ECellDive_GraphComponents_CyJsonPathway_PopulateEdges" data-uid="ECellDive.GraphComponents.CyJsonPathway.PopulateEdges">
   PopulateEdges()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonPathway.cs/#L117"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates the <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Interfaces_IGraph_edges">edges</a> array mirroring the information
-stored in <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Interfaces_IGraph_jNodes">jNodes</a> but in a more accessible way.</p>
+  <div class="markdown level1 summary"><p>Populates the <a class="xref" href="ECellDive.GraphComponents.CyJsonPathway.html#ECellDive_GraphComponents_CyJsonPathway_edges">edges</a> array.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -489,11 +426,10 @@ stored in <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Inter
 
   <h3 id="ECellDive_GraphComponents_CyJsonPathway_PopulateNodes" data-uid="ECellDive.GraphComponents.CyJsonPathway.PopulateNodes">
   PopulateNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonPathway.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates the <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Interfaces_IGraph_nodes">nodes</a> array mirroring the information
-stored in <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Interfaces_IGraph_jNodes">jNodes</a> but in a more accessible way.</p>
+  <div class="markdown level1 summary"><p>Populates the <a class="xref" href="ECellDive.GraphComponents.CyJsonPathway.html#ECellDive_GraphComponents_CyJsonPathway_nodes">nodes</a> array.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -513,65 +449,11 @@ stored in <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Inter
 
 
 
-  <a id="ECellDive_GraphComponents_CyJsonPathway_SetEdges_" data-uid="ECellDive.GraphComponents.CyJsonPathway.SetEdges*"></a>
-
-  <h3 id="ECellDive_GraphComponents_CyJsonPathway_SetEdges" data-uid="ECellDive.GraphComponents.CyJsonPathway.SetEdges">
-  SetEdges()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L127"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Sets the <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Interfaces_IGraph_jEdges">jEdges</a>.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetEdges()</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="ECellDive_GraphComponents_CyJsonPathway_SetNodes_" data-uid="ECellDive.GraphComponents.CyJsonPathway.SetNodes*"></a>
-
-  <h3 id="ECellDive_GraphComponents_CyJsonPathway_SetNodes" data-uid="ECellDive.GraphComponents.CyJsonPathway.SetNodes">
-  SetNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L121"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Sets the <a class="xref" href="ECellDive.Interfaces.IGraph.html#ECellDive_Interfaces_IGraph_jNodes">jNodes</a>.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetNodes()</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/CyJsonModules/Datastructure/CyJsonPathway.cs/#L13" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonPathway.cs/#L14" class="edit-link">Edit this page</a>
         </div>
 
 

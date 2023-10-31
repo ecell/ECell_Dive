@@ -1,0 +1,701 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DiveTravelMapModule
+ </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DiveTravelMapModule
+ ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_DiveTravelMapModule.md&amp;value=---%0Auid%3A%20ECellDive.Modules.DiveTravelMapModule%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.Modules.DiveTravelMapModule">
+
+
+
+  <h1 id="ECellDive_Modules_DiveTravelMapModule" data-uid="ECellDive.Modules.DiveTravelMapModule" class="text-break">
+    Class DiveTravelMapModule
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Modules.html">Modules</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>The logic to draw the dive travel map showing which dive scenes
+a player has been to and in which order.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DiveTravelMapModule : Module, IFocus, IGroupable, IColorHighlightable, IColored, IHighlightable, IInfoTags, INamed, IGraphGO&lt;Edge, Node&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="ECellDive.Modules.Module.html">Module</a></div>
+      <div><span class="xref">DiveTravelMapModule</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IColored.html">IColored</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IGraphGO-2.html">IGraphGO</a>&lt;<a class="xref" href="ECellDive.Utility.Data.Graph.Edge.html">Edge</a>, <a class="xref" href="ECellDive.Utility.Data.Graph.Node.html">Node</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderers">Module.renderers</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderersColorPropertyNames">Module.renderersColorPropertyNames</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderersColorPropertyIDs">Module.renderersColorPropertyIDs</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderers">Module.lineRenderers</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderersColorPropertyNames">Module.lineRenderersColorPropertyNames</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderersColorPropertyIDs">Module.lineRenderersColorPropertyIDs</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_mpb">Module.mpb</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_nameField">Module.m_nameField</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_nameField">Module.nameField</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_nameTextFieldContainer">Module.m_nameTextFieldContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_nameTextFieldContainer">Module.nameTextFieldContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_isFocused">Module.m_isFocused</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_isFocused">Module.isFocused</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_grpMemberIndex">Module.m_grpMemberIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_grpMemberIndex">Module.grpMemberIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_delegateTarget">Module.m_delegateTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_delegateTarget">Module.delegateTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_defaultColor">Module.m_defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_defaultColor">Module.defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_highlightColor">Module.m_highlightColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_highlightColor">Module.highlightColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_forceHighlight">Module.m_forceHighlight</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_forceHighlight">Module.forceHighlight</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_areVisible">Module.areVisible</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_displayInfoTagsActions">Module.m_displayInfoTagsActions</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_displayInfoTagsActions">Module.displayInfoTagsActions</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_refInfoTagPrefab">Module.m_refInfoTagPrefab</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refInfoTagPrefab">Module.refInfoTagPrefab</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_refInfoTagsContainer">Module.m_refInfoTagsContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refInfoTagsContainer">Module.refInfoTagsContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_Awake">Module.Awake()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_OnDestroy">Module.OnDestroy()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_OnEnable">Module.OnEnable()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ManageInfoTagsDisplay_InputAction_CallbackContext_">Module.ManageInfoTagsDisplay(InputAction.CallbackContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SelfDestroy">Module.SelfDestroy()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetFocus">Module.SetFocus()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_UnsetFocus">Module.UnsetFocus()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ApplyColor_Color_">Module.ApplyColor(Color)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetHighlight">Module.SetHighlight()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_UnsetHighlight">Module.UnsetHighlight()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_DisplayInfoTags">Module.DisplayInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_HideInfoTags">Module.HideInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_InstantiateInfoTag_Vector2_System_String_">Module.InstantiateInfoTag(Vector2, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_InstantiateInfoTags_System_String___">Module.InstantiateInfoTags(string[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ShowInfoTags">Module.ShowInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_DisplayName">Module.DisplayName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_GetName">Module.GetName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_HideName">Module.HideName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetName_System_String_">Module.SetName(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ShowName">Module.ShowName()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_m_graphData" data-uid="ECellDive.Modules.DiveTravelMapModule.m_graphData">
+  m_graphData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for the property <a class="xref" href="ECellDive.Modules.DiveTravelMapModule.html#ECellDive_Modules_DiveTravelMapModule_graphData">graphData</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private ContiguousGraph m_graphData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.GraphComponents.ContiguousGraph.html">ContiguousGraph</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_m_graphPrefabsComponents" data-uid="ECellDive.Modules.DiveTravelMapModule.m_graphPrefabsComponents">
+  m_graphPrefabsComponents
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for the property <a class="xref" href="ECellDive.Modules.DiveTravelMapModule.html#ECellDive_Modules_DiveTravelMapModule_graphPrefabsComponents">graphPrefabsComponents</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private List&lt;GameObject&gt; m_graphPrefabsComponents</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_m_graphScalingData" data-uid="ECellDive.Modules.DiveTravelMapModule.m_graphScalingData">
+  m_graphScalingData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for the property <a class="xref" href="ECellDive.Modules.DiveTravelMapModule.html#ECellDive_Modules_DiveTravelMapModule_graphScalingData">graphScalingData</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private GraphScalingData m_graphScalingData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.Graph.GraphScalingData.html">GraphScalingData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_refDiveTravelMapRoot" data-uid="ECellDive.Modules.DiveTravelMapModule.refDiveTravelMapRoot">
+  refDiveTravelMapRoot
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The reference to the root of the dive travel map.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private GameObject refDiveTravelMapRoot</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="ECellDive_Modules_DiveTravelMapModule_DataID_to_DataGO_" data-uid="ECellDive.Modules.DiveTravelMapModule.DataID_to_DataGO*"></a>
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_DataID_to_DataGO" data-uid="ECellDive.Modules.DiveTravelMapModule.DataID_to_DataGO">
+  DataID_to_DataGO
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The dictionnary to find <a class="xref" href="ECellDive.Interfaces.INodeGO-1.html">INodeGO&lt;T&gt;</a> and <a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html">IEdgeGO&lt;T&gt;</a>
+of the graph according to their ids.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;uint, GameObject&gt; DataID_to_DataGO { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>, <span class="xref">GameObject</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_DiveTravelMapModule_graphData_" data-uid="ECellDive.Modules.DiveTravelMapModule.graphData*"></a>
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_graphData" data-uid="ECellDive.Modules.DiveTravelMapModule.graphData">
+  graphData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The data structure encoding the graph.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IGraph&lt;Edge, Node&gt; graphData { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Interfaces.IGraph-2.html">IGraph</a>&lt;<a class="xref" href="ECellDive.Utility.Data.Graph.Edge.html">Edge</a>, <a class="xref" href="ECellDive.Utility.Data.Graph.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_DiveTravelMapModule_graphPrefabsComponents_" data-uid="ECellDive.Modules.DiveTravelMapModule.graphPrefabsComponents*"></a>
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_graphPrefabsComponents" data-uid="ECellDive.Modules.DiveTravelMapModule.graphPrefabsComponents">
+  graphPrefabsComponents
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The list of prefabs that will be used as nodes or edges.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;GameObject&gt; graphPrefabsComponents { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_DiveTravelMapModule_graphPrefabsComponents_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>We decided the use a list of gameobjects rather than
+named members for a &quot;node prefab&quot; or an &quot;edge prefab&quot; to allow
+for flexibility.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_Modules_DiveTravelMapModule_graphScalingData_" data-uid="ECellDive.Modules.DiveTravelMapModule.graphScalingData*"></a>
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_graphScalingData" data-uid="ECellDive.Modules.DiveTravelMapModule.graphScalingData">
+  graphScalingData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The struct encapsulating the parameters relevant to
+controlling the scale of the graph.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GraphScalingData graphScalingData { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.Graph.GraphScalingData.html">GraphScalingData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ECellDive_Modules_DiveTravelMapModule_BuildMap_" data-uid="ECellDive.Modules.DiveTravelMapModule.BuildMap*"></a>
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_BuildMap" data-uid="ECellDive.Modules.DiveTravelMapModule.BuildMap">
+  BuildMap()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Builds the dive travel map from the dive travel data of the
+local player.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void BuildMap()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_DiveTravelMapModule_Clear_" data-uid="ECellDive.Modules.DiveTravelMapModule.Clear*"></a>
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_Clear" data-uid="ECellDive.Modules.DiveTravelMapModule.Clear">
+  Clear()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Deleted every child of the dive travel map root.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_DiveTravelMapModule_SetGraphData_" data-uid="ECellDive.Modules.DiveTravelMapModule.SetGraphData*"></a>
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_SetGraphData_ECellDive_Interfaces_IGraph_ECellDive_Utility_Data_Graph_Edge_ECellDive_Utility_Data_Graph_Node__" data-uid="ECellDive.Modules.DiveTravelMapModule.SetGraphData(ECellDive.Interfaces.IGraph{ECellDive.Utility.Data.Graph.Edge,ECellDive.Utility.Data.Graph.Node})">
+  SetGraphData(IGraph&lt;Edge, Node&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the value for <a class="xref" href="ECellDive.Interfaces.IGraphGO-2.html#ECellDive_Interfaces_IGraphGO_2_graphData">graphData</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetGraphData(IGraph&lt;Edge, Node&gt; _graphData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_graphData</code> <a class="xref" href="ECellDive.Interfaces.IGraph-2.html">IGraph</a>&lt;<a class="xref" href="ECellDive.Utility.Data.Graph.Edge.html">Edge</a>, <a class="xref" href="ECellDive.Utility.Data.Graph.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_DiveTravelMapModule_Start_" data-uid="ECellDive.Modules.DiveTravelMapModule.Start*"></a>
+
+  <h3 id="ECellDive_Modules_DiveTravelMapModule_Start" data-uid="ECellDive.Modules.DiveTravelMapModule.Start">
+  Start()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Start()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\DiveTravelMapModule.cs/#L17" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

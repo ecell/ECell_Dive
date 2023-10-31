@@ -86,7 +86,7 @@
 
   <h1 id="ECellDive_Interfaces_IColorHighlightableNet" data-uid="ECellDive.Interfaces.IColorHighlightableNet" class="text-break">
     Interface IColorHighlightableNet
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IInteractions.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -100,7 +100,7 @@ needs to be highlighted.</p>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IColorHighlightableNet : IColorHighlightable, IHighlightable</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IColorHighlightableNet : IColorHighlightable, IColored, IHighlightable</code></pre>
   </div>
 
 
@@ -113,13 +113,13 @@ needs to be highlighted.</p>
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html#ECellDive_Interfaces_IColorHighlightable_defaultColor">IColorHighlightable.defaultColor</a>
-    </div>
-    <div>
       <a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html#ECellDive_Interfaces_IColorHighlightable_highlightColor">IColorHighlightable.highlightColor</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html#ECellDive_Interfaces_IColorHighlightable_ApplyColor_Color_">IColorHighlightable.ApplyColor(Color)</a>
+      <a class="xref" href="ECellDive.Interfaces.IColored.html#ECellDive_Interfaces_IColored_defaultColor">IColored.defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Interfaces.IColored.html#ECellDive_Interfaces_IColored_ApplyColor_Color_">IColored.ApplyColor(Color)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Interfaces.IHighlightable.html#ECellDive_Interfaces_IHighlightable_forceHighlight">IHighlightable.forceHighlight</a>
@@ -145,7 +145,7 @@ needs to be highlighted.</p>
 
   <h3 id="ECellDive_Interfaces_IColorHighlightableNet_currentColor" data-uid="ECellDive.Interfaces.IColorHighlightableNet.currentColor">
   currentColor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IInteractions.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The current color of the object synchronized over the
@@ -182,10 +182,10 @@ network.</p>
 
   <h3 id="ECellDive_Interfaces_IColorHighlightableNet_SetCurrentColorToDefaultServerRpc" data-uid="ECellDive.Interfaces.IColorHighlightableNet.SetCurrentColorToDefaultServerRpc">
   SetCurrentColorToDefaultServerRpc()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IInteractions.cs/#L126"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Contacts the server to applies <a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html#ECellDive_Interfaces_IColorHighlightable_defaultColor">defaultColor</a>
+  <div class="markdown level1 summary"><p>Contacts the server to applies <a class="xref" href="ECellDive.Interfaces.IColored.html#ECellDive_Interfaces_IColored_defaultColor">defaultColor</a>
 to <a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html#ECellDive_Interfaces_IColorHighlightableNet_currentColor">currentColor</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -214,7 +214,7 @@ the value will be synchronized to all clients.</p>
 
   <h3 id="ECellDive_Interfaces_IColorHighlightableNet_SetCurrentColorToHighlightServerRpc" data-uid="ECellDive.Interfaces.IColorHighlightableNet.SetCurrentColorToHighlightServerRpc">
   SetCurrentColorToHighlightServerRpc()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IInteractions.cs/#L135"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Contacts the server to applies <a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html#ECellDive_Interfaces_IColorHighlightable_highlightColor">highlightColor</a>
@@ -246,7 +246,7 @@ the value will be synchronized to all clients.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L123" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IInteractions.cs/#L112" class="edit-link">Edit this page</a>
         </div>
 
 

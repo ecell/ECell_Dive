@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/Dev/about_code.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\Dev\about_code.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -81,13 +81,13 @@
         <article data-uid="">
 <h1 id="project-code-conventions">Project Code conventions</h1>
 
-<p>The following are loose constraints. We understand first draft of a code might not respect that. But as it stabilizes and is updated, any code file should tend toward those conventions.</p>
+<p>The following are loose constraints. Please understand fist versions of code might not respect them. But as it stabilizes and is updated, we will tend toward those conventions.</p>
 <h2 id="naming">Naming</h2>
 <ul>
-<li>Generally, the name of the file matches the name of the main class in the file (if any).</li>
-<li>File names, class names, and method names are Pascal Case (aka upper camel case) so every word in a classe name start by an upper case letter (e.g., <code>SomeScript.cs</code>, <code>AClassName</code>, <code>AMethodName</code>).</li>
+<li>Generally, the name of the file matches the name of the main class in the file (if any). This is mandatory for Unity's <code>MonoBehaviour</code> anyway.</li>
+<li>File names, class names, and method names are Pascal Case (aka upper camel case) so every word in a class name start by an upper case letter (e.g., <code>SomeScript.cs</code>, <code>AClassName</code>, <code>AMethodName</code>).</li>
 <li>Interface names start with a capital <code>I</code> and are then Pascal Case; that's pretty standard in C# (e.g., <code>IHereIsAnInterface</code>)</li>
-<li>Field names and property names are camel Case so they start with a low case letter and then wevery word start with an upper case letter (e.g. <code>hereIsAFieldName</code>, <code>andHereIsAPropertyName</code>). Camel case for property name is apparently not C# standard.</li>
+<li>Field names and property names are camel Case so they start with a low case letter and then every word start with an upper case letter (e.g. <code>hereIsAFieldName</code>, <code>andHereIsAPropertyName</code>). Camel case for property name is apparently not C# standard.</li>
 <li>Private fields of properties are prefixed with <code>m_</code> and then repeats the name of the property (e.g., <code>propertyWithFieldName</code>, <code>m_propertyWithFieldName</code>):
 <pre><code class="lang-csharp">///&lt;summary&gt;
 ///The field of the &lt;see cref=&quot;aBoolProperty&quot;/&gt; property.
@@ -104,7 +104,7 @@ public bool aBoolProperty
 }
 </code></pre>
 </li>
-<li>Region statement' names are bounded by hyphens (<code>-</code>), include the name of the interface or class the methods or fields they contain come from, and tell if the content of the region are methods or members. Generally speaking, no region contain both.
+<li>Region statement' names are bounded by hyphens (<code>-</code>), include the name of the interface or class the methods or fields they contain come from, and tell if the content of the region are methods or other members (i.e. fields). Generally speaking, no region contain both.
 <pre><code class="lang-csharp">#region - IHereIsTheInterfaceName Members -
 //here are fields and properties of interface IHereIsTheInterfaceName
 #endregion
@@ -122,8 +122,8 @@ public bool aBoolProperty
 </ul>
 <h2 id="file-layout">File Layout</h2>
 <ul>
-<li>Methods inplementations should appear in alphabetical order.</li>
-<li>There is no order constraint for properties nor fields. This is to allow developers to organise the order in which the fields appear in the Inspector of Unity as they want.</li>
+<li>Methods implementations should appear in alphabetical order.</li>
+<li>There is no order constraint for properties nor fields. This is to allow developers to organize the order in which the fields appear in the Inspector of Unity as they want.</li>
 <li>Interface implementations should appear in alphabetical oder of their interface name.</li>
 <li>Interface implementations should be bounded by <code>#region</code> and <code>#endregion</code> statements to allow popular IDEs to create automatic foldout buttons for readability.</li>
 <li>Unity methods overriden in a class (e.g., <code>Start</code>, <code>Update</code>, <code>OnTriggerEnter</code>, <code>OnNetworkSpawn</code>,...) should appear before methods of that class.</li>
@@ -170,7 +170,7 @@ public bool aBoolProperty
 }
 </code></pre>
 <h2 id="namespaces">Namespaces</h2>
-<p>All the code base is encapsulated in namespaces. At the root is <code>ECellDive</code> and then various other namespace levels branche out from there.
+<p>All the code base is encapsulated in namespaces. At the root is <code>ECellDive</code> and then various other namespace levels branch out from there.
 Generally speaking, the layout of the directories under <code>Assets\Scripts</code> in the project represent the namespace ramifications where the folder names correspond to namespace levels. There are a few mismatches that will eventually be adjusted.</p>
 <h2 id="document-everything">Document everything!</h2>
 <p>Use the <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/">XML based</a> documentation to explain the purpose of every class, field, property and method. This will be automatically picked up by <a href="https://dotnet.github.io/docfx/">DocFx</a> to generate the <a class="xref" href="../../api/ECellDive.html">Scripting API</a>.</p>
@@ -178,7 +178,7 @@ Generally speaking, the layout of the directories under <code>Assets\Scripts</co
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/Dev/about_code.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\Dev\about_code.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

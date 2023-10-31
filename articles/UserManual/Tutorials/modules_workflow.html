@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Tutorials/modules_workflow.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\UserManual\Tutorials\modules_workflow.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -103,9 +103,9 @@
 <h3 id="goal">Goal</h3>
 <p>Learn how to add a <a href="../Modules/modules.html">module</a>.</p>
 <h3 id="task">Task</h3>
-<p>Open the <a href="../UIMenus/modules_menu.html">Modules Menu</a> and add a <a href="../Modules/remote_importer_module.html">Data Importer</a>.</p>
+<p>Open the <a href="../UIMenus/modules_menu.html">Modules Menu</a> and add a <a href="../Modules/api_checker.html">API Checker</a>.</p>
 <h3 id="details">Details</h3>
-<p>On the left controller, press the button that says <a href="../UIMenus/main_menu.html">Open Main Menu</a> From here, click on the button <em>Modules</em> to open the corresponding sub-menu. In this submenu, you will find the modules that will help you interact with data. For now, click on the <em>Data Importer</em> button to add that module to the scene.</p>
+<p>On the left controller, press the button that says <em>Open Main Menu</em>. From here, click on the UI button <em>Modules</em> to open the corresponding sub-menu. In this sub-menu, you will find the modules that will help you interact with data. Then, click on the <em>API Checker</em> button to add that module to the scene.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>You will automatically advance to the next step of the tutorial once you add the module.</p>
@@ -116,26 +116,57 @@
 </details>
 <h2 id="step-2">Step 2</h2>
 <h3 id="goal-1">Goal</h3>
-<p>Learn how to import data from a server.</p>
+<p>Learn how to connect to a <code>Kosmogora</code> server.</p>
 <h3 id="task-1">Task</h3>
-<p>Add the data module of iJO1366 to the scene.</p>
+<p>Enter the server’s contact information and check its API is compatible.</p>
 <h3 id="details-1">Details</h3>
-<p>Open the menu of the data importer. Input the IP adress of the <a href="https://github.com/ecell/kosmogora">Kosmogora</a> server. If you did not specify a <em>Port</em> when launching <a href="https://github.com/ecell/kosmogora">Kosmogora</a>, you can leave that input field blank. Then, click on the corresponding button to query the available models and select iJO1366 on the second panel.</p>
+<p>Open the menu of the <em>API Checker</em>. Input the IP address of the <code>Kosmogora</code> server. Also add a port if you did specified one when launching <code>Kosmogora</code>. Enter the name of the server; chose any name you want, it will only be used for display in the future (default is <code>Kosmogora</code>). Finally click on the button <em>Check Server API</em>.</p>
+<p>Doing so, an HTTP request will be sent to <code>Kosmogora</code> asking for the list of the API it implements. This list will be compared to the modules’ requirements in ECellDive and will all be unlocked accordingly. However, for this tutorial, modules will be unlocked on at a time.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You will automatically advance to the next step of the tutorial once you add the module.</p>
+</div>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/modules/step2.gif" alt="modules_step2">
+</details>
+<h2 id="step-3">Step 3</h2>
+<h3 id="goal-2">Goal</h3>
+<p>Learn how to import data from a server (1/2).</p>
+<h3 id="task-2">Task</h3>
+<p>Open the <a href="../UIMenus/modules_menu.html">Modules Menu</a> and add a <a href="../Modules/remote_importer_module.html">Data Importer</a>.</p>
+<h3 id="details-2">Details</h3>
+<p>Go back to the UI Modules Menu that you previously used to add a <em>API Checker</em> to the scene.
+This time, click on the <em>Data Importer</em> button to add a module that will fetch the data available on <code>Kosmogora</code>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You will automatically advance to the next step of the tutorial once you add the module.</p>
+</div>
+<details>
+  <summary>Example</summary>
+<img src="../../../resources/images/tutorials/modules/step3.gif" alt="modules_step3">
+</details>
+<h2 id="step-4">Step 4</h2>
+<h3 id="goal-3">Goal</h3>
+<p>Learn how to import data from a server (2/2).</p>
+<h3 id="task-3">Task</h3>
+<p>Add the data module of iJO1366 to the scene.</p>
+<h3 id="details-3">Details</h3>
+<p>Open the menu of the data importer. Click on the button <em>Server</em> to select the server from where to import data. There should only be one corresponding to the server you validated with the <em>API Checker</em> at step 2. Then, click on the button <em>Get Models List</em> to query the available models and select iJO1366 on the second panel.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>You will automatically advance to the next step of the tutorial once you add iJO1366 to the scene.</p>
 </div>
 <details>
   <summary>Example</summary>
-<p>In the case of this example, the instance of <a href="https://github.com/ecell/kosmogora">Kosmogora</a> was launched with the following command line: <code>uvicorn --host 192.168.0.174 --port 8421 app:app</code>. So, in <em>ECellDive</em> we use <code>192.168.0.174</code> as the IP and <code>8421</code> as the port where needed.</p>
-<img src="../../../resources/images/tutorials/modules/step2.gif" alt="modules_step2">
+<img src="../../../resources/images/tutorials/modules/step4.gif" alt="modules_step4">
 </details>
-<h2 id="step-3">Step 3</h2>
-<h3 id="goal-2">Goal</h3>
+<h2 id="step-5">Step 5</h2>
+<h3 id="goal-4">Goal</h3>
 <p>Learn how to dive into a module.</p>
-<h3 id="task-2">Task</h3>
+<h3 id="task-4">Task</h3>
 <p>Dive and explore the network.</p>
-<h3 id="details-2">Details</h3>
+<h3 id="details-4">Details</h3>
 <p>Point at the data module iJO1366 you just imported with the <span style="color:orange">Ray-Based Controls</span> and press the primary button. This will open the information menu of this module as well as the portal associated with this data module. To dive in the module, point at the portal with the <span style="color:orange">Ray-Based Controls</span> and hold the primary button.</p>
 <div class="WARNING">
 <h5>Warning</h5>
@@ -144,20 +175,20 @@
 <p>Click the button <em>Next</em> on the tutorial panel when you are ready to move on to the next step.</p>
 <details>
   <summary>Example</summary>
-<img src="../../../resources/images/tutorials/modules/step3.gif" alt="modules_step3">
+<img src="../../../resources/images/tutorials/modules/step5.gif" alt="modules_step5">
 </details>
-<h2 id="step-4">Step 4</h2>
-<h3 id="goal-3">Goal</h3>
+<h2 id="step-6">Step 6</h2>
+<h3 id="goal-5">Goal</h3>
 <p>Learn how to request a Flux Balance Analysis (1/2).</p>
-<h3 id="task-3">Task</h3>
+<h3 id="task-5">Task</h3>
 <p>Add a <a href="../Modules/fba_module.html">FBA module</a> to the dive scene via <a href="../UIMenus/modules_menu.html">Modules Menu</a>.</p>
-<h3 id="details-3">Details</h3>
+<h3 id="details-5">Details</h3>
 <p>Do not hesitate to <a href="../Controls/movement_controls.html">move around</a> and explore the network.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>You can click on the <span style="color:red">red pin icon</span> of the tutorial panel to pin the panel to your position. This way, the panel will follow you when you move. The panel is successfully pinned to you when the <span style="color:green">pin icon is green</span>.</p>
 </div>
-<p>Go back to the <a href="../UIMenus/modules_menu.html">Modules Menu</a> that you previously used to add a Data Importer to the scene.
+<p>Go back to the <a href="../UIMenus/modules_menu.html">Modules Menu</a> that you previously used to add the API Checker and Data Importer to the scene.
 This time, click on the button <em>FBA</em> to add a <a href="../Modules/fba_module.html">FBA module</a>.</p>
 <div class="NOTE">
 <h5>Note</h5>
@@ -165,15 +196,15 @@ This time, click on the button <em>FBA</em> to add a <a href="../Modules/fba_mod
 </div>
 <details>
   <summary>Example</summary>
-<img src="../../../resources/images/tutorials/modules/step4.gif" alt="modules_step4">
+<img src="../../../resources/images/tutorials/modules/step6.gif" alt="modules_step6">
 </details>
-<h2 id="step-5">Step 5</h2>
-<h3 id="goal-4">Goal</h3>
+<h2 id="step-7">Step 7</h2>
+<h3 id="goal-6">Goal</h3>
 <p>Learn how to request a Flux Balance Analysis (2/2).</p>
-<h3 id="task-4">Task</h3>
+<h3 id="task-6">Task</h3>
 <p>Request the FBA from the server.</p>
-<h3 id="details-4">Details</h3>
-<p>Open the menu of the <a href="../Modules/fba_module.html">FBA module</a>. Input the <a href="../Network/connecting_to_Kosmogora.html">IP adress of the Kosmogora</a> server. If you did not specify a <em>Port</em> when launching <a href="../Network/connecting_to_Kosmogora.html">Kosmogora</a>, you can leave that input field blank. Once you entered the information, click on the buton <em>Run FBA</em> to request the simulation from the server.</p>
+<h3 id="details-6">Details</h3>
+<p>Open the menu of the <a href="../Modules/fba_module.html">FBA module</a>. Open the menu of the FBA module and press the button <em>Server</em> to select the server where to perform the FBA. There should only be one choice corresponding to the server you validated with the <em>API Checker</em> at step 2. Once you selected the server, click on the button <em>Run FBA</em> to request the simulation from the server.</p>
 <div class="WARNING">
 <h5>Warning</h5>
 <p>It will take a few seconds. The duration depends on the quality of the network you are on.</p>
@@ -181,8 +212,7 @@ This time, click on the button <em>FBA</em> to add a <a href="../Modules/fba_mod
 <p>The result of the FBA will be clearly visible as the edges's widths are scaled according to the value of the fluxes.</p>
 <details>
   <summary>Example</summary>
-<p>In the case of this example, the instance of <a href="https://github.com/ecell/kosmogora">Kosmogora</a> was launched with the following command line: <code>uvicorn --host 192.168.0.174 --port 8421 app:app</code>. So, in <em>ECellDive</em> we use <code>192.168.0.174</code> as the IP and <code>8421</code> as the port where needed.</p>
-<img src="../../../resources/images/tutorials/modules/step5.gif" alt="modules_step5">
+<img src="../../../resources/images/tutorials/modules/step7.gif" alt="modules_step7">
 </details>
 <p>You can use the options to clamp the values or set a color gradient.</p>
 <details>
@@ -191,35 +221,35 @@ This time, click on the button <em>FBA</em> to add a <a href="../Modules/fba_mod
 <h5>Warning</h5>
 <p>You can see some strange green pixels in this gif. This is due to the <a href="https://blog.bahraniapps.com/category/gifcam/">recording system</a>, they are not present in <em>ECellDive</em>.</p>
 </div>
-<img src="../../../resources/images/tutorials/modules/step5_bonus1.gif" alt="modules_step5_b1">
+<img src="../../../resources/images/tutorials/modules/step7_bonus1.gif" alt="modules_step7_b1">
 </details>
-<p>You can also KNOCKOUT reactions by pointing at the edges with the <span style="color:orange">Ray-Based Controls</span> and pressing the front trigger. Then, click on <em>Run FBA</em> again to update the simulation. When a reaction is knockedout, the texture of the arrow will change (gradients of gray with wholes).</p>
+<p>You can also KNOCKOUT reactions by pointing at the edges with the <span style="color:orange">Ray-Based Controls</span> and pressing the front trigger. Then, click on <em>Run FBA</em> again to update the simulation. When a reaction is knocked out, the texture of the arrow will change (gradients of gray with wholes).</p>
 <details>
   <summary>Example</summary>
-<img src="../../../resources/images/tutorials/modules/step5_bonus2.gif" alt="modules_step5_b2">
+<img src="../../../resources/images/tutorials/modules/step7_bonus2.gif" alt="modules_step5_b2">
 </details>
-<h2 id="step-6">Step 6</h2>
-<h3 id="goal-5">Goal</h3>
+<h2 id="step-8">Step 8</h2>
+<h3 id="goal-7">Goal</h3>
 <p>Learn how to make groups.</p>
-<h3 id="task-5">Task</h3>
+<h3 id="task-7">Task</h3>
 <p>Add a <a href="../Modules/groupby_module.html">GroupBy module</a> and make groups.</p>
-<h3 id="details-5">Details</h3>
+<h3 id="details-7">Details</h3>
 <p>Go to the <a href="../UIMenus/modules_menu.html">Modules Menu</a> and click on the button <em>Group By Operator</em> to add the module in the scene.
 Open its menus (point + primary button) and group the nodes and/or the edges according to one of their respective metadata.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>Only ONE metadata can be selected for each object.</p>
 </div>
-<p>We recommand grouping edges and nodes according to <em>Subsystems</em> and <em>Compartments</em> respectively. Once you have selected your metadata of interest, click on <em>Process Grouping</em>. Check the <a href="../UIMenus/groups_menu.html">Groups Menu</a> if you want o change the default color of the generated groups.</p>
+<p>We recommend grouping edges and nodes according to <em>Subsystems</em> and <em>Compartments</em> respectively. Once you have selected your metadata of interest, click on <em>Process Grouping</em>. Check the <a href="../UIMenus/groups_menu.html">Groups Menu</a> if you want o change the default color of the generated groups.</p>
 <details>
   <summary>Example</summary>
-<img src="../../../resources/images/tutorials/modules/step6.gif" alt="modules_step6">
+<img src="../../../resources/images/tutorials/modules/step8.gif" alt="modules_step8">
 </details>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Tutorials/modules_workflow.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\UserManual\Tutorials\modules_workflow.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

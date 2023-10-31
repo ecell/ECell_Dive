@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>API Checker </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="API Checker ">
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\UserManual\Modules\api_checker.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+  </head>
+
+  <script type="module" src="./../../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="api-checker">API Checker</h1>
+
+<p>Requires a <a href="../Network/connecting_to_Kosmogora.html">Kosmogora</a> server.</p>
+<img src="../../../resources/images/modules/api_checker.jpg" alt="API Checker" style="height: 300px;">
+<p>This is the module to check that a <code>Kosmogora-like</code> server implements the HTTP API requested for ever server action modules (the <a href="remote_importer_module.html">Remote Importer</a>, <a href="fba_module.html">Flux Balance Analysis</a>, <a href="modification_handler_module.html">Modification Handler</a>, and <a href="reaction_info_query.html">Reaction Info Query</a>). If the server implements the API, the buttons to spawn the modules in the <a href="../UIMenus/modules_menu.html">Modules Menu</a> in the scene will be activated.</p>
+<h3 id="the-server-parameters-pannel">The <em>Server Parameters</em> pannel:</h3>
+<img src="../../../resources/images/modules/1x/api_checker_panel.png" alt="API Checker" style="height: 300px;">
+<ol>
+<li>Input Field <em>IPv4</em>. The IP address at which <em>Kosmogora</em> is hosted. Default value is 127.0.0.1 but this only works during development if <em>Kosmogora</em> is hosted on the same machine as the one we are developping ECellDive on.</li>
+<li>Input Field <em>Port</em>. The Port at which <em>Kosmogora</em> is listening. Default value is 8000. This is also the default value when launching <em>Kosmogora</em> so, unless you specified a port at that time, you can leave the field empty in ECellDive.</li>
+<li>Input Field <em>Name</em>. The name this server will be displayed with in the rest of <em>ECellDive</em> when using modules that can connect to this server.</li>
+<li>Button <em>Check API</em>. Will send an http request called <code>/apis</code> to retrieve the list of the names of the commands that the <code>Kosmogora-like</code> server implements. Then, it will compare the http commands used by every module in <em>ECellDive</em> and allow users to use such module if the server implements them all.</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\UserManual\Modules\api_checker.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

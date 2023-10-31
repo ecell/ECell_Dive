@@ -1,0 +1,2495 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CyJsonEdgeGO
+ </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CyJsonEdgeGO
+ ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Modules_CyJsonEdgeGO.md&amp;value=---%0Auid%3A%20ECellDive.Modules.CyJsonEdgeGO%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.Modules.CyJsonEdgeGO">
+
+
+
+  <h1 id="ECellDive_Modules_CyJsonEdgeGO" data-uid="ECellDive.Modules.CyJsonEdgeGO" class="text-break">
+    Class CyJsonEdgeGO
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Modules.html">Modules</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>The class to manage the behaviour of an edge in a CyJson graph.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CyJsonEdgeGO : GameNetModule, IDive, IFocus, IGroupable, IColorHighlightableNet, IColorHighlightable, IColored, IHighlightable, IInfoTags, INamed, IMlprData, IMlprVisibility, IEdgeGO&lt;CyJsonEdge&gt;, IModulateFlux, IKnockable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="ECellDive.Modules.GameNetModule.html">GameNetModule</a></div>
+      <div><span class="xref">CyJsonEdgeGO</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="ECellDive.Interfaces.IDive.html">IDive</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IColored.html">IColored</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html">IMlprVisibility</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html">IEdgeGO</a>&lt;<a class="xref" href="ECellDive.Utility.Data.Graph.CyJsonEdge.html">CyJsonEdge</a>&gt;</div>
+      <div><a class="xref" href="ECellDive.Interfaces.IModulateFlux.html">IModulateFlux</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IKnockable.html">IKnockable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_Collider">GameNetModule.m_Collider</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_Renderer">GameNetModule.m_Renderer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_LineRenderer">GameNetModule.m_LineRenderer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_mpb">GameNetModule.mpb</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_colorID">GameNetModule.colorID</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_isDiving">GameNetModule.m_isDiving</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isDiving">GameNetModule.isDiving</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_rootSceneId">GameNetModule.m_rootSceneId</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_rootSceneId">GameNetModule.rootSceneId</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_targetSceneId">GameNetModule.m_targetSceneId</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_targetSceneId">GameNetModule.targetSceneId</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_isReadyForDive">GameNetModule.m_isReadyForDive</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isReadyForDive">GameNetModule.isReadyForDive</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_isFocused">GameNetModule.m_isFocused</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isFocused">GameNetModule.isFocused</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_grpMemberIndex">GameNetModule.m_grpMemberIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_grpMemberIndex">GameNetModule.grpMemberIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_delegateTarget">GameNetModule.m_delegateTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_delegateTarget">GameNetModule.delegateTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_forceHighlight">GameNetModule.m_forceHighlight</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_forceHighlight">GameNetModule.forceHighlight</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_currentColor">GameNetModule.m_currentColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_currentColor">GameNetModule.currentColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_defaultColor">GameNetModule.m_defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_defaultColor">GameNetModule.defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_highlightColor">GameNetModule.m_highlightColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_highlightColor">GameNetModule.highlightColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_areVisible">GameNetModule.areVisible</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_displayInfoTagsActions">GameNetModule.m_displayInfoTagsActions</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_displayInfoTagsActions">GameNetModule.displayInfoTagsActions</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_refInfoTagPrefab">GameNetModule.m_refInfoTagPrefab</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_refInfoTagPrefab">GameNetModule.refInfoTagPrefab</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_refInfoTagsContainer">GameNetModule.m_refInfoTagsContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_refInfoTagsContainer">GameNetModule.refInfoTagsContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_nameTextFieldContainer">GameNetModule.m_nameTextFieldContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_nameTextFieldContainer">GameNetModule.nameTextFieldContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_nameField">GameNetModule.nameField</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_fragmentedSourceData">GameNetModule.m_fragmentedSourceData</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_fragmentedSourceData">GameNetModule.fragmentedSourceData</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_sourceDataName">GameNetModule.sourceDataName</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_sourceDataNbFrags">GameNetModule.m_sourceDataNbFrags</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_sourceDataNbFrags">GameNetModule.sourceDataNbFrags</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_nbClientReadyLoaded">GameNetModule.m_nbClientReadyLoaded</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_nbClientReadyLoaded">GameNetModule.nbClientReadyLoaded</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_isReadyForGeneration">GameNetModule.m_isReadyForGeneration</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isReadyForGeneration">GameNetModule.isReadyForGeneration</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_m_isActivated">GameNetModule.m_isActivated</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_isActivated">GameNetModule.isActivated</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_LookAt">GameNetModule.LookAt()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ManageInfoTagsDisplay_InputAction_CallbackContext_">GameNetModule.ManageInfoTagsDisplay(InputAction.CallbackContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SelfDestroyServerRpc">GameNetModule.SelfDestroyServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectDiveIn">GameNetModule.DirectDiveIn()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectDiveInC">GameNetModule.DirectDiveInC()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_GenerativeDiveIn">GameNetModule.GenerativeDiveIn()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_TryDiveIn">GameNetModule.TryDiveIn()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetFocus">GameNetModule.SetFocus()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_UnsetFocus">GameNetModule.UnsetFocus()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetCurrentColorToDefaultServerRpc">GameNetModule.SetCurrentColorToDefaultServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetCurrentColorToHighlightServerRpc">GameNetModule.SetCurrentColorToHighlightServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DisplayInfoTags">GameNetModule.DisplayInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_HideInfoTags">GameNetModule.HideInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_InstantiateInfoTag_Vector2_System_String_">GameNetModule.InstantiateInfoTag(Vector2, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_InstantiateInfoTags_System_String___">GameNetModule.InstantiateInfoTags(string[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ShowInfoTags">GameNetModule.ShowInfoTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DisplayName">GameNetModule.DisplayName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_GetName">GameNetModule.GetName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_HideName">GameNetModule.HideName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SetName_System_String_">GameNetModule.SetName(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ShowName">GameNetModule.ShowName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataC">GameNetModule.BroadcastSourceDataC()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragClientRpc_System_Byte___">GameNetModule.BroadcastSourceDataFragClientRpc(byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataNameClientRpc_System_Byte___">GameNetModule.BroadcastSourceDataNameClientRpc(byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsClientRpc_System_UInt16_">GameNetModule.BroadcastSourceDataNbFragsClientRpc(ushort)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragServerRpc_System_Byte___">GameNetModule.BroadcastSourceDataFragServerRpc(byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataNameServerRpc_System_Byte___">GameNetModule.BroadcastSourceDataNameServerRpc(byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsServerRpc_System_UInt16_">GameNetModule.BroadcastSourceDataNbFragsServerRpc(ushort)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____">GameNetModule.BroadcastSourceDataFragsC(List&lt;byte[]&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ConfirmSourceDataReceptionServerRpc">GameNetModule.ConfirmSourceDataReceptionServerRpc()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_DirectReceiveSourceData_System_Byte___System_Collections_Generic_List_System_Byte____">GameNetModule.DirectReceiveSourceData(byte[], List&lt;byte[]&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_RequestSourceDataGenerationServerRpc_System_UInt64_">GameNetModule.RequestSourceDataGenerationServerRpc(ulong)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataC_System_UInt64_">GameNetModule.SendSourceDataC(ulong)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataFragClientRpc_System_Byte___ClientRpcParams_">GameNetModule.SendSourceDataFragClientRpc(byte[], ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataNameClientRpc_System_Byte___ClientRpcParams_">GameNetModule.SendSourceDataNameClientRpc(byte[], ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataNbFragsClientRpc_System_UInt16_ClientRpcParams_">GameNetModule.SendSourceDataNbFragsClientRpc(ushort, ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_SendSourceDataFragsC_System_Collections_Generic_List_System_Byte____ClientRpcParams_">GameNetModule.SendSourceDataFragsC(List&lt;byte[]&gt;, ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_ManageActivationStatus_System_Boolean_System_Boolean_">GameNetModule.ManageActivationStatus(bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHide">GameNetModule.NetHide()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetHideClientRpc_ClientRpcParams_">GameNetModule.NetHideClientRpc(ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShow">GameNetModule.NetShow()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_NetShowClientRpc_ClientRpcParams_">GameNetModule.NetShowClientRpc(ClientRpcParams)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_RequestSetActiveServerRpc_System_Boolean_">GameNetModule.RequestSetActiveServerRpc(bool)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="ECellDive_Modules_CyJsonEdgeGO_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>It is synchronized over the multiplayer network.</p>
+</div>
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_activationID" data-uid="ECellDive.Modules.CyJsonEdgeGO.activationID">
+  activationID
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The ID of the property in the shader to control the visual
+of the edge (Knockedout or not).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private int activationID</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_emissionModule" data-uid="ECellDive.Modules.CyJsonEdgeGO.emissionModule">
+  emissionModule
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A reference to the EmissionModule of the particle system.
+It is used to set the emission rate of the particle system.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private ParticleSystem.EmissionModule emissionModule</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">EmissionModule</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_endWidthFactor" data-uid="ECellDive.Modules.CyJsonEdgeGO.endWidthFactor">
+  endWidthFactor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A value to control the scale of the ending edge's width.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float endWidthFactor</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_forceDefaultColor" data-uid="ECellDive.Modules.CyJsonEdgeGO.forceDefaultColor">
+  forceDefaultColor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A boolean to control whether the edge should be assigned its
+default color every time <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_ApplyCurrentColorChange_Color_Color_">ApplyCurrentColorChange(Color, Color)</a>
+is called.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool forceDefaultColor</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_forceDefaultWidth" data-uid="ECellDive.Modules.CyJsonEdgeGO.forceDefaultWidth">
+  forceDefaultWidth
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A boolean to control whether the edge should be assigned its
+default width every time <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_SetLineRendererWidth">SetLineRendererWidth()</a> is called.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool forceDefaultWidth</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_m_edgeData" data-uid="ECellDive.Modules.CyJsonEdgeGO.m_edgeData">
+  m_edgeData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private CyJsonEdge m_edgeData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.Graph.CyJsonEdge.html">CyJsonEdge</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_m_fluxLevel" data-uid="ECellDive.Modules.CyJsonEdgeGO.m_fluxLevel">
+  m_fluxLevel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevel">fluxLevel</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private NetworkVariable&lt;float&gt; m_fluxLevel</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_m_fluxLevelClamped" data-uid="ECellDive.Modules.CyJsonEdgeGO.m_fluxLevelClamped">
+  m_fluxLevelClamped
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private NetworkVariable&lt;float&gt; m_fluxLevelClamped</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_m_knockedOut" data-uid="ECellDive.Modules.CyJsonEdgeGO.m_knockedOut">
+  m_knockedOut
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_knockedOut">knockedOut</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private NetworkVariable&lt;bool&gt; m_knockedOut</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_m_refColliderHolder" data-uid="ECellDive.Modules.CyJsonEdgeGO.m_refColliderHolder">
+  m_refColliderHolder
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_refColliderHolder">refColliderHolder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private GameObject m_refColliderHolder</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_m_triggerKOActions" data-uid="ECellDive.Modules.CyJsonEdgeGO.m_triggerKOActions">
+  m_triggerKOActions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_triggerKOActions">triggerKOActions</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private LeftRightData&lt;InputActionReference&gt; m_triggerKOActions</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_mainModule" data-uid="ECellDive.Modules.CyJsonEdgeGO.mainModule">
+  mainModule
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A reference to the MainModule of the particle system.
+It is used to set the start lifetime of the particle system.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private ParticleSystem.MainModule mainModule</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MainModule</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_refParticleSystem" data-uid="ECellDive.Modules.CyJsonEdgeGO.refParticleSystem">
+  refParticleSystem
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A reference to the particle system to control the
+animation of the edge.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private ParticleSystem refParticleSystem</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ParticleSystem</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_refRootCyJsonGraphGO" data-uid="ECellDive.Modules.CyJsonEdgeGO.refRootCyJsonGraphGO">
+  refRootCyJsonGraphGO
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A reference to the pathway this node belongs to.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private CyJsonModule refRootCyJsonGraphGO</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Modules.CyJsonModule.html">CyJsonModule</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_shapeModule" data-uid="ECellDive.Modules.CyJsonEdgeGO.shapeModule">
+  shapeModule
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A reference to the ShapeModule of the particle system.
+It is used to set the scale of the particle system.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private ParticleSystem.ShapeModule shapeModule</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ShapeModule</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_startWidthFactor" data-uid="ECellDive.Modules.CyJsonEdgeGO.startWidthFactor">
+  startWidthFactor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A value to control the scale of the starting edge's width.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float startWidthFactor</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_defaultEndWidth_" data-uid="ECellDive.Modules.CyJsonEdgeGO.defaultEndWidth*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_defaultEndWidth" data-uid="ECellDive.Modules.CyJsonEdgeGO.defaultEndWidth">
+  defaultEndWidth
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The default width of the edge on its ending end.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float defaultEndWidth { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_defaultStartWidth_" data-uid="ECellDive.Modules.CyJsonEdgeGO.defaultStartWidth*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_defaultStartWidth" data-uid="ECellDive.Modules.CyJsonEdgeGO.defaultStartWidth">
+  defaultStartWidth
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The default width of the edge on its starting end.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float defaultStartWidth { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_edgeData_" data-uid="ECellDive.Modules.CyJsonEdgeGO.edgeData*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_edgeData" data-uid="ECellDive.Modules.CyJsonEdgeGO.edgeData">
+  edgeData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The data structure encoding the edge.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CyJsonEdge edgeData { get; private set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.Graph.CyJsonEdge.html">CyJsonEdge</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_fluxLevel_" data-uid="ECellDive.Modules.CyJsonEdgeGO.fluxLevel*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_fluxLevel" data-uid="ECellDive.Modules.CyJsonEdgeGO.fluxLevel">
+  fluxLevel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The real flux value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NetworkVariable&lt;float&gt; fluxLevel { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_fluxLevelClamped_" data-uid="ECellDive.Modules.CyJsonEdgeGO.fluxLevelClamped*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_fluxLevelClamped" data-uid="ECellDive.Modules.CyJsonEdgeGO.fluxLevelClamped">
+  fluxLevelClamped
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A clamped flux value to control the visualization of the flux.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NetworkVariable&lt;float&gt; fluxLevelClamped { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_informationString_" data-uid="ECellDive.Modules.CyJsonEdgeGO.informationString*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_informationString" data-uid="ECellDive.Modules.CyJsonEdgeGO.informationString">
+  informationString
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The string containing information to be displayed about
+the edge.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string informationString { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_knockedOut_" data-uid="ECellDive.Modules.CyJsonEdgeGO.knockedOut*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_knockedOut" data-uid="ECellDive.Modules.CyJsonEdgeGO.knockedOut">
+  knockedOut
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A boolean used to inform whether the gameobject is considered
+knocked out.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NetworkVariable&lt;bool&gt; knockedOut { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_refColliderHolder_" data-uid="ECellDive.Modules.CyJsonEdgeGO.refColliderHolder*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_refColliderHolder" data-uid="ECellDive.Modules.CyJsonEdgeGO.refColliderHolder">
+  refColliderHolder
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The game object containing a collider to be placed
+dynamically around the edge so that the user can interact with it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject refColliderHolder { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_triggerKOActions_" data-uid="ECellDive.Modules.CyJsonEdgeGO.triggerKOActions*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_triggerKOActions" data-uid="ECellDive.Modules.CyJsonEdgeGO.triggerKOActions">
+  triggerKOActions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The references to the input actions on the left and right controller
+used to trigger the knockout status.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LeftRightData&lt;InputActionReference&gt; triggerKOActions { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Utility.Data.LeftRightData-1.html">LeftRightData</a>&lt;<span class="xref">InputActionReference</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_Activate_" data-uid="ECellDive.Modules.CyJsonEdgeGO.Activate*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_Activate" data-uid="ECellDive.Modules.CyJsonEdgeGO.Activate">
+  Activate()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L735"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The logic to implement when the gameobject transitions from
+<a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=true to <a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Activate()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_ActivateServerRpc_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ActivateServerRpc*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_ActivateServerRpc" data-uid="ECellDive.Modules.CyJsonEdgeGO.ActivateServerRpc">
+  ActivateServerRpc()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Notifies the server that the edge should be activated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ActivateServerRpc()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_ApplyColor_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyColor*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_ApplyColor_Color_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyColor(Color)">
+  ApplyColor(Color)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L628"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The function to call when we wish to apply a color to the material
+of the gameobject.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ApplyColor(Color _color)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_color</code> <span class="xref">Color</span></dt>
+    <dd><p>The color to apply.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_ApplyCurrentColorChange_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyCurrentColorChange*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_ApplyCurrentColorChange_Color_Color_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyCurrentColorChange(Color,Color)">
+  ApplyCurrentColorChange(Color, Color)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L194"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Proxy function to be usable within NetworkVariable's OnValueChanged callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ApplyCurrentColorChange(Color _previous, Color _current)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_previous</code> <span class="xref">Color</span></dt>
+    <dd><p>The previous color value of the NetworkVariable.</p>
+</dd>
+    <dt><code>_current</code> <span class="xref">Color</span></dt>
+    <dd><p>The current color value of the NetworkVariable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_CyJsonEdgeGO_ApplyCurrentColorChange_Color_Color__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The <code class="paramref">_previous</code> and <code class="paramref">_current</code> parameters are
+there only to match the signature but the value of <code class="paramref">_previous</code>
+is not used.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_ApplyFLCChanges_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyFLCChanges*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_ApplyFLCChanges_System_Single_System_Single_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyFLCChanges(System.Single,System.Single)">
+  ApplyFLCChanges(float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L235"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Callback function to react to the OnValueChanged event of
+<a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ApplyFLCChanges(float _previous, float _current)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_previous</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The previous value of <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevelClamped">fluxLevelClamped</a>. This is required for the
+to satisfy the signature constraint of the event but we don't use it.</p>
+</dd>
+    <dt><code>_current</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The newly set value of <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevelClamped">fluxLevelClamped</a>. This is required for the
+to satisfy the signature constraint of the event but we don't use it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_ApplyFLChanges_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyFLChanges*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_ApplyFLChanges_System_Single_System_Single_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyFLChanges(System.Single,System.Single)">
+  ApplyFLChanges(float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Callback function to react to the OnValueChanged event of <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevel">fluxLevel</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ApplyFLChanges(float _previous, float _current)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_previous</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The previous value of <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevel">fluxLevel</a>. This is required for the
+to satisfy the signature constraint of the event but we don't use it.</p>
+</dd>
+    <dt><code>_current</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The newly set value of <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevel">fluxLevel</a>. This is required for the
+to satisfy the signature constraint of the event but we don't use it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_ApplyFluxLevel_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyFluxLevel*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_ApplyFluxLevel" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyFluxLevel">
+  ApplyFluxLevel()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L749"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The logic to apply the effects associated to the value of
+<a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevel">fluxLevel</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyFluxLevel()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_ApplyFluxLevelClamped_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyFluxLevelClamped*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_ApplyFluxLevelClamped" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyFluxLevelClamped">
+  ApplyFluxLevelClamped()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L756"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The logic to apply the effects associated to the value of
+<a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyFluxLevelClamped()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_ApplyKOChanges_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyKOChanges*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_ApplyKOChanges_System_Boolean_System_Boolean_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ApplyKOChanges(System.Boolean,System.Boolean)">
+  ApplyKOChanges(bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L251"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Callback function to react to the OnValueChanged event of <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_knockedOut">knockedOut</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ApplyKOChanges(bool _previous, bool _current)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_previous</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The previous value of <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_knockedOut">knockedOut</a>. This is required for the
+to satisfy the signature constraint of the event but we don't use it.</p>
+</dd>
+    <dt><code>_current</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>The newly set value of <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_knockedOut">knockedOut</a>. This is required for the
+to satisfy the signature constraint of the event but we don't use it.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_AssembleFragmentedData_" data-uid="ECellDive.Modules.CyJsonEdgeGO.AssembleFragmentedData*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_AssembleFragmentedData" data-uid="ECellDive.Modules.CyJsonEdgeGO.AssembleFragmentedData">
+  AssembleFragmentedData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L726"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reassembles the fragments from <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a> into
+a single byte array and interprets it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void AssembleFragmentedData()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_CyJsonEdgeGO_AssembleFragmentedData_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>It is marked as abstract because it MUST be implemented by any divable module.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_Awake_" data-uid="ECellDive.Modules.CyJsonEdgeGO.Awake*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_Awake" data-uid="ECellDive.Modules.CyJsonEdgeGO.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_GenerativeDiveInC_" data-uid="ECellDive.Modules.CyJsonEdgeGO.GenerativeDiveInC*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_GenerativeDiveInC" data-uid="ECellDive.Modules.CyJsonEdgeGO.GenerativeDiveInC">
+  GenerativeDiveInC()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L657"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Coroutine started by <a class="xref" href="ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_GenerativeDiveIn">GenerativeDiveIn()</a>.
+Generates the content of the module before transfering the diver
+to the dive scene.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerator GenerativeDiveInC()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_Initialize_" data-uid="ECellDive.Modules.CyJsonEdgeGO.Initialize*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_Initialize_ECellDive_Modules_CyJsonModule_ECellDive_Utility_Data_Graph_CyJsonEdge_" data-uid="ECellDive.Modules.CyJsonEdgeGO.Initialize(ECellDive.Modules.CyJsonModule,ECellDive.Utility.Data.Graph.CyJsonEdge)">
+  Initialize(CyJsonModule, CyJsonEdge)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L267"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Uses the information from <code class="paramref">_edge</code> to initialize the edge.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize(CyJsonModule _rootCyJsonGraphGO, CyJsonEdge _edge)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_rootCyJsonGraphGO</code> <a class="xref" href="ECellDive.Modules.CyJsonModule.html">CyJsonModule</a></dt>
+    <dd><p>The pathway this edge belongs to.</p>
+</dd>
+    <dt><code>_edge</code> <a class="xref" href="ECellDive.Utility.Data.Graph.CyJsonEdge.html">CyJsonEdge</a></dt>
+    <dd><p>The edge data to use to initialize the edge.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_Knockout_" data-uid="ECellDive.Modules.CyJsonEdgeGO.Knockout*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_Knockout" data-uid="ECellDive.Modules.CyJsonEdgeGO.Knockout">
+  Knockout()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L742"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The logic to implement when the gameobject transitions from
+<a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=false to <a class="xref" href="ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockedOut</a>=true.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Knockout()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_KnockoutServerRpc_" data-uid="ECellDive.Modules.CyJsonEdgeGO.KnockoutServerRpc*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_KnockoutServerRpc" data-uid="ECellDive.Modules.CyJsonEdgeGO.KnockoutServerRpc">
+  KnockoutServerRpc()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L319"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Notifies the server that the edge should be knocked out.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void KnockoutServerRpc()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_ManageKnockout_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ManageKnockout*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_ManageKnockout_InputAction_CallbackContext_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ManageKnockout(InputAction.CallbackContext)">
+  ManageKnockout(CallbackContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L331"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The public interface to call back on Unity Events to knockout
+or activate a reaction represented by the edge.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ManageKnockout(InputAction.CallbackContext _ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_ctx</code> <span class="xref">CallbackContext</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_CyJsonEdgeGO_ManageKnockout_InputAction_CallbackContext__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Typically called back when the user presses a button
+while pointing at the edge.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_OnDestroy_" data-uid="ECellDive.Modules.CyJsonEdgeGO.OnDestroy*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_OnDestroy" data-uid="ECellDive.Modules.CyJsonEdgeGO.OnDestroy">
+  OnDestroy()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnDestroy()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_OnNetworkDespawn_" data-uid="ECellDive.Modules.CyJsonEdgeGO.OnNetworkDespawn*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_OnNetworkDespawn" data-uid="ECellDive.Modules.CyJsonEdgeGO.OnNetworkDespawn">
+  OnNetworkDespawn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnNetworkDespawn()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_OnNetworkSpawn_" data-uid="ECellDive.Modules.CyJsonEdgeGO.OnNetworkSpawn*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_OnNetworkSpawn" data-uid="ECellDive.Modules.CyJsonEdgeGO.OnNetworkSpawn">
+  OnNetworkSpawn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnNetworkSpawn()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_ReverseOrientation_" data-uid="ECellDive.Modules.CyJsonEdgeGO.ReverseOrientation*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_ReverseOrientation" data-uid="ECellDive.Modules.CyJsonEdgeGO.ReverseOrientation">
+  ReverseOrientation()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L666"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The logic to graphically reverse the orientation of the edge GO.
+The current start point becomes the end and the end becomes the start point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReverseOrientation()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SetCollider_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetCollider*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SetCollider_Transform_Transform_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetCollider(Transform,Transform)">
+  SetCollider(Transform, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L691"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adapts the position and rotation of the <a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html#ECellDive_Interfaces_IEdgeGO_1_refColliderHolder">refColliderHolder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCollider(Transform _start, Transform _end)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_start</code> <span class="xref">Transform</span></dt>
+    <dd><p>The transform of the node in the graph from
+where the edge is starting.</p>
+</dd>
+    <dt><code>_end</code> <span class="xref">Transform</span></dt>
+    <dd><p>The transform of the node in the graph to
+where the edge is heading.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SetColliderHeightWidth_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetColliderHeightWidth*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SetColliderHeightWidth" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetColliderHeightWidth">
+  SetColliderHeightWidth()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L379"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the X and Y scale of the box collider relatively to the line renderer's width.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void SetColliderHeightWidth()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SetDefaultWidth_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetDefaultWidth*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SetDefaultWidth_System_Single_System_Single_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetDefaultWidth(System.Single,System.Single)">
+  SetDefaultWidth(float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L676"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the values of <a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html#ECellDive_Interfaces_IEdgeGO_1_defaultStartWidth">defaultStartWidth</a> and
+<a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html#ECellDive_Interfaces_IEdgeGO_1_defaultEndWidth">defaultEndWidth</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetDefaultWidth(float _start, float _end)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_start</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The value for <a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html#ECellDive_Interfaces_IEdgeGO_1_defaultStartWidth">defaultStartWidth</a></p>
+</dd>
+    <dt><code>_end</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The value for <a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html#ECellDive_Interfaces_IEdgeGO_1_defaultEndWidth">defaultEndWidth</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SetEdgeData_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetEdgeData*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SetEdgeData_ECellDive_Utility_Data_Graph_CyJsonEdge_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetEdgeData(ECellDive.Utility.Data.Graph.CyJsonEdge)">
+  SetEdgeData(CyJsonEdge)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L684"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set the value for <a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html#ECellDive_Interfaces_IEdgeGO_1_edgeData">edgeData</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetEdgeData(CyJsonEdge _edgeData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_edgeData</code> <a class="xref" href="ECellDive.Utility.Data.Graph.CyJsonEdge.html">CyJsonEdge</a></dt>
+    <dd><p>The value to pass on to <a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html#ECellDive_Interfaces_IEdgeGO_1_edgeData">edgeData</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SetFlux_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetFlux*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SetFlux_System_Single_System_Single_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetFlux(System.Single,System.Single)">
+  SetFlux(float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L767"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A mutator for values of <a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevel">fluxLevel</a> and
+<a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFlux(float _level, float _levelClamped)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_level</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The value to pass on to <a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevel">fluxLevel</a>.</p>
+</dd>
+    <dt><code>_levelClamped</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The value to pass on to <a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SetFluxValuesServerRpc_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetFluxValuesServerRpc*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SetFluxValuesServerRpc_System_Single_System_Single_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetFluxValuesServerRpc(System.Single,System.Single)">
+  SetFluxValuesServerRpc(float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L369"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Notifies the server of new values for <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevel">fluxLevel</a> and
+<a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void SetFluxValuesServerRpc(float _fluxValue, float _fluxClampedValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_fluxValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The new value for <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevel">fluxLevel</a>.</p>
+</dd>
+    <dt><code>_fluxClampedValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The new value for <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_fluxLevelClamped">fluxLevelClamped</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SetHighlight_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetHighlight*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SetHighlight" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetHighlight">
+  SetHighlight()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L638"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The function to call when the object should enter highlighted
+state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetHighlight()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SetInformationString_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetInformationString*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SetInformationString" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetInformationString">
+  SetInformationString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L350"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The utility function to update the information string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void SetInformationString()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SetLineRendererPosition_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetLineRendererPosition*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SetLineRendererPosition_Transform_Transform_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetLineRendererPosition(Transform,Transform)">
+  SetLineRendererPosition(Transform, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L717"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the start and end positions of the line renderer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetLineRendererPosition(Transform _start, Transform _end)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_start</code> <span class="xref">Transform</span></dt>
+    <dd><p>The transform of the node in the graph from
+where the edge is starting.</p>
+</dd>
+    <dt><code>_end</code> <span class="xref">Transform</span></dt>
+    <dd><p>The transform of the node in the graph to
+where the edge is heading.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_CyJsonEdgeGO_SetLineRendererPosition_Transform_Transform__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>A line renderer should be made accessible somehow.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SetLineRendererWidth_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetLineRendererWidth*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SetLineRendererWidth" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetLineRendererWidth">
+  SetLineRendererWidth()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L702"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the start and end width of the line renderer
+to the values stored in <a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html#ECellDive_Interfaces_IEdgeGO_1_defaultStartWidth">defaultStartWidth</a> and
+<a class="xref" href="ECellDive.Interfaces.IEdgeGO-1.html#ECellDive_Interfaces_IEdgeGO_1_defaultEndWidth">defaultEndWidth</a> respectively.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetLineRendererWidth()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Modules_CyJsonEdgeGO_SetLineRendererWidth_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>A line renderer should be made accessible somehow.</p>
+</div>
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SetRefMasterPathway_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetRefMasterPathway*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SetRefMasterPathway_ECellDive_Modules_CyJsonModule_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SetRefMasterPathway(ECellDive.Modules.CyJsonModule)">
+  SetRefMasterPathway(CyJsonModule)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L391"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the value for <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_refRootCyJsonGraphGO">refRootCyJsonGraphGO</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetRefMasterPathway(CyJsonModule _rootCyJsonGraphGO)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_rootCyJsonGraphGO</code> <a class="xref" href="ECellDive.Modules.CyJsonModule.html">CyJsonModule</a></dt>
+    <dd><p>The value for <a class="xref" href="ECellDive.Modules.CyJsonEdgeGO.html#ECellDive_Modules_CyJsonEdgeGO_refRootCyJsonGraphGO">refRootCyJsonGraphGO</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SpreadActivationDownward_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadActivationDownward*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SpreadActivationDownward" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadActivationDownward">
+  SpreadActivationDownward()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L399"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Spreads the activation state to every contiguous downstream edge that are part of the same reaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpreadActivationDownward()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SpreadActivationUpward_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadActivationUpward*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SpreadActivationUpward" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadActivationUpward">
+  SpreadActivationUpward()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L427"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Spreads the activation state to every contiguous upstream edge that are part of the same reaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpreadActivationUpward()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SpreadHighlightDownward_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadHighlightDownward*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SpreadHighlightDownward" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadHighlightDownward">
+  SpreadHighlightDownward()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L511"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Spreads the highlighted state to every contiguous downstream edge that are part of the same reaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpreadHighlightDownward()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SpreadHighlightUpward_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadHighlightUpward*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SpreadHighlightUpward" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadHighlightUpward">
+  SpreadHighlightUpward()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L541"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Spreads the highlighted state to every contiguous upstream edge that are part of the same reaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpreadHighlightUpward()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SpreadKODownward_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadKODownward*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SpreadKODownward" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadKODownward">
+  SpreadKODownward()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L455"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Spreads the Knockout state to every contiguous downstream edge that are part of the same reaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpreadKODownward()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SpreadKOUpward_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadKOUpward*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SpreadKOUpward" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadKOUpward">
+  SpreadKOUpward()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L483"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Spreads the Knockout state to every contiguous upstream edge that are part of the same reaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpreadKOUpward()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SpreadUnsetHighlightDownward_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadUnsetHighlightDownward*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SpreadUnsetHighlightDownward" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadUnsetHighlightDownward">
+  SpreadUnsetHighlightDownward()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L571"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Spreads the unhighlighted state to every contiguous upstream edge that are part of the same reaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpreadUnsetHighlightDownward()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_SpreadUnsetHighlightUpward_" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadUnsetHighlightUpward*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_SpreadUnsetHighlightUpward" data-uid="ECellDive.Modules.CyJsonEdgeGO.SpreadUnsetHighlightUpward">
+  SpreadUnsetHighlightUpward()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L600"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Spreads the unhighlighted state to every contiguous downstream edge that are part of the same reaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpreadUnsetHighlightUpward()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_CyJsonEdgeGO_UnsetHighlight_" data-uid="ECellDive.Modules.CyJsonEdgeGO.UnsetHighlight*"></a>
+
+  <h3 id="ECellDive_Modules_CyJsonEdgeGO_UnsetHighlight" data-uid="ECellDive.Modules.CyJsonEdgeGO.UnsetHighlight">
+  UnsetHighlight()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L645"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The function to call when the object should exit the highlighted
+state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void UnsetHighlight()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Graphs\CyJsonEdgeGO.cs/#L19" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -86,7 +86,7 @@
 
   <h1 id="ECellDive_Interfaces_IColorHighlightable" data-uid="ECellDive.Interfaces.IColorHighlightable" class="text-break">
     Interface IColorHighlightable
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IInteractions.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -100,7 +100,7 @@ needs to be highlighted.</p>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IColorHighlightable : IHighlightable</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IColorHighlightable : IColored, IHighlightable</code></pre>
   </div>
 
 
@@ -112,6 +112,12 @@ needs to be highlighted.</p>
   <dl class="typelist derived">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="ECellDive.Interfaces.IColored.html#ECellDive_Interfaces_IColored_defaultColor">IColored.defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Interfaces.IColored.html#ECellDive_Interfaces_IColored_ApplyColor_Color_">IColored.ApplyColor(Color)</a>
+    </div>
     <div>
       <a class="xref" href="ECellDive.Interfaces.IHighlightable.html#ECellDive_Interfaces_IHighlightable_forceHighlight">IHighlightable.forceHighlight</a>
     </div>
@@ -132,43 +138,11 @@ needs to be highlighted.</p>
 </h2>
 
 
-  <a id="ECellDive_Interfaces_IColorHighlightable_defaultColor_" data-uid="ECellDive.Interfaces.IColorHighlightable.defaultColor*"></a>
-
-  <h3 id="ECellDive_Interfaces_IColorHighlightable_defaultColor" data-uid="ECellDive.Interfaces.IColorHighlightable.defaultColor">
-  defaultColor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L105"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>The color the object should be when non highlighted.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Color defaultColor { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><span class="xref">Color</span></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="ECellDive_Interfaces_IColorHighlightable_highlightColor_" data-uid="ECellDive.Interfaces.IColorHighlightable.highlightColor*"></a>
 
   <h3 id="ECellDive_Interfaces_IColorHighlightable_highlightColor" data-uid="ECellDive.Interfaces.IColorHighlightable.highlightColor">
   highlightColor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IInteractions.cs/#L105"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The color the object should be when highlighted.</p>
@@ -196,48 +170,11 @@ needs to be highlighted.</p>
 
 
 
-  <h2 class="section" id="methods">Methods
-</h2>
-
-
-  <a id="ECellDive_Interfaces_IColorHighlightable_ApplyColor_" data-uid="ECellDive.Interfaces.IColorHighlightable.ApplyColor*"></a>
-
-  <h3 id="ECellDive_Interfaces_IColorHighlightable_ApplyColor_Color_" data-uid="ECellDive.Interfaces.IColorHighlightable.ApplyColor(Color)">
-  ApplyColor(Color)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L116"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>The function to call when we wish to apply a color to the material
-of the gameobject.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void ApplyColor(Color _color)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>_color</code> <span class="xref">Color</span></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IInteractions.cs/#L100" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IInteractions.cs/#L100" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -1,0 +1,933 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class GameNetDataManager
+ </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class GameNetDataManager
+ ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../FusionApiDev/toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/new/main/apiSpec/new?filename=ECellDive_Multiplayer_GameNetDataManager.md&amp;value=---%0Auid%3A%20ECellDive.Multiplayer.GameNetDataManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ECellDive.Multiplayer.GameNetDataManager">
+
+
+
+  <h1 id="ECellDive_Multiplayer_GameNetDataManager" data-uid="ECellDive.Multiplayer.GameNetDataManager" class="text-break">
+    Class GameNetDataManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ECellDive.html">ECellDive</a>.<a class="xref" href="ECellDive.Multiplayer.html">Multiplayer</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>A class to manage shared data between all players in a multiplayer session.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GameNetDataManager : NetworkBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">GameNetDataManager</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_Instance" data-uid="ECellDive.Multiplayer.GameNetDataManager.Instance">
+  Instance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The singleton instance of this class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GameNetDataManager Instance</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ECellDive.Multiplayer.GameNetDataManager.html">GameNetDataManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_OnClientReceivedAllModules" data-uid="ECellDive.Multiplayer.GameNetDataManager.OnClientReceivedAllModules">
+  OnClientReceivedAllModules
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Triggered <b>CLIENT SIDE</b>.</p>
+<p>Event triggered when the data modules already loaded in a multiplayer
+session has been shared with a new player.
+Triggered at the end of <a class="xref" href="ECellDive.Multiplayer.GameNetDataManager.html#ECellDive_Multiplayer_GameNetDataManager_ShareModuleDataC_System_UInt64_">ShareModuleDataC(ulong)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityAction&lt;ulong&gt; OnClientReceivedAllModules</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_OnClientReceivedAllPlayerNetData" data-uid="ECellDive.Multiplayer.GameNetDataManager.OnClientReceivedAllPlayerNetData">
+  OnClientReceivedAllPlayerNetData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Triggered <b>CLIENT SIDE</b>.</p>
+<p>Event triggered when the player net data of all players has been shared
+on the network. This includes &quot;Already connected players&quot; to &quot;New player&quot;,
+and &quot;New player&quot; to &quot;Already connected players&quot;.
+It is triggered at the end of <a class="xref" href="ECellDive.Multiplayer.GameNetDataManager.html#ECellDive_Multiplayer_GameNetDataManager_SharePlayerNetDataClientRpc_System_String_ECellDive_Utility_Data_Multiplayer_PlayerNetData_">SharePlayerNetDataClientRpc(string, PlayerNetData)</a>
+and <a class="xref" href="ECellDive.Multiplayer.GameNetDataManager.html#ECellDive_Multiplayer_GameNetDataManager_SharePlayerNetDataClientRpc_System_String_ECellDive_Utility_Data_Multiplayer_PlayerNetData_ClientRpcParams_">SharePlayerNetDataClientRpc(string, PlayerNetData, ClientRpcParams)</a>.
+It is triggered when the number of player net data loaded on the client
+side is equal to <a class="xref" href="ECellDive.Multiplayer.GameNetDataManager.html#ECellDive_Multiplayer_GameNetDataManager_playerNetDataCount">playerNetDataCount</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityAction&lt;ulong&gt; OnClientReceivedAllPlayerNetData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_clientIDToPlayerGUIDMap" data-uid="ECellDive.Multiplayer.GameNetDataManager.clientIDToPlayerGUIDMap">
+  clientIDToPlayerGUIDMap
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A map between the network client id of a player and its unique player ID.
+Use this as an indirection to get the network data of a player in
+<a class="xref" href="ECellDive.Multiplayer.GameNetDataManager.html#ECellDive_Multiplayer_GameNetDataManager_playerGUIDToPlayerNetData">playerGUIDToPlayerNetData</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private Dictionary&lt;ulong, Guid&gt; clientIDToPlayerGUIDMap</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_dataModules" data-uid="ECellDive.Multiplayer.GameNetDataManager.dataModules">
+  dataModules
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The list of the data modules in the scene.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;IMlprData&gt; dataModules</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.Interfaces.IMlprData.html">IMlprData</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_modifiables" data-uid="ECellDive.Multiplayer.GameNetDataManager.modifiables">
+  modifiables
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The list of modules that can be modified by the user.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;IModifiable&gt; modifiables</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.Interfaces.IModifiable.html">IModifiable</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Multiplayer_GameNetDataManager_modifiables_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Even if it's convenient that it's here, it's probably not the best place
+because it's not really related to data of the multiplayer session.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_playerGUIDToPlayerNetData" data-uid="ECellDive.Multiplayer.GameNetDataManager.playerGUIDToPlayerNetData">
+  playerGUIDToPlayerNetData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A map between a unique player ID and the data of the player.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private Dictionary&lt;Guid, PlayerNetData&gt; playerGUIDToPlayerNetData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, <a class="xref" href="ECellDive.Utility.Data.Multiplayer.PlayerNetData.html">PlayerNetData</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Multiplayer_GameNetDataManager_playerGUIDToPlayerNetData_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Client IDs are assigned whenever a client connects to the server. So,
+if a player leaves and reconnects, it will have a different client ID.
+That is why we use the unique player ID to retrieve the network data of
+the player. But the unique player ID is only known by the player itself.
+So you can use <a class="xref" href="ECellDive.Multiplayer.GameNetDataManager.html#ECellDive_Multiplayer_GameNetDataManager_clientIDToPlayerGUIDMap">clientIDToPlayerGUIDMap</a>(updated when
+a client connects to the server) to get the unique player ID of a client.</p>
+</div>
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_playerNetDataCount" data-uid="ECellDive.Multiplayer.GameNetDataManager.playerNetDataCount">
+  playerNetDataCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Synchronizes with all players the number of player net data that
+the server is managing. This is used to know when the server has
+finished to send all player net data to a new player.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private NetworkVariable&lt;int&gt; playerNetDataCount</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">NetworkVariable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_saveables" data-uid="ECellDive.Multiplayer.GameNetDataManager.saveables">
+  saveables
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The list of modules that can be saved.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;ISaveable&gt; saveables</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="ECellDive.Interfaces.ISaveable.html">ISaveable</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Multiplayer_GameNetDataManager_saveables_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Even if it's convenient that it's here, it's probably not the best place
+because it's not really related to data of the multiplayer session.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_AddToTrace_" data-uid="ECellDive.Multiplayer.GameNetDataManager.AddToTrace*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_AddToTrace_System_UInt64_System_Int32_" data-uid="ECellDive.Multiplayer.GameNetDataManager.AddToTrace(System.UInt64,System.Int32)">
+  AddToTrace(ulong, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a new scene ID to the list of scenes for the player with
+the given client ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddToTrace(ulong _clientID, int _newSceneID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_clientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The client ID of the player.</p>
+</dd>
+    <dt><code>_newSceneID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The new scene ID to add to the list of scenes. Presumably the
+scene where the player is currently or has just dived in.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_Awake_" data-uid="ECellDive.Multiplayer.GameNetDataManager.Awake*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_Awake" data-uid="ECellDive.Multiplayer.GameNetDataManager.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_Clear_" data-uid="ECellDive.Multiplayer.GameNetDataManager.Clear*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_Clear" data-uid="ECellDive.Multiplayer.GameNetDataManager.Clear">
+  Clear()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears all the data of this class. This should be called when the
+player switches to another multiplayer session.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_GetClientName_" data-uid="ECellDive.Multiplayer.GameNetDataManager.GetClientName*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_GetClientName_System_UInt64_" data-uid="ECellDive.Multiplayer.GameNetDataManager.GetClientName(System.UInt64)">
+  GetClientName(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the name of the player with the given client ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetClientName(ulong _clientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_clientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The client ID of the player.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the player.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_GetCurrentScene_" data-uid="ECellDive.Multiplayer.GameNetDataManager.GetCurrentScene*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_GetCurrentScene_System_UInt64_" data-uid="ECellDive.Multiplayer.GameNetDataManager.GetCurrentScene(System.UInt64)">
+  GetCurrentScene(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the scene ID of the current dive scene the player with the given
+client ID is in.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetCurrentScene(ulong _clientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_clientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The client ID of the player.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The scene ID of the current dive scene the player is in.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_GetSceneTrace_" data-uid="ECellDive.Multiplayer.GameNetDataManager.GetSceneTrace*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_GetSceneTrace_System_UInt64_" data-uid="ECellDive.Multiplayer.GameNetDataManager.GetSceneTrace(System.UInt64)">
+  GetSceneTrace(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L201"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all scenes the player with the given client ID has been in.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;int&gt; GetSceneTrace(ulong _clientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_clientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The client ID of the player.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>The list of all scenes the player has been in.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_OnClientReceivedAllModulesClientRpc_" data-uid="ECellDive.Multiplayer.GameNetDataManager.OnClientReceivedAllModulesClientRpc*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_OnClientReceivedAllModulesClientRpc_ClientRpcParams_" data-uid="ECellDive.Multiplayer.GameNetDataManager.OnClientReceivedAllModulesClientRpc(ClientRpcParams)">
+  OnClientReceivedAllModulesClientRpc(ClientRpcParams)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The server notifies the client that there is no more data module
+to share. This is triggered at the end of <a class="xref" href="ECellDive.Multiplayer.GameNetDataManager.html#ECellDive_Multiplayer_GameNetDataManager_ShareModuleDataC_System_UInt64_">ShareModuleDataC(ulong)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void OnClientReceivedAllModulesClientRpc(ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
+    <dd><p>The client RPC parameters allowing to reach specific clients.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_OnNetworkSpawn_" data-uid="ECellDive.Multiplayer.GameNetDataManager.OnNetworkSpawn*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_OnNetworkSpawn" data-uid="ECellDive.Multiplayer.GameNetDataManager.OnNetworkSpawn">
+  OnNetworkSpawn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnNetworkSpawn()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_ShareModuleDataC_" data-uid="ECellDive.Multiplayer.GameNetDataManager.ShareModuleDataC*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_ShareModuleDataC_System_UInt64_" data-uid="ECellDive.Multiplayer.GameNetDataManager.ShareModuleDataC(System.UInt64)">
+  ShareModuleDataC(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L242"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p><b>SERVER SIDE</b></p>
+<p>Synchronizes the content of the data modules that already exist
+in the scene (and stored in <a class="xref" href="ECellDive.Multiplayer.GameNetDataManager.html#ECellDive_Multiplayer_GameNetDataManager_dataModules">dataModules</a>) for the
+client with id <code class="paramref">_expeditorClientID</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private IEnumerator ShareModuleDataC(ulong _expeditorClientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_expeditorClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The id of the target client to which
+we send the content of the data modules in the scene.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_ShareModuleDataServerRpc_" data-uid="ECellDive.Multiplayer.GameNetDataManager.ShareModuleDataServerRpc*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_ShareModuleDataServerRpc_System_UInt64_" data-uid="ECellDive.Multiplayer.GameNetDataManager.ShareModuleDataServerRpc(System.UInt64)">
+  ShareModuleDataServerRpc(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L227"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Notifies the server that the player with the given client ID would
+like to receive the data modules already loaded in the scene.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private void ShareModuleDataServerRpc(ulong _expeditorClientID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_expeditorClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The client ID of the player that would like to receive the data modules.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="ECellDive.Multiplayer.GameNetDataManager.html#ECellDive_Multiplayer_GameNetDataManager_ShareModuleDataC_System_UInt64_">ShareModuleDataC(ulong)</a></div>
+    </dd>
+  </dl>
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_SharePlayerNetDataClientRpc_" data-uid="ECellDive.Multiplayer.GameNetDataManager.SharePlayerNetDataClientRpc*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_SharePlayerNetDataClientRpc_System_String_ECellDive_Utility_Data_Multiplayer_PlayerNetData_" data-uid="ECellDive.Multiplayer.GameNetDataManager.SharePlayerNetDataClientRpc(System.String,ECellDive.Utility.Data.Multiplayer.PlayerNetData)">
+  SharePlayerNetDataClientRpc(string, PlayerNetData)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L282"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Broadcasts a player's net data to all clients.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SharePlayerNetDataClientRpc(string _playerGUID, PlayerNetData _playerNetData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_playerGUID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The unique player ID of the player which data is broadcasted.</p>
+</dd>
+    <dt><code>_playerNetData</code> <a class="xref" href="ECellDive.Utility.Data.Multiplayer.PlayerNetData.html">PlayerNetData</a></dt>
+    <dd><p>The data of the player which is broadcasted.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_SharePlayerNetDataClientRpc_" data-uid="ECellDive.Multiplayer.GameNetDataManager.SharePlayerNetDataClientRpc*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_SharePlayerNetDataClientRpc_System_String_ECellDive_Utility_Data_Multiplayer_PlayerNetData_ClientRpcParams_" data-uid="ECellDive.Multiplayer.GameNetDataManager.SharePlayerNetDataClientRpc(System.String,ECellDive.Utility.Data.Multiplayer.PlayerNetData,ClientRpcParams)">
+  SharePlayerNetDataClientRpc(string, PlayerNetData, ClientRpcParams)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L315"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Broadcasts a player's net data to a subset of clients defined by
+<code class="paramref">_clientRpcParams</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SharePlayerNetDataClientRpc(string _playerGUID, PlayerNetData _playerNetData, ClientRpcParams _clientRpcParams)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_playerGUID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The unique player ID of the player which data is broadcasted.</p>
+</dd>
+    <dt><code>_playerNetData</code> <a class="xref" href="ECellDive.Utility.Data.Multiplayer.PlayerNetData.html">PlayerNetData</a></dt>
+    <dd><p>The data of the player which is broadcasted.</p>
+</dd>
+    <dt><code>_clientRpcParams</code> <span class="xref">ClientRpcParams</span></dt>
+    <dd><p>The client RPC parameters allowing to reach specific clients.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Multiplayer_GameNetDataManager_SharePlayerNetDataServerRpc_" data-uid="ECellDive.Multiplayer.GameNetDataManager.SharePlayerNetDataServerRpc*"></a>
+
+  <h3 id="ECellDive_Multiplayer_GameNetDataManager_SharePlayerNetDataServerRpc_System_UInt64_System_String_System_String_" data-uid="ECellDive.Multiplayer.GameNetDataManager.SharePlayerNetDataServerRpc(System.UInt64,System.String,System.String)">
+  SharePlayerNetDataServerRpc(ulong, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L348"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Notifies the server that the player with the given client ID would
+like to receive the player net data of all players already connected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SharePlayerNetDataServerRpc(ulong _connectingClientID, string _playerName, string _playerGUID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_connectingClientID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The client ID of the connecting player.</p>
+</dd>
+    <dt><code>_playerName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the connecting player.</p>
+</dd>
+    <dt><code>_playerGUID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The unique player ID of the connecting player.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Multiplayer\GameNetDataManager.cs/#L16" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

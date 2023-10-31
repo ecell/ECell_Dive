@@ -86,7 +86,7 @@
 
   <h1 id="ECellDive_Modules_GroupByModule" data-uid="ECellDive.Modules.GroupByModule" class="text-break">
     Class GroupByModule
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Transforms\GroupByModule.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -99,7 +99,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GroupByModule : Module, IFocus, IGroupable, IColorHighlightable, IHighlightable, IInfoTags</code></pre>
+    <pre><code class="lang-csharp hljs">public class GroupByModule : Module, IFocus, IGroupable, IColorHighlightable, IColored, IHighlightable, IInfoTags, INamed</code></pre>
   </div>
 
 
@@ -120,8 +120,10 @@
       <div><a class="xref" href="ECellDive.Interfaces.IFocus.html">IFocus</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IColored.html">IColored</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></div>
     </dd>
   </dl>
 
@@ -130,7 +132,37 @@
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_refName">Module.refName</a>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderers">Module.renderers</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderersColorPropertyNames">Module.renderersColorPropertyNames</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_renderersColorPropertyIDs">Module.renderersColorPropertyIDs</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderers">Module.lineRenderers</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderersColorPropertyNames">Module.lineRenderersColorPropertyNames</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_lineRenderersColorPropertyIDs">Module.lineRenderersColorPropertyIDs</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_mpb">Module.mpb</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_nameField">Module.m_nameField</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_nameField">Module.nameField</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_nameTextFieldContainer">Module.m_nameTextFieldContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_nameTextFieldContainer">Module.nameTextFieldContainer</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_m_isFocused">Module.m_isFocused</a>
@@ -196,22 +228,28 @@
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_OnDestroy">Module.OnDestroy()</a>
     </div>
     <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_OnEnable">Module.OnEnable()</a>
+    </div>
+    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ManageInfoTagsDisplay_InputAction_CallbackContext_">Module.ManageInfoTagsDisplay(InputAction.CallbackContext)</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SelfDestroy">Module.SelfDestroy()</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetName_System_String_">Module.SetName(string)</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ShowNameToPlayer">Module.ShowNameToPlayer()</a>
-    </div>
-    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetFocus">Module.SetFocus()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_UnsetFocus">Module.UnsetFocus()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ApplyColor_Color_">Module.ApplyColor(Color)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetHighlight">Module.SetHighlight()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_UnsetHighlight">Module.UnsetHighlight()</a>
     </div>
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_DisplayInfoTags">Module.DisplayInfoTags()</a>
@@ -228,6 +266,21 @@
     <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ShowInfoTags">Module.ShowInfoTags()</a>
     </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_DisplayName">Module.DisplayName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_GetName">Module.GetName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_HideName">Module.HideName()</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetName_System_String_">Module.SetName(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ShowName">Module.ShowName()</a>
+    </div>
   </dd></dl>
 
 
@@ -240,39 +293,9 @@
 
 
 
-  <h3 id="ECellDive_Modules_GroupByModule_colorID" data-uid="ECellDive.Modules.GroupByModule.colorID">
-  colorID
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L24"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">private int colorID</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
   <h3 id="ECellDive_Modules_GroupByModule_data" data-uid="ECellDive.Modules.GroupByModule.data">
   data
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Transforms\GroupByModule.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -300,39 +323,9 @@
 
 
 
-  <h3 id="ECellDive_Modules_GroupByModule_mpb" data-uid="ECellDive.Modules.GroupByModule.mpb">
-  mpb
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L23"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">private MaterialPropertyBlock mpb</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><span class="xref">MaterialPropertyBlock</span></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
   <h3 id="ECellDive_Modules_GroupByModule_refAttributsManager" data-uid="ECellDive.Modules.GroupByModule.refAttributsManager">
   refAttributsManager
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Transforms\GroupByModule.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -362,7 +355,7 @@
 
   <h3 id="ECellDive_Modules_GroupByModule_refCyJsonPathwayGO" data-uid="ECellDive.Modules.GroupByModule.refCyJsonPathwayGO">
   refCyJsonPathwayGO
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Transforms\GroupByModule.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -389,36 +382,6 @@
 
 
 
-
-  <h3 id="ECellDive_Modules_GroupByModule_renderers" data-uid="ECellDive.Modules.GroupByModule.renderers">
-  renderers
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L22"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">private Renderer[] renderers</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><span class="xref">Renderer</span>[]</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -427,7 +390,7 @@
 
   <h3 id="ECellDive_Modules_GroupByModule_AddData_System_String_JArray_JObject_" data-uid="ECellDive.Modules.GroupByModule.AddData(System.String,JArray,JObject)">
   AddData(string, JArray, JObject)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Transforms\GroupByModule.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds a reference to a JArray from which we might want to extract groups later.
@@ -466,44 +429,11 @@ be able to use to query for groups.</p>
 
 
 
-  <a id="ECellDive_Modules_GroupByModule_ApplyColor_" data-uid="ECellDive.Modules.GroupByModule.ApplyColor*"></a>
-
-  <h3 id="ECellDive_Modules_GroupByModule_ApplyColor_Color_" data-uid="ECellDive.Modules.GroupByModule.ApplyColor(Color)">
-  ApplyColor(Color)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L127"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>The function to call when we wish to apply a color to the material
-of the gameobject.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void ApplyColor(Color _color)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>_color</code> <span class="xref">Color</span></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
   <a id="ECellDive_Modules_GroupByModule_Execute_" data-uid="ECellDive.Modules.GroupByModule.Execute*"></a>
 
   <h3 id="ECellDive_Modules_GroupByModule_Execute_System_Int32_System_String_" data-uid="ECellDive.Modules.GroupByModule.Execute(System.Int32,System.String)">
   Execute(int, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Transforms\GroupByModule.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Tries to group data represented by <code class="paramref">_dataID</code> according to
@@ -538,65 +468,11 @@ we are trying to extract groups.</p>
 
 
 
-  <a id="ECellDive_Modules_GroupByModule_OnEnable_" data-uid="ECellDive.Modules.GroupByModule.OnEnable*"></a>
-
-  <h3 id="ECellDive_Modules_GroupByModule_OnEnable" data-uid="ECellDive.Modules.GroupByModule.OnEnable">
-  OnEnable()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L45"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">private void OnEnable()</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="ECellDive_Modules_GroupByModule_SetHighlight_" data-uid="ECellDive.Modules.GroupByModule.SetHighlight*"></a>
-
-  <h3 id="ECellDive_Modules_GroupByModule_SetHighlight" data-uid="ECellDive.Modules.GroupByModule.SetHighlight">
-  SetHighlight()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L136"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>The function to call when the object should enter highlighted
-state.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void SetHighlight()</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
   <a id="ECellDive_Modules_GroupByModule_Start_" data-uid="ECellDive.Modules.GroupByModule.Start*"></a>
 
   <h3 id="ECellDive_Modules_GroupByModule_Start" data-uid="ECellDive.Modules.GroupByModule.Start">
   Start()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Transforms\GroupByModule.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -618,39 +494,11 @@ state.</p>
 
 
 
-  <a id="ECellDive_Modules_GroupByModule_UnsetHighlight_" data-uid="ECellDive.Modules.GroupByModule.UnsetHighlight*"></a>
-
-  <h3 id="ECellDive_Modules_GroupByModule_UnsetHighlight" data-uid="ECellDive.Modules.GroupByModule.UnsetHighlight">
-  UnsetHighlight()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L141"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>The function to call when the object should exit the highlighted
-state.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void UnsetHighlight()</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Modules/Transforms/GroupByModule.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Modules\Transforms\GroupByModule.cs/#L17" class="edit-link">Edit this page</a>
         </div>
 
 

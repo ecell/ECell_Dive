@@ -86,7 +86,7 @@
 
   <h1 id="ECellDive_Utility_Data_Dive_SceneData" data-uid="ECellDive.Utility.Data.Dive.SceneData" class="text-break">
     Struct SceneData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -96,17 +96,25 @@
 
   <div class="markdown summary"><p>A struct to keep track about what is hapenning in the dive.
 Which divers are in (or out) of the scene and the modules that are loaded.</p>
+<p>The network serialization is partial, it does not serialize the loaded modules.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct SceneData</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct SceneData : INetworkSerializable</code></pre>
   </div>
 
 
 
 
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">INetworkSerializable</span></div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist derived">
@@ -140,16 +148,16 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
 
   <a id="ECellDive_Utility_Data_Dive_SceneData__ctor_" data-uid="ECellDive.Utility.Data.Dive.SceneData.#ctor*"></a>
 
-  <h3 id="ECellDive_Utility_Data_Dive_SceneData__ctor_System_Int32_System_Int32_" data-uid="ECellDive.Utility.Data.Dive.SceneData.#ctor(System.Int32,System.Int32)">
-  SceneData(int, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ECellDive_Utility_Data_Dive_SceneData__ctor_System_Int32_System_Int32_System_String_" data-uid="ECellDive.Utility.Data.Dive.SceneData.#ctor(System.Int32,System.Int32,System.String)">
+  SceneData(int, int, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L62"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SceneData(int _sceneID, int _parentSceneID)</code></pre>
+    <pre><code class="lang-csharp hljs">public SceneData(int _sceneID, int _parentSceneID, string _sceneName)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -157,6 +165,8 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
     <dt><code>_sceneID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd></dd>
     <dt><code>_parentSceneID</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>_sceneName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
@@ -178,7 +188,7 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
 
   <h3 id="ECellDive_Utility_Data_Dive_SceneData_inDivers" data-uid="ECellDive.Utility.Data.Dive.SceneData.inDivers">
   inDivers
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>List of NetworkManager Client Ids that are present in the scene</p>
@@ -186,7 +196,7 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;ulong&gt; inDivers</code></pre>
+    <pre><code class="lang-csharp hljs">public ListUInt64Network inDivers</code></pre>
   </div>
 
 
@@ -194,7 +204,7 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.Multiplayer.ListUInt64Network.html">ListUInt64Network</a></dt>
     <dd></dd>
   </dl>
 
@@ -209,7 +219,7 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
 
   <h3 id="ECellDive_Utility_Data_Dive_SceneData_loadedModules" data-uid="ECellDive.Utility.Data.Dive.SceneData.loadedModules">
   loadedModules
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>List of Network Object. Some of them are potential seeds for child scenes.</p>
@@ -240,7 +250,7 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
 
   <h3 id="ECellDive_Utility_Data_Dive_SceneData_outDivers" data-uid="ECellDive.Utility.Data.Dive.SceneData.outDivers">
   outDivers
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L55"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>List of NetworkManager Client Ids that are NOT present in the scene</p>
@@ -248,7 +258,7 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;ulong&gt; outDivers</code></pre>
+    <pre><code class="lang-csharp hljs">public ListUInt64Network outDivers</code></pre>
   </div>
 
 
@@ -256,7 +266,7 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>&gt;</dt>
+    <dt><a class="xref" href="ECellDive.Utility.Data.Multiplayer.ListUInt64Network.html">ListUInt64Network</a></dt>
     <dd></dd>
   </dl>
 
@@ -271,7 +281,7 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
 
   <h3 id="ECellDive_Utility_Data_Dive_SceneData_parentSceneID" data-uid="ECellDive.Utility.Data.Dive.SceneData.parentSceneID">
   parentSceneID
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>ID of the parent scene.</p>
@@ -302,7 +312,7 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
 
   <h3 id="ECellDive_Utility_Data_Dive_SceneData_sceneID" data-uid="ECellDive.Utility.Data.Dive.SceneData.sceneID">
   sceneID
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>ID of the scene.</p>
@@ -330,6 +340,37 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
 
 
 
+
+  <h3 id="ECellDive_Utility_Data_Dive_SceneData_sceneName" data-uid="ECellDive.Utility.Data.Dive.SceneData.sceneName">
+  sceneName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The name of the scene.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string sceneName</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -338,7 +379,7 @@ Which divers are in (or out) of the scene and the modules that are loaded.</p>
 
   <h3 id="ECellDive_Utility_Data_Dive_SceneData_AddModule_ECellDive_Modules_GameNetModule_" data-uid="ECellDive.Utility.Data.Dive.SceneData.AddModule(ECellDive.Modules.GameNetModule)">
   AddModule(GameNetModule)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L91"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Add the reference of <code class="paramref">_gameNetModule</code> to the list of loaded
@@ -372,7 +413,7 @@ modules (<a class="xref" href="ECellDive.Utility.Data.Dive.SceneData.html#ECellD
 
   <h3 id="ECellDive_Utility_Data_Dive_SceneData_AddOutDiver_System_UInt64_" data-uid="ECellDive.Utility.Data.Dive.SceneData.AddOutDiver(System.UInt64)">
   AddOutDiver(ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Add the client id <code class="paramref">_diverClientId</code> to the the list of divers
@@ -406,7 +447,7 @@ that are not in this scene (<a class="xref" href="ECellDive.Utility.Data.Dive.Sc
 
   <h3 id="ECellDive_Utility_Data_Dive_SceneData_DiverGetsIn_System_UInt64_" data-uid="ECellDive.Utility.Data.Dive.SceneData.DiverGetsIn(System.UInt64)">
   DiverGetsIn(ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L103"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Remove the client id <code class="paramref">_diverClientId</code> from <a class="xref" href="ECellDive.Utility.Data.Dive.SceneData.html#ECellDive_Utility_Data_Dive_SceneData_outDivers">outDivers</a>
@@ -440,7 +481,7 @@ and add it to <a class="xref" href="ECellDive.Utility.Data.Dive.SceneData.html#E
 
   <h3 id="ECellDive_Utility_Data_Dive_SceneData_DiverGetsOut_System_UInt64_" data-uid="ECellDive.Utility.Data.Dive.SceneData.DiverGetsOut(System.UInt64)">
   DiverGetsOut(ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L116"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Remove the client id <code class="paramref">_diverClientId</code> from <a class="xref" href="ECellDive.Utility.Data.Dive.SceneData.html#ECellDive_Utility_Data_Dive_SceneData_inDivers">inDivers</a>
@@ -470,11 +511,55 @@ and add it to <a class="xref" href="ECellDive.Utility.Data.Dive.SceneData.html#E
 
 
 
+  <a id="ECellDive_Utility_Data_Dive_SceneData_NetworkSerialize_" data-uid="ECellDive.Utility.Data.Dive.SceneData.NetworkSerialize*"></a>
+
+  <h3 id="ECellDive_Utility_Data_Dive_SceneData_NetworkSerialize__1_BufferSerializer___0__" data-uid="ECellDive.Utility.Data.Dive.SceneData.NetworkSerialize``1(BufferSerializer{``0})">
+  NetworkSerialize&lt;TRW&gt;(BufferSerializer&lt;TRW&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The multiplayer serialization method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NetworkSerialize&lt;TRW&gt;(BufferSerializer&lt;TRW&gt; serializer) where TRW : IReaderWriter</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serializer</code> <span class="xref">BufferSerializer</span>&lt;TRW&gt;</dt>
+    <dd><p>Serializer from Unity Netcode.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TRW</code></dt>
+    <dd><p>An IReaderWriter type from Unity Netcode.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="ECellDive_Utility_Data_Dive_SceneData_NetworkSerialize__1_BufferSerializer___0___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This follows the INetworkSerializable interface from Unity Netcode for GameObject.
+This is necessary because this struct uses a List, which is not supported by
+the default serialization methods of Unity Netcode.</p>
+</div>
+
+
+
+
   <a id="ECellDive_Utility_Data_Dive_SceneData_ToString_" data-uid="ECellDive.Utility.Data.Dive.SceneData.ToString*"></a>
 
   <h3 id="ECellDive_Utility_Data_Dive_SceneData_ToString" data-uid="ECellDive.Utility.Data.Dive.SceneData.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L126"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>For DEBUG.
@@ -507,7 +592,7 @@ Prints information about the scene.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Utility/Data/DiveData.cs/#L24" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Utility\Data\DiveData.cs/#L29" class="edit-link">Edit this page</a>
         </div>
 
 

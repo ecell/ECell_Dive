@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Modules/fba_module.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\UserManual\Modules\fba_module.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -81,14 +81,17 @@
         <article data-uid="">
 <h2 id="flux-balance-analysis-fba">Flux Balance Analysis (FBA)</h2>
 
-<p>Requires a <a href="../Network/connecting_to_Kosmogora.html">connection to Kosmogora</a>.</p>
+<p>Requires:</p>
+<ul>
+<li>A <a href="../Network/connecting_to_Kosmogora.html">connection to Kosmogora</a>.</li>
+<li>The <a href="api_checker.html">API Checker</a> has validated the <code>Kosmogora</code> server.</li>
+</ul>
 <img src="../../../resources/images/modules/fba.jpg" alt="FBA" style="height: 300px;">
 <p>This is the module to request a flux balance analysis for the model currently imported.</p>
 <h3 id="the-server-parameters-pannel">The <em>Server Parameters</em> pannel:</h3>
 <img src="../../../resources/images/modules/1x/fba_panel_1.png" alt="FBA Parameters" style="height: 300px;">
 <ol>
-<li>Input Field <em>Data Server IP</em>. The IP address at which <em>Kosmogora</em> is hosted. Default value is 127.0.0.1 but this only works during development if <em>Kosmogora</em> is hosted on the same machine as the one we are developping ECellDive on.</li>
-<li>Input Field <em>Data Server Port</em>. The Port at which <em>Kosmogora</em> is listening. Default value is 8000. This is also the default value when launching <em>Kosmogora</em> so, unless you specified a port at that time, you can leave the field empty in ECellDive.</li>
+<li>Button <em>Server</em>. Will open the Server choice panel to chose among the <code>Kosmogora-like</code> servers which API implements a FBA.</li>
 <li>Button <em>Run FBA</em>. Will try to perform the FBA calculations while taking into account the reactions that may have been knocked out in the loaded model. It typically takes a few seconds before being able to see the result of the FBA. During this time, the module will be animated. If the query is successful, the module will flash <span style="color:green"><em>green</em></span>; the size of the edges of the metabolic network will be updated. If the query fails, the module will flash <span style="color:red"><em>red</em></span>. In that case, you can check the error message in the <a href="/articles/UserManual/UIMenus/log_menu.html">log</a>.</li>
 </ol>
 <h3 id="the-fba-visuals-parameters-pannel">The <em>FBA Visuals Parameters</em> pannel:</h3>
@@ -104,7 +107,7 @@
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX/articles/UserManual/Modules/fba_module.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\UserManual\Modules\fba_module.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

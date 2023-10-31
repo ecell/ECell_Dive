@@ -86,7 +86,7 @@
 
   <h1 id="ECellDive_Interfaces_INode" data-uid="ECellDive.Interfaces.INode" class="text-break">
     Interface INode
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IGraphComponents.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IGraphComponents.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -112,10 +112,6 @@
 
 
 
-  <h2 id="ECellDive_Interfaces_INode_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>This interface is probably overdefined with cyjson graphs in mind.
-For example, the <a class="xref" href="ECellDive.Interfaces.INode.html#ECellDive_Interfaces_INode_isVirtual">isVirtual</a> field might be too specific.</p>
-</div>
 
 
   <h2 class="section" id="properties">Properties
@@ -126,7 +122,7 @@ For example, the <a class="xref" href="ECellDive.Interfaces.INode.html#ECellDive
 
   <h3 id="ECellDive_Interfaces_INode_ID" data-uid="ECellDive.Interfaces.INode.ID">
   ID
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IGraphComponents.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IGraphComponents.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A unique ID.</p>
@@ -158,7 +154,7 @@ For example, the <a class="xref" href="ECellDive.Interfaces.INode.html#ECellDive
 
   <h3 id="ECellDive_Interfaces_INode_incommingEdges" data-uid="ECellDive.Interfaces.INode.incommingEdges">
   incommingEdges
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IGraphComponents.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IGraphComponents.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The list of the <a class="xref" href="ECellDive.Interfaces.IEdge.html#ECellDive_Interfaces_IEdge_ID">ID</a> of the edges that
@@ -187,83 +183,11 @@ started from somewhere and are arriving to this node.</p>
 
 
 
-  <a id="ECellDive_Interfaces_INode_isVirtual_" data-uid="ECellDive.Interfaces.INode.isVirtual*"></a>
-
-  <h3 id="ECellDive_Interfaces_INode_isVirtual" data-uid="ECellDive.Interfaces.INode.isVirtual">
-  isVirtual
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IGraphComponents.cs/#L62"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>A utility state variable to describe whether the node is
-simply there to structure the network or if it's a node
-representing important data for the user.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool isVirtual { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="ECellDive_Interfaces_INode_label_" data-uid="ECellDive.Interfaces.INode.label*"></a>
-
-  <h3 id="ECellDive_Interfaces_INode_label" data-uid="ECellDive.Interfaces.INode.label">
-  label
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IGraphComponents.cs/#L43"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>A string to store additional textual information about the
-node.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string label { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-  <h4 class="section" id="ECellDive_Interfaces_INode_label_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>In CyJson graphs, the user-readable name for nodes is
-actually encoded the Label and while the Name is shorter
-and less explicit.</p>
-</div>
-
-
-
-
   <a id="ECellDive_Interfaces_INode_name_" data-uid="ECellDive.Interfaces.INode.name*"></a>
 
   <h3 id="ECellDive_Interfaces_INode_name" data-uid="ECellDive.Interfaces.INode.name">
   name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IGraphComponents.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IGraphComponents.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The name of the node.</p>
@@ -295,7 +219,7 @@ and less explicit.</p>
 
   <h3 id="ECellDive_Interfaces_INode_outgoingEdges" data-uid="ECellDive.Interfaces.INode.outgoingEdges">
   outgoingEdges
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IGraphComponents.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IGraphComponents.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The list of the <a class="xref" href="ECellDive.Interfaces.IEdge.html#ECellDive_Interfaces_IEdge_ID">ID</a> of the edges that
@@ -324,43 +248,11 @@ are starting from this node.</p>
 
 
 
-  <a id="ECellDive_Interfaces_INode_position_" data-uid="ECellDive.Interfaces.INode.position*"></a>
-
-  <h3 id="ECellDive_Interfaces_INode_position" data-uid="ECellDive.Interfaces.INode.position">
-  position
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IGraphComponents.cs/#L27"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Position in the 3D space of the node</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Vector3 position { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><span class="xref">Vector3</span></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets/Scripts/Interfaces/IGraphComponents.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/main/Assets\Scripts\Interfaces\IGraphComponents.cs/#L12" class="edit-link">Edit this page</a>
         </div>
 
 
