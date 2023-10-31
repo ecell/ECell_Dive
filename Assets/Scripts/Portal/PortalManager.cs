@@ -273,9 +273,9 @@ namespace ECellDive.Portal
 		/// </summary>
 		private IEnumerator TryDiveInC()
 		{
-			refDivableData.TryDiveIn();
 			AnimationLoopWrapper alw = GetComponent<AnimationLoopWrapper>();
 			alw.PlayLoop("PortalDive");
+			refDivableData.TryDiveIn();
 			yield return new WaitWhile(() => refDivableData.isDiving);
 			alw.StopLoop();
 		}

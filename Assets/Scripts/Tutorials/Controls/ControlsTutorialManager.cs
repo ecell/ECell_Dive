@@ -132,7 +132,6 @@ namespace ECellDive.Tutorials
 		{
 			base.Initialize();
 
-
 			//Disable the General GUI
 			previousStatesEOC = new List<bool>(StaticReferencer.Instance.refExternalObjectContainer.transform.childCount);
 			foreach (Transform _guiHolder in StaticReferencer.Instance.refExternalObjectContainer.transform)
@@ -239,13 +238,30 @@ namespace ECellDive.Tutorials
 			refInputSwitchMode.left.action.performed -= LeftControllerActionMapSwitch;
 			refInputSwitchMode.right.action.performed -= RightControllerActionMapSwitch;
 
-			//Resubscribe the Action map switch within the InputModeManager
-			//in order to restore default behaviour: when the user presses
-			//the button binded to switching controls input actions, the 
-			//corresponding action maps are also automatically switched
-			//on or off entirely and not just the actions we added to the
-			//"learnedXXXActions" lists declared in this script.
-			StaticReferencer.Instance.inputModeManager.SubscribeActionMapsSwitch();
+            //Ensable the RayBased Action Map
+            refInputActionAsset.FindActionMap("Ray_Based_Controls_LH").Enable();
+            refInputActionAsset.FindActionMap("Ray_Based_Controls_RH").Enable();
+
+            //Enable the Movement Action Map
+            refInputActionAsset.FindActionMap("Movement_LH").Enable();
+            refInputActionAsset.FindActionMap("Movement_RH").Enable();
+
+            //Enable the Groups Action Map
+            refInputActionAsset.FindActionMap("Group_Controls_LH").Enable();
+            refInputActionAsset.FindActionMap("Group_Controls_RH").Enable();
+
+            //Reenable the Input switch mode actions if we quit the tutorial before
+            //we reached that step.
+            refInputSwitchMode.left.action.Enable();
+            refInputSwitchMode.right.action.Enable();
+
+            //Resubscribe the Action map switch within the InputModeManager
+            //in order to restore default behaviour: when the user presses
+            //the button binded to switching controls input actions, the 
+            //corresponding action maps are also automatically switched
+            //on or off entirely and not just the actions we added to the
+            //"learnedXXXActions" lists declared in this script.
+            StaticReferencer.Instance.inputModeManager.SubscribeActionMapsSwitch();
 
 			//Force the Ray-based controls for both controllers. This will
 			//impact the visuals and the actions since we subscribed back to

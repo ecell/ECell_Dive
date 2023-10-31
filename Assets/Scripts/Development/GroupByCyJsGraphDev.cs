@@ -40,7 +40,7 @@ namespace ECellDive.CustomEditors
 
 		public void CreateGroupEdges()
 		{
-			IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.graphData.jEdges, edgesGroupAttribute);
+			IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.GetJsonGraphData().edgesData, edgesGroupAttribute);
 			if (groups == null)
 			{
 				Debug.LogError("Failed to group data by " + edgesGroupAttribute);
@@ -81,7 +81,7 @@ namespace ECellDive.CustomEditors
 
 		public void CreateGroupNodes()
 		{
-			IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.graphData.jNodes, nodesGroupAttribute);
+			IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.GetJsonGraphData().edgesData, nodesGroupAttribute);
 			if (groups == null)
 			{
 				Debug.LogError("Failed to group data by " + nodesGroupAttribute);
@@ -124,7 +124,7 @@ namespace ECellDive.CustomEditors
 
 		public void ReuseDefinedEdgeGroups()
 		{
-			IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.graphData.jEdges, edgesGroupAttribute);
+			IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.GetJsonGraphData().edgesData, edgesGroupAttribute);
 			if (groups == null)
 			{
 				Debug.LogError("Failed to group data by " + edgesGroupAttribute);
@@ -156,7 +156,7 @@ namespace ECellDive.CustomEditors
 
 		public void ReuseDefinedNodesGroups()
 		{
-			IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.graphData.jNodes, nodesGroupAttribute);
+			IEnumerable<IGrouping<string, JToken>> groups = CyJsonParser.GroupDataByKey(refCyJsonPathwayGO.GetJsonGraphData().nodesData, nodesGroupAttribute);
 			if (groups == null)
 			{
 				Debug.LogError("Failed to group data by " + nodesGroupAttribute);

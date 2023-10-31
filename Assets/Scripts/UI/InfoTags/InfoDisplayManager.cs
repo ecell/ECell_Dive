@@ -70,7 +70,7 @@ namespace ECellDive.UI
 		}
 
 		/// <inheritdoc/>
-		public Transform lookAtTarget{ get; protected set; }
+		public Transform lookAtTarget{ get; set; }
 		#endregion
 
 

@@ -19,10 +19,6 @@ namespace ECellDive.Modules
 		[Header("UI")]
 		public GroupByAttributsManager refAttributsManager;
 
-		[SerializeField] private Renderer[] renderers;
-		private MaterialPropertyBlock mpb;
-		private int colorID;
-
 		private CyJsonModule refCyJsonPathwayGO;
 		List<JArray> data = new List<JArray>();
 
@@ -32,25 +28,13 @@ namespace ECellDive.Modules
 			refCyJsonPathwayGO = FindObjectOfType<CyJsonModule>();
 			if (refCyJsonPathwayGO != null)
 			{
-				AddData("-- Nodes --", refCyJsonPathwayGO.graphData.jNodes, (JObject)refCyJsonPathwayGO.graphData.jNodes[0]["data"]);
-				AddData("-- Edges --", refCyJsonPathwayGO.graphData.jEdges, (JObject)refCyJsonPathwayGO.graphData.jEdges[0]["data"]);
+				AddData("-- Nodes --", refCyJsonPathwayGO.GetJsonGraphData().nodesData, (JObject)refCyJsonPathwayGO.GetJsonGraphData().nodesData[0]["data"]);
+				AddData("-- Edges --", refCyJsonPathwayGO.GetJsonGraphData().edgesData, (JObject)refCyJsonPathwayGO.GetJsonGraphData().edgesData[0]["data"]);
 			}
 			else
 			{
 				LogSystem.AddMessage(LogMessageTypes.Errors,
 					"The GroupBy Module could not find any data to link to.");
-			}
-		}
-
-		private void OnEnable()
-		{
-			Debug.Log("OnEnable", gameObject);
-			mpb = new MaterialPropertyBlock();
-			colorID = Shader.PropertyToID("_Color");
-			mpb.SetVector(colorID, defaultColor);
-			foreach (Renderer _renderer in renderers)
-			{
-				_renderer.SetPropertyBlock(mpb);
 			}
 		}
 
@@ -121,31 +105,6 @@ namespace ECellDive.Modules
 				StartCoroutine(StaticReferencer.Instance.refGroupsMenu.AddSemanticTermUI(_attribute, groupsData));
 			}
 		}
-
-		#region - IHighlightable -
-
-		public override void ApplyColor(Color _color)
-		{
-			mpb.SetVector(colorID, _color);
-			foreach (Renderer _renderer in renderers)
-			{
-				_renderer.SetPropertyBlock(mpb);
-			}
-		}
-
-		public override void SetHighlight()
-		{
-			ApplyColor(highlightColor);
-		}
-
-		public override void UnsetHighlight()
-		{
-			if (!forceHighlight)
-			{
-				ApplyColor(defaultColor);
-			}
-		}
-		#endregion
 	}
 }
 

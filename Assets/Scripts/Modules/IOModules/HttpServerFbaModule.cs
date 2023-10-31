@@ -7,6 +7,9 @@ using UnityEngine.Events;
 using ECellDive.Utility;
 using ECellDive.UI;
 using ECellDive.Interfaces;
+using ECellDive.IO;
+using ECellDive.Utility.Data.Network;
+using TMPro;
 
 namespace ECellDive.Modules
 {
@@ -68,7 +71,19 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// An object linking parameters of the FBA to the UI.
 		/// </summary>
-		public FbaParametersManager fbaParametersManager;
+		[Header("HttpServerFbaModule")]//A Header to make the inspector more readable
+        public FbaParametersManager fbaParametersManager;
+
+		/// <summary>
+		/// The scroll list of the available servers this module can use.
+		/// </summary>
+		public OptimizedVertScrollList refAvailableServersScrollList;
+
+		/// <summary>
+		/// The reference to the text mesh displaying the name of the server
+		/// this module is using.
+		/// </summary>
+		public TMP_Text refTargetServer;
 
 		/// <summary>
 		/// The animation loop controller to control the visual feedback
@@ -128,7 +143,13 @@ namespace ECellDive.Modules
 				}
 			}
 		}
-			
+
+		/// <inheritdoc/>
+		protected override List<ServerData> GetAvailableServers()
+		{
+			return HttpNetPortal.Instance.GetModuleServers("HttpServerFbaModule");
+		}
+
 		/// <summary>
 		/// Builds and sends the URI of the request that should activate the
 		/// computation of the FBA on the server.
@@ -181,6 +202,25 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
+		/// Sets the <see cref="HttpServerBaseModule.serverData"/> to the server selected by retrieving
+		/// the server data based in the index of the button representing the server
+		/// in the <see cref="refAvailableServersScrollList"/>.
+		/// </summary>
+		/// <param name="_serverButtonGO">
+		/// The gameobject encapsulating the button representing the server
+		/// in the <see cref="refAvailableServersScrollList"/>.
+		/// </param>
+		/// <remarks>
+		/// Used as callback from the editor.
+		/// </remarks>
+		public void SetTargetServer(GameObject _serverButtonGO)
+		{
+			List<ServerData> availableServers = GetAvailableServers();
+			serverData = availableServers[_serverButtonGO.transform.GetSiblingIndex()];
+			refTargetServer.text = serverData.name;
+		}
+
+		/// <summary>
 		/// A public interface to update the visuals of the pathway
 		/// with the values of the edges.
 		/// </summary>
@@ -196,7 +236,7 @@ namespace ECellDive.Modules
 		private IEnumerator ShowComputedFluxesC()
 		{
 			int counter = 0;
-			EdgeGO edgeGO;
+			CyJsonEdgeGO edgeGO;
 			foreach (string _edgeName in fbaAnalysisData.fluxes.Keys)
 			{
 				if (fbaAnalysisData.edgeName_to_EdgeID.ContainsKey(_edgeName))
@@ -212,7 +252,7 @@ namespace ECellDive.Modules
 						
 					foreach (uint _id in fbaAnalysisData.edgeName_to_EdgeID[_edgeName])
 					{
-						edgeGO = LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<EdgeGO>();
+						edgeGO = LoadedCyJsonPathway.DataID_to_DataGO[_id].GetComponent<CyJsonEdgeGO>();
 							
 						//control direction of the edge if the flux is reversed
 						if ((edgeGO.fluxLevel.Value < 0 && level > 0) || (edgeGO.fluxLevel.Value > 0 && level < 0))
@@ -303,6 +343,27 @@ namespace ECellDive.Modules
 				//Flash of the fail color
 				GetComponentInChildren<ColorFlash>().Flash(0);
 			}
+		}
+
+		/// <summary>
+		/// The public interface to populate the scroll list <see cref="refAvailableServersScrollList"/>
+		/// of available servers for this module.
+		/// </summary>
+		/// <remarks>
+		/// Used as callback from the editor.
+		/// </remarks>
+		public void UpdateAvailableServers()
+		{
+			List<ServerData> availableServers = GetAvailableServers();
+
+			refAvailableServersScrollList.ClearScrollList();
+			foreach (ServerData server in availableServers)
+			{
+				GameObject serverUIContainer = refAvailableServersScrollList.AddItem();
+				serverUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = server.name + "\n<size=0.025>" + server.serverIP + ":" + server.port + "</size>";
+				serverUIContainer.SetActive(true);
+			}
+			refAvailableServersScrollList.UpdateScrollList();
 		}
 	}
 }

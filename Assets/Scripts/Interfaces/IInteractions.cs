@@ -97,23 +97,12 @@ namespace ECellDive
 		/// An interface to change switch between two colors when a gameobject
 		/// needs to be highlighted.
 		/// </summary>
-		public interface IColorHighlightable : IHighlightable
+		public interface IColorHighlightable : IColored, IHighlightable
 		{
-			/// <summary>
-			/// The color the object should be when non highlighted.
-			/// </summary>
-			Color defaultColor { get; set; }
-
 			/// <summary>
 			/// The color the object should be when highlighted.
 			/// </summary>
 			Color highlightColor { get; set; }
-
-			/// <summary>
-			/// The function to call when we wish to apply a color to the material
-			/// of the gameobject.
-			/// </summary>
-			abstract void ApplyColor(Color _color);
 		}
 
 		/// <summary>
@@ -129,7 +118,7 @@ namespace ECellDive
 			NetworkVariable<Color> currentColor { get; }
 
 			/// <summary>
-			/// Contacts the server to applies <see cref="IColorHighlightable.defaultColor"/>
+			/// Contacts the server to applies <see cref="IColored.defaultColor"/>
 			/// to <see cref="currentColor"/>.
 			/// </summary>
 			/// <remarks>Since <see cref="currentColor"/> is a NetworkVariable,

@@ -68,22 +68,22 @@ namespace ECellDive.SceneManagement
 							// Keep track of the loaded scene, you need this to unload it
 							loadedScenes[_sceneEvent.SceneName] = _sceneEvent.Scene;
 						}
-						Debug.Log($"Loaded the {_sceneEvent.SceneName} scene on " +
-							$"{_sceneEvent.ClientId}.");
+						//Debug.Log($"Loaded the {_sceneEvent.SceneName} scene on " +
+						//	$"{_sceneEvent.ClientId}.");
 						break;
 					}
 				case SceneEventType.UnloadComplete:
 					{
-						Debug.Log($"Unloaded the {_sceneEvent.SceneName} scene on " +
-							$"{_sceneEvent.ClientId}.");
+						//Debug.Log($"Unloaded the {_sceneEvent.SceneName} scene on " +
+						//	$"{_sceneEvent.ClientId}.");
 						break;
 					}
 				case SceneEventType.LoadEventCompleted:
 				case SceneEventType.UnloadEventCompleted:
 					{
 						var loadUnload = _sceneEvent.SceneEventType == SceneEventType.LoadEventCompleted ? "Load" : "Unload";
-						Debug.Log($"{loadUnload} event completed for the following client " +
-							$"identifiers:({_sceneEvent.ClientsThatCompleted})");
+						//Debug.Log($"{loadUnload} event completed for the following client " +
+						//	$"identifiers:({_sceneEvent.ClientsThatCompleted})");
 
 						if (_sceneEvent.ClientsThatTimedOut.Count > 0)
 						{

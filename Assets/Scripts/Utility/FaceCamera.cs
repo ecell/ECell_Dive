@@ -31,7 +31,7 @@ namespace ECellDive.Utility
 		}
 
 		/// <inheritdoc/>
-		public Transform lookAtTarget { get; private set; }
+		public Transform lookAtTarget { get; set; }
 		#endregion
 
 		#region - IPopUp Members -
@@ -60,7 +60,7 @@ namespace ECellDive.Utility
 		}
 
 		/// <inheritdoc/>
-		public Transform popupTarget { get; private set; }
+		public Transform popupTarget { get; set; }
 		#endregion
 
 		private void Awake()
@@ -77,7 +77,7 @@ namespace ECellDive.Utility
 		{
 			if (showOnEnable)
 			{
-				LookAt();
+                LookAt();
 			}
 		}
 

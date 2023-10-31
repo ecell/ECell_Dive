@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
-using TMPro;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
+using TMPro;
+
 using ECellDive.UI;
 using ECellDive.Utility;
-using Newtonsoft.Json.Linq;
-using System;
+using ECellDive.IO;
+using ECellDive.Utility.Data.Network;
 
 namespace ECellDive.Modules
 {
@@ -14,6 +18,18 @@ namespace ECellDive.Modules
 	/// </summary>
 	public class HttpServerInfoQueryModule : HttpServerBaseModule
 	{
+		/// <summary>
+		/// The scroll list of the available servers this module can use.
+		/// </summary>
+		[Header("HttpServerInfoQueryModule")]//A Header to make the inspector more readable
+		public OptimizedVertScrollList refAvailableServersScrollList;
+
+		/// <summary>
+		/// The reference to the text mesh displaying the name of the server
+		/// this module is using.
+		/// </summary>
+		public TMP_Text refTargetServer;
+
 		/// <summary>
 		/// The scroll list of the databases we can try to query.
 		/// </summary>
@@ -72,16 +88,6 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Sets the text value of the database to use for the query.
-		/// </summary>
-		/// <remarks>Used as callback from the editor.</remarks>
-		/// <param name="dataBaseButtonLabel"></param>
-		public void SetTargetDatabase(TextMeshProUGUI dataBaseButtonLabel)
-		{
-			refTargetDatabase.text = dataBaseButtonLabel.text;
-		}
-
-		/// <summary>
 		/// The utility function to build the query to the server.
 		/// Also sends the request after building it.
 		/// </summary>
@@ -93,6 +99,12 @@ namespace ECellDive.Modules
 				new string[] { refTargetDatabase.text, LoadedCyJsonPathway.GetName() });
 
 			StartCoroutine(GetRequest(requestURL));
+		}
+
+		/// <inheritdoc/>
+		protected override List<ServerData> GetAvailableServers()
+		{
+			return HttpNetPortal.Instance.GetModuleServers("HttpServerInfoQueryModule");
 		}
 
 		/// <summary>
@@ -134,7 +146,7 @@ namespace ECellDive.Modules
 				else
 				{
 					colorFlash.Flash(1);//success flash
-					EdgeGO edge = LoadedCyJsonPathway.DataID_to_DataGO[Convert.ToUInt16(refReactionID.text)].GetComponent<EdgeGO>();
+					CyJsonEdgeGO edge = LoadedCyJsonPathway.DataID_to_DataGO[Convert.ToUInt16(refReactionID.text)].GetComponent<CyJsonEdgeGO>();
 					edge.InstantiateInfoTag(new Vector2(0.15f, 0.15f), reactionString);
 				}
 			}
@@ -145,6 +157,60 @@ namespace ECellDive.Modules
 				LogSystem.AddMessage(LogMessageTypes.Errors,
 									   $"[HttpServerInfoQueryModule] Request failed with error: {requestData.requestText}");
 			}
+		}
+
+
+		/// <summary>
+		/// Sets the text value of the database to use for the query.
+		/// </summary>
+		/// <remarks>Used as callback from the editor.</remarks>
+		/// <param name="dataBaseButtonLabel">
+		/// The text mesh of the button representing the database in
+		/// <see cref="refTargetDatabaseScrollList"/>.
+		/// </param>
+		public void SetTargetDatabase(TextMeshProUGUI dataBaseButtonLabel)
+		{
+			refTargetDatabase.text = dataBaseButtonLabel.text;
+		}
+
+		/// <summary>
+		/// Sets the <see cref="HttpServerBaseModule.serverData"/> to the server selected by retrieving
+		/// the server data based in the index of the button representing the server
+		/// in the <see cref="refAvailableServersScrollList"/>.
+		/// </summary>
+		/// <param name="_serverButtonGO">
+		/// The gameobject encapsulating the button representing the server
+		/// in the <see cref="refAvailableServersScrollList"/>.
+		/// </param>
+		/// <remarks>
+		/// Used as callback from the editor.
+		/// </remarks>
+		public void SetTargetServer(GameObject _serverButtonGO)
+		{
+			List<ServerData> availableServers = GetAvailableServers();
+			serverData = availableServers[ _serverButtonGO.transform.GetSiblingIndex()];
+			refTargetServer.text = serverData.name;
+		}
+
+		/// <summary>
+		/// The public interface to populate the scroll list <see cref="refAvailableServersScrollList"/>
+		/// of available servers for this module.
+		/// </summary>
+		/// <remarks>
+		/// Used as callback from the editor.
+		/// </remarks>
+		public void UpdateAvailableServers()
+		{
+			List<ServerData> availableServers = GetAvailableServers();
+
+			refAvailableServersScrollList.ClearScrollList();
+			foreach(ServerData server in availableServers)
+			{
+				GameObject serverUIContainer = refAvailableServersScrollList.AddItem();
+				serverUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = server.name + "\n<size=0.025>" + server.serverIP + ":" + server.port+ "</size>";
+				serverUIContainer.SetActive(true);
+			}
+			refAvailableServersScrollList.UpdateScrollList();
 		}
 	}
 }

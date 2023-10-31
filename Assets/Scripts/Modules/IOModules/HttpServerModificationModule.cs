@@ -9,6 +9,8 @@ using ECellDive.Multiplayer;
 using ECellDive.UI;
 using ECellDive.Utility;
 using ECellDive.Utility.Data.Modification;
+using ECellDive.IO;
+using ECellDive.Utility.Data.Network;
 
 namespace ECellDive.Modules
 {
@@ -18,6 +20,18 @@ namespace ECellDive.Modules
 	/// </summary>
 	public class HttpServerModificationModule : HttpServerBaseModule
 	{
+		/// <summary>
+		/// The scroll list of the available servers this module can use.
+		/// </summary>
+		[Header("HttpServerModificationModule")]//A Header to make the inspector more readable
+		public OptimizedVertScrollList refAvailableServersScrollList;
+
+		/// <summary>
+		/// The reference to the text mesh displaying the name of the server
+		/// this module is using.
+		/// </summary>
+		public TMP_Text refTargetServer;
+
 		/// <summary>
 		/// The scroll list displaying the modification files.
 		/// </summary>
@@ -59,7 +73,12 @@ namespace ECellDive.Modules
 		/// Buffer storing the information to save the modification file.
 		/// </summary>
 		private ISaveable targetSaveable;
-		
+
+		/// <inheritdoc/>
+		protected override List<ServerData> GetAvailableServers()
+		{
+			return HttpNetPortal.Instance.GetModuleServers("HttpServerModificationModule");
+		}
 
 		/// <summary>
 		/// Requests the list of modification file to the server.
@@ -83,12 +102,12 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Gets the first modifiable from <see cref="GameNetPortal.modifiables"/>
+		/// Gets the first modifiable from <see cref="GameNetDataManager.modifiables"/>
 		/// that matches the <paramref name="_name"/>
 		/// </summary>
 		private IModifiable GetModifiable(string _name)
 		{
-			foreach(IModifiable _mod in GameNetPortal.Instance.modifiables)
+			foreach(IModifiable _mod in GameNetDataManager.Instance.modifiables)
 			{
 				if (_mod.CheckName(_name))
 				{
@@ -269,13 +288,32 @@ namespace ECellDive.Modules
 
 		/// <summary>
 		/// Sets the <see cref="targetSaveable"/> to the object that is of the same index in
-		/// <see cref="ECellDive.Multiplayer.GameNetPortal.saveables"/> than the <paramref name="_container"/>
+		/// <see cref="ECellDive.Multiplayer.GameNetDataManager.saveables"/> than the <paramref name="_container"/>
 		/// sibling index.
 		/// </summary>
 		public void SetTargetSaveable(GameObject _container)
 		{
-			targetSaveable = GameNetPortal.Instance.saveables[_container.transform.GetSiblingIndex()];
+			targetSaveable = GameNetDataManager.Instance.saveables[_container.transform.GetSiblingIndex()];
 			refSelectedBaseModel.text = _container.GetComponentInChildren<TMP_Text>().text;
+		}
+
+		/// <summary>
+		/// Sets the <see cref="HttpServerBaseModule.serverData"/> to the server selected by retrieving
+		/// the server data based in the index of the button representing the server
+		/// in the <see cref="refAvailableServersScrollList"/>.
+		/// </summary>
+		/// <param name="_serverButtonGO">
+		/// The gameobject encapsulating the button representing the server
+		/// in the <see cref="refAvailableServersScrollList"/>.
+		/// </param>
+		/// <remarks>
+		/// Used as callback from the editor.
+		/// </remarks>
+		public void SetTargetServer(GameObject _serverButtonGO)
+		{
+			List<ServerData> availableServers = GetAvailableServers();
+			serverData = availableServers[_serverButtonGO.transform.GetSiblingIndex()];
+			refTargetServer.text = serverData.name;
 		}
 
 		/// <summary>
@@ -305,7 +343,7 @@ namespace ECellDive.Modules
 			//stop the "Work In Progress" animation of this module
 			animLW.StopLoop();
 
-			if (GameNetPortal.Instance.saveables.Count > 0)
+			if (GameNetDataManager.Instance.saveables.Count > 0)
 			{
 				//Flash of the succesful color.
 				GetComponentInChildren<ColorFlash>().Flash(1);
@@ -373,6 +411,27 @@ namespace ECellDive.Modules
 				//Flash of the fail color.
 				GetComponentInChildren<ColorFlash>().Flash(0);
 			}
+		}
+
+		/// <summary>
+		/// The public interface to populate the scroll list <see cref="refAvailableServersScrollList"/>
+		/// of available servers for this module.
+		/// </summary>
+		/// <remarks>
+		/// Used as callback from the editor.
+		/// </remarks>
+		public void UpdateAvailableServers()
+		{
+			List<ServerData> availableServers = GetAvailableServers();
+
+			refAvailableServersScrollList.ClearScrollList();
+			foreach (ServerData server in availableServers)
+			{
+				GameObject serverUIContainer = refAvailableServersScrollList.AddItem();
+				serverUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = server.name + "\n<size=0.025>" + server.serverIP + ":" + server.port + "</size>";
+				serverUIContainer.SetActive(true);
+			}
+			refAvailableServersScrollList.UpdateScrollList();
 		}
 	}
 }

@@ -1,11 +1,11 @@
 # Project Code conventions
-The following are loose constraints. We understand first draft of a code might not respect that. But as it stabilizes and is updated, any code file should tend toward those conventions.
+The following are loose constraints. Please understand fist versions of code might not respect them. But as it stabilizes and is updated, we will tend toward those conventions.
 
 ## Naming
-- Generally, the name of the file matches the name of the main class in the file (if any).
-- File names, class names, and method names are Pascal Case (aka upper camel case) so every word in a classe name start by an upper case letter (e.g., `SomeScript.cs`, `AClassName`, `AMethodName`).
+- Generally, the name of the file matches the name of the main class in the file (if any). This is mandatory for Unity's `MonoBehaviour` anyway.
+- File names, class names, and method names are Pascal Case (aka upper camel case) so every word in a class name start by an upper case letter (e.g., `SomeScript.cs`, `AClassName`, `AMethodName`).
 - Interface names start with a capital `I` and are then Pascal Case; that's pretty standard in C# (e.g., `IHereIsAnInterface`)
-- Field names and property names are camel Case so they start with a low case letter and then wevery word start with an upper case letter (e.g. `hereIsAFieldName`, `andHereIsAPropertyName`). Camel case for property name is apparently not C# standard.
+- Field names and property names are camel Case so they start with a low case letter and then every word start with an upper case letter (e.g. `hereIsAFieldName`, `andHereIsAPropertyName`). Camel case for property name is apparently not C# standard.
 - Private fields of properties are prefixed with `m_` and then repeats the name of the property (e.g., `propertyWithFieldName`, `m_propertyWithFieldName`):
   ```csharp
   ///<summary>
@@ -22,7 +22,7 @@ The following are loose constraints. We understand first draft of a code might n
     set => m_aBoolProperty = value;
   }
   ```
-- Region statement' names are bounded by hyphens (`-`), include the name of the interface or class the methods or fields they contain come from, and tell if the content of the region are methods or members. Generally speaking, no region contain both.
+- Region statement' names are bounded by hyphens (`-`), include the name of the interface or class the methods or fields they contain come from, and tell if the content of the region are methods or other members (i.e. fields). Generally speaking, no region contain both.
   ```csharp
   #region - IHereIsTheInterfaceName Members -
   //here are fields and properties of interface IHereIsTheInterfaceName
@@ -40,8 +40,8 @@ The following are loose constraints. We understand first draft of a code might n
 
 
 ## File Layout
-- Methods inplementations should appear in alphabetical order.
-- There is no order constraint for properties nor fields. This is to allow developers to organise the order in which the fields appear in the Inspector of Unity as they want.
+- Methods implementations should appear in alphabetical order.
+- There is no order constraint for properties nor fields. This is to allow developers to organize the order in which the fields appear in the Inspector of Unity as they want.
 - Interface implementations should appear in alphabetical oder of their interface name.
 - Interface implementations should be bounded by `#region` and `#endregion` statements to allow popular IDEs to create automatic foldout buttons for readability.
 - Unity methods overriden in a class (e.g., `Start`, `Update`, `OnTriggerEnter`, `OnNetworkSpawn`,...) should appear before methods of that class.
@@ -90,7 +90,7 @@ public class ANewGOComponent: MonoBehaviour, IAnInterface, IBebopInterface, ICow
 ```
 
 ## Namespaces
-All the code base is encapsulated in namespaces. At the root is `ECellDive` and then various other namespace levels branche out from there.
+All the code base is encapsulated in namespaces. At the root is `ECellDive` and then various other namespace levels branch out from there.
 Generally speaking, the layout of the directories under `Assets\Scripts` in the project represent the namespace ramifications where the folder names correspond to namespace levels. There are a few mismatches that will eventually be adjusted.
 
 ## Document everything!

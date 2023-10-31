@@ -1,8 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using ECellDive.SceneManagement;
 using ECellDive.UI;
-using System.Collections;
 using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.Tutorials
@@ -54,15 +55,15 @@ namespace ECellDive.Tutorials
 			guiManager = StaticReferencer.Instance.refExternalObjectContainer.GetComponent<GUIManager>();
 
 			//Hide the main menu.
-			guiManager.refMainMenu.SetActive(!guiManager.refMainMenu.activeSelf);
+			guiManager.refMainMenu.SetActive(false);
 
 			//The user cannot interact with any of the buttons of the main menu.
-			guiManager.refMainMenu.GetComponent<MainMenuManager>().SwitchGroupInteractibility();
+			guiManager.refMainMenu.GetComponent<MainMenuManager>().ForceGroupInteractibility(false);
 
 			//Since we are going to progressively add modules in the scene,
 			//we also deactivate the interactibility of the buttons in the 
 			//modules menu.
-			guiManager.refModulesMenuManager.SwitchGroupInteractibility();
+			guiManager.refModulesMenuManager.ForceGroupInteractibility(false);
 		}
 
 		public override void Quit()

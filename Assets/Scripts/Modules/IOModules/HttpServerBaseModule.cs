@@ -1,4 +1,4 @@
-using System.Linq;
+using System.Collections.Generic;
 using System.Collections;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
@@ -15,18 +15,21 @@ namespace ECellDive.Modules
 	public abstract class HttpServerBaseModule : Module
 	{
 		/// <summary>
-		/// The data structure storing the server address and port.
+		/// The data structure storing information about the server*
+		/// this module uses.
 		/// </summary>
+		[Header("HttpServerBaseModule")]//A Header to make the inspector more readable
 		public ServerData serverData = new ServerData
 		{
+			name = "Kosmogora",
 			port = "8000",
 			serverIP = "127.0.0.1"
 		};
 
 		/// <summary>
-		/// The data structure storing the input fields for the server address and port.
+		/// The names of the Http commands that this module can send to the server.
 		/// </summary>
-		public ServerUIData serverUIData;
+		public string[] implementedHttpAPI;
 
 		/// <summary>
 		/// The data structure to store request data.
@@ -38,35 +41,6 @@ namespace ECellDive.Modules
 			requestProcessed = true,
 			requestSuccess = true
 		};
-
-		/// <summary>
-		/// The array of renderers of this module
-		/// </summary>
-		/// <remarks>
-		/// Used to change the color of the module when highlighted.
-		/// </remarks>
-		[SerializeField] private Renderer[] renderers;
-
-		/// <summary>
-		/// The property block used to change the color of the module.
-		/// </summary>
-		private MaterialPropertyBlock mpb;
-
-		/// <summary>
-		/// The ID of the color property in the shader.
-		/// </summary>
-		private int colorID;
-
-		private void OnEnable()
-		{
-			mpb = new MaterialPropertyBlock();
-			colorID = Shader.PropertyToID("_Color");
-			mpb.SetVector(colorID, defaultColor);
-			foreach (Renderer _renderer in renderers)
-			{
-				_renderer.SetPropertyBlock(mpb);
-			}
-		}
 
 		/// <summary>
 		/// Simple API to add pages to the base server url.
@@ -182,6 +156,17 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
+		/// Gets the list of available Http servers for this module.
+		/// </summary>
+		/// <remarks>
+		/// The derived classes will probably use <see cref="ECellDive.IO.HttpNetPortal"/>
+		/// </remarks>
+		/// <returns>
+		/// Returns the list of available servers for this module.
+		/// </returns>
+		protected abstract List<ServerData> GetAvailableServers();
+
+		/// <summary>
 		/// Typically used by the coroutines to wait until the
 		/// request sent to the servers has been processed.
 		/// </summary>
@@ -190,55 +175,5 @@ namespace ECellDive.Modules
 		{
 			return requestData.requestProcessed;
 		}
-
-		/// <summary>
-		/// Sets the value for the IP in <see cref="HttpServerBaseModule.serverData"/>
-		/// </summary>
-		/// <remarks>
-		/// Called back on value change of the input field dedicated to the IP
-		/// </remarks>
-		public void UpdateIP()
-		{
-			serverData.serverIP = serverUIData.refIPInputField.text;
-		}
-
-		/// <summary>
-		/// Sets the value for the Port in <see cref="HttpServerBaseModule.serverData"/>
-		/// </summary>
-		/// <remarks>
-		/// Called back on value change of the input field dedicated to the Port
-		/// </remarks>
-		public void UpdatePort()
-		{
-			serverData.port = serverUIData.refPortInputField.text;
-		}
-
-		#region - IHighlightable -
-
-		/// <inheritdoc/>
-		public override void ApplyColor(Color _color)
-		{
-			mpb.SetVector(colorID, _color);
-			foreach (Renderer _renderer in renderers)
-			{
-				_renderer.SetPropertyBlock(mpb);
-			}
-		}
-
-		/// <inheritdoc/>
-		public override void SetHighlight()
-		{
-			ApplyColor(highlightColor);
-		}
-
-		/// <inheritdoc/>
-		public override void UnsetHighlight()
-		{
-			if (!forceHighlight)
-			{
-				ApplyColor(defaultColor);
-			}
-		}
-		#endregion
 	}
 }

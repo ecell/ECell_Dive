@@ -41,12 +41,6 @@ namespace ECellDive.IO
         /// for the Initiate function.</param>
         public static void Populate(CyJsonPathway _cyJsonPathway)
         {
-            //Get raw nodes data from the cyjson file
-            _cyJsonPathway.SetNodes();
-
-            //Get raw edges data from the cyjson file
-            _cyJsonPathway.SetEdges();
-
             //Organize edges and nodes information
             _cyJsonPathway.PopulateNodes();
             _cyJsonPathway.PopulateEdges();

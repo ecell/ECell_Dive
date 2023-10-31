@@ -5,9 +5,12 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+
+using ECellDive.IO;
 using ECellDive.Multiplayer;
 using ECellDive.Utility;
 using ECellDive.UI;
+using ECellDive.Utility.Data.Network;
 
 namespace ECellDive.Modules
 {
@@ -16,6 +19,18 @@ namespace ECellDive.Modules
 	/// </summary>
 	public class HttpServerImporterModule : HttpServerBaseModule
 	{
+		/// <summary>
+		/// The scroll list of the available servers this module can use.
+		/// </summary>
+		[Header("HttpServerImporterModule")]//A Header to make the inspector more readable
+		public OptimizedVertScrollList refAvailableServersScrollList;
+
+		/// <summary>
+		/// The reference to the text mesh displaying the name of the server
+		/// this module is using.
+		/// </summary>
+		public TMP_Text refTargetServer;
+
 		/// <summary>
 		/// The scroll list to display the models available on the server.
 		/// </summary>
@@ -54,6 +69,12 @@ namespace ECellDive.Modules
 			gameNetModuleSpawner = GameObject.FindGameObjectWithTag("GameNetModuleSpawner").GetComponent<GameNetModuleSpawner>();
 		}
 
+		/// <inheritdoc/>
+		protected override List<ServerData> GetAvailableServers()
+		{
+			return HttpNetPortal.Instance.GetModuleServers("HttpServerImporterModule");
+		}
+
 		/// <summary>
 		/// Requests the models list to the server.
 		/// </summary>
@@ -71,17 +92,6 @@ namespace ECellDive.Modules
 		private void GetModelCyJs(string _modelName)
 		{
 			string requestURL = AddPagesToURL(new string[] { "open_view", _modelName });
-			StartCoroutine(GetRequest(requestURL));
-		}
-
-		/// <summary>
-		/// Requests the SBML file of a model to the server.
-		/// </summary>
-		/// <param name="_modelName">The name of the model as
-		/// stored in the server.</param>
-		private void GetModelSBML(string _modelName)
-		{
-			string requestURL = AddPagesToURL(new string[] { "open_sbml", _modelName });
 			StartCoroutine(GetRequest(requestURL));
 		}
 
@@ -133,6 +143,46 @@ namespace ECellDive.Modules
 				//Flash of the fail color
 				GetComponentInChildren<ColorFlash>().Flash(0);
 			}
+		}
+
+		/// <summary>
+		/// Sets the <see cref="HttpServerBaseModule.serverData"/> to the server selected by retrieving
+		/// the server data based in the index of the button representing the server
+		/// in the <see cref="refAvailableServersScrollList"/>.
+		/// </summary>
+		/// <param name="_serverButtonGO">
+		/// The gameobject encapsulating the button representing the server
+		/// in the <see cref="refAvailableServersScrollList"/>.
+		/// </param>
+		/// <remarks>
+		/// Used as callback from the editor.
+		/// </remarks>
+		public void SetTargetServer(GameObject _serverButtonGO)
+		{
+			List<ServerData> availableServers = GetAvailableServers();
+			serverData = availableServers[_serverButtonGO.transform.GetSiblingIndex()];
+			refTargetServer.text = serverData.name;
+		}
+
+		/// <summary>
+		/// The public interface to populate the scroll list <see cref="refAvailableServersScrollList"/>
+		/// of available servers for this module.
+		/// </summary>
+		/// <remarks>
+		/// Used as callback from the editor.
+		/// </remarks>
+		public void UpdateAvailableServers()
+		{
+			List<ServerData> availableServers = GetAvailableServers();
+
+			refAvailableServersScrollList.ClearScrollList();
+			foreach (ServerData server in availableServers)
+			{
+				GameObject serverUIContainer = refAvailableServersScrollList.AddItem();
+				serverUIContainer.GetComponentInChildren<TextMeshProUGUI>().text = server.name + "\n<size=0.025>" + server.serverIP + ":" + server.port + "</size>";
+				serverUIContainer.SetActive(true);
+			}
+			refAvailableServersScrollList.UpdateScrollList();
 		}
 
 		/// <summary>

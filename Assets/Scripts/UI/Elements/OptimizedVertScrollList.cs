@@ -29,7 +29,7 @@ namespace ECellDive.UI
 		/// <summary>
 		/// A reference to the prefab of the item to be displayed in the scroll list.
 		/// </summary>
-		public GameObject refItem;
+		public GameObject itemPrefab;
 
 		/// <summary>
 		/// Padding information for the items in the scroll list.
@@ -61,7 +61,7 @@ namespace ECellDive.UI
 		}
 
 		/// <summary>
-		/// Adds an item (<see cref="refItem"/>) as a child of the content
+		/// Adds an item (<see cref="itemPrefab"/>) as a child of the content
 		/// (<see cref="refContent"/>).
 		/// </summary>
 		/// <returns>
@@ -73,7 +73,7 @@ namespace ECellDive.UI
 			if (refContent.childCount > 0)
 			{
 				RectTransform lastChild = refContent.GetChild(refContent.childCount - 1).GetComponent<RectTransform>();
-				go = Instantiate(refItem, refContent);
+				go = Instantiate(itemPrefab, refContent);
 				RectTransform goRT = go.GetComponent<RectTransform>();
 				goRT.anchoredPosition = new Vector2(
 					0.5f * goRT.rect.width + padding.left,
@@ -81,7 +81,7 @@ namespace ECellDive.UI
 			}
 			else
 			{
-				go = Instantiate(refItem, refContent);
+				go = Instantiate(itemPrefab, refContent);
 				RectTransform goRT = go.GetComponent<RectTransform>();
 				goRT.anchoredPosition = new Vector2(
 					0.5f * goRT.rect.width + padding.left,
@@ -89,6 +89,21 @@ namespace ECellDive.UI
 
 			}
 			return go;
+		}
+
+		/// <summary>
+		/// Clears the content of the scroll list.
+		/// </summary>
+		public void ClearScrollList()
+		{
+			while(refContent.childCount > 0)
+			{
+#if UNITY_EDITOR
+				DestroyImmediate(refContent.GetChild(0).gameObject);
+#else
+				Destroy(refContent.GetChild(0).gameObject);
+#endif
+            }
 		}
 
 		/// <summary>

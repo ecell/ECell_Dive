@@ -97,7 +97,7 @@ namespace ECellDive
             /// <summary>
             /// The target to look at.
             /// </summary>
-            Transform lookAtTarget { get; }
+            Transform lookAtTarget { get; set; }
 
             /// <summary>
             /// The method to call to make the gameobject look at its target.
@@ -125,7 +125,7 @@ namespace ECellDive
             /// The gameobject used as reference for the positioning of the
             /// gameobject that pops up.
             /// </summary>
-            Transform popupTarget { get; }
+            Transform popupTarget { get; set; }
 
             void PopUp();
         }
@@ -136,6 +136,12 @@ namespace ECellDive
         /// </summary>
         public interface IInteractibility
         {
+            /// <summary>
+            /// A buffer to store the previous interactibility state of
+            /// the <see cref="targetGroup"/>.
+            /// </summary>
+            bool[] previousInteractibility { get; }
+
             /// <summary>
             /// An array of references to UnityEngine.UI.Selectable component.
             /// </summary>
@@ -151,6 +157,56 @@ namespace ECellDive
             void ForceGroupInteractibility(bool _interactibility);
 
             /// <summary>
+            /// Forces the value <paramref name="_interactibility"/> upon
+            /// UnityEngine.UI.Selectable.interactable for the member with
+            /// index <paramref name="_targetIdx"/> in <see cref="targetGroup"/>.
+            /// </summary>
+            /// <param name="_targetIdx">
+            /// Index of a UnityEngine.UI.Selectable in <see cref="targetGroup"/>
+            /// to force the interactibility state of.
+            /// </param>
+            /// <param name="_interactibility">
+            /// The value to apply to UnityEngine.UI.Selectable.interactable.
+            /// </param>
+            void ForceSingleInteractibility(int _targetIdx, bool _interactibility);
+
+            /// <summary>
+            /// Assigns the stored interactibility state in <see cref="previousInteractibility"/>
+            /// to UnityEngine.UI.Selectable.interactable for each member of the
+            /// <see cref="targetGroup"/>.
+            /// </summary>
+            void RestoreGroupInteractibility();
+
+            /// <summary>
+            /// Assigns the stored interactibility state in <see cref="previousInteractibility"/>
+            /// to UnityEngine.UI.Selectable.interactable for the member with index
+            /// <paramref name="_targetIdx"/> in <see cref="targetGroup"/>.
+            /// </summary>
+            /// <param name="_targetIdx">
+            /// Index of a UnityEngine.UI.Selectable in <see cref="targetGroup"/>
+            /// to restore the interactibility state of.
+            /// </param>
+            void RestoreSingleInteractibility(int _targetIdx);
+
+            /// <summary>
+            /// Assigns the value of UnityEngine.UI.Selectable.interactable to
+            /// <see cref="previousInteractibility"/> for each member of the
+            /// <see cref="targetGroup"/>.
+            /// </summary>
+            void StoreGroupInteractibility();
+
+            /// <summary>
+            /// Assigns the value of UnityEngine.UI.Selectable.interactable to
+            /// <see cref="previousInteractibility"/> for the member with index
+            /// <paramref name="_targetIdx"/> in <see cref="targetGroup"/>.
+            /// </summary>
+            /// <param name="_targetIdx">
+            /// Index of a UnityEngine.UI.Selectable in <see cref="targetGroup"/>
+            /// to store the interactibility state of.
+            /// </param>
+            void StoreSingleInteractibility(int _targetIdx);
+
+            /// <summary>
             /// Switches the value of UnityEngine.UI.Selectable.interactable to
             /// its opposite for each member of the <see cref="targetGroup"/>.
             /// </summary>
@@ -158,12 +214,12 @@ namespace ECellDive
 
             /// <summary>
             /// Switches the value of UnityEngine.UI.Selectable.interactable to
-            /// its opposite for the member with index <paramref name="targetIdx"/>
+            /// its opposite for the member with index <paramref name="_targetIdx"/>
             /// in <see cref="targetGroup"/>.
             /// </summary>
-            /// <param name="targetIdx">Index of a UnityEngine.UI.Selectable in <see
+            /// <param name="_targetIdx">Index of a UnityEngine.UI.Selectable in <see
             /// cref="targetGroup"/></param>
-            void SwitchSingleInteractibility(int targetIdx);
+            void SwitchSingleInteractibility(int _targetIdx);
         }
     }
 }
