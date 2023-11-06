@@ -12,7 +12,7 @@ In this section, we give context to answer the following questions:
 - [How are action modules implemented?](./about_modules.md)
 - [How to add new modules?](./about_modules.md#general-workflow-to-create-a-new-module)
 - [How to communicate with `Kosmogora-like` servers?](./about_modules.md#modules-to-communicate-with-kosmogora)
-- How to use the API to generate graphs? (coming soon)
+- [How to use the API to build graphs?](about_graphs.md)
 - [What makes a _Player_?](./about_player.md)
 - [How is the main scene structured?](./about_scenes.md#main-scene-of-the-project)
 - [How works the _Dive Scene_ system?](./about_scenes.md#dive-scenes)
