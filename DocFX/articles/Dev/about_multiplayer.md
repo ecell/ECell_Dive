@@ -15,7 +15,7 @@ We used the sample project [Boss Room](https://docs-multiplayer.unity3d.com/netc
 
 # Broadcast Data 
 
-NetGO gives two solutions to share data between over the network between clients. The first is [NetworkVariables](https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls) and the second is [Remote Procedure Calls](https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls).
+NetGO gives two solutions to share data over the network between clients. The first is [NetworkVariables](https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls) and the second is [Remote Procedure Calls](https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls).
 
 ## "Small ones" with NetworkVariables
 In _ECellDive_ we used network variables to easily synchronize "small" data. For example, the [currentColor](xref:ECellDive.Interfaces.IColorHighlightableNet.currentColor) in the interface [IColorHighlightableNet](xref:ECellDive.Interfaces.IColorHighlightableNet) to synchronize the color change of modules when users point at them. This is very useful to easily share on the network which module a user is currently interacting with. Or the [knockout](xref:ECellDive.Interfaces.IKnockable.knockedOut) status in the interface [IKnockable](xref:ECellDive.Interfaces.IKnockable) to guarantee that the state of a model is synchronized for all users when one of them is knocking out a reaction.
@@ -24,7 +24,15 @@ There are many others in the project.
 
 ## "Big ones" with Remote Procedure Calls (RPCs)
 
-### Example 1: Broadcast data imported by a user from Kosmogora
+### Broadcast data when a new client connects
+After a client managed to connect to a multiplayer session (see the section above on [Hosting and Joining](./about_multiplayer.md#hosting-and-joining)), several data exchange cascades are triggered from the client to the server via the [NetGO](https://docs-multiplayer.unity3d.com/netcode/current/about/index.html) callback `OnNetworkSpawn`. This involves the [Player](xref:ECellDive.PlayerComponents.Player), the [GameNetDataManager](xref:ECellDive.Multiplayer.GameNetDataManager), and the [DiveScenesManager](xref:ECellDive.SceneManagement.DiveScenesManager).  
+On network spawn, the [GameNetDataManager](xref:ECellDive.Multiplayer.GameNetDataManager) on the client's side requests the server side of the GO to send it the player data and the module data.
+In the meantime, on network spawn, the [Player](xref:ECellDive.PlayerComponents.Player) is subscribing to [OnClientReceivedAllPlayerNetData](xref:ECellDive.Multiplayer.GameNetDataManager.OnClientReceivedAllPlayerNetData) and [OnClientReceivedAllModules](xref:ECellDive.Multiplayer.GameNetDataManager.OnClientReceivedAllModules) from the the [GameNetDataManager](xref:ECellDive.Multiplayer.GameNetDataManager) which are triggered once the server side has finished sending all data about the already connected players to the client side, as well as all the data modules loaded in the multiplayer session. These callbacks will trigger the execution of methods on the client side to [update the name tags of the players](xref:ECellDive.PlayerComponents.Player.UpdatePlayerNamesInContainers(System.UInt64)) in each other scenes, and to [drop the new client in the appropriate scene](ECellDive.PlayerComponents.Player.SpawnInDiveScene(System.UInt64)).
+
+> [!NOTE]
+> Although we are waiting for the local client to receive all data from the server before executing [UpdatePlayerNamesInContainers](xref:ECellDive.PlayerComponents.Player.UpdatePlayerNamesInContainers(System.UInt64)) and [SpawnInDiveScene](ECellDive.PlayerComponents.Player.SpawnInDiveScene(System.UInt64)), the subsequent method calls still use `ServerRpc` to use the data stored on the side of the server instead of the synchronized data. This makes the data synchronization pointless at this stage and MUST BE REFACTORED.
+
+### Broadcast data imported by a user from Kosmogora
 
 When a user imports data in a dive scene from a [Kosmogora-like](~/articles/UserManual/Network/connecting_to_Kosmogora.md) server thanks to [HttpServerImporterModule](xref:ECellDive.Modules.HttpServerImporterModule), it is immediately sent to every other user in the multiplayer session. We could have enforced that every user in the multiplayer session have the same access to the [Kosmogora-like](~/articles/UserManual/Network/connecting_to_Kosmogora.md) server. But we did not because it is likely that, in a collaborative setting, some users have access to [Kosmogora-like](~/articles/UserManual/Network/connecting_to_Kosmogora.md) servers hosted on their institution's network that are not accessible to outsiders. Hence, when data is imported by a user, it must transit to other users through the multiplayer network.
 
@@ -35,7 +43,7 @@ In the system we implemented, the data is fragmented into chunks of 1024 bytes a
 A big downside of the current implementation state of the method is that the client only checks is it has received all fragments but it has not way to know which fragment is missing, should it be the case. This must be covered before even thinking of enabling multiplayer session through the internet for _ECellDive_.  
 
 
-### Example 2: Broadcast _Dive Scene_ generation on first dive from any user
+### Broadcast _Dive Scene_ generation on first dive from any user
 
 Before users can dive in a data module (e.g., [CyJsonModule](xref:ECellDive.Modules.CyJsonModule)), its content must be generated and hidden within a dive scene. This generation happens on the first dive by any of the user in a multiplayer session. Since the generated data must be visible by every user, it must be instantiated (spawned by the server). But there may be a lot of such objects in the dive scene so the generation must be batched to avoid exceeding the communication limits set by `Unity Transport` (such limits are mandatory since, in principle, too many communications or too big data traffic could be because of malicious attack of the server).
 
