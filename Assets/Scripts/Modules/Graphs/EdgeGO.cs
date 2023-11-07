@@ -306,8 +306,8 @@ namespace ECellDive.Modules
 		public void ReverseOrientation()
 		{
 			Vector3 startBuffer = lineRenderers[0].GetPosition(0);
-			lineRenderers[0].SetPosition(0, lineRenderers[0].GetPosition(1));
-			lineRenderers[0].SetPosition((int)curvePointsCount-1, startBuffer);
+			lineRenderers[0].SetPosition(0, lineRenderers[0].GetPosition((int)curvePointsCount - 1));
+			lineRenderers[0].SetPosition((int)curvePointsCount - 1, startBuffer);
 		}
 
 		/// <inheritdoc/>
