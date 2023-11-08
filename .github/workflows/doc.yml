@@ -12,8 +12,9 @@ jobs:
     name: plantuml
     steps:
     - name: checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
+        ref: documentation
         lfs: true
 
     - name: plantuml
@@ -31,8 +32,9 @@ jobs:
     runs-on: windows-latest # Required by DocFX
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
+          ref: documentation
           lfs: true
 
       - name: Install DocFX
@@ -55,8 +57,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
+          ref: documentation
           lfs: true
 
       # Download the generated documentation
