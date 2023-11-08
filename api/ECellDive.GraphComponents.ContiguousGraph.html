@@ -87,7 +87,7 @@
 
   <h1 id="ECellDive_GraphComponents_ContiguousGraph" data-uid="ECellDive.GraphComponents.ContiguousGraph" class="text-break">
     Class ContiguousGraph
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -152,15 +152,17 @@ nodes in a list. Nodes are represented by integers.</p>
 
 
   <h2 id="ECellDive_GraphComponents_ContiguousGraph_examples">Examples</h2>
-  <p>[node1, node2, node3, ...., nodeN] yields the following graph:
-node1 -&gt; node2 -&gt; node3 -&gt; ... -&gt; nodeN
-If the graph may be cyclic with nodes repeating. [node1, node2, node3, node1, node4]
-yields the following graph:
-|-----------------------|
-|                       v
+  <p><code>[node1, node2, node3, ...., nodeN]</code> yields the graph
+<code>node1 -&gt; node2 -&gt; node3 -&gt; ... -&gt; nodeN</code>
+The graph may be cyclic with repeating nodes.
+For example, <code>[node1, node2, node3, node1, node4]</code>
+yields:</p>
+<pre><code>  ┌-----------------------┐
+  |                       ꓦ
 node1 -&gt; node2 -&gt; node3 node4
-^                 |
-|-----------------|</p>
+  ꓥ                 |
+  └-----------------┘
+</code></pre>
 
 
 
@@ -173,7 +175,7 @@ node1 -&gt; node2 -&gt; node3 node4
 
   <h3 id="ECellDive_GraphComponents_ContiguousGraph__ctor_System_String_" data-uid="ECellDive.GraphComponents.ContiguousGraph.#ctor(System.String)">
   ContiguousGraph(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -207,7 +209,7 @@ node1 -&gt; node2 -&gt; node3 node4
 
   <h3 id="ECellDive_GraphComponents_ContiguousGraph_m_edges" data-uid="ECellDive.GraphComponents.ContiguousGraph.m_edges">
   m_edges
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The field of the property <a class="xref" href="ECellDive.GraphComponents.ContiguousGraph.html#ECellDive_GraphComponents_ContiguousGraph_edges">edges</a>.</p>
@@ -238,7 +240,7 @@ node1 -&gt; node2 -&gt; node3 node4
 
   <h3 id="ECellDive_GraphComponents_ContiguousGraph_m_name" data-uid="ECellDive.GraphComponents.ContiguousGraph.m_name">
   m_name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The field of the property <a class="xref" href="ECellDive.GraphComponents.ContiguousGraph.html#ECellDive_GraphComponents_ContiguousGraph_name">name</a>.</p>
@@ -269,7 +271,7 @@ node1 -&gt; node2 -&gt; node3 node4
 
   <h3 id="ECellDive_GraphComponents_ContiguousGraph_m_nodes" data-uid="ECellDive.GraphComponents.ContiguousGraph.m_nodes">
   m_nodes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The field of the property <a class="xref" href="ECellDive.GraphComponents.ContiguousGraph.html#ECellDive_GraphComponents_ContiguousGraph_nodes">nodes</a>.</p>
@@ -305,7 +307,7 @@ node1 -&gt; node2 -&gt; node3 node4
 
   <h3 id="ECellDive_GraphComponents_ContiguousGraph_edges" data-uid="ECellDive.GraphComponents.ContiguousGraph.edges">
   edges
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The edges of this graph.</p>
@@ -337,7 +339,7 @@ node1 -&gt; node2 -&gt; node3 node4
 
   <h3 id="ECellDive_GraphComponents_ContiguousGraph_name" data-uid="ECellDive.GraphComponents.ContiguousGraph.name">
   name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The name of the graph.</p>
@@ -369,7 +371,7 @@ node1 -&gt; node2 -&gt; node3 node4
 
   <h3 id="ECellDive_GraphComponents_ContiguousGraph_nodes" data-uid="ECellDive.GraphComponents.ContiguousGraph.nodes">
   nodes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The nodes of this graph.</p>
@@ -405,7 +407,7 @@ node1 -&gt; node2 -&gt; node3 node4
 
   <h3 id="ECellDive_GraphComponents_ContiguousGraph_Populate_System_Collections_Generic_List_System_Int32__" data-uid="ECellDive.GraphComponents.ContiguousGraph.Populate(System.Collections.Generic.List{System.Int32})">
   Populate(List&lt;int&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Populate the nodes and edges of the graph.
@@ -438,7 +440,7 @@ Overrides the previous data.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L23" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\ContiguousGraph.cs/#L26" class="edit-link">Edit this page</a>
         </div>
 
 

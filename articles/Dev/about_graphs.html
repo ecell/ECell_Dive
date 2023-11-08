@@ -87,7 +87,7 @@ In <em>ECellDive</em>, the graph API was used to encode the metabolic pathways f
 <p>The API to encode graphs is separated in two parts that we call <em>layers</em> in the following sections. The data layer are interfaces limited to data fields describing an edge, node, or a graph. This layer also includes the <code>struct</code> or <code>class</code> that implement these interfaces.<br>
 Instances of objects from the data layer are then usually class members of objects in the <a href="about_graphs.html#gameobjects-layer">GameObjects (GOs) Layer</a>. Classes in the GOs layer are <code>MonoBehaviour</code> that can be attached as components to GOs in Unity's Editor.</p>
 <h2 id="add-a-new-graph-component">Add a New Graph Component</h2>
-<p>There are two ways to add a new type of edge, node, or graph. One is to only define a new object in the GO Layer that uses the existing data structures (e.g., <a href="xref:ECellDive.GraphComponents.Edge">Edge</a>, <a href="xref:ECellDive.GraphComponents.Node">Node</a>, etc.) in the Data layer. Or, you can define a new object in the data layer which you can then use in a new object in the GO Layer.<br>
+<p>There are two ways to add a new type of edge, node, or graph. One is to only define a new object in the GO Layer that uses the existing data structures (e.g., <a class="xref" href="../../api/ECellDive.Utility.Data.Graph.Edge.html">Edge</a>, <a class="xref" href="../../api/ECellDive.Utility.Data.Graph.Node.html">Node</a>, etc.) in the Data layer. Or, you can define a new object in the data layer which you can then use in a new object in the GO Layer.<br>
 In the following example we define a new version for everything: a new graph data structure with using a new type of edge and a new type of node. Then, this new graph is encapsulated in a new module.
 You can start by copying the example files that follow:</p>
 <details>
@@ -570,8 +570,8 @@ You can start by copying the example files that follow:</p>
 <ul>
 <li><a class="xref" href="../../api/ECellDive.Utility.Data.Graph.CyJsonEdge.html">CyJsonEdge</a></li>
 <li><a class="xref" href="../../api/ECellDive.Utility.Data.Graph.CyJsonNode.html">CyJsonNode</a></li>
-<li><a href="xref:ECellDive.GraphComponents.Edge">Edge</a></li>
-<li><a href="xref:ECellDive.GraphComponents.Node">Node</a></li>
+<li><a class="xref" href="../../api/ECellDive.Utility.Data.Graph.Edge.html">Edge</a></li>
+<li><a class="xref" href="../../api/ECellDive.Utility.Data.Graph.Node.html">Node</a></li>
 </ul>
 </li>
 <li>Classes
