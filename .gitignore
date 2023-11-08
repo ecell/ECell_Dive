@@ -16,7 +16,7 @@
 !/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
-# /[Aa]ssets/AssetStoreTools*
+/[Aa]ssets/AssetStoreTools*
 
 # TextMesh Pro files
 [Aa]ssets/TextMesh*Pro/
@@ -68,3 +68,10 @@ UserSettings/
 
 #Sattelite packages unrelated to the Unity e.g. DocFx app
 Packages/docfx.*
+
+#Docfx build directory
+docs/
+
+# To avoid tracking the plugin to view the PlayerPrefs
+Assets/Plugins/PlayerPrefsEditor/
+Assets/Plugins/PlayerPrefsEditor.meta

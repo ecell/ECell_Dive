@@ -4,26 +4,43 @@ using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.Multiplayer;
 using ECellDive.Utility;
+using ECellDive.SceneManagement;
 
 namespace ECellDive.PlayerComponents
 {
+	/// <summary>
+	/// The logic behind the player gameobject.
+	/// </summary>
 	public class Player : NetworkBehaviour,
 						  INamed,
 						  IMlprVisibility
 	{
+		/// <summary>
+		/// The gameobject encapsulating the head of the player.
+		/// </summary>
 		[Header("Visibility objects")]
 		public GameObject head;
+
+		/// <summary>
+		/// The gameobject encapsulating the controllers of the player.
+		/// </summary>
 		public GameObject rootControllers;
 
 		#region - INamed Members -
+		/// <summary>
+		/// The field of the <see cref="nameTextFieldContainer"/> property.
+		/// </summary>
 		[Header("Name")]
 		[SerializeField] private GameObject m_nameTextFieldContainer;
+		
+		/// <inheritdoc/>
 		public GameObject nameTextFieldContainer
 		{
 			get => m_nameTextFieldContainer;
 			private set => m_nameTextFieldContainer = value;
 		}
 
+		/// <inheritdoc/>
 		public TextMeshProUGUI nameField
 		{
 			get;
@@ -32,54 +49,104 @@ namespace ECellDive.PlayerComponents
 		#endregion
 
 		#region - IMlrpVisibility Members -
+		/// <summary>
+		/// The field of the <see cref="isActivated"/> property.
+		/// </summary>
 		private NetworkVariable<bool> m_isActivated = new NetworkVariable<bool>(true);
+
+		/// <inheritdoc/>
 		public NetworkVariable<bool> isActivated
 		{
 			get => m_isActivated;
 			protected set => m_isActivated = value;
 		}
 		#endregion
-		public override void OnNetworkDespawn()
+
+		private void Awake()
 		{
-			base.OnNetworkDespawn();
-			NetworkManager.Singleton.OnClientConnectedCallback -= ExchangeNames;
-			NetworkManager.Singleton.OnClientConnectedCallback -= HandleNameTargetCamera;
+			nameField = m_nameTextFieldContainer.GetComponentInChildren<TextMeshProUGUI>();
 		}
 
 		public override void OnNetworkSpawn()
 		{
-			base.OnNetworkSpawn();
-			nameField = m_nameTextFieldContainer.GetComponentInChildren<TextMeshProUGUI>();
-			NetworkManager.Singleton.OnClientConnectedCallback += ExchangeNames;
-			NetworkManager.Singleton.OnClientConnectedCallback += HandleNameTargetCamera;
+			if (IsLocalPlayer)
+			{
+				NetworkManager.Singleton.OnClientConnectedCallback += HandleNameTargetCamera;
+				GameNetDataManager.Instance.OnClientReceivedAllPlayerNetData += UpdatePlayerNamesInContainers;
+				GameNetDataManager.Instance.OnClientReceivedAllModules += SpawnInDiveScene;
+			}
 		}
 
-		[ClientRpc]
-		private void HandleNameTargetCameraClientRpc()
+		public override void OnNetworkDespawn()
 		{
-			Debug.Log($"Local player camera={NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<Camera>()}");
-			Debug.Log($"Replicated Copy ILookAt={m_nameTextFieldContainer.GetComponent<ILookAt>()}");
+			if (IsLocalPlayer)
+			{
+				NetworkManager.Singleton.OnClientConnectedCallback -= HandleNameTargetCamera;
+				GameNetDataManager.Instance.OnClientReceivedAllPlayerNetData -= UpdatePlayerNamesInContainers;
+				GameNetDataManager.Instance.OnClientReceivedAllModules -= SpawnInDiveScene;
+			}
 		}
 
+		/// <summary>
+		/// A callback to make sure that the name canvas of the replicated
+		/// players in the environment of the local player face the camera
+		/// of the local player. Called back when on new client connection.
+		/// </summary>
+		/// <param name="_clientID">
+		/// The ID of the client that just connected to the server.
+		/// </param>
+		private void HandleNameTargetCamera(ulong _clientID)
+		{
+			Debug.Log($"Player HandleNameTargetCamera {_clientID}, localClientID {NetworkManager.Singleton.LocalClientId}");
+
+			if (_clientID == NetworkManager.LocalClientId)
+			{
+				HandleNameTargetCameraServerRpc(_clientID);
+			}
+		}
+
+		/// <summary>
+		/// Instructs replicated players <paramref name="_playerObj"/> to have its
+		/// name canvas face the camera of the local player.
+		/// </summary>
+		/// <param name="_playerObj">
+		/// Network reference (to be converted to GameObject) of the player which
+		/// we want to have its name canvas face the camera of the local player.
+		/// </param>
+		/// <param name="_clientRpcParams">
+		/// The client RPC params that allows to reach specific clients.
+		/// </param>
 		[ClientRpc]
 		private void HandleNameTargetCameraClientRpc(NetworkObjectReference _playerObj, ClientRpcParams _clientRpcParams)
 		{
-			Debug.Log($"Local player object ={NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.GetComponentInChildren<Camera>()}", NetworkManager.Singleton.LocalClient.PlayerObject);
+			//Debug.Log($"Local player object ={NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.GetComponentInChildren<Camera>()}", NetworkManager.Singleton.LocalClient.PlayerObject);
 			GameObject playerGO = _playerObj;
-			Debug.Log($"Replicated Copy ILookAt={playerGO.GetComponentInChildren<ILookAt>()}", playerGO);
+			//Debug.Log($"Replicated Copy ILookAt={playerGO.GetComponentInChildren<ILookAt>()}", playerGO);
 			playerGO.GetComponentInChildren<FaceCamera>().SetTargets(NetworkManager.Singleton.LocalClient.PlayerObject.gameObject.GetComponentInChildren<Camera>().transform);
+		}
 
-        }
-
-		private void HandleNameTargetCamera(ulong _expeditorClientId)
+		/// <summary>
+		/// Sends various orders between the clients to have each the name of replicated
+		/// player copy of each local client face the camera of the local player.
+		/// Called back when a new client connects to the server.
+		/// </summary>
+		/// <param name="_expeditorClientId">
+		/// The id of the client that just connected to the server.
+		/// </param>
+		[ServerRpc(RequireOwnership = false)]
+		private void HandleNameTargetCameraServerRpc(ulong _expeditorClientId)
 		{
 			if (IsServer)
 			{
-				ClientRpcParams clientRpcParams;
-                ulong[] expeditorClientId = new ulong[1] { _expeditorClientId };
 				ulong[] otherClientId = new ulong[NetworkManager.Singleton.ConnectedClientsIds.Count - 1];
-				
-				NetworkObjectReference netObjRef;
+				ClientRpcParams clientRpcParams = new ClientRpcParams
+				{
+					Send = new ClientRpcSendParams
+					{
+						TargetClientIds = new ulong[1] { _expeditorClientId }
+					}
+				};
+
 				ushort i = 0;
 				foreach (ulong _clientId in NetworkManager.Singleton.ConnectedClientsIds)
 				{
@@ -87,81 +154,144 @@ namespace ECellDive.PlayerComponents
 					{
 						//Send the order to the already connected replicated clients copies in the 
 						//expeditor client environment to face the camera of the local player (expeditor)
-						clientRpcParams = new ClientRpcParams
-						{
-							Send = new ClientRpcSendParams
-							{
-								TargetClientIds = expeditorClientId
-							}
-						};
-                        netObjRef = NetworkManager.Singleton.ConnectedClients[_clientId].PlayerObject;
-						HandleNameTargetCameraClientRpc(netObjRef, clientRpcParams);
 
-                        otherClientId[i] = _clientId;
+						HandleNameTargetCameraClientRpc(NetworkManager.Singleton.ConnectedClients[_clientId].PlayerObject,
+							clientRpcParams);
+
+						otherClientId[i] = _clientId;
 						i++;
-                    }
+					}
 				}
 
 				//Send the order to the replicated copy of the expeditor client in the already connected
 				//clients environment to face the camera of the local player (other client)
-                clientRpcParams = new ClientRpcParams
-                {
-                    Send = new ClientRpcSendParams
-                    {
-                        TargetClientIds = otherClientId
-                    }
-                };
-                netObjRef = NetworkManager.Singleton.ConnectedClients[_expeditorClientId].PlayerObject;
-                HandleNameTargetCameraClientRpc(netObjRef, clientRpcParams);
+				clientRpcParams = new ClientRpcParams
+				{
+					Send = new ClientRpcSendParams
+					{
+						TargetClientIds = otherClientId
+					}
+				};
+				HandleNameTargetCameraClientRpc(NetworkManager.Singleton.ConnectedClients[_expeditorClientId].PlayerObject,
+					clientRpcParams);
+			}
+		}
+
+        /// <summary>
+        /// A callback to drop the player in the dive scene registered last
+        /// in its Dive travel list. Called back when <see cref="ECellDive.Multiplayer.GameNetDataManager.OnClientReceivedAllModules"/>
+        /// is triggered. This typically happens when the client is a new
+        /// player in the game and the server has finished synchronizing
+        /// all the modules data with him.
+        /// </summary>
+        /// <param name="_clientID">
+        /// The ID of the client that just received all the modules data.
+        /// </param>
+        private void SpawnInDiveScene(ulong _clientID)
+        {
+            Debug.Log($"Player SpawnInDiveScene {_clientID}, localClientID {NetworkManager.Singleton.LocalClientId}");
+            if (_clientID == NetworkManager.Singleton.LocalClientId)
+            {
+                DiveScenesManager.Instance.DropClientInSceneServerRpc(_clientID);
             }
-		}
+        }
 
-		[ClientRpc]
-		private void ReceiveNameClientRpc(byte[] _name)
+		/// <summary>
+		/// A callback to update the name in the name containers of the replicated
+		/// payers in the environment of the local player. Called back when <see cref="ECellDive.Multiplayer.GameNetDataManager.OnClientReceivedAllPlayerNetData"/>
+		/// is triggered. This typically happens when the client is a new
+		/// player in the game and the server has finished synchronizing
+		/// all the player net data with him.
+		/// </summary>
+		/// <param name="_clientID">
+		/// The ID of the client that just received all the player net data.
+		/// </param>
+		private void UpdatePlayerNamesInContainers(ulong _clientID)
 		{
-			SetName(System.Text.Encoding.UTF8.GetString(_name));
+			Debug.Log($"Player UpdatePlayerNamesInContainers {_clientID}, localClientID {NetworkManager.Singleton.LocalClientId}");
+
+			if (_clientID == NetworkManager.LocalClientId)
+			{
+				UpdatePlayerNamesInContainersServerRpc(_clientID);
+			}
 		}
 
+		/// <summary>
+		/// Updates the name in the name container of the player <paramref name="_playerObj"/>.
+		/// Uses the <paramref name="_playerClientID"/> to retrieve the name of the player
+		/// in the <see cref="GameNetDataManager"/>.
+		/// </summary>
+		/// <param name="_playerObj">
+		/// The network reference of the player whose name we want to update.
+		/// </param>
+		/// <param name="_playerName">
+		/// The name of the client to set.
+		/// </param>
+		/// <param name="_clientRpcParams">
+		/// The client RPC params that allows to reach specific clients.
+		/// </param>
 		[ClientRpc]
-		private void ReceiveNameClientRpc(NetworkObjectReference _playerObj, byte[] _name, ClientRpcParams _clientRpcParams)
+		private void UpdatePlayerNamesInContainersClientRpc(NetworkObjectReference _playerObj, string _playerName, ClientRpcParams _clientRpcParams)
 		{
 			GameObject playerGO = _playerObj;
-			playerGO.GetComponent<Player>().SetName(System.Text.Encoding.UTF8.GetString(_name));
+			Debug.Log($"The local client {NetworkManager.Singleton.LocalClientId} udpates the name of playerGO to: " + _playerName, playerGO);
+			playerGO.GetComponentInChildren<Player>().SetName(_playerName);
 		}
 
-		private void ExchangeNames(ulong _clientId)
-		{
-			string _nameStr = GameNetPortal.Instance.settings.playerName;
-			byte[] _nameB = System.Text.Encoding.UTF8.GetBytes(_nameStr);
-			ExchangeNamesServerRpc(_nameB, _clientId);
-		}
-
+		/// <summary>
+		/// Requests the server to order the clients to update the name in the name containers
+		/// of the replicated player copies of each local client.
+		/// </summary>
+		/// <param name="_expeditorClientId">
+		/// The id of the client that just connected to the server.
+		/// </param>
 		[ServerRpc(RequireOwnership = false)]
-		private void ExchangeNamesServerRpc(byte[] _nameB, ulong _expeditorClientId)
+		private void UpdatePlayerNamesInContainersServerRpc(ulong _expeditorClientId)
 		{
-			//Send the name info to the replicated copies on the other clients
-			ReceiveNameClientRpc(_nameB);
-			
-			ClientRpcParams expeditorClientRpcParams = new ClientRpcParams
+			ulong[] otherClientId = new ulong[NetworkManager.Singleton.ConnectedClientsIds.Count - 1];
+			ClientRpcParams clientRpcParams = new ClientRpcParams
 			{
 				Send = new ClientRpcSendParams
 				{
-					TargetClientIds = new ulong[] { _expeditorClientId }
+					TargetClientIds = new ulong[1] { _expeditorClientId }
 				}
 			};
 
-			//Send the name of the already connected clients to the newly
-			//connecting client
-			string name;
-			NetworkObjectReference netObjRef;
+			ushort i = 0;
 			foreach (ulong _clientId in NetworkManager.Singleton.ConnectedClientsIds)
 			{
-				name = GameNetPortal.Instance.netSessionPlayersDataMap[_clientId].playerName;
-				netObjRef = NetworkManager.Singleton.ConnectedClients[_clientId].PlayerObject;
-				
+				if (_clientId != _expeditorClientId)
+				{
+					//Send the order to the already connected replicated clients copies in the 
+					//expeditor client environment to update their names
+					//Debug.Log($"Sending name ({GameNetDataManager.Instance.GetClientName(_clientId)})" +
+					//	$"of already connected clients {_clientId} " +
+					//	$"to the new client {_expeditorClientId}", gameObject);
+					UpdatePlayerNamesInContainersClientRpc(NetworkManager.Singleton.ConnectedClients[_clientId].PlayerObject,
+						GameNetDataManager.Instance.GetClientName(_clientId),
+						clientRpcParams);
 
-				ReceiveNameClientRpc(netObjRef, System.Text.Encoding.UTF8.GetBytes(name), expeditorClientRpcParams);
+					otherClientId[i] = _clientId;
+					i++;
+				}
 			}
+
+			//Send the order to the replicated copy of the expeditor client in the already connected
+			//clients environment to update their names
+			clientRpcParams = new ClientRpcParams
+			{
+				Send = new ClientRpcSendParams
+				{
+					TargetClientIds = otherClientId
+				}
+			};
+
+			//Debug.Log($"Sending name ({GameNetDataManager.Instance.GetClientName(_expeditorClientId)})" +
+			//	$"of new client {_expeditorClientId} " +
+			//	$"to the already connected clients", gameObject);
+			UpdatePlayerNamesInContainersClientRpc(NetworkManager.Singleton.ConnectedClients[_expeditorClientId].PlayerObject,
+				GameNetDataManager.Instance.GetClientName(_expeditorClientId),
+				clientRpcParams);
 		}
 
 		#region - INamed Methods -
@@ -197,32 +327,36 @@ namespace ECellDive.PlayerComponents
 		#endregion
 
 		#region - IMlrpVisibility Methods -
+		/// <inheritdoc/>
 		public virtual void ManageActivationStatus(bool _previous, bool _current)
 		{
 			gameObject.SetActive(isActivated.Value);
 		}
 
+		/// <inheritdoc/>
 		public virtual void NetHide()
 		{
-			Debug.Log($"{NetworkManager.Singleton.LocalClientId} becomes invisible");
+			Debug.Log($"Player {NetworkManager.Singleton.LocalClientId} becomes invisible");
 			LogSystem.AddMessage(LogMessageTypes.Debug,
-				$"{NetworkManager.Singleton.LocalClientId} becomes invisible");
+				$"Player {NetworkManager.Singleton.LocalClientId} becomes invisible");
 			nameField.gameObject.SetActive(false);
 			head.SetActive(false);
 			rootControllers.SetActive(false);
 		}
 
+		/// <inheritdoc/>
 		[ClientRpc]
 		public virtual void NetHideClientRpc(ClientRpcParams _clientRpcParams)
 		{
 			NetHide();
 		}
 
+		/// <inheritdoc/>
 		public virtual void NetShow()
 		{
-			Debug.Log($"{NetworkManager.Singleton.LocalClientId} becomes visible");
+			Debug.Log($"Player {NetworkManager.Singleton.LocalClientId} becomes visible");
 			LogSystem.AddMessage(LogMessageTypes.Debug, 
-				$"{NetworkManager.Singleton.LocalClientId} becomes visible");
+				$"Player {NetworkManager.Singleton.LocalClientId} becomes visible");
 
 			nameField.gameObject.SetActive(true);
 
@@ -231,12 +365,14 @@ namespace ECellDive.PlayerComponents
 			rootControllers.SetActive(true);
 		}
 
+		/// <inheritdoc/>
 		[ClientRpc]
 		public virtual void NetShowClientRpc(ClientRpcParams _clientRpcParams)
 		{
 			NetShow();
 		}
 
+		/// <inheritdoc/>
 		[ServerRpc(RequireOwnership = false)]
 		public void RequestSetActiveServerRpc(bool _active)
 		{

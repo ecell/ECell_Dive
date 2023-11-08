@@ -16,15 +16,16 @@
       "filter": "filterConfig.yml",
       "disableGitFeatures": false,
       "disableDefaultFilter": false,
-      "allowCompilationErrors": true
+      "allowCompilationErrors": true,
+      "includePrivateMembers": true,
+      "namespaceLayout": "nested"
     }
   ],
   "build": {
     "content": [
       {
         "files": [
-          "api/**.yml",
-          "api/index.md"
+          "api/**.yml"
         ]
       },
       {
@@ -33,6 +34,11 @@
           "articles/**/toc.yml",
           "toc.yml",
           "*.md"
+        ]
+      },
+      {
+        "files": [
+          "FusionApiDev/toc.yml"
         ]
       }
     ],
@@ -43,16 +49,8 @@
           "logo.svg",
           "resources/images/**/**.png",
           "resources/images/**/**.jpg",
-          "resources/images/**/**.gif"
-        ]
-      }
-    ],
-
-    "overwrite": [
-      {
-        "src": "../",
-        "files": [
-            "Assets/Scripts/**/*.md"
+          "resources/images/**/**.gif",
+          "resources/diagrams/**/**.svg"
         ]
       }
     ],

@@ -11,6 +11,9 @@ namespace ECellDive.Interfaces
     /// </summary>
     public interface IDive
     {
+        /// <summary>
+        /// Boolean to indicate that a player is currently diving in the module.
+        /// </summary>
         bool isDiving { get; }
 
         /// <summary>
@@ -47,7 +50,7 @@ namespace ECellDive.Interfaces
         /// Coroutine started by <see cref="DirectDiveIn"/>.
         /// Transfers the user to the dive scene associated to the module.
         /// </summary>
-        abstract IEnumerator DirectDiveInC();
+        IEnumerator DirectDiveInC();
 
         /// <summary>
         /// The public interface to call when a user is trying to dive into
@@ -72,9 +75,6 @@ namespace ECellDive.Interfaces
         /// The public interface to call when a user wants to dive into a 
         /// module.
         /// </summary>
-        /// <remarks>
-        /// Asynchronous: it calls the coroutine <see cref="TryDiveInC"/>
-        /// </remarks>
         void TryDiveIn();
     }
 }

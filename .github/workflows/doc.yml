@@ -3,16 +3,38 @@ name: ECellDive documentation
 on:
   push:
     branches:
-      - main
+      - documentation
 
 jobs:
+
+  generate_plantuml:
+    runs-on: ubuntu-latest #Required to have correct paths
+    name: plantuml
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+      with:
+        ref: documentation
+        lfs: true
+
+    - name: plantuml
+      id: plantuml
+      uses: grassedge/generate-plantuml-action@v1.5
+      with:
+        path: .
+        message: "Render PlantUML files"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   # Build the documentation
   build:
+    needs: generate_plantuml # Required to have all generated diagram svg files
     runs-on: windows-latest # Required by DocFX
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
+          ref: documentation
           lfs: true
 
       - name: Install DocFX
@@ -35,8 +57,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
+          ref: documentation
           lfs: true
 
       # Download the generated documentation

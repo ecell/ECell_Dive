@@ -1,102 +1,49 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using ECellDive.Interfaces;
-using ECellDive.Modules;
-using ECellDive.Utility;
-using ECellDive.Portal;
+using UnityEngine.UI;
+using ECellDive.UI;
 
 namespace ECellDive.Tutorials
 {
-    /// <summary>
-    /// The step 3 of the Tutorial on Modules Navigation.
-    /// DIVE!
-    /// </summary>
-    public class ModNavStep3 : Step
-    {
-        [Header("Local Step Members")]
-        public LeftRightData<InputActionReference> diveActions;
+	/// <summary>
+	/// The step 3 of the Tutorial on Modules Navigation.
+	/// Add an Data importer to the scene.
+	/// </summary>
+	public class ModNavStep3 : Step
+	{
+		private GUIManager guiManager;
+		private Button targetButton; //The button to add a data importer to the scene.
+		private bool targetButtonSelected;
 
-        private CyJsonModule refCyJsonModule;
-        private bool hasStartedDiving;
+		public override bool CheckCondition()
+		{
+			return targetButtonSelected;
+		}
 
-        public override bool CheckCondition()
-        {
-            return hasStartedDiving;
-        }
+		public override void Conclude()
+		{
+			base.Conclude();
 
-        private void CheckDive(RaycastHit _hit)
-        {
-            PortalManager gnm;
-            if (_hit.transform.TryGetComponent(out gnm))
-            {
-                hasStartedDiving = true;
-            }
-        }
+			targetButton.onClick.RemoveListener(OnSelect);
 
-        private void CheckDiveLeft(InputAction.CallbackContext _ctx)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(
-                StaticReferencer.Instance.riControllersGO.left.transform.position,
-                StaticReferencer.Instance.riControllersGO.left.transform.forward,
-                out hit,
-                30))
-            {
-                CheckDive(hit);
-            }
-        }
+			//We disable the button allowing to add a data importer to the scene.
+			guiManager.refModulesMenuManager.SwitchSingleInteractibility(1);
+		}
 
-        private void CheckDiveRight(InputAction.CallbackContext _ctx)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(
-                StaticReferencer.Instance.riControllersGO.right.transform.position,
-                StaticReferencer.Instance.riControllersGO.right.transform.forward,
-                out hit,
-                30))
-            {
-                CheckDive(hit);
-            }
-        }
+		public override void Initialize()
+		{
+			base.Initialize();
 
-        public override void Conclude()
-        {
-            base.Conclude();
+			guiManager = GameObject.
+							  FindGameObjectWithTag("ExternalObjectContainer").
+							  GetComponent<GUIManager>();
 
-            diveActions.left.action.performed -= CheckDiveLeft;
-            diveActions.right.action.performed -= CheckDiveRight;
+			targetButton = guiManager.refModulesMenuManager.targetGroup[1].GetComponent<Button>();
+			targetButton.onClick.AddListener(OnSelect);
+		}
 
-            StartCoroutine(DelaySearch());
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-
-            diveActions.left.action.performed += CheckDiveLeft;
-            diveActions.right.action.performed += CheckDiveRight;
-
-            refCyJsonModule = FindObjectOfType<CyJsonModule>();
-
-            //We collect the CyJson module (created at the previous step) to
-            //make sure that it is cleaned up when the user quits the tutorial.
-            ModNavTutorialManager.tutorialGarbage.Add(refCyJsonModule.gameObject);
-
-        }
-
-        private IEnumerator DelaySearch()
-        {
-            //We just wait a bit to make sure the object we will be looking
-            //for has been instantiated by the server.
-            yield return new WaitForSeconds(0.5f);
-
-            refCyJsonModule = FindObjectOfType<CyJsonModule>();
-            //At this stage the user has started diving into the data module.
-            //So there should be a rootPathway created that we can capture.
-            Debug.Log($"refCyJsonModule.pathwayRoot", refCyJsonModule.pathwayRoot);
-            ModNavTutorialManager.tutorialGarbage.Add(refCyJsonModule.pathwayRoot);
-        }
-    }
+		private void OnSelect()
+		{
+			targetButtonSelected = true;
+		}
+	}
 }
-
