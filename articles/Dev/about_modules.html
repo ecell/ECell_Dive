@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\Dev\about_modules.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\Dev\about_modules.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -27,6 +27,7 @@
       <meta name="loc:themeAuto" content="Auto">
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
   </head>
 
   <script type="module" src="./../../public/docfx.min.js"></script>
@@ -82,7 +83,7 @@
 <h1 id="about-modules">About Modules</h1>
 
 <p>Modules are be 3D interactable objects in <em>ECellDive</em> which encapsulate data or actions. They are the main mode of interaction for users to have an effect on the virtual environment of <em>ECellEngine</em>. Hence, general requirements about modules is to be able to receive input from user, to be moved around, to encapsulate data, or to encapsulate functions that the user can trigger.</p>
-<p>Our approach is to use inheritance to define specific modules. Currently, there are two base classes that can be inherited that already implements the basics about interaction. The first one is <a class="xref" href="../../api/ECellDive.Modules.Module.html">Module</a> and the seconf is <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a>.</p>
+<p>Our approach is to use inheritance to define specific modules. Currently, there are two base classes that can be inherited that already implements the basics about interaction. The first one is <a class="xref" href="../../api/ECellDive.Modules.Module.html">Module</a> and the second is <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a>.</p>
 <h2 id="module-or-gamenetmodule-that-is-the-question">Module or GameNetModule? That is the question.</h2>
 <p>The primary difference between the two is the <a class="xref" href="../../api/ECellDive.Modules.Module.html">Module</a> is local while <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a> is synchronized over the multiplayer network. Hence, when making a new module, the first question to answer is whether every user in a session should see the module. For instance, when making a module to encapsulate data in which users can dive, it is likely that this must be shared on the network for every user to access the data and collaborate on it (so inherit from <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a>). However, if the purpose is to implement a module to modify the environment or the data, there might not be any reason to make an instance of the module accessible to every user(so inherit from <a class="xref" href="../../api/ECellDive.Modules.Module.html">Module</a>). This is ultimately a design decision.</p>
 <p>Modules that inherit from <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a>:</p>
@@ -349,7 +350,7 @@ private IEnumerator RequestC(/*parameters?*/)
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\Dev\about_modules.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\Dev\about_modules.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
@@ -362,7 +363,7 @@ private IEnumerator RequestC(/*parameters?*/)
     </main>
 
 
-    <footer class="border-top">
+    <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
           <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>

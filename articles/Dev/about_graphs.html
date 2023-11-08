@@ -1,0 +1,670 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>General </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="General ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../FusionApiDev/toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\Dev\about_graphs.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<p>This section is presenting how graphs are encoded in <em>ECellDive</em> and interfaces or classes you may want to inherit from in order to build your own graphs.<br>
+In <em>ECellDive</em>, the graph API was used to encode the metabolic pathways for <a href="https://manual.cytoscape.org/en/stable/Cytoscape.js_and_Cytoscape.html">Cytoscape Json</a> files and the <a href="../UserManual/dive_map.html">Dive Travel Map</a>.</p>
+<h2 id="general">General</h2>
+<p>The API to encode graphs is separated in two parts that we call <em>layers</em> in the following sections. The data layer are interfaces limited to data fields describing an edge, node, or a graph. This layer also includes the <code>struct</code> or <code>class</code> that implement these interfaces.<br>
+Instances of objects from the data layer are then usually class members of objects in the <a href="about_graphs.html#gameobjects-layer">GameObjects (GOs) Layer</a>. Classes in the GOs layer are <code>MonoBehaviour</code> that can be attached as components to GOs in Unity's Editor.</p>
+<h2 id="add-a-new-graph-component">Add a New Graph Component</h2>
+<p>There are two ways to add a new type of edge, node, or graph. One is to only define a new object in the GO Layer that uses the existing data structures (e.g., <a href="xref:ECellDive.GraphComponents.Edge">Edge</a>, <a href="xref:ECellDive.GraphComponents.Node">Node</a>, etc.) in the Data layer. Or, you can define a new object in the data layer which you can then use in a new object in the GO Layer.<br>
+In the following example we define a new version for everything: a new graph data structure with using a new type of edge and a new type of node. Then, this new graph is encapsulated in a new module.
+You can start by copying the example files that follow:</p>
+<details>
+  <summary>New Edge Data</summary>
+<pre><code class="lang-csharp">namespace ECellDive.Utility.Data.Graph
+{
+	/// &lt;summary&gt;
+	/// DOC
+	/// &lt;/summary&gt;
+	[System.Serializable]
+	public struct NewEdge : IEdge
+	{
+        //
+        // ADD NEW FIELDS and/or PROPERTIES HERE
+        //
+
+		#region - IEdge Fields -
+		/// &lt;summary&gt;
+		/// The field for &lt;see cref=&quot;ID&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] private uint m_ID;
+
+		/// &lt;inheritdoc/&gt;
+		public uint ID { get =&gt; m_ID; set =&gt; m_ID = value; }
+
+		/// &lt;summary&gt;
+		/// The field for &lt;see cref=&quot;source&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] private uint m_source;
+
+		/// &lt;inheritdoc/&gt;
+		public uint source { get =&gt; m_source; set =&gt; m_source = value; }
+
+		/// &lt;summary&gt;
+		/// The field for &lt;see cref=&quot;target&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] private uint m_target;
+
+		/// &lt;inheritdoc/&gt;
+		public uint target { get =&gt; m_target; set =&gt; m_target = value; }
+
+		/// &lt;summary&gt;
+		/// The field for &lt;see cref=&quot;name&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] private string m_name;
+
+		/// &lt;inheritdoc/&gt;
+		public string name { get =&gt; m_name; set =&gt; m_name = value; }
+		#endregion
+
+		public NewEdge(uint _ID, string _name, uint _source, uint _target)
+		{
+			m_ID = _ID;
+			m_source = _source;
+			m_target = _target;
+			m_name = _name;
+		}
+
+        //
+        // ADD NEW METHODS HERE IF ANY
+        // But consider making this a class if you add methods
+        //
+
+	}
+}
+</code></pre>
+</details>
+<details>
+  <summary>New Node Data</summary>
+<pre><code class="lang-csharp">namespace ECellDive.Utility.Data.Graph
+{
+	/// &lt;summary&gt;
+	/// DOC
+	/// &lt;/summary&gt;
+	[System.Serializable]
+	public struct NewNode : INode
+	{
+        //
+        // ADD NEW FIELDS and/or PROPERTIES HERE
+        //
+
+		#region - INode Fields -
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;ID&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] private uint m_ID;
+
+		/// &lt;inheritdoc/&gt;
+		public uint ID { get =&gt; m_ID; set =&gt; m_ID = value; }
+
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;name&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] private string m_name;
+
+		/// &lt;inheritdoc/&gt;
+		public string name { get =&gt; m_name; set =&gt; m_name = value; }
+
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;incommingEdges&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] private List&lt;uint&gt; m_incommingEdges;
+
+		/// &lt;inheritdoc/&gt;
+		public List&lt;uint&gt; incommingEdges { get =&gt; m_incommingEdges; set =&gt; m_incommingEdges = value; }
+
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;outgoingEdges&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] private List&lt;uint&gt; m_outgoingEdges;
+
+		/// &lt;inheritdoc/&gt;
+		public List&lt;uint&gt; outgoingEdges { get =&gt; m_outgoingEdges; set =&gt; m_outgoingEdges = value; }
+		#endregion
+
+		public NewNode(uint _ID, string _name)
+		{
+			m_ID = _ID;
+			m_name = _name;
+			m_incommingEdges = new List&lt;uint&gt;();
+			m_outgoingEdges = new List&lt;uint&gt;();
+		}
+
+        //
+        // ADD NEW METHODS HERE IF ANY
+        // But consider making this a class if you add methods
+        //
+	}
+}
+</code></pre>
+</details>
+<details>
+  <summary>New Graph Data</summary>
+<pre><code class="lang-csharp">namespace ECellDive.GraphComponents
+{
+    /// &lt;summary&gt;
+	/// DOC
+	/// &lt;/summary&gt;
+    public class NewGraph : IGraph&lt;NewEdge, NewNode&gt;
+    {
+        //
+        // ADD NEW FIELDS and/or PROPERTIES HERE
+        //
+
+        #region - IGraph Members -
+        /// &lt;summary&gt;
+        /// The field of the property &lt;see cref=&quot;name&quot;/&gt;.
+        /// &lt;/summary&gt;
+        private string m_name;
+
+        /// &lt;inheritdoc/&gt;
+        public string name
+        {
+            get =&gt; m_name;
+            set =&gt; m_name = value;
+        }
+
+        /// &lt;summary&gt;
+        /// The field of the property &lt;see cref=&quot;nodes&quot;/&gt;.
+        /// &lt;/summary&gt;
+        private NewNode[] m_nodes;
+
+        /// &lt;inheritdoc/&gt;
+        public NewNode[] nodes
+        {
+            get =&gt; m_nodes;
+            set =&gt; m_nodes = value;
+        }
+
+        /// &lt;summary&gt;
+        /// The field of the property &lt;see cref=&quot;edges&quot;/&gt;.
+        /// &lt;/summary&gt;
+        private NewEdge[] m_edges;
+
+        /// &lt;inheritdoc/&gt;
+        public NewEdge[] edges
+        {
+            get =&gt; m_edges;
+            set =&gt; m_edges = value;
+        }
+        #endregion
+
+        public NewGraph(string _name)
+        {
+            name = _name;
+        }
+
+        //
+        // ADD NEW METHODS HERE IF ANY
+        // There will probably be methods to populate the arrays of edges and nodes.
+        //
+
+    }
+}
+</code></pre>
+</details>
+<details>
+  <summary>New Edge GO</summary>
+<p>In this example, we make it inherit from <a class="xref" href="../../api/ECellDive.Modules.Module.html">Module</a> the gameobject will not be synchronized over the multiplayer network. Consider inheriting from <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a> in case you want synchronization.</p>
+<pre><code class="lang-csharp">namespace ECellDive.Modules
+{
+	/// &lt;summary&gt;
+	/// DOC
+	/// &lt;/summary&gt;
+	public class NewEdgeGO : Module, IEdgeGO&lt;NewEdge&gt;
+	{
+        //
+        // ADD NEW FIELDS and/or PROPERTIES HERE
+        //
+
+		#region - IEdgeGO&lt;NewEdge&gt; Members -
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;edgeData&quot;/&gt;.
+		/// &lt;/summary&gt;
+		private NewEdge m_edgeData;
+
+		/// &lt;inheritdoc/&gt;
+		public NewEdge edgeData
+		{
+			get =&gt; m_edgeData;
+			private set =&gt; m_edgeData = value;
+		}
+
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;informationString&quot;/&gt;.
+		/// &lt;/summary&gt;
+		private string m_informationString;
+
+		/// &lt;inheritdoc/&gt;
+		public string informationString
+		{
+			get =&gt; m_informationString;
+			private set =&gt; m_informationString = value;
+		}
+
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;defaultStartWidth&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[Header(&quot;IEdgeGO&lt;NewEdge&gt; Parameters&quot;)]
+		[SerializeField] private float m_defaultStartWidth;
+
+		/// &lt;inheritdoc/&gt;
+		public float defaultStartWidth
+		{
+			get =&gt; m_defaultStartWidth;
+			private set =&gt; m_defaultStartWidth = value;
+		}
+
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;defaultEndWidth&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] private float m_defaultEndWidth;
+
+		/// &lt;inheritdoc/&gt;
+		public float defaultEndWidth
+		{
+			get =&gt; m_defaultEndWidth;
+			private set =&gt; m_defaultEndWidth = value;
+		}
+
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;refColliderHolder&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] private GameObject m_refColliderHolder;
+
+		/// &lt;inheritdoc/&gt;
+		public GameObject refColliderHolder
+		{
+			get =&gt; m_refColliderHolder;
+			set =&gt; m_refColliderHolder = value;
+		}
+		#endregion
+
+		//
+        // Unity methods Awake, Start, OnEnable, Update, etc... if necessary
+        //
+        
+        //
+        // ADD NEW METHODS HERE
+        //
+
+		#region - IEdgeGO&lt;NewEdge&gt; Methods -
+		/// &lt;inheritdoc/&gt;
+		public void ReverseOrientation()
+		{
+			// This is likely specific to the NewEdge data
+		}
+
+		/// &lt;inheritdoc/&gt;
+		public void SetCollider(Transform _start, Transform _end)
+		{
+			// This is likely specific to the NewEdge data
+		}
+
+		/// &lt;inheritdoc/&gt;
+		public void SetDefaultWidth(float _start, float _end)
+		{
+            // Here is a possible implementation
+
+			defaultStartWidth = _start;
+			defaultEndWidth = _end;
+		}
+
+		/// &lt;inheritdoc/&gt;
+		public void SetEdgeData(NewEdge _edgeData)
+		{
+            // Here is a possible implementation
+
+			edgeData = _edgeData;
+
+			informationString = $&quot;ID: {edgeData.ID}\n&quot; +
+								$&quot;Name: {edgeData.name}\n&quot; +
+								$&quot;Source: {edgeData.source}\n&quot; +
+								$&quot;Target: {edgeData.target}&quot;;
+		}
+
+		/// &lt;inheritdoc/&gt;
+		public void SetLineRendererPosition(Transform _start, Transform _end)
+		{
+			// This is likely specific to the NewEdge data
+		}
+
+		/// &lt;inheritdoc/&gt;
+		public void SetLineRendererWidth()
+		{
+            // Here is a possible implementation
+
+			lineRenderers[0].startWidth = defaultStartWidth;
+			lineRenderers[0].endWidth = defaultEndWidth;
+		}
+		#endregion
+	}
+}
+</code></pre>
+</details>
+<details>
+  <summary>New Node GO</summary>
+<p>In this example, we make it inherit from <a class="xref" href="../../api/ECellDive.Modules.Module.html">Module</a> the gameobject will not be synchronized over the multiplayer network. Consider inheriting from <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a> in case you want synchronization.</p>
+<pre><code class="lang-csharp">namespace ECellDive.Modules
+{
+	/// &lt;summary&gt;
+	/// DOC
+	/// &lt;/summary&gt;
+	public class NewNodeGO : Module, INodeGO&lt;NewNode&gt;
+	{
+        //
+        // ADD NEW FIELDS and/or PROPERTIES HERE
+        //
+
+		#region - INodeGO Members -
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;nodeData&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[Header(&quot;NewNode Parameters&quot;)]
+		[SerializeField] private NewNode m_nodeData;
+
+		/// &lt;inheritdoc/&gt;
+		public NewNode nodeData
+		{
+			get =&gt; m_nodeData;
+			private set =&gt; m_nodeData = value;
+		}
+
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;informationString&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] private string m_informationString;
+
+		/// &lt;inheritdoc/&gt;
+		public string informationString
+		{
+			get =&gt; m_informationString;
+			private set =&gt; m_informationString = value;
+		}
+		#endregion
+
+        //
+        // Unity methods Awake, Start, OnEnable, Update, etc... if necessary
+        //
+        
+        //
+        // ADD NEW METHODS HERE
+        //
+
+		#region - INodeGO&lt;NewNode&gt; Methods -
+		/// &lt;inheritdoc/&gt;
+		public void SetNodeData(NewNode _nodeData)
+		{
+            // Here is a possible implementation
+
+			nodeData = _nodeData;
+
+			informationString = $&quot;ID: {nodeData.ID}\n&quot; +
+								$&quot;Name: {nodeData.name}&quot;;
+		}
+		#endregion
+	}
+}
+</code></pre>
+</details>
+<details>
+  <summary>New Graph GO</summary>
+<p>In this example, we make it inherit from <a class="xref" href="../../api/ECellDive.Modules.Module.html">Module</a> the gameobject will not be synchronized over the multiplayer network. Consider inheriting from <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a> in case you want synchronization.</p>
+<pre><code class="lang-csharp">namespace ECellDive.Modules
+{
+	/// &lt;summary&gt;
+	/// DOC
+	/// &lt;/summary&gt;
+	public class NewGraphGO : Module,
+							    IGraphGO&lt;NewEdge, NewNode&gt;
+	{
+        //
+        // ADD NEW FIELDS and/or PROPERTIES HERE
+        //
+
+		#region - IGraphGO Members -
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;graphData&quot;/&gt;.
+		/// &lt;/summary&gt;
+		private NewGraph m_graphData = new NewGraph(&quot;NewGraphDataName&quot;);
+
+		/// &lt;inheritdoc/&gt;
+		public IGraph&lt;Edge, Node&gt; graphData
+		{
+			get =&gt; m_graphData;
+			protected set =&gt; m_graphData = (NewGraph)value;
+		}
+
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;graphPrefabsComponents&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[Header(&quot;NewGraphGO Parameters&quot;)]
+		[Header(&quot;IGraphGO Parameters&quot;)]
+		[SerializeField] List&lt;GameObject&gt; m_graphPrefabsComponents;
+
+		/// &lt;inheritdoc/&gt;
+		public List&lt;GameObject&gt; graphPrefabsComponents
+		{
+			get =&gt; m_graphPrefabsComponents;
+		}
+
+		/// &lt;summary&gt;
+		/// The field for the property &lt;see cref=&quot;graphScalingData&quot;/&gt;.
+		/// &lt;/summary&gt;
+		[SerializeField] GraphScalingData m_graphScalingData;
+
+		/// &lt;inheritdoc/&gt;
+		public GraphScalingData graphScalingData
+		{
+			get =&gt; m_graphScalingData;
+		}
+
+		/// &lt;inheritdoc/&gt;
+		public Dictionary&lt;uint, GameObject&gt; DataID_to_DataGO { get ; set ; }
+		#endregion
+
+        //
+        // Unity methods Awake, Start, OnEnable, Update, etc... if necessary
+        //
+        
+        //
+        // ADD NEW METHODS HERE
+        //
+	}
+}
+</code></pre>
+</details>
+<h2 id="data-layer">Data Layer</h2>
+<img src="../../resources/diagrams/graphComponentsDataLayerAPI.svg" alt="Graph Components Data Layer API">
+<p><strong>Links to the corresponding scripting API</strong>:</p>
+<ul>
+<li>Interfaces
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.IEdge.html">IEdge</a></li>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.IGraph-2.html">IGraph</a></li>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.INode.html">INode</a></li>
+</ul>
+</li>
+<li>Structs
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Utility.Data.Graph.CyJsonEdge.html">CyJsonEdge</a></li>
+<li><a class="xref" href="../../api/ECellDive.Utility.Data.Graph.CyJsonNode.html">CyJsonNode</a></li>
+<li><a href="xref:ECellDive.GraphComponents.Edge">Edge</a></li>
+<li><a href="xref:ECellDive.GraphComponents.Node">Node</a></li>
+</ul>
+</li>
+<li>Classes
+<ul>
+<li><a class="xref" href="../../api/ECellDive.GraphComponents.ContiguousGraph.html">ContinuousGraph</a></li>
+<li><a class="xref" href="../../api/ECellDive.GraphComponents.CyJsonPathway.html">CyJsonPathway</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="gameobjects-layer">GameObjects Layer</h2>
+<h3 id="edge-gameobjects">Edge GameObjects</h3>
+<img src="../../resources/diagrams/graphComponentsGoLayerEdgesAPI.svg" alt="Graph Components GO Layer Edges API">
+<p><strong>Links to the corresponding scripting API</strong>:</p>
+<ul>
+<li>Interfaces
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.IBezierCurve.html">IBezierCurve</a></li>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.IEdgeGO-1.html">IEdgeGO</a></li>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.IGradient.html">IGradient</a></li>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.IModulateFlux.html">IModulateFlux</a></li>
+</ul>
+</li>
+<li>Classes
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Modules.CyJsonEdgeGO.html">CyJsonEdgeGO</a></li>
+<li><a class="xref" href="../../api/ECellDive.Modules.EdgeGO.html">EdgeGO</a></li>
+<li><a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a></li>
+<li><a class="xref" href="../../api/ECellDive.Modules.Module.html">Module</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="node-gameobjects">Node GameObjects</h3>
+<img src="../../resources/diagrams/graphComponentsGoLayerNodesAPI.svg" alt="Graph Components GO Layer Nodes API">
+<p><strong>Links to the corresponding scripting API</strong>:</p>
+<ul>
+<li>Interfaces
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.INodeGO-1.html">INodeGO</a></li>
+</ul>
+</li>
+<li>Classes
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Modules.CyJsonNodeGO.html">CyJsonNodeGO</a></li>
+<li><a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a></li>
+<li><a class="xref" href="../../api/ECellDive.Modules.Module.html">Module</a></li>
+<li><a class="xref" href="../../api/ECellDive.Modules.NodeGO.html">NodeGO</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="graph-gameobjects">Graph GameObjects</h3>
+<img src="../../resources/diagrams/graphComponentsGoLayerGraphsAPI.svg" alt="Graph Components GO Layer Graphs API">
+<p><strong>Links to the corresponding scripting API</strong>:</p>
+<ul>
+<li>Interfaces
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.IGraphGO-2.html">IGraphGO</a></li>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.IGraphGONet-2.html">IGraphGONet</a></li>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.IModifiable.html">IModifiable</a></li>
+<li><a class="xref" href="../../api/ECellDive.Interfaces.ISaveable.html">ISaveable</a></li>
+</ul>
+</li>
+<li>Classes
+<ul>
+<li><a class="xref" href="../../api/ECellDive.Modules.CyJsonModule.html">CyJsonModule</a></li>
+<li><a class="xref" href="../../api/ECellDive.Modules.DiveTravelMapModule.html">DiveTravelMapModule</a></li>
+<li><a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a></li>
+<li><a class="xref" href="../../api/ECellDive.Modules.Module.html">Module</a></li>
+</ul>
+</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\Dev\about_graphs.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

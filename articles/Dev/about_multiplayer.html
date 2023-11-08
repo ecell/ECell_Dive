@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\Dev\about_multiplayer.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\Dev\about_multiplayer.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -27,6 +27,7 @@
       <meta name="loc:themeAuto" content="Auto">
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
   </head>
 
   <script type="module" src="./../../public/docfx.min.js"></script>
@@ -97,17 +98,26 @@
 </ul>
 <img src="../../resources/diagrams/multiplayerHostJoin.svg" alt="Multiplayer Host Join">
 <h1 id="broadcast-data">Broadcast Data</h1>
-<p>NetGO gives two solutions to share data between over the network between clients. The first is <a href="https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls">NetworkVariables</a> and the second is <a href="https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls">Remote Procedure Calls</a>.</p>
+<p>NetGO gives two solutions to share data over the network between clients. The first is <a href="https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls">NetworkVariables</a> and the second is <a href="https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/ways-synchronize/#remote-procedure-calls">Remote Procedure Calls</a>.</p>
 <h2 id="small-ones-with-networkvariables">&quot;Small ones&quot; with NetworkVariables</h2>
 <p>In <em>ECellDive</em> we used network variables to easily synchronize &quot;small&quot; data. For example, the <a class="xref" href="../../api/ECellDive.Interfaces.IColorHighlightableNet.html#ECellDive_Interfaces_IColorHighlightableNet_currentColor">currentColor</a> in the interface <a class="xref" href="../../api/ECellDive.Interfaces.IColorHighlightableNet.html">IColorHighlightableNet</a> to synchronize the color change of modules when users point at them. This is very useful to easily share on the network which module a user is currently interacting with. Or the <a class="xref" href="../../api/ECellDive.Interfaces.IKnockable.html#ECellDive_Interfaces_IKnockable_knockedOut">knockout</a> status in the interface <a class="xref" href="../../api/ECellDive.Interfaces.IKnockable.html">IKnockable</a> to guarantee that the state of a model is synchronized for all users when one of them is knocking out a reaction.</p>
 <p>There are many others in the project.</p>
 <h2 id="big-ones-with-remote-procedure-calls-rpcs">&quot;Big ones&quot; with Remote Procedure Calls (RPCs)</h2>
-<h3 id="example-1-broadcast-data-imported-by-a-user-from-kosmogora">Example 1: Broadcast data imported by a user from Kosmogora</h3>
+<h3 id="broadcast-data-when-a-new-client-connects">Broadcast data when a new client connects</h3>
+<p>After a client managed to connect to a multiplayer session (see the section above on <a href="about_multiplayer.html#hosting-and-joining">Hosting and Joining</a>), several data exchange cascades are triggered from the client to the server via the <a href="https://docs-multiplayer.unity3d.com/netcode/current/about/index.html">NetGO</a> callback <code>OnNetworkSpawn</code>. This involves the <a class="xref" href="../../api/ECellDive.PlayerComponents.Player.html">Player</a>, the <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetDataManager.html">GameNetDataManager</a>, and the <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html">DiveScenesManager</a>.<br>
+On network spawn, the <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetDataManager.html">GameNetDataManager</a> on the client's side requests the server side of the GO to send it the data of players that have already connected to the session once (this may include the new client in the case of a reconnection) and the data of modules already loaded in the session.<br>
+In the meantime, on network spawn, the <a class="xref" href="../../api/ECellDive.PlayerComponents.Player.html">Player</a> is subscribing to <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetDataManager.html#ECellDive_Multiplayer_GameNetDataManager_OnClientReceivedAllPlayerNetData">OnClientReceivedAllPlayerNetData</a> and <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetDataManager.html#ECellDive_Multiplayer_GameNetDataManager_OnClientReceivedAllModules">OnClientReceivedAllModules</a> from the the <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetDataManager.html">GameNetDataManager</a> which are triggered once the server side has finished sending all data about the already connected players to the client side, as well as all the data modules loaded in the multiplayer session. These callbacks will trigger the execution of methods on the client side to <a class="xref" href="../../api/ECellDive.PlayerComponents.Player.html#ECellDive_PlayerComponents_Player_UpdatePlayerNamesInContainers_System_UInt64_">update the name tags of the players</a> in each other's scene, and to <a class="xref" href="../../api/ECellDive.PlayerComponents.Player.html#ECellDive_PlayerComponents_Player_SpawnInDiveScene_System_UInt64_">drop the new client in the appropriate scene</a>.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>It is impossible to know precisely the execution order within one frame in the sequence diagram bellow because it involves many RPCs. This diagram is only to let you about the most important calls that happen but the order is unclear.</p>
+</div>
+<img src="../../resources/diagrams/multiplayerJoinDataBroadcast.svg" alt="Multiplayer Join Data Broadcast">
+<h3 id="broadcast-data-imported-by-a-user-from-kosmogora">Broadcast data imported by a user from Kosmogora</h3>
 <p>When a user imports data in a dive scene from a <a href="../UserManual/Network/connecting_to_Kosmogora.html">Kosmogora-like</a> server thanks to <a class="xref" href="../../api/ECellDive.Modules.HttpServerImporterModule.html">HttpServerImporterModule</a>, it is immediately sent to every other user in the multiplayer session. We could have enforced that every user in the multiplayer session have the same access to the <a href="../UserManual/Network/connecting_to_Kosmogora.html">Kosmogora-like</a> server. But we did not because it is likely that, in a collaborative setting, some users have access to <a href="../UserManual/Network/connecting_to_Kosmogora.html">Kosmogora-like</a> servers hosted on their institution's network that are not accessible to outsiders. Hence, when data is imported by a user, it must transit to other users through the multiplayer network.</p>
 <p>In the system we implemented, the data is fragmented into chunks of 1024 bytes at most. Then the <a class="xref" href="../../api/ECellDive.Multiplayer.GameNetModuleSpawner.html">GameNetModuleSpawner</a> on the server side spawns the GO, assigns the fragmented data to it and gives ownership of the GO back to the client who made the request first. Finally the owner fragments are broadcasted one by one to all clients by the server. Then, the fragments are reassembled on the side of each client and relevant data is extracted to initialize the module encapsulating the data. This last bit is specific to every data module.</p>
 <img src="../../resources/diagrams/multiplayerDataBroadcastRPC.svg" alt="Multiplayer Data Broadcast RPC Example">
 <p>A big downside of the current implementation state of the method is that the client only checks is it has received all fragments but it has not way to know which fragment is missing, should it be the case. This must be covered before even thinking of enabling multiplayer session through the internet for <em>ECellDive</em>.</p>
-<h3 id="example-2-broadcast-dive-scene-generation-on-first-dive-from-any-user">Example 2: Broadcast <em>Dive Scene</em> generation on first dive from any user</h3>
+<h3 id="broadcast-dive-scene-generation-on-first-dive-from-any-user">Broadcast <em>Dive Scene</em> generation on first dive from any user</h3>
 <p>Before users can dive in a data module (e.g., <a class="xref" href="../../api/ECellDive.Modules.CyJsonModule.html">CyJsonModule</a>), its content must be generated and hidden within a dive scene. This generation happens on the first dive by any of the user in a multiplayer session. Since the generated data must be visible by every user, it must be instantiated (spawned by the server). But there may be a lot of such objects in the dive scene so the generation must be batched to avoid exceeding the communication limits set by <code>Unity Transport</code> (such limits are mandatory since, in principle, too many communications or too big data traffic could be because of malicious attack of the server).</p>
 <p>A <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html">GameNetModule</a> implementing <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_GenerativeDiveInC">GenerativeDiveInC</a> (see also the explanations about <a href="about_scenes.html#dive-scenes"><em>Dive Scenes</em></a>) can request the generation of the data to the server thanks to <a class="xref" href="../../api/ECellDive.Modules.GameNetModule.html#ECellDive_Modules_GameNetModule_RequestSourceDataGenerationServerRpc_System_UInt64_">RequestSourceDataGenerationServerRpc</a> (which it must also implement). The details of how the generation is implemented is specific for every data module. Here is an example of what it looks like for <a class="xref" href="../../api/ECellDive.Modules.CyJsonModule.html">CyJsonModule</a>:</p>
 <img src="../../resources/diagrams/multiplayerSpawnBroadcast.svg" alt="Multiplayer Spawn Broadcast Example">
@@ -115,7 +125,7 @@
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/main/DocFX\articles\Dev\about_multiplayer.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\Dev\about_multiplayer.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
@@ -128,7 +138,7 @@
     </main>
 
 
-    <footer class="border-top">
+    <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
           <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
