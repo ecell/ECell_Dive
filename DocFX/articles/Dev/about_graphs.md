@@ -508,12 +508,12 @@ __Links to the corresponding scripting API__:
   - [IGraph](xref:ECellDive.Interfaces.IGraph`2)
   - [INode](xref:ECellDive.Interfaces.INode)
 - Structs
-  - [CyJsonEdge](xref:ECellDive.GraphComponents.CyJsonEdge)
-  - [CyJsonNode](xref:ECellDive.GraphComponents.CyJsonNode)
+  - [CyJsonEdge](xref:ECellDive.Utility.Data.Graph.CyJsonEdge)
+  - [CyJsonNode](xref:ECellDive.Utility.Data.Graph.CyJsonNode)
   - [Edge](xref:ECellDive.GraphComponents.Edge)
   - [Node](xref:ECellDive.GraphComponents.Node)
 - Classes
-  - [ContinuousGraph](xref:ECellDive.GraphComponents.ContinuousGraph)
+  - [ContinuousGraph](xref:ECellDive.GraphComponents.ContiguousGraph)
   - [CyJsonPathway](xref:ECellDive.GraphComponents.CyJsonPathway)
 
 ## GameObjects Layer

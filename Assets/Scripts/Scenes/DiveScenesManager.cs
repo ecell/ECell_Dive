@@ -416,7 +416,7 @@ namespace ECellDive.SceneManagement
 
 			GameObject diverGo = NetworkManager.Singleton.ConnectedClients[_newInDiverClientId].PlayerObject.gameObject;
 
-			//Show the the new diver to all the already present in-Divers
+			//Show the new diver to all the already present in-Divers
 			diverGo.GetComponent<Player>().NetShowClientRpc(oldInDiversRpcParams);
 
 			//Show all already present in-Divers to the new in Diver
