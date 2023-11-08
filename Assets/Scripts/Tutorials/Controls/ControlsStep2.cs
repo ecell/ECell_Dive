@@ -16,7 +16,7 @@ namespace ECellDive.Tutorials
 		/// <inheritdoc/>
 		public override bool CheckCondition()
 		{
-			return target.GetComponent<GameNetModule>().areVisible;
+			return target.GetComponent<Module>().areVisible;
 		}
 
 		/// <inheritdoc/>
