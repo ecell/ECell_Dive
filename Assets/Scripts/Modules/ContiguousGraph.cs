@@ -1,26 +1,29 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using ECellDive.Interfaces;
 using ECellDive.Utility.Data.Graph;
 
 namespace ECellDive.GraphComponents
 {
-	/// <summary>
-	/// Encodes the data for a graph made from reading the contiguous pairs of
-	/// nodes in a list. Nodes are represented by integers.
-	/// </summary>
-	/// <example>
-	/// [node1, node2, node3, ...., nodeN] yields the following graph:
-	/// node1 -> node2 -> node3 -> ... -> nodeN
-	/// If the graph may be cyclic with nodes repeating. [node1, node2, node3, node1, node4]
-	/// yields the following graph:
-	///   |-----------------------|
-	///   |                       v
-	/// node1 -> node2 -> node3 node4
-	///   ^                 |
-	///   |-----------------|
-	/// </example>
-	public class ContiguousGraph : IGraph<Edge, Node>
+    /// <summary>
+    /// Encodes the data for a graph made from reading the contiguous pairs of
+    /// nodes in a list. Nodes are represented by integers.
+    /// </summary>
+    /// <example>
+    /// `[node1, node2, node3, ...., nodeN]` yields the graph
+    /// `node1 -> node2 -> node3 -> ... -> nodeN`
+    /// The graph may be cyclic with repeating nodes. 
+    /// For example, `[node1, node2, node3, node1, node4]`
+    /// yields:
+    /// ```
+    ///   ┌-----------------------┐
+    ///   |                       ꓦ
+    /// node1 -> node2 -> node3 node4
+    ///   ꓥ                 |
+    ///   └-----------------┘
+    /// ```
+    /// </example>
+    public class ContiguousGraph : IGraph<Edge, Node>
 	{
 		#region - IGraph Members -
 		/// <summary>
