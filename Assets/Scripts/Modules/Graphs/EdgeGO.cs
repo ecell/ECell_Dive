@@ -199,7 +199,7 @@ namespace ECellDive.Modules
 			yield return new WaitForEndOfFrame();
 
 			lineRenderers[0].BakeMesh(colliderMesh);
-
+			m_refColliderHolder.transform.Rotate(new Vector3(0f, 180f, 0f)); 
 			refColliderHolder.GetComponent<MeshCollider>().sharedMesh = colliderMesh;
 		}
 
