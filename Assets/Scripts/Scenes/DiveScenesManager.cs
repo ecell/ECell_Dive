@@ -63,7 +63,7 @@ namespace ECellDive.SceneManagement
 		/// Event triggered when the scene bank has been shared to a client
 		/// (likely newly connected). The parameter is the client id of the
 		/// client that received the scene bank. This is used in
-		/// triggered in <see cref="ShareSceneBankClientRpc(ulong)"/>. when
+		/// triggered in <see cref="ShareSceneBankClientRpc(SceneData, ClientRpcParams)"/>. when
 		/// the client has confirmed that the size of its scene bank is 
 		/// equal to <see cref="sceneBankCount"/>.
 		/// </summary>

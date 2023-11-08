@@ -118,7 +118,7 @@ namespace ECellDive
 			NetworkVariable<Color> currentColor { get; }
 
 			/// <summary>
-			/// Contacts the server to applies <see cref="IColorHighlightable.defaultColor"/>
+			/// Contacts the server to applies <see cref="IColored.defaultColor"/>
 			/// to <see cref="currentColor"/>.
 			/// </summary>
 			/// <remarks>Since <see cref="currentColor"/> is a NetworkVariable,

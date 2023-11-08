@@ -1,10 +1,10 @@
 ## Multiplayer Menu
 
-<img src="../../../resources/images/modules/multiplayer_module.jpg" alt="UI point" style="height: 300px;"/>
+<img src="../../resources/images/modules/multiplayer_module.jpg" alt="UI point" style="height: 300px;"/>
 
 The menu to host or join a multiplayer session. Actually, even in single player, the application runs a server but it is running on local host (127.0.0.1:7777). This menu has a holographic base to be able to visualize the connection processes through animations.
 
-<img src="../../../resources/images/modules/1x/multiplayer_parameters.png" alt="UI point" style="height: 300px;"/>
+<img src="../../resources/images/modules/1x/multiplayer_parameters.png" alt="UI point" style="height: 300px;"/>
 
 1. Input field *Player Name*. The name that will be displayed to the other players.
 2. Input field *Server IP*. The IP of the host-to-be on the Local Area Network (LAN) where every users are connected. The host can know his IP address by looking at the advance settings of the WiFi connection from the Meta Quest 2 main menu. To open the Meta Quest 2 main menu, click on the *Oculus Button* on the right controller. Then, spot the WiFi icon and click on it. Open the current active connection and go to the bottom of the menu.

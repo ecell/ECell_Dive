@@ -202,7 +202,7 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Sets the <see cref="serverData"/> to the server selected by retrieving
+		/// Sets the <see cref="HttpServerBaseModule.serverData"/> to the server selected by retrieving
 		/// the server data based in the index of the button representing the server
 		/// in the <see cref="refAvailableServersScrollList"/>.
 		/// </summary>

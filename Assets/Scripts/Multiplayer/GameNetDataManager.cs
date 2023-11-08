@@ -239,9 +239,6 @@ namespace ECellDive.Multiplayer
 		/// </summary>
 		/// <param name="_expeditorClientID">The id of the target client to which
 		/// we send the content of the data modules in the scene.</param>
-		/// <remarks>This should be used only with (or after) <see
-		/// cref="OnNetworkReady(ulong)"/> to be sure that the data modules
-		/// have been spawned in the scene of the target client.</remarks>
 		private IEnumerator ShareModuleDataC(ulong _expeditorClientID)
 		{
 			int nbClientReadyLoaded;

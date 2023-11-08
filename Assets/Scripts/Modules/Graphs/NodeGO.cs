@@ -68,8 +68,7 @@ namespace ECellDive.Modules
 
 		/// <summary>
 		/// Scale the node by the <paramref name="_sizeScaleFactor"/>. The scale is applied
-		/// to the <see cref="ECellDive.Modules.Module.transform"/> of the node. The UI
-		/// elements are scaled back to their original size.
+		/// to the local scale of the node. The UI elements are scaled back to their original size.
 		/// </summary>
 		/// <param name="_scale">
 		/// The base scale of the node.

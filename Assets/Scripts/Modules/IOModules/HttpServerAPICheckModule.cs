@@ -152,7 +152,7 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Sets the value for the IP in <see cref="serverData"/>.
+		/// Sets the value for the IP in <see cref="HttpServerBaseModule.serverData"/>.
 		/// </summary>
 		/// <remarks>
 		/// Called back on value change of the input field dedicated to the IP.
@@ -163,7 +163,7 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Sets the value for the Port in <see cref="serverData"/>.
+		/// Sets the value for the Port in <see cref="HttpServerBaseModule.serverData"/>.
 		/// </summary>
 		/// <remarks>
 		/// Called back on value change of the input field dedicated to the Port.
@@ -174,7 +174,7 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Sets the value for the Name in <see cref="serverData"/>.
+		/// Sets the value for the Name in <see cref="HttpServerBaseModule.serverData"/>.
 		/// </summary>
 		/// <remarks>
 		/// Called back on value change of the input field dedicated to the Name.
