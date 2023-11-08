@@ -6,7 +6,7 @@ The API to encode graphs is separated in two parts that we call _layers_ in the 
 Instances of objects from the data layer are then usually class members of objects in the [GameObjects (GOs) Layer](./about_graphs.md#gameobjects-layer). Classes in the GOs layer are `MonoBehaviour` that can be attached as components to GOs in Unity's Editor.  
 
 ## Add a New Graph Component
-There are two ways to add a new type of edge, node, or graph. One is to only define a new object in the GO Layer that uses the existing data structures (e.g., [Edge](xref:ECellDive.GraphComponents.Edge), [Node](xref:ECellDive.GraphComponents.Node), etc.) in the Data layer. Or, you can define a new object in the data layer which you can then use in a new object in the GO Layer.  
+There are two ways to add a new type of edge, node, or graph. One is to only define a new object in the GO Layer that uses the existing data structures (e.g., [Edge](xref:ECellDive.Utility.Data.Graph.Edge), [Node](xref:ECellDive.Utility.Data.Graph.Node), etc.) in the Data layer. Or, you can define a new object in the data layer which you can then use in a new object in the GO Layer.  
 In the following example we define a new version for everything: a new graph data structure with using a new type of edge and a new type of node. Then, this new graph is encapsulated in a new module. 
 You can start by copying the example files that follow:
 
@@ -510,8 +510,8 @@ __Links to the corresponding scripting API__:
 - Structs
   - [CyJsonEdge](xref:ECellDive.Utility.Data.Graph.CyJsonEdge)
   - [CyJsonNode](xref:ECellDive.Utility.Data.Graph.CyJsonNode)
-  - [Edge](xref:ECellDive.GraphComponents.Edge)
-  - [Node](xref:ECellDive.GraphComponents.Node)
+  - [Edge](xref:ECellDive.Utility.Data.Graph.Edge)
+  - [Node](xref:ECellDive.Utility.Data.Graph.Node)
 - Classes
   - [ContinuousGraph](xref:ECellDive.GraphComponents.ContiguousGraph)
   - [CyJsonPathway](xref:ECellDive.GraphComponents.CyJsonPathway)
