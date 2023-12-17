@@ -9,7 +9,7 @@ namespace ECellDive.Modules
 	/// The class to manage a node defined by <see cref="ECellDive.Utility.Data.Graph.Node"/>.
 	/// and nothing more.
 	/// </summary>
-	public class NodeGO : Module, INodeGO<Node>
+	public class NodeGO : Module, INodeGO<Node>, IScaleHighlightable
 	{
 		#region - INodeGO Members -
 		/// <summary>
@@ -36,6 +36,35 @@ namespace ECellDive.Modules
 			get => m_informationString;
 			private set => m_informationString = value;
 		}
+		#endregion
+
+		#region - IScaleHighlightable Members -
+
+		/// <summary>
+		/// The field for the property <see cref="defaultScale"/>.
+		/// </summary>
+		[Header("IScaleHighlightable Parameters")]
+		[SerializeField] private Vector3 m_defaultScale = Vector3.one;
+		
+		/// <inheritdoc/>
+		public Vector3 defaultScale
+		{
+			get => m_defaultScale;
+			set => m_defaultScale = value;
+		}
+
+		/// <summary>
+		/// The field for the property <see cref="highlightScale"/>.
+		/// </summary>
+		[SerializeField] private Vector3 m_highlightScale = Vector3.one;
+
+		/// <inheritdoc/>
+		public Vector3 highlightScale
+		{
+			get => m_highlightScale;
+			set => m_highlightScale = value;
+		}
+
 		#endregion
 
 		/// <summary>
@@ -97,6 +126,33 @@ namespace ECellDive.Modules
 
 			informationString = $"ID: {nodeData.ID}\n" +
 								$"Name: {nodeData.name}";
+		}
+		#endregion
+
+		#region - IHighlightable Methods -
+		/// <inheritdoc/>
+		public override void SetHighlight()
+		{
+			ApplyColor(highlightColor);
+			ApplyScale(highlightScale);
+		}
+
+		/// <inheritdoc/>
+		public override void UnsetHighlight()
+		{
+			if (!forceHighlight)
+			{
+				ApplyColor(defaultColor);
+				ApplyScale(defaultScale);
+			}
+		}
+		#endregion
+
+		#region - IScaleHighlightable Methods -
+		/// <inheritdoc/>
+		public void ApplyScale(Vector3 _scale)
+		{
+			renderers[0].transform.localScale = _scale;
 		}
 		#endregion
 	}
