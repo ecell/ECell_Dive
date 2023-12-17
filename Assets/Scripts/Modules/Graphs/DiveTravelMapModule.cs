@@ -101,6 +101,8 @@ namespace ECellDive.Modules
 
 				nodeGOcp.defaultColor = Color.HSVToRGB((float)i / m_graphData.nodes.Length, 1, 1);
 				nodeGOcp.ApplyColor(nodeGOcp.defaultColor);
+				nodeGOcp.highlightColor = new Color(1 - nodeGOcp.defaultColor.r,
+					1 - nodeGOcp.defaultColor.g, 1 - nodeGOcp.defaultColor.b, 0.25f);
 
 				nodesColors.Add(m_graphData.nodes[i].ID, nodeGOcp.defaultColor);
 				nodePosition += nodePosInc;
@@ -135,6 +137,8 @@ namespace ECellDive.Modules
 				edgeGOcp.defaultGradient[0] = nodesColors[m_graphData.edges[i].source];
 				edgeGOcp.defaultGradient[1] = nodesColors[m_graphData.edges[i].target];
 				edgeGOcp.ApplyGradient(edgeGOcp.defaultGradient);
+				Color blend = Color.Lerp(edgeGOcp.defaultGradient[0], edgeGOcp.defaultGradient[1], 0.5f);
+				edgeGOcp.highlightColor = new Color(1 - blend.r, 1 - blend.g, 1 - blend.b, 0.75f);
 
 				DataID_to_DataGO.Add(m_graphData.edges[i].ID, edgeGO);
 			}
