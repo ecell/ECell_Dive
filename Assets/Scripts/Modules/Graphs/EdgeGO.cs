@@ -195,10 +195,8 @@ namespace ECellDive.Modules
 		/// </summary>
 		private IEnumerator DelayedSetColliderC()
 		{
-			Debug.Log("Main Camera", Camera.main);
 			yield return new WaitForEndOfFrame();
-
-			lineRenderers[0].BakeMesh(colliderMesh);
+            lineRenderers[0].BakeMesh(colliderMesh);
 			refColliderHolder.GetComponent<MeshCollider>().sharedMesh = colliderMesh;
 		}
 
@@ -351,9 +349,9 @@ namespace ECellDive.Modules
 			//They are slightly offset from the edge by a vector perpendicular to the edge.
 			//That vector is the normal to the plane defined by the edge and the vector (0,0,-1).
 			Vector3 p1 = 0.33f * (end - start) + start;
-			p1 += 0.33f * Vector3.Cross(end - start, Vector3.forward).normalized;
+			p1 += 0.33f * Vector3.Cross(end - start, Vector3.back).normalized;
 			Vector3 p2 = 0.66f * (end - start) + start;
-			p2 += 0.33f * Vector3.Cross(end - start, Vector3.forward).normalized;
+			p2 += 0.33f * Vector3.Cross(end - start, Vector3.back).normalized;
 
 			//We assigned a 4 points array in the awake method.
 			//We can update it here with the new control points.

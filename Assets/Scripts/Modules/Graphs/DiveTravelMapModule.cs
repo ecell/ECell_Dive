@@ -139,8 +139,6 @@ namespace ECellDive.Modules
 				nodePosition += nodePosInc;
 			}
 
-			Matrix4x4 displayBase = Matrix4x4.identity;
-			displayBase.m00 = -1f;
 			for (int i = 0; i < m_graphData.edges.Length; i++)
 			{
 				GameObject edgeGO = Instantiate(m_graphPrefabsComponents[1], refDiveTravelMapRoot.transform);
@@ -150,14 +148,10 @@ namespace ECellDive.Modules
 				edgeGOcp.SetEdgeData(m_graphData.edges[i]);
 				edgeGOcp.SetLineRendererWidth();
 
-				//We rotate the line so that the edge is oriented toward the opposite direction
-				//of the forward vector of the GO encasulating the Dive Travel Map.
-				edgeGOcp.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-
 				//Because of the rotation, we need to calculate the start and end position which
 				//are in the local space of the Dive Map, to the local space of the edge GO.
-				edgeGOcp.SetLineRendererPosition(displayBase.MultiplyPoint3x4(DataID_to_DataGO[m_graphData.edges[i].source].transform.localPosition),
-												displayBase.MultiplyPoint3x4(DataID_to_DataGO[m_graphData.edges[i].target].transform.localPosition));
+				edgeGOcp.SetLineRendererPosition(DataID_to_DataGO[m_graphData.edges[i].source].transform.localPosition,
+												DataID_to_DataGO[m_graphData.edges[i].target].transform.localPosition);
 				edgeGOcp.SetCollider(DataID_to_DataGO[m_graphData.edges[i].source].transform,
 									DataID_to_DataGO[m_graphData.edges[i].target].transform);
 
