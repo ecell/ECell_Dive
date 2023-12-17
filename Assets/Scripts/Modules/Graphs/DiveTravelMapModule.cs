@@ -155,7 +155,7 @@ namespace ECellDive.Modules
 				edgeGOcp.SetCollider(DataID_to_DataGO[m_graphData.edges[i].source].transform,
 									DataID_to_DataGO[m_graphData.edges[i].target].transform);
 
-				edgeGOcp.SetName(m_graphData.edges[i].name);
+				edgeGOcp.SetName($"{i+1}");
 				edgeGOcp.SetNamePosition(graphScalingData.sizeScaleFactor);
 				edgeGOcp.HideName();
 
