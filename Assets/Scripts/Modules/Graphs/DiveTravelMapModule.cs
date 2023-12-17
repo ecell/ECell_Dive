@@ -83,6 +83,7 @@ namespace ECellDive.Modules
 
 			Dictionary<uint, Color> nodesColors = new Dictionary<uint, Color>();
 			Vector3 nodePosition = Vector3.zero;
+			Vector3 nodePosInc = Vector3.right * 0.5f + Vector3.down * 0.25f;
 			for (int i = 0; i < m_graphData.nodes.Length; i++)
 			{
 				GameObject nodeGO = Instantiate(m_graphPrefabsComponents[0], refDiveTravelMapRoot.transform);
@@ -102,7 +103,7 @@ namespace ECellDive.Modules
 				nodeGOcp.ApplyColor(nodeGOcp.defaultColor);
 
 				nodesColors.Add(m_graphData.nodes[i].ID, nodeGOcp.defaultColor);
-				nodePosition += Vector3.right * 1f;
+				nodePosition += nodePosInc;
 			}
 
 			Matrix4x4 displayBase = Matrix4x4.identity;
@@ -139,7 +140,7 @@ namespace ECellDive.Modules
 			}
 
 			//Center the dive travel map root
-			refDiveTravelMapRoot.transform.localPosition = -0.5f * (nodePosition - Vector3.right) * graphScalingData.positionScaleFactor;
+			refDiveTravelMapRoot.transform.localPosition = -0.5f * (nodePosition - nodePosInc) * graphScalingData.positionScaleFactor;
 		}
 
 		/// <summary>
