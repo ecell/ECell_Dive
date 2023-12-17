@@ -109,6 +109,8 @@ namespace ECellDive.Modules
 			{
 				GameObject edgeGO = Instantiate(m_graphPrefabsComponents[1], refDiveTravelMapRoot.transform);
 				EdgeGO edgeGOcp = edgeGO.GetComponent<EdgeGO>();
+				edgeGOcp.curvePointsCount = 20;
+				edgeGOcp.SetDefaultWidth(0.1f*edgeGOcp.defaultStartWidth, edgeGOcp.defaultEndWidth);
 				edgeGOcp.SetEdgeData(m_graphData.edges[i]);
 				edgeGOcp.SetLineRendererWidth();
 				edgeGOcp.SetLineRendererPosition(DataID_to_DataGO[m_graphData.edges[i].source].transform,
