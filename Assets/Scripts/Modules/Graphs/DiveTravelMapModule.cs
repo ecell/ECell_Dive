@@ -70,15 +70,46 @@ namespace ECellDive.Modules
 		}
 
 		/// <summary>
-		/// Builds the dive travel map from the dive travel data of the
-		/// local player.
+		/// A coroutine to scale the node to contain the text of its name.
+		/// We must waitfor the end of the frame to be sure that the scales ratio
+		/// between the node, the child GO for the graphics of the node, and the
+		/// name container, are all set.
+		/// 
+		/// Once it is done, we can retrieve the abounds of the TMP_Text of the name
+		/// and assign it to the highlight scale of the node. 
 		/// </summary>
-		public void BuildMap()
+		/// <param name="_nodeGO"></param>
+		/// <returns></returns>
+		IEnumerator NodeScalingToContainText(NodeGO _nodeGO)
+		{
+            nameField.ForceMeshUpdate();
+			yield return new WaitForEndOfFrame();
+
+			//After tests, I prefered to use the "bounds" and not the "textBouds"
+			_nodeGO.highlightScale = graphScalingData.sizeScaleFactor * (_nodeGO.nameField.bounds.max - _nodeGO.nameField.bounds.min);
+            
+			//We guarentee that the highlight scale is always bigger than the default scale
+			//and we increase it by 5% to allow a little margin between the text and the node.
+			_nodeGO.highlightScale = new Vector3(
+				1.05f*Mathf.Max(_nodeGO.defaultScale.x, _nodeGO.highlightScale.x),
+				1.05f*Mathf.Max(_nodeGO.defaultScale.y, _nodeGO.highlightScale.y),
+				1f);
+
+            //We also finish by hiding the name since nodes in the dive
+			//travel map do not display their name unless they are highlighted.
+            _nodeGO.HideName();
+        }
+
+        /// <summary>
+        /// Builds the dive travel map from the dive travel data of the
+        /// local player.
+        /// </summary>
+        public void BuildMap()
 		{
 			Clear();
 
 			List<int> diveSceneTrace = GameNetDataManager.Instance.GetSceneTrace(NetworkManager.Singleton.LocalClientId);
-			//List<int> diveSceneTrace = new List<int>() { 1, 2, 5, 4, 1, 5, 6 }; //For tests and debug
+			//List<int> diveSceneTrace = new List<int>() { 1, 2, 555, 4, 1, 555, 6 }; //For tests and debug
 			m_graphData.Populate(diveSceneTrace);
 
 			Dictionary<uint, Color> nodesColors = new Dictionary<uint, Color>();
@@ -91,13 +122,13 @@ namespace ECellDive.Modules
 				nodeGOcp.SetNodeData(m_graphData.nodes[i]);
 				nodeGOcp.SetPosition(nodePosition, graphScalingData.positionScaleFactor);
 				nodeGOcp.SetScale(Vector3.one, graphScalingData.sizeScaleFactor);
-				
+
 				nodeGOcp.SetName(DiveScenesManager.Instance.scenesBank[diveSceneTrace[i]].sceneName);
 				//nodeGOcp.SetName(m_graphData.nodes[i].name); //for tests and debug
 				nodeGOcp.SetNamePosition(0);
-				nodeGOcp.HideName();
+				StartCoroutine(NodeScalingToContainText(nodeGOcp));
 
-				DataID_to_DataGO.Add(m_graphData.nodes[i].ID, nodeGO);
+                DataID_to_DataGO.Add(m_graphData.nodes[i].ID, nodeGO);
 
 				nodeGOcp.defaultColor = Color.HSVToRGB((float)i / m_graphData.nodes.Length, 1, 1);
 				nodeGOcp.ApplyColor(nodeGOcp.defaultColor);
@@ -119,14 +150,14 @@ namespace ECellDive.Modules
 				edgeGOcp.SetEdgeData(m_graphData.edges[i]);
 				edgeGOcp.SetLineRendererWidth();
 
-                //We rotate the line so that the edge is oriented toward the opposite direction
+				//We rotate the line so that the edge is oriented toward the opposite direction
 				//of the forward vector of the GO encasulating the Dive Travel Map.
-                edgeGOcp.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+				edgeGOcp.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
 
 				//Because of the rotation, we need to calculate the start and end position which
 				//are in the local space of the Dive Map, to the local space of the edge GO.
-                edgeGOcp.SetLineRendererPosition(displayBase.MultiplyPoint3x4(DataID_to_DataGO[m_graphData.edges[i].source].transform.localPosition),
-                                                displayBase.MultiplyPoint3x4(DataID_to_DataGO[m_graphData.edges[i].target].transform.localPosition));
+				edgeGOcp.SetLineRendererPosition(displayBase.MultiplyPoint3x4(DataID_to_DataGO[m_graphData.edges[i].source].transform.localPosition),
+												displayBase.MultiplyPoint3x4(DataID_to_DataGO[m_graphData.edges[i].target].transform.localPosition));
 				edgeGOcp.SetCollider(DataID_to_DataGO[m_graphData.edges[i].source].transform,
 									DataID_to_DataGO[m_graphData.edges[i].target].transform);
 
@@ -159,7 +190,7 @@ namespace ECellDive.Modules
 #else
 			Destroy(refDiveTravelMapRoot.transform.GetChild(0).gameObject);
 #endif
-            }
+			}
 
 			DataID_to_DataGO.Clear();
 		}
