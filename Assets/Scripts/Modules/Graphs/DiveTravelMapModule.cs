@@ -94,7 +94,7 @@ namespace ECellDive.Modules
 				
 				nodeGOcp.SetName(DiveScenesManager.Instance.scenesBank[diveSceneTrace[i]].sceneName);
 				//nodeGOcp.SetName(m_graphData.nodes[i].name); //for tests and debug
-				nodeGOcp.SetNamePosition(graphScalingData.sizeScaleFactor);
+				nodeGOcp.SetNamePosition(0);
 				nodeGOcp.HideName();
 
 				DataID_to_DataGO.Add(m_graphData.nodes[i].ID, nodeGO);
