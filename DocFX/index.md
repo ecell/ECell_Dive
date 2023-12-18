@@ -25,7 +25,7 @@ ECellDive is a VR application for systems biology. It is part of a research proj
 - [Kosmogora v1.2.0](https://github.com/ecell/kosmogora) (if developping features involving data management and/or visualization)
 
 #### No action required (included in the project's [packages manifest](https://github.com/ecell/ECell_Dive/blob/main/Packages/manifest.json))
-- [Universal Render Pipeline (URP)](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@10.8/manual/). Unity's "artist-friendly" render pipeline for optimized graphics on a broad range of platforms. 
+- [Universal Render Pipeline (URP)](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@10.8/manual/). Unity's render pipeline for optimized graphics on a broad range of platforms. 
 - [Oculus XR plugin 1.11.2](https://docs.unity3d.com/Packages/com.unity.xr.oculus@1.11/manual/index.html). Unity's plugin to develop for Meta Oculus Quests devices. This project is not using OpenXR as its development started just before Oculus devices support by OpenXR. Upgrade is planned, however.
 - [Netcode for GameObjects 1.0.0-pre.9](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@1.0/manual/index.html). Unity's solution for multiplayer games.
 - [XR Interaction Toolkit 1.0.0-pre](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@1.0/manual/index.html). Unity's solution for interaction systems in VR and AR.
@@ -39,7 +39,7 @@ ECellDive is a VR application for systems biology. It is part of a research proj
 Please, check the [Installation page](./articles/UserManual/installation.md) for more details
 
 ## App
-The application executable (*.apk file*) can be downloaded from the [release page](https://github.com/ecell/ECell_Dive/releases) and installed on any Quest 2 heasdset thanks to [SideQuest](https://sidequestvr.com/).
+The application executable (*.apk file*) can be downloaded from the [release page](https://github.com/ecell/ECell_Dive/releases) and installed on any Quest 2 headset thanks to [SideQuest](https://sidequestvr.com/).
 
 ## Project
 Cloning the project through the https uri has been tested but we suggest cloning the repo by dowloading the zip archive instead. Using zip archives has been proven more stable for Unity projects on Git compared to the former.
