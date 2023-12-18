@@ -94,8 +94,8 @@ namespace ECellDive
 		}
 
 		/// <summary>
-		/// An interface to change switch between two colors when a gameobject
-		/// needs to be highlighted.
+		/// An interface to store two colors and a Color Apply function to
+		/// be able to switch between a default color and a highlight color.
 		/// </summary>
 		public interface IColorHighlightable : IColored, IHighlightable
 		{
@@ -105,11 +105,12 @@ namespace ECellDive
 			Color highlightColor { get; set; }
 		}
 
-		/// <summary>
-		/// An interface to change switch between two colors when a NetworkObject
-		/// needs to be highlighted.
-		/// </summary>
-		public interface IColorHighlightableNet : IColorHighlightable
+        /// <summary>
+        /// An interface to store two colors and a Color Apply function to
+        /// be able to switch between a default color and a highlight color
+		/// on a networked object.
+        /// </summary>
+        public interface IColorHighlightableNet : IColorHighlightable
 		{
 			/// <summary>
 			/// The current color of the object synchronized over the 
@@ -134,6 +135,18 @@ namespace ECellDive
 			/// the value will be synchronized to all clients.</remarks>
 			[ServerRpc(RequireOwnership = false)]
 			abstract void SetCurrentColorToHighlightServerRpc();
+		}
+
+        /// <summary>
+        /// An interface to store two scales and a Scale Apply function to
+        /// be able to switch between a default scale and a highlight scale.
+        /// </summary>
+        public interface IScaleHighlightable : IScaled, IHighlightable
+		{
+			/// <summary>
+			/// The scale the object should be when highlighted.
+			/// </summary>
+			Vector3 highlightScale { get; set; }
 		}
 
 		/// <summary>

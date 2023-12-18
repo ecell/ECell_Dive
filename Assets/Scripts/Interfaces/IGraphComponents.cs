@@ -192,12 +192,12 @@ namespace ECellDive.Interfaces
 		/// <summary>
 		/// Sets the start and end positions of the line renderer.
 		/// </summary>
-		/// <param name="_start">The transform of the node in the graph from
+		/// <param name="_start">The position of the node in the graph from
 		/// where the edge is starting.</param>
-		/// <param name="_end">The transform of the node in the graph to
+		/// <param name="_end">The position of the node in the graph to
 		/// where the edge is heading.</param>
 		/// <remarks>A line renderer should be made accessible somehow.</remarks>
-		void SetLineRendererPosition(Transform _start, Transform _end);
+		void SetLineRendererPosition(Vector3 _start, Vector3 _end);
 	}
 
 	/// <summary>

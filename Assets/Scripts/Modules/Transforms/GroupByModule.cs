@@ -77,29 +77,33 @@ namespace ECellDive.Modules
 					"Succesfully groupe data by " + _attribute+ $". {groups.Count()} were found.");
 
 				List<GroupData> groupsData = new List<GroupData>();
+				int nbGroups = groups.Count();
+				int groupsCounter = 0;
 				foreach (IGrouping<string, JToken> _group in groups)
 				{
 					IHighlightable[] groupMembers = new IHighlightable[_group.Count()];
-					int counter = 0;
+					int memberCounter = 0;
 
 					//Retrieving group member ids
 					foreach (JToken _member in _group)
 					{
-						groupMembers[counter] = refCyJsonPathwayGO.
+						groupMembers[memberCounter] = refCyJsonPathwayGO.
 													DataID_to_DataGO[_member["data"]["id"].Value<uint>()].
 													GetComponent<IHighlightable>();
 						//Debug.Log(groupMembers[counter]);
-						counter++;
+						memberCounter++;
 					}
 
 					//Adding group information
 					groupsData.Add(new GroupData
 					{
 						value = _group.Key,
-						color = Random.ColorHSV(),
+						color = Color.HSVToRGB((float)groupsCounter / nbGroups, 1f, 1f),
 						members = groupMembers
 					}
 					);
+					groupsCounter++;
+
 				}
 
 				StartCoroutine(StaticReferencer.Instance.refGroupsMenu.AddSemanticTermUI(_attribute, groupsData));

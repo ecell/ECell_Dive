@@ -9,7 +9,7 @@ namespace ECellDive.Modules
 	/// The class to manage a node defined by <see cref="ECellDive.Utility.Data.Graph.Node"/>.
 	/// and nothing more.
 	/// </summary>
-	public class NodeGO : Module, INodeGO<Node>
+	public class NodeGO : Module, INodeGO<Node>, IScaleHighlightable
 	{
 		#region - INodeGO Members -
 		/// <summary>
@@ -38,6 +38,35 @@ namespace ECellDive.Modules
 		}
 		#endregion
 
+		#region - IScaleHighlightable Members -
+
+		/// <summary>
+		/// The field for the property <see cref="defaultScale"/>.
+		/// </summary>
+		[Header("IScaleHighlightable Parameters")]
+		[SerializeField] private Vector3 m_defaultScale = Vector3.one;
+		
+		/// <inheritdoc/>
+		public Vector3 defaultScale
+		{
+			get => m_defaultScale;
+			set => m_defaultScale = value;
+		}
+
+		/// <summary>
+		/// The field for the property <see cref="highlightScale"/>.
+		/// </summary>
+		[SerializeField] private Vector3 m_highlightScale = Vector3.one;
+
+		/// <inheritdoc/>
+		public Vector3 highlightScale
+		{
+			get => m_highlightScale;
+			set => m_highlightScale = value;
+		}
+
+		#endregion
+
 		/// <summary>
 		/// Sets the local position (i.e. relative to its parent) of the node.
 		/// </summary>
@@ -55,15 +84,16 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// Sets the position of the <see cref="ECellDive.Modules.Module.nameTextFieldContainer"/>
 		/// to compensate for the scaling of the node. The position is scaled by the
-		/// <paramref name="_sizeScaleFactor"/> which should be the same as the
-		/// one used in <see cref="SetScale(Vector3, float)"/>.
+		/// <paramref name="_sizeScaleFactor"/>.
 		/// </summary>
 		/// <param name="_sizeScaleFactor">
-		/// The scalar initially used to scale the size of the node.
+		/// The scalar initially used to scale the size of the node. If the parameter's value is
+		/// equal to 1, then the name is positioned exactly on top of the node with no margin.
+		/// Conversely, -1 will position the name at the bottom of the node.
 		/// </param>
 		public void SetNamePosition(float _sizeScaleFactor)
 		{
-			nameTextFieldContainer.transform.localPosition += Vector3.up * 3f * _sizeScaleFactor;
+			nameTextFieldContainer.transform.localPosition = 0.5f * _sizeScaleFactor * Vector3.Scale(Vector3.up, renderers[0].transform.localScale);
 		}
 
 		/// <summary>
@@ -96,6 +126,33 @@ namespace ECellDive.Modules
 
 			informationString = $"ID: {nodeData.ID}\n" +
 								$"Name: {nodeData.name}";
+		}
+		#endregion
+
+		#region - IHighlightable Methods -
+		/// <inheritdoc/>
+		public override void SetHighlight()
+		{
+			ApplyColor(highlightColor);
+			ApplyScale(highlightScale);
+		}
+
+		/// <inheritdoc/>
+		public override void UnsetHighlight()
+		{
+			if (!forceHighlight)
+			{
+				ApplyColor(defaultColor);
+				ApplyScale(defaultScale);
+			}
+		}
+		#endregion
+
+		#region - IScaleHighlightable Methods -
+		/// <inheritdoc/>
+		public void ApplyScale(Vector3 _scale)
+		{
+			renderers[0].transform.localScale = _scale;
 		}
 		#endregion
 	}
