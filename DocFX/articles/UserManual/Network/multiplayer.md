@@ -5,7 +5,7 @@ Currently, multiplayer through the Internet **is not supported**. Therefore, to 
 <img src="../../../resources/images/schematics/network/Multiplayer_base.jpg" alt="Multiplayer Base" style="height: 400px;"/>
 
 All users are connected to the network with addresses 192.168.14.28, 192.168.72.127, and 192.168.1.191. Players can use the [Multiplayer Menu](../multiplayer.md) to manage the host and client sessions.
-In the schematic above, it is the the user at 192.168.14.28 that decides to host the session at his address under the port 7777. Once the session is created, other users can join by inputting the target IP(v4) address of the host as well as the port.
+In the schematic above, it is the user at 192.168.14.28 that decides to host the session at his address under the port 7777. Once the session is created, other users can join by inputting the target IP(v4) address of the host as well as the port.
 
 <img src="../../../resources/images/schematics/network/Multiplayer_Kosmogora_request.jpg" alt="Multiplayer-Kosmogora Request" style="height: 400px;"/>
 
