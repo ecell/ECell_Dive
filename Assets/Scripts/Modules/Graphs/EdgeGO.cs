@@ -205,7 +205,7 @@ namespace ECellDive.Modules
 		/// <summary>
 		/// Sets the position of the <see cref="ECellDive.Modules.Module.nameTextFieldContainer"/>
 		/// to compensate for the movement of the line renderer (<see
-		/// cref="SetLineRendererPosition(Transform, Transform)"/>. The new position is
+		/// cref="SetLineRendererPosition(Vector3, Vector3)"/>. The new position is
 		/// in the middle of the line renderer and slightly above.
 		/// </summary>
 		public void SetNamePosition()
