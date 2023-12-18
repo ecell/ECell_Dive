@@ -168,6 +168,7 @@ namespace ECellDive.UI
 			foreach (IColorHighlightable _member in _members)
 			{
 				_member.defaultColor = _color;
+				_member.highlightColor = new Color(1f - _color.r, 1f - _color.g, 1f - _color.b, 1f);
 				_member.ApplyColor(_color);
 
 				batchCounter++;

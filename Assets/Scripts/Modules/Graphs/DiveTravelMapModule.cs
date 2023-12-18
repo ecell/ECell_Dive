@@ -82,12 +82,12 @@ namespace ECellDive.Modules
 		/// <returns></returns>
 		IEnumerator NodeScalingToContainText(NodeGO _nodeGO)
 		{
-            nameField.ForceMeshUpdate();
+			nameField.ForceMeshUpdate();
 			yield return new WaitForEndOfFrame();
 
 			//After tests, I prefered to use the "bounds" and not the "textBouds"
 			_nodeGO.highlightScale = graphScalingData.sizeScaleFactor * (_nodeGO.nameField.bounds.max - _nodeGO.nameField.bounds.min);
-            
+			
 			//We guarentee that the highlight scale is always bigger than the default scale
 			//and we increase it by 5% to allow a little margin between the text and the node.
 			_nodeGO.highlightScale = new Vector3(
@@ -95,16 +95,16 @@ namespace ECellDive.Modules
 				1.05f*Mathf.Max(_nodeGO.defaultScale.y, _nodeGO.highlightScale.y),
 				1f);
 
-            //We also finish by hiding the name since nodes in the dive
+			//We also finish by hiding the name since nodes in the dive
 			//travel map do not display their name unless they are highlighted.
-            _nodeGO.HideName();
-        }
+			_nodeGO.HideName();
+		}
 
-        /// <summary>
-        /// Builds the dive travel map from the dive travel data of the
-        /// local player.
-        /// </summary>
-        public void BuildMap()
+		/// <summary>
+		/// Builds the dive travel map from the dive travel data of the
+		/// local player.
+		/// </summary>
+		public void BuildMap()
 		{
 			Clear();
 
@@ -128,7 +128,7 @@ namespace ECellDive.Modules
 				nodeGOcp.SetNamePosition(0);
 				StartCoroutine(NodeScalingToContainText(nodeGOcp));
 
-                DataID_to_DataGO.Add(m_graphData.nodes[i].ID, nodeGO);
+				DataID_to_DataGO.Add(m_graphData.nodes[i].ID, nodeGO);
 
 				nodeGOcp.defaultColor = Color.HSVToRGB((float)i / m_graphData.nodes.Length, 1, 1);
 				nodeGOcp.ApplyColor(nodeGOcp.defaultColor);

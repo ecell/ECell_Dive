@@ -33,6 +33,7 @@ namespace ECellDive.CustomEditors
 				foreach (IColorHighlightable _highlightable in _group.members)
 				{
 					_highlightable.defaultColor = _group.color;
+					_highlightable.highlightColor = new Color(1 - _group.color.r, 1 - _group.color.g, 1 - _group.color.b, 1f);
 					_highlightable.ApplyColor(_group.color);
 				}
 			}
@@ -56,14 +57,15 @@ namespace ECellDive.CustomEditors
 					IColorHighlightable[] groupMembers = new IColorHighlightable[nbMembers];
 					uint[] groupMemberIds = new uint[nbMembers];
 
-					Color grpColor = Random.ColorHSV();
+                    Color grpColor = Color.HSVToRGB((float)i / nbGroups, 1, 1);
 
-					//Retrieving group member ids
-					for (int j = 0; j < nbMembers; j++)
+                    //Retrieving group member ids
+                    for (int j = 0; j < nbMembers; j++)
 					{
 						groupMemberIds[j] = groups.ElementAt(i).ElementAt(j)["data"]["id"].Value<uint>();
 						groupMembers[j] = refCyJsonPathwayGO.DataID_to_DataGO[groupMemberIds[j]].GetComponent<IColorHighlightable>();
 						groupMembers[j].defaultColor = grpColor;
+						groupMembers[j].highlightColor = new Color(1 - grpColor.r, 1 - grpColor.g, 1 - grpColor.b, 1f);
 						groupMembers[j].ApplyColor(grpColor);
 					}
 
@@ -97,16 +99,17 @@ namespace ECellDive.CustomEditors
 					IColorHighlightable[] groupMembers = new IColorHighlightable[nbMembers];
 					uint[] groupMemberIds = new uint[nbMembers];
 
-					Color grpColor = Random.ColorHSV();
+					Color grpColor = Color.HSVToRGB((float)i / nbGroups, 1, 1);
 
-					//Retrieving group member ids
-					for (int j = 0; j < nbMembers; j++)
+                    //Retrieving group member ids
+                    for (int j = 0; j < nbMembers; j++)
 					{
 						groupMemberIds[j] = groups.ElementAt(i).ElementAt(j)["data"]["id"].Value<uint>();
 						groupMembers[j] = refCyJsonPathwayGO.
 													DataID_to_DataGO[groups.ElementAt(i).ElementAt(j)["data"]["id"].Value<uint>()].
 													GetComponent<IColorHighlightable>();
 						groupMembers[j].defaultColor = grpColor;
+						groupMembers[j].highlightColor = new Color(1 - grpColor.r, 1 - grpColor.g, 1 - grpColor.b, 1f);
 						groupMembers[j].ApplyColor(grpColor);
 					}
 
@@ -145,6 +148,7 @@ namespace ECellDive.CustomEditors
 													DataID_to_DataGO[groups.ElementAt(i).ElementAt(j)["data"]["id"].Value<uint>()].
 													GetComponent<IColorHighlightable>();
 						groupMembers[j].defaultColor = edgesGroups[i].color;
+						groupMembers[j].highlightColor = new Color(1 - edgesGroups[i].color.r, 1 - edgesGroups[i].color.g, 1 - edgesGroups[i].color.b, 1f);
 						groupMembers[j].ApplyColor(edgesGroups[i].color);
 					}
 
@@ -177,6 +181,7 @@ namespace ECellDive.CustomEditors
 													DataID_to_DataGO[groups.ElementAt(i).ElementAt(j)["data"]["id"].Value<uint>()].
 													GetComponent<IColorHighlightable>();
 						groupMembers[j].defaultColor = nodesGroups[i].color;
+						groupMembers[j].highlightColor = new Color(1 - nodesGroups[i].color.r, 1 - nodesGroups[i].color.g, 1 - nodesGroups[i].color.b, 1f);
 						groupMembers[j].ApplyColor(nodesGroups[i].color);
 					}
 
