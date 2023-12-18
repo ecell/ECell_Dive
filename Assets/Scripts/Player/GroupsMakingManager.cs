@@ -352,16 +352,16 @@ namespace ECellDive.PlayerComponents
 				highlitables[i].forceHighlight = false;
 			}
 
-            StaticReferencer.Instance.refGroupsMenu.AddGroupUI(new GroupData
-            {
-                value = _groupName,
-                color = Random.ColorHSV(),
-                members = highlitables
-            },
-                0);
+			StaticReferencer.Instance.refGroupsMenu.AddGroupUI(new GroupData
+			{
+				value = _groupName,
+				color = Random.ColorHSV(),
+				members = highlitables
+			},
+				0);
 
-            //Reset group members list
-            ResetGroupMemberList();
+			//Reset group members list
+			ResetGroupMemberList();
 		}
 	}
 }

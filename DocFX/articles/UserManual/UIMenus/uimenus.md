@@ -1,2 +1,2 @@
 ## General
-Information about the various grahic user interface menu of *ECellDive*.
+Information about the various graphic user interface menu of *ECellDive*.

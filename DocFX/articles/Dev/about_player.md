@@ -37,15 +37,15 @@ Empty GO to encapsulate the 3D models and and input logic of the XR controllers.
 Everything that concerns the left controller. It has a `XRController (Acion-based)` component to link left controller input (position, rotation, buttons) to actions and a `NetAvatarTransformTracker` to broadcast its position to the replicated version on other clients' session.
 
 ##### Left Input Mode Surge Info Tag
-An information label that surges and shrinks when switching input modes on the left controller to tell the player what input mode it is switching to. It contains and `Animation` component to drive the surge and shink animations. The custom components are:
+An information label that surges and shrinks when switching input modes on the left controller to tell the player what input mode it is switching to. It contains and `Animation` component to drive the surge and shrink animations. The custom components are:
 - [FaceCamera](xref:ECellDive.Utility.FaceCamera) and [AlwaysLookAt](xref:ECellDive.Utility.AlwaysLookAt) so that the information tag is always readable from the Player's view.
 - [SurgeAndShrinkInfoTag](xref:ECellDive.UI.SurgeAndShrinkInfoTag) to trigger the animation and manage the content of the string. 
 
 ##### left_quest2_controller_world
-The 3D models of the Quest 2 controller. Downladed from the [open assets of Meta](https://developer.oculus.com/downloads/package/oculus-controller-art/#oculus-touch-for-quest-2). It is a modified version to with UI information tags attached to each button.
+The 3D models of the Quest 2 controller. Downloaded from the [open assets of Meta](https://developer.oculus.com/downloads/package/oculus-controller-art/#oculus-touch-for-quest-2). It is a modified version to with UI information tags attached to each button.
 
 ##### Input Modes Graphics Local Client
-All renderers, 3D models, `XRRayInteractor`, and `XRController (Acion-based)` to enable the local client to interact and navigate in the virtual environment. It is those children GOs that are Activated/Deactivated when the player switches between input modes on the left controller.
+All renderers, 3D models, `XRRayInteractor`, and `XRController (Action-based)` to enable the local client to interact and navigate in the virtual environment. It is those children GOs that are Activated/Deactivated when the player switches between input modes on the left controller.
 
 ##### Input Modes Graphics Replicated Client
 The `LineRenderer` to represent the line of the ray controls that will be visible by local clients when they look at the replicated player GOs of the other clients on the multiplayer network.
@@ -63,4 +63,4 @@ A GO with a unique component (`Teleportation Provider`) provided by Unity to hel
 An anchor GO with no component. It's only purpose is to provide a parent position for every items that are pinned to the player (e.g., UI menu or modules).
 
 # Player_Debug
-This version of the player can be found under the path `Assets/Resources/Prefabs/Player/Player_Debug`. It is a copy of `Player` with only an additional child GO named `XR Device Simulator`. It is provided by Unity to be able to manipulate the position of the head and the controllers with a Keyboard & Mouse. It is extremely practical to test and debug without the VR headset. Be sure that the Headset is **NOT** connected to the computer. Otherwise the inputs will collide and the behaviour is undefined.
+This version of the player can be found under the path `Assets/Resources/Prefabs/Player/Player_Debug`. It is a copy of `Player` with only an additional child GO named `XR Device Simulator`. It is provided by Unity to be able to manipulate the position of the head and the controllers with a Keyboard & Mouse. It is extremely practical to test and debug without the VR headset. Be sure that the Headset is **NOT** connected to the computer. Otherwise the inputs will collide and the behavior is undefined.

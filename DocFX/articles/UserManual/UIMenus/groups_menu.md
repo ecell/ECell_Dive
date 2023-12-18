@@ -2,7 +2,7 @@
 
 <img src="../../../resources/images/ui/ui_groups.jpg" alt="Group Menu" style="height: 300px;"/>
 
-The menu to visualize the groups of elements that have been either specifically defined by the user or [automatically grouped](../Modules/groupby_module.md) together according to some metadate.
+The menu to visualize the groups of elements that have been either specifically defined by the user or [automatically grouped](../Modules/groupby_module.md) together according to some metadata.
 
 <img src="../../../resources/images/ui/1x/ui_groups_elements.png" alt="Group Menu & popup" style="height: 300px;"/>
 

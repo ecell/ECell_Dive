@@ -7,9 +7,9 @@ After [installing ECellDive on your Quest](./installation.md) you can access *EC
 In you quest, open the app menu, then click on the search bar to make the category drop down appear next to it. Finally, open the drop down and select *Unknown Sources*.
 
 <details>
-  <summary>Exemple</summary>
+  <summary>Example</summary>
 
-<img src="~/resources/images/tutorials/find_ecelldive_in_quest.gif" alt="find ECellDivew" style="height: 600px;"/>
+<img src="~/resources/images/tutorials/find_ecelldive_in_quest.gif" alt="find ECellDive" style="height: 600px;"/>
 </details>
 
 ## Start Demo
@@ -30,7 +30,7 @@ We have pre-computed the [Flux Balance Analysis (FBA)](~/articles/UserManual/Mod
 </details>
 
 ### Inputs
-In this demonstration, the left controller is restricted to [ray-based interactions](~/articles/UserManual/Controls/ray_based_interaction_controls.md#ray-based-interaction) with the UI or the objects. And, the right conroller is restricted to the [teleportation](~/articles/UserManual/Controls/movement_controls.md#teleportation) for the movements.
+In this demonstration, the left controller is restricted to [ray-based interactions](~/articles/UserManual/Controls/ray_based_interaction_controls.md#ray-based-interaction) with the UI or the objects. And, the right controller is restricted to the [teleportation](~/articles/UserManual/Controls/movement_controls.md#teleportation) for the movements.
 
 ### Open objects information
 You can open the information panel associated to the edges (reactions) and nodes (metabolites) by pointing at them with the left controller and pressing the primary button.
@@ -56,7 +56,7 @@ The edges will change sizes according to the fluxes values predicted by the FBA.
 </details>
 
 ### Visualize Biological Subsystems
-The model [iJO1366](https://escher.github.io/#/app?map=iJO1366.Central%20metabolism&tool=Builder&model=iJO1366) comes with embeded metadata that we used to automaically group the reactions and metabolites according to systemic data. On the main UI panel of the tutorial, with the left controller, you can [click](~/articles/UserManual/Controls/ray_based_interaction_controls.md#ui-press) on the *Groups* Button; then on the *Show Groups on Network* button. The UI panel will help you match the colors with the elements in the 3D space.
+The model [iJO1366](https://escher.github.io/#/app?map=iJO1366.Central%20metabolism&tool=Builder&model=iJO1366) comes with embedded metadata that we used to automatically group the reactions and metabolites according to systemic data. On the main UI panel of the tutorial, with the left controller, you can [click](~/articles/UserManual/Controls/ray_based_interaction_controls.md#ui-press) on the *Groups* Button; then on the *Show Groups on Network* button. The UI panel will help you match the colors with the elements in the 3D space.
 
 <details>
   <summary>Example</summary>

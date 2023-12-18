@@ -298,7 +298,7 @@ namespace ECellDive.Modules
 
 			Transform start = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.source].transform;
 			Transform target = refRootCyJsonGraphGO.DataID_to_DataGO[edgeData.target].transform;
-			SetLineRendererPosition(start, target);
+			SetLineRendererPosition(start.localPosition, target.localPosition);
 			SetCollider(start, target);
 
 			//Particle system parameters
@@ -714,10 +714,10 @@ namespace ECellDive.Modules
 		}
 
 		/// <inheritdoc/>
-		public void SetLineRendererPosition(Transform _start, Transform _end)
+		public void SetLineRendererPosition(Vector3 _start, Vector3 _end)
 		{
-			m_LineRenderer.SetPosition(0, _start.localPosition);
-			m_LineRenderer.SetPosition(1, _end.localPosition);
+			m_LineRenderer.SetPosition(0, _start);
+			m_LineRenderer.SetPosition(1, _end);
 		}
 		#endregion
 

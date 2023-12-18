@@ -175,5 +175,25 @@ namespace ECellDive.Interfaces
         /// </summary>
         void ShowName();
     }
+
+    /// <summary>
+    /// An interface to store a scale and a method on
+    /// how to apply a scale to a gameobject.
+    /// </summary>
+    public interface IScaled
+    {
+        /// <summary>
+        /// The scale the object should be by default.
+        /// </summary>
+        Vector3 defaultScale { get; set; }
+
+        /// <summary>
+        /// The function to call when we wish to apply a scale to the gameobject.
+        /// </summary>
+        /// <param name="_scale">
+        /// The scale to apply.
+        /// </param>
+        abstract void ApplyScale(Vector3 _scale);
+    }
 }
 

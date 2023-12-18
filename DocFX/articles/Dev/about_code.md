@@ -44,7 +44,7 @@ The following are loose constraints. Please understand fist versions of code mig
 - There is no order constraint for properties nor fields. This is to allow developers to organize the order in which the fields appear in the Inspector of Unity as they want.
 - Interface implementations should appear in alphabetical oder of their interface name.
 - Interface implementations should be bounded by `#region` and `#endregion` statements to allow popular IDEs to create automatic foldout buttons for readability.
-- Unity methods overriden in a class (e.g., `Start`, `Update`, `OnTriggerEnter`, `OnNetworkSpawn`,...) should appear before methods of that class.
+- Unity methods overridden in a class (e.g., `Start`, `Update`, `OnTriggerEnter`, `OnNetworkSpawn`,...) should appear before methods of that class.
 - Members and methods of a class appear before that of the interface implementation.
 
 Here is a typical file structure for a gameobject component:
@@ -68,7 +68,7 @@ public class ANewGOComponent: MonoBehaviour, IAnInterface, IBebopInterface, ICow
     #endregion
 
     //
-    //methods of Unity overriden in ANewGOComponent
+    //methods of Unity overridden in ANewGOComponent
     //
 
     //

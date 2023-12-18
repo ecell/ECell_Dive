@@ -195,24 +195,20 @@ namespace ECellDive.Modules
 		/// </summary>
 		private IEnumerator DelayedSetColliderC()
 		{
-			Debug.Log("Main Camera", Camera.main);
 			yield return new WaitForEndOfFrame();
-
-			lineRenderers[0].BakeMesh(colliderMesh);
-			m_refColliderHolder.transform.Rotate(new Vector3(0f, 180f, 0f)); 
+			lineRenderers[0].alignment = LineAlignment.TransformZ;
+            lineRenderers[0].BakeMesh(colliderMesh);
 			refColliderHolder.GetComponent<MeshCollider>().sharedMesh = colliderMesh;
+			lineRenderers[0].alignment = LineAlignment.View;
 		}
 
 		/// <summary>
 		/// Sets the position of the <see cref="ECellDive.Modules.Module.nameTextFieldContainer"/>
 		/// to compensate for the movement of the line renderer (<see
-		/// cref="SetLineRendererPosition(Transform, Transform)"/>. The new position is
+		/// cref="SetLineRendererPosition(Vector3, Vector3)"/>. The new position is
 		/// in the middle of the line renderer and slightly above.
 		/// </summary>
-		/// <param name="_sizeScaleFactor">
-		/// The scalar initially used to scale the size of the node.
-		/// </param>
-		public void SetNamePosition(float _sizeScaleFactor)
+		public void SetNamePosition()
 		{
 			//We compute the middle of the curve
 			Vector3 midpoint = Bezier.GetPoint(controlPoints, 0.5f);
@@ -335,18 +331,18 @@ namespace ECellDive.Modules
 		}
 
 		/// <inheritdoc/>
-		public void SetLineRendererPosition(Transform _start, Transform _end)
+		public void SetLineRendererPosition(Vector3 _start, Vector3 _end)
 		{
 			//We move the edge to the middle of the two nodes.
 			Vector3 start = transform.localPosition;
-			transform.localPosition = 0.5f * (_start.localPosition + _end.localPosition);
+			//transform.localPosition = 0.5f * (_start + _end);
 
 			//We compute the offset between the new position and the old one.
 			Vector3 offset = transform.localPosition - start;
 			
 			//We compensate the line renderer start and end points by the same offset.
-			start = _start.localPosition - offset;
-			Vector3 end = _end.localPosition - offset;
+			start = _start - offset;
+			Vector3 end = _end - offset;
 
 			//We create the control points a the 1/3 and 2/3 of the edge.
 			//They are slightly offset from the edge by a vector perpendicular to the edge.
