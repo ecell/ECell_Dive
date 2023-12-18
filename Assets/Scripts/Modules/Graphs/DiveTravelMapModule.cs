@@ -156,7 +156,7 @@ namespace ECellDive.Modules
 									DataID_to_DataGO[m_graphData.edges[i].target].transform);
 
 				edgeGOcp.SetName($"{i+1}");
-				edgeGOcp.SetNamePosition(graphScalingData.sizeScaleFactor);
+				edgeGOcp.SetNamePosition();
 				edgeGOcp.HideName();
 
 				edgeGOcp.defaultGradient[0] = nodesColors[m_graphData.edges[i].source];

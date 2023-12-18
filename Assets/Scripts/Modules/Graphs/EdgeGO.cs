@@ -206,10 +206,7 @@ namespace ECellDive.Modules
 		/// cref="SetLineRendererPosition(Transform, Transform)"/>. The new position is
 		/// in the middle of the line renderer and slightly above.
 		/// </summary>
-		/// <param name="_sizeScaleFactor">
-		/// The scalar initially used to scale the size of the node.
-		/// </param>
-		public void SetNamePosition(float _sizeScaleFactor)
+		public void SetNamePosition()
 		{
 			//We compute the middle of the curve
 			Vector3 midpoint = Bezier.GetPoint(controlPoints, 0.5f);
