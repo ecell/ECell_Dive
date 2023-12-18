@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\Dev\about_scenes.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX/articles/Dev/about_scenes.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -119,14 +119,14 @@
 <h1 id="dive-scenes">Dive Scenes</h1>
 <p><em>Dive Scenes</em> are a concept to represent a portion of space in which users can navigate, add modules, interact with data and instantiate portals to go to other dive scenes. They are the main unit for user's mental model of how they delimit the seemingly infinite space of a virtual environment.</p>
 <p>In Unity, a scene is an asset containing a hierarchy of GOs that make up the content of a virtual space. The hierarchy of GOs defines the logic driving anything that is happening in the space, including user's movement or interaction.</p>
-<p>Despite the apparently good match between our concept of <em>Dive Scene</em> and a <em>Unity Scene</em> there are constraints in how scenes are managed in Unity. For one, as far as we could tell, scenes assets are built in the application (and it's reasonnable). This implies that you can only add scenes in the Editor and that you must know what the <em>Unity Scenes</em> will contain in advance which is incompatible with our vision of dynamic <em>Dive Scene</em> when users dive into newly added data.</p>
+<p>Despite the apparently good match between our concept of <em>Dive Scene</em> and a <em>Unity Scene</em> there are constraints in how scenes are managed in Unity. For one, as far as we could tell, scenes assets are built in the application (and it's reasonable). This implies that you can only add scenes in the Editor and that you must know what the <em>Unity Scenes</em> will contain in advance which is incompatible with our vision of dynamic <em>Dive Scene</em> when users dive into newly added data.</p>
 <p>So, in fact, in <em>ECellDive</em>, players who dive from a scene to another, never leave the <code>Main</code> <em>Unity Scene</em>. Our <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html">DiveScenesManager</a> keeps track of which GO of the <em>Unity Scene</em> belongs to which <em>Dive Scene</em> and, when a user dives, the manager <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_HideScene_System_Int32_System_UInt64_">hides</a> the GOs of the previous <em>Dive Scene</em> and <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_ShowScene_System_Int32_System_UInt64_">shows</a> the GOs of the new <em>Dive Scene</em>. Fellow divers on the multiplayer network are also hidden and showed depending on the <em>Dive Scene</em> they are currently exploring. Bellow is a sequence diagram representing the relevant communications. <a class="xref" href="../../api/ECellDive.Interfaces.IDive.html#ECellDive_Interfaces_IDive_GenerativeDiveIn">GenerativeDiveIn</a>, <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_HideScene_System_Int32_System_UInt64_">HideScene</a>, and <a class="xref" href="../../api/ECellDive.SceneManagement.DiveScenesManager.html#ECellDive_SceneManagement_DiveScenesManager_ShowScene_System_Int32_System_UInt64_">ShowScene</a> involve more communications with every clients of the network which are not represented here.</p>
 <img src="../../resources/diagrams/sceneManagementDive.svg" alt="Scene Management Dive">
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\Dev\about_scenes.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX/articles/Dev/about_scenes.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

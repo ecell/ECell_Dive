@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\Dev\about_player.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX/articles/Dev/about_player.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -113,15 +113,15 @@
 <h4 id="mp-left">MP Left</h4>
 <p>Everything that concerns the left controller. It has a <code>XRController (Acion-based)</code> component to link left controller input (position, rotation, buttons) to actions and a <code>NetAvatarTransformTracker</code> to broadcast its position to the replicated version on other clients' session.</p>
 <h5 id="left-input-mode-surge-info-tag">Left Input Mode Surge Info Tag</h5>
-<p>An information label that surges and shrinks when switching input modes on the left controller to tell the player what input mode it is switching to. It contains and <code>Animation</code> component to drive the surge and shink animations. The custom components are:</p>
+<p>An information label that surges and shrinks when switching input modes on the left controller to tell the player what input mode it is switching to. It contains and <code>Animation</code> component to drive the surge and shrink animations. The custom components are:</p>
 <ul>
 <li><a class="xref" href="../../api/ECellDive.Utility.FaceCamera.html">FaceCamera</a> and <a class="xref" href="../../api/ECellDive.Utility.AlwaysLookAt.html">AlwaysLookAt</a> so that the information tag is always readable from the Player's view.</li>
 <li><a class="xref" href="../../api/ECellDive.UI.SurgeAndShrinkInfoTag.html">SurgeAndShrinkInfoTag</a> to trigger the animation and manage the content of the string.</li>
 </ul>
 <h5 id="left_quest2_controller_world">left_quest2_controller_world</h5>
-<p>The 3D models of the Quest 2 controller. Downladed from the <a href="https://developer.oculus.com/downloads/package/oculus-controller-art/#oculus-touch-for-quest-2">open assets of Meta</a>. It is a modified version to with UI information tags attached to each button.</p>
+<p>The 3D models of the Quest 2 controller. Downloaded from the <a href="https://developer.oculus.com/downloads/package/oculus-controller-art/#oculus-touch-for-quest-2">open assets of Meta</a>. It is a modified version to with UI information tags attached to each button.</p>
 <h5 id="input-modes-graphics-local-client">Input Modes Graphics Local Client</h5>
-<p>All renderers, 3D models, <code>XRRayInteractor</code>, and <code>XRController (Acion-based)</code> to enable the local client to interact and navigate in the virtual environment. It is those children GOs that are Activated/Deactivated when the player switches between input modes on the left controller.</p>
+<p>All renderers, 3D models, <code>XRRayInteractor</code>, and <code>XRController (Action-based)</code> to enable the local client to interact and navigate in the virtual environment. It is those children GOs that are Activated/Deactivated when the player switches between input modes on the left controller.</p>
 <h5 id="input-modes-graphics-replicated-client">Input Modes Graphics Replicated Client</h5>
 <p>The <code>LineRenderer</code> to represent the line of the ray controls that will be visible by local clients when they look at the replicated player GOs of the other clients on the multiplayer network.</p>
 <h4 id="mp-right">MP Right</h4>
@@ -133,12 +133,12 @@
 <h3 id="internal-object-container">Internal Object Container</h3>
 <p>An anchor GO with no component. It's only purpose is to provide a parent position for every items that are pinned to the player (e.g., UI menu or modules).</p>
 <h1 id="player_debug">Player_Debug</h1>
-<p>This version of the player can be found under the path <code>Assets/Resources/Prefabs/Player/Player_Debug</code>. It is a copy of <code>Player</code> with only an additional child GO named <code>XR Device Simulator</code>. It is provided by Unity to be able to manipulate the position of the head and the controllers with a Keyboard &amp; Mouse. It is extremely practical to test and debug without the VR headset. Be sure that the Headset is <strong>NOT</strong> connected to the computer. Otherwise the inputs will collide and the behaviour is undefined.</p>
+<p>This version of the player can be found under the path <code>Assets/Resources/Prefabs/Player/Player_Debug</code>. It is a copy of <code>Player</code> with only an additional child GO named <code>XR Device Simulator</code>. It is provided by Unity to be able to manipulate the position of the head and the controllers with a Keyboard &amp; Mouse. It is extremely practical to test and debug without the VR headset. Be sure that the Headset is <strong>NOT</strong> connected to the computer. Otherwise the inputs will collide and the behavior is undefined.</p>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\Dev\about_player.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX/articles/Dev/about_player.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

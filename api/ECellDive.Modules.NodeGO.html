@@ -87,7 +87,7 @@
 
   <h1 id="ECellDive_Modules_NodeGO" data-uid="ECellDive.Modules.NodeGO" class="text-break">
     Class NodeGO
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\Graphs\NodeGO.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -101,7 +101,7 @@ and nothing more.</p>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class NodeGO : Module, IFocus, IGroupable, IColorHighlightable, IColored, IHighlightable, IInfoTags, INamed, INodeGO&lt;Node&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class NodeGO : Module, IFocus, IGroupable, IColorHighlightable, IColored, IInfoTags, INamed, INodeGO&lt;Node&gt;, IScaleHighlightable, IScaled, IHighlightable</code></pre>
   </div>
 
 
@@ -123,10 +123,12 @@ and nothing more.</p>
       <div><a class="xref" href="ECellDive.Interfaces.IGroupable.html">IGroupable</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html">IColorHighlightable</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.IColored.html">IColored</a></div>
-      <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.IInfoTags.html">IInfoTags</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.INamed.html">INamed</a></div>
       <div><a class="xref" href="ECellDive.Interfaces.INodeGO-1.html">INodeGO</a>&lt;<a class="xref" href="ECellDive.Utility.Data.Graph.Node.html">Node</a>&gt;</div>
+      <div><a class="xref" href="ECellDive.Interfaces.IScaleHighlightable.html">IScaleHighlightable</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IScaled.html">IScaled</a></div>
+      <div><a class="xref" href="ECellDive.Interfaces.IHighlightable.html">IHighlightable</a></div>
     </dd>
   </dl>
 
@@ -249,12 +251,6 @@ and nothing more.</p>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_ApplyColor_Color_">Module.ApplyColor(Color)</a>
     </div>
     <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_SetHighlight">Module.SetHighlight()</a>
-    </div>
-    <div>
-      <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_UnsetHighlight">Module.UnsetHighlight()</a>
-    </div>
-    <div>
       <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_DisplayInfoTags">Module.DisplayInfoTags()</a>
     </div>
     <div>
@@ -296,9 +292,71 @@ and nothing more.</p>
 
 
 
+  <h3 id="ECellDive_Modules_NodeGO_m_defaultScale" data-uid="ECellDive.Modules.NodeGO.m_defaultScale">
+  m_defaultScale
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for the property <a class="xref" href="ECellDive.Modules.NodeGO.html#ECellDive_Modules_NodeGO_defaultScale">defaultScale</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private Vector3 m_defaultScale</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="ECellDive_Modules_NodeGO_m_highlightScale" data-uid="ECellDive.Modules.NodeGO.m_highlightScale">
+  m_highlightScale
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field for the property <a class="xref" href="ECellDive.Modules.NodeGO.html#ECellDive_Modules_NodeGO_highlightScale">highlightScale</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">private Vector3 m_highlightScale</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <h3 id="ECellDive_Modules_NodeGO_m_informationString" data-uid="ECellDive.Modules.NodeGO.m_informationString">
   m_informationString
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\Graphs\NodeGO.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The field for the property <a class="xref" href="ECellDive.Modules.NodeGO.html#ECellDive_Modules_NodeGO_informationString">informationString</a>.</p>
@@ -329,7 +387,7 @@ and nothing more.</p>
 
   <h3 id="ECellDive_Modules_NodeGO_m_nodeData" data-uid="ECellDive.Modules.NodeGO.m_nodeData">
   m_nodeData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\Graphs\NodeGO.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The field for the property <a class="xref" href="ECellDive.Modules.NodeGO.html#ECellDive_Modules_NodeGO_nodeData">nodeData</a>.</p>
@@ -361,11 +419,75 @@ and nothing more.</p>
 </h2>
 
 
+  <a id="ECellDive_Modules_NodeGO_defaultScale_" data-uid="ECellDive.Modules.NodeGO.defaultScale*"></a>
+
+  <h3 id="ECellDive_Modules_NodeGO_defaultScale" data-uid="ECellDive.Modules.NodeGO.defaultScale">
+  defaultScale
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The scale the object should be by default.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 defaultScale { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_NodeGO_highlightScale_" data-uid="ECellDive.Modules.NodeGO.highlightScale*"></a>
+
+  <h3 id="ECellDive_Modules_NodeGO_highlightScale" data-uid="ECellDive.Modules.NodeGO.highlightScale">
+  highlightScale
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The scale the object should be when highlighted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 highlightScale { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="ECellDive_Modules_NodeGO_informationString_" data-uid="ECellDive.Modules.NodeGO.informationString*"></a>
 
   <h3 id="ECellDive_Modules_NodeGO_informationString" data-uid="ECellDive.Modules.NodeGO.informationString">
   informationString
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\Graphs\NodeGO.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The string containing information to be displayed about
@@ -398,7 +520,7 @@ the node.</p>
 
   <h3 id="ECellDive_Modules_NodeGO_nodeData" data-uid="ECellDive.Modules.NodeGO.nodeData">
   nodeData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\Graphs\NodeGO.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The data structure encoding the node.</p>
@@ -430,17 +552,77 @@ the node.</p>
 </h2>
 
 
+  <a id="ECellDive_Modules_NodeGO_ApplyScale_" data-uid="ECellDive.Modules.NodeGO.ApplyScale*"></a>
+
+  <h3 id="ECellDive_Modules_NodeGO_ApplyScale_Vector3_" data-uid="ECellDive.Modules.NodeGO.ApplyScale(Vector3)">
+  ApplyScale(Vector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The function to call when we wish to apply a scale to the gameobject.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyScale(Vector3 _scale)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_scale</code> <span class="xref">Vector3</span></dt>
+    <dd><p>The scale to apply.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ECellDive_Modules_NodeGO_SetHighlight_" data-uid="ECellDive.Modules.NodeGO.SetHighlight*"></a>
+
+  <h3 id="ECellDive_Modules_NodeGO_SetHighlight" data-uid="ECellDive.Modules.NodeGO.SetHighlight">
+  SetHighlight()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The function to call when the object should enter highlighted
+state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetHighlight()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_Modules_NodeGO_SetNamePosition_" data-uid="ECellDive.Modules.NodeGO.SetNamePosition*"></a>
 
   <h3 id="ECellDive_Modules_NodeGO_SetNamePosition_System_Single_" data-uid="ECellDive.Modules.NodeGO.SetNamePosition(System.Single)">
   SetNamePosition(float)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\Graphs\NodeGO.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L94"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the position of the <a class="xref" href="ECellDive.Modules.Module.html#ECellDive_Modules_Module_nameTextFieldContainer">nameTextFieldContainer</a>
 to compensate for the scaling of the node. The position is scaled by the
-<code class="paramref">_sizeScaleFactor</code> which should be the same as the
-one used in <a class="xref" href="ECellDive.Modules.NodeGO.html#ECellDive_Modules_NodeGO_SetScale_Vector3_System_Single_">SetScale(Vector3, float)</a>.</p>
+<code class="paramref">_sizeScaleFactor</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -451,7 +633,9 @@ one used in <a class="xref" href="ECellDive.Modules.NodeGO.html#ECellDive_Module
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>_sizeScaleFactor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
-    <dd><p>The scalar initially used to scale the size of the node.</p>
+    <dd><p>The scalar initially used to scale the size of the node. If the parameter's value is
+equal to 1, then the name is positioned exactly on top of the node with no margin.
+Conversely, -1 will position the name at the bottom of the node.</p>
 </dd>
   </dl>
 
@@ -470,7 +654,7 @@ one used in <a class="xref" href="ECellDive.Modules.NodeGO.html#ECellDive_Module
 
   <h3 id="ECellDive_Modules_NodeGO_SetNodeData_ECellDive_Utility_Data_Graph_Node_" data-uid="ECellDive.Modules.NodeGO.SetNodeData(ECellDive.Utility.Data.Graph.Node)">
   SetNodeData(Node)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\Graphs\NodeGO.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the value for <a class="xref" href="ECellDive.Interfaces.INodeGO-1.html#ECellDive_Interfaces_INodeGO_1_nodeData">nodeData</a>.</p>
@@ -503,7 +687,7 @@ one used in <a class="xref" href="ECellDive.Modules.NodeGO.html#ECellDive_Module
 
   <h3 id="ECellDive_Modules_NodeGO_SetPosition_Vector3_System_Single_" data-uid="ECellDive.Modules.NodeGO.SetPosition(Vector3,System.Single)">
   SetPosition(Vector3, float)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\Graphs\NodeGO.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the local position (i.e. relative to its parent) of the node.</p>
@@ -539,7 +723,7 @@ one used in <a class="xref" href="ECellDive.Modules.NodeGO.html#ECellDive_Module
 
   <h3 id="ECellDive_Modules_NodeGO_SetScale_Vector3_System_Single_" data-uid="ECellDive.Modules.NodeGO.SetScale(Vector3,System.Single)">
   SetScale(Vector3, float)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\Graphs\NodeGO.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Scale the node by the <code class="paramref">_sizeScaleFactor</code>. The scale is applied
@@ -572,11 +756,39 @@ to the local scale of the node. The UI elements are scaled back to their origina
 
 
 
+  <a id="ECellDive_Modules_NodeGO_UnsetHighlight_" data-uid="ECellDive.Modules.NodeGO.UnsetHighlight*"></a>
+
+  <h3 id="ECellDive_Modules_NodeGO_UnsetHighlight" data-uid="ECellDive.Modules.NodeGO.UnsetHighlight">
+  UnsetHighlight()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The function to call when the object should exit the highlighted
+state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void UnsetHighlight()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets\Scripts\Modules\Graphs\NodeGO.cs/#L12" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/Graphs/NodeGO.cs/#L12" class="edit-link">Edit this page</a>
         </div>
 
 

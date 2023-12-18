@@ -15,7 +15,7 @@
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\UserManual\Modules\api_checker.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX/articles/UserManual/Modules/api_checker.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -88,16 +88,22 @@
 <h3 id="the-server-parameters-pannel">The <em>Server Parameters</em> pannel:</h3>
 <img src="../../../resources/images/modules/1x/api_checker_panel.png" alt="API Checker" style="height: 300px;">
 <ol>
-<li>Input Field <em>IPv4</em>. The IP address at which <em>Kosmogora</em> is hosted. Default value is 127.0.0.1 but this only works during development if <em>Kosmogora</em> is hosted on the same machine as the one we are developping ECellDive on.</li>
+<li>Input Field <em>IPv4</em>. The IP address at which <em>Kosmogora</em> is hosted. Default value is 127.0.0.1 but this only works during development if <em>Kosmogora</em> is hosted on the same machine as the one we are developing ECellDive on.</li>
 <li>Input Field <em>Port</em>. The Port at which <em>Kosmogora</em> is listening. Default value is 8000. This is also the default value when launching <em>Kosmogora</em> so, unless you specified a port at that time, you can leave the field empty in ECellDive.</li>
 <li>Input Field <em>Name</em>. The name this server will be displayed with in the rest of <em>ECellDive</em> when using modules that can connect to this server.</li>
 <li>Button <em>Check API</em>. Will send an http request called <code>/apis</code> to retrieve the list of the names of the commands that the <code>Kosmogora-like</code> server implements. Then, it will compare the http commands used by every module in <em>ECellDive</em> and allow users to use such module if the server implements them all.</li>
 </ol>
+<details>
+  <summary>Demonstration</summary>
+<p>Here is a recording of inputting the IPv4 address of a Kosmogora instance running on the same Local Area Network as the headset is connected to.<br>
+You see on the left side, at the beginning, that some Module's buttons are gray to indicate that they are not accessible. Then, after the API Checker connects to the Kosmogora instance at address <code>192.168.0.174:8000</code>, the buttons have the default color and can be pressed.</p>
+<img src="../../../resources/images/modules/api_checker_Connect.gif" alt="API Checker Demo">
+</details>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX\articles\UserManual\Modules\api_checker.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/DocFX/articles/UserManual/Modules/api_checker.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
