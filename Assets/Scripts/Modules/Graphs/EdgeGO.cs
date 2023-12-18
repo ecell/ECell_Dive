@@ -196,8 +196,10 @@ namespace ECellDive.Modules
 		private IEnumerator DelayedSetColliderC()
 		{
 			yield return new WaitForEndOfFrame();
+			lineRenderers[0].alignment = LineAlignment.TransformZ;
             lineRenderers[0].BakeMesh(colliderMesh);
 			refColliderHolder.GetComponent<MeshCollider>().sharedMesh = colliderMesh;
+			lineRenderers[0].alignment = LineAlignment.View;
 		}
 
 		/// <summary>
