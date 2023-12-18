@@ -99,7 +99,7 @@ The `GameNetModule` component is marked as `abstract` so it cannot directly be a
 
             //The fields/properties of the interfaces (if any)
 
-            //Unity's overriden methods (Start, Update, OnXXX,...)
+            //Unity's overridden methods (Start, Update, OnXXX,...)
 
             //The methods of you class in alphabetical order
 
