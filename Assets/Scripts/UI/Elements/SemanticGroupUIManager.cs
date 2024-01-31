@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -5,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 using ECellDive.Interfaces;
 using ECellDive.Utility;//to avoid ambiguity with UnityEngine.UI.Toggle
+using ECellDive.Utility.PlayerComponents;
 
 namespace ECellDive.UI
 {
@@ -30,11 +32,11 @@ namespace ECellDive.UI
 		/// </summary>
 		public UnityEvent OnDestroy;
 
-        #region - IDropDown Members -
-        /// <summary>
-        /// The field for the <see cref="refDropDownImageCollapsed"/> property.
-        /// </summary>
-        [SerializeField]
+		#region - IDropDown Members -
+		/// <summary>
+		/// The field for the <see cref="refDropDownImageCollapsed"/> property.
+		/// </summary>
+		[SerializeField]
 		private GameObject m_refDropDownImageCollapsed;
 
 		/// <inheritdoc/>
@@ -181,15 +183,29 @@ namespace ECellDive.UI
 
 		/// <summary>
 		/// To be called back when the user wants to forcefully activate or deactivate
-		/// every group stored in the container.
+		/// every group stored in the container. It starts the coroutine <see cref=
+		/// "OnToggleValueChangeC"/>.
 		/// </summary>
 		public void OnToggleValueChange()
+		{
+			StartCoroutine(OnToggleValueChangeC());
+        }
+
+		/// <summary>
+		/// the coroutine to forcefully activate or deactivate every group stored
+		/// in the container but waits that the color distribution is done among a
+		/// group before moving to the next one. This is necessary to avoid saturation
+		/// of the network when the color of groups are actually network variables.
+		/// </summary>
+		public IEnumerator OnToggleValueChangeC()
 		{
 			foreach(RectTransform _child in scrollList.refContent)
 			{
 				GroupUIManager refGM = _child.gameObject.GetComponent<GroupUIManager>();
 				refGM.ForceDistributeColor(refToggle.isOn);
-				refGM.refToggle.interactable = refToggle.isOn;
+				yield return new WaitUntil(() => StaticReferencer.Instance.refGroupsMenu.colorBatchDistributed);
+                StaticReferencer.Instance.refGroupsMenu.colorBatchDistributed = false;
+                refGM.refToggle.interactable = refToggle.isOn;
 			}
 		}
 

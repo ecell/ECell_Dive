@@ -104,11 +104,18 @@ namespace ECellDive.Modules
 								$"label: {m_nodeData.label}";
 			m_refInfoTagsContainer.transform.GetChild(0).GetComponent<InfoDisplayManager>().SetText(informationString);
 		}
-		#endregion
+        #endregion
 
-		#region - IHighlightable Methods -
-		/// <inheritdoc/>
-		[ServerRpc(RequireOwnership = false)]
+        #region - IHighlightable Methods -
+        /// <inheritdoc/>
+        public override void ApplyColor(Color _color)
+        {
+            defaultColor = _color;
+            SetCurrentColorToDefaultServerRpc();
+        }
+
+        /// <inheritdoc/>
+        [ServerRpc(RequireOwnership = false)]
 		public override void SetCurrentColorToHighlightServerRpc()
 		{
 			base.SetCurrentColorToHighlightServerRpc();

@@ -42,7 +42,7 @@ namespace ECellDive.UI
 		/// mudules. When groups are large, the multiple calls to the RPCs to change
 		/// the color of the modules can cause a crash.
 		/// </summary>
-		private bool colorBatchDistributed = false;
+		public bool colorBatchDistributed = false;
 
 		private void Start()
 		{

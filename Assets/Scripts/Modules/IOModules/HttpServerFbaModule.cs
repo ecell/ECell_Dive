@@ -261,8 +261,7 @@ namespace ECellDive.Modules
 						}
 						edgeGO.SetFlux(level, levelClamped);
 
-						edgeGO.defaultColor = levelColor;
-						edgeGO.SetCurrentColorToDefaultServerRpc();
+						edgeGO.ApplyColor(levelColor);
 
 						counter++;
 

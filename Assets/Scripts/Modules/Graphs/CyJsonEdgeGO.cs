@@ -627,11 +627,8 @@ namespace ECellDive.Modules
 		/// <inheritdoc/>
 		public override void ApplyColor(Color _color)
 		{
-			mpb.SetVector(colorID, _color);
-			if (m_LineRenderer != null)
-			{
-				m_LineRenderer.SetPropertyBlock(mpb);
-			}
+			defaultColor = _color;
+			SetCurrentColorToDefaultServerRpc();
 		}
 
 		/// <inheritdoc/>
