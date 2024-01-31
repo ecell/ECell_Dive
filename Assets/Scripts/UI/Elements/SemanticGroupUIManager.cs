@@ -134,14 +134,25 @@ namespace ECellDive.UI
 
 		/// <summary>
 		/// The procedure when destroying this semantic group.
+		/// Starts the coroutine <see cref="DestroySelfC"/>.
 		/// </summary>
 		public void DestroySelf()
+		{
+			StartCoroutine(DestroySelfC());
+		}
+		
+		/// <summary>
+		/// The coroutine to destroy this semantic group.
+		/// </summary>
+		private IEnumerator DestroySelfC()
 		{
 			//Resetting the group info (color) of every child.
 			foreach (RectTransform _child in scrollList.refContent)
 			{
 				GroupUIManager refGM = _child.gameObject.GetComponent<GroupUIManager>();
-				refGM.ForceDistributeColor(false);
+                refGM.ForceDistributeColor(false);
+                yield return new WaitUntil(() => StaticReferencer.Instance.refGroupsMenu.colorBatchDistributed);
+                StaticReferencer.Instance.refGroupsMenu.colorBatchDistributed = false;
 			}
 
 			//Destroying the scroll list of the content of the drop down (semantic group). 
@@ -158,6 +169,8 @@ namespace ECellDive.UI
 
 			//Finally, destroying the object.
 			Destroy(gameObject);
+
+			yield return null;
 		}
 
 		/// <summary>
