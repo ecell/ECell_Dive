@@ -110,8 +110,7 @@ namespace ECellDive.Modules
         /// <inheritdoc/>
         public override void ApplyColor(Color _color)
         {
-            defaultColor = _color;
-            SetCurrentColorToDefaultServerRpc();
+            SetAndApplyDefaultColorServerRpc(_color);
         }
 
         /// <inheritdoc/>

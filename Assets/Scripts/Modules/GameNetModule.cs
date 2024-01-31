@@ -529,11 +529,12 @@ namespace ECellDive
 			{
 				m_isFocused = false;
 			}
-			#endregion
+            #endregion
 
-			#region - IColorHighlightable Methods -
+            #region - IColorHighlightable Methods -
 
-			public virtual void ApplyColor(Color _color)
+            /// <inheritdoc/>
+            public virtual void ApplyColor(Color _color)
 			{
 				mpb.SetVector(colorID, _color);
 				if (m_Renderer != null)
@@ -543,7 +544,15 @@ namespace ECellDive
 			}
 
 			/// <inheritdoc/>
-			[ServerRpc(RequireOwnership = false)]
+            [ServerRpc(RequireOwnership = false)]
+            public void SetAndApplyDefaultColorServerRpc(Color _color)
+			{
+				m_defaultColor = _color;
+				m_currentColor.Value = _color;
+			}
+
+            /// <inheritdoc/>
+            [ServerRpc(RequireOwnership = false)]
 			public void SetCurrentColorToDefaultServerRpc()
 			{
 				m_currentColor.Value = m_defaultColor;

@@ -118,6 +118,14 @@ namespace ECellDive
 			/// </summary>
 			NetworkVariable<Color> currentColor { get; }
 
+            /// <summary>
+            /// Sets the value of <see cref="currentColor"/> and <see cref="IColored.defaultColor"/>
+            /// to <paramref name="_color"/>.
+            /// </summary>
+            /// <param name="_color">The new color.</param>
+            [ServerRpc(RequireOwnership = false)]
+			void SetAndApplyDefaultColorServerRpc(Color _color);
+
 			/// <summary>
 			/// Contacts the server to applies <see cref="IColored.defaultColor"/>
 			/// to <see cref="currentColor"/>.
