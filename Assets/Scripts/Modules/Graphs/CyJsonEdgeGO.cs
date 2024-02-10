@@ -289,7 +289,7 @@ namespace ECellDive.Modules
 			SetEdgeData(_edge);
 			gameObject.SetActive(true);
 			gameObject.name = $"{edgeData.ID}";
-			SetName(edgeData.name);
+			SetName(edgeData.reactionName);
 			HideName();
 			SetDefaultWidth(1 / refRootCyJsonGraphGO.graphScalingData.sizeScaleFactor,
 							1 / refRootCyJsonGraphGO.graphScalingData.sizeScaleFactor);
