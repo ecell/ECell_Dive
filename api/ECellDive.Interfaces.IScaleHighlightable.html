@@ -2,12 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Interface IScaleHighlightable
- </title>
+      <title>Interface IScaleHighlightable </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Interface IScaleHighlightable
- ">
+      <meta name="title" content="Interface IScaleHighlightable ">
       
+      <meta name="description" content="An interface to store two scales and a Scale Apply function to be able to switch between a default scale and a highlight scale.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -30,15 +29,15 @@
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
   </head>
-
-  <script type="module" src="./../public/docfx.min.js"></script>
-
-  <script>
-    const theme = localStorage.getItem('theme') || 'auto'
-    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-  </script>
-
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
     <header class="bg-body border-bottom">
@@ -74,7 +73,7 @@
 
       <div class="content">
         <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
             <i class="bi bi-list"></i>
           </button>
 
@@ -86,8 +85,7 @@
 
 
   <h1 id="ECellDive_Interfaces_IScaleHighlightable" data-uid="ECellDive.Interfaces.IScaleHighlightable" class="text-break">
-    Interface IScaleHighlightable
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L144"><i class="bi bi-code-slash"></i></a>
+Interface IScaleHighlightable  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L152"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -110,7 +108,7 @@ be able to switch between a default scale and a highlight scale.</p>
 
 
 
-  <dl class="typelist derived">
+  <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
     <div>
@@ -143,7 +141,7 @@ be able to switch between a default scale and a highlight scale.</p>
 
   <h3 id="ECellDive_Interfaces_IScaleHighlightable_highlightScale" data-uid="ECellDive.Interfaces.IScaleHighlightable.highlightScale">
   highlightScale
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L157"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The scale the object should be when highlighted.</p>
@@ -175,7 +173,7 @@ be able to switch between a default scale and a highlight scale.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L144" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L152" class="edit-link">Edit this page</a>
         </div>
 
 

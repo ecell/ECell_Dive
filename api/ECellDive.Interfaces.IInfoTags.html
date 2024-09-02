@@ -2,12 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Interface IInfoTags
- </title>
+      <title>Interface IInfoTags </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Interface IInfoTags
- ">
+      <meta name="title" content="Interface IInfoTags ">
       
+      <meta name="description" content="The interface describing the requirements to implement a handle for a group of information tags attached to a gameobject.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -30,15 +29,15 @@
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
   </head>
-
-  <script type="module" src="./../public/docfx.min.js"></script>
-
-  <script>
-    const theme = localStorage.getItem('theme') || 'auto'
-    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-  </script>
-
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
     <header class="bg-body border-bottom">
@@ -74,7 +73,7 @@
 
       <div class="content">
         <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
             <i class="bi bi-list"></i>
           </button>
 
@@ -86,8 +85,7 @@
 
 
   <h1 id="ECellDive_Interfaces_IInfoTags" data-uid="ECellDive.Interfaces.IInfoTags" class="text-break">
-    Interface IInfoTags
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L156"><i class="bi bi-code-slash"></i></a>
+Interface IInfoTags  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L164"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -124,7 +122,7 @@ group of information tags attached to a gameobject.</p>
 
   <h3 id="ECellDive_Interfaces_IInfoTags_areVisible" data-uid="ECellDive.Interfaces.IInfoTags.areVisible">
   areVisible
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L161"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L169"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A boolean to inform whether the infotags are currently visible (i.e. displayed).</p>
@@ -156,7 +154,7 @@ group of information tags attached to a gameobject.</p>
 
   <h3 id="ECellDive_Interfaces_IInfoTags_displayInfoTagsActions" data-uid="ECellDive.Interfaces.IInfoTags.displayInfoTagsActions">
   displayInfoTagsActions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L175"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The references to the input actions on the left and right controller
@@ -189,7 +187,7 @@ used to trigger the info tags visibility.</p>
 
   <h3 id="ECellDive_Interfaces_IInfoTags_refInfoTagPrefab" data-uid="ECellDive.Interfaces.IInfoTags.refInfoTagPrefab">
   refInfoTagPrefab
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L180"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The prefab used to instantiate more infotags programatically.</p>
@@ -221,7 +219,7 @@ used to trigger the info tags visibility.</p>
 
   <h3 id="ECellDive_Interfaces_IInfoTags_refInfoTagsContainer" data-uid="ECellDive.Interfaces.IInfoTags.refInfoTagsContainer">
   refInfoTagsContainer
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L186"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The reference to the parent gameobject each info tag will
@@ -258,7 +256,7 @@ be made a child upon instantiation.</p>
 
   <h3 id="ECellDive_Interfaces_IInfoTags_DisplayInfoTags" data-uid="ECellDive.Interfaces.IInfoTags.DisplayInfoTags">
   DisplayInfoTags()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L191"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Make the InfoTags visible in the scene</p>
@@ -285,7 +283,7 @@ be made a child upon instantiation.</p>
 
   <h3 id="ECellDive_Interfaces_IInfoTags_HideInfoTags" data-uid="ECellDive.Interfaces.IInfoTags.HideInfoTags">
   HideInfoTags()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L188"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L196"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Make the InfoTags invisible in the scene</p>
@@ -312,7 +310,7 @@ be made a child upon instantiation.</p>
 
   <h3 id="ECellDive_Interfaces_IInfoTags_InstantiateInfoTag_Vector2_System_String_" data-uid="ECellDive.Interfaces.IInfoTags.InstantiateInfoTag(Vector2,System.String)">
   InstantiateInfoTag(Vector2, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L196"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L204"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Instantiate one info tag gameobject.</p>
@@ -349,7 +347,7 @@ The Z position will be set to 0.</p>
 
   <h3 id="ECellDive_Interfaces_IInfoTags_InstantiateInfoTags_System_String___" data-uid="ECellDive.Interfaces.IInfoTags.InstantiateInfoTags(System.String[])">
   InstantiateInfoTags(string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L204"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L212"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Instantiates all info tags of a module based on the
@@ -384,7 +382,7 @@ to display within text fields of the tags.</p>
 
   <h3 id="ECellDive_Interfaces_IInfoTags_ShowInfoTags" data-uid="ECellDive.Interfaces.IInfoTags.ShowInfoTags">
   ShowInfoTags()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L217"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Make the InfoTags face in the direction of the player</p>
@@ -411,7 +409,7 @@ to display within text fields of the tags.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L156" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L164" class="edit-link">Edit this page</a>
         </div>
 
 

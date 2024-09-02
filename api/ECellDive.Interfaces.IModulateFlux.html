@@ -2,12 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Interface IModulateFlux
- </title>
+      <title>Interface IModulateFlux </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Interface IModulateFlux
- ">
+      <meta name="title" content="Interface IModulateFlux ">
       
+      <meta name="description" content="An interface to encode knowledge about fluxes associated to a chemical reaction.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -30,15 +29,15 @@
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
   </head>
-
-  <script type="module" src="./../public/docfx.min.js"></script>
-
-  <script>
-    const theme = localStorage.getItem('theme') || 'auto'
-    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-  </script>
-
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
     <header class="bg-body border-bottom">
@@ -74,7 +73,7 @@
 
       <div class="content">
         <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
             <i class="bi bi-list"></i>
           </button>
 
@@ -86,8 +85,7 @@
 
 
   <h1 id="ECellDive_Interfaces_IModulateFlux" data-uid="ECellDive.Interfaces.IModulateFlux" class="text-break">
-    Interface IModulateFlux
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L250"><i class="bi bi-code-slash"></i></a>
+Interface IModulateFlux  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L258"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -110,7 +108,7 @@ reaction.</p>
 
 
 
-  <dl class="typelist derived">
+  <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
     <div>
@@ -144,7 +142,7 @@ undergo a Flux Balance Analysis.</p>
 
   <h3 id="ECellDive_Interfaces_IModulateFlux_fluxLevel" data-uid="ECellDive.Interfaces.IModulateFlux.fluxLevel">
   fluxLevel
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L255"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L263"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The real flux value.</p>
@@ -176,7 +174,7 @@ undergo a Flux Balance Analysis.</p>
 
   <h3 id="ECellDive_Interfaces_IModulateFlux_fluxLevelClamped" data-uid="ECellDive.Interfaces.IModulateFlux.fluxLevelClamped">
   fluxLevelClamped
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L260"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L268"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A clamped flux value to control the visualization of the flux.</p>
@@ -212,7 +210,7 @@ undergo a Flux Balance Analysis.</p>
 
   <h3 id="ECellDive_Interfaces_IModulateFlux_ApplyFluxLevel" data-uid="ECellDive.Interfaces.IModulateFlux.ApplyFluxLevel">
   ApplyFluxLevel()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L266"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L274"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The logic to apply the effects associated to the value of
@@ -240,7 +238,7 @@ undergo a Flux Balance Analysis.</p>
 
   <h3 id="ECellDive_Interfaces_IModulateFlux_ApplyFluxLevelClamped" data-uid="ECellDive.Interfaces.IModulateFlux.ApplyFluxLevelClamped">
   ApplyFluxLevelClamped()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L272"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L280"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The logic to apply the effects associated to the value of
@@ -268,7 +266,7 @@ undergo a Flux Balance Analysis.</p>
 
   <h3 id="ECellDive_Interfaces_IModulateFlux_SetFlux_System_Single_System_Single_" data-uid="ECellDive.Interfaces.IModulateFlux.SetFlux(System.Single,System.Single)">
   SetFlux(float, float)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L280"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L288"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A mutator for values of <a class="xref" href="ECellDive.Interfaces.IModulateFlux.html#ECellDive_Interfaces_IModulateFlux_fluxLevel">fluxLevel</a> and
@@ -305,7 +303,7 @@ undergo a Flux Balance Analysis.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L250" class="edit-link">Edit this page</a>
+          <a href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IInteractions.cs/#L258" class="edit-link">Edit this page</a>
         </div>
 
 

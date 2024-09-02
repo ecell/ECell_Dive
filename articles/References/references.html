@@ -6,6 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="References ">
       
+      
       <link rel="icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../public/docfx.min.css">
       <link rel="stylesheet" href="../../public/main.css">
@@ -28,15 +29,15 @@
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
   </head>
-
-  <script type="module" src="./../../public/docfx.min.js"></script>
-
-  <script>
-    const theme = localStorage.getItem('theme') || 'auto'
-    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-  </script>
-
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
     <header class="bg-body border-bottom">
@@ -58,23 +59,9 @@
     </header>
 
     <main class="container-xxl">
-      <div class="toc-offcanvas">
-        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <nav class="toc" id="toc"></nav>
-          </div>
-        </div>
-      </div>
 
       <div class="content">
         <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
-            <i class="bi bi-list"></i>
-          </button>
 
           <nav id="breadcrumb"></nav>
         </div>
@@ -83,7 +70,13 @@
 <h1 id="references">References</h1>
 
 <h2 id="papers">Papers</h2>
-<p>In progress! :-)</p>
+<ul>
+<li>Jacopin, E., Sakamoto, Y., Nishida, K. et al. <em>An architecture for collaboration in systems biology at the age of the Metaverse.</em> npj Syst Biol Appl 10, 12 (2024). <a href="https://doi.org/10.1038/s41540-024-00334-8">https://doi.org/10.1038/s41540-024-00334-8</a></li>
+</ul>
+<h2 id="press-releases">Press Releases</h2>
+<ul>
+<li>2024/02/20: (in Japanese) <a href="https://www.riken.jp/press/2024/20240220_1/index.html">システム生物学のためのメタバース活用法</a></li>
+</ul>
 <h2 id="videos">Videos</h2>
 <ul>
 <li><em>ECellDive  v0.10.0-alpha, ISMB Biovis 2022 Poster 42, WIP</em>. July 2022. Poster video for the 30th conference on <a href="https://www.iscb.org/ismb2022">Intelligent Systems for Molecular Biology</a></li>

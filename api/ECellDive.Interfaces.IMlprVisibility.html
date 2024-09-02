@@ -2,12 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Interface IMlprVisibility
- </title>
+      <title>Interface IMlprVisibility </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Interface IMlprVisibility
- ">
+      <meta name="title" content="Interface IMlprVisibility ">
       
+      <meta name="description" content="The interface used to manipulate the visibility status of a network object. We cannot use Netcode&#39;s API for that (see NetworkObject.NetworkHide(ulong) and NetworkObject.NetworkShow(ulong)) because the Server cannot be affected by it. It is an understandable behaviour as it seems that this API simply deletes the replicated version of a NetworkObject for a target client. However, we also want to the host to not see some NetworkObject. Namely, the content of a scene that the host may not have dived in.  So, we define our own NetworkObject visibility scheme which will unable network-replicated but locally executed activation/deactivate of the whole gameobject when there are no divers that are interacting with them; and hide/show the graphics when at least one diver is currently seeing them but not everyone should. That way, an object can be activate but hidden: it will then receive network updates related to another client interacting with it but will stay hidden from the local client.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -30,15 +29,15 @@
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
   </head>
-
-  <script type="module" src="./../public/docfx.min.js"></script>
-
-  <script>
-    const theme = localStorage.getItem('theme') || 'auto'
-    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-  </script>
-
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
     <header class="bg-body border-bottom">
@@ -74,7 +73,7 @@
 
       <div class="content">
         <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
             <i class="bi bi-list"></i>
           </button>
 
@@ -86,8 +85,7 @@
 
 
   <h1 id="ECellDive_Interfaces_IMlprVisibility" data-uid="ECellDive.Interfaces.IMlprVisibility" class="text-break">
-    Interface IMlprVisibility
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IMultiplayer.cs/#L341"><i class="bi bi-code-slash"></i></a>
+Interface IMlprVisibility  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Interfaces/IMultiplayer.cs/#L341"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">

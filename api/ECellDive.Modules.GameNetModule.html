@@ -2,12 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class GameNetModule
- </title>
+      <title>Class GameNetModule </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class GameNetModule
- ">
+      <meta name="title" content="Class GameNetModule ">
       
+      <meta name="description" content="Base class holding references and methods used to manipulate the game object representation of a module.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -30,15 +29,15 @@
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
   </head>
-
-  <script type="module" src="./../public/docfx.min.js"></script>
-
-  <script>
-    const theme = localStorage.getItem('theme') || 'auto'
-    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-  </script>
-
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
     <header class="bg-body border-bottom">
@@ -74,7 +73,7 @@
 
       <div class="content">
         <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
             <i class="bi bi-list"></i>
           </button>
 
@@ -86,8 +85,7 @@
 
 
   <h1 id="ECellDive_Modules_GameNetModule" data-uid="ECellDive.Modules.GameNetModule" class="text-break">
-    Class GameNetModule
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L21"><i class="bi bi-code-slash"></i></a>
+Class GameNetModule  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -1713,7 +1711,7 @@ the divers to.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_ApplyColor_Color_" data-uid="ECellDive.Modules.GameNetModule.ApplyColor(Color)">
   ApplyColor(Color)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L536"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L537"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The function to call when we wish to apply a color to the material
@@ -1788,7 +1786,7 @@ is not used.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_AssembleFragmentedData" data-uid="ECellDive.Modules.GameNetModule.AssembleFragmentedData">
   AssembleFragmentedData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L667"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L676"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Reassembles the fragments from <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_fragmentedSourceData">fragmentedSourceData</a> into
@@ -1845,7 +1843,7 @@ a single byte array and interprets it.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataC" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataC">
   BroadcastSourceDataC()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L670"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L679"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Public interface to a coroutine requesting the server to send the name,
@@ -1884,7 +1882,7 @@ to all clients.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataFragClientRpc_System_Byte___" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataFragClientRpc(System.Byte[])">
   BroadcastSourceDataFragClientRpc(byte[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L686"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L695"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The server sends a data fragment to the module to the clients.</p>
@@ -1917,7 +1915,7 @@ to all clients.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataFragServerRpc_System_Byte___" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataFragServerRpc(System.Byte[])">
   BroadcastSourceDataFragServerRpc(byte[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L724"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L733"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The client who has ownership of the module confirms request the
@@ -1951,7 +1949,7 @@ server to broadcast the data fragment to the other clients.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataFragsC_System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataFragsC(System.Collections.Generic.List{System.Byte[]})">
   BroadcastSourceDataFragsC(List&lt;byte[]&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L749"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L758"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The coroutine requesting to broadcast all the fragments in
@@ -1990,7 +1988,7 @@ server to broadcast the data fragment to the other clients.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNameClientRpc_System_Byte___" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNameClientRpc(System.Byte[])">
   BroadcastSourceDataNameClientRpc(byte[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L702"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L711"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The server sends the name of the data associated to the module to the clients.</p>
@@ -2023,7 +2021,7 @@ server to broadcast the data fragment to the other clients.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNameServerRpc_System_Byte___" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNameServerRpc(System.Byte[])">
   BroadcastSourceDataNameServerRpc(byte[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L733"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L742"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The client who has ownership of the module requests the server to
@@ -2057,7 +2055,7 @@ broadcast the name of the data associated to the module to the other clients.</p
 
   <h3 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsClientRpc_System_UInt16_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNbFragsClientRpc(System.UInt16)">
   BroadcastSourceDataNbFragsClientRpc(ushort)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L713"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L722"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The server sends the number of fragments to the clients.</p>
@@ -2090,7 +2088,7 @@ broadcast the name of the data associated to the module to the other clients.</p
 
   <h3 id="ECellDive_Modules_GameNetModule_BroadcastSourceDataNbFragsServerRpc_System_UInt16_" data-uid="ECellDive.Modules.GameNetModule.BroadcastSourceDataNbFragsServerRpc(System.UInt16)">
   BroadcastSourceDataNbFragsServerRpc(ushort)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L742"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L751"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The client who has ownership of the module requests the server to
@@ -2124,7 +2122,7 @@ broadcast the number of fragments to the other clients.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_ConfirmSourceDataReceptionServerRpc" data-uid="ECellDive.Modules.GameNetModule.ConfirmSourceDataReceptionServerRpc">
   ConfirmSourceDataReceptionServerRpc()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L759"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L768"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Any client sends a confirmation to the server that it has received all
@@ -2222,7 +2220,7 @@ Transfers the user to the dive scene associated to the module.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_DirectReceiveSourceData_System_Byte___System_Collections_Generic_List_System_Byte____" data-uid="ECellDive.Modules.GameNetModule.DirectReceiveSourceData(System.Byte[],System.Collections.Generic.List{System.Byte[]})">
   DirectReceiveSourceData(byte[], List&lt;byte[]&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L772"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L781"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>This is a shortcut to assign values to <a class="xref" href="ECellDive.Interfaces.IMlprData.html#ECellDive_Interfaces_IMlprData_sourceDataName">sourceDataName</a>,
@@ -2259,7 +2257,7 @@ of the module.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_DisplayInfoTags" data-uid="ECellDive.Modules.GameNetModule.DisplayInfoTags">
   DisplayInfoTags()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L577"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L586"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Make the InfoTags visible in the scene</p>
@@ -2286,7 +2284,7 @@ of the module.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_DisplayName" data-uid="ECellDive.Modules.GameNetModule.DisplayName">
   DisplayName()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L635"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L644"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Makes the name field visible (using GameObject.SetActive and the like)</p>
@@ -2381,7 +2379,7 @@ to the dive scene.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_GetName" data-uid="ECellDive.Modules.GameNetModule.GetName">
   GetName()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L641"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L650"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the value stored in <a class="xref" href="ECellDive.Interfaces.INamed.html#ECellDive_Interfaces_INamed_nameField">nameField</a>.</p>
@@ -2414,7 +2412,7 @@ to the dive scene.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_HideInfoTags" data-uid="ECellDive.Modules.GameNetModule.HideInfoTags">
   HideInfoTags()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L589"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L598"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Make the InfoTags invisible in the scene</p>
@@ -2441,7 +2439,7 @@ to the dive scene.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_HideName" data-uid="ECellDive.Modules.GameNetModule.HideName">
   HideName()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L647"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L656"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Makes the name field invisible.</p>
@@ -2468,7 +2466,7 @@ to the dive scene.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_InstantiateInfoTag_Vector2_System_String_" data-uid="ECellDive.Modules.GameNetModule.InstantiateInfoTag(Vector2,System.String)">
   InstantiateInfoTag(Vector2, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L601"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L610"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Instantiate one info tag gameobject.</p>
@@ -2505,7 +2503,7 @@ The Z position will be set to 0.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_InstantiateInfoTags_System_String___" data-uid="ECellDive.Modules.GameNetModule.InstantiateInfoTags(System.String[])">
   InstantiateInfoTags(string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L609"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L618"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Instantiates all info tags of a module based on the
@@ -2570,7 +2568,7 @@ to display within text fields of the tags.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_ManageActivationStatus_System_Boolean_System_Boolean_" data-uid="ECellDive.Modules.GameNetModule.ManageActivationStatus(System.Boolean,System.Boolean)">
   ManageActivationStatus(bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L859"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L868"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Intended to active/deactivate the gameobject's version
@@ -2639,7 +2637,7 @@ is turned on or off.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_NetHide" data-uid="ECellDive.Modules.GameNetModule.NetHide">
   NetHide()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L865"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L874"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Intended to disable graphics (and Colliders or anything
@@ -2669,7 +2667,7 @@ local client.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_NetHideClientRpc_ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.NetHideClientRpc(ClientRpcParams)">
   NetHideClientRpc(ClientRpcParams)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L888"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L897"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The equivalent of <a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html#ECellDive_Interfaces_IMlprVisibility_NetHide">NetHide()</a> but for the server
@@ -2704,7 +2702,7 @@ client.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_NetShow" data-uid="ECellDive.Modules.GameNetModule.NetShow">
   NetShow()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L895"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L904"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Intended to enable graphics (and Colliders or anything
@@ -2734,7 +2732,7 @@ local client.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_NetShowClientRpc_ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.NetShowClientRpc(ClientRpcParams)">
   NetShowClientRpc(ClientRpcParams)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L914"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L923"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The equivalent of <a class="xref" href="ECellDive.Interfaces.IMlprVisibility.html#ECellDive_Interfaces_IMlprVisibility_NetShow">NetShow()</a> but for the server
@@ -2821,7 +2819,7 @@ client.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_RequestSetActiveServerRpc_System_Boolean_" data-uid="ECellDive.Modules.GameNetModule.RequestSetActiveServerRpc(System.Boolean)">
   RequestSetActiveServerRpc(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L921"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L930"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A client requests the server to change the value of
@@ -2854,7 +2852,7 @@ client.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_RequestSourceDataGenerationServerRpc_System_UInt64_" data-uid="ECellDive.Modules.GameNetModule.RequestSourceDataGenerationServerRpc(System.UInt64)">
   RequestSourceDataGenerationServerRpc(ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L787"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L796"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Requests the server to generate the data associated to the module.
@@ -2922,7 +2920,7 @@ is divable.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_SendSourceDataC_System_UInt64_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataC(System.UInt64)">
   SendSourceDataC(ulong)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L795"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L804"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Public interface to a coroutine requesting the server to send the name,
@@ -2962,7 +2960,7 @@ to the client with the ID <code class="paramref">_targetClientID</code>.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_SendSourceDataFragClientRpc_System_Byte___ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataFragClientRpc(System.Byte[],ClientRpcParams)">
   SendSourceDataFragClientRpc(byte[], ClientRpcParams)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L817"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L826"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The server sends a data fragment to the module to the client reprensented
@@ -2999,7 +2997,7 @@ by <code class="paramref">_clientRpcParams</code>.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_SendSourceDataFragsC_System_Collections_Generic_List_System_Byte____ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataFragsC(System.Collections.Generic.List{System.Byte[]},ClientRpcParams)">
   SendSourceDataFragsC(List&lt;byte[]&gt;, ClientRpcParams)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L847"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L856"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The coroutine controlling the sending of all the fragments in
@@ -3042,7 +3040,7 @@ by <code class="paramref">_clientRpcParams</code>.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_SendSourceDataNameClientRpc_System_Byte___ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataNameClientRpc(System.Byte[],ClientRpcParams)">
   SendSourceDataNameClientRpc(byte[], ClientRpcParams)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L829"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L838"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The server sends the name of the data associated to the module to the client
@@ -3079,7 +3077,7 @@ reprensented by <code class="paramref">_clientRpcParams</code>.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_SendSourceDataNbFragsClientRpc_System_UInt16_ClientRpcParams_" data-uid="ECellDive.Modules.GameNetModule.SendSourceDataNbFragsClientRpc(System.UInt16,ClientRpcParams)">
   SendSourceDataNbFragsClientRpc(ushort, ClientRpcParams)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L838"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L847"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The server sends the number of fragments to the client reprensented
@@ -3112,11 +3110,45 @@ by <code class="paramref">_clientRpcParams</code>.</p>
 
 
 
+  <a id="ECellDive_Modules_GameNetModule_SetAndApplyDefaultColorServerRpc_" data-uid="ECellDive.Modules.GameNetModule.SetAndApplyDefaultColorServerRpc*"></a>
+
+  <h3 id="ECellDive_Modules_GameNetModule_SetAndApplyDefaultColorServerRpc_Color_" data-uid="ECellDive.Modules.GameNetModule.SetAndApplyDefaultColorServerRpc(Color)">
+  SetAndApplyDefaultColorServerRpc(Color)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L547"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the value of <a class="xref" href="ECellDive.Interfaces.IColorHighlightableNet.html#ECellDive_Interfaces_IColorHighlightableNet_currentColor">currentColor</a> and <a class="xref" href="ECellDive.Interfaces.IColored.html#ECellDive_Interfaces_IColored_defaultColor">defaultColor</a>
+to <code class="paramref">_color</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAndApplyDefaultColorServerRpc(Color _color)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_color</code> <span class="xref">Color</span></dt>
+    <dd><p>The new color.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="ECellDive_Modules_GameNetModule_SetCurrentColorToDefaultServerRpc_" data-uid="ECellDive.Modules.GameNetModule.SetCurrentColorToDefaultServerRpc*"></a>
 
   <h3 id="ECellDive_Modules_GameNetModule_SetCurrentColorToDefaultServerRpc" data-uid="ECellDive.Modules.GameNetModule.SetCurrentColorToDefaultServerRpc">
   SetCurrentColorToDefaultServerRpc()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L546"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L555"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Contacts the server to applies <a class="xref" href="ECellDive.Interfaces.IColored.html#ECellDive_Interfaces_IColored_defaultColor">defaultColor</a>
@@ -3148,7 +3180,7 @@ the value will be synchronized to all clients.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_SetCurrentColorToHighlightServerRpc" data-uid="ECellDive.Modules.GameNetModule.SetCurrentColorToHighlightServerRpc">
   SetCurrentColorToHighlightServerRpc()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L553"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L562"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Contacts the server to applies <a class="xref" href="ECellDive.Interfaces.IColorHighlightable.html#ECellDive_Interfaces_IColorHighlightable_highlightColor">highlightColor</a>
@@ -3212,7 +3244,7 @@ UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)&quot;</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_SetHighlight" data-uid="ECellDive.Modules.GameNetModule.SetHighlight">
   SetHighlight()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L560"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L569"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The function to call when the object should enter highlighted
@@ -3240,7 +3272,7 @@ state.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_SetName_System_String_" data-uid="ECellDive.Modules.GameNetModule.SetName(System.String)">
   SetName(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L653"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L662"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the value to display through <a class="xref" href="ECellDive.Interfaces.INamed.html#ECellDive_Interfaces_INamed_nameField">nameField</a>.</p>
@@ -3273,7 +3305,7 @@ state.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_ShowInfoTags" data-uid="ECellDive.Modules.GameNetModule.ShowInfoTags">
   ShowInfoTags()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L624"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L633"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Make the InfoTags face in the direction of the player</p>
@@ -3300,7 +3332,7 @@ state.</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_ShowName" data-uid="ECellDive.Modules.GameNetModule.ShowName">
   ShowName()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L659"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L668"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Make the name readable from the POV of the camera</p>
@@ -3387,7 +3419,7 @@ UnityEngine.XR.Interaction.Toolkit.HoverEnterEventArgs)&quot;</p>
 
   <h3 id="ECellDive_Modules_GameNetModule_UnsetHighlight" data-uid="ECellDive.Modules.GameNetModule.UnsetHighlight">
   UnsetHighlight()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L566"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ecell/ECell_Dive/blob/documentation/Assets/Scripts/Modules/GameNetModule.cs/#L575"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The function to call when the object should exit the highlighted
