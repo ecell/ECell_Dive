@@ -68,14 +68,34 @@ namespace ECellDive.Multiplayer
 		/// <param name="connectionData">binary data passed into StartClient. In our case this is the client's GUID, which is a unique identifier for their install of the game that persists across app restarts. </param>
 		/// <param name="clientId">This is the clientId that Netcode assigned us on login. It does not persist across multiple logins from the same client. </param>
 		/// <param name="connectionApprovedCallback">The delegate we must invoke to signal that the connection was approved or not. </param>
-		void ApprovalCheck(byte[] connectionData, ulong clientId, NetworkManager.ConnectionApprovedDelegate connectionApprovedCallback)
+		void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
 		{
+			ulong clientId = request.ClientNetworkId;
+			byte[] connectionData = request.Payload;
+
 			//Debug.Log("Server is checking for approval.");
 			if (connectionData.Length > k_MaxConnectPayload)
 			{
-				// If connectionData too high, deny immediately to avoid wasting time on the server. This is intended as
-				// a bit of light protection against DOS attacks that rely on sending silly big buffers of garbage.
-				connectionApprovedCallback(false, 0, false, null, null);
+				// Your approval logic determines the following values
+				response.Approved = false;
+				response.CreatePlayerObject = false;
+
+				// The Prefab hash value of the NetworkPrefab, if null the default NetworkManager player Prefab is used
+				response.PlayerPrefabHash = null;
+
+				// Position to spawn the player object (if null it uses default of Vector3.zero)
+				response.Position = Vector3.zero;
+
+				// Rotation to spawn the player object (if null it uses the default of Quaternion.identity)
+				response.Rotation = Quaternion.identity;
+
+				// If response.Approved is false, you can provide a message that explains the reason why via ConnectionApprovalResponse.Reason
+				// On the client-side, NetworkManager.DisconnectReason will be populated with this message via DisconnectReasonMessage
+				response.Reason = "Connection payload too big. Please try again.";
+
+				// If additional approval steps are needed, set this to true until the additional steps are complete
+				// once it transitions from true to false the connection approval response will be processed.
+				response.Pending = false;
 				return;
 			}
 
@@ -87,7 +107,22 @@ namespace ECellDive.Multiplayer
 			{
 				//Debug.Log("Client ID corresponds to local object: this is the host");
 
-				connectionApprovedCallback(true, null, true, null, null);
+				// Your approval logic determines the following values
+				response.Approved = true;
+				response.CreatePlayerObject = true;
+
+				// The Prefab hash value of the NetworkPrefab, if null the default NetworkManager player Prefab is used
+				response.PlayerPrefabHash = null;
+
+				// Position to spawn the player object (if null it uses default of Vector3.zero)
+				response.Position = Vector3.zero;
+
+				// Rotation to spawn the player object (if null it uses the default of Quaternion.identity)
+				response.Rotation = Quaternion.identity;
+
+				// If additional approval steps are needed, set this to true until the additional steps are complete
+				// once it transitions from true to false the connection approval response will be processed.
+				response.Pending = false;
 				return;
 			}
 
@@ -101,13 +136,23 @@ namespace ECellDive.Multiplayer
 				
 				SendServerToClientConnectResult(clientId, gameReturnStatus);
 
-				//Populate our client scene map
-				//m_ClientSceneMap[clientId] = connectionPayload.clientScene;
+				// Your approval logic determines the following values
+				response.Approved = true;
+				response.CreatePlayerObject = true;
 
-				// connection approval will create a player object for you
-				connectionApprovedCallback(true, null, true, Vector3.zero, Quaternion.identity);
+				// The Prefab hash value of the NetworkPrefab, if null the default NetworkManager player Prefab is used
+				response.PlayerPrefabHash = null;
 
-				// m_ConnectionEventPublisher.Publish(new ConnectionEventMessage() { ConnectStatus = ConnectStatus.Success, PlayerName = SessionManager<SessionPlayerData>.Instance.GetPlayerData(clientId)?.PlayerName });
+				// Position to spawn the player object (if null it uses default of Vector3.zero)
+				response.Position = Vector3.zero;
+
+				// Rotation to spawn the player object (if null it uses the default of Quaternion.identity)
+				response.Rotation = Quaternion.identity;
+
+				// If additional approval steps are needed, set this to true until the additional steps are complete
+				// once it transitions from true to false the connection approval response will be processed.
+				response.Pending = false;
+
 			}
 			else
 			{

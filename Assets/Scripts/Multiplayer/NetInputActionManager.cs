@@ -15,7 +15,6 @@ namespace ECellDive.Multiplayer
     /// Actions are initially disabled, meaning they do not listen/react to input yet. This class
     /// is used to mass enable actions so that they actively listen for input and run callbacks.
     /// </remarks>
-    [HelpURL(XRHelpURLConstants.k_InputActionManager)]
     public class NetInputActionManager : NetworkBehaviour
     {
         [SerializeField]
