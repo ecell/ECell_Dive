@@ -240,18 +240,20 @@ namespace ECellDive.PlayerComponents
 		/// <inheritdoc/>
 		public void OnGrab()
 		{
-			refCurrentController = refInteractable.selectingInteractor.gameObject;
-			objDistance = Vector3.Distance(transform.position,
-											refCurrentController.transform.position);
-
-			if (refInteractable.selectingInteractor == StaticReferencer.Instance.remoteGrabInteractors.left)
+			if (StaticReferencer.Instance.remoteGrabInteractors.left.isSelectActive)
 			{
 				m_isGrabed.left = true;
+				refCurrentController = StaticReferencer.Instance.remoteGrabInteractors.left.gameObject;
+				objDistance = Vector3.Distance(transform.position,
+												refCurrentController.transform.position);
 			}
 
-			if (refInteractable.selectingInteractor == StaticReferencer.Instance.remoteGrabInteractors.right)
+			if (StaticReferencer.Instance.remoteGrabInteractors.right.isSelectActive)
 			{
 				m_isGrabed.right = true;
+				refCurrentController = StaticReferencer.Instance.remoteGrabInteractors.right.gameObject;
+				objDistance = Vector3.Distance(transform.position,
+												refCurrentController.transform.position);
 			}
 
 			isReady = true;
