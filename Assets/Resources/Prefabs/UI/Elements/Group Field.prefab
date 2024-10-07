@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1126170694007878815}
   - component: {fileID: 2020310015295275108}
   - component: {fileID: 6521057477470943232}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Toggle Checkmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,9 +28,9 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 836821169065673671}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 7487959823660183950}
   - component: {fileID: -708671116495359587}
   - component: {fileID: 4018460278719729123}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Group Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,13 +106,13 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3036294179713713709}
   - {fileID: 7696496534650431702}
   - {fileID: 1126170694007878815}
   - {fileID: 3316940284720369222}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 7617780175787246797}
   - component: {fileID: 6375864695310725395}
   - component: {fileID: 6596310671979754900}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Color Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,9 +304,9 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 836821169065673671}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 8501662803836610919}
   - component: {fileID: 4475884809236906395}
   - component: {fileID: 5407293450910164428}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Toggle Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,9 +464,9 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 836821169065673671}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -492,6 +492,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -616,6 +617,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 836821169065673671}
     m_Modifications:
     - target: {fileID: 3531729076202431171, guid: 73fb68f558e630b43873f5ec54496abe, type: 3}
@@ -719,6 +721,9 @@ PrefabInstance:
       value: ECellDive.UI.GroupUIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73fb68f558e630b43873f5ec54496abe, type: 3}
 --- !u!224 &3036294179713713709 stripped
 RectTransform:
